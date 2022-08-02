@@ -1,13 +1,60 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url('./invis.css');
+
+:root {
+  --black: rgba(34, 17, 34, 0.9);
+  --gray: rgba(33, 33, 33, 0.5);
+  --light-gray: rgba(196, 196, 196, 1);
+  --brown: rgba(167, 82, 20, 0.8);
+  --white: rgba(246, 246, 246, 1);
+  --shadow: 4px 4px 8px 0px rgba(56, 41, 56, 0.2);
+  --border: var(--black) 1px solid;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  font-family: 'Roboto';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--black);
+  background-color: var(--white);
+}
+
+body h1 {
+  font-size: 144px;
+  font-weight: bold;
+}
+
+body h2 {
+  font-size: 36px;
+  font-weight: 600;
+}
+
+body h3 {
+  font-size: 32px;
+}
+
+body p {
+  font-size: 18px;
+}
+
+body button {
+  font-weight: 400;
+  font-size: 24px;
+  height: 56px;
+  padding: 10px 32px;
+  border: var(--border);
+  background-color: inherit;
+  box-shadow: var(--shadow);
+}
+
+body button:hover {
+  box-shadow: none;
+}
+
+body button.disabled {
+  color: var(--light-gray);
+  border-color: var(--light-gray);
+  box-shadow: none;
+  cursor: default;
 }
