@@ -4,6 +4,7 @@ function App() {
     return (
         <div className="App">
             <h1>Start</h1>
+            <button className='accent'>ывывыв</button>
         </div>
     );
 }

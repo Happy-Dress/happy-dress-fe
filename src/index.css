@@ -7,7 +7,9 @@
   --light-gray: rgba(196, 196, 196, 1);
   --brown: rgba(167, 82, 20, 0.8);
   --white: rgba(246, 246, 246, 1);
-  --shadow: 4px 4px 8px 0px rgba(56, 41, 56, 0.2);
+  --shadow: 4px 4px 8px 0px rgba(56, 41, 56, 0.25);
+  --shadow-brown: 4px 4px 6px 2px rgba(167, 82, 20, 0.25);
+  --shadow-accent: 0px 0px 10px 3px rgba(34, 17, 34, 0.25) inset;
   --border: var(--black) 1px solid;
 }
 
@@ -48,13 +50,23 @@ body button {
   box-shadow: var(--shadow);
 }
 
-body button:hover {
-  box-shadow: none;
-}
-
 body button.disabled {
   color: var(--light-gray);
   border-color: var(--light-gray);
   box-shadow: none;
   cursor: default;
 }
+
+body button.accent {
+  color: var(--white);
+  border: none;
+  box-shadow: var(--shadow-brown);
+  background-color: var(--brown);
+  cursor: default;
+}
+
+body button:hover {
+  box-shadow: none;
+}
+
+/* Нужно добавить класс активной кнопки после нажатия */
