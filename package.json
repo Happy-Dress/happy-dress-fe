@@ -38,6 +38,12 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^8.20.0"
+    "eslint": "^8.20.0",
+    "git-jira-hook": "^1.0.6"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "git-jira-hook ${HUSKY_GIT_PARAMS} --projectId HAP"
+    }
   }
 }
