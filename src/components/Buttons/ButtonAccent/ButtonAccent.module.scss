@@ -1,0 +1,23 @@
+.ButtonAccent{
+    font-weight: 400;
+    font-size: 24px;
+    height: 56px;
+    padding: 10px 32px;
+    color: var(--white);
+    border: none;
+    box-shadow: var(--shadow-brown);
+    background-color: var(--brown);
+    &:hover {
+        box-shadow: none;
+    }
+    &_active{
+        font-weight: 400;
+        font-size: 24px;
+        height: 56px;
+        padding: 10px 32px;
+        color: var(--white);
+        box-shadow: var(--shadow-brown-press);
+        background-color: var(--brown);
+        cursor: default;
+    }
+}
