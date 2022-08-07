@@ -11,7 +11,7 @@ function ButtonAccent(props) {
     };
 
     return (
-        <button onClick={changeState} className={active ? s.ButtonAccent_active : s.ButtonAccent}>{props.text}</button>
+        <button data-testid='ButtonAccent' onClick={changeState} className={active ? s.ButtonAccent_active : s.ButtonAccent}>{props.text}</button>
     );
 }
 

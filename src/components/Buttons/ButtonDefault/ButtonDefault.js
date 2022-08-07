@@ -11,7 +11,7 @@ function ButtonDefault(props) {
     };
 
     return (
-        <button onClick={changeState} className={active ? s.ButtonDefault_active : s.ButtonDefault}>{props.text}</button>
+        <button data-testid='ButtonDefault' onClick={changeState} className={active ? s.ButtonDefault_active : s.ButtonDefault}>{props.text}</button>
     );
 }
 
