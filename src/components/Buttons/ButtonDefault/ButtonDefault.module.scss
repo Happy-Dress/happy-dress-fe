@@ -1,11 +1,12 @@
+@import '../../../styles/colors';
 .ButtonDefault{
     font-weight: 400;
     font-size: 24px;
     height: 56px;
     padding: 10px 32px;
-    border: var(--border);
+    border: $border;
     background-color: inherit;
-    box-shadow: var(--shadow-black);
+    box-shadow: $shadow-black;
     &:hover {
         box-shadow: none;
       }
@@ -14,9 +15,9 @@
       font-size: 24px;
       height: 56px;
       padding: 10px 32px;
-      color: var(--light-gray);
-      border: var(--light-gray) 1px solid;
-      box-shadow: var(--shadow-black);
+      color: $light-gray;
+      border: $light-gray 1px solid;
+      box-shadow: $shadow-black;
       cursor: default;
     }
 }

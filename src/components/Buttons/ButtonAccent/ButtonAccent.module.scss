@@ -1,12 +1,13 @@
+@import '../../../styles/colors';
 .ButtonAccent{
     font-weight: 400;
     font-size: 24px;
     height: 56px;
     padding: 10px 32px;
-    color: var(--white);
+    color: $white;
     border: none;
-    box-shadow: var(--shadow-brown);
-    background-color: var(--brown);
+    box-shadow: $shadow-brown;
+    background-color: $brown;
     &:hover {
         box-shadow: none;
     }
@@ -15,9 +16,9 @@
         font-size: 24px;
         height: 56px;
         padding: 10px 32px;
-        color: var(--white);
-        box-shadow: var(--shadow-brown-press);
-        background-color: var(--brown);
+        color: $white;
+        box-shadow: $shadow-brown-press;
+        background-color: $brown;
         cursor: default;
     }
 }
