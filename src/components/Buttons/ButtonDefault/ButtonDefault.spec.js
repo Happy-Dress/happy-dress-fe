@@ -1,13 +1,15 @@
-import React from "react";
+import React from 'react';
 import '@testing-library/jest-dom';
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import ButtonDefault from './'
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import ButtonDefault from './ButtonDefault';
 
-test('test ButtonDefault', () => {
-    render(<ButtonDefault/>);
-    const btn = screen.queryByTestId('ButtonDefault');
-    expect(btn).toHaveClass('ButtonDefault');
-    userEvent.click(btn);
-    expect(btn).toHaveClass('ButtonDefault_active');
+describe('test ButtonDefault', () => {
+    it('change class on click', () => {
+        render(<ButtonDefault text='test'/>);
+        const btn = screen.getByRole('button');
+        expect(btn).toHaveClass('ButtonDefault');
+        userEvent.click(btn);
+        expect(btn).toHaveClass('ButtonDefault_active');
+    });
 });
