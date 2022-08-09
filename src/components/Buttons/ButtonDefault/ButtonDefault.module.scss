@@ -1,0 +1,18 @@
+@import '../../../styles/colors';
+.ButtonDefault{
+    font-weight: 400;
+    font-size: 24px;
+    height: 56px;
+    padding: 10px 32px;
+    border: $border;
+    background-color: inherit;
+    box-shadow: $shadow-black;
+    &:hover {
+        box-shadow: none;
+      }
+    &_active{
+      color: $light-gray;
+      border: $light-gray 1px solid;
+      cursor: default;
+    }
+}
