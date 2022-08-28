@@ -113,6 +113,9 @@
                 align-items: center;
                 justify-content: center;
                 flex-direction: column;
+                &__item{
+                    margin-right: 0;
+                }
                 li {
                     margin-bottom: 50px;
                     &:last-child {
@@ -151,6 +154,9 @@
             &_menu {
                 display: flex;
                 align-items: flex-start;
+                &__item{
+                    margin-right: 0;
+                }
             }
         }
     }
