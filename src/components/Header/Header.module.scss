@@ -81,7 +81,7 @@
         padding: 30px;
 
         &_mobile {
-            display: flex;
+            
             &__burger {
                 height: 28px;
                 margin-left: 40px;
@@ -112,12 +112,75 @@
                 }
             }
         }
-        &_right {
+        
+        
+    }
+    @media screen and (max-width: 1200px){
+        .Header{
+            &_logo{
+                font-size: 30px;
+            }
+        &_mobile{
             display: none;
         }
         &_menu {
+            margin-left: 4em;
+            font-size: 20px;
+        }
+        &_number{
+            font-size: 20px;
+        }
+    }
+    }
+    @media screen and (max-width: 1075px){
+        .Header{
+            &_logo{
+                font-size: 24px;
+            }
+        &_mobile{
             display: none;
         }
+        &_menu {
+            margin-left: 4em;
+            font-size: 18px;
+        }
+        &_number{
+            font-size: 18px;
+        }
+    }
+    }
+    @media screen and (max-width: 970px){
+        .Header{
+            &_logo{
+                font-size: 24px;
+            }
+        &_mobile{
+            display: none;
+        }
+        &_menu {
+            margin-left: 2em;
+            font-size: 16px;
+        }
+        &_number{
+            font-size: 16px;
+        }
+    }
+    }
+    @media screen and (max-width: 875px){
+        .Header{
+        &_mobile{
+            display: flex;
+        }
+        &_menu {
+          display: none;
+        }
+        &_right {
+            display: none;
+        }
+        &_number{
+            display: none;
+        }
+    }
     }
 
     @media screen and (max-width: 500px) {
