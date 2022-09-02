@@ -2,14 +2,9 @@
 .Header {
     display: flex;
     justify-content: space-between;
-    position: sticky;
-    left: 0;
-    top: 0;
     background-color: $white;
-    height: 100px;
     width: 100%;
-    padding: 0 130px;
-    display: flex;
+    padding: 36px 130px;
     align-items: center;
     font-size: 24px;
     border-bottom: 2px solid $light-gray;
@@ -22,14 +17,18 @@
         letter-spacing: -6px;
     }
     &_menu {
-        margin-left: 130px;
+        margin-left: 8em;
         display: flex;
         align-items: center;
         &__item {
             margin-right: 30px;
-            color: $light-gray;
+            color: $black;
+            
             &:hover {
-                color: $black;
+                border-bottom: 1.8px solid rgba(167, 82, 20, 0.8);
+            }
+            &:first-child{
+                border-bottom: 1.8px solid rgba(167, 82, 20, 0.8);
             }
         }
     }
@@ -66,15 +65,8 @@
     &_mobile {
         display: none;
         &_menu {
-            &__item {
-                height: 25px;
-                &:last-child{
-                    color: $black;
-                }
-                margin-right: 30px;
-                color: $light-gray;
-                &:hover {
-                    color: $black;
+            &__item {            
+                &:hover {                
                     border-bottom: 2px solid $brown;
                 }
             }
@@ -86,7 +78,7 @@
     }
 
     @media screen and (max-width: 1500px) {
-        padding: 0 30px;
+        padding: 30px;
 
         &_mobile {
             display: flex;
@@ -97,8 +89,7 @@
             }
             &_modal {
                 width: 100%;
-                height: fit-content;
-                padding: 50px 30px;
+                padding: 48px  98px 63px 98px;
                 background-color: $white;
                 display: flex;
                 align-items: center;
@@ -107,16 +98,16 @@
             }
             &_menu {
                 font-size: 20px;
-                width: 100%;
-                height: 100%;
+                height: 100vh;
                 display: flex;
                 align-items: center;
-                justify-content: center;
                 flex-direction: column;
                 li {
-                    margin-bottom: 50px;
-                    &:last-child {
-                        margin-top: 60px;
+                    &:nth-child(1n){
+                        padding-bottom: 31px;
+                    }
+                    &:last-child{
+                        padding-top: 91px;
                     }
                 }
             }
@@ -145,12 +136,13 @@
         }
         &_mobile {
             &_modal {
-                height: 100%;
-                display: flex;
+                padding: 48px 28px 63px;
+               justify-content: start;
             }
             &_menu {
                 display: flex;
                 align-items: flex-start;
+                justify-content: start;
             }
         }
     }
