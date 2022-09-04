@@ -1,0 +1,14 @@
+.errorMessage {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15px;
+  color: rgba(255, 0, 0, 0.5);
+}
+
+@media screen and (min-width: 769px) {
+  .errorMessage {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
