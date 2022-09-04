@@ -14,5 +14,17 @@
     &_active{
         box-shadow: $shadow-brown-press;
         cursor: default;
+        transition: 0.15s ease-in-out;
+    }
+    &:disabled {
+      cursor: default;
+      background: rgba(33, 33, 33, 0.5);
+      box-shadow: 4px 4px 6px rgba(85, 80, 77, 0.25);
+      transition: 0.15s ease-in-out;
+    }
+    &:active {
+      background: rgba(167, 82, 20, 0.8);
+      box-shadow: inset 4px 4px 8px rgba(34, 17, 34, 0.25), inset -4px -4px 8px rgba(34, 17, 34, 0.25);
+      transition: 0.15s ease-in-out;
     }
 }
