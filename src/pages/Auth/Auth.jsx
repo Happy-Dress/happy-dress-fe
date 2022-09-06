@@ -1,14 +1,14 @@
-import * as React from 'react';
-import s from './Auth.module.scss';
+// import * as React from 'react';
+import { useState } from 'react';
 import { AUTH } from './Auth.dictionary';
-import ButtonAccent from '../Buttons/ButtonAccent';
-import { InputErrorMessage as ErrorMessage } from '../InputErrorMessage/InputErrorMessage';
+import s from './Auth.module.scss';
+import classNames from 'classnames';
 import userIcon from '../../assets/icons/user.svg';
 import passwordIcon from '../../assets/icons/password.svg';
 import eyeIcon from '../../assets/icons/eye.svg';
-import { useState } from 'react';
-import classNames from 'classnames';
-import { fetchDummyUser, hasError, validation } from './Auth.utils';
+import ButtonAccent from '../../components/Buttons/ButtonAccent';
+import { InputErrorMessage as ErrorMessage } from './InputErrorMessage';
+import { fetchDummyUser, hasError, validation } from './Auth.hooks';
 
 const errors = {
     login: '',
@@ -36,7 +36,7 @@ const initialState = {
     isFetching: false,
 };
 
-export const SignIn = () => {
+export const Auth = () => {
     const [state, setState] = useState(initialState);
 
     const handleShowPassword = () => {
