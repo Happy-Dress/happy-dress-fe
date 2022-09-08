@@ -7,12 +7,11 @@ import passwordIcon from '../../assets/icons/password.svg';
 import eyeIcon from '../../assets/icons/eye.svg';
 import ButtonAccent from '../../components/Buttons/ButtonAccent';
 import { InputErrorMessage as ErrorMessage } from './InputErrorMessage';
-import {
-    fetchDummyUser,
-} from './Auth.hooks';
 import { useForm } from 'react-hook-form';
 import { schema } from './Auth.validation';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigate } from 'react-router-dom';
+import { authLogin } from '../../api';
 
 const {
     HEADER_TITLE,
@@ -33,6 +32,7 @@ const initialState = {
 
 export const Auth = () => {
     const [state, setState] = useState(initialState);
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -49,36 +49,33 @@ export const Auth = () => {
         }));
     };
 
-    const onSubmit = async (formData) => {
-
+    const toggleIsFetchingState = (bool) => {
         setState((state) => ({
-            ...state, isFetching: true,
+            ...state, isFetching: bool,
         }));
+    };
+
+    const onSubmit = async (formData) => {
+        toggleIsFetchingState(true);
 
         if (formData?.login && formData?.password) {
-            const data = fetchDummyUser(formData?.login ?? '', formData?.password ?? '');
-            console.log('dummmy data', data);
-            data
+            const { login, password} = formData;
+            authLogin({ login, password })
                 .then((res) => {
-                    setState((state) => ({
-                        ...state, isFetching: false
-                    }));
-                    console.log('res', res); // todo API request
+                    toggleIsFetchingState(false);
+                    sessionStorage.setItem('accessToken', res.data.accessToken);
+                    navigate('/');
                 })
-                .catch((e) => {
-                    console.log('err', e);
-                    if (e === 'error') {
-
-                        setState((state) => ({
-                            ...state,
-                            isFetching: false,
-                        }));
+                .catch((error) => {
+                    toggleIsFetchingState(false);
+                    if (error.response.status === 401) {
                         setError('login', { message: LOGIN_ERROR_MESSAGE });
                         setError('password', { message: PASSWORD_ERROR_MESSAGE });
+                    } else {
+                        console.log('Auth error code:', error.response.data.statusCode, ', message: ', error.response.data.message);
                     }
                 });
         }
-
     };
 
     return (

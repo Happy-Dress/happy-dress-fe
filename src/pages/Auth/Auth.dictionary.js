@@ -13,11 +13,13 @@ export const AUTH = {
 export const LOGIN_ERROR_MESSAGES = {
     REQUIRED: 'Введите логин',
     NOT_REQUIRED_SYMBOLS: 'Имя должно содержать латинские буквы и цифры',
-    MAX_LENGTH: 'Имя не может превышать 35 символов',
+    MAX_LENGTH: 'Имя должно содержать не более 35 имволов',
+    MIN_LENGTH: 'Имя должно содержать не менее 4 имволов',
 };
 
 export const PASSWORD_ERROR_MESSAGES = {
     REQUIRED: 'Введите пароль',
     NOT_REQUIRED_SYMBOLS: 'Пароль должен содержать латинские буквы, цифры и символы ? ! & / . , ” \'',
-    MAX_LENGTH: 'Пароль не может превышать 15 символов',
+    MAX_LENGTH: 'Пароль должен содержать не более 15 имволов',
+    MIN_LENGTH: 'Пароль должен содержать не менее 4 имволов',
 };
