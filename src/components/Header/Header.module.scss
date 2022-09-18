@@ -1,36 +1,44 @@
 @import '../../styles/colors';
+@import '../../styles/fonts';
+@import '../../styles/media-size';
+
 .Header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color: $white;
-    width: 100%;
-    padding: 36px 130px;
+    width: $width;
+    padding: $header-padding;
     align-items: center;
-    font-size: 24px;
-    border-bottom: 2px solid $light-gray;
+    font-size: $header-size;
+    border-bottom: $light-gray;
+
     &_left {
         display: flex;
     }
+
     &_logo {
-        font-size: 36px;
+        font-size: $logo-size;
         font-weight: bold;
-        letter-spacing: -6px;
+        letter-spacing: $logo-spacing;
         cursor: pointer;
     }
+
     &_menu {
-        margin-left: 8em;
+        margin-left: $menu-left;
         display: flex;
         align-items: center;
         cursor: pointer;
-        &__item {
-            margin-right: 30px;
+
+        &__item>span {
+            margin-right: $item-right;
             color: $black;
-            
+
             &:hover {
-                border-bottom: 1.8px solid rgba(167, 82, 20, 0.8);
+                border-bottom: $border-bottom;
             }
-            &:first-child{
-                border-bottom: 1.8px solid rgba(167, 82, 20, 0.8);
+
+            &:active {
+                border-bottom: $border-bottom;
             }
         }
     }
@@ -40,10 +48,10 @@
     }
 
     &_number {
-        margin-right: 30px;
-        padding-right: 30px;
-        border-right: 2px solid $brown;
-        font-size: 24px;
+        margin-right: $number-right;
+        padding-right: $number-right;
+        border-right: $brown;
+        font-size: $header-size;
         cursor: pointer;
     }
 
@@ -51,166 +59,185 @@
         display: flex;
         position: relative;
         cursor: pointer;
+
         img {
-            width: 26px;
+            width: $cart-width;
         }
+
         p {
             position: absolute;
-            font-size: 14px;
+            font-size: $cart-size;
             background-color: $brown;
             color: $white;
-            border-radius: 20px;
-            padding: 2px 5px 1px;
-            left: 16px;
-            z-index: 2;
+            border-radius: $cart-border;
+            padding: $cart-padding;
+            left: $cart-left;
+            z-index: $cart-index;
         }
     }
 
     &_mobile {
         display: none;
+
         &_menu {
-            &__item {            
-                &:hover {                
-                    border-bottom: 2px solid $brown;
+            &__item {
+                &:hover {
+                    border-bottom: $brown;
                 }
             }
         }
+
         &_modal {
             position: fixed;
-            left: 0;
+            left: $modal-left;
         }
     }
 
-    @media screen and (max-width: 1500px) {
-        padding: 30px;
+    @media screen and (max-width: $xxl-size) {
+        width: $xxl-width;
+        padding: $xxl-padding;
+        display: flex;
+        align-items: baseline;
+
+        &_menu {
+            margin-left: $xxl-size;
+        }
 
         &_mobile {
-            
+
             &__burger {
-                height: 28px;
-                margin-left: 40px;
-                z-index: 5;
+                height: $xxl-height;
+                margin-left: $xxl-left;
+                z-index: $xxl-index;
             }
+
             &_modal {
-                width: 100%;
-                padding: 48px  98px 63px 98px;
+                width: $width;
+                padding: $xxl-modal;
                 background-color: $white;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                border-bottom: 2px solid $light-gray;
+                border-bottom: $light-gray;
             }
+
             &_menu {
-                font-size: 20px;
-                height: 100vh;
+                font-size: $xl-size_number;
+                height: $height;
                 display: flex;
                 align-items: center;
                 flex-direction: column;
+
                 li {
-                    &:nth-child(1n){
-                        padding-bottom: 31px;
+                    &:nth-child(1n) {
+                        padding-bottom: $xxl-child;
                     }
-                    &:last-child{
-                        padding-top: 91px;
+
+                    &:last-child {
+                        padding-top: $xxl-last;
                     }
                 }
             }
         }
-        
-        
     }
-    @media screen and (max-width: 1200px){
-        .Header{
-            &_logo{
-                font-size: 30px;
+
+    @media screen and (max-width: $xl-size) {
+        &_logo {
+            font-size: $xl-size;
+        }
+
+
+        &_menu {
+            margin-left: $xl-left;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            &__item>span {
+                margin-right: $xl-size_number;
+                color: $black;
+                font-size: $xl-size_number;
             }
-        &_mobile{
+        }
+
+        &_number {
+            margin-right: $xl-indent;
+            padding-right: $xl-indent;
+            font-size: $xl-size_number;
+        }
+    }
+
+    @media screen and (max-width: $lg-size) {
+        &_logo {
+            font-size: $lg-size;
+        }
+
+
+        &_menu {
+            margin-left: $lg-left;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            &__item>span {
+                margin-right: $lg-right;
+                color: $black;
+                font-size: $lg-size_number;
+            }
+        }
+
+        &_number {
+            margin-right: 10px;
+            padding-right: 10px;
+            font-size: $lg-size_number;
+        }
+    }
+
+    @media screen and (max-width: $md-size) {
+        display: flex;
+        justify-content: space-between;
+        width: $width;
+        padding: $header-padding;
+        width: $width;
+        padding: $md-padding;
+
+        &_cart {
             display: none;
         }
-        &_menu {
-            margin-left: 4em;
-            font-size: 20px;
-        }
-        &_number{
-            font-size: 20px;
-        }
-    }
-    }
-    @media screen and (max-width: 1075px){
-        .Header{
-            &_logo{
-                font-size: 24px;
-            }
-        &_mobile{
-            display: none;
-        }
-        &_menu {
-            margin-left: 4em;
-            font-size: 18px;
-        }
-        &_number{
-            font-size: 18px;
-        }
-    }
-    }
-    @media screen and (max-width: 970px){
-        .Header{
-            &_logo{
-                font-size: 24px;
-            }
-        &_mobile{
-            display: none;
-        }
-        &_menu {
-            margin-left: 2em;
-            font-size: 16px;
-        }
-        &_number{
-            font-size: 16px;
-        }
-    }
-    }
-    @media screen and (max-width: 875px){
-        .Header{
-        &_mobile{
+
+        &_mobile {
             display: flex;
         }
+
         &_menu {
-          display: none;
+            display: none;
         }
+
         &_right {
             display: none;
         }
-        &_number{
+
+        &_number {
             display: none;
         }
     }
-    }
 
-    @media screen and (max-width: 500px) {
-        height: 70px;
-        &_logo {
-            font-size: 20px;
-            letter-spacing: -4px;
-        }
-        &_cart {
-            p {
-                font-size: 12px;
-            }
-        }
-        img {
-            width: 22px;
-        }
+    @media screen and (max-width: $sm-size) {
         &_mobile {
             &_modal {
-                padding: 48px 28px 63px;
-               justify-content: start;
-            }
-            &_menu {
+                width: $width;
+                padding: $sm-padding;
+                background-color: $white;
                 display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                border-bottom: $light-gray;
+            }
+
+            &_menu {
                 align-items: flex-start;
-                justify-content: start;
             }
         }
     }
+
 }
