@@ -1,0 +1,14 @@
+@import '../../../styles/media-sizes';
+@import '../../../styles/colors';
+
+.Footer_wrapper {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding-top: 30px;
+  display: none;
+  @media screen and (max-width:$lg-size) {
+    display: flex;  
+  }
+}
+
