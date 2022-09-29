@@ -5,7 +5,7 @@ import Header from './Header';
 
 describe('Header', () => {
     it('should render correctly', async () => {
-        const { baseElement } = render(<Header />);
+        const { baseElement } = render(<Footer />);
         expect(baseElement).toBeInTheDocument();
     });
 });
