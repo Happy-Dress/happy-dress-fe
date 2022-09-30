@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.module.scss';
 import Header from '../Header';
-import Footer from '../Footer/Footer';
+import Footer from '../Footer';
 
 const App = () => {
     return (

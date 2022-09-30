@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import s from './FooterMobile.module.scss';
 import { FOOTER_DICTIONARY } from '../Footer.dictionary';
 import Typography from '../../Typography/Typography';

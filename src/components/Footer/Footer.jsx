@@ -2,7 +2,7 @@ import React from 'react';
 import FooterDesktop from './FooterDesktop/FooterDesktop';
 import FooterMobile from './FooterMobile/FooterMobile';
 
-const Header = () => {
+const Footer = () => {
     return (
         <>
             <FooterDesktop />
@@ -11,4 +11,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default Footer;

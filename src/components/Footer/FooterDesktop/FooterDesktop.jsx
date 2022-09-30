@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './FooterDesktop.module.scss';
-import instagram from '../../../images/Footer/instagram.svg';
-import vk from '../../../images/Footer/vk.svg';
-import telegram from '../../../images/Footer/telegram.svg';
+import instagram from '../../../images/inst.svg';
+import vk from '../../../images/vk.svg';
+import telegram from '../../../images/tg.svg';
 import { FOOTER_DICTIONARY } from '../Footer.dictionary';
 import Typography from '../../Typography/Typography';
 
@@ -49,7 +49,7 @@ const FooterDesktop = () => {
                         </Typography>
                     </p>))
                 }
-               
+
             </div>
         </div>
     );
