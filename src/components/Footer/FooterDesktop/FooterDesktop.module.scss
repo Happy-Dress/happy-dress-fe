@@ -74,6 +74,7 @@
     gap: 4%;
     display: flex;
     padding-right: 130px;
+    padding-top: 90px;
     @media screen and (max-width: $xl-size) {
       padding-right: 50px;
     }
@@ -89,7 +90,8 @@
     }
    
     &_hanger {
-      width: 30px;
+      width: 21.86px;
+      height: 22.37px;
       cursor: pointer;
       &:nth-child(2){
         margin: 0 20px;
@@ -144,9 +146,8 @@
     &_items{
       display: flex;
     justify-content: space-between;
-    // padding-left: 7vw;
-    // padding-right: 130px;
     text-decoration-line: none;
+    margin-bottom: 40px;
     @media screen and (max-width:$lg-size) {
       font-size: 24px;   
     }
