@@ -1,27 +1,47 @@
 @import '../../../styles/media-sizes';
+// @import url('../../../styles/_media-sizes.scss');
+@import '../../../styles/_colors.scss';
+
+.FooterDesktop {
+  display: flex;
+  flex-direction: column;
+  padding: 0 7%;
+
+  @media screen and (max-width: $xl-size) {
+    padding: 0 2%;
+  }
+
+  @media screen and (max-width: $lg-size) {
+    padding: 0;
+  }
+}
 
 .Footer {
-  border-bottom: 1.8px solid rgba(167, 82, 20, 0.8);
+  border-bottom: 1.8px solid $brown;
+
+  @media screen and (max-width: $xl-size) {
+    gap: 4vw;
+  }
 
   @media screen and (max-width: $lg-size) {
     display: flex;
     flex-direction: column;
     padding-left: 0;
-    padding-bottom: 30px;
+    padding-bottom: 0;
     gap: 0;
   }
 
   display: flex;
   width: 100%;
   align-items: center;
-  padding-left: 7vw;
   padding-bottom: 51.63px;
   gap: 7vw;
+
 
   &_title {
     @media screen and (max-width: $lg-size) {
       padding-bottom: 25px;
-      border-bottom: 1.8px solid rgba(167, 82, 20, 0.8);
+      border-bottom: 1.8px solid $brown;
       width: 100%;
       display: flex;
       justify-content: center;
@@ -33,11 +53,11 @@
     font-size: 36px;
     cursor: pointer;
 
-    @media screen and (max-width: $xl-size) {
+    @media screen and (max-width: $lg-size) {
       font-size: 32px;
     }
 
-    @media screen and (max-width:$xs-size) {
+    @media screen and (max-width:$lg-size) {
       font-size: 24px;
     }
 
@@ -50,17 +70,19 @@
     text-align: center;
     padding: 30px 0;
 
+    @media screen and (max-width: $xl-size) {
+      gap: 3%;
+      justify-content: center;
+    }
+
     &_item {
       font-size: 24px;
       text-underline-offset: 5px;
 
-      @media screen and (max-width: $xl-size) {
+      @media screen and (max-width: $lg-size) {
         font-size: 20px;
       }
 
-      @media screen and (max-width: $lg-size) {
-        font-size: 24px;
-      }
 
       @media screen and (max-width:$xs-size) {
         font-size: 20px;
@@ -73,11 +95,11 @@
       text-underline-offset: 5px;
 
       &:hover {
-        text-decoration: underline 1.8px solid rgba(167, 82, 20, 0.8);
+        text-decoration: underline 1.8px solid $brown;
       }
 
       &:active {
-        text-decoration: underline 1.8px solid rgba(167, 82, 20, 0.8);
+        text-decoration: underline 1.8px solid $brown;
       }
     }
 
@@ -97,10 +119,9 @@
     align-items: flex-end;
     width: 100%;
     gap: 4%;
-    padding-right: 130px;
 
     @media screen and (max-width: $xl-size) {
-      padding-right: 50px;
+      padding: 30px 0;
     }
 
 
@@ -108,8 +129,8 @@
       padding-right: 0;
       display: flex;
       align-items: center;
-      padding: 30px 0;
-      border-top: 1.8px solid rgba(167, 82, 20, 0.8);
+
+      border-top: 1.8px solid $brown;
     }
 
     &_hanger {
@@ -129,7 +150,7 @@
     &_delimiter {
       width: 24px;
       height: 0;
-      border-top: 1.8px solid rgba(167, 82, 20, 0.8);
+      border-top: 1.8px solid $brown;
       transform: rotate(-90deg);
     }
 
@@ -138,23 +159,23 @@
       flex-direction: column;
       align-items: flex-end;
 
-      @media screen and (max-width: $xl-size) {
-        align-items: center;
-      }
+
     }
 
     &_phone {
       margin-bottom: 16px;
+      font-size: 24px;
 
-      @media screen and (max-width:$xs-size) {
+      @media screen and (max-width:$lg-size) {
         font-size: 20px;
       }
     }
 
     &_email {
       margin-bottom: 21px;
+      font-size: 24px;
 
-      @media screen and (max-width:$xs-size) {
+      @media screen and (max-width:$lg-size) {
         font-size: 20px;
       }
     }
@@ -176,8 +197,6 @@
   &_down_side {
     display: flex;
     justify-content: space-between;
-    padding-left: 7vw;
-    padding-right: 130px;
     text-decoration-line: none;
     padding-top: 30px;
 
@@ -203,7 +222,6 @@
     }
 
     @media screen and (max-width: $xl-size) {
-      padding-right: 50px;
       padding-top: 30px;
     }
 

@@ -16,7 +16,7 @@ const {
 
 const FooterDesktop = () => {
     return (
-        <div>
+        <div className={s.FooterDesktop}>
             <div className={s.Footer}>
                 <div className={s.Footer_title}>
                     <span className={s.Footer_logo}>{FOOTER_LOGO}</span>

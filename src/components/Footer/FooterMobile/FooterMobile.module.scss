@@ -11,17 +11,16 @@
 
     @media screen and (max-width:$lg-size) {
       display: flex;
-    }
-
-    @media screen and (max-width:$xs-size) {
       font-size: 18px;
     }
+
+
 
   }
 
   &_menu {
     &_item {
-      @media screen and (max-width:$xs-size) {
+      @media screen and (max-width:$lg-size) {
         font-size: 20px;
       }
 
