@@ -3,17 +3,13 @@
 @import '../../../styles/_colors.scss';
 
 .FooterDesktop {
-  // height: 320px;
+  height: 320px;
   display: flex;
   flex-direction: column;
   padding: 0 7%;
 
-  @media screen and (max-width: $xl-size) {
-    padding: 0 2%;
-  }
-
   @media screen and (max-width: $lg-size) {
-    padding: 0;
+    display: none;
   }
 }
 
@@ -61,9 +57,11 @@
     @media screen and (max-width:$lg-size) {
       font-size: 24px;
     }
+
     @media screen and (max-width:$xl-size) {
       font-size: 24px;
     }
+
     letter-spacing: -0.17em;
   }
 
@@ -123,9 +121,7 @@
     width: 100%;
     gap: 4%;
 
-    @media screen and (max-width: $xl-size) {
-      padding: 30px 0;
-    }
+
 
 
     @media screen and (max-width: $lg-size) {
@@ -225,7 +221,7 @@
     }
 
     @media screen and (max-width: $xl-size) {
-      padding-top: 30px;
+      padding-top: 35px;
     }
 
   }
