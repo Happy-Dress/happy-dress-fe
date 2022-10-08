@@ -15,10 +15,6 @@
 .Footer {
   border-bottom: 1.8px solid $brown;
 
-  @media screen and (max-width: $xl-size) {
-    gap: 4vw;
-  }
-
   @media screen and (max-width: $lg-size) {
     display: flex;
     flex-direction: column;
