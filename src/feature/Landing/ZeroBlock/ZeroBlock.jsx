@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './ZeroBlock.module.scss';
-import ButtonDefault from '../Buttons/ButtonDefault';
+import ButtonDefault from '../../../components/Buttons/ButtonDefault';
 
 const ZeroBlock = () => {
     return(

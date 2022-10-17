@@ -1,7 +1,7 @@
-@import '../../styles/media-sizes';
+@import '../../../styles/media-sizes';
 .ZeroBlock{
     overflow-x: hidden;
-    background: url('../../images/ZeroBlock/ZeroBlockXXL.webp');
+    background: url('../../../images/ZeroBlock/ZeroBlockXXL.webp');
     margin: 0;
     background-size: cover;
     background-position: 50% 50%;
@@ -49,13 +49,13 @@
             margin-left: 7vw;
             margin-top: -120px;
         }
-        background: url(../../images/ZeroBlock/ZeroBlockXL.webp);
+        background: url(../../../images/ZeroBlock/ZeroBlockXL.webp);
         background-size: cover;
         background-repeat: no-repeat;
         background-position: 50% 50%;
     }
     @media screen and (max-width: $lg-size) {
-        background: url(../../images/ZeroBlock/ZeroBlock.png);
+        background: url(../../../images/ZeroBlock/ZeroBlock.png);
         background-size: 120%;
         background-repeat: no-repeat;
         height: calc(100vh - 70px);

@@ -1,5 +1,5 @@
 import React from 'react';
-import ZeroBlock from '../ZeroBlock';
+import ZeroBlock from './ZeroBlock';
 
 const Landing = () => {
     return(
