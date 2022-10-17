@@ -1,10 +1,9 @@
 @import '../../styles/media-sizes';
 .ZeroBlock{
     overflow-x: hidden;
-    background: url('../../images/ZeroBlock/ZeroBlockXXL.webp');
     margin: 0;
     background-size: cover;
-    background-position: 50% 50%;
+    background: url('../../images/ZeroBlock/ZeroBlockXXL.webp') 50% 50%;
     height: 100vh;
     h1{
         -webkit-text-fill-color: transparent;
@@ -47,32 +46,26 @@
             margin-left: 7vw;
             margin-top: -120px;
         }
-        background: url(../../images/ZeroBlock/ZeroBlockXL.webp);
         background-size: cover;
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
+        background: url(../../images/ZeroBlock/ZeroBlockXL.webp) no-repeat 50% 50%;
     }
     @media screen and (max-width: $lg-size) {
-        background: url(../../images/ZeroBlock/ZeroBlock.png);
         background-size: 120%;
-        background-repeat: no-repeat;
+        background: url(../../images/ZeroBlock/ZeroBlock.png) no-repeat;
         height: calc(100vh - 70px);
         &_content{
             margin-left: 7vw;
-            margin-top: 0px;
+            margin-top: 0;
         }
         &_text{
             padding: 70px 0 0;
             margin: 0;
-            margin-right: 0;
             flex-direction: column;
             h1{
                 font-size: 68px;
                 letter-spacing: -8px;
                 &:last-child{
-                    margin: 0;
-                    margin-top: -15px;
-                    margin-left: 160px;
+                    margin: -15px 0 0 160px;
                 }
             }
             p{
@@ -103,8 +96,7 @@
                 font-size: 36px;
                 letter-spacing: -5px;
                 margin: 0;
-                padding: 0px;
-                padding-right: 15px;
+                padding: 0 15px 0 0;
                 &:last-child{
                     margin-left: 83px;
                     margin-top: -10px;
