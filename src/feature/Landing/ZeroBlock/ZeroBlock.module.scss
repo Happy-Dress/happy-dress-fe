@@ -1,13 +1,15 @@
-@import '../../styles/media-sizes';
+@import '../../../styles/media-sizes';
 .ZeroBlock{
     overflow-x: hidden;
+    background: url('../../../images/ZeroBlock/ZeroBlockXXL.webp');
     margin: 0;
     background-size: cover;
-    background: url('../../images/ZeroBlock/ZeroBlockXXL.webp') 50% 50%;
+    background-position: 50% 50%;
     height: 100vh;
     h1{
         -webkit-text-fill-color: transparent;
-        background: linear-gradient(rgba(167, 124, 20, 0.8), rgba(167, 82, 20, 0.2));
+        background: linear-gradient(rgba(167, 123, 20, 1), rgba(167, 82, 20, 0.8));
+        filter: grayscale(0.6);
         -webkit-background-clip: text;
         background-clip: text;
         letter-spacing: -17px;
@@ -37,6 +39,7 @@
             }
         }
         &_mobile{
+            color: rgba(33, 33, 33, 0.5);
             display: none;
         }
     }
@@ -46,26 +49,32 @@
             margin-left: 7vw;
             margin-top: -120px;
         }
+        background: url(../../../images/ZeroBlock/ZeroBlockXL.webp);
         background-size: cover;
-        background: url(../../images/ZeroBlock/ZeroBlockXL.webp) no-repeat 50% 50%;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
     }
     @media screen and (max-width: $lg-size) {
+        background: url(../../../images/ZeroBlock/ZeroBlock.png);
         background-size: 120%;
-        background: url(../../images/ZeroBlock/ZeroBlock.png) no-repeat;
+        background-repeat: no-repeat;
         height: calc(100vh - 70px);
         &_content{
             margin-left: 7vw;
-            margin-top: 0;
+            margin-top: 0px;
         }
         &_text{
             padding: 70px 0 0;
             margin: 0;
+            margin-right: 0;
             flex-direction: column;
             h1{
                 font-size: 68px;
                 letter-spacing: -8px;
                 &:last-child{
-                    margin: -15px 0 0 160px;
+                    margin: 0;
+                    margin-top: -15px;
+                    margin-left: 160px;
                 }
             }
             p{
@@ -80,7 +89,7 @@
     }
     @media screen and (max-width: $md-size) {
         background-size: cover;
-        background-position: 50% 50%;
+        background-position: 0 50%;
         button{
             width: fit-content;
             background-color: #f6f6f6a6;
@@ -96,7 +105,8 @@
                 font-size: 36px;
                 letter-spacing: -5px;
                 margin: 0;
-                padding: 0 15px 0 0;
+                padding: 0px;
+                padding-right: 15px;
                 &:last-child{
                     margin-left: 83px;
                     margin-top: -10px;
@@ -116,5 +126,16 @@
             }
         }
     }
-
+    @media screen and (max-width: $sm-size) {
+        padding: 0px;
+        margin: 0;;
+        background-position: 0;
+        background-size: 120%;
+        &_content{
+            padding-left: 20px;
+        }
+        p{
+            font-size: 16px;
+        }
+    }
 }
