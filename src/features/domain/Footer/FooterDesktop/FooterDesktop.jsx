@@ -1,10 +1,10 @@
 import React from 'react';
 import s from './FooterDesktop.module.scss';
-import instagram from '../../../images/inst.svg';
-import vk from '../../../images/vk.svg';
-import telegram from '../../../images/tg.svg';
+import instagram from '../../../../images/inst.svg';
+import vk from '../../../../images/vk.svg';
+import telegram from '../../../../images/tg.svg';
 import { FOOTER_DICTIONARY } from '../Footer.dictionary';
-import Typography from '../../Typography/Typography';
+import Typography from '../../../../components/Typography/Typography';
 
 const {
     FOOTER_LOGO,
@@ -31,8 +31,8 @@ const FooterDesktop = () => {
                 </ul>
                 <div className={s.Footer_right_side}>
                     <div className={s.Footer_right_side_text}>
-                        <Typography classNames={s.Footer_right_side_phone}>{PHONE_NUMBER}</Typography>
-                        <Typography classNames={s.Footer_right_side_email}>{FOOTER_EMAIL}</Typography>
+                        <Typography classNames={[s.Footer_right_side_phone]}>{PHONE_NUMBER}</Typography>
+                        <Typography classNames={[s.Footer_right_side_email]}>{FOOTER_EMAIL}</Typography>
                     </div>
                     <div className={s.Footer_right_side_menu}>
                         <img className={s.Footer_right_side_hanger} src={instagram} alt="instagram" />

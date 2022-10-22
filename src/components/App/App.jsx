@@ -1,25 +1,15 @@
 import React from 'react';
-import './App.module.scss';
-import Header from '../Header';
-import Footer from '../Footer';
+import {Navigate, Route, Routes} from 'react-router-dom';
+import {Domain} from '../../features';
+import {Admin} from '../../features';
 
 const App = () => {
     return (
-        <div className='App'>
-            <Header/>
-            <h1>Start</h1>
-            <h1>Start</h1>
-            <h1>Start</h1>
-            <h1>Start</h1>
-            <h1>Start</h1>
-            <h1>Start</h1>
-            <h1>Start</h1>
-            <h1>Start</h1>
-            <h1>Start</h1>
-            <h1>Start</h1>
-            <h1>Start</h1>
-            <Footer/>
-        </div>
+        <Routes>
+            <Route path='/' element={<Navigate to='domain'/>}/>
+            <Route path='/admin/*' element={<Admin/>}/>
+            <Route path='/domain/*' element={<Domain/>}/>
+        </Routes>
     );
 };
 
