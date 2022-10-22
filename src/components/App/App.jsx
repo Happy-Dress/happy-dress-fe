@@ -1,8 +1,8 @@
 import React from 'react';
 import { Routes, Route, Link, BrowserRouter } from 'react-router-dom';
 import './App.module.scss';
-import { Main } from '../../pages/Main';
-import { Auth } from '../../pages/Auth';
+import { Main } from '../../features/Main';
+import { Auth } from '../../features/Auth';
 
 const App = () => {
     return (
