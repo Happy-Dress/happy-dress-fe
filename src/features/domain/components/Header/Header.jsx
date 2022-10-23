@@ -1,7 +1,7 @@
 import React from 'react';
 import HeaderDesktop from './HeaderDesktop';
 import HeaderMobile from './HeaderMobile';
-import { useDeviceTypeContext } from '../../../common/contexts/DeviceType';
+import { useDeviceTypeContext } from '../../../../common/contexts/DeviceType';
 
 const Header = () => {
 
