@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './HeaderDesktop.module.scss';
-import hanger from '../../../../images/hanger.svg';
+import hanger from '../../../../assets/images/hanger.svg';
 import { HEADER_DICTIONARY } from '../Header.dictionary';
-import Typography from '../../../../components/Typography/Typography';
+import Typography from '../../../../common/components/Typography/Typography';
 
 const {
     HEADER_LOGO,
