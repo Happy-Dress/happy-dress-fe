@@ -5,11 +5,11 @@ import { useMediaQuery } from 'react-responsive';
 const DeviceTypeProvider = (props) =>{
 
     const DESKTOP_MIN_SCREEN_SIZE = '1024px';
-    const isDesktop = useMediaQuery({ query: `(min-width: ${DESKTOP_MIN_SCREEN_SIZE})`});
-    const isMobile = useMediaQuery({ query: `(max-width: ${DESKTOP_MIN_SCREEN_SIZE})`});
+    const isDesktop = useMediaQuery({ query: `(min-width: ${DESKTOP_MIN_SCREEN_SIZE})` });
+    const isMobile = useMediaQuery({ query: `(max-width: ${DESKTOP_MIN_SCREEN_SIZE})` });
 
     return (
-        <DeviceTypeContext.Provider value={{isMobile, isDesktop }}>
+        <DeviceTypeContext.Provider value={{ isMobile, isDesktop }}>
             {props.children}
         </DeviceTypeContext.Provider>
     );

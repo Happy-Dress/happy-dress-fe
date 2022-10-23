@@ -39,7 +39,8 @@
         "react/react-in-jsx-scope": "off",
         "react/jsx-uses-react": "error",
         "react/jsx-uses-vars": "error",
-        "no-unused-vars": "warn"
+        "no-unused-vars": "warn",
+        "object-curly-spacing": ["error", "always"]
     },
     "ignorePatterns": ["build/*"]
 }
