@@ -5,7 +5,7 @@ import { useDeviceTypeContext } from '../../../common/contexts/DeviceType';
 
 const Header = () => {
 
-    const {isDesktop, isMobile} = useDeviceTypeContext();
+    const { isDesktop, isMobile } = useDeviceTypeContext();
 
     return (
         <>
