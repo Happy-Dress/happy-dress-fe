@@ -1,10 +1,10 @@
 import React from 'react';
 import s from './FooterMobile.module.scss';
-import instagram from '../../../../images/inst.svg';
-import vk from '../../../../images/vk.svg';
-import telegram from '../../../../images/tg.svg';
+import instagram from '../../../../assets/images/inst.svg';
+import vk from '../../../../assets/images/vk.svg';
+import telegram from '../../../../assets/images/tg.svg';
 import { FOOTER_DICTIONARY } from '../Footer.dictionary';
-import Typography from '../../../../components/Typography/Typography';
+import Typography from '../../../../common/components/Typography/Typography';
 const {
     FOOTER_LOGO,
     FOOTER_MOBILE_NAV_ITEMS,
@@ -14,7 +14,7 @@ const {
 } = FOOTER_DICTIONARY;
 
 const FooterMobile = () => {
-   
+
     return (
         <>
             <div className={s.FooterMobile}>

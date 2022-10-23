@@ -1,11 +1,6 @@
 @import '../../../../styles/media-sizes';
 @import '../../../../styles/colors';
 
-.Header_wrapper {
-  @media screen and (min-width: $lg-size) {
-    display: none;
-  }
-}
 
 .Header_wrapper_fixed {
   position: fixed;

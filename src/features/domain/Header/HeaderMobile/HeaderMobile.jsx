@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import s from './HeaderMobile.module.scss';
 import { HEADER_DICTIONARY } from '../Header.dictionary';
-import burger from '../../../../images/burger.svg';
-import x from '../../../../images/x.svg';
-import hanger from '../../../../images/hanger.svg';
-import Typography from '../../../../components/Typography/Typography';
-import classNames from 'classnames';
+import burger from '../../../../assets/images/burger.svg';
+import x from '../../../../assets/images/x.svg';
+import hanger from '../../../../assets/images/hanger.svg';
+import Typography from '../../../../common/components/Typography/Typography';
 
 const HeaderMobile = () => {
     const {
@@ -15,7 +14,7 @@ const HeaderMobile = () => {
     } = HEADER_DICTIONARY;
     const [activeMenu, setActiveMenu] = useState(false);
     return (
-        <div className={classNames(s.Header_wrapper, activeMenu? s.Header_wrapper_fixed : '')}>
+        <div className={activeMenu? s.Header_wrapper_fixed : ''}>
             <div className={s.Header}>
                 <Typography classNames={[s.Header_logo]}>{HEADER_LOGO}</Typography>
                 <div className={s.Header_right}>
