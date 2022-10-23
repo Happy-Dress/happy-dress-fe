@@ -6,7 +6,7 @@ const ZeroBlock = () => {
     return(
         <div className={s.ZeroBlock}>
             <div className={s.ZeroBlock_content}>
-                <div>
+                <div className={s.ZeroBlock_content_title}>
                     <div className={s.ZeroBlock_text}>
                         <h1>HAPPY</h1>
                         <p>В 2019 году Gucci управляла 487 магазинами, в которых работали 17 157 сотрудников, а объем продаж составил 9,628 млрд евро.</p>

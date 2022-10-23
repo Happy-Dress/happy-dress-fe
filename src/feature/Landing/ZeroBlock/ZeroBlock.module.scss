@@ -44,7 +44,6 @@
     }
     @media screen and (max-width: $xl-size) {
         background-image: url(../../../images/ZeroBlock/ZeroBlockXL.webp);
-        background-repeat: no-repeat;
         height: calc(100vh - 70px);
         &_content{
             margin-left: 7vw;
@@ -52,7 +51,6 @@
         }
     }
     @media screen and (max-width: $lg-size) {
-        background-image: url(../../../images/ZeroBlock/ZeroBlockXL.webp);
         background-position: 80%;
         height: calc(100vh - 70px);
         &_content{
@@ -121,11 +119,18 @@
         }
     }
     @media screen and (max-width: $sm-size) {
+        background-position: 78%;
         &_content{
-            padding-left: 20px;
+            padding-left: 0px;
+            &_title{
+                padding-left: 20px;
+            }
         }
         p{
-            font-size: 16px;
+            font-size: 14px;
+        }
+        button{
+            margin: 0 auto;
         }
     }
 }
