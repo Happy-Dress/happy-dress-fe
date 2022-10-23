@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import s from './HeaderMobile.module.scss';
 import { HEADER_DICTIONARY } from '../Header.dictionary';
-import burger from '../../../../assets/images/burger.svg';
-import x from '../../../../assets/images/x.svg';
-import hanger from '../../../../assets/images/hanger.svg';
-import Typography from '../../../../common/components/Typography/Typography';
+import burger from '../../../../../assets/images/burger.svg';
+import x from '../../../../../assets/images/x.svg';
+import hanger from '../../../../../assets/images/hanger.svg';
+import Typography from '../../../../../common/components/Typography/Typography';
 
 const HeaderMobile = () => {
     const {
