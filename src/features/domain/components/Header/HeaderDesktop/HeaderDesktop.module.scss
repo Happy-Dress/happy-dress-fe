@@ -21,6 +21,7 @@
   &_menu {
     display: flex;
     margin-left: 7vw ;
+    width: 100%;
     li{
       &:nth-child(2n){
         margin: 0 6%;
