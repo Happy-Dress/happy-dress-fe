@@ -3,7 +3,7 @@ import './App.module.scss';
 import Header from '../Header';
 import Footer from '../Footer';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import Landing from '../../feature/Landing';
+import Landing from '../../features/domain/pages/Landing';
 
 const App = () => {
     return (
