@@ -1,8 +1,7 @@
 @import '../../../../../styles/media-sizes';
 .ZeroBlock{
     overflow-x: hidden;
-    background: url(../../../../../assets/images/ZeroBlock/ZeroBlockXXL.webp);
-    background-position: 50%;
+    background: url(../../../../../assets/images/ZeroBlock/ZeroBlockXXL.webp) 50% 50%;
     background-size: cover;
     height: 100vh;
     h1{
