@@ -12,7 +12,6 @@ const App = () => {
                 <Route path='/' element={<Navigate to='domain'/>}/>
                 <Route path='/admin/*' element={<Admin/>}/>
                 <Route path='/domain/*' element={<Domain/>}/>
-                <Route path='/main/home' element={<Landing/>}/>
             </Routes>
         </DeviceTypeProvider>
     );
