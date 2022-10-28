@@ -3,7 +3,6 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { Domain } from '../../../features';
 import { Admin } from '../../../features';
 import { DeviceTypeProvider } from '../../contexts/DeviceType';
-import Landing from '../../../features/domain/pages/Landing';
 
 const App = () => {
     return (
