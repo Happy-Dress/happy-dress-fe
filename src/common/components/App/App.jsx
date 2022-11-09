@@ -4,6 +4,7 @@ import { Domain } from '../../../features';
 import { Admin } from '../../../features';
 import { DeviceTypeProvider } from '../../contexts/DeviceType';
 
+
 const App = () => {
     return (
         <DeviceTypeProvider>

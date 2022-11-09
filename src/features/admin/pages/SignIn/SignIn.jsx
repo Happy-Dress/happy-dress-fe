@@ -1,8 +1,14 @@
+/* eslint-disable indent */
 import React from 'react';
 
-const SignIn = () =>{
+
+const SignIn = () => {
+    
     return (
+      <div>
         <h1>Sign in page</h1>
+        
+      </div>
     );
 };
 
