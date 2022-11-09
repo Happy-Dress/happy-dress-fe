@@ -8,6 +8,7 @@ const Admin = () => {
             <Route path='/' element={<Navigate to='sign-in'/>}/>
             <Route path='/sign-in' element={<SignIn/>}/>
 
+            
         </Routes>
     );
 };
