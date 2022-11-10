@@ -28,8 +28,8 @@ const AuthorizationForm = () => {
         }
     };
     return (
-        <form className={s.Form}>
-            <div>
+        <div className={s.Container}>
+            <form className={s.Form}>
                 <div className={s.Form_entry_label}>
                     <h2>{ENTRY_LABEL}</h2>
                 </div>
@@ -42,9 +42,11 @@ const AuthorizationForm = () => {
                     <input type={type} placeholder={HELP_PASSWORD_LABEL} maxLength={MAX_LENGTH_INPUT}/>
                     <img src={toggleIcon} onClick={changeVisibility} alt="visibility icon"/>
                 </div>
-                <button className={s.Form_btn} type="submit">{BUTTON_ENTER_LABEL}</button>
-            </div>
-        </form>
+                <div>
+                    <button className={s.Form_btn} type="submit">{BUTTON_ENTER_LABEL}</button>
+                </div>
+            </form>
+        </div>
     );
 };
 
