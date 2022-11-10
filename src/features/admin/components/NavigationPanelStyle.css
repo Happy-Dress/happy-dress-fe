@@ -1,0 +1,11 @@
+.active {
+    border: 1px solid #b97543;
+}
+
+.active p {
+    color: black;
+}
+
+.active .img * {
+    fill: #b97543;
+}
