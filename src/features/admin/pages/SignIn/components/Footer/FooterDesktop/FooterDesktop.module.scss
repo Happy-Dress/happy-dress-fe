@@ -1,0 +1,16 @@
+@import './src/styles/colors';
+
+.FooterDesktop{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 133px;
+  border-top: 1px solid rgba(34, 17, 34, 0.9);
+
+  &_logo{
+    font-size: 64px;
+    color: $light-gray;
+    word-spacing: 10px;
+    letter-spacing: -0.17em;
+  }
+}

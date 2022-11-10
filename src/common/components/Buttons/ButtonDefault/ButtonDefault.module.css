@@ -1,0 +1,19 @@
+.ButtonDefault {
+  font-weight: 400;
+  font-size: 24px;
+  height: 56px;
+  padding: 10px 32px;
+  border: rgba(34, 17, 34, 0.9) 1px solid;
+  background-color: inherit;
+  box-shadow: 4px 4px 8px 0px rgba(56, 41, 56, 0.25);
+}
+.ButtonDefault:hover {
+  box-shadow: none;
+}
+.ButtonDefault_active {
+  color: rgb(196, 196, 196);
+  border: rgb(196, 196, 196) 1px solid;
+  cursor: default;
+}
+
+/*# sourceMappingURL=ButtonDefault.module.css.map */

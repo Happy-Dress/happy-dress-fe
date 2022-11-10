@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+body {
+  margin: 0;
+  font-family: "Roboto", serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: rgba(34, 17, 34, 0.9);
+  background-color: rgb(246, 246, 246);
+}
+body h1 {
+  font-size: 144px;
+  font-weight: bold;
+}
+body h2 {
+  font-size: 36px;
+  font-weight: 600;
+}
+body h3 {
+  font-size: 32px;
+}
+body p {
+  font-size: 18px;
+}
+
+/*# sourceMappingURL=index.module.css.map */

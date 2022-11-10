@@ -1,0 +1,5 @@
+const FOOTER_DICTIONARY = {
+    FOOTER_LOGO: 'HAPPY DRESS',
+};
+
+export { FOOTER_DICTIONARY };
