@@ -5,7 +5,7 @@ import x from '../../../assets/images/x.svg';
 import HAPPYDRESS from '../../../assets/images/HAPPYDRESS.svg';
 import s from './NavigationPanelMobile.module.scss';
 import './NavigationPanelMobileStyle.css';
-import classNames from 'classnames';
+
 
 const NavigationPanelMobile = () => {
 
