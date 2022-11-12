@@ -11,11 +11,18 @@
 
   @media screen and (max-width: $xxs-size) {
     width: 100%;
+  }
+
+  @media screen and (max-height: $xs-size) {
+    height: 100vh;
+  }
+  
+  @media screen and (max-width: $lg-size) and (max-height: $lg-size) {
     height: 100vh;
   }
 
   input, button{
-    @media screen and (max-width: $xs-size) {
+    @media screen and (max-width: $xs-size), (max-height: $xs-size){
       font-size: $font-size-medium-16 !important;
     }
   }
@@ -31,7 +38,7 @@
     box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.27);
     background-color: $white;
 
-    @media screen and (max-width: $xxs-size) {
+    @media screen and (max-width: $xxs-size), (max-height: $xxs-size) {
       height: 100%;
       width: 100%;
       margin: 0;
@@ -41,6 +48,10 @@
 
     @media screen and (max-width: $xs-size) {
       width: 320px;
+    }
+
+    @media screen and (max-width: $lg-size) {
+      height: 80%;
     }
 
     &_img_input {
@@ -65,6 +76,12 @@
       border-bottom: 1px solid rgba(34, 17, 34, 0.9);
       width: 370px;
       height: 5vh;
+
+      img, input{
+        @media screen and (max-width: $xs-size), (max-height: $lg-size){
+          margin-bottom: 10px;
+        }
+      }
 
       img {
         width: 25px;
