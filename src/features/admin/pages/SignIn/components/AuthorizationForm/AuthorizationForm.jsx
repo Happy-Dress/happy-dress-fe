@@ -33,7 +33,7 @@ const AuthorizationForm = () => {
                 <div className={s.Form_entry_label}>
                     <h2>{ENTRY_LABEL}</h2>
                 </div>
-                <div className={`${s.Form_input} ${s.Form_input_login}`}>
+                <div className={s.Form_input}>
                     <img className={s.Form_img_input} src={person} alt="person"/>
                     <input type="text" placeholder={HELP_YOUR_NAME_LABEL} maxLength={MAX_LENGTH_INPUT}/>
                 </div>
