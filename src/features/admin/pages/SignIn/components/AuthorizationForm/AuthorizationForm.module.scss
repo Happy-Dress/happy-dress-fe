@@ -77,6 +77,21 @@
       width: 370px;
       height: 5vh;
 
+      &_too_short_login{
+        border-bottom: 1px solid rgba(255, 0, 0, 0.9);
+        display: block;
+      }
+
+      &_too_long_login{
+        border-bottom: 1px solid rgba(255, 0, 0, 0.9);
+        display: block;
+      }
+
+      &_too_short_password{
+        border-bottom: 1px solid rgba(255, 0, 0, 0.9);
+        display: block;
+      }
+
       img, input{
         @media screen and (max-width: $xs-size), (max-height: $lg-size){
           margin-bottom: 10px;
