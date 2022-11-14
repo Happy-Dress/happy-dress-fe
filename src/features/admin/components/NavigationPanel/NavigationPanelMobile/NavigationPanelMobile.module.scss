@@ -1,0 +1,63 @@
+@import "../../../../../styles/media-sizes";
+@import "../../../../../styles/colors";
+@import "../../../../../styles/font-sizes";
+
+.adminMobileWrapper {
+  .mobileHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $gray;
+    height: 70px;
+    padding: 0 24px 0 24px;
+
+    .logoMobileTitle {
+      font-size: $font-size-large-20;
+      letter-spacing: -0.17em;
+      font-weight: 700;
+    }
+    .buttonBurgerMobile {
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+
+  .linkMobileWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5em;
+    margin-top: 8em;
+
+    a {
+      color: $gray;
+      font-size: $font-size-xlarge-24;
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+      .register {
+        display: inline-block;
+        color: red;
+        font-weight: 800;
+        font-size: large;
+      }
+      p {
+        display: inline;
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 400;
+        font-size: $font-size-xlarge-24;
+        line-height: 28px;
+        padding-right: 4px;
+      }
+    }
+    .exit {
+      transform: translate(0, 8em);
+      margin-bottom: 100px;
+    }
+  }
+}

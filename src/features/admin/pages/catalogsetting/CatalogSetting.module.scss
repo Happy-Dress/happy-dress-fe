@@ -1,6 +1,9 @@
 @import "../../../../styles/media-sizes";
 @import "../../../../styles/colors";
-
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
 .div {
   position: absolute;
   left: 20%;
