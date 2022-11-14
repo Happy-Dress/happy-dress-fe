@@ -1,0 +1,11 @@
+@import "../../../../styles/media-sizes";
+@import "../../../../styles/colors";
+.div {
+  position: absolute;
+  left: 20%;
+  width: 100px;
+  top: 0;
+  @media screen and (max-width: $lg-size) {
+    display: none;
+  }
+}
