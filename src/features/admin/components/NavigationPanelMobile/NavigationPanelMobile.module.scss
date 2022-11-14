@@ -1,58 +1,72 @@
 @import "../../../../styles/media-sizes";
 @import "../../../../styles/colors";
+@import "../../../../styles/font-sizes";
 
 .adminMobileWrapper {
-  height: 100vh;
-  margin: 3%;
 
   .mobileHeader {
+    height: 64px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid $gray;
     padding: 0 28px 0 28px;
-    
+
+    .logoMobile {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 23px;
+      letter-spacing: -0.17em;
+    }
 
     .buttonBurgerMobile {
       img {
         width: 24px;
+        height: 24px;
       }
     }
   }
 
   .linkMobileWrapper {
-    width: inherit;
-    height: inherit;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    gap: 2px;
+    gap: 30px;
     margin-top: 100px;
 
     a {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
+      text-align: center;
       color: $gray;
-      background-color: $light-gray;
-      font-size: 24px;
-      width: 250px;
+      width: 350px;
       height: 50px;
-      padding-bottom: 4px;
+
       &:hover {
-    cursor: pointer;  
-    }
-      .register {
-        color: red;
-        font-weight: 800;
-        font-size: large;
+        cursor: pointer;
+        text-align: underline;
       }
+
+      p {
+        display: inline;
+        font-size: $font-size-xlarge-24;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        line-height: 28px;
+      }
+
+      span {
+        padding-left: 10px;
+        color: red;
+          font-weight: 800;
+          font-size: large;
+      }
+
     }
     .exit {
-   transform: translate(0, 17em);
-   margin-bottom: 100px;
+      transform: translate(0, 13em);
     }
   }
 }

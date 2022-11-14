@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import burger from '../../../../assets/images/burger.svg';
 import x from '../../../../assets/images/x.svg';
 import s from './NavigationPanelMobile.module.scss';
+import './NavigationPanelMobile.css';
 import  api  from '../../api/api';
 import Typography from '../../../../common/components/Typography/Typography';
 
@@ -57,7 +58,7 @@ const NavigationPanelMobile = () => {
                         className={setActive}
                     >
                         <p>Записи</p>
-                        <p className={s.register}>{quanty}</p>
+                        <span>{quanty}</span>
                     </NavLink>
 
                     <NavLink to="/admin/panel/blog-setting" className={setActive}>
