@@ -6,6 +6,7 @@ import { ReactComponent as Goods } from '../../../../assets/images/goods.svg';
 import { ReactComponent as Registration } from '../../../../assets/images/registration.svg';
 import { ReactComponent as Blog } from '../../../../assets/images/blog.svg';
 import s from './NavigationPanelDesktop.module.scss';
+import  './NavigationPanelDesktop.css';
 import api from '../../api/api';
 import Typography from '../../../../common/components/Typography/Typography';
 
@@ -21,11 +22,10 @@ const NavigationPanelDesktop = () => {
 
     return (
         <div className={s.navbar}>
+            <div className={s.logo}>
+                <Typography classNames={[s.logoTitle]}>HAPPYDRESS</Typography>
+            </div>
             <div className={s.navbarList}>
-                <div className={s.logo}>
-                    <Typography />
-                </div>
-
                 <NavLink to="/admin/panel/catalog-setting" className={setActive}>
                     <Catalog className="img" />
                     <p>Каталог</p>

@@ -1,4 +1,6 @@
-.active {
+
+@media screen and (min-width: 1024px) {
+  .active {
     border: 1px solid #b97543;
 }
 
@@ -8,4 +10,6 @@
 
 .active .img * {
     fill: #b97543;
+}  
 }
+

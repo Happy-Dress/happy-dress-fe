@@ -4,6 +4,14 @@ const RegistrationSetting = () => {
     return (
         <div className={s.div}>
             <h1>RegistrationSetting</h1>
+            <h1>RegistrationSetting</h1>
+            <h1>RegistrationSetting</h1>
+            <h1>RegistrationSetting</h1>
+            <h1>RegistrationSetting</h1>
+            <h1>RegistrationSetting</h1>
+            <h1>RegistrationSetting</h1>
+            <h1>RegistrationSetting</h1>
+            
         </div>
     );
 };

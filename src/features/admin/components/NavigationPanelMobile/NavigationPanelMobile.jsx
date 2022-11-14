@@ -20,7 +20,7 @@ const NavigationPanelMobile = () => {
         <div className={s.adminMobileWrapper}>
             <div className={s.mobileHeader}>
                 <div className={s.logoMobile}>
-                    <Typography />
+                    <Typography classNames={[s.logoTitle]}>HAPPYDRESS</Typography>
                 </div>
                 <div className={s.buttonBurgerMobile}>
                     {activeMenu ? (

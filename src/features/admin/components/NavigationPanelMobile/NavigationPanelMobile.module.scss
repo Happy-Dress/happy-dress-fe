@@ -3,7 +3,6 @@
 
 .adminMobileWrapper {
   height: 100vh;
-  background-color: #f6f6f6;
   margin: 3%;
 
   .mobileHeader {
@@ -13,12 +12,10 @@
     border-bottom: 1px solid $gray;
     padding: 0 28px 0 28px;
     
-    // .logoMoblie {
-    // }
 
     .buttonBurgerMobile {
       img {
-        width: 30px;
+        width: 24px;
       }
     }
   }

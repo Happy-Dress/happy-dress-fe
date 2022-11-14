@@ -5,6 +5,11 @@ const GoodsSetting = () => {
     return (
         <div className={s.div}>
             <h1>GoodsSetting</h1>
+            <h1>GoodsSetting</h1>
+            <h1>GoodsSetting</h1>
+            <h1>GoodsSetting</h1>
+            <h1>GoodsSetting</h1>
+            <h1>GoodsSetting</h1>           
         </div>
     );
 };
