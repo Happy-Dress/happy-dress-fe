@@ -37,6 +37,9 @@
         text-decoration: underline 1.8px solid rgba(167, 82, 20, 0.8);
       }
     }
+    @media screen and (max-width: $xl-size) {
+      margin-left: 4vw ;
+    }
   }
 
   &_right_side{
@@ -51,6 +54,8 @@
 
     @media screen and (max-width: $xl-size) {
       padding-right: 50px;
+      max-width: 295.01px;
+      width: 100%;
     }
 
     &_hanger {
