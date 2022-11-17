@@ -9,6 +9,7 @@
 
 .navbar {
   width: 224px;
+  min-height: 100%;
   border-right: 1px solid $brown;
   display: flex;
   flex-flow: column;
@@ -63,9 +64,16 @@
     }
 
     .register {
-      color: red;
-      font-weight: 800;
-      font-size: x-large;
+      color: $white;
+      width: 24px;
+      height: 24px;
+      margin: auto;
+      text-align: center;
+      font-size: $font-size-large-20;
+      background-color: $brown;
+      border: solid 1px transparent;
+      border-radius: 50%;
+      transform: translate(1.15em, -4.3em);
     }
   }
 }

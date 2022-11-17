@@ -39,7 +39,7 @@ const NavigationPanelDesktop = () => {
                 <NavLink to="/admin/panel/registration-setting" className={setActive}>
                     <Registration className="img" />
                     <p>Записи</p>
-                    <p className={s.register}>{quanty}</p>
+                    <span className={s.register}>{quanty}</span>
                 </NavLink>
 
                 <NavLink to="/admin/panel/blog-setting" className={setActive}>
