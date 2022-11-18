@@ -16,8 +16,12 @@
   box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.27);
   background-color: rgb(246, 246, 246);
 }
-.Container .Form_img_input {
-  margin-left: 32px;
+.Container .Form input {
+  background-color: inherit;
+  width: 100%;
+  height: 30px;
+  margin-left: 14px;
+  font-size: 24px;
 }
 .Container .Form_entry_label {
   text-align: center;
@@ -26,6 +30,9 @@
 }
 .Container .Form_input_fields {
   height: 140px;
+}
+.Container .Form_input_fields_img_input {
+  margin-left: 32px;
 }
 .Container .Form_input_fields_input {
   display: flex;
@@ -46,13 +53,6 @@
 }
 .Container .Form_input_fields_input_password {
   margin-top: 40px;
-}
-.Container .Form input {
-  background-color: inherit;
-  width: 100%;
-  height: 30px;
-  margin-left: 14px;
-  font-size: 24px;
 }
 .Container .Form_btn {
   display: flex;

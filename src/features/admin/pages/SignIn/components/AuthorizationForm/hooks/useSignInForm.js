@@ -1,5 +1,5 @@
 import * as z from 'zod';
-import { AUTHORIZATION_FORM_DICTIONARY } from '../AuthorizationFormDesktop/AuthorizationFormDesktop.dictionary';
+import { AUTHORIZATION_FORM_DICTIONARY } from '../AuthorizationForm.dictionary';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 

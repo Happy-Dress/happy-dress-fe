@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './AuthorizationFormDesktop.module.scss';
-import { AUTHORIZATION_FORM_DICTIONARY } from './AuthorizationFormDesktop.dictionary';
+import { AUTHORIZATION_FORM_DICTIONARY } from '../AuthorizationForm.dictionary';
 import person from '../../../../../../../assets/images/person.svg';
 import arrowRight from '../../../../../../../assets/images/arrowRight.svg';
 import { ErrorMessage } from '@hookform/error-message';
@@ -40,7 +40,7 @@ const AuthorizationFormDesktop = (props) => {
                         <div
                             className={classNames(s.Form_input_fields_input, props.errors.login?.message ? 
                                 s.Form_input_fields_input_invalid : s.Form_input_fields_input_valid)}>
-                            <img className={s.Form_img_input} src={person} alt="person"/>
+                            <img className={s.Form_input_fields_img_input} src={person} alt="person"/>
                             <input type="text" placeholder={HELP_YOUR_NAME_LABEL}
                                 maxLength={MAX_LOGIN_LENGTH} {...props.register('login')}/>
                         </div>
@@ -55,8 +55,8 @@ const AuthorizationFormDesktop = (props) => {
                     <div>
                         <div>
                             <div
-                                className={classNames(s.Form_input_fields_input, s.Form_input_fields_input, s.Form_input_fields_input_password, props.errors.password?.message ? s.Form_input_fields_input_invalid : s.Form_input_fields_input_valid)}>
-                                <img className={s.Form_img_input} src={arrowRight} alt="arrowRight"/>
+                                className={classNames(s.Form_input_fields_input, s.Form_input_fields_input_password, props.errors.password?.message ? s.Form_input_fields_input_invalid : s.Form_input_fields_input_valid)}>
+                                <img className={s.Form_input_fields_img_input} src={arrowRight} alt="arrowRight"/>
                                 <input type={props.type} placeholder={HELP_PASSWORD_LABEL}
                                     maxLength={MAX_PASSWORD_LENGTH} {...props.register('password')}/>
                                 <img src={props.toggleIcon} onClick={props.changeVisibility} alt="visibility icon"/><br/>
