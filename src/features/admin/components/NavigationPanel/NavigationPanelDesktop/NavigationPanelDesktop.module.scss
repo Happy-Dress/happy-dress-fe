@@ -1,6 +1,6 @@
-@import "../../../../styles/media-sizes";
-@import "../../../../styles/colors";
-@import "../../../../styles/font-sizes";
+@import "../../../../../styles/media-sizes";
+@import "../../../../../styles/colors";
+@import "../../../../../styles/font-sizes";
 
 * {
   margin: 0;
@@ -17,10 +17,6 @@
   align-items: center;
   padding-left: 1.2em;
   padding-right: 1.2em;
-
-  @media screen and (max-width: $lg-size) {
-    display: none;
-  }
 
   .navbarList {
     width: 15em;
@@ -77,6 +73,7 @@
       border-radius: 50%;
       top: 22px;
       left: 88px;
+      padding-top: 2px;
     }
   }
 }

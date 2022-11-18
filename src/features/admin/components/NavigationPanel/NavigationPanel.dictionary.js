@@ -1,0 +1,3 @@
+export const NAVIGATION_PANEL_DICTIONARY = {
+    ADMIN_LOGO: 'HAPPYDRESS',
+};

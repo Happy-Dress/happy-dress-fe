@@ -1,6 +1,6 @@
-@import "../../../../styles/media-sizes";
-@import "../../../../styles/colors";
-@import "../../../../styles/font-sizes";
+@import "../../../../../styles/media-sizes";
+@import "../../../../../styles/colors";
+@import "../../../../../styles/font-sizes";
 
 .adminMobileWrapper {
 
@@ -38,6 +38,7 @@
     margin-top: 100px;
 
     a {
+      position: relative;
       text-align: center;
       color: $gray;
       width: 350px;
@@ -57,11 +58,20 @@
         line-height: 28px;
       }
 
-      span {
-        padding-left: 10px;
-        color: red;
-          font-weight: 800;
-          font-size: large;
+      .register {
+        position: absolute;
+          color: $white;
+          width: 18px;
+          height: 18px;
+          padding-top: 2px;
+          text-align: center;
+          font-size: $font-size-normal-13;
+          background-color: $brown;
+          border: solid 1px transparent;
+          border-radius: 50%;
+          top: 0px;
+          left: 210px;
+        
       }
 
     }
