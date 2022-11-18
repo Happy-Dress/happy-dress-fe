@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import AuthorizationForm from './components/AuthorizationForm';
+import AuthorizationForm from './components/AuthorizationForm/AuthorizationForm';
 
 
 const SignIn = () => {

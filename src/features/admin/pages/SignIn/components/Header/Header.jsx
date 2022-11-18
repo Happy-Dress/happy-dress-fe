@@ -1,11 +1,12 @@
 import React from 'react';
 import HeaderDesktop from './HeaderDesktop';
-import { useDeviceTypeContext } from '../../../../../../common/contexts/DeviceType';
+import { useMediaQuery } from 'react-responsive';
 
 
 const Header = () => {
-    
-    const { isDesktop } = useDeviceTypeContext();
+
+    const DESKTOP_MIN_SCREEN_SIZE = '426px';
+    const isDesktop = useMediaQuery({ query: `(min-width: ${DESKTOP_MIN_SCREEN_SIZE})` });
     
     return(<>
         {isDesktop && <HeaderDesktop/>}
