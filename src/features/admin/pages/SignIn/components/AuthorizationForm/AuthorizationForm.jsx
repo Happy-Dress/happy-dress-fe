@@ -10,8 +10,9 @@ import authenticateUser from '../../api/authenticateUser';
 const AuthorizationForm = () => {
     
     const {
-        isMobile,
-        isDesktop,
+        isMobileWidth,
+        isMobileHeight,
+        isDesktopWidth,
     } = useSignInMediaQuery();
 
     const { register,
@@ -38,11 +39,11 @@ const AuthorizationForm = () => {
     
     return (
         <>
-            {isDesktop && <AuthorizationFormDesktop changeVisibility={changeVisibility} onSubmit={onSubmit}
+            {isDesktopWidth && !isMobileHeight && <AuthorizationFormDesktop changeVisibility={changeVisibility} onSubmit={onSubmit}
                 toggleIcon={toggleIcon}
                 type={type} register={register} errors={errors} isValid={isValid}
                 handleSubmit={handleSubmit} />}
-            {isMobile && <AuthorizationFormMobile changeVisibility={changeVisibility} onSubmit={onSubmit}
+            {(isMobileWidth || isMobileHeight) && <AuthorizationFormMobile changeVisibility={changeVisibility} onSubmit={onSubmit}
                 toggleIcon={toggleIcon}
                 type={type} register={register} errors={errors} isValid={isValid}
                 handleSubmit={handleSubmit}/>}

@@ -56,6 +56,10 @@
       padding-top: 10px;
       height: 30px;
       color: red;
+
+      @media screen and (orientation: landscape) {
+        position: static;
+      }
     }
   }
 
