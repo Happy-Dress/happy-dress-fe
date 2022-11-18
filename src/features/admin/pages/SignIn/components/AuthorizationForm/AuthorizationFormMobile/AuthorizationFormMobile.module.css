@@ -41,6 +41,12 @@
   width: 23px;
   height: 23px;
 }
+.Form_input_fields_error {
+  position: absolute;
+  padding-top: 10px;
+  height: 30px;
+  color: red;
+}
 .Form_btn {
   display: flex;
   align-items: center;

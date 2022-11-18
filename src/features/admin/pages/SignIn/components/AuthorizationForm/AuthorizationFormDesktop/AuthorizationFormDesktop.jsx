@@ -47,9 +47,11 @@ const AuthorizationFormDesktop = (props) => {
                         <ErrorMessage
                             errors={props.errors}
                             name="login"
-                            render={({ message }) => <div style={{ paddingTop: 10, color: 'red', height: 30 }}>
-                                <p>{message}</p>
-                            </div>}
+                            render={({ message }) =>
+                                <div className={s.Form_input_fields_error}>
+                                    <p>{message}</p>
+                                </div>
+                            }
                         />
                     </div>
                     <div>
@@ -64,9 +66,10 @@ const AuthorizationFormDesktop = (props) => {
                             <ErrorMessage
                                 errors={props.errors}
                                 name="password"
-                                render={({ message }) => <div style={{ paddingTop: 10, color: 'red', height: 30 }}>
+                                render={({ message }) => <div className={s.Form_input_fields_error}>
                                     <p>{message}</p>
-                                </div>}
+                                </div>
+                                }
                             />
                         </div>
                     </div>

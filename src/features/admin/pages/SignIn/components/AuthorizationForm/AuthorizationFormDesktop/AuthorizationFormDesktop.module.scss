@@ -65,6 +65,13 @@
           margin-top: 40px;
         }
       }
+
+      &_error{
+        position: absolute;
+        padding-top: 10px;
+        color: red;
+        height: 30px;
+      }
     }
 
     &_btn {

@@ -54,6 +54,12 @@
 .Container .Form_input_fields_input_password {
   margin-top: 40px;
 }
+.Container .Form_input_fields_error {
+  position: absolute;
+  padding-top: 10px;
+  color: red;
+  height: 30px;
+}
 .Container .Form_btn {
   display: flex;
   align-items: center;

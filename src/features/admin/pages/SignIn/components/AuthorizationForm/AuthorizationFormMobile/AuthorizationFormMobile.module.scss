@@ -54,6 +54,13 @@
       width: 23px;
       height: 23px;
     }
+
+    &_error{
+      position: absolute;
+      padding-top: 10px;
+      height: 30px;
+      color: red;
+    }
   }
 
   &_btn{
