@@ -33,20 +33,16 @@
     &_input{
       display: flex;
       align-items: center;
-      color: rgba(34, 17, 34, 0.65);
+      color: $black;
       padding-left: 12px;
       padding-bottom: 9px;
 
       &_valid {
-        border-bottom: 1px solid rgba(34, 17, 34, 0.9);
+        border-bottom: 1px solid $black;
       }
 
       &_invalid {
         border-bottom: 1px solid red;
-      }
-
-      &_password{
-
       }
     }
 
@@ -71,7 +67,7 @@
     height: 56px;
     color: $white;
     font-size: $font-size-xlarge-24;
-    box-shadow: 4px 4px 6px rgba(185, 117, 67, 0.25);
+    box-shadow: 4px 4px 6px $beige;
     background-color: $brown;
   }
 

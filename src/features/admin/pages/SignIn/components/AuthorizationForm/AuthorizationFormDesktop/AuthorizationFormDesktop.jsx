@@ -17,18 +17,6 @@ const {
 } = AUTHORIZATION_FORM_DICTIONARY;
 
 const AuthorizationFormDesktop = (props) => {
-
-    AuthorizationFormDesktop.propTypes ={
-        onSubmit: PropTypes.element.isRequired,
-        handleSubmit: PropTypes.element.isRequired,
-        errors: PropTypes.element.isRequired,
-        register: PropTypes.element.isRequired,
-        changeVisibility: PropTypes.element.isRequired,
-        type: PropTypes.element.isRequired,
-        isValid: PropTypes.element.isRequired,
-        toggleIcon: PropTypes.element.isRequired,
-    };
-
     return (
         <div className={s.Container}>
             <form className={s.Form} onSubmit={props.handleSubmit(props.onSubmit)}>
@@ -78,6 +66,18 @@ const AuthorizationFormDesktop = (props) => {
             </form>
         </div>
     );
+};
+
+
+AuthorizationFormDesktop.propTypes ={
+    onSubmit: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+    errors: PropTypes.object.isRequired,
+    register: PropTypes.func.isRequired,
+    changeVisibility: PropTypes.func.isRequired,
+    type: PropTypes.string.isRequired,
+    isValid: PropTypes.bool.isRequired,
+    toggleIcon: PropTypes.string.isRequired,
 };
 
 export default AuthorizationFormDesktop;

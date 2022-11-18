@@ -17,7 +17,7 @@
     width: 400px;
     height: 538px;
     border: 1px solid $black;
-    box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.27);
+    box-shadow: 0px 7px 20px $light-gray;
     background-color: $white;
 
     input {
@@ -44,12 +44,12 @@
       &_input {
         display: flex;
         align-items: center;
-        color: rgba(34, 17, 34, 0.65);
+        color: $black;
         width: 370px;
         height: 50px;
 
         &_valid {
-          border-bottom: 1px solid rgba(34, 17, 34, 0.9);
+          border-bottom: 1px solid $black;
         }
 
         &_invalid {
@@ -82,12 +82,13 @@
       height: 56px;
       color: $white;
       font-size: $font-size-xlarge-24;
-      box-shadow: 4px 4px 6px rgba(185, 117, 67, 0.25);
+      box-shadow: 4px 4px 6px $beige;
       background-color: $brown;
     }
 
     &_btn:disabled {
       background-color: gray;
+      box-shadow: none;
       cursor: default;
     }
   }

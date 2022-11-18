@@ -1,7 +1,8 @@
 import * as z from 'zod';
-import { AUTHORIZATION_FORM_DICTIONARY } from '../AuthorizationForm.dictionary';
+import { AUTHORIZATION_FORM_DICTIONARY } from '../components/AuthorizationForm/AuthorizationForm.dictionary';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 
 const {
     MIN_CREDS_LENGTH,
@@ -19,7 +20,10 @@ const authorizationCredentials = z.object({
     password: z.string().min(MIN_CREDS_LENGTH, TOO_SHORT_PASSWORD_MESSAGE).max(MAX_PASSWORD_LENGTH, TOO_LONG_PASSWORD_MESSAGE),
 });
 
-const useSignInForm = () => {
+const useAuthorizationForm = (initialVisibilityPic, initialInputState) => {
+    const [toggleIcon, setToggleIcon] = useState(initialVisibilityPic);
+    const [type, setType] = useState(initialInputState);
+
     const { register, setError, formState: { errors, isValid }, handleSubmit } = useForm({
         mode: 'onBlur',
         resolver: zodResolver(authorizationCredentials)
@@ -31,7 +35,11 @@ const useSignInForm = () => {
         errors,
         isValid,
         handleSubmit,
+        toggleIcon,
+        setToggleIcon,
+        type,
+        setType,
     };
 };
 
-export default useSignInForm;
+export default useAuthorizationForm;

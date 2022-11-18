@@ -1,12 +1,12 @@
 import React from 'react';
-import { HEADER_DICTIONARY } from '../Header.dictionary';
-import s from './HeaderDesktop.module.scss';
+import { SIGN_IN_HEADER_DICTIONARY } from '../SignInHeader.dictionary';
+import s from './SignInHeaderDesktop.module.scss';
 
 const {
     HEADER_LOGO,
-} = HEADER_DICTIONARY;
+} = SIGN_IN_HEADER_DICTIONARY;
 
-const HeaderDesktop = () => {
+const SignInHeaderDesktop = () => {
     return(
         <div className={s.Header}>
             <div>
@@ -16,4 +16,4 @@ const HeaderDesktop = () => {
     );
 };
 
-export default HeaderDesktop;
+export default SignInHeaderDesktop;

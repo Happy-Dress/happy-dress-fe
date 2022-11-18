@@ -1,3 +1,3 @@
-import Header from './Header';
+import SignInHeader from './SignInHeader';
 
-export default Header;
+export default SignInHeader;

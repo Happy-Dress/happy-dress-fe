@@ -1,12 +1,12 @@
 import React from 'react';
-import { FOOTER_DICTIONARY } from '../Footer.dictionary';
-import s from './FooterDesktop.module.scss';
+import { SIGN_IN_FOOTER_DICTIONARY } from '../SignInFooter.dictionary';
+import s from './SignInFooterDesktop.module.scss';
 
 const {
     FOOTER_LOGO,
-} = FOOTER_DICTIONARY;
+} = SIGN_IN_FOOTER_DICTIONARY;
 
-const FooterDesktop = () => {
+const SignInFooterDesktop = () => {
     return (
         <div className={s.FooterDesktop}>
             <div>
@@ -16,4 +16,4 @@ const FooterDesktop = () => {
     );
 };
 
-export default FooterDesktop;
+export default SignInFooterDesktop;

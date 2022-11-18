@@ -1,4 +1,0 @@
-const HEADER_DICTIONARY = {
-    HEADER_LOGO: 'HAPPYDRESS',
-};
-export { HEADER_DICTIONARY };

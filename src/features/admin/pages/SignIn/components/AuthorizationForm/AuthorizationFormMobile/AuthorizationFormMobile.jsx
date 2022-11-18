@@ -17,18 +17,6 @@ const {
 } = AUTHORIZATION_FORM_DICTIONARY;
 
 const AuthorizationFormMobile = (props) => {
-
-    AuthorizationFormMobile.propTypes ={
-        onSubmit: PropTypes.element.isRequired,
-        handleSubmit: PropTypes.element.isRequired,
-        errors: PropTypes.element.isRequired,
-        register: PropTypes.element.isRequired,
-        changeVisibility: PropTypes.element.isRequired,
-        type: PropTypes.element.isRequired,
-        isValid: PropTypes.element.isRequired,
-        toggleIcon: PropTypes.element.isRequired,
-    };
-    
     return (
         <>
             <form className={s.Form} onSubmit={props.handleSubmit(props.onSubmit)}>
@@ -53,7 +41,7 @@ const AuthorizationFormMobile = (props) => {
                         />
                     </div>
                     <div>
-                        <div className={classNames(s.Form_input_fields_input, s.Form_input_fields_input_password, props.errors.password?.message ? s.Form_input_fields_input_invalid : s.Form_input_fields_input_valid)}>
+                        <div className={classNames(s.Form_input_fields_input, props.errors.password?.message ? s.Form_input_fields_input_invalid : s.Form_input_fields_input_valid)}>
                             <img className={s.Form_input_fields_img_input} src={arrowRight} alt='arrow right'/>
                             <input type={props.type} placeholder={HELP_PASSWORD_LABEL} maxLength={MAX_PASSWORD_LENGTH} {...props.register('password')}/>
                             <img className={s.Form_input_fields_img_input} src={props.toggleIcon} onClick={props.changeVisibility} alt='visibility icon'/>
@@ -73,6 +61,17 @@ const AuthorizationFormMobile = (props) => {
             </form>
         </>
     );
+};
+
+AuthorizationFormMobile.propTypes ={
+    onSubmit: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+    errors: PropTypes.object.isRequired,
+    register: PropTypes.func.isRequired,
+    changeVisibility: PropTypes.func.isRequired,
+    type: PropTypes.string.isRequired,
+    isValid: PropTypes.bool.isRequired,
+    toggleIcon: PropTypes.string.isRequired,
 };
 
 export default AuthorizationFormMobile;

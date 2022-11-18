@@ -1,3 +1,3 @@
-import HeaderDesktop from './HeaderDesktop';
+import SignInHeaderDesktop from './SignInHeaderDesktop';
 
-export default HeaderDesktop;
+export default SignInHeaderDesktop;

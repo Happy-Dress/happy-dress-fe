@@ -1,3 +1,3 @@
-import FooterDesktop from './FooterDesktop';
+import SignInFooterDesktop from './SignInFooterDesktop';
 
-export default FooterDesktop;
+export default SignInFooterDesktop;

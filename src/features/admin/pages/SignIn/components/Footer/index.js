@@ -1,3 +1,3 @@
-import Footer from './Footer';
+import SignInFooter from './SignInFooter';
 
-export default Footer;
+export default SignInFooter;
