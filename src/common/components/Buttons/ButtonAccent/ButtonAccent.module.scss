@@ -15,4 +15,9 @@
         box-shadow: $shadow-brown-press;
         cursor: default;
     }
+    &:disabled{
+        background-color: gray;
+        box-shadow: none;
+        cursor: default;
+    }
 }
