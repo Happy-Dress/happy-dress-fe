@@ -7,9 +7,21 @@
   box-sizing: border-box;
 }
 
+.active {
+  border: 1px solid $brown;
+
+  p {
+    color: $black;
+  }
+
+  .img * {
+    fill: $brown;
+  }
+}
+
 .navbar {
   width: 224px;
-  min-height: 100vh;
+  height: 100%;
   border-right: 1px solid $brown;
   display: flex;
   flex-flow: column;

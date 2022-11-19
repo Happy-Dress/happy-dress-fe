@@ -3,15 +3,14 @@ import { Link, NavLink } from 'react-router-dom';
 import burger from '../../../../../assets/images/burger.svg';
 import x from '../../../../../assets/images/x.svg';
 import s from './NavigationPanelMobile.module.scss';
-import './NavigationPanelMobile.css';
 import Typography from '../../../../../common/components/Typography/Typography';
 import { NAVIGATION_PANEL_DICTIONARY } from '../NavigationPanel.dictionary';
 import  { ADMIN_PANEL_ROUTES }  from '../../../adminRoutes';
 import PropTypes from 'prop-types';
 const NavigationPanelMobile = ({ ordersAmount }) => {
     const { ROUTES, SIGN_IN } = ADMIN_PANEL_ROUTES;
-    const setActive = ({ isActive }) => (isActive ? 'active' : '');
-    const { ADMIN_LOGO, ADMIN_MOBILE_NAV_ITEMS, EXIT } =
+    const checkIsLinkActive = ({ isActive }) => (isActive ? s.active : '');
+    const { ADMIN_LOGO, ADMIN_NAV_ITEMS, EXIT } =
     NAVIGATION_PANEL_DICTIONARY;
     const [activeMenu, setActiveMenu] = useState(false);
 
@@ -43,11 +42,11 @@ const NavigationPanelMobile = ({ ordersAmount }) => {
             </div>
             {activeMenu && (
                 <div className={s.linkMobileWrapper}>
-                    {ADMIN_MOBILE_NAV_ITEMS.map((item, index) => (
+                    {ADMIN_NAV_ITEMS.map((item, index) => (
                         <NavLink
                             key={Math.random() * index}
                             to={ROUTES[index]}
-                            className={setActive}
+                            className={checkIsLinkActive}
                         >
                             <p>{item}</p>
                             {item === 'Записи' && (

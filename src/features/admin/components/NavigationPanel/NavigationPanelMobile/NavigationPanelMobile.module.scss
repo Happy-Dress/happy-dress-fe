@@ -2,6 +2,9 @@
 @import "../../../../../styles/colors";
 @import "../../../../../styles/font-sizes";
 
+.active p {
+  text-decoration: underline;
+}
 .adminMobileWrapper {
 
   .mobileHeader {
@@ -44,10 +47,6 @@
       width: 350px;
       height: 50px;
 
-      &:hover {
-        cursor: pointer;
-        text-align: underline;
-      }
 
       p {
         display: inline;

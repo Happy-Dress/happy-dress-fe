@@ -7,10 +7,10 @@ import CatalogSetting from './pages/CatalogSetting/CatalogSetting';
 import RegistrationSetting from './pages/RegistrationSetting/RegistrationSetting';
 import BlogSetting from './pages/BlogSetting/BlogSetting';
 import NotFound from './pages/NotFound';
-
+import s from './Admin.module.scss';
 const AdminPanelRouts = () => {
     return (
-        <>
+        <div className={s.adminRoutes}>
             <NavigationPanel/>
             <Routes>
                 <Route path="/" element={<Navigate to={'catalog-setting'} />} />
@@ -22,13 +22,13 @@ const AdminPanelRouts = () => {
                     element={<RegistrationSetting />}
                 ></Route>
             </Routes>
-        </>
+        </div>
     );
 };
 
 const Admin = () => {
     return (
-        <Routes>
+        <Routes className={s.adminRoutes}>
             <Route path="/" element={<Navigate to="sign-in" />} />
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/panel/*" element={<AdminPanelRouts />} />

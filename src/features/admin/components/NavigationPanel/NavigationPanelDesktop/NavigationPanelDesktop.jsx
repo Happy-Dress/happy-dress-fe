@@ -6,7 +6,6 @@ import { ReactComponent as Goods } from '../../../../../assets/images/goods.svg'
 import { ReactComponent as Registration } from '../../../../../assets/images/registration.svg';
 import { ReactComponent as Blog } from '../../../../../assets/images/blog.svg';
 import s from './NavigationPanelDesktop.module.scss';
-import './NavigationPanelDesktop.css';
 import Typography from '../../../../../common/components/Typography/Typography';
 import { NAVIGATION_PANEL_DICTIONARY } from '../NavigationPanel.dictionary';
 import { ADMIN_PANEL_ROUTES } from '../../../adminRoutes';
@@ -15,7 +14,13 @@ import PropTypes from 'prop-types';
 const NavigationPanelDesktop = ({ ordersAmount }) => {
     const { ADMIN_LOGO, ADMIN_NAV_ITEMS, EXIT } = NAVIGATION_PANEL_DICTIONARY;
     const { ROUTES, SIGN_IN } = ADMIN_PANEL_ROUTES;
-    const setActive = ({ isActive }) => (isActive ? 'active' : '');
+    const checkIsLinkActive = ({ isActive }) => (isActive ? s.active : '');
+    const imagesMap = new Map([
+        ['Каталог', <Catalog key={Math.random() * 1000} classNames={s.img} />],
+        ['Товар', <Goods key={Math.random() * 1000} classNames={s.img} />],
+        ['Записи', <Registration key={Math.random() * 1000} classNames={s.img} />],
+        ['Блог', <Blog key={Math.random() * 1000} className={s.img} />],
+    ]);
     return (
         <div className={s.navbar}>
             <div className={s.logo}>
@@ -23,7 +28,8 @@ const NavigationPanelDesktop = ({ ordersAmount }) => {
             </div>
             <div className={s.navbarList}>
                 {ADMIN_NAV_ITEMS.map((item, index) => (
-                    <NavLink key={index} to={ROUTES[index]} className={setActive}>
+                    <NavLink key={index} to={ROUTES[index]} className={checkIsLinkActive}>
+                        {imagesMap.get(item)}
                         <p>{item}</p>
                         {item === 'Записи' && (
                             <span className={s.register}>{ordersAmount}</span>
