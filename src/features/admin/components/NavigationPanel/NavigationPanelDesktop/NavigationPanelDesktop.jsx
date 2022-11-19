@@ -16,9 +16,9 @@ const NavigationPanelDesktop = ({ ordersAmount }) => {
     const { ROUTES, SIGN_IN } = ADMIN_PANEL_ROUTES;
     const checkIsLinkActive = ({ isActive }) => (isActive ? s.active : '');
     const imagesMap = new Map([
-        ['Каталог', <Catalog key={Math.random() * 1000} classNames={s.img} />],
-        ['Товар', <Goods key={Math.random() * 1000} classNames={s.img} />],
-        ['Записи', <Registration key={Math.random() * 1000} classNames={s.img} />],
+        ['Каталог', <Catalog key={Math.random() * 1000} className={s.img} />],
+        ['Товар', <Goods key={Math.random() * 1000} className={s.img} />],
+        ['Записи', <Registration key={Math.random() * 1000} className={s.img} />],
         ['Блог', <Blog key={Math.random() * 1000} className={s.img} />],
     ]);
     return (
