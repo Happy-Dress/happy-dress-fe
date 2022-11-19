@@ -129,5 +129,5 @@ yarn-error.log*
 
 .idea
 
-*.module.css
-*.css.map
+.module.css
+.css.map
