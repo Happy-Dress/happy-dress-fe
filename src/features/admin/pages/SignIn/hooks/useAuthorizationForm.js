@@ -6,14 +6,15 @@ import { useState } from 'react';
 import authenticateUser from '../../../api/authenticateUser';
 
 const {
-    MIN_CREDS_LENGTH,
-    MAX_LOGIN_LENGTH,
-    MAX_PASSWORD_LENGTH,
     TOO_SHORT_LOGIN_MESSAGE,
     TOO_LONG_LOGIN_MESSAGE,
     TOO_SHORT_PASSWORD_MESSAGE,
     TOO_LONG_PASSWORD_MESSAGE,
 } = AUTHORIZATION_FORM_DICTIONARY;
+
+const MIN_CREDS_LENGTH = 4;
+const MAX_LOGIN_LENGTH = 35;
+const MAX_PASSWORD_LENGTH = 15;
 
 const authorizationCredentials = z.object({
     login: z.string().min(MIN_CREDS_LENGTH, TOO_SHORT_LOGIN_MESSAGE).max(MAX_LOGIN_LENGTH, TOO_LONG_LOGIN_MESSAGE),
