@@ -1,11 +1,4 @@
 @import "../../../../styles/media-sizes";
 @import "../../../../styles/colors";
 
-.div {
-  h1 {
-    width: 1000px;
-  }
-  @media screen and (max-width: $lg-size) {
-    display: none;
-  }
-}
+

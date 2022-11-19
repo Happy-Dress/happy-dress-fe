@@ -7,6 +7,7 @@ import Typography from '../../../../../common/components/Typography/Typography';
 import { NAVIGATION_PANEL_DICTIONARY } from '../NavigationPanel.dictionary';
 import  { ADMIN_PANEL_ROUTES }  from '../../../adminRoutes';
 import PropTypes from 'prop-types';
+
 const NavigationPanelMobile = ({ ordersAmount }) => {
     const { ROUTES, SIGN_IN } = ADMIN_PANEL_ROUTES;
     const checkIsLinkActive = ({ isActive }) => (isActive ? s.active : '');
