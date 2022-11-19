@@ -1,22 +1,21 @@
 @import '../../../../../../../styles/media-sizes';
+@import '../../../../../../../styles/colors';
 
-.Header{
+.Header {
   display: flex;
   justify-content: center;
   align-items: flex-end;
   height: 10vh;
 
-
-  &_logo{
+  &_logo {
     font-weight: 700;
     font-size: 48px;
     letter-spacing: -0.17em;
   }
 
-  div{
+  div {
     width: 322px;
     text-align: center;
-    border-bottom: 1px solid rgba(34, 17, 34, 0.9);
+    border-bottom: 1px solid $black;
   }
-
 }

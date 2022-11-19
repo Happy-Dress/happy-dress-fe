@@ -2,6 +2,7 @@ import React from 'react';
 import { SIGN_IN_FOOTER_DICTIONARY } from '../SignInFooter.dictionary';
 import s from './SignInFooterDesktop.module.scss';
 
+
 const {
     FOOTER_LOGO,
 } = SIGN_IN_FOOTER_DICTIONARY;

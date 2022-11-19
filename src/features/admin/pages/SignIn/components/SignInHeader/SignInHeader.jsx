@@ -4,12 +4,13 @@ import useSignInMediaQuery from '../../hooks/useSignInMediaQuery';
 
 
 const SignInHeader = () => {
-
+    
     const { isDesktopWidth, isMobileHeight } = useSignInMediaQuery();
     
-    return(<>
-        {isDesktopWidth && !isMobileHeight && <SignInHeaderDesktop/>}
-    </>
+    return(
+        <>
+            {isDesktopWidth && !isMobileHeight && <SignInHeaderDesktop/>}
+        </>
     );
 };
 

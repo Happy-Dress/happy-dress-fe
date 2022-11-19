@@ -1,13 +1,14 @@
-@import './src/styles/colors';
+@import '../../../../../../../styles/colors';
 
-.FooterDesktop{
+
+.FooterDesktop {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 13vh;
-  border-top: 1px solid rgba(34, 17, 34, 0.9);
+  border-top: 1px solid $black;
 
-  &_logo{
+  &_logo {
     font-size: 64px;
     color: $light-gray;
     word-spacing: 10px;

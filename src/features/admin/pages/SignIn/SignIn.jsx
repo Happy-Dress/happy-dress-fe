@@ -5,6 +5,7 @@ import AuthorizationForm from './components/AuthorizationForm';
 
 
 const SignIn = () => {
+
     return (<>
         <SignInHeader/>
         <AuthorizationForm/>
