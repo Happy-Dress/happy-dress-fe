@@ -6,7 +6,7 @@ const authenticateUser = async (credentials) => {
         login: credentials.login,
         password: credentials.password,
     });
-    return response.data;
+    return response.data.accessToken;
 };
 
 
