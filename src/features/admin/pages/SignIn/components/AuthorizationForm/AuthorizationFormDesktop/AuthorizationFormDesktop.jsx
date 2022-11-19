@@ -6,6 +6,10 @@ import arrowRight from '../../../../../../../assets/images/arrowRight.svg';
 import { ErrorMessage } from '@hookform/error-message';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import ButtonAccent from '../../../../../../../common/components/Buttons/ButtonAccent';
+import closedEye from '../../../../../../../assets/images/closedEye.svg';
+import openEye from '../../../../../../../assets/images/openEye.svg';
+
 
 const {
     ENTRY_LABEL,
@@ -16,68 +20,93 @@ const {
     MAX_PASSWORD_LENGTH,
 } = AUTHORIZATION_FORM_DICTIONARY;
 
-const AuthorizationFormDesktop = (props) => {
+const AuthorizationFormDesktop = ({
+    isPasswordVisible,
+    onSubmit,
+    errors,
+    register,
+    togglePasswordVisibility,
+    isValid
+}) => {
+
+    const passwordIcon = isPasswordVisible ? openEye : closedEye;
+    const passwordInputType = isPasswordVisible ? 'text' : 'password';
+    
+    const renderErrorMessage = (name) =>{
+        return (
+            <ErrorMessage
+                errors={errors}
+                name={name}
+                render={({ message }) =>
+                    <div className={s.Form_input_fields_error}>
+                        <p>{message}</p>
+                    </div>
+                }
+            />
+        );
+    };
+
     return (
         <div className={s.Container}>
-            <form className={s.Form} onSubmit={props.handleSubmit(props.onSubmit)}>
+            <form className={s.Form} onSubmit={onSubmit}>
                 <div className={s.Form_entry_label}>
                     <h2>{ENTRY_LABEL}</h2>
                 </div>
                 <div className={s.Form_input_fields}>
                     <div>
-                        <div
-                            className={classNames(s.Form_input_fields_input, props.errors.login?.message ? 
-                                s.Form_input_fields_input_invalid : s.Form_input_fields_input_valid)}>
-                            <img className={s.Form_input_fields_img_input} src={person} alt="person"/>
-                            <input type="text" placeholder={HELP_YOUR_NAME_LABEL}
-                                maxLength={MAX_LOGIN_LENGTH} {...props.register('login')}/>
+                        <div className={
+                            classNames(
+                                s.Form_input_fields_input,
+                                errors.login?.message ? s.Form_input_fields_input_invalid : s.Form_input_fields_input_valid
+                            )
+                        }>
+                            <img className={s.Form_input_fields_img_input}
+                                src={person}
+                                alt="person"/>
+                            <input type="text"
+                                placeholder={HELP_YOUR_NAME_LABEL}
+                                maxLength={MAX_LOGIN_LENGTH} {...register('login')}/>
                         </div>
-                        <ErrorMessage
-                            errors={props.errors}
-                            name="login"
-                            render={({ message }) =>
-                                <div className={s.Form_input_fields_error}>
-                                    <p>{message}</p>
-                                </div>
-                            }
-                        />
+                        {renderErrorMessage('login')}
                     </div>
                     <div>
                         <div>
                             <div
-                                className={classNames(s.Form_input_fields_input, s.Form_input_fields_input_password, props.errors.password?.message ? s.Form_input_fields_input_invalid : s.Form_input_fields_input_valid)}>
-                                <img className={s.Form_input_fields_img_input} src={arrowRight} alt="arrowRight"/>
-                                <input type={props.type} placeholder={HELP_PASSWORD_LABEL}
-                                    maxLength={MAX_PASSWORD_LENGTH} {...props.register('password')}/>
-                                <img src={props.toggleIcon} onClick={props.changeVisibility} alt="visibility icon"/><br/>
+                                className={classNames(
+                                    s.Form_input_fields_input,
+                                    s.Form_input_fields_input_password,
+                                    errors.password?.message ? s.Form_input_fields_input_invalid : s.Form_input_fields_input_valid
+                                )
+                                }>
+                                <img className={s.Form_input_fields_img_input}
+                                    src={arrowRight}
+                                    alt="arrowRight"/>
+                                <input type={passwordInputType}
+                                    placeholder={HELP_PASSWORD_LABEL}
+                                    maxLength={MAX_PASSWORD_LENGTH} 
+                                    {...register('password')}/>
+                                <img src={passwordIcon}
+                                    onClick={togglePasswordVisibility}
+                                    alt="visibility icon"/>
                             </div>
-                            <ErrorMessage
-                                errors={props.errors}
-                                name="password"
-                                render={({ message }) => <div className={s.Form_input_fields_error}>
-                                    <p>{message}</p>
-                                </div>
-                                }
-                            />
+                            {renderErrorMessage('password')}
                         </div>
                     </div>
                 </div>
-                <button className={s.Form_btn} type="submit" disabled={!props.isValid}>{BUTTON_ENTER_LABEL}</button>
+                <ButtonAccent text={BUTTON_ENTER_LABEL} disabled={!isValid}/>
             </form>
         </div>
     );
 };
 
 
-AuthorizationFormDesktop.propTypes ={
+AuthorizationFormDesktop.propTypes = {
     onSubmit: PropTypes.func.isRequired,
-    handleSubmit: PropTypes.func.isRequired,
     errors: PropTypes.object.isRequired,
     register: PropTypes.func.isRequired,
-    changeVisibility: PropTypes.func.isRequired,
-    type: PropTypes.string.isRequired,
     isValid: PropTypes.bool.isRequired,
-    toggleIcon: PropTypes.string.isRequired,
+    isPasswordVisible: PropTypes.bool.isRequired,
+    togglePasswordVisibility: PropTypes.func.isRequired
 };
 
 export default AuthorizationFormDesktop;

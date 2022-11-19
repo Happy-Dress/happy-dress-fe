@@ -12,7 +12,6 @@ const AUTHORIZATION_FORM_DICTIONARY = {
     TOO_SHORT_PASSWORD_MESSAGE: 'Слишком короткий пароль',
     TOO_LONG_PASSWORD_MESSAGE: 'Слишком длинный пароль',
     WRONG_PASSWORD: 'Неверный пароль',
-    POST_PATH: 'http://localhost:8080/api/v1/auth/login',
 };
 
 export { AUTHORIZATION_FORM_DICTIONARY };

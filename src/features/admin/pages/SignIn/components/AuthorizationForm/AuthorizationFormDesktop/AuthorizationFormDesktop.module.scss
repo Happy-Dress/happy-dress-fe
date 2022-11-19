@@ -2,6 +2,7 @@
 @import '../../../../../../../styles/media-sizes';
 @import '../../../../../../../styles/font-sizes';
 
+
 .Container {
   display: flex;
   justify-content: center;
@@ -72,24 +73,6 @@
         color: red;
         height: 30px;
       }
-    }
-
-    &_btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 175px;
-      height: 56px;
-      color: $white;
-      font-size: $font-size-xlarge-24;
-      box-shadow: 4px 4px 6px $beige;
-      background-color: $brown;
-    }
-
-    &_btn:disabled {
-      background-color: gray;
-      box-shadow: none;
-      cursor: default;
     }
   }
 }
