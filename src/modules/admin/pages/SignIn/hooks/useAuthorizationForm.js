@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import authenticateUser from '../../../api/authenticateUser';
+import { useNavigate } from 'react-router-dom';
 
 const {
     TOO_SHORT_LOGIN_MESSAGE,
@@ -23,7 +24,9 @@ const authorizationCredentials = z.object({
 
 
 const useAuthorizationForm = () => {
+
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+    const navigate = useNavigate();
 
     const { register, setError, formState: { errors, isValid }, handleSubmit } = useForm({
         mode: 'onBlur',
@@ -34,6 +37,7 @@ const useAuthorizationForm = () => {
         try {
             const token = await authenticateUser(credentials);
             localStorage.setItem('Authorization', `Bearer ${token}`);
+            navigate('/admin/panel/catalog-setting');
         } catch (e) {
             // TODO handle error with alert notifications
             console.log(e);

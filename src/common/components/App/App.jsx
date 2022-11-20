@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { Domain } from '../../../features';
-import { Admin } from '../../../features';
+import { Domain } from '../../../modules';
+import { Admin } from '../../../modules';
 import { DeviceTypeProvider } from '../../contexts/DeviceType';
 
 const App = () => {
