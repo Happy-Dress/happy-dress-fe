@@ -1,8 +1,16 @@
 import React from 'react';
+import SignInHeader from './components/SignInHeader';
+import SignInFooter from './components/SignInFooter';
+import AuthorizationForm from './components/AuthorizationForm';
 
-const SignIn = () =>{
-    return (
-        <h1>Sign in page</h1>
+
+const SignIn = () => {
+
+    return (<>
+        <SignInHeader/>
+        <AuthorizationForm/>
+        <SignInFooter/>
+    </>
     );
 };
 
