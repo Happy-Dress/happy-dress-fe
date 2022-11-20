@@ -42,20 +42,21 @@ const NavigationPanelMobile = ({ ordersAmount }) => {
                 </div>
             </div>
             {activeMenu && (
-                <div className={s.linkMobileWrapper}>
-                    {ADMIN_NAV_ITEMS.map((item, index) => (
-                        <NavLink
-                            key={Math.random() * index}
-                            to={ROUTES[index]}
-                            className={checkIsLinkActive}
-                        >
-                            <p>{item}</p>
-                            {item === 'Записи' && (
-                                <span className={s.register}>{ordersAmount}</span>
-                            )}
-                        </NavLink>
-                    ))}
-
+                <div className={s.mobileMenu}>
+                    <div className={s.linkMobileWrapper}>
+                        {ADMIN_NAV_ITEMS.map((item, index) => (
+                            <NavLink
+                                key={Math.random() * index}
+                                to={ROUTES[index]}
+                                className={checkIsLinkActive}
+                            >
+                                <p>{item}</p>
+                                {item === 'Записи' && (
+                                    <span className={s.register}>{ordersAmount}</span>
+                                )}
+                            </NavLink>
+                        ))}
+                    </div>
                     <Link to={SIGN_IN} className={s.exit}>
                         <p>{EXIT}</p>
                     </Link>
