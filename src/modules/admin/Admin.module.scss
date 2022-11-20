@@ -1,0 +1,9 @@
+@import "../../styles/media-sizes";
+
+.adminRoutes {
+    display: flex;
+ column-gap: 100px;
+    @media screen and (max-width: $lg-size) {
+        flex-direction: column;
+    }
+}
