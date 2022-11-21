@@ -66,7 +66,7 @@ const AuthorizationFormDesktop = ({
                             <input type="text"
                                 placeholder={HELP_YOUR_NAME_LABEL}
                                 maxLength={MAX_LOGIN_LENGTH}
-                                autoCapitalize="false"
+                                autoCapitalize={'none'}
                                 {...register('login')}/>
                         </div>
                         {renderErrorMessage('login')}
