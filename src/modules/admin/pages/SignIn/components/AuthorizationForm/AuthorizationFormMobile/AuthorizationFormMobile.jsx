@@ -66,6 +66,7 @@ const AuthorizationFormMobile = ({
                             <input type='text' 
                                 placeholder={HELP_YOUR_NAME_LABEL} 
                                 maxLength={MAX_LOGIN_LENGTH} 
+                                autoCapitalize='false'
                                 {...register('login')}/>
                         </div>
                         {renderErrorMessage('login')}
