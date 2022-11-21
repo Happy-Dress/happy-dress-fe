@@ -65,7 +65,9 @@ const AuthorizationFormDesktop = ({
                                 alt="person"/>
                             <input type="text"
                                 placeholder={HELP_YOUR_NAME_LABEL}
-                                maxLength={MAX_LOGIN_LENGTH} {...register('login')}/>
+                                maxLength={MAX_LOGIN_LENGTH}
+                                autoCapitalize="false"
+                                {...register('login')}/>
                         </div>
                         {renderErrorMessage('login')}
                     </div>
@@ -83,7 +85,7 @@ const AuthorizationFormDesktop = ({
                                     alt="arrowRight"/>
                                 <input type={passwordInputType}
                                     placeholder={HELP_PASSWORD_LABEL}
-                                    maxLength={MAX_PASSWORD_LENGTH} 
+                                    maxLength={MAX_PASSWORD_LENGTH}
                                     {...register('password')}/>
                                 <img src={passwordIcon}
                                     onClick={togglePasswordVisibility}
