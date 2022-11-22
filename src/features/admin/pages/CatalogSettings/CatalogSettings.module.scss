@@ -1,0 +1,69 @@
+@import '../../../../styles/_colors.scss';
+@import '../../../../styles/media-sizes';
+@import '../../../../styles/font-sizes';
+.CatalogSettings{
+    max-width: 1400px;
+    padding: 25px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    .Way{
+        color: $light-gray;
+        margin-bottom: 15px;
+    }
+    h2{
+        padding: 0 10px;
+        margin: 0 auto 120px;
+        height: 60px;
+        border-bottom: 1px solid $brown;
+    }
+    button{
+        max-width: calc(25% - 15px);
+        width: fit-content;
+    }
+}
+.categories{
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 32px;
+}
+.category{
+    width: calc(50% - 10px);
+    border: 1px solid $light-gray;
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    align-items: center;
+    .active{
+        animation: rotateArrow1 0.3s forwards;
+    }
+    .img{
+        animation: rotateArrow2 0.3s forwards;
+    }
+}
+.buttons{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    gap: 20px;
+}
+@keyframes rotateArrow1 {
+    0%{
+        transform: rotateX(0deg);
+    }
+    100%{
+        transform: rotateX(-180deg);
+    }
+}
+@keyframes rotateArrow2 {
+    0%{
+        transform: rotateX(-180deg);
+    }
+    100%{
+        transform: rotateX(-360deg);
+    }
+}
