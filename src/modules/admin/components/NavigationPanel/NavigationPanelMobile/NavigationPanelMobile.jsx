@@ -16,7 +16,7 @@ const NavigationPanelMobile = ({ ordersAmount }) => {
     const [activeMenu, setActiveMenu] = useState(false);
 
     return (
-        <div className={s.adminMobileWrapper}>
+        <div className={s.adminMobileWrapper} role="mobilePanel">
             <div className={s.mobileHeader}>
                 <div className={s.logoMobile}>
                     <Typography classNames={[s.logoTitle]}>{ADMIN_LOGO}</Typography>

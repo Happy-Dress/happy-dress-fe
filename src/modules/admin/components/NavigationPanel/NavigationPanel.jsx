@@ -10,7 +10,7 @@ const NavigationPanel = () => {
     useEffect(() => {
         getOrdersAmount().then((val) => setOrdersAmount(val));
     }, []);
-  
+    console.log('mobile : ' + isMobile + '    ' + 'desk: ' + isDesktop);
     return (
         <div>
             {isMobile && <NavigationPanelMobile ordersAmount={ordersAmount} />}

@@ -8,6 +8,7 @@ import RegistrationSetting from './pages/RegistrationSetting/RegistrationSetting
 import BlogSetting from './pages/BlogSetting/BlogSetting';
 import NotFound from './pages/NotFound';
 import s from './Admin.module.scss';
+
 const AdminPanelRouts = () => {
     return (
         <div className={s.adminRoutes}>

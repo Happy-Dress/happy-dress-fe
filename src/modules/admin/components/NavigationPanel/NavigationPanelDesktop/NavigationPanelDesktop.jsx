@@ -22,13 +22,17 @@ const NavigationPanelDesktop = ({ ordersAmount }) => {
         ['Блог', <Blog key={Math.random() * 1000} className={s.img} />],
     ]);
     return (
-        <div className={s.navbar}>
+        <div className={s.navbar} role="desktopPanel">
             <div className={s.logo}>
                 <Typography classNames={[s.logoTitle]}>{ADMIN_LOGO}</Typography>
             </div>
             <div className={s.navbarList}>
                 {ADMIN_NAV_ITEMS.map((item, index) => (
-                    <NavLink key={index} to={ROUTES[index]} className={checkIsLinkActive}>
+                    <NavLink
+                        key={index}
+                        to={ROUTES[index]}
+                        className={checkIsLinkActive}
+                    >
                         {imagesMap.get(item)}
                         <p>{item}</p>
                         {item === 'Записи' && (
