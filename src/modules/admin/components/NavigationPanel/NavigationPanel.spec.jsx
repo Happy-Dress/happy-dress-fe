@@ -1,44 +1,42 @@
-import { render, screen } from '@testing-library/react';
-import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import '@testing-library/jest-dom';
+import { screen, render, waitFor } from '@testing-library/react';
 import NavigationPanel from './NavigationPanel';
-import NavigationPanelDesktop from './NavigationPanelDesktop/NavigationPanelDesktop';
-import NavigationPanelMobile from './NavigationPanelMobile/NavigationPanelMobile';
+import { useDeviceTypeContext } from '../../../../common/contexts/DeviceType';
 
 
-const media = (x) =>{
-    if(x.matches){
-        return render(
-            <MemoryRouter>
-                <NavigationPanel />
-                <NavigationPanelDesktop />
-            </MemoryRouter>
-        );
-    }
-    
-};
+jest.mock('./NavigationPanelDesktop/NavigationPanelDesktop', () => ({
+    __esModule: true,
+    default: () => <div>Navigation Panel Desktop</div>
+}));
+
+jest.mock('./NavigationPanelMobile/NavigationPanelMobile', () => ({
+    __esModule: true,
+    default: () => <div>Navigation Panel Mobile</div>
+}));
+
+jest.mock('../../../../common/contexts/DeviceType', () =>({
+    useDeviceTypeContext: jest.fn()
+}));
+
+
+
 describe('NavigationPanel', () => {
-    
-    it('should rendering  NavigatingPanelDes', async () => {
-        Object.defineProperty(window, 'matchMedia', {
-            writable: true,
-            value: jest.fn().mockImplementation((query) => ({
-                matches: false,
-                media: query,
-                onchange: null,
-                addListener: jest.fn(),
-                removeListener: jest.fn(),
-                addEventListener: jest.fn(),
-                removeEventListener: jest.fn(),
-                dispatchEvent: jest.fn(),
-            })),
+
+    it('should render desktop panel', async () => {
+        useDeviceTypeContext.mockImplementation(() => ({ isDesktop: true }));
+        render(<NavigationPanel/>);
+        const desktopPanel = screen.getByText('Navigation Panel Desktop');
+        await waitFor(() =>{
+            expect(desktopPanel).toBeInTheDocument();
         });
-        const mmObj = window.matchMedia('(min-width: 1024px)');
-        media(mmObj);
-        mmObj.addListener();      
-        expect(screen.getByRole('desktopPanel')).toBeInTheDocument();
-        expect(screen.getByRole('mobilePanel')).toBeInTheDocument();
-        screen.debug();
     });
+
+    it('should render mobile panel', async () => {
+        useDeviceTypeContext.mockImplementation(() => ({ isMobile: true }));
+        render(<NavigationPanel/>);
+        const mobilePanel = screen.getByText('Navigation Panel Mobile');
+        await waitFor(() =>{
+            expect(mobilePanel).toBeInTheDocument();
+        });
+    });
+
 });

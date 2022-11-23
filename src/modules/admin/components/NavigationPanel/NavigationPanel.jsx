@@ -7,10 +7,11 @@ import getOrdersAmount from '../../api/getOrdersAmount';
 const NavigationPanel = () => {
     const { isDesktop, isMobile } = useDeviceTypeContext();
     const [ordersAmount, setOrdersAmount] = useState(0);
+
     useEffect(() => {
         getOrdersAmount().then((val) => setOrdersAmount(val));
     }, []);
-    console.log('mobile : ' + isMobile + '    ' + 'desk: ' + isDesktop);
+
     return (
         <div>
             {isMobile && <NavigationPanelMobile ordersAmount={ordersAmount} />}
