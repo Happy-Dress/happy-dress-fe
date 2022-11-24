@@ -3,12 +3,6 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import '@testing-library/jest-dom';
 import NavigationPanelMobile from './NavigationPanelMobile';
-import CatalogSetting from '../../../pages/CatalogSetting/CatalogSetting';
-import GoodsSetting from '../../../pages/GoodsSetting/GoodsSetting';
-import BlogSetting from '../../../pages/BlogSetting/BlogSetting';
-import RegistrationSetting from '../../../pages/RegistrationSetting/RegistrationSetting';
-import SignIn from '../../../pages/SignIn/';
-import { Route, Routes } from 'react-router-dom';
 import { AppRouter } from '../NavigationPanelDesktop/NavigationPanelDesktop.spec';
 
 
