@@ -22,7 +22,7 @@ const NavigationPanelDesktop = ({ ordersAmount }) => {
         ['Блог', <Blog key={Math.random() * 1000} className={s.img} />],
     ]);
     return (
-        <div className={s.navbar} role="desktopPanel">
+        <div className={s.navbar} data-testid="desktopPanel">
             <div className={s.logo}>
                 <Typography classNames={[s.logoTitle]}>{ADMIN_LOGO}</Typography>
             </div>
@@ -32,6 +32,7 @@ const NavigationPanelDesktop = ({ ordersAmount }) => {
                         key={index}
                         to={ROUTES[index]}
                         className={checkIsLinkActive}
+                        data-testid={item}
                     >
                         {imagesMap.get(item)}
                         <p>{item}</p>
@@ -40,7 +41,7 @@ const NavigationPanelDesktop = ({ ordersAmount }) => {
                         )}
                     </NavLink>
                 ))}
-                <Link to={SIGN_IN}>
+                <Link to={SIGN_IN} data-testid="exit">
                     <Exit />
                     <p>{EXIT}</p>
                 </Link>
