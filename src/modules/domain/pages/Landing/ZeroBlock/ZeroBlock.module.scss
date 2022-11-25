@@ -1,0 +1,135 @@
+@import '../../../../../styles/media-sizes';
+.ZeroBlock{
+    overflow-x: hidden;
+    background: url(../../../../../assets/images/ZeroBlock/ZeroBlockXXL.webp) 50% 50%;
+    background-size: cover;
+    height: 100vh;
+    h1{
+        -webkit-text-fill-color: transparent;
+        background: linear-gradient(rgba(167, 123, 20, 1), rgba(167, 82, 20, 0.8));
+        filter: grayscale(0.6);
+        -webkit-background-clip: text;
+        background-clip: text;
+        letter-spacing: -17px;
+        padding-right: 17px;
+        &:last-child{
+            margin-top: -40px;
+        }
+    }
+    &_content{
+        margin-left: 260px;
+    }
+    &_text{
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding-top: 196px;
+        margin-bottom: 65px;
+        width: 713px;
+        flex-wrap: wrap;
+        opacity: 0.6;
+        p{
+            width: 305px;
+            margin-top: 18px;
+            display: block;
+            &:first-child{
+                margin-top: 40px;
+            }
+        }
+        &_mobile{
+            color: rgba(33, 33, 33, 0.5);
+            display: none;
+        }
+    }
+    @media screen and (max-width: $xl-size) {
+        background-image: url(../../../../../assets/images/ZeroBlock/ZeroBlockXL.webp);
+        height: calc(100vh - 70px);
+        &_content{
+            margin-left: 7vw;
+            margin-top: -120px;
+        }
+    }
+    @media screen and (max-width: $lg-size) {
+        background-position: 80%;
+        height: calc(100vh - 70px);
+        &_content{
+            margin-left: 7vw;
+            margin-top: 0px;
+        }
+        &_text{
+            padding: 70px 0 0;
+            margin: 0;
+            margin-right: 0;
+            flex-direction: column;
+            h1{
+                font-size: 68px;
+                letter-spacing: -8px;
+                &:last-child{
+                    margin: 0;
+                    margin-top: -15px;
+                    margin-left: 160px;
+                }
+            }
+            p{
+                display: none;
+            }
+            &_mobile{
+                display: block;
+                margin-top: 5px;
+                margin-bottom: 70px;
+            }
+        }
+    }
+    @media screen and (max-width: $md-size) {
+        button{
+            width: fit-content;
+            background-color: #f6f6f6a6;
+        }
+        &_content{
+            height: calc( 100vh - 100px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 0;
+            padding-left: 28px;
+            h1{
+                font-size: 36px;
+                letter-spacing: -5px;
+                margin: 0;
+                padding: 0px;
+                padding-right: 15px;
+                &:last-child{
+                    margin-left: 83px;
+                    margin-top: -10px;
+                }
+            }
+        }
+        &_text{
+            margin: 0;
+            padding-top: 20px;
+            width: 183px;
+            p{
+                display: none;
+            }
+            &_mobile{
+                display: inline-block;
+                margin-top: 5px;
+            }
+        }
+    }
+    @media screen and (max-width: $sm-size) {
+        background-position: 78%;
+        &_content{
+            padding-left: 0px;
+            &_title{
+                padding-left: 20px;
+            }
+        }
+        p{
+            font-size: 14px;
+        }
+        button{
+            margin: 0 auto;
+        }
+    }
+}
