@@ -13,7 +13,9 @@ const {
 const HeaderDesktop = () => {
     return (
         <div className={s.Header}>
-            <span className={s.Header_logo}>{HEADER_LOGO}</span>
+            <div className={s.Header_logo_wrapper}>
+                <span className={s.Header_logo_wrapper_logo}>{HEADER_LOGO}</span>
+            </div>
             <ul className={s.Header_menu}>
                 {HEADER_NAV_ITEMS.map((item)=>(
                     <li key={item}>
