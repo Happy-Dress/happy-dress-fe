@@ -3,7 +3,7 @@ import s from './GoodsSetting.module.scss';
 
 const GoodsSetting = () => {
     return (
-        <div className={s.div} data-testid="goods-page">
+        <div className={s.div}>
             <h1>Карта товара</h1>        
             <h1>Карта товара</h1>        
             <h1>Карта товара</h1>        

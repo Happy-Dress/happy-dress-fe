@@ -16,7 +16,7 @@ const NavigationPanelMobile = ({ ordersAmount }) => {
     const [activeMenu, setActiveMenu] = useState(false);
 
     return (
-        <div className={s.adminMobileWrapper} data-testid="mobilePanel">
+        <div className={s.adminMobileWrapper}>
             <div className={s.mobileHeader}>
                 <div className={s.logoMobile}>
                     <Typography classNames={[s.logoTitle]}>{ADMIN_LOGO}</Typography>
@@ -33,11 +33,10 @@ const NavigationPanelMobile = ({ ordersAmount }) => {
                     ) : (
                         <img
                             src={burger}
-                            alt="_"
+                            alt="W"
                             onClick={() => {
                                 setActiveMenu(!activeMenu);
                             }}
-                            data-testid="activeMenu"
                         />
                     )}
                 </div>
@@ -50,7 +49,6 @@ const NavigationPanelMobile = ({ ordersAmount }) => {
                                 key={Math.random() * index}
                                 to={ROUTES[index]}
                                 className={checkIsLinkActive}
-                                data-testid={item}
                             >
                                 <p>{item}</p>
                                 {item === 'Записи' && (

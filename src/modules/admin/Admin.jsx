@@ -9,7 +9,7 @@ import BlogSetting from './pages/BlogSetting/BlogSetting';
 import NotFound from './pages/NotFound';
 import s from './Admin.module.scss';
 
-const AdminPanelRouts = () => {
+export const AdminPanelRouts = () => {
     return (
         <div className={s.adminRoutes}>
             <NavigationPanel/>
