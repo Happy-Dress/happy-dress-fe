@@ -2,7 +2,7 @@
 @import '../../../../styles/media-sizes';
 @import '../../../../styles/font-sizes';
 .CatalogSettings{
-    max-width: 1400px;
+    width: 100%;
     padding: 25px;
     height: fit-content;
     display: flex;
@@ -12,14 +12,11 @@
         margin-bottom: 15px;
     }
     h2{
-        padding: 0 10px;
+        padding: 0 20px;
         margin: 0 auto 120px;
-        height: 60px;
+        min-height: 60px;
+        padding-bottom: 20px;
         border-bottom: 1px solid $brown;
-    }
-    button{
-        max-width: calc(25% - 15px);
-        width: fit-content;
     }
 }
 .categories{
@@ -33,11 +30,23 @@
 .category{
     width: calc(50% - 10px);
     border: 1px solid $light-gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
+    @media screen and (max-width: $md-size) {
+        width: 100%;
+    }
+
+}
+.title{
+    padding: 0 20px;
     height: 75px;
     display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 1px solid $light-gray;
     .active{
         animation: rotateArrow1 0.3s forwards;
     }
@@ -45,11 +54,37 @@
         animation: rotateArrow2 0.3s forwards;
     }
 }
+.items{
+    height: 0px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    transition-duration: 0.3s;
+    &_active{
+        transition-duration: 0.3s;
+        display: flex;
+        background-color: white;
+        width: 100%;
+        height: 300px;
+        overflow-y: auto;
+    }
+}
 .buttons{
     width: 100%;
+    button{
+        width: 264px;
+    }
     display: flex;
     justify-content: end;
     gap: 20px;
+    @media screen and (max-width: $sm-size) {
+        flex-direction: column;
+        button{
+            width: 100%;
+            text-align: center;
+        }
+    }
 }
 @keyframes rotateArrow1 {
     0%{

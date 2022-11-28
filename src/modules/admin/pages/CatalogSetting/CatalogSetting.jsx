@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import s from './CatalogSettings.module.scss';
+import s from './CatalogSetting.module.scss';
 import down from '../../../../assets/images/down.svg';
 import ButtonDefault from '../../../../common/components/Buttons/ButtonDefault';
 import ButtonAccent from '../../../../common/components/Buttons/ButtonAccent';
@@ -7,7 +7,6 @@ import ButtonAccent from '../../../../common/components/Buttons/ButtonAccent';
 
 const CatalogSettings = () => {
 
-    
     const [items, setItems] = useState([
         {
             name: 'Категории',
@@ -30,7 +29,6 @@ const CatalogSettings = () => {
             state: []
         },
     ]);
-    console.log(items);
 
 
     return(
@@ -40,10 +38,14 @@ const CatalogSettings = () => {
             <div className={s.categories}>
                 {
                     items.map((el, index) => {return(
-                        <div className={s.category} key={index} onClick={() => setItems(items.map((e, i) => index === i ? { ...e, active: !el.active }: e))}>
-                            <h3>{el.name}</h3>
-                            <img src={down} alt='arrowDown'
-                                className={el.active ? s.active : s.img}/>
+                        <div  className={s.category} key={index} >
+                            <div className={s.title} onClick={() => setItems(items.map((e, i) => index === i ? { ...e, active: !el.active }: e))}>
+                                <h3>{el.name}</h3>
+                                <img src={down} alt='arrowDown'
+                                    className={el.active ? s.active : s.img}/>
+                            </div>
+                            <div className={el.active ? s.items_active : s.items }>
+                            </div>
                         </div>
                     );})
                 }    

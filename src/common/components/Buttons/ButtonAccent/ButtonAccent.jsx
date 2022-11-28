@@ -14,6 +14,7 @@ const ButtonAccent = (props) => {
     return (
         <button onClick={changeState}
             className={classNames(s.ButtonAccent, active ? s.ButtonAccent_active : '')}
+            disabled={props.disabled}
         >
             {props.text}
         </button>
@@ -22,6 +23,7 @@ const ButtonAccent = (props) => {
 
 ButtonAccent.propTypes = {
     text: PropTypes.string.isRequired,
+    disabled: PropTypes.bool,
 };
 
 export default ButtonAccent;
