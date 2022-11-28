@@ -1,7 +1,6 @@
 import { screen, render, waitFor } from '@testing-library/react';
 import React from 'react';
 import AuthorizationForm from './AuthorizationForm';
-import useSignInMediaQuery from '../../hooks/useSignInMediaQuery';
 
 jest.mock('./AuthorizationFormDesktop', () => ({
     _esModule: true,
@@ -13,17 +12,39 @@ jest.mock('./AuthorizationFormMobile', () => ({
     default: () => <div>Authorization form mobile</div>
 }));
 
-jest.mock('./../../hooks/useSignInMediaQuery', () =>({
-    useSignInMediaQuery: jest.fn()
+let mockIsMobileWidth = false;
+let mockIsMobileHeight = false;
+let mockIsDesktopWidth = false;
+
+jest.mock('../../hooks/useSignInMediaQuery', () => () => ({
+    isMobileWidth: mockIsMobileWidth,
+    isMobileHeight: mockIsMobileHeight,
+    isDesktopWidth: mockIsDesktopWidth,
 }));
 
+let mockOnSubmit = jest.fn();
+let mockRegister = {};
+let mockSetError = jest.fn();
+let mockErrors = {};
+let mockIsValid = false;
+let mockIsPasswordVisible = false;
+let mockTogglePasswordVisibility = jest.fn();
+
+jest.mock('../../hooks/useAuthorizationForm', () => ({
+    onSubmit: mockOnSubmit,
+    register: mockRegister,
+    setError: mockSetError,
+    errors: mockErrors,
+    isValid:mockIsValid,
+    isPasswordVisible: mockIsPasswordVisible,
+    togglePasswordVisibility: mockTogglePasswordVisibility,
+}));
 
 
 describe('AuthorizationForm', () => {
     it('should render desktop authorization form', async () => {
-        useSignInMediaQuery.mockImplementation(() => ({
-            isDesktop: true
-        }));
+        mockIsDesktopWidth = true;
+
         render(<AuthorizationForm/>);
         const desktopPanel = screen.getByText('Authorization form desktop');
         await waitFor(() => {
@@ -32,9 +53,7 @@ describe('AuthorizationForm', () => {
     });
 
     it('should render mobile authorization form', async () => {
-        useSignInMediaQuery.mockImplementation(() => ({
-            isDesktop: true
-        }));
+        mockIsMobileWidth = true;
         render(<AuthorizationForm/>);
         const mobilePanel = screen.getByText('Authorization form mobile');
         await waitFor(() => {
