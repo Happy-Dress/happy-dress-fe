@@ -67,6 +67,7 @@ const AuthorizationFormDesktop = ({
                                 placeholder={HELP_YOUR_NAME_LABEL}
                                 maxLength={MAX_LOGIN_LENGTH}
                                 autoCapitalize={'none'}
+                                autoFocus
                                 {...register('login')}/>
                         </div>
                         {renderErrorMessage('login')}
