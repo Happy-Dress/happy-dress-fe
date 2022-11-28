@@ -6,7 +6,7 @@ import GoodsSetting from './index';
 jest.mock('./GoodsSetting', ()=>({
     __esModule: true,
     default: ()=>{
-        return <div  data-testid="goods-page"></div>;
+        return <div  data-testid="goods-page"/>;
     }
 }));
 describe('GoodsSetting', () => {

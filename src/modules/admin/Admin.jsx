@@ -15,13 +15,13 @@ export const AdminPanelRouts = () => {
             <NavigationPanel/>
             <Routes>
                 <Route path="/" element={<Navigate to={'catalog-setting'} />} />
-                <Route path="catalog-setting" element={<CatalogSetting />}></Route>
-                <Route path="blog-setting" element={<BlogSetting />}></Route>
-                <Route path="goods-setting" element={<GoodsSetting />}></Route>
+                <Route path="catalog-setting" element={<CatalogSetting />}/>
+                <Route path="blog-setting" element={<BlogSetting />}/>
+                <Route path="goods-setting" element={<GoodsSetting />}/>
                 <Route
                     path="registration-setting"
                     element={<RegistrationSetting />}
-                ></Route>
+                />
             </Routes>
         </div>
     );

@@ -8,21 +8,21 @@ import userEvent from '@testing-library/user-event';
 jest.mock('../../../pages/BlogSetting/BlogSetting', () => ({
     __esModule: true,
     default: () => {
-        return <div data-testid="blog-page"></div>;
+        return <div data-testid="blog-page"/>;
     },
 }));
 
 jest.mock('../../../pages/CatalogSetting/CatalogSetting', () => ({
     __esModule: true,
     default: () => {
-        return <div data-testid="catalog-page"></div>;
+        return <div data-testid="catalog-page"/>;
     },
 }));
 
 jest.mock('../../../pages/GoodsSetting/GoodsSetting', () => ({
     __esModule: true,
     default: () => {
-        return <div data-testid="goods-page"></div>;
+        return <div data-testid="goods-page"/>;
     },
 }));
 
@@ -36,7 +36,7 @@ jest.mock('../../../pages/SignIn/', () => ({
 jest.mock('../../../pages/RegistrationSetting/RegistrationSetting', () => ({
     __esModule: true,
     default: () => {
-        return <div data-testid="registration-page"></div>;
+        return <div data-testid="registration-page"/>;
     },
 }));
 

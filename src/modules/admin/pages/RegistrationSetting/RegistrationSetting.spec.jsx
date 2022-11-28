@@ -6,7 +6,7 @@ import RegistrationSetting from './index';
 jest.mock('./RegistrationSetting', ()=>({
     __esModule: true,
     default: () =>{
-        return <div  data-testid="registration-page"></div>;
+        return <div data-testid="registration-page"/>;
     }
 }));
 describe('RegistrationSetting', () => {

@@ -6,7 +6,7 @@ import CatalogSetting from './index';
 jest.mock('./CatalogSetting', ()=>({
     __esModule: true,
     default: ()=>{
-        return <div data-testid="catalog-page"></div>;
+        return <div data-testid="catalog-page"/>;
     }
 }));
 describe('CatalogSetting', () => {

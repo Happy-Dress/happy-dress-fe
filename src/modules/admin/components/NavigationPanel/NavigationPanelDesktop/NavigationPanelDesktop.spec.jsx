@@ -18,20 +18,20 @@ export const renderWithRouter = (component) => {
                 <Route
                     path="/admin/panel/catalog-setting"
                     element={<CatalogSetting />}
-                ></Route>
+                />
                 <Route
                     path="/admin/panel/blog-setting"
                     element={<BlogSetting />}
-                ></Route>
+                />
                 <Route
                     path="/admin/panel/goods-setting"
                     element={<GoodsSetting />}
-                ></Route>
+                />
                 <Route
                     path="/admin/panel/registration-setting"
                     element={<RegistrationSetting />}
-                ></Route>
-                <Route path="/admin" element={<SignIn />}></Route>
+                />
+                <Route path="/admin" element={<SignIn />}/>
             </Routes>
         </MemoryRouter>
     );
@@ -41,21 +41,21 @@ export const renderWithRouter = (component) => {
 jest.mock('../../../pages/BlogSetting/BlogSetting', () => ({
     __esModule: true,
     default: () => {
-        return <div data-testid="blog-page"></div>;
+        return <div data-testid="blog-page"/>;
     },
 }));
 
 jest.mock('../../../pages/CatalogSetting/CatalogSetting', () => ({
     __esModule: true,
     default: () => {
-        return <div data-testid="catalog-page"></div>;
+        return <div data-testid="catalog-page"/>;
     },
 }));
 
 jest.mock('../../../pages/GoodsSetting/GoodsSetting', () => ({
     __esModule: true,
     default: () => {
-        return <div data-testid="goods-page"></div>;
+        return <div data-testid="goods-page"/>;
     },
 }));
 
@@ -69,17 +69,17 @@ jest.mock('../../../pages/SignIn/', ()=>({
 jest.mock('../../../pages/RegistrationSetting/RegistrationSetting', () => ({
     __esModule: true,
     default: () => {
-        return <div data-testid="registration-page"></div>;
+        return <div data-testid="registration-page"/>;
     },
 }));
 
- 
-describe('NavigationPanelDesktop', () => {   
+
+describe('NavigationPanelDesktop', () => {
     beforeEach( () => {
         renderWithRouter(<NavigationPanelDesktop/>);
     });
 
- 
+
     it('should render NavigatingPanelDesktop', async () => {
         const panelDesktop = screen.getByText('HAPPYDRESS');
         await waitFor(() => {
@@ -94,7 +94,7 @@ describe('NavigationPanelDesktop', () => {
             expect(screen.getByTestId('catalog-page')).toBeInTheDocument();
         });
     });
-      
+
     it('Should after clicking the "Товар" link, the Goods page opens.', async () => {
         const btn = screen.getByText('Товар');
         userEvent.click(btn);
@@ -119,7 +119,7 @@ describe('NavigationPanelDesktop', () => {
         });
     });
 
-    it('Should after clicking the "Exit" link, the Sign-in page opens.', async () => {        
+    it('Should after clicking the "Exit" link, the Sign-in page opens.', async () => {
         const btn = screen.getByText('Выход');
         userEvent.click(btn);
         await waitFor(() => {
