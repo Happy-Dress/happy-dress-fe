@@ -28,7 +28,11 @@ const NavigationPanelDesktop = ({ ordersAmount }) => {
             </div>
             <div className={s.navbarList}>
                 {ADMIN_NAV_ITEMS.map((item, index) => (
-                    <NavLink key={index} to={ROUTES[index]} className={checkIsLinkActive}>
+                    <NavLink
+                        key={index}
+                        to={ROUTES[index]}
+                        className={checkIsLinkActive}
+                    >
                         {imagesMap.get(item)}
                         <p>{item}</p>
                         {item === 'Записи' && (
