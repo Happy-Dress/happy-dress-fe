@@ -1,8 +1,8 @@
 
 import React from 'react';
-import { screen, render, waitFor, fireEvent } from '@testing-library/react';
+import { screen, render, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import '@testing-library/jest-dom';
 import  CatalogSetting  from '../../../pages/CatalogSetting/CatalogSetting';
 import  BlogSetting  from '../../../pages/BlogSetting/BlogSetting';
 import  RegistrationSetting  from '../../../pages/RegistrationSetting/RegistrationSetting';
@@ -89,7 +89,7 @@ describe('NavigationPanelDesktop', () => {
 
     it('Should after clicking the "Каталог" link, the Catalog page opens.', async () => {
         const btn = screen.getByText('Каталог');
-        fireEvent.click(btn);
+        userEvent.click(btn);
         await waitFor(() => {
             expect(screen.getByTestId('catalog-page')).toBeInTheDocument();
         });
@@ -97,7 +97,7 @@ describe('NavigationPanelDesktop', () => {
       
     it('Should after clicking the "Товар" link, the Goods page opens.', async () => {
         const btn = screen.getByText('Товар');
-        fireEvent.click(btn);
+        userEvent.click(btn);
         await waitFor(() => {
             expect(screen.getByTestId('goods-page')).toBeInTheDocument();
         });
@@ -105,7 +105,7 @@ describe('NavigationPanelDesktop', () => {
 
     it('Should after clicking the "Записи" link, the Registration page opens.', async () => {
         const btn = screen.getByText('Записи');
-        fireEvent.click(btn);
+        userEvent.click(btn);
         await waitFor(() => {
             expect(screen.getByTestId('registration-page')).toBeInTheDocument();
         });
@@ -113,7 +113,7 @@ describe('NavigationPanelDesktop', () => {
 
     it('Should after clicking the "Блог" link, the Blog page opens.', async () => {
         const btn = screen.getByText('Блог');
-        fireEvent.click(btn);
+        userEvent.click(btn);
         await waitFor(() => {
             expect(screen.getByTestId('blog-page')).toBeInTheDocument();
         });
@@ -121,7 +121,7 @@ describe('NavigationPanelDesktop', () => {
 
     it('Should after clicking the "Exit" link, the Sign-in page opens.', async () => {        
         const btn = screen.getByText('Выход');
-        fireEvent.click(btn);
+        userEvent.click(btn);
         await waitFor(() => {
             expect(screen.getByTestId('athorization')).toBeInTheDocument();
         });

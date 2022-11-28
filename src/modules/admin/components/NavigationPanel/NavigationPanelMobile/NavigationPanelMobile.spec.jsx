@@ -1,10 +1,9 @@
 
 import React from 'react';
-import { screen,  waitFor, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import { screen,  waitFor } from '@testing-library/react';
 import NavigationPanelMobile from './NavigationPanelMobile';
 import { renderWithRouter } from '../NavigationPanelDesktop/NavigationPanelDesktop.spec';
-
+import userEvent from '@testing-library/user-event';
 
 jest.mock('../../../pages/BlogSetting/BlogSetting', () => ({
     __esModule: true,
@@ -55,9 +54,9 @@ describe('NavigationPanelMobile', () => {
 
     it('Should after clicking the "Каталог" link, the Catalog page opens.', async () => {
         const panelBtn = screen.getByAltText('W');
-        fireEvent.click(panelBtn);
+        userEvent.click(panelBtn);
         const btn = screen.getByText('Каталог');
-        fireEvent.click(btn);
+        userEvent.click(btn);
         await waitFor(() => {
             expect(screen.getByTestId('catalog-page')).toBeInTheDocument();
         });
@@ -65,9 +64,9 @@ describe('NavigationPanelMobile', () => {
 
     it('Should after clicking the "Товар" link, the Goods page opens.', async () => {
         const panelBtn = screen.getByAltText('W');
-        fireEvent.click(panelBtn);
+        userEvent.click(panelBtn);
         const btn = screen.getByText('Товар');
-        fireEvent.click(btn);
+        userEvent.click(btn);
         await waitFor(() => {
             expect(screen.getByTestId('goods-page')).toBeInTheDocument();
         });
@@ -75,9 +74,9 @@ describe('NavigationPanelMobile', () => {
 
     it('Should after clicking the "Записи" link, the Registration page opens.', async () => {
         const panelBtn = screen.getByAltText('W');
-        fireEvent.click(panelBtn);
+        userEvent.click(panelBtn);
         const btn = screen.getByText('Записи');
-        fireEvent.click(btn);
+        userEvent.click(btn);
         await waitFor(() => {
             expect(screen.getByTestId('registration-page')).toBeInTheDocument();
         });
@@ -85,9 +84,9 @@ describe('NavigationPanelMobile', () => {
 
     it('Should after clicking the "Блог" link, the Blog page opens.', async () => {
         const panelBtn = screen.getByAltText('W');
-        fireEvent.click(panelBtn);
+        userEvent.click(panelBtn);
         const btn = screen.getByText('Блог');
-        fireEvent.click(btn);
+        userEvent.click(btn);
         await waitFor(() => {
             expect(screen.getByTestId('blog-page')).toBeInTheDocument();
         });
