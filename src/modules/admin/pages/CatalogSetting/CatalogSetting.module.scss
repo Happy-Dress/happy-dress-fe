@@ -79,10 +79,25 @@
     width: 100%;
     border-bottom: 1px solid $light-gray;
     .active{
+        width: 30px;
+        height: 30px;
         animation: rotateArrow1 0.3s forwards;
+        path{
+            fill: $brown;
+        }
     }
     .img{
+        width: 30px;
+        height: 30px;
         animation: rotateArrow2 0.3s forwards;
+    }
+    @media screen and (max-width: $xs-size){
+        .img{
+            width: 16px;
+        }
+        .active{
+            width: 16px;
+        }
     }
 }
 .items{
@@ -107,7 +122,7 @@
         width: 264px;
     }
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     gap: 20px;
     @media screen and (max-width: $sm-size) {
         flex-direction: column-reverse;
