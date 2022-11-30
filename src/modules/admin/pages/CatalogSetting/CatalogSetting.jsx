@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import s from './CatalogSetting.module.scss';
-import down from '../../../../assets/images/down.svg';
 import ButtonDefault from '../../../../common/components/Buttons/ButtonDefault';
 import ButtonAccent from '../../../../common/components/Buttons/ButtonAccent';
 
