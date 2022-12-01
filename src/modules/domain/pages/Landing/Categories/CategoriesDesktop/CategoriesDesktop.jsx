@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import s from './CategoriesDesktop.module.scss';
 import getDataCards from '../../../../api/getDataCards';
-import axios from 'axios';
+
 
 
 
