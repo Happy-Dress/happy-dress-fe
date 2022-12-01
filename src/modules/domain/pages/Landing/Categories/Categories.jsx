@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React  from 'react';
 import CategoriesDesktop from './CategoriesDesktop';
 import { useDeviceTypeContext } from '../../../../../common/contexts/DeviceType';
 
 const Categories=()=>{
-    const { isDesktop,isMobile }=useDeviceTypeContext();
+    const { isDesktop }=useDeviceTypeContext();
     return(
         <>
             {isDesktop && <CategoriesDesktop />}
