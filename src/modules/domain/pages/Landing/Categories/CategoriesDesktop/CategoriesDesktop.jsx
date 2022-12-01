@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import s from './CategoriesDesktop.module.scss';
 import getDataCards from '../../../../api/getDataCards';
+import CategoryCard from '../CategoryCard';
 
 
 
@@ -22,11 +23,7 @@ const CategoriesDesktop=()=>{
             </div>
             <div className={s.Wrapper_cards}>
                 {posts.map((post)=>(
-                    <div key={post.id} className={s.Wrapper_cards_all}>
-                        <h3 className={s.Wrapper_cards_name}>{post.name}</h3>
-                        <p className={s.Wrapper_cards_description}>{post.description}</p>
-                        <img className={s.Wrapper_cards_img} src={post.imageUrl} alt="image"/>
-                    </div>
+                    <CategoryCard key={post.id} post={post}/>
                 ))}
             </div>
         </div>
