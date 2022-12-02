@@ -23,5 +23,4 @@ CategoryCard.propTypes = {
     }).isRequired
 
 };
-
 export default CategoryCard;
