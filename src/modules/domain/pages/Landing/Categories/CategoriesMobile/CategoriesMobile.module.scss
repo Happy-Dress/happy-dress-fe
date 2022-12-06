@@ -1,17 +1,22 @@
+@import '../../../../../../styles/media-sizes';
 .Mobile{
   &_wrapper{
       margin: 120px 0 100px;
-    @media screen and (max-width: 1024px) {
-
+    @media screen and (max-width: $lg-size) {
      margin: 48px 0;
     }
       &_header {
         display: flex;
         justify-content: center;
         margin-bottom: 100px;
-        @media screen and (max-width: 1024px) {
-
+        @media screen and (max-width: $lg-size) {
           margin-bottom: 24px;
+        }
+        @media screen and (max-width: $xs-size) {
+          h2{
+            font-size: 28px;
+          }
+
         }
       }
 
@@ -22,14 +27,15 @@
         width: 100%;
         gap: 50px;
         padding: 0 50px 0 50px;
-        @media screen and (max-width: 1024px) {
+
+
+        @media screen and (max-width: $lg-size) {
 
           width: 91%;
           gap: 12px;
           margin: 0 auto;
         }
-        @media screen and (max-width: 768px) {
-          //width: 71%;
+        @media screen and (max-width: $md-size) {
           gap: 12px;
           margin: 0 auto;
         }

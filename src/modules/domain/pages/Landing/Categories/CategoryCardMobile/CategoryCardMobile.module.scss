@@ -1,4 +1,4 @@
-
+@import '../../../../../../styles/media-sizes';
 .Mobile{
   &_card {
     position: relative;
@@ -9,12 +9,13 @@
     &:first-child{
       h3{
         display: flex;
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: $md-size) {
           position: absolute;
           font-size: 18px;
           bottom: 68px;
+
         }
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: $sm-size) {
           position: absolute;
           font-size: 1em;
           bottom: 48px;
@@ -22,7 +23,8 @@
       }
       span{
         display: flex;
-        @media screen and (max-width: 425px) {
+        color: rgba(33, 33, 33, 0.5);
+        @media screen and (max-width: $sm-size) {
           position: absolute;
           font-size: 0.6em;
           bottom: 13px;
@@ -38,11 +40,12 @@
       bottom: 60px;
       left: 20px;
       font-size: 32px;
-      @media screen and (max-width: 1024px) {
+      color: rgba(34, 17, 34, 0.9);
+      @media screen and (max-width: $lg-size) {
         font-size: 22px;
 
       }
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: $md-size) {
         font-size: 0.8em;
         bottom: 18px;
       }
@@ -52,11 +55,17 @@
       bottom: 30px;
       left: 20px;
       font-size: 18px;
-      @media screen and (max-width: 1024px) {
+      color: rgba(33, 33, 33, 0.5);
+      span{
+
+          color: rgba(33, 33, 33, 0.5);
+
+      }
+      @media screen and (max-width: $lg-size) {
         bottom: 15px;
         font-size: 13px;
       }
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: $md-size) {
         display: none;
         bottom: 18px;
         font-size: 0.8em;
@@ -65,10 +74,6 @@
 
     &_image{
       height: 23vw;
-
-      //@media screen and (max-width: 768px) {
-      //  height: 15vw;
-      //}
     }
     }
 }
