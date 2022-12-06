@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 import React from 'react';
-import HeaderMobile from './index';
+import FooterMobile from './index';
 
-describe('HeaderMobile', () => {
+describe('FooterMobile', () => {
     it('should render correctly', async () => {
-        const { baseElement } = render(<HeaderMobile />);
+        const { baseElement } = render(<FooterMobile />);
         expect(baseElement).toBeInTheDocument();
     });
 });

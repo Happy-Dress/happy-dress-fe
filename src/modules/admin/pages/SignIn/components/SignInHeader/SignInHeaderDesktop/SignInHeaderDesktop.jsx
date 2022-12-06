@@ -9,7 +9,7 @@ const {
 
 const SignInHeaderDesktop = () => {
     return (
-        <div className={s.Header}>
+        <div className={s.Header} data-testid="sign-in">
             <div>
                 <span className={s.Header_logo}>{HEADER_LOGO}</span>
             </div>
