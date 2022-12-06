@@ -8,7 +8,7 @@
   padding: 0 7%;
 
   @media screen and (max-width: $lg-size) {
-    display: none;
+    display: flex;
   }
 }
 
@@ -32,7 +32,6 @@
     margin-right: 7vw;
     @media screen and (max-width: $lg-size) {
       padding-bottom: 25px;
-      border-bottom: 1.8px solid $brown;
       width: 100%;
       display: flex;
       justify-content: center;
@@ -64,6 +63,7 @@
     text-align: center;
     padding: 30px 0;
     width: 100%;
+    border-top: 1.8px solid $brown;
 li{
   &:nth-child(2n){
     margin: 0 6%;
@@ -131,6 +131,7 @@ li{
       align-items: center;
 
       border-top: 1.8px solid $brown;
+
     }
 
     &_hanger {

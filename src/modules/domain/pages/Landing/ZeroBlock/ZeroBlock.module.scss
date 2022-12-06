@@ -56,29 +56,7 @@
             margin-left: 7vw;
             margin-top: 0px;
         }
-        &_text{
-            padding: 70px 0 0;
-            margin: 0;
-            margin-right: 0;
-            flex-direction: column;
-            h1{
-                font-size: 68px;
-                letter-spacing: -8px;
-                &:last-child{
-                    margin: 0;
-                    margin-top: -15px;
-                    margin-left: 160px;
-                }
-            }
-            p{
-                display: none;
-            }
-            &_mobile{
-                display: block;
-                margin-top: 5px;
-                margin-bottom: 70px;
-            }
-        }
+
     }
     @media screen and (max-width: $md-size) {
         button{
