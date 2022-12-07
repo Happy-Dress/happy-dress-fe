@@ -1,21 +1,40 @@
 import React from 'react';
-import { screen, render, waitFor } from '@testing-library/react';
-import SignInFooter from './AuthorizationFormDesktop';
+import { screen, render, waitFor, } from '@testing-library/react';
 import AuthorizationFormDesktop from './AuthorizationFormDesktop';
+import userEvent from '@testing-library/user-event';
 
-jest.mock('./AuthorizationFormDesktop', () => ({
-    __esModule: true,
-    default: () => <div>Authorization form desktop</div>
-}));
+const props = {
+    onSubmit: jest.fn(),
+    errors: {},
+    register: jest.fn(),
+    isValid: false,
+    isPasswordVisible: false,
+    togglePasswordVisibility: jest.fn(),
+};
 
+describe('AuthorizationFormDesktop', () => {
+    it('should render authorization form desktop', async () => {
+        const { baseElement } = render(<AuthorizationFormDesktop {...props}/>);
+        expect(baseElement).toBeInTheDocument();
+    });
 
-
-describe('SignInFooter', () => {
-    it('should render footer desktop', async () => {
-        render(<AuthorizationFormDesktop/>);
-        const desktopPanel = screen.getByText('Authorization form desktop');
+    it('should press enter button', async () => {
+        render(<AuthorizationFormDesktop {...props}/>);
+        const BtnEnter = screen.getByText('Войти');
+        const InputName = screen.getByPlaceholderText('Ваше Имя');
+        const InputPassword = screen.getByPlaceholderText('Пароль');
+        await waitFor(() => {userEvent.paste(InputName, 'admin');});
+        await waitFor(() => { userEvent.paste(InputPassword, 'admin'); } );
         await waitFor(() => {
-            expect(desktopPanel).toBeInTheDocument();
+            userEvent.click(BtnEnter);
         });
+        expect(props.onSubmit).toHaveBeenCalledTimes(1);
+    });
+
+    it('should change password visibility', async () => {
+        render(<AuthorizationFormDesktop {...props}/>);
+        const PicVisibility = screen.getByAltText('visibility icon');
+        userEvent.click(PicVisibility);
+        expect(props.togglePasswordVisibility).toHaveBeenCalledTimes(1);
     });
 });
