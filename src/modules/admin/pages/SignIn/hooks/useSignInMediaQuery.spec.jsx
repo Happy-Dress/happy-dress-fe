@@ -1,14 +1,17 @@
+import useSignInMediaQuery from './useSignInMediaQuery';
 import { useMediaQuery } from 'react-responsive';
-import { renderHook } from '@testing-library/react-hooks';
 
-
-
+jest.mock('react-responsive', ()  => ({
+    useMediaQuery: jest.fn(),
+}));
 
 describe('useSignInMediaQuery', () => {
-    it('should return desktop', async () => {
-        let mockReturnValue = renderHook(() => useMediaQuery());
-        let isMobileWidth = useMediaQuery();
-        mockReturnValue = false;
-        let isMobileHeight = useMediaQuery();
+    it('should return desktop',  () => {
+        useMediaQuery.mockImplementation(() => true);
+        const isDesktopWidth = true;
+        const isMobileWidth = true;
+        const isMobileHeight = true;
+        const actualResult = useSignInMediaQuery();
+        expect({ isDesktopWidth, isMobileWidth, isMobileHeight }).toEqual(actualResult);
     });
 });
