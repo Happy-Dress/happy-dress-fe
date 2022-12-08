@@ -23,7 +23,7 @@
       }
       span{
         display: flex;
-        color: rgba(33, 33, 33, 0.5);
+        color: $gray;
         @media screen and (max-width: $sm-size) {
           position: absolute;
           font-size: 0.6em;
@@ -40,7 +40,7 @@
       bottom: 60px;
       left: 20px;
       font-size: 32px;
-      color: rgba(34, 17, 34, 0.9);
+      color: $black;
       @media screen and (max-width: $lg-size) {
         font-size: 22px;
 
@@ -55,10 +55,10 @@
       bottom: 30px;
       left: 20px;
       font-size: 18px;
-      color: rgba(33, 33, 33, 0.5);
+      color: $gray;
       span{
 
-          color: rgba(33, 33, 33, 0.5);
+          color: $gray;
 
       }
       @media screen and (max-width: $lg-size) {
