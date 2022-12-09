@@ -28,6 +28,9 @@
         width: 713px;
         flex-wrap: wrap;
         opacity: 0.6;
+        @media screen and (max-width: $lg-size) {
+            padding-top: 70px;
+        }
         p{
             width: 305px;
             margin-top: 18px;
