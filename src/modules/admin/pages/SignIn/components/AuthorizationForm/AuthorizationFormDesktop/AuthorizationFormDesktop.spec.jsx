@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen, render, waitFor, } from '@testing-library/react';
+import { screen, render, waitFor, fireEvent } from '@testing-library/react';
 import AuthorizationFormDesktop from './AuthorizationFormDesktop';
 import userEvent from '@testing-library/user-event';
 
@@ -21,10 +21,7 @@ describe('AuthorizationFormDesktop', () => {
     it('should press enter button', async () => {
         render(<AuthorizationFormDesktop {...props}/>);
         const BtnEnter = screen.getByText('Войти');
-        const InputName = screen.getByPlaceholderText('Ваше Имя');
-        const InputPassword = screen.getByPlaceholderText('Пароль');
-        await waitFor(() => {userEvent.paste(InputName, 'admin');});
-        await waitFor(() => { userEvent.paste(InputPassword, 'admin'); } );
+        BtnEnter.disabled = false;
         await waitFor(() => {
             userEvent.click(BtnEnter);
         });
@@ -36,5 +33,10 @@ describe('AuthorizationFormDesktop', () => {
         const PicVisibility = screen.getByAltText('visibility icon');
         userEvent.click(PicVisibility);
         expect(props.togglePasswordVisibility).toHaveBeenCalledTimes(1);
+    });
+
+    it('should render error login message', async () => {
+        fireEvent.blur(screen.getByPlaceholderText('Ваше имя'));
+        expect(screen.getByText('Слишком короткое имя')).toBeInTheDocument();
     });
 });
