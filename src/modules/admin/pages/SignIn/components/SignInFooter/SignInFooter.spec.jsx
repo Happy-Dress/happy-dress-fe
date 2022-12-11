@@ -1,28 +1,23 @@
 import React from 'react';
 import { screen, render, waitFor } from '@testing-library/react';
 import SignInFooter from './SignInFooter';
+import useSignInMediaQuery from '../../hooks/useSignInMediaQuery';
 
-jest.mock('./SignInFooter', () => ({
-    __esModule: true,
-    default: () => <div>SignIn footer desktop</div>
-}));
-
-let mockIsDesktop = true;
+let mockIsDesktopWidth = true;
 let mockIsMobileWidth = false;
 let mockIsMobileHeight = false;
 
-jest.mock('./../../hooks/useSignInMediaQuery', () =>{
-    return jest.fn(() => ({
-        isDesktop: mockIsDesktop,
-        isMobileWidth: mockIsMobileWidth,
-        isMobileHeight: mockIsMobileHeight,
-    }));
-});
+jest.mock('./../../hooks/useSignInMediaQuery');
 
 describe('SignInFooter', () => {
     it('should render footer desktop', async () => {
+        useSignInMediaQuery.mockImplementation(() => ({
+            isDesktopWidth: mockIsDesktopWidth,
+            isMobileWidth: mockIsMobileWidth,
+            isMobileHeight: mockIsMobileHeight,
+        }));
         render(<SignInFooter/>);
-        const desktopPanel = screen.getByText('SignIn footer desktop');
+        const desktopPanel = screen.getByText('HAPPY DRESS');
         await waitFor(() => {
             expect(desktopPanel).toBeInTheDocument();
         });
