@@ -30,10 +30,10 @@
 
 
         @media screen and (max-width: $lg-size) {
-
-          width: 91%;
+          padding: 0 28px;
+          //width: 91%;
           gap: 12px;
-          margin: 0 auto;
+          //margin: 0 auto;
         }
         @media screen and (max-width: $md-size) {
           gap: 12px;

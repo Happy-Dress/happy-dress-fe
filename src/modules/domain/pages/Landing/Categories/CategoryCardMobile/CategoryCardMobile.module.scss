@@ -1,4 +1,5 @@
 @import '../../../../../../styles/media-sizes';
+@import '../../../../../../styles/colors';
 .Mobile{
   &_card {
     position: relative;
@@ -6,14 +7,22 @@
     flex-direction: column;
     justify-content: flex-end;
     background-size: cover;
+    width: 49%;
+    @media screen and (max-width: $md-size) {
+      width: 47%;
+    }
+    @media screen and (max-width: $xxs-size) {
+      width: 45%;
+    }
+
     &:first-child{
+      width: 100%;
       h3{
         display: flex;
         @media screen and (max-width: $md-size) {
           position: absolute;
           font-size: 18px;
           bottom: 68px;
-
         }
         @media screen and (max-width: $sm-size) {
           position: absolute;
@@ -31,7 +40,7 @@
         }
       }
       img{
-        height: 25vw;
+        height: 45vw;
       }
     }
 
@@ -74,6 +83,15 @@
 
     &_image{
       height: 23vw;
+      background-image: linear-gradient(0deg, rgba(196, 196, 196, 0.8) 0%, rgba(196, 196, 196, 0) 142.47%);
+      @media screen and (max-width: $lg-size) {
+        height: 31vw;
+        object-fit: fill;
+      }
+      @media screen and (max-width: $md-size) {
+        height: 31vw;
+        object-fit: fill;
+      }
     }
     }
 }
