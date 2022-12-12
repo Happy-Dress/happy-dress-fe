@@ -27,7 +27,14 @@ const HeaderDesktop = () => {
             <div className={s.Header_right_side}>
                 <img className={s.Header_right_side_hanger} alt="hanger" src={hanger} />
                 <div className={s.Header_right_side_delimiter}/>
-                <Typography>{PHONE_NUMBER}</Typography>
+                <Typography>
+                    <a 
+                        className={s.Header_right_side_number}
+                        href={`tel:${PHONE_NUMBER}`}
+                    >
+                        {PHONE_NUMBER}
+                    </a>
+                </Typography>
             </div>
         </div>
     );
