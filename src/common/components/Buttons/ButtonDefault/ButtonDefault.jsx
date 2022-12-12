@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import s from './ButtonDefault.module.scss';
 import PropTypes from 'prop-types';
-
+import classNames from 'classnames';
 
 const ButtonDefault = (props) => {
-    const [ setActive] = useState(false);
+    const [active, setActive] = useState(false);
 
     const changeState = () => {
         setActive(true);
@@ -13,7 +13,7 @@ const ButtonDefault = (props) => {
 
     return (
         <button onClick={changeState}
-            className={s.ButtonDefault}
+            className={classNames(s.ButtonDefault)}
         >
             {props.text}
         </button>
