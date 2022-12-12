@@ -10,9 +10,10 @@
     &:hover {
         box-shadow: none;
       }
-    &_active{
-      color: $light-gray;
-      border: $light-gray 1px solid;
-      cursor: default;
+
+     &:checked{
+    color: $light-gray;
+    border: $light-gray 1px solid;
+    cursor: default;
     }
 }

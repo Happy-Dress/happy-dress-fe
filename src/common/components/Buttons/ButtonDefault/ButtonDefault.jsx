@@ -13,7 +13,7 @@ const ButtonDefault = (props) => {
 
     return (
         <button onClick={changeState}
-            className={classNames(s.ButtonDefault, active ? s.ButtonDefault_active : '')}
+            className={s.ButtonDefault}
         >
             {props.text}
         </button>
