@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const ButtonDefault = (props) => {
-    const [active, setActive] = useState(false);
+    const [ setActive] = useState(false);
 
     const changeState = () => {
         setActive(true);
