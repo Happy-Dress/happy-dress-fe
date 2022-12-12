@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import s from './ButtonDefault.module.scss';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+
 
 const ButtonDefault = (props) => {
     const [ setActive] = useState(false);
