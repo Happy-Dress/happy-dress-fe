@@ -2,11 +2,6 @@
 @import "../../../../../styles/colors";
 @import "../../../../../styles/font-sizes";
 
-* {
-  margin: 0;
-  box-sizing: border-box;
-}
-
 .active {
   border: 1px solid $brown;
 
@@ -21,7 +16,7 @@
 
 .navbar {
   width: 224px;
-  height: 100%;
+  height: 100vh;
   border-right: 1px solid $brown;
   display: flex;
   flex-flow: column;
