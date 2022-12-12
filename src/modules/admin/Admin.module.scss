@@ -2,8 +2,7 @@
 
 .adminRoutes {
     display: flex;
- column-gap: 100px;
-    @media screen and (max-width: $lg-size) {
+    @media screen and (max-width: calc($lg-size - 1px)) {
         flex-direction: column;
     }
 }

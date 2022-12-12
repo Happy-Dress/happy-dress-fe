@@ -20,8 +20,9 @@
 }
 
 .navbar {
+  position: sticky;
   width: 224px;
-  height: 100%;
+  height: 100vh;
   border-right: 1px solid $brown;
   display: flex;
   flex-flow: column;
