@@ -8,6 +8,7 @@
     justify-content: flex-end;
     background-size: cover;
     width: 49%;
+    background: $silver-gradient;
     @media screen and (max-width: $md-size) {
       width: 47%;
     }
@@ -83,7 +84,7 @@
 
     &_image{
       height: 23vw;
-      background-image: linear-gradient(0deg, rgba(196, 196, 196, 0.8) 0%, rgba(196, 196, 196, 0) 142.47%);
+      z-index: -1;
       @media screen and (max-width: $lg-size) {
         height: 31vw;
         object-fit: fill;

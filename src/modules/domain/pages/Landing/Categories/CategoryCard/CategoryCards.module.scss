@@ -1,9 +1,11 @@
+@import '../../../../../../styles/colors';
 .card {
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     background-size: cover;
+    background: $silver-gradient;
 }
 
 
@@ -21,4 +23,5 @@
 
 .cardImage{
     height: 25vw;
+    z-index: -1;
 }
