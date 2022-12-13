@@ -1,5 +1,5 @@
-import AuthorizationFormDesktop from './AuthorizationFormDesktop';
 import React from 'react';
+import AuthorizationFormDesktop from './AuthorizationFormDesktop';
 import AuthorizationFormMobile from './AuthorizationFormMobile';
 import useAuthorizationForm from '../../hooks/useAuthorizationForm';
 import useSignInMediaQuery from '../../hooks/useSignInMediaQuery';
