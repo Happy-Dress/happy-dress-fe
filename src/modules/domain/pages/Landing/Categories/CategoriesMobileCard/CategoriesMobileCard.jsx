@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 
 
 
+
 const CategoriesMobileCard=()=>{
     const [posts,setPosts]=useState([]);
 
@@ -40,7 +41,6 @@ CategoriesMobileCard.propTypes = {
         name: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
         imageUrl: PropTypes.string.isRequired
-    }).isRequired
-
+    })
 };
 export default CategoriesMobileCard;
