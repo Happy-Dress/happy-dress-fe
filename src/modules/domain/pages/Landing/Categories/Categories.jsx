@@ -8,7 +8,7 @@ const Categories=()=>{
     return(
         <>
             {isDesktop && <CategoriesDesktop />}
-            {isMobile && <CategoryMobileCard />}
+            {isMobile && <CategoriesMobileCard />}
         </>
     );
 };
