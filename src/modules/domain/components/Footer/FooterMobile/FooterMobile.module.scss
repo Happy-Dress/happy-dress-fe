@@ -12,6 +12,7 @@
     display: flex;
     flex-direction: column;
   }
+
   &_title {
     @media screen and (max-width: $lg-size) {
       padding-bottom: 25px;
@@ -38,6 +39,7 @@
     & li:nth-child(2n) {
       padding: 10px 0;
     }
+
     &_item {
 
       cursor: pointer;
@@ -88,11 +90,19 @@
     &_phone {
       margin-bottom: 16px;
       font-size: 20px;
+
+      a {
+        color: inherit;
+      }
     }
 
     &_email {
       margin-bottom: 21px;
       font-size: 20px;
+
+      a{
+        color: inherit;
+      }
     }
   }
 
@@ -101,8 +111,8 @@
     display: none;
     justify-content: center;
     text-align: center;
-    padding: 30px 0 37.49px ;
-    @media screen and (max-width:$lg-size) {
+    padding: 30px 0 37.49px;
+    @media screen and (max-width: $lg-size) {
       display: flex;
       font-size: 18px;
     }
@@ -110,7 +120,7 @@
 
   &_menu {
     &_item {
-      @media screen and (max-width:$lg-size) {
+      @media screen and (max-width: $lg-size) {
         font-size: 20px;
       }
 

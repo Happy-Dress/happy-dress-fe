@@ -31,13 +31,17 @@ const FooterDesktop = () => {
                 </ul>
                 <div className={s.Footer_right_side}>
                     <div className={s.Footer_right_side_text}>
-                        <Typography classNames={[s.Footer_right_side_phone]}>{PHONE_NUMBER}</Typography>
-                        <Typography classNames={[s.Footer_right_side_email]}>{FOOTER_EMAIL}</Typography>
+                        <Typography classNames={[s.Footer_right_side_phone]}>
+                            <a href={`tel:${PHONE_NUMBER}`}>{PHONE_NUMBER}</a>
+                        </Typography>
+                        <Typography classNames={[s.Footer_right_side_email]}>
+                            <a href={`mailto:${FOOTER_EMAIL}`}>{FOOTER_EMAIL}</a>
+                        </Typography>
                     </div>
                     <div className={s.Footer_right_side_menu}>
-                        <img className={s.Footer_right_side_hanger} src={instagram} alt="instagram" />
-                        <img className={s.Footer_right_side_hanger} src={vk} alt="vk" />
-                        <img className={s.Footer_right_side_hanger} src={telegram} alt="telegram" />
+                        <img className={s.Footer_right_side_hanger} src={instagram} alt="instagram"/>
+                        <img className={s.Footer_right_side_hanger} src={vk} alt="vk"/>
+                        <img className={s.Footer_right_side_hanger} src={telegram} alt="telegram"/>
                     </div>
                 </div>
 
