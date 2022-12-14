@@ -1,0 +1,108 @@
+@import "../../../../styles/media-sizes";
+@import "../../../../styles/colors";
+@import "../../../../styles/font-sizes";
+
+::-webkit-scrollbar {
+    width: 8px;
+    background-color: $light-gray;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $gray;
+    width: 8px;
+    height: 92px;
+}
+
+.container {
+    width: 568px;
+    height: 396px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding: 2%;
+
+    .button_wrapper_add {
+        padding: 3% 0 3% 0;
+        width: 100%;
+        margin-left: -5%;
+
+        .button_add {
+            font-family: 'Roboto';
+            font-weight: 400;
+            font-size: $font-size-xlarge-24;
+        }
+
+    }
+
+    .modal_desktop_scroll {
+        width: 568px;
+        height: 168px;
+        overflow-y: scroll;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: flex-start;
+        li {
+            list-style-type: none;
+            width: 100%
+        }
+
+        .input_container {
+            width: 155%;
+            height: 44px;
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4.5%;
+            margin: 2%;
+            border: 1px solid $light-gray;
+
+            .check {
+                width: 24px;
+                height: 24px;
+                accent-color: $brown;
+            }
+
+            .text {
+                width: 80%;
+                height: 24px;
+                background-color: inherit;
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 400;
+                font-size: $font-size-xlarge-24;
+                line-height: 28px;
+                padding: 1%;
+            }
+
+            .pencil_img:hover, .delete_img:hover, .check:hover {
+                cursor: pointer;
+            }
+
+        }
+
+        .input_container .text:hover {
+            cursor: grab;
+        }
+    }
+
+    .button_wrapper_delete {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+
+        .button_delete {
+            margin-top: 92px;
+            width: 264px;
+            height: 56px;
+            text-align: center;
+            font-family: 'Roboto';
+            font-weight: 400;
+            font-size: $font-size-xlarge-24;
+            background-color: $black;
+            color: $white;
+
+        }
+    }
+
+}
