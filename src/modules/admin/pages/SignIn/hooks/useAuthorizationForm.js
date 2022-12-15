@@ -5,12 +5,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import authenticateUser from '../../../api/authenticateUser';
 import { useNavigate } from 'react-router-dom';
+import { usePopUp } from '../../../contexts/PopUpContext/hook/usePopUp';
 
 const {
     TOO_SHORT_LOGIN_MESSAGE,
     TOO_LONG_LOGIN_MESSAGE,
     TOO_SHORT_PASSWORD_MESSAGE,
     TOO_LONG_PASSWORD_MESSAGE,
+    WRONG_DATA,
 } = AUTHORIZATION_FORM_DICTIONARY;
 
 const MIN_CREDS_LENGTH = 4;
@@ -27,6 +29,7 @@ const useAuthorizationForm = () => {
 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const navigate = useNavigate();
+    const { showPopUp } = usePopUp();
 
     const { register, setError, formState: { errors, isValid }, handleSubmit } = useForm({
         mode: 'onBlur',
@@ -39,8 +42,7 @@ const useAuthorizationForm = () => {
             localStorage.setItem('Authorization', `Bearer ${token}`);
             navigate('/admin/panel/catalog-setting');
         } catch (e) {
-            // TODO handle error with alert notifications
-            console.log(e);
+            showPopUp('Error', WRONG_DATA);
         }
     };
 

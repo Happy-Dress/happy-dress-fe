@@ -19,7 +19,7 @@ const AuthorizationForm = () => {
         errors,
         isValid,
         isPasswordVisible,
-        togglePasswordVisibility
+        togglePasswordVisibility,
     } = useAuthorizationForm();
 
     return (

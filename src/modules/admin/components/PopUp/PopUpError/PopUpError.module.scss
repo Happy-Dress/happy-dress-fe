@@ -1,0 +1,50 @@
+@import '../../../../../styles/colors';
+
+.container {
+  position: absolute;
+  bottom: 10px;
+  height: 94px;
+  background: $light-red;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
+  animation: appear .4s;
+  overflow: hidden;
+
+  &_desktop {
+    right: 10px;
+    width: 20vw;
+
+    &_message {
+      margin: 5px 10% 0 15%;
+    }
+  }
+
+  &_mobile {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    width: 90vw;
+
+    &_message {
+      align-self: center;
+      margin-top: 10px;
+      margin-bottom: 15%;
+    }
+  }
+
+  &_icons {
+    margin: 5px;
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      background: inherit;
+    }
+  }
+}
+
+@keyframes appear {
+  0% {
+    height: 0;
+  }
+}
