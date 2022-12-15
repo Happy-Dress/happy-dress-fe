@@ -1,5 +1,4 @@
 import React from 'react';
-import s from './CatalogSettingModalDesktop.module.scss';
 import PropTypes from 'prop-types';
 import { ReactComponent as Delete } from '../../../../assets/images/delete.svg';
 import { ReactComponent as Pencil } from '../../../../assets/images/pencil.svg';
@@ -11,6 +10,7 @@ const ModelItem = ({
     handleCheck,
     handleChangeText,
     deleteOneHandle,
+    s
 }) => {
     return (
         <Reorder.Item  draggable={true} value={model} whileDrag={{ scale: 1.1 }}>
@@ -31,7 +31,7 @@ const ModelItem = ({
                         handleChangeText(model.id, e, 'value');
                     }}
                 />
-                <Pencil className={s.pencil_img} onClick={(e) => {}} />
+                <Pencil className={s.pencil_img} onClick={() => {alert('text');}} />
                 <Delete
                     className={s.delete_img}
                     onClick={() => deleteOneHandle(model.id)}
@@ -47,7 +47,8 @@ const ModalScrollBar = ({
     handleCheck,
     handleChangeText,
     deleteOneHandle,
-    setModelExampl
+    setModelExampl,
+    s
 }) => {
     return (
         <>
@@ -57,13 +58,14 @@ const ModalScrollBar = ({
                 values={modelExampl}
                 onReorder={setModelExampl}
             >
-                {modelExampl.map((model, index) => (
+                {modelExampl.map((model) => (
                     <ModelItem
                         key={nanoid()}
                         model={model}
                         handleCheck={handleCheck}
                         handleChangeText={handleChangeText}
                         deleteOneHandle={deleteOneHandle}
+                        s={s}
                     />
                 ))}
             </Reorder.Group>
@@ -79,6 +81,7 @@ ModelItem.propTypes = {
     handleChangeText: PropTypes.func,
     handleCheck: PropTypes.func,
     model: PropTypes.object,
+    s: PropTypes.any
 };
 
 ModalScrollBar.propTypes = {
@@ -88,5 +91,6 @@ ModalScrollBar.propTypes = {
     handleCheck: PropTypes.func,
     modelExampl: PropTypes.array,
     setModelExampl: PropTypes.func,
+    s: PropTypes.any
 };
 

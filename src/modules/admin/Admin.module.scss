@@ -3,6 +3,6 @@
 .adminRoutes {
     display: flex;
     @media screen and (max-width: $lg-size) {
-        // flex-direction: column;
+         flex-direction: column;
     }
 }

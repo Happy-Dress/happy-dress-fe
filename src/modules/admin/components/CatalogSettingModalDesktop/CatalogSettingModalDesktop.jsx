@@ -1,10 +1,10 @@
 import React from 'react';
+import s from './CatalogSettingModalDesktop.module.scss';
 import ButtonDelete from '../CatalogSettingModal/ButtonDelete';
 import ButtonAdd from '../CatalogSettingModal/ButtonAdd';
 import ModalScrollBar from '../CatalogSettingModal/ModalScrollBar';
 import PropTypes from 'prop-types';
-import s from '../CatalogSettingModalMobile/CatalogSettingModalMobile.module.scss';
-const CatalogSettingModalMobile = ({
+const CatalogSettingModalDesktop = ({
     flatObj,
     modelExampl,
     deleteGroup,
@@ -18,29 +18,26 @@ const CatalogSettingModalMobile = ({
     handleAdd,
 }) => {
     return (
-        <>
-            <div className={s.container}>
-                <ButtonAdd handleAdd={handleAdd} s={s}/>
-                <div className={s.modal_mobile_scroll}>
-                    <ModalScrollBar
-                        modelExampl={modelExampl}
-                        deleteOneHandle={deleteOneHandle}
-                        handleChangeText={handleChangeText}
-                        handleCheck={handleCheck}
-                        setModelExampl={setModelExampl}
-                        s={s}
-                    />
-                </div>
-
-                {deleteGroup && <ButtonDelete deleteHandle={deleteHandle} s={s}/>}
+        <div className={s.container}>
+            <ButtonAdd handleAdd={handleAdd} s={s}/>
+            <div className={s.modal_desktop_scroll}>
+                <ModalScrollBar
+                    modelExampl={modelExampl}
+                    deleteOneHandle={deleteOneHandle}
+                    handleChangeText={handleChangeText}
+                    handleCheck={handleCheck}
+                    setModelExampl={setModelExampl}
+                    s={s}
+                />
             </div>
-        </>
+
+            {deleteGroup && <ButtonDelete deleteHandle={deleteHandle} s={s}/>}
+        </div>
     );
 };
 
-export default CatalogSettingModalMobile;
-
-CatalogSettingModalMobile.propTypes = {
+export default CatalogSettingModalDesktop;
+CatalogSettingModalDesktop.propTypes = {
     setDeleteGroup: PropTypes.func,
     setModelExampl: PropTypes.func,
     modelExampl: PropTypes.array,
