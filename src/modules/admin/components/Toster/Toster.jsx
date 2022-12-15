@@ -17,22 +17,22 @@ const Toster = (props) => {
     const isDesktop = isDesktopWidth && !isMobileHeight;
     const isMobile = isMobileHeight || isMobileWidth;
 
-    const { closePopUp } = useToster();
+    const { closeToster } = useToster();
 
     return (
         <>
             {isError && <TosterError
                 text={props.text}
                 device={{ isDesktop, isMobile }}
-                onClose={closePopUp}/>}
+                onClose={closeToster}/>}
             {isSuccess && <TosterSuccess
                 text={props.text}
                 device={{ isDesktop, isMobile }}
-                onClose={closePopUp}/>}
+                onClose={closeToster}/>}
             {isNotification && <TosterNotification
                 text={props.text}
                 device={{ isDesktop, isMobile }}
-                onClose={closePopUp}/>}
+                onClose={closeToster}/>}
         </>
     );
 };

@@ -29,7 +29,7 @@ const useAuthorizationForm = () => {
 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const navigate = useNavigate();
-    const { showPopUp } = useToster();
+    const { showToster } = useToster();
 
     const { register, setError, formState: { errors, isValid }, handleSubmit } = useForm({
         mode: 'onBlur',
@@ -42,7 +42,7 @@ const useAuthorizationForm = () => {
             localStorage.setItem('Authorization', `Bearer ${token}`);
             navigate('/admin/panel/catalog-setting');
         } catch (e) {
-            showPopUp('Error', WRONG_DATA);
+            showToster('Error', WRONG_DATA);
         }
     };
 

@@ -1,8 +1,8 @@
 import { createContext } from 'react';
 
-const initialPopUpContext = {
+const initialTosterContext = {
     // eslint-disable-next-line no-unused-vars
-    showPopUp: (type, message) => {},
+    showToster: (type, message) => {},
 };
 
-export const TosterContext = createContext(initialPopUpContext);
+export const TosterContext = createContext(initialTosterContext);

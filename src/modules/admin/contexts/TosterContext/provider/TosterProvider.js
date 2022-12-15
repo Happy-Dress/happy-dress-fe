@@ -5,23 +5,23 @@ import Toster from '../../../components/Toster';
 
 const TosterProvider = (props) => {
 
-    const [popUp, setPopUp] = useState(null);
+    const [toster, setToster] = useState(null);
 
-    const showPopUp = (type, message) => {
-        setPopUp(<Toster classification={type} text={message}/>);
-        // setTimeout(() =>{
-        //     setPopUp(null);
-        // }, 5000);
+    const showToster = (type, message) => {
+        setToster(<Toster classification={type} text={message}/>);
+        setTimeout(() =>{
+            setToster(null);
+        }, 5000);
     };
 
-    const closePopUp = () => {
-        setPopUp(null);
+    const closeToster = () => {
+        setToster(null);
     };
 
     return (
-        <TosterContext.Provider value={{ showPopUp, closePopUp }}>
+        <TosterContext.Provider value={{ showToster, closeToster }}>
             {props.children}
-            {popUp && popUp}
+            {toster && toster}
         </TosterContext.Provider>
     );
 

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import useAuthorizationForm from './useAuthorizationForm';
+import { useToster } from '../../../contexts/TosterContext/hook/useToster';
 
 jest.mock('react', () => ({
     useState: jest.fn(),
@@ -13,6 +14,10 @@ jest.mock('react-hook-form', () => ({
 
 jest.mock('react-router-dom', () => ({
     useNavigate: jest.fn(),
+}));
+
+jest.mock('../../../contexts/TosterContext/hook/useToster', () => ({
+    useToster: jest.fn(),
 }));
 
 
@@ -28,6 +33,12 @@ describe('useAuthorizationForm', () => {
             };
         });
         useNavigate.mockImplementation(jest.fn());
+        useToster.mockImplementation(() => {
+            return {
+                showToster: jest.fn(),
+                closeToster: jest.fn(),
+            };
+        });
 
         const onSubmit = jest.fn();
         const register = {};
