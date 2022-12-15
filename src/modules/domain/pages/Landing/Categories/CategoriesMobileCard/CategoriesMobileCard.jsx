@@ -2,7 +2,7 @@ import React from 'react';
 import s from './CategoriesMobile.module.scss';
 import PropTypes from 'prop-types';
 
-const CategoriesMobileCard = ({ categories }) => {
+const CategoriesMobileCard = ({ categories}) => {
     return (
         <div className={s.Mobile_wrapper}>
             <div className={s.Mobile_wrapper_header}>
@@ -21,10 +21,10 @@ const CategoriesMobileCard = ({ categories }) => {
     );
 };
 CategoriesMobileCard.propTypes = {
-    categories:PropTypes.arrayOf(PropTypes.shape({
-        name:PropTypes.string.isRequired,
-        description:PropTypes.string.isRequired,
-        imageUrl:PropTypes.string.isRequired
+    categories: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        imageUrl: PropTypes.string.isRequired
     })).isRequired
 };
 export default CategoriesMobileCard;

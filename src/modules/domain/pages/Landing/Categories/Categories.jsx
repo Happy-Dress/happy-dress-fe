@@ -7,18 +7,18 @@ import getDataCards from '../../../api/getDataCards';
 
 const Categories = () => {
     const { isDesktop, isMobile } = useDeviceTypeContext();
-    const [categoriesSsettings, retrievedCategoriesSsettings] = useState([]);
+    const [categoriesSettings, setCategoriesSettings] = useState([]);
     useEffect(() => {
         (async () => {
-            const newData = await getDataCards();
-            retrievedCategoriesSsettings(newData);
+            const retrievedCategoriesSettings = await getDataCards();
+            setCategoriesSettings(retrievedCategoriesSettings);
         })();
     }, []);
 
     return (
         <>
-            {(isDesktop && categoriesSsettings.length) && <CategoriesDesktop categories={categoriesSsettings}/>}
-            {(isMobile && categoriesSsettings.length) && <CategoriesMobileCard categories={retrievedCategoriesSsettings}/>}
+            {(isDesktop && categoriesSettings.length) && <CategoriesDesktop categories={categoriesSettings}/>}
+            {(isMobile && categoriesSettings.length) && <CategoriesMobileCard categories={categoriesSettings}/>}
         </>
     );
 };

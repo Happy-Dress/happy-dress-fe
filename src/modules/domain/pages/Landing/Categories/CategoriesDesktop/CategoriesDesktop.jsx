@@ -3,7 +3,7 @@ import s from './CategoriesDesktop.module.scss';
 import PropTypes from 'prop-types';
 
 
-const CategoriesDesktop = ({ categories }) => {
+const CategoriesDesktop = ({ categories}) => {
     return (
         <div className={s.Wrapper}>
             <div className={s.Wrapper_header}>
@@ -22,10 +22,10 @@ const CategoriesDesktop = ({ categories }) => {
     );
 };
 CategoriesDesktop.propTypes = {
-    categories:PropTypes.arrayOf(PropTypes.shape({
-        name:PropTypes.string.isRequired,
-        description:PropTypes.string.isRequired,
-        imageUrl:PropTypes.string.isRequired
+    categories: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        imageUrl: PropTypes.string.isRequired
     })).isRequired
 };
 
