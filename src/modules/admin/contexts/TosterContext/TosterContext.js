@@ -5,4 +5,4 @@ const initialPopUpContext = {
     showPopUp: (type, message) => {},
 };
 
-export const PopUpContext = createContext(initialPopUpContext);
+export const TosterContext = createContext(initialPopUpContext);

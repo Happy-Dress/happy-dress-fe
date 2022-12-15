@@ -8,7 +8,7 @@ import RegistrationSetting from './pages/RegistrationSetting/RegistrationSetting
 import BlogSetting from './pages/BlogSetting/BlogSetting';
 import NotFound from './pages/NotFound';
 import s from './Admin.module.scss';
-import PopUpProvider from './contexts/PopUpContext/provider/PopUpProvider';
+import TosterProvider from './contexts/TosterContext/provider/TosterProvider';
 
 export const AdminPanelRouts = () => {
     return (
@@ -30,14 +30,14 @@ export const AdminPanelRouts = () => {
 
 const Admin = () => {
     return (
-        <PopUpProvider>
+        <TosterProvider>
             <Routes className={s.adminRoutes}>
                 <Route path="/" element={<Navigate to="sign-in" />} />
                 <Route path="/sign-in" element={<SignIn />} />
                 <Route path="/panel/*" element={<AdminPanelRouts />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
-        </PopUpProvider>
+        </TosterProvider>
     );
 };
 

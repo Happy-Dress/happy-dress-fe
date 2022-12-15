@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { PopUpContext } from '../PopUpContext';
-import PopUp from '../../../components/PopUp';
+import { TosterContext } from '../TosterContext';
+import Toster from '../../../components/Toster';
 
-const PopUpProvider = (props) => {
+const TosterProvider = (props) => {
 
     const [popUp, setPopUp] = useState(null);
 
     const showPopUp = (type, message) => {
-        setPopUp(<PopUp classification={type} text={message}/>);
+        setPopUp(<Toster classification={type} text={message}/>);
         // setTimeout(() =>{
         //     setPopUp(null);
         // }, 5000);
@@ -19,16 +19,16 @@ const PopUpProvider = (props) => {
     };
 
     return (
-        <PopUpContext.Provider value={{ showPopUp, closePopUp }}>
+        <TosterContext.Provider value={{ showPopUp, closePopUp }}>
             {props.children}
             {popUp && popUp}
-        </PopUpContext.Provider>
+        </TosterContext.Provider>
     );
 
 };
 
-PopUpProvider.propTypes = {
+TosterProvider.propTypes = {
     children: PropTypes.element
 };
 
-export default PopUpProvider;
+export default TosterProvider;

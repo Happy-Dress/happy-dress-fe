@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import authenticateUser from '../../../api/authenticateUser';
 import { useNavigate } from 'react-router-dom';
-import { usePopUp } from '../../../contexts/PopUpContext/hook/usePopUp';
+import { useToster } from '../../../contexts/TosterContext/hook/useToster';
 
 const {
     TOO_SHORT_LOGIN_MESSAGE,
@@ -29,7 +29,7 @@ const useAuthorizationForm = () => {
 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const navigate = useNavigate();
-    const { showPopUp } = usePopUp();
+    const { showPopUp } = useToster();
 
     const { register, setError, formState: { errors, isValid }, handleSubmit } = useForm({
         mode: 'onBlur',
