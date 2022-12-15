@@ -1,6 +1,6 @@
 import React from 'react';
 import ZeroBlock from './ZeroBlock';
-import Categories from './Categories/Categories';
+import Categories from './Categories';
 
 const Landing = () => {
     return(
