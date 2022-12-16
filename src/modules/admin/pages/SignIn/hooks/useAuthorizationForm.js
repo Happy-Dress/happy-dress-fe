@@ -42,7 +42,7 @@ const useAuthorizationForm = () => {
             localStorage.setItem('Authorization', `Bearer ${token}`);
             navigate('/admin/panel/catalog-setting');
         } catch (e) {
-            showToasterError(e.response.data.message);
+            showToasterError(e.response?.data?.message || e.message);
         }
     };
 
