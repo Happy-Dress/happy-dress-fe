@@ -2,7 +2,7 @@ import React from 'react';
 import s from './CategoriesMobile.module.scss';
 import PropTypes from 'prop-types';
 
-const CategoriesMobileCard = ({ categories}) => {
+const CategoriesMobileCard = ({ categories }) => {
     return (
         <div className={s.Mobile_wrapper}>
             <div className={s.Mobile_wrapper_header}>

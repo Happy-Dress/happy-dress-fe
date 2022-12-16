@@ -3,7 +3,7 @@ import s from './CategoriesDesktop.module.scss';
 import PropTypes from 'prop-types';
 
 
-const CategoriesDesktop = ({ categories}) => {
+const CategoriesDesktop = ({ categories }) => {
     return (
         <div className={s.Wrapper}>
             <div className={s.Wrapper_header}>
