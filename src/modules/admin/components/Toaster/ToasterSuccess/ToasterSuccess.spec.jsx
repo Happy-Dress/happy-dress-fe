@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import TosterNotification from './index';
+import ToasterSuccess from './index';
 
 const props = {
     text: 'sample',
@@ -11,15 +11,15 @@ const props = {
     onClose: jest.fn(),
 };
 
-describe('TosterNotification', () => {
+describe('ToasterSuccess', () => {
 
     beforeEach(() => {
-        render(<TosterNotification text={props.text} device={props.device} onClose={props.onClose}/>);
+        render(<ToasterSuccess text={props.text} device={props.device} onClose={props.onClose}/>);
     });
 
-    it('should render toster notification', () => {
-        const notificationPanel = screen.getByText('sample');
-        expect(notificationPanel).toBeInTheDocument();
+    it('should render toster success', () => {
+        const errorPanel = screen.getByText('sample');
+        expect(errorPanel).toBeInTheDocument();
     });
 
     it('should click on close button', () => {

@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TosterError from './TosterError';
-import TosterNotification from './TosterNotification';
-import TosterSuccess from './TosterSuccess';
+import ToasterError from './ToasterError';
+import ToasterNotification from './ToasterNotification';
+import ToasterSuccess from './ToasterSuccess';
 import useSignInMediaQuery from '../../pages/SignIn/hooks/useSignInMediaQuery';
-import { useToster } from '../../contexts/TosterContext/hook/useToster';
+import { useToaster } from '../../contexts/ToasterContext';
 
-const Toster = (props) => {
+const Toaster = (props) => {
 
     const isError = props.classification === 'Error';
     const isSuccess = props.classification === 'Success';
@@ -17,19 +17,19 @@ const Toster = (props) => {
     const isDesktop = isDesktopWidth && !isMobileHeight;
     const isMobile = isMobileHeight || isMobileWidth;
 
-    const { closeToster } = useToster();
+    const { closeToster } = useToaster();
 
     return (
         <>
-            {isError && <TosterError
+            {isError && <ToasterError
                 text={props.text}
                 device={{ isDesktop, isMobile }}
                 onClose={closeToster}/>}
-            {isSuccess && <TosterSuccess
+            {isSuccess && <ToasterSuccess
                 text={props.text}
                 device={{ isDesktop, isMobile }}
                 onClose={closeToster}/>}
-            {isNotification && <TosterNotification
+            {isNotification && <ToasterNotification
                 text={props.text}
                 device={{ isDesktop, isMobile }}
                 onClose={closeToster}/>}
@@ -37,9 +37,9 @@ const Toster = (props) => {
     );
 };
 
-Toster.propTypes = {
+Toaster.propTypes = {
     classification: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
 };
 
-export default Toster;
+export default Toaster;

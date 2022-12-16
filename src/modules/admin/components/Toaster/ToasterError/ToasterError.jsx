@@ -1,11 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import s from './TosterSuccess.module.scss';
-import successIcon from '../../../../../assets/images/successIcon.svg';
+import errorIcon from '../../../../../assets/images/errorIcon.svg';
 import closeIcon from '../../../../../assets/images/closeIcon.svg';
+import PropTypes from 'prop-types';
+import s from './ToasterError.module.scss';
+import classNames from 'classnames';
 
-const TosterSuccess = (props) => {
+
+const ToasterError = (props) => {
 
     const isDesktop = props.device.isDesktop;
     const isMobile = props.device.isMobile;
@@ -14,7 +15,7 @@ const TosterSuccess = (props) => {
         <div
             className={classNames(s.container, isDesktop ? s.container_desktop : '', isMobile ? s.container_mobile : '')}>
             <div className={s.container_icons}>
-                <img src={successIcon} alt="success icon"/>
+                <img src={errorIcon} alt="error icon"/>
                 <button onClick={props.onClose}><img src={closeIcon} alt="close icon"/></button>
             </div>
             <div
@@ -26,10 +27,10 @@ const TosterSuccess = (props) => {
     );
 };
 
-TosterSuccess.propTypes = {
+ToasterError.propTypes = {
     text: PropTypes.string.isRequired,
     device: PropTypes.object.isRequired,
     onClose: PropTypes.func.isRequired,
 };
 
-export default TosterSuccess;
+export default ToasterError;

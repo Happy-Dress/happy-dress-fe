@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import TosterError from './index';
+import ToasterError from './index';
 import userEvent from '@testing-library/user-event';
 
 const props = {
@@ -11,10 +11,10 @@ const props = {
     onClose: jest.fn(),
 };
 
-describe('TosterError', () => {
+describe('ToasterError', () => {
 
     beforeEach(() => {
-        render(<TosterError text={props.text} device={props.device} onClose={props.onClose}/>);
+        render(<ToasterError text={props.text} device={props.device} onClose={props.onClose}/>);
     });
 
     it('should render toster error', () => {

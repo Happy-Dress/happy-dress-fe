@@ -1,12 +1,11 @@
 import React from 'react';
-import errorIcon from '../../../../../assets/images/errorIcon.svg';
 import closeIcon from '../../../../../assets/images/closeIcon.svg';
+import notificationIcon from '../../../../../assets/images/notificationIcon.svg';
 import PropTypes from 'prop-types';
-import s from './TosterError.module.scss';
 import classNames from 'classnames';
+import s from './ToasterNotification.module.scss';
 
-
-const TosterError = (props) => {
+const ToasterNotification = (props) => {
 
     const isDesktop = props.device.isDesktop;
     const isMobile = props.device.isMobile;
@@ -15,22 +14,23 @@ const TosterError = (props) => {
         <div
             className={classNames(s.container, isDesktop ? s.container_desktop : '', isMobile ? s.container_mobile : '')}>
             <div className={s.container_icons}>
-                <img src={errorIcon} alt="error icon"/>
+                <img src={notificationIcon} alt="notification icon"/>
                 <button onClick={props.onClose}><img src={closeIcon} alt="close icon"/></button>
             </div>
             <div
-                className={classNames( isMobile ? s.container_mobile_message : '',
+                className={classNames(isMobile ? s.container_mobile_message : '',
                     isDesktop ? s.container_desktop_message : '')}>
                 <p>{props.text}</p>
             </div>
         </div>
+
     );
 };
 
-TosterError.propTypes = {
+ToasterNotification.propTypes = {
     text: PropTypes.string.isRequired,
     device: PropTypes.object.isRequired,
     onClose: PropTypes.func.isRequired,
 };
 
-export default TosterError;
+export default ToasterNotification;

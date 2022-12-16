@@ -3,18 +3,19 @@
 .container {
   position: absolute;
   bottom: 10px;
-  height: 94px;
-  background: $light-green;
+  min-height: 94px;
+  background: $light-blue;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
   animation: appear .4s;
   overflow: hidden;
 
   &_desktop {
     right: 10px;
-    width: 20vw;
+    min-width: 20vw;
+    max-width: 25vw;
 
     &_message {
-      margin: 5px 10% 0 15%;
+      margin: 5px 10% 10% 15%;
     }
   }
 
@@ -29,6 +30,7 @@
       align-self: center;
       margin-top: 10px;
       margin-bottom: 15%;
+      margin-left: 15px;
     }
   }
 
