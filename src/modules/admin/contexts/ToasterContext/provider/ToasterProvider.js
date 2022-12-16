@@ -21,9 +21,9 @@ const ToasterProvider = (props) => {
 
     const showToaster = (type, message) => {
         setToaster(<Toaster classification={type} text={message}/>);
-        // setTimeout(() =>{
-        //     setToaster(null);
-        // }, 5000);
+        setTimeout(() =>{
+            setToaster(null);
+        }, 5000);
     };
 
     const closeToster = () => {
