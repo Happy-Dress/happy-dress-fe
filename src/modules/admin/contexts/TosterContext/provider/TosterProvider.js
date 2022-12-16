@@ -6,6 +6,18 @@ import Toster from '../../../components/Toster';
 const TosterProvider = (props) => {
 
     const [toster, setToster] = useState(null);
+    
+    const showTosterError = (message) => {
+        showToster('Error', message);
+    };
+    
+    const showTosterNotification = (message) => {
+        showToster('Notification', message);
+    };
+
+    const showTosterSuccess = (message) => {
+        showToster('Success', message);
+    };
 
     const showToster = (type, message) => {
         setToster(<Toster classification={type} text={message}/>);
@@ -19,7 +31,7 @@ const TosterProvider = (props) => {
     };
 
     return (
-        <TosterContext.Provider value={{ showToster, closeToster }}>
+        <TosterContext.Provider value={{ showTosterError, showTosterNotification, showTosterSuccess, closeToster }}>
             {props.children}
             {toster && toster}
         </TosterContext.Provider>
