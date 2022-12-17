@@ -1,0 +1,8 @@
+const CATALOG_SETTING_DICTIONARY = {
+    CATEGORIES_SETTINGS_NAME: 'Категории',
+    COLORS_SETTINGS_NAME: 'Цвет',
+    MATERIAL_SETTINGS_NAME: 'Материал',
+    MODEL_SETTINGS_NAME: 'Материал',
+};
+
+export { CATALOG_SETTING_DICTIONARY };

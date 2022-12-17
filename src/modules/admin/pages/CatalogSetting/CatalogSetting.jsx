@@ -1,33 +1,38 @@
-import { useState } from 'react';
 import s from './CatalogSetting.module.scss';
 import ButtonDefault from '../../../../common/components/Buttons/ButtonDefault';
 import ButtonAccent from '../../../../common/components/Buttons/ButtonAccent';
+import SettingsDropDown from './components/SettingDropDown';
+import { CATALOG_SETTING_DICTIONARY } from './CatalogSetting.dictionary';
 
+
+
+const {
+    CATEGORIES_SETTINGS_NAME,
+    COLORS_SETTINGS_NAME,
+    MATERIAL_SETTINGS_NAME,
+    MODEL_SETTINGS_NAME,
+} = CATALOG_SETTING_DICTIONARY;
 
 const CatalogSettings = () => {
 
-    const [items, setItems] = useState([
+    const items = [
         {
-            name: 'Категории',
-            active: false,
-            state: []
+            element: <div>Настройки категорий</div>,
+            name: CATEGORIES_SETTINGS_NAME,
         },
         {
-            name: 'Цвет',
-            active: false,
-            state: []
+            element: <div>Настройки цветов</div>,
+            name: COLORS_SETTINGS_NAME,
         },
         {
-            name: 'Материал',
-            active: false,
-            state: []
+            element: <div>Настройки матеориалов</div>,
+            name: MATERIAL_SETTINGS_NAME,
         },
         {
-            name: 'Модель',
-            active: false,
-            state: []
-        },
-    ]);
+            element: <div>Настройки моделей</div>,
+            name: MODEL_SETTINGS_NAME,
+        }
+    ];
 
 
     return(
@@ -37,14 +42,9 @@ const CatalogSettings = () => {
             <div className={s.categories}>
                 {
                     items.map((el, index) => (
-                        <div  className={s.category} key={index} >
-                            <div className={s.title} onClick={() => setItems(items.map((e, i) => index === i ? { ...e, active: !el.active }: e))}>
-                                <h3>{el.name}</h3>
-                                <svg className={el.active ? s.active : s.img} xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 256"><path/></svg>                        
-                            </div>
-                            <div className={el.active ? s.items_active : s.items }>
-                            </div>
-                        </div>
+                        <SettingsDropDown key={index} name={el.name}>
+                            {el.element}
+                        </SettingsDropDown>
                     ))
                 }    
             </div>
