@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CategoriesDesktop from './CategoriesDesktop';
 import { useDeviceTypeContext } from '../../../../../common/contexts/DeviceType';
 import CategoriesMobileCard from './CategoriesMobileCard/CategoriesMobileCard';
-import getSettings from '../../../api/getDataCards';
+import getSettings from '../../../api/getSettings';
 
 const Categories = () => {
     const { isDesktop, isMobile } = useDeviceTypeContext();

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const getSettings =async ()=>{
     try {
-        const response = await axios.get('https://happy-dress-server.herokuapp.com/api/v1/settings');
+        const response = await axios.get('settings');
         return response.data;
     }
     catch (err){
