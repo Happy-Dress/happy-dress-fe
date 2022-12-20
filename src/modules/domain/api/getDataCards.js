@@ -1,18 +1,12 @@
 import axios from 'axios';
 
-
-const getDataCards=async ()=>{
+const getSettings =async ()=>{
     try {
-        const response = await axios.get('settings');
-        return response.data.categories;
+        const response = await axios.get('https://happy-dress-server.herokuapp.com/api/v1/settings');
+        return response.data;
     }
     catch (err){
         throw new Error('Error',{ cause:true });
     }
-
-
 };
-
-
-
-export default getDataCards;
+export default getSettings ;

@@ -1,13 +1,15 @@
 import React from 'react';
 import s from './CategoriesDesktop.module.scss';
 import PropTypes from 'prop-types';
+import CATEGORIES_DICTIONARY from '../Categories.dictionary';
 
+const { CATEGORY_HEAD }=CATEGORIES_DICTIONARY;
 
 const CategoriesDesktop = ({ categories }) => {
     return (
         <div className={s.Wrapper}>
             <div className={s.Wrapper_header}>
-                <h2>Категории товаров</h2>
+                <h2>{CATEGORY_HEAD}</h2>
             </div>
             <div className={s.Wrapper_cards}>
                 {categories.map((post) => (

@@ -1,9 +1,9 @@
 import getDataCards  from './getDataCards';
 
 describe('getDataCards',  () => {
-    it('should return amount of orders',  () => {
+    it('should return a list of categories',  () => {
         getDataCards().then(async (data)=>
-            expect(data).toBe(10));
+            expect(data).toBe(getDataCards()));
     });
 });
 

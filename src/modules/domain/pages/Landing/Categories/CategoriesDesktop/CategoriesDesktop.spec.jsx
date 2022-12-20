@@ -3,17 +3,15 @@ import React from 'react';
 import CategoriesDesktop from './CategoriesDesktop';
 import categories from '../index';
 
-
 jest.mock('./CategoriesDesktop',()=>({
     __esModule:true,
     default:()=>{
-        return<div data-testid="goods-page" />;
+        return<div data-testid="wrapper" />;
     }
 }));
 
 describe('CategoriesDesktop', ( ) => {
     it('CategoriesDesktop renders', async () => {
-
         const { baseElement } = render(<CategoriesDesktop categories={categories} />);
         expect(baseElement).toBeInTheDocument();
     });
