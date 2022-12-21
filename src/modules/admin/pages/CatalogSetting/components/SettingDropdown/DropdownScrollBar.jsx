@@ -1,7 +1,8 @@
+
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ReactComponent as Delete } from '../../../../assets/images/delete.svg';
-import { ReactComponent as Pencil } from '../../../../assets/images/pencil.svg';
+import { ReactComponent as Delete } from '../../../../../../assets/images/delete.svg';
+import { ReactComponent as Pencil } from '../../../../../../assets/images/pencil.svg';
 import { nanoid } from 'nanoid';
 import { Reorder } from 'framer-motion';
 
@@ -10,10 +11,14 @@ const ModelItem = ({
     handleCheck,
     handleChangeText,
     deleteOneHandle,
-    s
+    editField,
+    setEditField,
+    currentValue,
+    setCurrentValue,
+    s,
 }) => {
     return (
-        <Reorder.Item  draggable={true} value={model} whileDrag={{ scale: 1.1 }}>
+        <Reorder.Item draggable={true} value={model} whileDrag={{ scale: 1.1 }}>
             <div className={s.input_container} key={nanoid()}>
                 <input
                     className={s.check}
@@ -23,15 +28,14 @@ const ModelItem = ({
                         handleCheck(model.id, 'checked', e.target.checked);
                     }}
                 />
-                <input
-                    className={s.text}
-                    type="text"
-                    defaultValue={model.value}
-                    onBlur={(e) => {
-                        handleChangeText(model.id, e, 'value');
+                <input className={s.text} type="text" defaultValue={model.value} />
+                <Pencil
+                    className={s.pencil_img}
+                    onClick={(e) => {
+                        setEditField(true);
+                        setCurrentValue({ id: model.id, value: model.value, checked: model.checked });
                     }}
                 />
-                <Pencil className={s.pencil_img} onClick={() => {alert('text');}} />
                 <Delete
                     className={s.delete_img}
                     onClick={() => deleteOneHandle(model.id)}
@@ -41,14 +45,17 @@ const ModelItem = ({
     );
 };
 
-
-const ModalScrollBar = ({
+const DropdownScrollBar = ({
     modelExampl,
     handleCheck,
     handleChangeText,
     deleteOneHandle,
     setModelExampl,
-    s
+    editField,
+    setEditField,
+    currentValue,
+    setCurrentValue,
+    s,
 }) => {
     return (
         <>
@@ -65,6 +72,10 @@ const ModalScrollBar = ({
                         handleCheck={handleCheck}
                         handleChangeText={handleChangeText}
                         deleteOneHandle={deleteOneHandle}
+                        editField={editField}
+                        setEditField={setEditField}
+                        currentValue={currentValue}
+                        setCurrentValue={setCurrentValue}
                         s={s}
                     />
                 ))}
@@ -73,7 +84,7 @@ const ModalScrollBar = ({
     );
 };
 
-export default ModalScrollBar;
+export default DropdownScrollBar;
 
 ModelItem.propTypes = {
     deleteHandle: PropTypes.func,
@@ -81,16 +92,23 @@ ModelItem.propTypes = {
     handleChangeText: PropTypes.func,
     handleCheck: PropTypes.func,
     model: PropTypes.object,
-    s: PropTypes.any
+    s: PropTypes.any,
+    editField: PropTypes.bool,
+    setEditField: PropTypes.func,
+    setCurrentValue: PropTypes.func,
+    currentValue: PropTypes.object,
 };
 
-ModalScrollBar.propTypes = {
+DropdownScrollBar.propTypes = {
     deleteHandle: PropTypes.func,
     deleteOneHandle: PropTypes.func,
     handleChangeText: PropTypes.func,
     handleCheck: PropTypes.func,
     modelExampl: PropTypes.array,
     setModelExampl: PropTypes.func,
-    s: PropTypes.any
+    s: PropTypes.any,
+    editField: PropTypes.bool,
+    setEditField: PropTypes.func,
+    setCurrentValue: PropTypes.func,
+    currentValue: PropTypes.object,
 };
-

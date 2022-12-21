@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import { useDeviceTypeContext } from '../../../../common/contexts/DeviceType';
-import CatalogSettingModalMobile from '../CatalogSettingModalMobile/CatalogSettingModalMobile';
-import CatalogSettingModalDesktop from '../CatalogSettingModalDesktop/CatalogSettingModalDesktop';
+import { useDeviceTypeContext } from '../../../../../../common/contexts/DeviceType';
+import SettingDropdownMobile from '../SettingDropdownMobile/SettingDropdownMobile';
+import SettingDropdownDesktop from '../SettingDropdownDesktop/SettingDropdownDesktop';
 import { nanoid } from 'nanoid';
+
 const CatalogSettingModal = () => {
     const { isDesktop, isMobile } = useDeviceTypeContext();
     const flatObj = { id: nanoid(), value: '', checked: false };
     const [modelExampl, setModelExampl] = useState([]);
     const [deleteGroup, setDeleteGroup] = useState(false);
-    
+    const [editField, setEditField] = useState(false);
+    const [currentValue, setCurrentValue] = useState(flatObj);
+
     const checkModelExamplValue = () => {
         let count = 0;
         modelExampl.forEach((item) => {
@@ -34,7 +37,25 @@ const CatalogSettingModal = () => {
     const handleAdd = () => {
         setModelExampl([...modelExampl, flatObj]);
     };
-
+    const handleCancell = () => {
+        setCurrentValue(flatObj);
+        setEditField(false);
+    };
+    const handleUpdate = () => {
+        setModelExampl(
+            modelExampl.map((obj) => {
+                if (obj.id == currentValue.id) {
+                    return { ...obj, value: currentValue.value };
+                } else {
+                    return obj;
+                }
+            })
+           
+        );
+        setCurrentValue(flatObj);
+        setEditField(false);
+      
+    };
     const handleChangeText = (id, e, prop) => {
         setModelExampl(
             modelExampl.map((obj) => {
@@ -65,7 +86,7 @@ const CatalogSettingModal = () => {
     return (
         <div>
             {isMobile && (
-                <CatalogSettingModalMobile
+                <SettingDropdownMobile
                     flatObj={flatObj}
                     modelExampl={modelExampl}
                     deleteGroup={deleteGroup}
@@ -77,10 +98,16 @@ const CatalogSettingModal = () => {
                     deleteOneHandle={deleteOneHandle}
                     handleChangeText={handleChangeText}
                     handleAdd={handleAdd}
+                    editField={editField}
+                    setEditField={setEditField}
+                    currentValue={currentValue}
+                    setCurrentValue={setCurrentValue}
+                    handleCancell={handleCancell}
+                    handleUpdate={handleUpdate}
                 />
             )}
             {isDesktop && (
-                <CatalogSettingModalDesktop
+                <SettingDropdownDesktop
                     flatObj={flatObj}
                     modelExampl={modelExampl}
                     deleteGroup={deleteGroup}
@@ -92,6 +119,12 @@ const CatalogSettingModal = () => {
                     deleteOneHandle={deleteOneHandle}
                     handleChangeText={handleChangeText}
                     handleAdd={handleAdd}
+                    editField={editField}
+                    setEditField={setEditField}
+                    currentValue={currentValue}
+                    setCurrentValue={setCurrentValue}
+                    handleCancell={handleCancell}
+                    handleUpdate={handleUpdate}
                 />
             )}
         </div>

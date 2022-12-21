@@ -1,6 +1,6 @@
-@import "../../../../styles/media-sizes";
-@import "../../../../styles/colors";
-@import "../../../../styles/font-sizes";
+@import "../../../../../../styles/media-sizes";
+@import "../../../../../../styles/colors";
+@import "../../../../../../styles/font-sizes";
 
 ::-webkit-scrollbar {
     width: 8px;
@@ -107,5 +107,64 @@
 
         }
     }
+.edit_field {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 92%;
+    height: 34px;
+    border: 1px solid $light-gray;
+    padding: 1%;
+    margin-bottom: 2%;
+    margin-left: -10px;
 
+    .input_field {
+        width: 100%;
+        margin: auto;
+        font-size: $font-size-xmedium-18;
+        background-color: inherit;
+    }
+}
+.update_and_cancell {
+    margin-top: 5%;
+    width: 100%;
+
+    .button_wrapper_update {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        margin-bottom: 5%;
+
+        .button_update {
+            width: 264px;
+            height: 48px;
+            text-align: center;
+            font-family: 'Roboto';
+            font-weight: 400;
+            font-size: $font-size-xlarge-24;
+            background-color: $brown;
+            color: $white;
+
+        }
+    }
+
+    .button_wrapper_cancell {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+
+        .button_cancell {
+            width: 264px;
+            height: 48px;
+            text-align: center;
+            font-family: 'Roboto';
+            font-weight: 400;
+            font-size: $font-size-xlarge-24;
+            background-color: $light-gray;
+            color: $white;
+
+        }
+    }
+}
 }
