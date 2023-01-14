@@ -1,6 +1,7 @@
 import s from './SettingDropDown.module.scss';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { ReactComponent as ArrowDown } from '../../../../../../assets/images/arrowDown.svg';
 
 const SettingsDropDown = ({ name, children }) =>{
 
@@ -10,7 +11,7 @@ const SettingsDropDown = ({ name, children }) =>{
         <div className={s.category} >
             <div className={s.title} onClick={() => setIsOpened(!isOpened)}>
                 <h3>{name}</h3>
-                <svg className={isOpened ? s.active : s.img} xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 256"><path/></svg>
+                <ArrowDown className={isOpened ? s.active : ''}/>
             </div>
             <div className={isOpened ? s.items_active : s.items }>
                 {children}
