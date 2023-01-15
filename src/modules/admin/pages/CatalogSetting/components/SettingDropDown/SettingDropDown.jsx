@@ -11,7 +11,7 @@ const SettingsDropDown = ({ name, children }) =>{
         <div className={s.category} >
             <div className={s.title} onClick={() => setIsOpened(!isOpened)}>
                 <h3>{name}</h3>
-                <ArrowDown className={isOpened ? s.active : ''}/>
+                <ArrowDown className={isOpened ? s.active : ''} />
             </div>
             <div className={isOpened ? s.items_active : s.items }>
                 {children}

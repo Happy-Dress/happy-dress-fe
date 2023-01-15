@@ -4,8 +4,6 @@ import ButtonAccent from '../../../../common/components/Buttons/ButtonAccent';
 import SettingsDropDown from './components/SettingDropDown';
 import { CATALOG_SETTING_DICTIONARY } from './CatalogSetting.dictionary';
 
-
-
 const {
     CATEGORIES_SETTINGS_NAME,
     COLORS_SETTINGS_NAME,
@@ -25,7 +23,7 @@ const CatalogSettings = () => {
             name: COLORS_SETTINGS_NAME,
         },
         {
-            element: <div>Настройки матеориалов</div>,
+            element: <div>Настройки материалов</div>,
             name: MATERIAL_SETTINGS_NAME,
         },
         {
@@ -57,6 +55,3 @@ const CatalogSettings = () => {
 };
 
 export default CatalogSettings;
-
-
-// () => setItems(items.map((e, i) => index === i ? { ...e, active: !el.active }: e))
