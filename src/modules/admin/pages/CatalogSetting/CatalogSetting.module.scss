@@ -1,6 +1,6 @@
-@import '../../../../styles/_colors.scss';
-@import '../../../../styles/media-sizes';
-@import '../../../../styles/font-sizes';
+@import "../../../../common/ui/styles/media-sizes";
+@import "../../../../common/ui/styles/colors";
+@import "../../../../common/ui/styles/font-sizes";
 
 .CatalogSettings{
     width: 100%;
@@ -21,6 +21,13 @@
         border-bottom: 1px solid $brown;
         text-align: center;
     }
+
+    @media screen and (max-width: $md-size){
+        h2{
+            margin: 0 auto 60px;
+        }
+    }
+
     @media screen and (max-width: $sm-size) {
         .Way{
             display: none;
