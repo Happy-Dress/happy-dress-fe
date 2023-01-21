@@ -9,6 +9,8 @@ const {
     MATERIAL_SETTINGS_NAME,
     MODEL_SETTINGS_NAME,
     CATALOG_SETTINGS_TITLE,
+    BUTTON_SETTINGS_SAVE,
+    BUTTON_SETTINGS_CANCEL,
 } = CATALOG_SETTINGS_DICTIONARY;
 
 const CatalogSettings = () => {
@@ -47,8 +49,8 @@ const CatalogSettings = () => {
                 }    
             </div>
             <div className={s.buttons}>
-                <ButtonDefault text='Отмена'/>
-                <ButtonAccent text='Сохранить'/>
+                <ButtonDefault text={BUTTON_SETTINGS_CANCEL}/>
+                <ButtonAccent text={BUTTON_SETTINGS_SAVE}/>
             </div>
         </div>
     );
