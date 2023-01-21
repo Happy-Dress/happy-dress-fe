@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import SignIn from './pages/SignIn';
 import NavigationPanel from './components/NavigationPanel/NavigationPanel';
 import GoodsSetting from './pages/GoodsSetting/GoodsSetting';
-import CatalogSetting from './pages/CatalogSetting/CatalogSetting';
+import CatalogSetting from './pages/CatalogSettings/CatalogSettings';
 import RegistrationSetting from './pages/RegistrationSetting/RegistrationSetting';
 import BlogSetting from './pages/BlogSetting/BlogSetting';
 import NotFound from './pages/NotFound';
