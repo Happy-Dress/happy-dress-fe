@@ -13,11 +13,7 @@ const NavigationPanel = () => {
 
     const AdaptivePanel = adaptive(NavigationPanelDesktop, NavigationPanelMobile);
 
-    return (
-        <div>
-            <AdaptivePanel ordersAmount={ordersAmount} />
-        </div>
-    );
+    return <AdaptivePanel ordersAmount={ordersAmount} />;
 };
 
 export default NavigationPanel;
