@@ -1,3 +1,3 @@
-import retrieveCatalogueSettings from './catalogueSettings/retrieveCatalogueSettings'
+import retrieveCatalogueSettings from './catalogueSettings/retrieveCatalogueSettings';
 
-export {retrieveCatalogueSettings};
+export { retrieveCatalogueSettings };

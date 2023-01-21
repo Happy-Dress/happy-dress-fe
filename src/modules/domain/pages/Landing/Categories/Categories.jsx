@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import CategoriesDesktop from './CategoriesDesktop';
-import { useDeviceTypeContext } from '../../../../../common/contexts/DeviceType';
-import CategoriesMobileCard from './CategoriesMobileCard/CategoriesMobileCard';
+import CategoriesMobile from './CategoriesMobile/CategoriesMobile';
 import retrieveCatalogueSettings from '../../../api/catalogueSettings/retrieveCatalogueSettings';
+import adaptive from '../../../../../common/ui/hocs/adaptive';
 
 const Categories = () => {
-    const { isDesktop, isMobile } = useDeviceTypeContext();
-    const [categoriesSettings, setCategoriesSettings] = useState([]);
+
+    const [categories, setCategories] = useState([]);
+
     useEffect(() => {
-        (async () => {
-            const retrievedCategoriesSettings = await retrieveCatalogueSettings();
-            setCategoriesSettings(retrievedCategoriesSettings.categories);
-        })();
+        retrieveCatalogueSettings().then((settings) => {
+            setCategories(settings.categories);
+        });
     }, []);
+
+    const AdaptiveCategories = adaptive(CategoriesDesktop, CategoriesMobile);
+
     return (
         <>
-            {(isDesktop && categoriesSettings.length) && <CategoriesDesktop categories={categoriesSettings}/>}
-            {(isMobile && categoriesSettings.length) && <CategoriesMobileCard categories={categoriesSettings}/>}
+            { categories.length && <AdaptiveCategories categories={categories}/> }
         </>
     );
 };

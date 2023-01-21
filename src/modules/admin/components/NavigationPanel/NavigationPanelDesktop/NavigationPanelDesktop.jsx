@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { ReactComponent as Exit } from '../../../../../assets/images/exit.svg';
-import { ReactComponent as Catalog } from '../../../../../assets/images/catalog.svg';
-import { ReactComponent as Goods } from '../../../../../assets/images/goods.svg';
-import { ReactComponent as Registration } from '../../../../../assets/images/registration.svg';
-import { ReactComponent as Blog } from '../../../../../assets/images/blog.svg';
+import { ReactComponent as Exit } from '../../../../../common/assets/images/exit.svg';
+import { ReactComponent as Catalog } from '../../../../../common/assets/images/catalog.svg';
+import { ReactComponent as Goods } from '../../../../../common/assets/images/goods.svg';
+import { ReactComponent as Registration } from '../../../../../common/assets/images/registration.svg';
+import { ReactComponent as Blog } from '../../../../../common/assets/images/blog.svg';
 import s from './NavigationPanelDesktop.module.scss';
-import Typography from '../../../../../common/components/Typography/Typography';
+import Typography from '../../../../../common/ui/components/Typography/Typography';
 import { NAVIGATION_PANEL_DICTIONARY } from '../NavigationPanel.dictionary';
 import { ADMIN_PANEL_ROUTES } from '../../../adminRoutes';
 import PropTypes from 'prop-types';

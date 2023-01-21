@@ -51,8 +51,8 @@
     "dotenv": "^16.0.3",
     "eslint": "^8.20.0",
     "git-jira-hook": "^1.0.6",
+    "jest": "^27.5.1",
     "jest-mock-axios": "^4.7.0-beta4"
-    "jest": "^27.5.1"
   },
   "husky": {
     "hooks": {

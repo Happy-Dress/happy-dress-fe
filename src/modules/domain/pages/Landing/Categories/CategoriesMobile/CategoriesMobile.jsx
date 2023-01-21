@@ -1,12 +1,15 @@
 import React from 'react';
 import s from './CategoriesMobile.module.scss';
 import PropTypes from 'prop-types';
+import CATEGORIES_DICTIONARY from '../Categories.dictionary';
 
-const CategoriesMobileCard = ({ categories }) => {
+const { HEADING_LABEL } = CATEGORIES_DICTIONARY;
+
+const CategoriesMobile = ({ categories }) => {
     return (
         <div className={s.Mobile_wrapper}>
             <div className={s.Mobile_wrapper_header}>
-                <h2>Категории товаров</h2>
+                <h2>{HEADING_LABEL}</h2>
             </div>
             <div className={s.Mobile_wrapper_cards}>
                 {categories?.map((post) => (
@@ -20,11 +23,11 @@ const CategoriesMobileCard = ({ categories }) => {
         </div>
     );
 };
-CategoriesMobileCard.propTypes = {
+CategoriesMobile.propTypes = {
     categories: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
         imageUrl: PropTypes.string.isRequired
     })).isRequired
 };
-export default CategoriesMobileCard;
+export default CategoriesMobile;

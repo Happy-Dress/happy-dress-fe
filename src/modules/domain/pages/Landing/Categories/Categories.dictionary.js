@@ -1,5 +1,5 @@
-const CATEGORIES_DICTIONARY={
-    CATEGORY_HEAD:'Категории товаров'
+const CATEGORIES_DICTIONARY = {
+    HEADING_LABEL: 'Категории товаров'
 };
 
 export default CATEGORIES_DICTIONARY;

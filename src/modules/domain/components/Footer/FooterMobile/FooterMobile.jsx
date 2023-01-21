@@ -1,10 +1,10 @@
 import React from 'react';
 import s from './FooterMobile.module.scss';
-import instagram from '../../../../../assets/images/inst.svg';
-import vk from '../../../../../assets/images/vk.svg';
-import telegram from '../../../../../assets/images/tg.svg';
+import instagram from '../../../../../common/assets/images/inst.svg';
+import vk from '../../../../../common/assets/images/vk.svg';
+import telegram from '../../../../../common/assets/images/tg.svg';
 import { FOOTER_DICTIONARY } from '../Footer.dictionary';
-import Typography from '../../../../../common/components/Typography/Typography';
+import { Typography } from '../../../../../common/ui/components';
 
 const {
     FOOTER_LOGO,

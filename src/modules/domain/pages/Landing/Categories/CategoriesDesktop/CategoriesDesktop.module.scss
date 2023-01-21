@@ -1,4 +1,4 @@
-@import '../../../../../../styles/colors';
+@import '../../../../../../common/ui/styles/colors';
 
 .Wrapper {
   margin: 120px 0 100px;
@@ -20,12 +20,20 @@
 }
 
 .card {
+  cursor: pointer;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   background-size: cover;
   background: $silver-gradient;
+}
+
+.card:hover {
+  background: none;
+  .cardDescription {
+    color: black;
+  }
 }
 
 .cardName {
@@ -35,8 +43,10 @@
 }
 
 .cardDescription {
+  color: $gray;
   position: absolute;
-  bottom: 30px;
+  bottom: 0;
+  margin-bottom: 20px;
   left: 20px;
 }
 
@@ -46,28 +56,4 @@
   object-fit: fill;
 }
 
-.card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  background-size: cover;
-  background: $silver-gradient;
-}
 
-.cardName {
-  position: absolute;
-  bottom: 60px;
-  left: 20px;
-}
-
-.cardDescription {
-  position: absolute;
-  bottom: 30px;
-  left: 20px;
-}
-
-.cardImage {
-  height: 25vw;
-  z-index: -1;
-}

@@ -10,12 +10,12 @@ describe('retrieveCatalogueSettings', () => {
     it('should retrieve settings', async () => {
         const mockSettings = {
             categories: [
-                {id: 1, name: 'Свадебные'}
+                { id: 1, name: 'Свадебные' }
             ]
-        }
+        };
         const mockResponse = {
             data: mockSettings
-        }
+        };
 
         mockAxios.get.mockResolvedValueOnce(mockResponse);
         const retrievedSettings = await retrieveCatalogueSettings();
