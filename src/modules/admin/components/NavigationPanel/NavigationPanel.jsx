@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import NavigationPanelMobile from './NavigationPanelMobile/NavigationPanelMobile';
 import NavigationPanelDesktop from './NavigationPanelDesktop/NavigationPanelDesktop';
-import { useDeviceTypeContext } from '../../../../common/contexts/DeviceType';
 import getOrdersAmount from '../../api/getOrdersAmount';
+import adaptive from '../../../../common/ui/hocs/adaptive';
 
 const NavigationPanel = () => {
-    const { isDesktop, isMobile } = useDeviceTypeContext();
     const [ordersAmount, setOrdersAmount] = useState(0);
 
     useEffect(() => {
         getOrdersAmount().then((val) => setOrdersAmount(val));
     }, []);
 
+    const AdaptivePanel = adaptive(NavigationPanelDesktop, NavigationPanelMobile);
+
     return (
         <div>
-            {isMobile && <NavigationPanelMobile ordersAmount={ordersAmount} />}
-            {isDesktop && <NavigationPanelDesktop ordersAmount={ordersAmount} />}
+            <AdaptivePanel ordersAmount={ordersAmount} />
         </div>
     );
 };

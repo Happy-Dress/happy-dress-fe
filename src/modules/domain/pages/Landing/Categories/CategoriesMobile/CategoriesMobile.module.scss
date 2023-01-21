@@ -1,0 +1,133 @@
+@import '../../../../../../common/ui/styles/media-sizes';
+@import '../../../../../../common/ui/styles/colors';
+
+.Mobile {
+  &_wrapper {
+    margin: 120px 0 100px;
+    @media screen and (max-width: $lg-size) {
+      margin: 48px 0;
+    }
+    &_header {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 100px;
+      @media screen and (max-width: $lg-size) {
+        margin-bottom: 24px;
+      }
+      @media screen and (max-width: $xs-size) {
+        h2 {
+          font-size: 28px;
+        }
+      }
+    }
+
+    &_cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      gap: 50px;
+      padding: 0 50px 0 50px;
+      @media screen and (max-width: $lg-size) {
+        padding: 0 28px;
+        gap: 12px;
+      }
+      @media screen and (max-width: $md-size) {
+        gap: 12px;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  &_card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-size: cover;
+    background: $silver-gradient;
+    @media screen and (max-width: $md-size) {
+      width: 47%;
+    }
+    @media screen and (max-width: $xxs-size) {
+      width: 45%;
+    }
+    &:first-child {
+      width: 99.333%;
+      @media screen and (max-width: $md-size) {
+        width: 96.3%;
+      }
+      h3 {
+        display: flex;
+        @media screen and (max-width: $md-size) {
+          position: absolute;
+          font-size: 18px;
+          bottom: 68px;
+        }
+        @media screen and (max-width: $sm-size) {
+          position: absolute;
+          font-size: 1em;
+          bottom: 48px;
+        }
+      }
+      span {
+        display: flex;
+        color: $gray;
+        @media screen and (max-width: $sm-size) {
+          position: absolute;
+          font-size: 0.6em;
+          bottom: 13px;
+        }
+      }
+      img {
+        height: 45vw;
+      }
+    }
+    &_name {
+      position: absolute;
+      bottom: 60px;
+      left: 20px;
+      font-size: 32px;
+      color: $black;
+      @media screen and (max-width: $lg-size) {
+        font-size: 22px;
+      }
+      @media screen and (max-width: $md-size) {
+        font-size: 0.8em;
+        bottom: 18px;
+      }
+    }
+
+    &_description {
+      position: absolute;
+      bottom: 30px;
+      left: 20px;
+      font-size: 18px;
+      color: $gray;
+      span {
+        color: $gray;
+      }
+      @media screen and (max-width: $lg-size) {
+        bottom: 15px;
+        font-size: 13px;
+      }
+      @media screen and (max-width: $md-size) {
+        display: none;
+        bottom: 18px;
+        font-size: 0.8em;
+      }
+    }
+    &_image {
+      height: 23vw;
+      z-index: -1;
+      @media screen and (max-width: $lg-size) {
+        height: 31vw;
+        object-fit: fill;
+      }
+      @media screen and (max-width: $md-size) {
+        height: 31vw;
+        object-fit: fill;
+      }
+    }
+  }
+}

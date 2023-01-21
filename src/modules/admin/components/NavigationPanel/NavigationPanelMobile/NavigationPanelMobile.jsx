@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import burger from '../../../../../assets/images/burger.svg';
-import x from '../../../../../assets/images/x.svg';
+import burger from '../../../../../common/assets/images/burger.svg';
+import x from '../../../../../common/assets/images/x.svg';
 import s from './NavigationPanelMobile.module.scss';
-import Typography from '../../../../../common/components/Typography/Typography';
+import Typography from '../../../../../common/ui/components/Typography/Typography';
 import { NAVIGATION_PANEL_DICTIONARY } from '../NavigationPanel.dictionary';
 import  { ADMIN_PANEL_ROUTES }  from '../../../adminRoutes';
 import PropTypes from 'prop-types';
