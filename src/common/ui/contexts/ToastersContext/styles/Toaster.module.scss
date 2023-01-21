@@ -1,5 +1,5 @@
-@import '../../../../styles/colors';
-@import '../../../../styles/media-sizes';
+@import '../../../styles/colors';
+@import '../../../styles/media-sizes';
 
 .toaster_container{
   width: 300px;
@@ -20,7 +20,7 @@
   box-shadow: $shadow-black;
 
   &::before {
-    content: url("../../../../assets/images/errorIcon.svg");
+    content: url("../../../../../assets/images/errorIcon.svg");
     position:relative;
     z-index:10;
   }
@@ -40,7 +40,7 @@
   box-shadow: $shadow-black;
 
   &::before {
-    content: url("../../../../assets/images/notificationIcon.svg");
+    content: url("../../../../../assets/images/notificationIcon.svg");
     position:relative;
     z-index:10;
   }
@@ -60,7 +60,7 @@
   box-shadow: $shadow-black;
 
   &::before {
-    content: url("../../../../assets/images/successIcon.svg");
+    content: url("../../../../../assets/images/successIcon.svg");
     position:relative;
     z-index:10;
   }

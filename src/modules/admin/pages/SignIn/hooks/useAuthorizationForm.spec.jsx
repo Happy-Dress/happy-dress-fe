@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import useAuthorizationForm from './useAuthorizationForm';
-import { useToasters } from '../../../../../common/contexts/ToastersContext';
+import { useToasters } from '../../../../../common/ui/contexts/ToastersContext';
 
 jest.mock('react', () => ({
     useState: jest.fn(),

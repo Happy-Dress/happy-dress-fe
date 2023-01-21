@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import authenticateUser from '../../../api/authenticateUser';
 import { useNavigate } from 'react-router-dom';
-import { useToasters } from '../../../../../common/contexts/ToastersContext';
+import { useToasters } from '../../../../../common/ui/contexts/ToastersContext';
 
 
 const {
