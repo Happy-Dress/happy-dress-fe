@@ -16,8 +16,8 @@ jest.mock('react-router-dom', () => ({
     useNavigate: jest.fn(),
 }));
 
-jest.mock('../../../contexts/ToastersContext', () => ({
-    useToaster: jest.fn(),
+jest.mock('../../../../../common/ui/contexts/ToastersContext', () => ({
+    useToasters: jest.fn(),
 }));
 
 
@@ -35,8 +35,9 @@ describe('useAuthorizationForm', () => {
         useNavigate.mockImplementation(jest.fn());
         useToasters.mockImplementation(() => {
             return {
-                showToster: jest.fn(),
-                closeToster: jest.fn(),
+                showTosterError: jest.fn(),
+                showToasterNotification: jest.fn(),
+                showToasterSuccess: jest.fn(),
             };
         });
 
