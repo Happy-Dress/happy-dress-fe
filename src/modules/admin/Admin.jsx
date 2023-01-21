@@ -13,7 +13,7 @@ export const AdminPanelRouts = () => {
     return (
         <div className={s.adminRoutes}>
             <NavigationPanel/>
-            <div className={s.adminInfoRoutes}>
+            <div className={s.adminPage}>
                 <Routes>
                     <Route path="/" element={<Navigate to={'catalog-setting'} />} />
                     <Route path="catalog-setting" element={<CatalogSetting />}/>
