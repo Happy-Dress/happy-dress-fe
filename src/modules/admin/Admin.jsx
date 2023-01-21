@@ -8,20 +8,20 @@ import RegistrationSetting from './pages/RegistrationSetting/RegistrationSetting
 import BlogSetting from './pages/BlogSetting/BlogSetting';
 import NotFound from './pages/NotFound';
 import s from './Admin.module.scss';
-import ToasterProvider from './contexts/ToasterContext/';
 
 export const AdminPanelRouts = () => {
     return (
+
         <div className={s.adminRoutes}>
             <NavigationPanel/>
             <Routes>
-                <Route path="/" element={<Navigate to={'catalog-setting'} />} />
-                <Route path="catalog-setting" element={<CatalogSetting />}/>
-                <Route path="blog-setting" element={<BlogSetting />}/>
-                <Route path="goods-setting" element={<GoodsSetting />}/>
+                <Route path="/" element={<Navigate to={'catalog-setting'}/>}/>
+                <Route path="catalog-setting" element={<CatalogSetting/>}/>
+                <Route path="blog-setting" element={<BlogSetting/>}/>
+                <Route path="goods-setting" element={<GoodsSetting/>}/>
                 <Route
                     path="registration-setting"
-                    element={<RegistrationSetting />}
+                    element={<RegistrationSetting/>}
                 />
             </Routes>
         </div>
@@ -30,14 +30,12 @@ export const AdminPanelRouts = () => {
 
 const Admin = () => {
     return (
-        <ToasterProvider>
-            <Routes className={s.adminRoutes}>
-                <Route path="/" element={<Navigate to="sign-in" />} />
-                <Route path="/sign-in" element={<SignIn />} />
-                <Route path="/panel/*" element={<AdminPanelRouts />} />
-                <Route path="*" element={<NotFound />} />
-            </Routes>
-        </ToasterProvider>
+        <Routes className={s.adminRoutes}>
+            <Route path="/" element={<Navigate to="sign-in"/>}/>
+            <Route path="/sign-in" element={<SignIn/>}/>
+            <Route path="/panel/*" element={<AdminPanelRouts/>}/>
+            <Route path="*" element={<NotFound/>}/>
+        </Routes>
     );
 };
 

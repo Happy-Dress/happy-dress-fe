@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import useAuthorizationForm from './useAuthorizationForm';
-import { useToaster } from '../../../contexts/ToasterContext';
+import { useToasters } from '../../../../../common/contexts/ToastersContext';
 
 jest.mock('react', () => ({
     useState: jest.fn(),
@@ -16,7 +16,7 @@ jest.mock('react-router-dom', () => ({
     useNavigate: jest.fn(),
 }));
 
-jest.mock('../../../contexts/ToasterContext', () => ({
+jest.mock('../../../contexts/ToastersContext', () => ({
     useToaster: jest.fn(),
 }));
 
@@ -33,7 +33,7 @@ describe('useAuthorizationForm', () => {
             };
         });
         useNavigate.mockImplementation(jest.fn());
-        useToaster.mockImplementation(() => {
+        useToasters.mockImplementation(() => {
             return {
                 showToster: jest.fn(),
                 closeToster: jest.fn(),

@@ -6,4 +6,4 @@ const initialToasterContext = {
     showToasterSuccess: () => {},
 };
 
-export const ToasterContext = createContext(initialToasterContext);
+export const ToastersContext = createContext(initialToasterContext);

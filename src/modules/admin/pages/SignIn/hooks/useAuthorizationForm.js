@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import authenticateUser from '../../../api/authenticateUser';
 import { useNavigate } from 'react-router-dom';
-import { useToaster } from '../../../contexts/ToasterContext';
+import { useToasters } from '../../../../../common/contexts/ToastersContext';
 
 
 const {
@@ -29,7 +29,7 @@ const useAuthorizationForm = () => {
 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const navigate = useNavigate();
-    const { showToasterError } = useToaster();
+    const { showToasterError } = useToasters();
 
     const { register, setError, formState: { errors, isValid }, handleSubmit } = useForm({
         mode: 'onBlur',
@@ -42,7 +42,7 @@ const useAuthorizationForm = () => {
             localStorage.setItem('Authorization', `Bearer ${token}`);
             navigate('/admin/panel/catalog-setting');
         } catch (e) {
-            showToasterError(e.response?.data?.message || e.message);
+            showToasterError(e.response?.data?.message[0] || e.response?.data?.message || e.message);
         }
     };
 
