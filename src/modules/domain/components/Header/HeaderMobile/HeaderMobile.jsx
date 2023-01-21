@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import s from './HeaderMobile.module.scss';
 import { HEADER_DICTIONARY } from '../Header.dictionary';
-import burger from '../../../../../assets/images/burger.svg';
-import x from '../../../../../assets/images/x.svg';
-import hanger from '../../../../../assets/images/hanger.svg';
-import Typography from '../../../../../common/components/Typography/Typography';
+import burger from '../../../../../common/assets/images/burger.svg';
+import x from '../../../../../common/assets/images/x.svg';
+import hanger from '../../../../../common/assets/images/hanger.svg';
+import { Typography } from '../../../../../common/ui/components';
 
 const HeaderMobile = () => {
     const {
@@ -14,7 +14,7 @@ const HeaderMobile = () => {
     } = HEADER_DICTIONARY;
     const [activeMenu, setActiveMenu] = useState(false);
     return (
-        <div className={activeMenu? s.Header_wrapper_fixed : ''}>
+        <div className={activeMenu ? s.Header_wrapper_fixed : ''}>
             <div className={s.Header}>
                 <Typography classNames={[s.Header_logo]}>{HEADER_LOGO}</Typography>
                 <div className={s.Header_right}>
@@ -22,21 +22,21 @@ const HeaderMobile = () => {
                         <img
                             onClick={() => setActiveMenu(!activeMenu)}
                             className={s.Header_right_icon}
-                            alt='menu'
+                            alt="menu"
                             src={x}
                         />
                     ) : (
                         <img
                             onClick={() => setActiveMenu(!activeMenu)}
                             className={s.Header_right_icon}
-                            alt='menu'
+                            alt="menu"
                             src={burger}
                         />
                     )}
                     <img
                         onClick={() => setActiveMenu(!activeMenu)}
                         className={s.Header_right_icon}
-                        alt='hanger'
+                        alt="hanger"
                         src={hanger}
                     />
                 </div>
@@ -50,7 +50,9 @@ const HeaderMobile = () => {
                         </li>))
                     }
                 </ul>
-                <Typography classNames={[s.Menu_nav_number]}>{PHONE_NUMBER}</Typography>
+                <Typography classNames={[s.Menu_nav_number]}>
+                    <a href={`tel:${PHONE_NUMBER}`}>{PHONE_NUMBER}</a>
+                </Typography>
 
             </div>
             }

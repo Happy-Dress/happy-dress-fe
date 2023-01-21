@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './HeaderDesktop.module.scss';
-import hanger from '../../../../../assets/images/hanger.svg';
+import hanger from '../../../../../common/assets/images/hanger.svg';
 import { HEADER_DICTIONARY } from '../Header.dictionary';
-import Typography from '../../../../../common/components/Typography/Typography';
+import { Typography } from '../../../../../common/ui/components';
 
 const {
     HEADER_LOGO,
@@ -27,7 +27,14 @@ const HeaderDesktop = () => {
             <div className={s.Header_right_side}>
                 <img className={s.Header_right_side_hanger} alt="hanger" src={hanger} />
                 <div className={s.Header_right_side_delimiter}/>
-                <Typography>{PHONE_NUMBER}</Typography>
+                <Typography>
+                    <a 
+                        className={s.Header_right_side_number}
+                        href={`tel:${PHONE_NUMBER}`}
+                    >
+                        {PHONE_NUMBER}
+                    </a>
+                </Typography>
             </div>
         </div>
     );

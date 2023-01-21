@@ -1,6 +1,6 @@
-@import "../../../../../styles/media-sizes";
-@import "../../../../../styles/colors";
-@import "../../../../../styles/font-sizes";
+@import "../../../../../common/ui/styles/media-sizes";
+@import "../../../../../common/ui/styles/colors";
+@import "../../../../../common/ui/styles/font-sizes";
 
 .active {
   border: 1px solid $brown;
@@ -17,11 +17,10 @@
 .navbar {
   position: sticky;
   width: 224px;
-  height: 100vh;
   border-right: 1px solid $brown;
   display: flex;
   flex-flow: column;
-  gap: 5em;
+  gap: 3em;
   align-items: center;
   padding-left: 1.2em;
   padding-right: 1.2em;
@@ -40,7 +39,7 @@
     justify-content: center;
     align-items: center;
     width: 176px;
-    height: 147.4px;
+    height: 100px;
     border-bottom: 1px solid $gray;
 
     .logoTitle {
@@ -58,12 +57,12 @@
     align-items: center;
     justify-content: center;
     color: $gray;
-    width: 11em;
-    height: 10em;
+    width: 9em;
+    height: 8em;
     padding: 16px 28px;
 
     p {
-      font-size: $font-size-xlarge-32;
+      font-size: $font-size-xlarge-24;
       font-weight: 600;
       font-family: 'Roboto';
     }
