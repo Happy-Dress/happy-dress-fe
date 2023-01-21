@@ -1,6 +1,6 @@
-import s from './CatalogSetting.module.scss';
+import s from './CatalogSettings.module.scss';
 import SettingsDropDown from './components/SettingDropDown';
-import { CATALOG_SETTING_DICTIONARY } from './CatalogSetting.dictionary';
+import { CATALOG_SETTINGS_DICTIONARY } from './CatalogSettings.dictionary';
 import { ButtonAccent, ButtonDefault } from '../../../../common/ui/components';
 
 const {
@@ -8,7 +8,8 @@ const {
     COLORS_SETTINGS_NAME,
     MATERIAL_SETTINGS_NAME,
     MODEL_SETTINGS_NAME,
-} = CATALOG_SETTING_DICTIONARY;
+    CATALOG_SETTINGS_TITLE,
+} = CATALOG_SETTINGS_DICTIONARY;
 
 const CatalogSettings = () => {
 
@@ -35,7 +36,7 @@ const CatalogSettings = () => {
     return(
         <div className={s.CatalogSettings}>
             <div className={s.Way}>Главная &gt; Управление каталогом</div>
-            <h2>Управление каталогом</h2>
+            <h2>{CATALOG_SETTINGS_TITLE}</h2>
             <div className={s.categories}>
                 {
                     items.map((el, index) => (

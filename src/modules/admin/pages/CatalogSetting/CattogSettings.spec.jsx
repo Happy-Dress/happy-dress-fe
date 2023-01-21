@@ -8,7 +8,7 @@ jest.mock('./components/SettingDropDown', ()=>({
         return <div data-testid="setting-drop-down"/>;
     }
 }));
-describe('CatalogSetting', () => {
+describe('CatalogSettings', () => {
     it('should render correctly', async () => {
         render(<CatalogSetting />);
         const title = screen.getByText('Управление каталогом');
