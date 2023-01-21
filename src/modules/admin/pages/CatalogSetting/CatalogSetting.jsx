@@ -1,8 +1,7 @@
 import s from './CatalogSetting.module.scss';
-import ButtonDefault from '../../../../common/components/Buttons/ButtonDefault';
-import ButtonAccent from '../../../../common/components/Buttons/ButtonAccent';
 import SettingsDropDown from './components/SettingDropDown';
 import { CATALOG_SETTING_DICTIONARY } from './CatalogSetting.dictionary';
+import { ButtonAccent, ButtonDefault } from '../../../../common/ui/components';
 
 const {
     CATEGORIES_SETTINGS_NAME,
