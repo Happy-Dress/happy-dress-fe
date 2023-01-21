@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './ZeroBlock.module.scss';
-import ButtonDefault from '../../../../../common/components/Buttons/ButtonDefault';
+import { ButtonDefault } from '../../../../../common/ui/components';
 import { ZEROBLOCK_DICTIONARY } from './ZeroBlock.dictionary';
 
 const {

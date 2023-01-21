@@ -3,7 +3,7 @@ import React from 'react';
 import { screen, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import  CatalogSetting  from '../../../pages/CatalogSetting/CatalogSetting';
+import  CatalogSetting  from '../../../pages/CatalogSettings/CatalogSettings';
 import  BlogSetting  from '../../../pages/BlogSetting/BlogSetting';
 import  RegistrationSetting  from '../../../pages/RegistrationSetting/RegistrationSetting';
 import  GoodsSetting  from '../../../pages/GoodsSetting/GoodsSetting';
@@ -45,7 +45,7 @@ jest.mock('../../../pages/BlogSetting/BlogSetting', () => ({
     },
 }));
 
-jest.mock('../../../pages/CatalogSetting/CatalogSetting', () => ({
+jest.mock('../../../pages/CatalogSettings/CatalogSettings', () => ({
     __esModule: true,
     default: () => {
         return <div data-testid="catalog-page"/>;

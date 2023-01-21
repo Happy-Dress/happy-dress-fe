@@ -12,7 +12,7 @@ jest.mock('../../../pages/BlogSetting/BlogSetting', () => ({
     },
 }));
 
-jest.mock('../../../pages/CatalogSetting/CatalogSetting', () => ({
+jest.mock('../../../pages/CatalogSettings/CatalogSettings', () => ({
     __esModule: true,
     default: () => {
         return <div data-testid="catalog-page"/>;

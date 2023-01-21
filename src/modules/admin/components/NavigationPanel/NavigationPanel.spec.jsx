@@ -1,41 +1,22 @@
 
 import { screen, render, waitFor } from '@testing-library/react';
 import NavigationPanel from './NavigationPanel';
-import { useDeviceTypeContext } from '../../../../common/contexts/DeviceType';
+import { useDeviceTypeContext } from '../../../../common/ui/contexts/DeviceType';
 
 
-jest.mock('./NavigationPanelDesktop/NavigationPanelDesktop', () => ({
+jest.mock('../../../../common/ui/hocs/adaptive', () => ({
     __esModule: true,
-    default: () => <div>Navigation Panel Desktop</div>
+    default: () => () => <div>Navigation Panel</div>
 }));
-
-jest.mock('./NavigationPanelMobile/NavigationPanelMobile', () => ({
-    __esModule: true,
-    default: () => <div>Navigation Panel Mobile</div>
-}));
-
-jest.mock('../../../../common/contexts/DeviceType', () =>({
-    useDeviceTypeContext: jest.fn()
-}));
-
 
 
 describe('NavigationPanel', () => {
-    it('should render desktop panel', async () => {
-        useDeviceTypeContext.mockImplementation(() => ({ isDesktop: true }));
+    it('should render panel', async () => {
         render(<NavigationPanel/>);
-        const desktopPanel = screen.getByText('Navigation Panel Desktop');
+        const panel = screen.getByText('Navigation Panel');
         await waitFor(() =>{
-            expect(desktopPanel).toBeInTheDocument();
+            expect(panel).toBeInTheDocument();
         });
     });
 
-    it('should render mobile panel', async () => {
-        useDeviceTypeContext.mockImplementation(() => ({ isMobile: true }));
-        render(<NavigationPanel/>);
-        const mobilePanel = screen.getByText('Navigation Panel Mobile');
-        await waitFor(() =>{
-            expect(mobilePanel).toBeInTheDocument();
-        });
-    });
 });

@@ -25,9 +25,10 @@
         "react"
     ],
     "rules": {
-        "no-debugger": "warn",
+        "react/display-name": "off",
+        "no-debugger":"warn",
         "indent": [
-            "warn",
+            "error",
             4
         ],
         "quotes": [
@@ -35,7 +36,7 @@
             "single"
         ],
         "semi": [
-            "warn",
+            "error",
             "always"
         ],
         "react/react-in-jsx-scope": "off",
