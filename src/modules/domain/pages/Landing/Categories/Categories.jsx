@@ -18,7 +18,7 @@ const Categories = () => {
 
     return (
         <>
-            { categories.length && <AdaptiveCategories categories={categories}/> }
+            { !!categories.length && <AdaptiveCategories categories={categories}/> }
         </>
     );
 };
