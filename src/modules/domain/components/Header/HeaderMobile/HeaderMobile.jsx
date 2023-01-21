@@ -14,7 +14,7 @@ const HeaderMobile = () => {
     } = HEADER_DICTIONARY;
     const [activeMenu, setActiveMenu] = useState(false);
     return (
-        <div className={activeMenu? s.Header_wrapper_fixed : ''}>
+        <div className={activeMenu ? s.Header_wrapper_fixed : ''}>
             <div className={s.Header}>
                 <Typography classNames={[s.Header_logo]}>{HEADER_LOGO}</Typography>
                 <div className={s.Header_right}>
@@ -22,21 +22,21 @@ const HeaderMobile = () => {
                         <img
                             onClick={() => setActiveMenu(!activeMenu)}
                             className={s.Header_right_icon}
-                            alt='menu'
+                            alt="menu"
                             src={x}
                         />
                     ) : (
                         <img
                             onClick={() => setActiveMenu(!activeMenu)}
                             className={s.Header_right_icon}
-                            alt='menu'
+                            alt="menu"
                             src={burger}
                         />
                     )}
                     <img
                         onClick={() => setActiveMenu(!activeMenu)}
                         className={s.Header_right_icon}
-                        alt='hanger'
+                        alt="hanger"
                         src={hanger}
                     />
                 </div>
@@ -50,7 +50,9 @@ const HeaderMobile = () => {
                         </li>))
                     }
                 </ul>
-                <Typography classNames={[s.Menu_nav_number]}>{PHONE_NUMBER}</Typography>
+                <Typography classNames={[s.Menu_nav_number]}>
+                    <a href={`tel:${PHONE_NUMBER}`}>{PHONE_NUMBER}</a>
+                </Typography>
 
             </div>
             }

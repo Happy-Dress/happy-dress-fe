@@ -13,7 +13,9 @@ const {
 const HeaderDesktop = () => {
     return (
         <div className={s.Header}>
-            <span className={s.Header_logo}>{HEADER_LOGO}</span>
+            <div className={s.Header_logo_wrapper}>
+                <span className={s.Header_logo_wrapper_logo}>{HEADER_LOGO}</span>
+            </div>
             <ul className={s.Header_menu}>
                 {HEADER_NAV_ITEMS.map((item)=>(
                     <li key={item}>
@@ -25,7 +27,14 @@ const HeaderDesktop = () => {
             <div className={s.Header_right_side}>
                 <img className={s.Header_right_side_hanger} alt="hanger" src={hanger} />
                 <div className={s.Header_right_side_delimiter}/>
-                <Typography>{PHONE_NUMBER}</Typography>
+                <Typography>
+                    <a 
+                        className={s.Header_right_side_number}
+                        href={`tel:${PHONE_NUMBER}`}
+                    >
+                        {PHONE_NUMBER}
+                    </a>
+                </Typography>
             </div>
         </div>
     );

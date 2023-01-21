@@ -48,11 +48,11 @@
       font-size: 32px;
     }
 
-    @media screen and (max-width:$lg-size) {
+    @media screen and (max-width: $lg-size) {
       font-size: 24px;
     }
 
-    @media screen and (max-width:$xl-size) {
+    @media screen and (max-width: $xl-size) {
       font-size: 24px;
     }
 
@@ -64,15 +64,18 @@
     text-align: center;
     padding: 30px 0;
     width: 100%;
-li{
-  &:nth-child(2n){
-    margin: 0 6%;
-  }
-}
+    z-index: 2;
+
+    li {
+      &:nth-child(2n) {
+        margin: 0 6%;
+      }
+    }
+
     @media screen and (max-width: $xl-size) {
       justify-content: center;
-      li{
-        &:nth-child(2n){
+      li {
+        &:nth-child(2n) {
           margin: 0 3%;
         }
       }
@@ -87,7 +90,7 @@ li{
       }
 
 
-      @media screen and (max-width:$xl-size) {
+      @media screen and (max-width: $xl-size) {
         font-size: 18px;
         padding: 22px 0;
       }
@@ -121,8 +124,6 @@ li{
     flex-direction: column;
     align-items: flex-end;
     width: 100%;
-
-
 
 
     @media screen and (max-width: $lg-size) {
@@ -166,7 +167,11 @@ li{
       margin-bottom: 16px;
       font-size: 24px;
 
-      @media screen and (max-width:$xl-size) {
+      a {
+        color: inherit;
+      }
+
+      @media screen and (max-width: $xl-size) {
         font-size: 18px;
       }
     }
@@ -175,7 +180,11 @@ li{
       margin-bottom: 21px;
       font-size: 24px;
 
-      @media screen and (max-width:$xl-size) {
+      a{
+        color: inherit;
+      }
+
+      @media screen and (max-width: $xl-size) {
         font-size: 18px;
       }
     }
@@ -206,7 +215,7 @@ li{
       text-decoration-line: none;
       margin-bottom: 40px;
 
-      @media screen and (max-width:$lg-size) {
+      @media screen and (max-width: $lg-size) {
         font-size: 24px;
       }
 

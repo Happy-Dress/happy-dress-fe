@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 import React from 'react';
-import FooterMobile from './index';
+import SignInFooterDesktop from './SignInFooterDesktop';
 
-describe('FooterMobile', () => {
+describe('SignInFooterDesktop', () => {
     it('should render correctly', async () => {
-        const { baseElement } = render(<FooterMobile />);
+        const { baseElement } = render(<SignInFooterDesktop/>);
         expect(baseElement).toBeInTheDocument();
     });
 });

@@ -33,7 +33,7 @@ const NavigationPanelMobile = ({ ordersAmount }) => {
                     ) : (
                         <img
                             src={burger}
-                            alt="_"
+                            alt="W"
                             onClick={() => {
                                 setActiveMenu(!activeMenu);
                             }}
