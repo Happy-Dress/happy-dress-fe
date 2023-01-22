@@ -13,6 +13,7 @@ const {
     TOO_LONG_LOGIN_MESSAGE,
     TOO_SHORT_PASSWORD_MESSAGE,
     TOO_LONG_PASSWORD_MESSAGE,
+    SUCCESS_SING_IN,
 } = AUTHORIZATION_FORM_DICTIONARY;
 
 const MIN_CREDS_LENGTH = 4;
@@ -29,7 +30,7 @@ const useAuthorizationForm = () => {
 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const navigate = useNavigate();
-    const { showToasterError } = useToasters();
+    const { showToasterError, showToasterSuccess } = useToasters();
 
     const { register, setError, formState: { errors, isValid }, handleSubmit } = useForm({
         mode: 'onBlur',
@@ -41,8 +42,9 @@ const useAuthorizationForm = () => {
             const token = await authenticateUser(credentials);
             localStorage.setItem('Authorization', `Bearer ${token}`);
             navigate('/admin/panel/catalog-setting');
-        } catch (e) {
-            showToasterError(e.response?.data?.message[0] || e.response?.data?.message || e.message);
+            showToasterSuccess(SUCCESS_SING_IN);
+        } catch (message) {
+            showToasterError(message);
         }
     };
 
