@@ -6,38 +6,16 @@ import s from '../styles/Toaster.module.scss';
 
 
 const ToastersProvider = (props) => {
-
-    const style = {
-        hideProgressBar: true,
-        position: toast.POSITION.BOTTOM_RIGHT,
-        bodyClassName: s.toaster_body,
-    };
-
-    const SuccessStyle = {
-        className: s.toast_success,
-        ...style,
-    };
-
-    const NotificationStyle = {
-        className: s.toaster_notification,
-        ...style,
-    };
-
-    const ErrorStyle = {
-        className: s.toast_error,
-        ...style,
-    };
-
     const showToasterError = (message) => {
-        toast(message, ErrorStyle);
+        toast(message, { className: s.toast_error });
     };
 
     const showToasterNotification = (message) => {
-        toast(message, NotificationStyle);
+        toast(message, { className: s.toaster_notification });
     };
 
     const showToasterSuccess = (message) => {
-        toast(message, SuccessStyle);
+        toast(message, { className: s.toast_success });
     };
 
 
@@ -46,6 +24,9 @@ const ToastersProvider = (props) => {
             {props.children}
             <ToastContainer
                 className={s.toaster_container}
+                hideProgressBar={true}
+                bodyClassName={s.toaster_body}
+                position={toast.POSITION.BOTTOM_RIGHT}
                 limit={6}
                 autoClose={5000}/>
         </ToastersContext.Provider>
