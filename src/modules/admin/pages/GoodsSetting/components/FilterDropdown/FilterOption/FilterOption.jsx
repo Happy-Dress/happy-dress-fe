@@ -1,32 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './FilterOption.module.scss';
 import { ReactComponent as Checkbox } from '../../../../../../../common/assets/images/checkbox.svg';
 import PropTypes from 'prop-types';
 
-const FilterOption = ({ item, setParams }) => {
-    const [isChecked, setIsChecked] = useState(false);
+const FilterOption = ({ item, changeFilter, isChecked: check }) => {
+    const [isChecked, setIsChecked] = useState(check);
 
     const changeHandler = () => {
-        switch (isChecked) {
-        case false:
-            setParams(prevState => {
-                return [
-                    ...prevState,
-                    item.id
-                ];
-            });
-            setIsChecked(true);
-            break;
-        case true:
-            setParams(prevState => {
-                let newItems = [...prevState];
-                newItems.splice(prevState.indexOf(item.id), 1);
-                return newItems;
-            });
+        if(isChecked) {
+            changeFilter(String(item.id), 'remove');
             setIsChecked(false);
-            break;
+        } else {
+            changeFilter(String(item.id), 'add');
+            setIsChecked(true);
         }
     };
+
+    useEffect(() => {
+        setIsChecked(check);
+    }, [check]);
 
     return (
         <div className={s.optionsItem}>
@@ -45,7 +37,8 @@ const FilterOption = ({ item, setParams }) => {
 
 FilterOption.propTypes = {
     item: PropTypes.object.isRequired,
-    setParams: PropTypes.func.isRequired
+    changeFilter: PropTypes.func.isRequired,
+    isChecked: PropTypes.bool.isRequired
 };
 
 export default FilterOption;

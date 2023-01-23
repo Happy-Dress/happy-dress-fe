@@ -113,4 +113,13 @@
       box-shadow: $shadow-black;
     }
   }
+
+  .currentFilters {
+    margin-top: 18px;
+    display: flex;
+    column-gap: 32px;
+    row-gap: 16px;
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
 }

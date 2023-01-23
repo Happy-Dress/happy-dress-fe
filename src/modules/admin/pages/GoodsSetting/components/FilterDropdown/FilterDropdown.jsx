@@ -5,10 +5,8 @@ import FilterOption from './FilterOption';
 import PropTypes from 'prop-types';
 import { useSearchParams } from 'react-router-dom';
 
-const FilterDropdown = ({ name, options }) => {
+const FilterDropdown = ({ name, options, setCurrentFilters, currentFilters }) => {
     const [isOpen, setIsOpen] = useState(false);
-    let [searchParams, setSearchParams] = useSearchParams();
-    const [params, setParams] = useState([]);
 
     let formatName = '';
 
@@ -24,29 +22,25 @@ const FilterDropdown = ({ name, options }) => {
         break;
     }
 
-    useEffect(() => {
-        let queryString = searchParams.toString().split('&');
-        const regexp = new RegExp(`${name}=*`, 'g');
-
-        if(!params.length && queryString.filter(item => regexp.test(item)).length) {
-            setSearchParams(queryString.filter(item => !regexp.test(item)).join('&'));
-        }
-
-        if(params.length) {
-
-            if(!queryString.filter(item => regexp.test(item)).length) {
-                queryString.push(`${name}=${params[0]}`);
-                setSearchParams(queryString.join('&'));
-                return;
+    const changeFilter = (id, type) => {
+        setCurrentFilters(prevState => {
+            const newState = { ...prevState };
+            if(!newState[name]) {
+                newState[name] = String(id);
+                return newState;
             }
-
-            const newQuery = queryString.map(item => {
-                if(item.split('=')[0] !== name) return item;
-                return `${name}=${params.join(',')}`;
-            });
-            setSearchParams(newQuery.join('&'));
-        }
-    }, [params]);
+            if(type === 'add') {
+                newState[name] += `,${id}`;
+            }
+            if(type === 'remove') {
+                newState[name] = newState[name].split(',').filter(item => item !== id).join(',');
+            }
+            if(!newState[name].length) {
+                delete newState[name];
+            }
+            return newState;
+        });
+    };
 
     return (
         <div className={s.FilterDropdown}>
@@ -57,7 +51,7 @@ const FilterDropdown = ({ name, options }) => {
             <div className={s.options} style={{ display: isOpen ? 'block' : 'none' }}>
                 {
                     options.map(item => {
-                        return <FilterOption key={item.id} item={item} setParams={setParams}/>;
+                        return <FilterOption key={item.id} item={item} changeFilter={changeFilter} isChecked={currentFilters[name] ? currentFilters[name].split(',').includes(String(item.id)) : false}/>;
                     })
                 }
             </div>
@@ -67,7 +61,9 @@ const FilterDropdown = ({ name, options }) => {
 
 FilterDropdown.propTypes = {
     name: PropTypes.string.isRequired,
-    options: PropTypes.array.isRequired
+    options: PropTypes.array.isRequired,
+    setCurrentFilters: PropTypes.func.isRequired,
+    currentFilters: PropTypes.object.isRequired
 };
 
 export default FilterDropdown;
