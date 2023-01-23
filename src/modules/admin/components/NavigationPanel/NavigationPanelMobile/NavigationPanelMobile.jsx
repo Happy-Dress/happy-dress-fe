@@ -8,8 +8,8 @@ import { NAVIGATION_PANEL_DICTIONARY } from '../NavigationPanel.dictionary';
 import  { ADMIN_PANEL_ROUTES }  from '../../../adminRoutes';
 import PropTypes from 'prop-types';
 
-const NavigationPanelMobile = ({ ordersAmount }) => {
-    const { ROUTES, SIGN_IN } = ADMIN_PANEL_ROUTES;
+const NavigationPanelMobile = ({ ordersAmount, handleExit }) => {
+    const { ROUTES } = ADMIN_PANEL_ROUTES;
     const checkIsLinkActive = ({ isActive }) => (isActive ? s.active : '');
     const { ADMIN_LOGO, ADMIN_NAV_ITEMS, EXIT } =
     NAVIGATION_PANEL_DICTIONARY;
@@ -57,7 +57,7 @@ const NavigationPanelMobile = ({ ordersAmount }) => {
                             </NavLink>
                         ))}
                     </div>
-                    <Link to={SIGN_IN} className={s.exit}>
+                    <Link onClick={handleExit} className={s.exit}>
                         <p>{EXIT}</p>
                     </Link>
                 </div>
@@ -66,6 +66,7 @@ const NavigationPanelMobile = ({ ordersAmount }) => {
     );
 };
 NavigationPanelMobile.propTypes = {
-    ordersAmount: PropTypes.number,
+    ordersAmount: PropTypes.number.isRequired,
+    handleExit: PropTypes.func.isRequired,
 };
 export default NavigationPanelMobile;
