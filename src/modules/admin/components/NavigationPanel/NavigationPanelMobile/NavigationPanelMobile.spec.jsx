@@ -41,8 +41,11 @@ jest.mock('../../../pages/RegistrationSetting/RegistrationSetting', () => ({
 }));
 
 describe('NavigationPanelMobile', () => {
+
+    const mockExit = jest.fn();
+
     beforeEach(() => {
-        renderWithRouter(<NavigationPanelMobile />);
+        renderWithRouter(<NavigationPanelMobile ordersAmount={1} handleExit={mockExit}/>);
     });
 
     it('should render NavigatingPanelMobile', async () => {
@@ -89,6 +92,16 @@ describe('NavigationPanelMobile', () => {
         userEvent.click(btn);
         await waitFor(() => {
             expect(screen.getByTestId('blog-page')).toBeInTheDocument();
+        });
+    });
+
+    it('Should after clicking the "Exit" link, the Sign-in page opens.', async () => {
+        const panelBtn = screen.getByAltText('W');
+        userEvent.click(panelBtn);
+        const btn = screen.getByText('Выход');
+        userEvent.click(btn);
+        await waitFor(() => {
+            expect(mockExit).toHaveBeenCalled();
         });
     });
 });

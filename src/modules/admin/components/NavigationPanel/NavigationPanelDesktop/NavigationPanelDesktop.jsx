@@ -10,26 +10,28 @@ import Typography from '../../../../../common/ui/components/Typography/Typograph
 import { NAVIGATION_PANEL_DICTIONARY } from '../NavigationPanel.dictionary';
 import { ADMIN_PANEL_ROUTES } from '../../../adminRoutes';
 import PropTypes from 'prop-types';
-import { useToasters } from '../../../../../common/ui/contexts/ToastersContext';
+
 
 const {
     ADMIN_LOGO,
     ADMIN_NAV_ITEMS,
     EXIT,
-    SUCCESS_EXIT,
+
 } = NAVIGATION_PANEL_DICTIONARY;
 
-const NavigationPanelDesktop = ({ ordersAmount }) => {
-    const { showToasterSuccess } = useToasters();
+const NavigationPanelDesktop = ({ ordersAmount, handleExit }) => {
 
-    const { ROUTES, SIGN_IN } = ADMIN_PANEL_ROUTES;
+    const { ROUTES } = ADMIN_PANEL_ROUTES;
+
     const checkIsLinkActive = ({ isActive }) => (isActive ? s.active : '');
+
     const imagesMap = new Map([
         ['Каталог', <Catalog key={0} className={s.img} />],
         ['Товар', <Goods key={1} className={s.img} />],
         ['Записи', <Registration key={2} className={s.img} />],
         ['Блог', <Blog key={3} className={s.img} />],
     ]);
+
     return (
         <div className={s.navbar}>
             <div className={s.logo}>
@@ -49,10 +51,9 @@ const NavigationPanelDesktop = ({ ordersAmount }) => {
                         )}
                     </NavLink>
                 ))}
-                <Link to={SIGN_IN}>
+                <Link onClick={handleExit}>
                     <Exit />
                     <p>{EXIT}</p>
-                    {showToasterSuccess(SUCCESS_EXIT)}
                 </Link>
             </div>
         </div>
@@ -60,6 +61,7 @@ const NavigationPanelDesktop = ({ ordersAmount }) => {
 };
 
 NavigationPanelDesktop.propTypes = {
-    ordersAmount: PropTypes.number,
+    ordersAmount: PropTypes.number.isRequired,
+    handleExit: PropTypes.func.isRequired,
 };
 export default NavigationPanelDesktop;

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { screen, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -75,8 +74,11 @@ jest.mock('../../../pages/RegistrationSetting/RegistrationSetting', () => ({
 
 
 describe('NavigationPanelDesktop', () => {
+
+    const mockExit = jest.fn();
+
     beforeEach( () => {
-        renderWithRouter(<NavigationPanelDesktop/>);
+        renderWithRouter(<NavigationPanelDesktop ordersAmount={1} handleExit={mockExit}/>);
     });
 
 
@@ -123,7 +125,7 @@ describe('NavigationPanelDesktop', () => {
         const btn = screen.getByText('Выход');
         userEvent.click(btn);
         await waitFor(() => {
-            expect(screen.getByTestId('athorization')).toBeInTheDocument();
+            expect(mockExit).toHaveBeenCalled();
         });
     });
 });
