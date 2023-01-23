@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import s from './FilterDropdown.module.scss';
-import { ReactComponent as ArrowDown } from '../../../../../../common/assets/images/arrowDown.svg';
+import { ReactComponent as ArrowDown } from '../../../../../../../common/assets/images/arrowDown.svg';
 import FilterOption from './FilterOption';
 import PropTypes from 'prop-types';
-import { useSearchParams } from 'react-router-dom';
 
 const FilterDropdown = ({ name, options, setCurrentFilters, currentFilters }) => {
     const [isOpen, setIsOpen] = useState(false);
