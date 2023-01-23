@@ -49,6 +49,7 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
+    "@types/react-router-dom": "^5.3.3",
     "dotenv": "^16.0.3",
     "eslint": "^8.20.0",
     "git-jira-hook": "^1.0.6",
