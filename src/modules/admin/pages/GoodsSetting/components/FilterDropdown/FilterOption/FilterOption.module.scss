@@ -1,0 +1,37 @@
+@import "../../../../../../../common/ui/styles/media-sizes";
+@import "../../../../../../../common/ui/styles/font-sizes";
+@import "../../../../../../../common/ui/styles/colors";
+
+.optionsItem {
+  label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 16px;
+    height: 60px;
+    background-color: $white;
+    p {
+      font-size: $font-size-xlarge-24;
+      margin-left: 10px;
+    }
+    input {
+      display: none;
+    }
+    .empty {
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      background-color: transparent;
+      border: gray 1px solid;
+      display: block;
+    }
+    svg {
+      min-width: 24px;
+    }
+
+    &:hover {
+      background-color: #efefef;
+    }
+  }
+}

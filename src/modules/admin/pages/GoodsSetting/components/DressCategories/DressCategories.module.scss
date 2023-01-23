@@ -1,0 +1,23 @@
+@import "../../../../../../common/ui/styles/media-sizes";
+@import "../../../../../../common/ui/styles/font-sizes";
+@import "../../../../../../common/ui/styles/colors";
+
+.DressCategories {
+  background-color: #eaeaea;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+  height: 72px;
+  width: 100%;
+  p {
+    font-size: $font-size-xlarge-24;
+    color: $gray;
+    cursor: pointer;
+    &.active {
+      color: black;
+      border-bottom: 1.8px solid $brown;
+    }
+  }
+}

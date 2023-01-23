@@ -1,0 +1,43 @@
+@import "../../../../../../common/ui/styles/media-sizes";
+@import "../../../../../../common/ui/styles/font-sizes";
+@import "../../../../../../common/ui/styles/colors";
+
+.FilterDropdown {
+  width: calc((100% - 54px) / 4);
+  background-color: #eaeaea;
+  border: 1px solid $light-gray;
+  height: 60px;
+  cursor: pointer;
+  position: relative;
+  .currentFilter {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: space-between;
+    box-shadow: $shadow-black;
+    p {
+      margin-left: 20px;
+      font-size: $font-size-xlarge-24;
+    }
+
+    svg {
+      width: 12px;
+      height: 6px;
+      margin-right: 26px;
+
+      &.active {
+        transform: rotate(180deg);
+        path {
+          stroke: $brown;
+        }
+      }
+    }
+  }
+
+  .options {
+    box-shadow: $shadow-black;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+  }
+}
