@@ -15,13 +15,13 @@ export const AdminPanelRouts = () => {
             <NavigationPanel/>
             <div className={s.adminPage}>
                 <Routes>
-                    <Route path="/" element={<Navigate to={'catalog-setting'} />} />
-                    <Route path="catalog-setting" element={<CatalogSetting />}/>
-                    <Route path="blog-setting" element={<BlogSetting />}/>
-                    <Route path="goods-setting" element={<GoodsSetting />}/>
+                    <Route path="/" element={<Navigate to={'catalog-setting'}/>}/>
+                    <Route path="catalog-setting" element={<CatalogSetting/>}/>
+                    <Route path="blog-setting" element={<BlogSetting/>}/>
+                    <Route path="goods-setting" element={<GoodsSetting/>}/>
                     <Route
                         path="registration-setting"
-                        element={<RegistrationSetting />}
+                        element={<RegistrationSetting/>}
                     />
                 </Routes>
             </div>
@@ -32,10 +32,10 @@ export const AdminPanelRouts = () => {
 const Admin = () => {
     return (
         <Routes className={s.adminRoutes}>
-            <Route path="/" element={<Navigate to="sign-in" />} />
-            <Route path="/sign-in" element={<SignIn />} />
-            <Route path="/panel/*" element={<AdminPanelRouts />} />
-            <Route path="*" element={<NotFound />} />
+            <Route path="/" element={<Navigate to="sign-in"/>}/>
+            <Route path="/sign-in" element={<SignIn/>}/>
+            <Route path="/panel/*" element={<AdminPanelRouts/>}/>
+            <Route path="*" element={<NotFound/>}/>
         </Routes>
     );
 };

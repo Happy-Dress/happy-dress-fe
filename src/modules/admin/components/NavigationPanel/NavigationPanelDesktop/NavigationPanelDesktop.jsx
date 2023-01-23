@@ -10,9 +10,18 @@ import Typography from '../../../../../common/ui/components/Typography/Typograph
 import { NAVIGATION_PANEL_DICTIONARY } from '../NavigationPanel.dictionary';
 import { ADMIN_PANEL_ROUTES } from '../../../adminRoutes';
 import PropTypes from 'prop-types';
+import { useToasters } from '../../../../../common/ui/contexts/ToastersContext';
+
+const {
+    ADMIN_LOGO,
+    ADMIN_NAV_ITEMS,
+    EXIT,
+    SUCCESS_EXIT,
+} = NAVIGATION_PANEL_DICTIONARY;
 
 const NavigationPanelDesktop = ({ ordersAmount }) => {
-    const { ADMIN_LOGO, ADMIN_NAV_ITEMS, EXIT } = NAVIGATION_PANEL_DICTIONARY;
+    const { showToasterSuccess } = useToasters();
+
     const { ROUTES, SIGN_IN } = ADMIN_PANEL_ROUTES;
     const checkIsLinkActive = ({ isActive }) => (isActive ? s.active : '');
     const imagesMap = new Map([
@@ -43,6 +52,7 @@ const NavigationPanelDesktop = ({ ordersAmount }) => {
                 <Link to={SIGN_IN}>
                     <Exit />
                     <p>{EXIT}</p>
+                    {showToasterSuccess(SUCCESS_EXIT)}
                 </Link>
             </div>
         </div>

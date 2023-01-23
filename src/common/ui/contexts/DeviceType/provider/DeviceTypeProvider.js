@@ -2,7 +2,7 @@ import { DeviceTypeContext } from '../DeviceTypeContext';
 import PropTypes from 'prop-types';
 import { useMediaQuery } from 'react-responsive';
 
-const DeviceTypeProvider = (props) =>{
+const DeviceTypeProvider = (props) => {
 
     const DESKTOP_MIN_SCREEN_SIZE = '1024px';
     const MAX_MOBILE_SIZE='1023px';
