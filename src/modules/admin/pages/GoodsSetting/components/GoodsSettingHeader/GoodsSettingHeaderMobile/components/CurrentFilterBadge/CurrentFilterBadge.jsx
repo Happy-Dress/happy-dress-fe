@@ -6,7 +6,7 @@ import { useSearchParams } from 'react-router-dom';
 
 const CurrentFilterBadge = ({ filters, itemId, itemCategory }) => {
 
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [, setSearchParams] = useSearchParams();
 
     if(!itemId) return;
 
