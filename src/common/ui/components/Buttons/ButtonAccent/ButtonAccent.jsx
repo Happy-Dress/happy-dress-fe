@@ -9,6 +9,7 @@ const ButtonAccent = (props) => {
     const changeState = () => {
         setActive(true);
         setTimeout(() => setActive( false), 200);
+        props.onClick();
     };
 
     return (
@@ -24,6 +25,7 @@ const ButtonAccent = (props) => {
 ButtonAccent.propTypes = {
     text: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
+    onClick: PropTypes.func
 };
 
 export default ButtonAccent;

@@ -1,25 +1,12 @@
 import React, { useState } from 'react';
 import s from './FilterDropdown.module.scss';
-import { ReactComponent as ArrowDown } from '../../../../../../../common/assets/images/arrowDown.svg';
+import { ReactComponent as ArrowDown } from '../../../../../../../../../common/assets/images/arrowDown.svg';
 import FilterOption from './FilterOption';
 import PropTypes from 'prop-types';
+import { formatFiltersName } from '../../../../../helpers/formatFiltersName';
 
 const FilterDropdown = ({ name, options, setCurrentFilters, currentFilters }) => {
     const [isOpen, setIsOpen] = useState(false);
-
-    let formatName = '';
-
-    switch (name) {
-    case 'models':
-        formatName = 'Модель';
-        break;
-    case 'materials':
-        formatName = 'Материал';
-        break;
-    case 'colors':
-        formatName = 'Цвет';
-        break;
-    }
 
     const changeFilter = (id, type) => {
         setCurrentFilters(prevState => {
@@ -44,7 +31,7 @@ const FilterDropdown = ({ name, options, setCurrentFilters, currentFilters }) =>
     return (
         <div className={s.FilterDropdown}>
             <div className={s.currentFilter} onClick={() => setIsOpen(!isOpen)}>
-                <p>{formatName}</p>
+                <p>{formatFiltersName(name)}</p>
                 <ArrowDown className={isOpen ? s.active : ''}/>
             </div>
             <div className={s.options} style={{ display: isOpen ? 'block' : 'none' }}>

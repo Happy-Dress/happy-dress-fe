@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './CurrentFilterBadge.module.scss';
-import { ReactComponent as Cross } from '../../../../../../../common/assets/images/x.svg';
+import { ReactComponent as Cross } from '../../../../../../../../../common/assets/images/x.svg';
 import PropTypes from 'prop-types';
 
 const CurrentFilterBadge = ({ filters, itemId, itemCategory, setCurrentFilters }) => {
