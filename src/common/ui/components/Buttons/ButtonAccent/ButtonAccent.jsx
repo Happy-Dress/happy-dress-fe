@@ -9,7 +9,9 @@ const ButtonAccent = (props) => {
     const changeState = () => {
         setActive(true);
         setTimeout(() => setActive( false), 200);
-        props.onClick();
+        if(props.onClick) {
+            props.onClick();
+        }
     };
 
     return (
