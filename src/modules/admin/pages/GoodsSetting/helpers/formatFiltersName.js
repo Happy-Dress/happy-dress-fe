@@ -8,5 +8,7 @@ export const formatFiltersName = (name) => {
         return  'Цвет';
     case 'categories':
         return  'Категории';
+    default:
+        return '';
     }
 };

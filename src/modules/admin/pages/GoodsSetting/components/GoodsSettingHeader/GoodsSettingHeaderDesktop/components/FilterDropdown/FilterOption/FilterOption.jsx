@@ -27,8 +27,9 @@ const FilterOption = ({ item, changeFilter, isChecked: check }) => {
                     type="checkbox"
                     checked={isChecked}
                     onChange={changeHandler}
+                    placeholder={'checkbox'}
                 />
-                {isChecked ? <Checkbox id={s.filled}/> : <span className={s.empty}/>}
+                {isChecked ? <Checkbox class={s.checkbox}/> : <span className={s.empty}/>}
                 <p>{item.name}</p>
             </label>
         </div>

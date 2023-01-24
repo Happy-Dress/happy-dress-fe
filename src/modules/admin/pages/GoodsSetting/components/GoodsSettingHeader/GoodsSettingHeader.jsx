@@ -10,6 +10,9 @@ const GoodsSettingHeader = () => {
         isMobileHeight,
         isDesktopWidth,
     } = useGoodsMediaQuery();
+
+
+
     return (
         <>
             {isDesktopWidth && !isMobileWidth && <GoodsSettingHeaderDesktop/>}
