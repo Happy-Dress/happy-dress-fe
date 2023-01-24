@@ -1,8 +1,8 @@
 import React from 'react';
 import { act, render, screen, waitFor } from '@testing-library/react';
-import GoodsSettingHeaderDesktop from './GoodsSettingHeaderDesktop';
 import { BrowserRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
+import GoodsSettingHeaderMobile from './GoodsSettingHeaderMobile';
 
 const response = {
     'categories': [
@@ -93,13 +93,14 @@ const response = {
     ]
 };
 
-describe('GoodsSettingHeaderDesktop', () => {
+
+describe('GoodsSettingHeaderMobile', () => {
 
     it('should render correct layout', async () => {
-        const { container } = render(<GoodsSettingHeaderDesktop filters={response}/>, { wrapper: BrowserRouter });
+        const { container } = render(<GoodsSettingHeaderMobile filters={response}/>, { wrapper: BrowserRouter });
         await waitFor(() => {
             const title = screen.getAllByText('Управление товаром');
-            expect(title.length).toBe(2);
+            expect(title.length).toBe(1);
             expect(container.getElementsByClassName('searchContainer').length).toBe(1);
             expect(container.getElementsByClassName('DressCategories').length).toBe(1);
             expect(container.getElementsByClassName('searchBar').length).toBe(1);
@@ -110,15 +111,15 @@ describe('GoodsSettingHeaderDesktop', () => {
 
     it('should have active dress category', async () => {
         window.history.pushState({}, 'Test Title', '/admin/panel/goods-setting?categories=4');
-        const { container } = render(<GoodsSettingHeaderDesktop filters={response}/>, { wrapper: BrowserRouter });
+        const { container } = render(<GoodsSettingHeaderMobile filters={response}/>, { wrapper: BrowserRouter });
         await waitFor(() => {
-            const active = container.getElementsByClassName('active');
-            expect(active.length).toBe(1);
+            const active = container.querySelector('.DressCategories > p');
+            expect(active.textContent).toBe('Свадебные');
         });
     });
 
     it('should open filters section', async () => {
-        const { container } = render(<GoodsSettingHeaderDesktop filters={response}/>, { wrapper: BrowserRouter });
+        const { container } = render(<GoodsSettingHeaderMobile filters={response}/>, { wrapper: BrowserRouter });
         await waitFor(async () => {
             let filters = await container.getElementsByClassName('filters');
 
