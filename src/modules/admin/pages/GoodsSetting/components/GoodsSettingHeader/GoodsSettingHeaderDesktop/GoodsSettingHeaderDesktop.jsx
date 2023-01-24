@@ -2,29 +2,24 @@ import React, { useEffect, useState } from 'react';
 import s from './GoodsSettingHeaderDesktop.module.scss';
 import FilterDropdown from './components/FilterDropdown';
 import { useSearchParams } from 'react-router-dom';
-import { retrieveCatalogueSettings } from '../../../../../../domain/api';
 import DressCategories from './components/DressCategories';
 import CurrentFilterBadge from './components/CurrentFilterBadge';
 import SearchBar from './components/SearchBar';
+import PropTypes from 'prop-types';
 
-const GoodsSettingHeaderDesktop = () => {
+const GoodsSettingHeaderDesktop = ({ filters }) => {
 
     const [searchParams, setSearchParams] = useSearchParams();
 
     const [isOpen, setIsOpen] = useState(false);
-    const [filters, setFilters] = useState();
     const [currentFilters, setCurrentFilters] = useState();
 
 
     useEffect(() => {
-        retrieveCatalogueSettings()
-            .then((settings) => {
-                setFilters(settings);
-                setCurrentFilters(() => {
-                    const params = new URLSearchParams(searchParams.toString()).entries();
-                    return Object.fromEntries(params);
-                });
-            });
+        setCurrentFilters(() => {
+            const params = new URLSearchParams(searchParams.toString()).entries();
+            return Object.fromEntries(params);
+        });
     }, []);
 
     useEffect(() => {
@@ -34,10 +29,8 @@ const GoodsSettingHeaderDesktop = () => {
         }
     }, [currentFilters]);
 
+    if(!currentFilters) return;
 
-    if (!filters) {
-        return <p>Loader</p>;
-    }
     return (
         <>
             <div className={s.Way}>Управление товаром</div>
@@ -78,6 +71,10 @@ const GoodsSettingHeaderDesktop = () => {
             </div>
         </>
     );
+};
+
+GoodsSettingHeaderDesktop.propTypes = {
+    filters: PropTypes.object.isRequired
 };
 
 export default GoodsSettingHeaderDesktop;

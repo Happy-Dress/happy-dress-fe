@@ -5,34 +5,24 @@ import SearchBar from './components/SearchBar';
 import FilterDropdown from './components/FilterDropdown';
 import CurrentFilterBadge from './components/CurrentFilterBadge';
 import { useSearchParams } from 'react-router-dom';
-import { retrieveCatalogueSettings } from '../../../../../../domain/api';
 import { ButtonAccent } from '../../../../../../../common/ui/components';
+import PropTypes from 'prop-types';
 
-const GoodsSettingHeaderMobile = () => {
-
+const GoodsSettingHeaderMobile = ({ filters }) => {
     const [searchParams, setSearchParams] = useSearchParams();
 
     const [isOpen, setIsOpen] = useState(false);
-    const [filters, setFilters] = useState();
     const [currentFilters, setCurrentFilters] = useState();
 
 
     useEffect(() => {
-        retrieveCatalogueSettings()
-            .then((settings) => {
-                setFilters(settings);
-                setCurrentFilters(() => {
-                    const params = new URLSearchParams(searchParams.toString()).entries();
-                    return Object.fromEntries(params);
-                });
-                setSearchParams(prev => {
-                    if(!prev.has('categories')) {
-                        prev.set('categories', settings.categories[0].id);
-                        return prev.toString();
-                    }
-                    return prev.toString();
-                });
-            });
+        setSearchParams(prev => {
+            if(!prev.has('categories')) {
+                prev.set('categories', filters.categories[0].id);
+                return prev.toString();
+            }
+            return prev.toString();
+        });
     }, []);
 
     useEffect(() => {
@@ -47,9 +37,7 @@ const GoodsSettingHeaderMobile = () => {
         setSearchParams(queryString);
     };
 
-    if (!filters) {
-        return <p>Loader</p>;
-    }
+    if (!currentFilters) return;
 
     return (
         <>
@@ -89,6 +77,10 @@ const GoodsSettingHeaderMobile = () => {
             </div>
         </>
     );
+};
+
+GoodsSettingHeaderMobile.propTypes = {
+    filters: PropTypes.object.isRequired
 };
 
 export default GoodsSettingHeaderMobile;

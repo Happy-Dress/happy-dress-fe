@@ -2,7 +2,7 @@
 @import "../../../../../../../common/ui/styles/font-sizes";
 @import "../../../../../../../common/ui/styles/colors";
 
-h2{
+h2 {
   margin: 0 auto 43px;
   min-height: 60px;
   padding: 0 20px 20px;
@@ -13,6 +13,7 @@ h2{
 @media screen and (max-width: $md-size){
   h2{
     margin: 0 auto 60px;
+    font-size: 30px !important;
   }
 }
 
@@ -25,12 +26,12 @@ h2{
     min-height: 40px;
   }
   h3{
-    font-size: 22px;
+    font-size: 22px !important;
   }
 }
 @media screen and (max-width: $xs-size) {
   h2{
-    font-size: 24px;
+    font-size: 24px !important;
     padding: 0;
     width: 100%;
     text-align: center;
@@ -39,7 +40,7 @@ h2{
 
 .searchContainer {
   width: calc(100%);
-  padding: 0 30px;
+  padding: 0 28px;
   margin: 0 auto;
 
   .searchBar {
