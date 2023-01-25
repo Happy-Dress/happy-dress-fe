@@ -4,7 +4,7 @@ import Categories from './Categories';
 import { waitFor } from '@testing-library/dom';
 
 
-jest.mock('../../../api/catalogueSettings/retrieveCatalogueSettings', () =>({
+jest.mock('../../../../../common/api/catalogueSettings/retrieveCatalogueSettings', () =>({
     __esModule: true,
     default: () => Promise.resolve({ settings: [] }),
 }));

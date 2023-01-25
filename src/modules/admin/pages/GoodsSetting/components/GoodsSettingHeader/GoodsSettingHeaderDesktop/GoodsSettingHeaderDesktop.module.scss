@@ -1,0 +1,50 @@
+@import "../../../../../../../common/ui/styles/media-sizes";
+@import "../../../../../../../common/ui/styles/font-sizes";
+@import "../../../../../../../common/ui/styles/colors";
+
+.Way{
+  color: $light-gray;
+  margin-bottom: 15px;
+}
+
+.title {
+  margin: 0 auto 43px;
+  min-height: 60px;
+  padding: 0 20px 20px;
+  border-bottom: 1px solid $brown;
+  text-align: center;
+}
+
+.searchContainer {
+  width: calc(100%);
+  padding: 0 140px 0 100px;
+  margin: 0 auto;
+
+  .searchBar {
+    margin-top: 10px;
+    background-color: $white;
+
+    .filters {
+      margin-top: 24px;
+      display: flex;
+      gap: 18px;
+    }
+
+    &.active {
+      padding: 25px 92px 14px 36px;
+      box-shadow: $shadow-black;
+    }
+  }
+
+  .currentFilters {
+    margin-top: 18px;
+    display: flex;
+    column-gap: 32px;
+    row-gap: 16px;
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+  @media screen and (max-width: $xl-size) {
+    padding: 0 120px 0 80px;
+  }
+}
