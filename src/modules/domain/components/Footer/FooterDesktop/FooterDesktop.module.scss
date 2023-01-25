@@ -6,21 +6,10 @@
   display: flex;
   flex-direction: column;
   padding: 0 7%;
-
-  @media screen and (max-width: $lg-size) {
-    display: none;
-  }
 }
 
 .Footer {
   border-bottom: 1.8px solid $brown;
-
-  @media screen and (max-width: $lg-size) {
-    display: flex;
-    flex-direction: column;
-    padding-left: 0;
-    padding-bottom: 0;
-  }
 
   display: flex;
   width: 100%;
@@ -30,27 +19,12 @@
 
   &_title {
     margin-right: 7vw;
-    @media screen and (max-width: $lg-size) {
-      padding-bottom: 25px;
-      border-bottom: 1.8px solid $brown;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
   }
 
   &_logo {
     font-weight: 700;
     font-size: 36px;
     cursor: pointer;
-
-    @media screen and (max-width: $lg-size) {
-      font-size: 32px;
-    }
-
-    @media screen and (max-width: $lg-size) {
-      font-size: 24px;
-    }
 
     @media screen and (max-width: $xl-size) {
       font-size: 24px;
@@ -108,15 +82,6 @@
         text-decoration: underline 1.8px solid $brown;
       }
     }
-
-    @media screen and (max-width: $lg-size) {
-      display: flex;
-      flex-direction: column;
-
-      & li:nth-child(2n) {
-        padding: 20px 0;
-      }
-    }
   }
 
   &_right_side {
@@ -124,15 +89,6 @@
     flex-direction: column;
     align-items: flex-end;
     width: 100%;
-
-
-    @media screen and (max-width: $lg-size) {
-      padding-right: 0;
-      display: flex;
-      align-items: center;
-
-      border-top: 1.8px solid $brown;
-    }
 
     &_hanger {
       width: 21.86px;
@@ -194,11 +150,6 @@
       justify-content: flex-end;
       width: 100%;
 
-      @media screen and (max-width: $lg-size) {
-        display: flex;
-        justify-content: center;
-      }
-
 
     }
   }
@@ -215,19 +166,6 @@
       text-decoration-line: none;
       margin-bottom: 40px;
 
-      @media screen and (max-width: $lg-size) {
-        font-size: 24px;
-      }
-
-    }
-
-    @media screen and (max-width: $lg-size) {
-      display: none;
-
-      &_menu {
-        display: flex;
-        justify-content: center;
-      }
     }
 
     @media screen and (max-width: $xl-size) {
