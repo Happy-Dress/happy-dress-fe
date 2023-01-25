@@ -2,7 +2,7 @@
 @import "../../../../../../../common/ui/styles/font-sizes";
 @import "../../../../../../../common/ui/styles/colors";
 
-h2 {
+#title {
   margin: 0 auto 43px;
   min-height: 60px;
   padding: 0 20px 20px;
@@ -11,14 +11,14 @@ h2 {
 }
 
 @media screen and (max-width: $md-size){
-  h2{
+  #title {
     margin: 0 auto 60px;
-    font-size: 30px !important;
+    font-size: 30px;
   }
 }
 
 @media screen and (max-width: $sm-size) {
-  h2{
+  #title {
     font-size: 30px;
     padding: 0;
     width: 100%;
@@ -30,7 +30,7 @@ h2 {
   }
 }
 @media screen and (max-width: $xs-size) {
-  h2{
+  #title {
     font-size: 24px !important;
     padding: 0;
     width: 100%;

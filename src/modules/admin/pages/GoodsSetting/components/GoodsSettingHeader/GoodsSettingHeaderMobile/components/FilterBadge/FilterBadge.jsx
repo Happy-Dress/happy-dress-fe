@@ -1,10 +1,10 @@
 import React from 'react';
-import s from './CurrentFilterBadge.module.scss';
+import s from './FilterBadge.module.scss';
 import { ReactComponent as Cross } from '../../../../../../../../../common/assets/images/x.svg';
 import PropTypes from 'prop-types';
 import { useSearchParams } from 'react-router-dom';
 
-const CurrentFilterBadge = ({ filters, itemId, itemCategory }) => {
+const FilterBadge = ({ filters, itemId, itemCategory }) => {
 
     const [, setSearchParams] = useSearchParams();
 
@@ -35,17 +35,17 @@ const CurrentFilterBadge = ({ filters, itemId, itemCategory }) => {
     };
 
     return (
-        <div className={s.CurrentFiltersItem}>
+        <div className={s.FilterBadge}>
             <p>{filterName()}</p>
             <Cross onClick={deleteHandler}/>
         </div>
     );
 };
 
-CurrentFilterBadge.propTypes = {
+FilterBadge.propTypes = {
     filters: PropTypes.object.isRequired,
     itemId: PropTypes.string.isRequired,
     itemCategory: PropTypes.string.isRequired
 };
 
-export default CurrentFilterBadge;
+export default FilterBadge;

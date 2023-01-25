@@ -1,5 +1,5 @@
-const GOODS_SETTINGS_DICTIONARY = {
-    GOODS_SETTINGS_TITLE: 'Управление товаром',
+const GOODS_SETTING_DICTIONARY = {
+    GOODS_SETTING_TITLE: 'Управление товаром',
 };
 
-export { GOODS_SETTINGS_DICTIONARY };
+export { GOODS_SETTING_DICTIONARY };

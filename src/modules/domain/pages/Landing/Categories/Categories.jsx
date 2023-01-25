@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CategoriesDesktop from './CategoriesDesktop';
 import CategoriesMobile from './CategoriesMobile/CategoriesMobile';
-import retrieveCatalogueSettings from '../../../api/catalogueSettings/retrieveCatalogueSettings';
+import retrieveCatalogueSettings from '../../../../../common/api/catalogueSettings/retrieveCatalogueSettings';
 import adaptive from '../../../../../common/ui/hocs/adaptive';
 
 const Categories = () => {

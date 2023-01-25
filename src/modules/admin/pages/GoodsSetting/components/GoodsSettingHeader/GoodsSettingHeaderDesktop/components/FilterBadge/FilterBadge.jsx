@@ -1,9 +1,9 @@
 import React from 'react';
-import s from './CurrentFilterBadge.module.scss';
+import s from './FilterBadge.module.scss';
 import { ReactComponent as Cross } from '../../../../../../../../../common/assets/images/x.svg';
 import PropTypes from 'prop-types';
 
-const CurrentFilterBadge = ({ filters, itemId, itemCategory, setCurrentFilters }) => {
+const FilterBadge = ({ filters, itemId, itemCategory, setCurrentFilters }) => {
 
     if(!itemId) return;
 
@@ -21,18 +21,18 @@ const CurrentFilterBadge = ({ filters, itemId, itemCategory, setCurrentFilters }
     };
 
     return (
-        <div className={s.CurrentFiltersItem}>
+        <div className={s.FilterBadge}>
             <p>{filters[itemCategory].filter(obj => obj.id === Number(itemId))[0].name}</p>
             <Cross onClick={deleteHandler}/>
         </div>
     );
 };
 
-CurrentFilterBadge.propTypes = {
+FilterBadge.propTypes = {
     filters: PropTypes.object.isRequired,
     itemId: PropTypes.string.isRequired,
     itemCategory: PropTypes.string.isRequired,
     setCurrentFilters: PropTypes.func.isRequired
 };
 
-export default CurrentFilterBadge;
+export default FilterBadge;

@@ -3,10 +3,13 @@ import s from './GoodsSettingHeaderMobile.module.scss';
 import DressCategories from './components/DressCategories';
 import SearchBar from './components/SearchBar';
 import FilterDropdown from './components/FilterDropdown';
-import CurrentFilterBadge from './components/CurrentFilterBadge';
+import FilterBadge from './components/FilterBadge';
 import { useSearchParams } from 'react-router-dom';
 import { ButtonAccent } from '../../../../../../../common/ui/components';
 import PropTypes from 'prop-types';
+import { GOODS_SETTING_DICTIONARY } from '../../../GoodsSetting.dictionary';
+
+const { GOODS_SETTING_TITLE } = GOODS_SETTING_DICTIONARY;
 
 const GoodsSettingHeaderMobile = ({ filters }) => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -41,7 +44,7 @@ const GoodsSettingHeaderMobile = ({ filters }) => {
 
     return (
         <>
-            <h2>Управление товаром</h2>
+            <h2 id={s.title}>{GOODS_SETTING_TITLE}</h2>
             <div className={s.searchContainer}>
                 <DressCategories
                     category={(filters.categories && searchParams.get('categories')) ? filters.categories.filter(item => String(item.id) === String(searchParams.get('categories')))[0].name : ''}
@@ -63,7 +66,7 @@ const GoodsSettingHeaderMobile = ({ filters }) => {
                             if (key === 'categories') return;
                             return currentFilters[key].split(',').map(item => {
                                 return (
-                                    <CurrentFilterBadge
+                                    <FilterBadge
                                         key={item}
                                         itemCategory={key}
                                         itemId={item}

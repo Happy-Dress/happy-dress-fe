@@ -111,7 +111,7 @@ const response = {
     ]
 };
 
-jest.mock('../../../../../domain/api/catalogueSettings/retrieveCatalogueSettings', () =>({
+jest.mock('../../../../../../common/api/catalogueSettings/retrieveCatalogueSettings', () =>({
     __esModule: true,
     default: () => Promise.resolve({ ...response }),
 }));

@@ -3,9 +3,12 @@ import s from './GoodsSettingHeaderDesktop.module.scss';
 import FilterDropdown from './components/FilterDropdown';
 import { useSearchParams } from 'react-router-dom';
 import DressCategories from './components/DressCategories';
-import CurrentFilterBadge from './components/CurrentFilterBadge';
+import FilterBadge from './components/FilterBadge';
 import SearchBar from './components/SearchBar';
 import PropTypes from 'prop-types';
+import { GOODS_SETTING_DICTIONARY } from '../../../GoodsSetting.dictionary';
+
+const { GOODS_SETTING_TITLE } = GOODS_SETTING_DICTIONARY;
 
 const GoodsSettingHeaderDesktop = ({ filters }) => {
 
@@ -34,7 +37,7 @@ const GoodsSettingHeaderDesktop = ({ filters }) => {
     return (
         <>
             <div className={s.Way}>Управление товаром</div>
-            <h2>Управление товаром</h2>
+            <h2 id={s.title}>{GOODS_SETTING_TITLE}</h2>
             <div className={s.searchContainer}>
                 <DressCategories
                     categories={filters.categories}
@@ -56,7 +59,7 @@ const GoodsSettingHeaderDesktop = ({ filters }) => {
                             if (key === 'categories') return;
                             return currentFilters[key].split(',').map(item => {
                                 return (
-                                    <CurrentFilterBadge
+                                    <FilterBadge
                                         key={item}
                                         itemCategory={key}
                                         itemId={item}

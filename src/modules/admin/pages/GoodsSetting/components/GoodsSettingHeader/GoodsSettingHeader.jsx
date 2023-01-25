@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import useGoodsMediaQuery from '../../hooks/useGoodsMediaQuery';
 import GoodsSettingHeaderDesktop from './GoodsSettingHeaderDesktop';
 import GoodsSettingHeaderMobile from './GoodsSettingHeaderMobile';
-import retrieveCatalogueSettings from '../../../../../domain/api/catalogueSettings/retrieveCatalogueSettings';
+import retrieveCatalogueSettings from '../../../../../../common/api/catalogueSettings/retrieveCatalogueSettings';
 
 
 const GoodsSettingHeader = () => {

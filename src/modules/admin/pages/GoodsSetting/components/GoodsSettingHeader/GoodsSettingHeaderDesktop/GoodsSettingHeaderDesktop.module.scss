@@ -7,7 +7,7 @@
   margin-bottom: 15px;
 }
 
-h2{
+#title {
   margin: 0 auto 43px;
   min-height: 60px;
   padding: 0 20px 20px;
@@ -16,7 +16,7 @@ h2{
 }
 
 @media screen and (max-width: $md-size){
-  h2{
+  #title {
     margin: 0 auto 60px;
   }
 }
@@ -25,7 +25,7 @@ h2{
   .Way{
     display: none;
   }
-  h2{
+  #title {
     font-size: 30px;
     padding: 0;
     width: 100%;
@@ -41,7 +41,7 @@ h2{
     display: none;
   }
 
-  h2{
+  .title {
     font-size: 24px;
     padding: 0;
     width: 100%;
@@ -55,7 +55,7 @@ h2{
 
 .searchContainer {
   width: calc(100%);
-  padding: 0 55px;
+  padding: 0 140px 0 100px;
   margin: 0 auto;
 
   .searchBar {
@@ -82,5 +82,7 @@ h2{
     max-width: 100%;
     flex-wrap: wrap;
   }
-
+  @media screen and (max-width: $xl-size) {
+    padding: 0 120px 0 80px;
+  }
 }
