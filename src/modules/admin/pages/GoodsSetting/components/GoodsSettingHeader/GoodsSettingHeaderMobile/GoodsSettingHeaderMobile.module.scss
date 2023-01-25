@@ -2,36 +2,28 @@
 @import "../../../../../../../common/ui/styles/font-sizes";
 @import "../../../../../../../common/ui/styles/colors";
 
-#title {
+.title {
   margin: 0 auto 43px;
   min-height: 60px;
   padding: 0 20px 20px;
   border-bottom: 1px solid $brown;
   text-align: center;
-}
 
-@media screen and (max-width: $md-size){
-  #title {
+  @media screen and (max-width: $md-size) {
     margin: 0 auto 60px;
     font-size: 30px;
   }
-}
 
-@media screen and (max-width: $sm-size) {
-  #title {
+  @media screen and (max-width: $sm-size) {
     font-size: 30px;
     padding: 0;
     width: 100%;
     margin: 0 0 20px;
     min-height: 40px;
   }
-  h3{
-    font-size: 22px !important;
-  }
-}
-@media screen and (max-width: $xs-size) {
-  #title {
-    font-size: 24px !important;
+
+  @media screen and (max-width: $xs-size) {
+    font-size: 24px;
     padding: 0;
     width: 100%;
     text-align: center;

@@ -7,50 +7,12 @@
   margin-bottom: 15px;
 }
 
-#title {
+.title {
   margin: 0 auto 43px;
   min-height: 60px;
   padding: 0 20px 20px;
   border-bottom: 1px solid $brown;
   text-align: center;
-}
-
-@media screen and (max-width: $md-size){
-  #title {
-    margin: 0 auto 60px;
-  }
-}
-
-@media screen and (max-width: $sm-size) {
-  .Way{
-    display: none;
-  }
-  #title {
-    font-size: 30px;
-    padding: 0;
-    width: 100%;
-    margin: 0 0 20px;
-    min-height: 40px;
-  }
-  h3{
-    font-size: 22px;
-  }
-}
-@media screen and (max-width: $xs-size) {
-  .Way{
-    display: none;
-  }
-
-  .title {
-    font-size: 24px;
-    padding: 0;
-    width: 100%;
-    text-align: center;
-  }
-
-  h3{
-    font-size: 16px;
-  }
 }
 
 .searchContainer {

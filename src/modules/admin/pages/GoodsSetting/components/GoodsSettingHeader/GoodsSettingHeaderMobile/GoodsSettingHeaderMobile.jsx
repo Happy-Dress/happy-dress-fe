@@ -44,7 +44,7 @@ const GoodsSettingHeaderMobile = ({ filters }) => {
 
     return (
         <>
-            <h2 id={s.title}>{GOODS_SETTING_TITLE}</h2>
+            <h2 className={s.title}>{GOODS_SETTING_TITLE}</h2>
             <div className={s.searchContainer}>
                 <DressCategories
                     category={(filters.categories && searchParams.get('categories')) ? filters.categories.filter(item => String(item.id) === String(searchParams.get('categories')))[0].name : ''}

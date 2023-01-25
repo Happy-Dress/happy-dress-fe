@@ -37,7 +37,7 @@ const GoodsSettingHeaderDesktop = ({ filters }) => {
     return (
         <>
             <div className={s.Way}>Управление товаром</div>
-            <h2 id={s.title}>{GOODS_SETTING_TITLE}</h2>
+            <h2 className={s.title}>{GOODS_SETTING_TITLE}</h2>
             <div className={s.searchContainer}>
                 <DressCategories
                     categories={filters.categories}
