@@ -5,14 +5,14 @@ import { useToasters } from '../../ui/contexts/ToastersContext';
 const PrivateRoutes = (props) => {
 
     const { showToasterError } = useToasters();
-    const isAuth = !!localStorage?.Authorization;
+    const isUserAuthenticated = !!localStorage?.Authorization;
 
-    if (!isAuth && props?.errorMessage){
+    if (!isUserAuthenticated && props?.errorMessage){
         showToasterError(props.errorMessage);
     }
 
     return(
-        isAuth ? <Outlet/> : <Navigate to="/admin/sign-in"/>
+        isUserAuthenticated ? <Outlet/> : <Navigate to="/admin/sign-in"/>
     );
 };
 
