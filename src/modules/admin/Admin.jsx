@@ -8,8 +8,11 @@ import RegistrationSetting from './pages/RegistrationSetting/RegistrationSetting
 import BlogSetting from './pages/BlogSetting/BlogSetting';
 import NotFound from './pages/NotFound';
 import s from './Admin.module.scss';
+import PrivateRoutes from '../../common/util/routers/ProtectedRoutes';
 
-export const AdminPanelRouts = () => {
+const RETRY_SIGN_IN = 'Выполните вход';
+
+export const AdminPanelRoutes = () => {
     return (
         <div className={s.adminRoutes}>
             <NavigationPanel/>
@@ -34,7 +37,9 @@ const Admin = () => {
         <Routes className={s.adminRoutes}>
             <Route path="/" element={<Navigate to="sign-in"/>}/>
             <Route path="/sign-in" element={<SignIn/>}/>
-            <Route path="/panel/*" element={<AdminPanelRouts/>}/>
+            <Route element={<PrivateRoutes errorMessage={RETRY_SIGN_IN}/>}>
+                <Route path="/panel/*" element={<AdminPanelRoutes/>}/>
+            </Route>
             <Route path="*" element={<NotFound/>}/>
         </Routes>
     );
