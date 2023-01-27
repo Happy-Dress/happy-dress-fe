@@ -1,8 +1,18 @@
-@import "../../styles/media-sizes";
+@import "../../common/ui/styles/media-sizes";
 
 .adminRoutes {
+    width: 100%;
     display: flex;
+
+    @media screen and (max-width: calc($lg-size - 1px)) {
+        flex-direction: column;
+    }
+}
+
+.adminPage{
+    min-height: 100vh;
+    width: 100%;
     @media screen and (max-width: $lg-size) {
-         flex-direction: column;
+        min-height: 80vh;
     }
 }

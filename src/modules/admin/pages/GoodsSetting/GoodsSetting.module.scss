@@ -1,2 +1,7 @@
-@import "../../../../styles/media-sizes";
-@import "../../../../styles/colors";
+.GoodsSetting {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  padding: 25px 25px 0;
+}

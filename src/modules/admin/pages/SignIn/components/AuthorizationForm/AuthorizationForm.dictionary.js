@@ -5,10 +5,10 @@ const AUTHORIZATION_FORM_DICTIONARY = {
     BUTTON_ENTER_LABEL: 'Войти',
     TOO_SHORT_LOGIN_MESSAGE: 'Слишком короткое имя',
     TOO_LONG_LOGIN_MESSAGE: 'Слишком длинное имя',
-    WRONG_LOGIN: 'Неверное имя',
     TOO_SHORT_PASSWORD_MESSAGE: 'Слишком короткий пароль',
     TOO_LONG_PASSWORD_MESSAGE: 'Слишком длинный пароль',
-    WRONG_PASSWORD: 'Неверный пароль',
+    WRONG_DATA: 'Неверный логин или пароль',
+    SUCCESS_SING_IN: 'Успешный вход',
 };
 
 export { AUTHORIZATION_FORM_DICTIONARY };

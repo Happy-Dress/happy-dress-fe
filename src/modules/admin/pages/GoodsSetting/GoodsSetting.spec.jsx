@@ -1,18 +1,22 @@
-
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import GoodsSetting from './index';
 
-jest.mock('./GoodsSetting', ()=>({
+jest.mock('./components/GoodsSettingHeader', () => ({
     __esModule: true,
-    default: ()=>{
-        return <div  data-testid="goods-page"/>;
+    default: () => {
+        return <div data-testid="goods-setting-header"/>;
     }
 }));
+
 describe('GoodsSetting', () => {
     it('should render correctly', async () => {
-        render(<GoodsSetting />);
-        const page = screen.getByTestId('goods-page');
-        expect(page).toBeInTheDocument();
+        render(<GoodsSetting/>);
+
+        const goodsSettingHeader = screen.getByTestId('goods-setting-header');
+
+        await waitFor(() => {
+            expect(goodsSettingHeader).toBeInTheDocument();
+        });
     });
 });

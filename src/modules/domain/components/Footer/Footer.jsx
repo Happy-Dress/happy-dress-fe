@@ -1,18 +1,11 @@
 import React from 'react';
 import FooterDesktop from './FooterDesktop/FooterDesktop';
 import FooterMobile from './FooterMobile/FooterMobile';
-import { useDeviceTypeContext } from '../../../../common/contexts/DeviceType';
+import adaptive from '../../../../common/ui/hocs/adaptive';
 
 const Footer = () => {
-
-    const { isDesktop, isMobile } = useDeviceTypeContext();
-
-    return (
-        <>
-            {isDesktop && <FooterDesktop />}
-            {isMobile &&  <FooterMobile />}
-        </>
-    );
+    const AdaptiveFooter = adaptive(FooterDesktop, FooterMobile);
+    return <AdaptiveFooter/>;
 };
 
 export default Footer;

@@ -1,10 +1,11 @@
 import React from 'react';
 import s from './FooterMobile.module.scss';
-import instagram from '../../../../../assets/images/inst.svg';
-import vk from '../../../../../assets/images/vk.svg';
-import telegram from '../../../../../assets/images/tg.svg';
+import instagram from '../../../../../common/assets/images/inst.svg';
+import vk from '../../../../../common/assets/images/vk.svg';
+import telegram from '../../../../../common/assets/images/tg.svg';
 import { FOOTER_DICTIONARY } from '../Footer.dictionary';
-import Typography from '../../../../../common/components/Typography/Typography';
+import { Typography } from '../../../../../common/ui/components';
+
 const {
     FOOTER_LOGO,
     FOOTER_MOBILE_NAV_ITEMS,
@@ -32,13 +33,17 @@ const FooterMobile = () => {
                 </ul>
                 <div className={s.FooterMobile_right_side}>
                     <div className={s.FooterMobile_right_side_text}>
-                        <Typography classNames={[s.FooterMobile_right_side_phone]}>{PHONE_NUMBER}</Typography>
-                        <Typography classNames={[s.FooterMobile_right_side_email]}>{FOOTER_EMAIL}</Typography>
+                        <Typography classNames={[s.FooterMobile_right_side_phone]}>
+                            <a href={`tel:${PHONE_NUMBER}`}>{PHONE_NUMBER}</a>
+                        </Typography>
+                        <Typography classNames={[s.FooterMobile_right_side_email]}>
+                            <a href={`mailto:${FOOTER_EMAIL}`}>{FOOTER_EMAIL}</a>
+                        </Typography>
                     </div>
                     <div className={s.FooterMobile_right_side_menu}>
-                        <img className={s.FooterMobile_right_side_hanger} src={instagram} alt="instagram" />
-                        <img className={s.FooterMobile_right_side_hanger} src={vk} alt="vk" />
-                        <img className={s.FooterMobile_right_side_hanger} src={telegram} alt="telegram" />
+                        <img className={s.FooterMobile_right_side_hanger} src={instagram} alt="instagram"/>
+                        <img className={s.FooterMobile_right_side_hanger} src={vk} alt="vk"/>
+                        <img className={s.FooterMobile_right_side_hanger} src={telegram} alt="telegram"/>
                     </div>
                 </div>
 

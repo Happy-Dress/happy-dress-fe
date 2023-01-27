@@ -25,6 +25,8 @@
         "react"
     ],
     "rules": {
+        "react/display-name": "off",
+        "no-debugger":"warn",
         "indent": [
             "error",
             4

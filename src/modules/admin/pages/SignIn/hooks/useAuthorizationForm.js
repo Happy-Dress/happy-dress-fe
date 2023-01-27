@@ -5,12 +5,15 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import authenticateUser from '../../../api/authenticateUser';
 import { useNavigate } from 'react-router-dom';
+import { useToasters } from '../../../../../common/ui/contexts/ToastersContext';
+
 
 const {
     TOO_SHORT_LOGIN_MESSAGE,
     TOO_LONG_LOGIN_MESSAGE,
     TOO_SHORT_PASSWORD_MESSAGE,
     TOO_LONG_PASSWORD_MESSAGE,
+    SUCCESS_SING_IN,
 } = AUTHORIZATION_FORM_DICTIONARY;
 
 const MIN_CREDS_LENGTH = 4;
@@ -27,6 +30,7 @@ const useAuthorizationForm = () => {
 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const navigate = useNavigate();
+    const { showToasterError, showToasterSuccess } = useToasters();
 
     const { register, setError, formState: { errors, isValid }, handleSubmit } = useForm({
         mode: 'onBlur',
@@ -38,9 +42,9 @@ const useAuthorizationForm = () => {
             const token = await authenticateUser(credentials);
             localStorage.setItem('Authorization', `Bearer ${token}`);
             navigate('/admin/panel/catalog-setting');
-        } catch (e) {
-            // TODO handle error with alert notifications
-            console.log(e);
+            showToasterSuccess(SUCCESS_SING_IN);
+        } catch (message) {
+            showToasterError(message);
         }
     };
 

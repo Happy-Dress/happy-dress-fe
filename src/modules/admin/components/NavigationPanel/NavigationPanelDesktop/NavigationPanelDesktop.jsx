@@ -1,26 +1,37 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { ReactComponent as Exit } from '../../../../../assets/images/exit.svg';
-import { ReactComponent as Catalog } from '../../../../../assets/images/catalog.svg';
-import { ReactComponent as Goods } from '../../../../../assets/images/goods.svg';
-import { ReactComponent as Registration } from '../../../../../assets/images/registration.svg';
-import { ReactComponent as Blog } from '../../../../../assets/images/blog.svg';
+import { ReactComponent as Exit } from '../../../../../common/assets/images/exit.svg';
+import { ReactComponent as Catalog } from '../../../../../common/assets/images/catalog.svg';
+import { ReactComponent as Goods } from '../../../../../common/assets/images/goods.svg';
+import { ReactComponent as Registration } from '../../../../../common/assets/images/registration.svg';
+import { ReactComponent as Blog } from '../../../../../common/assets/images/blog.svg';
 import s from './NavigationPanelDesktop.module.scss';
-import Typography from '../../../../../common/components/Typography/Typography';
+import Typography from '../../../../../common/ui/components/Typography/Typography';
 import { NAVIGATION_PANEL_DICTIONARY } from '../NavigationPanel.dictionary';
 import { ADMIN_PANEL_ROUTES } from '../../../adminRoutes';
 import PropTypes from 'prop-types';
 
-const NavigationPanelDesktop = ({ ordersAmount }) => {
-    const { ADMIN_LOGO, ADMIN_NAV_ITEMS, EXIT } = NAVIGATION_PANEL_DICTIONARY;
-    const { ROUTES, SIGN_IN } = ADMIN_PANEL_ROUTES;
+
+const {
+    ADMIN_LOGO,
+    ADMIN_NAV_ITEMS,
+    EXIT,
+
+} = NAVIGATION_PANEL_DICTIONARY;
+
+const NavigationPanelDesktop = ({ ordersAmount, handleExit }) => {
+
+    const { ROUTES } = ADMIN_PANEL_ROUTES;
+
     const checkIsLinkActive = ({ isActive }) => (isActive ? s.active : '');
+
     const imagesMap = new Map([
-        ['Каталог', <Catalog key={Math.random() * 1000} className={s.img} />],
-        ['Товар', <Goods key={Math.random() * 1000} className={s.img} />],
-        ['Записи', <Registration key={Math.random() * 1000} className={s.img} />],
-        ['Блог', <Blog key={Math.random() * 1000} className={s.img} />],
+        ['Каталог', <Catalog key={0} className={s.img} />],
+        ['Товар', <Goods key={1} className={s.img} />],
+        ['Записи', <Registration key={2} className={s.img} />],
+        ['Блог', <Blog key={3} className={s.img} />],
     ]);
+
     return (
         <div className={s.navbar}>
             <div className={s.logo}>
@@ -40,7 +51,7 @@ const NavigationPanelDesktop = ({ ordersAmount }) => {
                         )}
                     </NavLink>
                 ))}
-                <Link to={SIGN_IN}>
+                <Link onClick={handleExit}>
                     <Exit />
                     <p>{EXIT}</p>
                 </Link>
@@ -50,6 +61,7 @@ const NavigationPanelDesktop = ({ ordersAmount }) => {
 };
 
 NavigationPanelDesktop.propTypes = {
-    ordersAmount: PropTypes.number,
+    ordersAmount: PropTypes.number.isRequired,
+    handleExit: PropTypes.func.isRequired,
 };
 export default NavigationPanelDesktop;

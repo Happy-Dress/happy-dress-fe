@@ -1,41 +1,54 @@
-
+import React from 'react';
 import { screen, render, waitFor } from '@testing-library/react';
 import NavigationPanel from './NavigationPanel';
-import { useDeviceTypeContext } from '../../../../common/contexts/DeviceType';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import CatalogSetting from '../../pages/CatalogSettings/CatalogSettings';
+import BlogSetting from '../../pages/BlogSetting';
+import GoodsSetting from '../../pages/GoodsSetting';
+import RegistrationSetting from '../../pages/RegistrationSetting';
+import SignIn from '../../pages/SignIn';
 
 
-jest.mock('./NavigationPanelDesktop/NavigationPanelDesktop', () => ({
+jest.mock('../../../../common/ui/hocs/adaptive', () => ({
     __esModule: true,
-    default: () => <div>Navigation Panel Desktop</div>
+    default: () => () => <div>Navigation Panel</div>
 }));
 
-jest.mock('./NavigationPanelMobile/NavigationPanelMobile', () => ({
-    __esModule: true,
-    default: () => <div>Navigation Panel Mobile</div>
-}));
-
-jest.mock('../../../../common/contexts/DeviceType', () =>({
-    useDeviceTypeContext: jest.fn()
-}));
-
+export const renderWithRouter = (component) => {
+    render(
+        <MemoryRouter>
+            {component}
+            <Routes>
+                <Route
+                    path="/admin/panel/catalog-setting"
+                    element={<CatalogSetting />}
+                />
+                <Route
+                    path="/admin/panel/blog-setting"
+                    element={<BlogSetting />}
+                />
+                <Route
+                    path="/admin/panel/goods-setting"
+                    element={<GoodsSetting />}
+                />
+                <Route
+                    path="/admin/panel/registration-setting"
+                    element={<RegistrationSetting />}
+                />
+                <Route path="/admin" element={<SignIn />}/>
+            </Routes>
+        </MemoryRouter>
+    );
+};
 
 
 describe('NavigationPanel', () => {
-    it('should render desktop panel', async () => {
-        useDeviceTypeContext.mockImplementation(() => ({ isDesktop: true }));
-        render(<NavigationPanel/>);
-        const desktopPanel = screen.getByText('Navigation Panel Desktop');
+    it('should render panel', async () => {
+        renderWithRouter(<NavigationPanel/>);
+        const panel = screen.getByText('Navigation Panel');
         await waitFor(() =>{
-            expect(desktopPanel).toBeInTheDocument();
+            expect(panel).toBeInTheDocument();
         });
     });
 
-    it('should render mobile panel', async () => {
-        useDeviceTypeContext.mockImplementation(() => ({ isMobile: true }));
-        render(<NavigationPanel/>);
-        const mobilePanel = screen.getByText('Navigation Panel Mobile');
-        await waitFor(() =>{
-            expect(mobilePanel).toBeInTheDocument();
-        });
-    });
 });

@@ -1,14 +1,14 @@
 import React from 'react';
 import s from './AuthorizationFormDesktop.module.scss';
 import { AUTHORIZATION_FORM_DICTIONARY } from '../AuthorizationForm.dictionary';
-import person from '../../../../../../../assets/images/person.svg';
-import arrowRight from '../../../../../../../assets/images/arrowRight.svg';
+import person from '../../../../../../../common/assets/images/person.svg';
+import arrowRight from '../../../../../../../common/assets/images/arrowRight.svg';
 import { ErrorMessage } from '@hookform/error-message';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import ButtonAccent from '../../../../../../../common/components/Buttons/ButtonAccent';
-import closedEye from '../../../../../../../assets/images/closedEye.svg';
-import openEye from '../../../../../../../assets/images/openEye.svg';
+import ButtonAccent from '../../../../../../../common/ui/components/Buttons/ButtonAccent';
+import closedEye from '../../../../../../../common/assets/images/closedEye.svg';
+import openEye from '../../../../../../../common/assets/images/openEye.svg';
 
 
 const {
@@ -67,6 +67,7 @@ const AuthorizationFormDesktop = ({
                                 placeholder={HELP_YOUR_NAME_LABEL}
                                 maxLength={MAX_LOGIN_LENGTH}
                                 autoCapitalize={'none'}
+                                autoFocus
                                 {...register('login')}/>
                         </div>
                         {renderErrorMessage('login')}
