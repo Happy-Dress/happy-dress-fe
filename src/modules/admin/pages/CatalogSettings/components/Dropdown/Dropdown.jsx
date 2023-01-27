@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { useDeviceTypeContext } from '../../../../../../common/ui/contexts/DeviceType';
 import DropdownMobile from '../DropdownMobile/DropdownMobile';
 import DropdownDesktop from '../DropdownDesktop/DropdownDesktop';
-import { nanoid } from 'nanoid';
 
 const Dropdown = () => {
     const { isDesktop, isMobile } = useDeviceTypeContext();
-    const flatObj = { id: nanoid(), value: '', checked: false };
+    const flatObj = { id: Math.random()*10000, value: '', checked: false };
     const [modelExampl, setModelExampl] = useState([]);
     const [deleteGroup, setDeleteGroup] = useState(false);
     const [editField, setEditField] = useState(false);

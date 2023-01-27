@@ -3,7 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ReactComponent as Delete } from '../../../../../../assets/images/delete.svg';
 import { ReactComponent as Pencil } from '../../../../../../assets/images/pencil.svg';
-import { nanoid } from 'nanoid';
 import { Reorder } from 'framer-motion';
 
 const ModelItem = ({
@@ -16,7 +15,7 @@ const ModelItem = ({
 }) => {
     return (
         <Reorder.Item draggable={true} value={model} whileDrag={{ scale: 1.1 }}>
-            <div className={s.input_container} key={nanoid()}>
+            <div className={s.input_container} key={Math.random() * 10000}>
                 <input
                     className={s.check}
                     type="checkbox"
@@ -30,7 +29,11 @@ const ModelItem = ({
                     className={s.pencil_img}
                     onClick={() => {
                         setEditField(true);
-                        setCurrentValue({ id: model.id, value: model.value, checked: model.checked });
+                        setCurrentValue({
+                            id: model.id,
+                            value: model.value,
+                            checked: model.checked,
+                        });
                     }}
                 />
                 <Delete
@@ -64,7 +67,7 @@ const DropdownScrollBar = ({
             >
                 {modelExampl.map((model) => (
                     <ModelItem
-                        key={nanoid()}
+                        key={Math.random() * 10000}
                         model={model}
                         handleCheck={handleCheck}
                         handleChangeText={handleChangeText}
