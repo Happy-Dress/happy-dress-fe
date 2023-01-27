@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useDeviceTypeContext } from '../../../../../../common/contexts/DeviceType';
-import SettingDropdownMobile from '../SettingDropdownMobile/SettingDropdownMobile';
-import SettingDropdownDesktop from '../SettingDropdownDesktop/SettingDropdownDesktop';
+import { useDeviceTypeContext } from '../../../../../../common/ui/contexts/DeviceType';
+import DropdownMobile from '../DropdownMobile/DropdownMobile';
+import DropdownDesktop from '../DropdownDesktop/DropdownDesktop';
 import { nanoid } from 'nanoid';
 
-const CatalogSettingModal = () => {
+const Dropdown = () => {
     const { isDesktop, isMobile } = useDeviceTypeContext();
     const flatObj = { id: nanoid(), value: '', checked: false };
     const [modelExampl, setModelExampl] = useState([]);
@@ -86,7 +86,7 @@ const CatalogSettingModal = () => {
     return (
         <div>
             {isMobile && (
-                <SettingDropdownMobile
+                <DropdownMobile
                     flatObj={flatObj}
                     modelExampl={modelExampl}
                     deleteGroup={deleteGroup}
@@ -107,7 +107,7 @@ const CatalogSettingModal = () => {
                 />
             )}
             {isDesktop && (
-                <SettingDropdownDesktop
+                <DropdownDesktop
                     flatObj={flatObj}
                     modelExampl={modelExampl}
                     deleteGroup={deleteGroup}
@@ -131,4 +131,4 @@ const CatalogSettingModal = () => {
     );
 };
 
-export default CatalogSettingModal;
+export default Dropdown;

@@ -1,17 +1,16 @@
-@import "../../../../../../styles/media-sizes";
-@import "../../../../../../styles/colors";
-@import "../../../../../../styles/font-sizes";
+@import "../../../../../../common/ui/styles/media-sizes";
+@import "../../../../../../common/ui/styles/colors";
+@import "../../../../../../common/ui/styles/font-sizes";
+// ::-webkit-scrollbar {
+//     width: 8px;
+//     background-color: $light-gray;
+// }
 
-::-webkit-scrollbar {
-    width: 8px;
-    background-color: $light-gray;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: $gray;
-    width: 8px;
-    height: 92px;
-}
+// ::-webkit-scrollbar-thumb {
+//     background-color: $gray;
+//     width: 8px;
+//     height: 92px;
+// }
 
 .container {
     width: 568px;
@@ -23,7 +22,6 @@
     .button_wrapper_add {
         padding: 3% 0 3% 0;
         width: 100%;
-        // margin-left: -3%;
 
         .button_add {
             font-family: 'Roboto';
@@ -36,7 +34,7 @@
     .modal_desktop_scroll {
         width: 568px;
         height: 168px;
-        overflow-y: scroll;
+        //overflow-y: scroll;
         display: flex;
         flex-flow: column nowrap;
         align-items: flex-start;
@@ -86,26 +84,71 @@
         .input_container .text:hover {
             cursor: grab;
         }
-    }
 
-    .button_wrapper_delete {
-        display: flex;
-        justify-content: flex-end;
-        width: 100%;
+        .button_wrapper_delete {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
 
-        .button_delete {
-            margin-top: 92px;
-            width: 264px;
-            height: 56px;
-            text-align: center;
-            font-family: 'Roboto';
-            font-weight: 400;
-            font-size: $font-size-xlarge-24;
-            background-color: $black;
-            color: $white;
+            .button_delete {
+                margin-top: 24px;
+                width: 264px;
+                height: 56px;
+                text-align: center;
+                font-family: 'Roboto';
+                font-weight: 400;
+                font-size: $font-size-xlarge-24;
+                background-color: $black;
+                color: $white;
 
+            }
+        }
+
+        .update_and_cancell {
+            display: flex;
+            flex-flow: row nowrap;
+            gap: 3%;
+            margin: 5%;
+
+            .button_wrapper_update {
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+
+                .button_update {
+                    width: 264px;
+                    height: 48px;
+                    text-align: center;
+                    font-family: 'Roboto';
+                    font-weight: 400;
+                    font-size: $font-size-xlarge-24;
+                    background-color: $brown;
+                    color: $white;
+
+                }
+            }
+
+            .button_wrapper_cancell {
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+
+                .button_cancell {
+                    width: 264px;
+                    height: 48px;
+                    text-align: center;
+                    font-family: 'Roboto';
+                    font-weight: 400;
+                    font-size: $font-size-xlarge-24;
+                    background-color: $light-gray;
+                    color: $white;
+
+                }
+            }
         }
     }
+
+
 
     .edit_field {
         box-sizing: border-box;
@@ -127,46 +170,5 @@
         }
     }
 
-    .update_and_cancell {
-        display: flex;
-        flex-flow: row nowrap;
-        gap: 3%;
-        margin-top: 5%;
 
-        .button_wrapper_update {
-            display: flex;
-            justify-content: flex-end;
-            width: 100%;
-
-            .button_update {
-                width: 264px;
-                height: 48px;
-                text-align: center;
-                font-family: 'Roboto';
-                font-weight: 400;
-                font-size: $font-size-xlarge-24;
-                background-color: $brown;
-                color: $white;
-
-            }
-        }
-
-        .button_wrapper_cancell {
-            display: flex;
-            justify-content: flex-end;
-            width: 100%;
-
-            .button_cancell {
-                width: 264px;
-                height: 48px;
-                text-align: center;
-                font-family: 'Roboto';
-                font-weight: 400;
-                font-size: $font-size-xlarge-24;
-                background-color: $light-gray;
-                color: $white;
-
-            }
-        }
-    }
 }

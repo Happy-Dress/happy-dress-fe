@@ -1,14 +1,14 @@
 import React from 'react';
-import s from './SettingDropdownDesktop.module.scss';
-import ButtonDelete from '../SettingDropdown/ButtonDelete';
-import ButtonAdd from '../SettingDropdown/ButtonAdd';
-import ButtonUpdate from '../SettingDropdown/ButtonUpdate';
-import ButtonCancell from '../SettingDropdown/ButtonCancell';
-import EditValueDropdown from '../SettingDropdown/EditValueDropdown';
-import DropdownScrollBar from '../SettingDropdown/DropdownScrollBar';
+import s from './DropdownDesktop.module.scss';
+import ButtonDelete from '../Dropdown/ButtonDelete';
+import ButtonAdd from '../Dropdown/ButtonAdd';
+import ButtonUpdate from '../Dropdown/ButtonUpdate';
+import ButtonCancell from '../Dropdown/ButtonCancell';
+import EditValueDropdown from '../Dropdown/EditValueDropdown';
+import DropdownScrollBar from '../Dropdown/DropdownScrollBar';
 import PropTypes from 'prop-types';
 
-const SettingDropdownDesktop = ({
+const DropdownDesktop = ({
     flatObj,
     modelExampl,
     deleteGroup,
@@ -57,20 +57,20 @@ const SettingDropdownDesktop = ({
                     currentValue={currentValue}
                     s={s}
                 />
+                {editField && (
+                    <div className={s.update_and_cancell}>
+                        <ButtonCancell s={s} handleCancell={handleCancell} />
+                        <ButtonUpdate s={s} handleUpdate={handleUpdate} />
+                    </div>
+                )}
+                {deleteGroup && <ButtonDelete deleteHandle={deleteHandle} s={s} />}
             </div>
-            {editField && (
-                <div className={s.update_and_cancell}>
-                    <ButtonCancell s={s} handleCancell={handleCancell} />
-                    <ButtonUpdate s={s} handleUpdate={handleUpdate} />
-                </div>
-            )}
-            {deleteGroup && <ButtonDelete deleteHandle={deleteHandle} s={s} />}
         </div>
     );
 };
 
-export default SettingDropdownDesktop;
-SettingDropdownDesktop.propTypes = {
+export default DropdownDesktop;
+DropdownDesktop.propTypes = {
     setDeleteGroup: PropTypes.func,
     setModelExampl: PropTypes.func,
     modelExampl: PropTypes.array,

@@ -2,7 +2,7 @@ import s from './CatalogSettings.module.scss';
 import SettingsDropDown from './components/SettingDropDown';
 import { CATALOG_SETTINGS_DICTIONARY } from './CatalogSettings.dictionary';
 import { ButtonAccent, ButtonDefault } from '../../../../common/ui/components';
-
+import Dropdown from './components/Dropdown/Dropdown';
 const {
     CATEGORIES_SETTINGS_NAME,
     COLORS_SETTINGS_NAME,
@@ -29,7 +29,7 @@ const CatalogSettings = () => {
             name: MATERIAL_SETTINGS_NAME,
         },
         {
-            element: <div>Настройки моделей</div>,
+            element: <Dropdown/>,
             name: MODEL_SETTINGS_NAME,
         }
     ];

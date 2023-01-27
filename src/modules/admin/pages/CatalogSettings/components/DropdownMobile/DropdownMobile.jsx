@@ -1,13 +1,13 @@
 import React from 'react';
-import ButtonDelete from '../SettingDropdown/ButtonDelete';
-import ButtonAdd from '../SettingDropdown/ButtonAdd';
-import DropdownScrollBar from '../SettingDropdown/DropdownScrollBar';
+import ButtonDelete from '../Dropdown/ButtonDelete';
+import ButtonAdd from '../Dropdown/ButtonAdd';
+import DropdownScrollBar from '../Dropdown/DropdownScrollBar';
 import PropTypes from 'prop-types';
-import EditValueDropdown from '../SettingDropdown/EditValueDropdown';
-import ButtonUpdate from '../SettingDropdown/ButtonUpdate';
-import ButtonCancell from '../SettingDropdown/ButtonCancell';
-import s from './SettingDropdownMobile.module.scss';
-const SettingDropdownMobile = ({
+import EditValueDropdown from '../Dropdown/EditValueDropdown';
+import ButtonUpdate from '../Dropdown/ButtonUpdate';
+import ButtonCancell from '../Dropdown/ButtonCancell';
+import s from './DropdownMobile.module.scss';
+const DropdownMobile = ({
     flatObj,
     modelExampl,
     deleteGroup,
@@ -57,22 +57,22 @@ const SettingDropdownMobile = ({
                         currentValue={currentValue}
                         s={s}
                     />
+                    {editField && (
+                        <div className={s.update_and_cancell}>
+                            <ButtonUpdate s={s} handleUpdate={handleUpdate} />
+                            <ButtonCancell s={s} handleCancell={handleCancell} />
+                        </div>
+                    )}
+                    {deleteGroup && <ButtonDelete deleteHandle={deleteHandle} s={s} />}
                 </div>
-                {editField && (
-                    <div className={s.update_and_cancell}>
-                        <ButtonUpdate s={s} handleUpdate={handleUpdate} />
-                        <ButtonCancell s={s} handleCancell={handleCancell} />
-                    </div>
-                )}
-                {deleteGroup && <ButtonDelete deleteHandle={deleteHandle} s={s} />}
             </div>
         </>
     );
 };
 
-export default SettingDropdownMobile;
+export default DropdownMobile;
 
-SettingDropdownMobile.propTypes = {
+DropdownMobile.propTypes = {
     setDeleteGroup: PropTypes.func,
     setModelExampl: PropTypes.func,
     modelExampl: PropTypes.array,
