@@ -9,11 +9,8 @@ import { Reorder } from 'framer-motion';
 const ModelItem = ({
     model,
     handleCheck,
-    handleChangeText,
     deleteOneHandle,
-    editField,
     setEditField,
-    currentValue,
     setCurrentValue,
     s,
 }) => {
@@ -31,7 +28,7 @@ const ModelItem = ({
                 <input className={s.text} type="text" defaultValue={model.value} />
                 <Pencil
                     className={s.pencil_img}
-                    onClick={(e) => {
+                    onClick={() => {
                         setEditField(true);
                         setCurrentValue({ id: model.id, value: model.value, checked: model.checked });
                     }}
