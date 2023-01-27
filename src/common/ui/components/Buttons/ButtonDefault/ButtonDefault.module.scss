@@ -11,8 +11,8 @@
         box-shadow: none;
       }
     &_active{
-      color: $light-gray;
-      border: $light-gray 1px solid;
+      color: rgba(33, 33, 33, 0.5);
+      border: rgba(33, 33, 33, 0.5) 1px solid;
       cursor: default;
     }
 }
