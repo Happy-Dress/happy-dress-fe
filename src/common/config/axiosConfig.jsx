@@ -6,9 +6,9 @@ axios.interceptors.response.use(
     (response) => response,
     (error) => {
         if (error.response.status === 401){
-            localStorage.Authorization.clear();
+            localStorage.removeItem('Authorization');
         }
-        Promise.reject(Array.isArray(error.response?.data?.message) ?
+        return Promise.reject(Array.isArray(error.response?.data?.message) ?
             error.response.data.message[0]
             : (error.response.data.message || error.message));
     })

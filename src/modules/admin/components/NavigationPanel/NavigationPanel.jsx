@@ -21,7 +21,7 @@ const NavigationPanel = () => {
 
     const handleExit = (e) =>{
         e.preventDefault();
-        localStorage.clear();
+        localStorage.removeItem('Authorization');
         showToasterSuccess(SUCCESS_EXIT);
         navigate(SIGN_IN);
     };
