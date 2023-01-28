@@ -6,8 +6,6 @@ import { useSearchParams } from 'react-router-dom';
 
 const FilterBadge = ({ filters, itemId, itemCategory }) => {
 
-    const [, setSearchParams] = useSearchParams();
-
     if(!itemId) return;
 
     const filterName = () => {
@@ -20,24 +18,9 @@ const FilterBadge = ({ filters, itemId, itemCategory }) => {
 
     if(!filterName()) return;
 
-
-    const deleteHandler = () => {
-        setSearchParams(prev => {
-            const newState = prev;
-            const newItems = prev.get(itemCategory).split(',').filter(item => item !== itemId).join(',');
-            if(!newItems) {
-                newState.delete(itemCategory);
-                return newState.toString();
-            }
-            newState.set(itemCategory, newItems);
-            return newState.toString();
-        });
-    };
-
     return (
         <div className={s.FilterBadge}>
             <p>{filterName()}</p>
-            <Cross onClick={deleteHandler}/>
         </div>
     );
 };
