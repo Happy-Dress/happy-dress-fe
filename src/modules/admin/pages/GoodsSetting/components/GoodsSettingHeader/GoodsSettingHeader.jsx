@@ -3,6 +3,7 @@ import useGoodsMediaQuery from '../../hooks/useGoodsMediaQuery';
 import GoodsSettingHeaderDesktop from './GoodsSettingHeaderDesktop';
 import GoodsSettingHeaderMobile from './GoodsSettingHeaderMobile';
 import retrieveCatalogueSettings from '../../../../../../common/api/catalogueSettings/retrieveCatalogueSettings';
+import s from './GoodsSettingHeader.module.scss';
 
 
 const GoodsSettingHeader = () => {
@@ -26,10 +27,10 @@ const GoodsSettingHeader = () => {
     }
 
     return (
-        <>
+        <header id={s.header} className={(isMobileWidth || isMobileHeight) ? s.mobile : ''}>
             {isDesktopWidth && !isMobileWidth && <GoodsSettingHeaderDesktop filters={filters}/>}
             {(isMobileWidth || isMobileHeight) && <GoodsSettingHeaderMobile filters={filters}/>}
-        </>
+        </header>
     );
 };
 

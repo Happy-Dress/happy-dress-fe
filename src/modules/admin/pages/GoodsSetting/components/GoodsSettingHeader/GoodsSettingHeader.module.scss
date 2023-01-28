@@ -1,0 +1,13 @@
+$sidebarWidth: 223.6px;
+
+#header {
+  position: fixed;
+  width: calc(100% - $sidebarWidth);
+  left: $sidebarWidth;
+  padding: 0 20px;
+
+  &.mobile {
+    width: 100%;
+    left: 0;
+  }
+}
