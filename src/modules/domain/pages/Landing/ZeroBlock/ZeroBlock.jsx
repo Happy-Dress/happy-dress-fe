@@ -23,7 +23,7 @@ const ZeroBlock = () => {
                     </div>
                     <p className={s.ZeroBlock_text_mobile}>{TITLE_P_MOBILE[0]}<br/>{TITLE_P_MOBILE[1]}</p>
                 </div>
-                <ButtonDefault  text={BUTTON_TEXT}/>
+                <ButtonDefault text={BUTTON_TEXT}/>
             </div>
         </div>
     );

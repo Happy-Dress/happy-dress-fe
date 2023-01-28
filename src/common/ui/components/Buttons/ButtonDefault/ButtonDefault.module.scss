@@ -11,8 +11,8 @@
         box-shadow: none;
       }
     &_active{
-      color: $light-gray;
-      border: $light-gray 1px solid;
+      color: $gray;
+      border: $gray 1px solid;
       cursor: default;
     }
 }
