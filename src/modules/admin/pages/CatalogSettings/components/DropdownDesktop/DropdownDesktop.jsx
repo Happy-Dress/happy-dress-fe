@@ -55,14 +55,18 @@ const DropdownDesktop = ({
                     currentValue={currentValue}
                     s={s}
                 />
-                {editField && (
-                    <div className={s.update_and_cancell}>
-                        <ButtonCancell s={s} handleCancell={handleCancell} />
-                        <ButtonUpdate s={s} handleUpdate={handleUpdate} />
-                    </div>
-                )}
-                {deleteGroup && <ButtonDelete deleteHandle={deleteHandle} s={s} />}
             </div>
+            {editField && (
+                <div className={s.update_and_cancell}>
+                    <ButtonCancell s={s} handleCancell={handleCancell} />
+                    <ButtonUpdate s={s} handleUpdate={handleUpdate} />
+                </div>
+            )}
+            <ButtonDelete
+                deleteGroup={deleteGroup}
+                deleteHandle={deleteHandle}
+                s={s}
+            />
         </div>
     );
 };

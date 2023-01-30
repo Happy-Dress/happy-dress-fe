@@ -14,7 +14,11 @@ const ModelItem = ({
     s,
 }) => {
     return (
-        <Reorder.Item draggable={true} value={model} whileDrag={{ scale: 1.1 }}>
+        <Reorder.Item
+            draggable={true}
+            value={model}
+            whileDrag={{ scale: 1.1 }}
+        >
             <div className={s.input_container} key={Math.random() * 10000}>
                 <input
                     className={s.check}
@@ -64,6 +68,7 @@ const DropdownScrollBar = ({
                 axys="y"
                 values={modelExampl}
                 onReorder={setModelExampl}
+                style={{ width: '94%' }}
             >
                 {modelExampl.map((model) => (
                     <ModelItem

@@ -3,9 +3,9 @@
 .adminRoutes {
     width: 100%;
     display: flex;
-
-    @media screen and (max-width: calc($lg-size - 1px)) {
-        flex-direction: column;
+    flex-direction: column;
+    @media screen and (min-width: $lg-size) {
+        flex-direction: row;
     }
 }
 

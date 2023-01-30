@@ -55,14 +55,18 @@ const DropdownMobile = ({
                         currentValue={currentValue}
                         s={s}
                     />
-                    {editField && (
-                        <div className={s.update_and_cancell}>
-                            <ButtonUpdate s={s} handleUpdate={handleUpdate} />
-                            <ButtonCancell s={s} handleCancell={handleCancell} />
-                        </div>
-                    )}
-                    {deleteGroup && <ButtonDelete deleteHandle={deleteHandle} s={s} />}
                 </div>
+                {editField && (
+                    <div className={s.update_and_cancell}>
+                        <ButtonUpdate s={s} handleUpdate={handleUpdate} />
+                        <ButtonCancell s={s} handleCancell={handleCancell} />
+                    </div>
+                )}
+                <ButtonDelete
+                    deleteGroup={deleteGroup}
+                    deleteHandle={deleteHandle}
+                    s={s}
+                />
             </div>
         </>
     );

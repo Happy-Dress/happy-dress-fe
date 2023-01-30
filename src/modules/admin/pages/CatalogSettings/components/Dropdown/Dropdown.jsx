@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDeviceTypeContext } from '../../../../../../common/ui/contexts/DeviceType';
 import DropdownMobile from '../DropdownMobile/DropdownMobile';
 import DropdownDesktop from '../DropdownDesktop/DropdownDesktop';
-
-const Dropdown = () => {
+import PropTypes from 'prop-types';
+const Dropdown = ({ models }) => {
     const { isDesktop, isMobile } = useDeviceTypeContext();
     const flatObj = { id: Math.random()*10000, value: '', checked: false };
     const [modelExampl, setModelExampl] = useState([]);
     const [deleteGroup, setDeleteGroup] = useState(false);
     const [editField, setEditField] = useState(false);
     const [currentValue, setCurrentValue] = useState(flatObj);
-
+    useEffect(()=>{
+        if(models){
+            const convertedModels = models.map(model=>({ id: model.id, value: model.name }));
+            setModelExampl(convertedModels);
+        }
+    },[models]);
     const checkModelExamplValue = () => {
         let count = 0;
         modelExampl.forEach((item) => {
@@ -68,8 +73,10 @@ const Dropdown = () => {
     };
 
     const deleteHandle = () => {
-        setModelExampl(modelExampl.filter((item) => item.checked === false));
-        setDeleteGroup(false);
+        if(deleteGroup){
+            setModelExampl(modelExampl.filter((item) => item.checked === false));
+            setDeleteGroup(false);
+        }
     };
 
     const deleteOneHandle = (id) => {
@@ -83,7 +90,7 @@ const Dropdown = () => {
         checkModelExamplValue();
     };
     return (
-        <div>
+        <div style={{ width: '98%' }}>
             {isMobile && (
                 <DropdownMobile
                     flatObj={flatObj}
@@ -131,3 +138,6 @@ const Dropdown = () => {
 };
 
 export default Dropdown;
+Dropdown.propTypes = {
+    models: PropTypes.array
+};

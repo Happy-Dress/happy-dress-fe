@@ -1,8 +1,10 @@
+import React, { useState, useEffect } from 'react';
 import s from './CatalogSettings.module.scss';
 import SettingsDropDown from './components/SettingDropDown';
 import { CATALOG_SETTINGS_DICTIONARY } from './CatalogSettings.dictionary';
 import { ButtonAccent, ButtonDefault } from '../../../../common/ui/components';
 import Dropdown from './components/Dropdown/Dropdown';
+import retrieveCatalogueSettings from '../../../../common/api/catalogueSettings/retrieveCatalogueSettings';
 const {
     CATEGORIES_SETTINGS_NAME,
     COLORS_SETTINGS_NAME,
@@ -14,7 +16,16 @@ const {
 } = CATALOG_SETTINGS_DICTIONARY;
 
 const CatalogSettings = () => {
-
+    const [catalogueSetting, setCatalogueSetting] = useState({});
+    useEffect( () => {
+        try {
+            retrieveCatalogueSettings()
+                .then((setting) => setCatalogueSetting(setting));   
+        } catch (error) {
+            console.log(error.message);
+        }
+     
+    },[]);
     const items = [
         {
             element: <div>Настройки категорий</div>,
@@ -29,9 +40,9 @@ const CatalogSettings = () => {
             name: MATERIAL_SETTINGS_NAME,
         },
         {
-            element: <Dropdown/>,
+            element: <Dropdown models={catalogueSetting.models}/>,
             name: MODEL_SETTINGS_NAME,
-        }
+        },
     ];
 
 
