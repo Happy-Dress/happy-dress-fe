@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import s from './ProductCardMobile.module.scss';
 import PropTypes from 'prop-types';
 import { ReactComponent as Checkbox } from '../../../../../../../../../common/assets/images/checkbox.svg';

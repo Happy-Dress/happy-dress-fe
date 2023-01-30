@@ -55,7 +55,7 @@
         content: ' ';
         display: block;
         height: 1px;
-        background-color: $gray;
+        background-color: $light-gray;
         width: 100%;
         position: absolute;
         top: 100%;
@@ -76,6 +76,18 @@
         display: flex;
         gap: 10px;
       }
+    }
+  }
+  
+  @media screen and (max-width: $xl-size) {
+    width: 300px;
+    height: 436px;
+    img[alt='dress preview'] {
+      top: -20%;
+    }
+
+    .content {
+      padding: 12px 20px 50px;
     }
   }
 }

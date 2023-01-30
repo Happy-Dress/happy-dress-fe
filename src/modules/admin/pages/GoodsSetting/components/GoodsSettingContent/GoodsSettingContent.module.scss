@@ -6,7 +6,7 @@
   display: flex;
   gap: 63px;
   flex-wrap: wrap;
-  margin-top: 50px;
+  margin-top: 30px;
   max-width: 937px;
   position: relative;
 
@@ -27,7 +27,14 @@
   }
 
   @media screen and (max-width: $xl-size) {
-    width: 437px;
+    max-width: 640px;
+    gap: 40px;
+  }
+
+  @media screen and (max-width: 1120px) {
+    .deleteContainer {
+      right: 5px;
+    }
   }
 
   @media screen and (max-width: 1023px) {

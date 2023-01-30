@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import s from './ProductCardDesktop.module.scss';
 import PropTypes from 'prop-types';
 import { ReactComponent as EmptyCheckbox } from '../../../../../../../../../common/assets/images/EmptyCheckbox.svg';

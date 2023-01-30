@@ -1,11 +1,11 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import s from './GoodsSettingContent.module.scss';
 
 import adaptive from '../../../../../../common/ui/hocs/adaptive';
 
-import AddProductCardDesktop from './components/DesktopCards/AddProductCardDesktop';
+import ProductCardAddDesktop from './components/DesktopCards/ProductCardAddDesktop';
 import ProductCardDesktop from './components/DesktopCards/ProductCardDesktop';
-import AddProductCardMobile from './components/MobileCards/AddProductCardMobile';
+import AddProductCardMobile from './components/MobileCards/ProductCardAddMobile';
 import ProductCardMobile from './components/MobileCards/ProductCardMobile';
 
 import bgImage from '../../../../../../common/assets/images/ZeroBlock/ZeroBlockSM.png';
@@ -33,13 +33,13 @@ const PRODUCTS = [
         ],
         sizes: [1, 2, 3, 4],
         category: 'Деловой стиль'
-    }
+    },
 ];
 
 const GoodsSettingContent = () => {
     const [selectedItems, setSelectedItems] = useState([]);
 
-    let AdaptiveAddProductCard = adaptive(AddProductCardDesktop, AddProductCardMobile);
+    let AdaptiveAddProductCard = adaptive(ProductCardAddDesktop, AddProductCardMobile);
     let AdaptiveProductCard = adaptive(ProductCardDesktop, ProductCardMobile);
 
     const deleteHandler = () => {
