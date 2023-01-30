@@ -1,8 +1,6 @@
 import React from 'react';
 import s from './FilterBadge.module.scss';
-import { ReactComponent as Cross } from '../../../../../../../../../common/assets/images/x.svg';
 import PropTypes from 'prop-types';
-import { useSearchParams } from 'react-router-dom';
 
 const FilterBadge = ({ filters, itemId, itemCategory }) => {
 
