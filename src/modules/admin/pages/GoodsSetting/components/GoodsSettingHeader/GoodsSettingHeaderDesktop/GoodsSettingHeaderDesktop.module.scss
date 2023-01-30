@@ -5,6 +5,7 @@
 .Way{
   color: $light-gray;
   margin-bottom: 15px;
+  align-self: flex-start;
 }
 
 .title {
@@ -18,7 +19,10 @@
 
 .searchContainer {
   width: calc(100%);
-  padding: 0 150px 0 99px;
+  padding: 0 110px 0 99px;
+  position: sticky;
+  top: 20px;
+  z-index: 100;
 
   .searchBar {
     margin-top: 10px;

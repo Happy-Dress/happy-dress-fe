@@ -1,0 +1,14 @@
+@import "../../../../../../../../common/ui/styles/media-sizes";
+@import "../../../../../../../../common/ui/styles/font-sizes";
+@import "../../../../../../../../common/ui/styles/colors";
+
+.AddProductCard {
+  background-color: transparent;
+  box-shadow: $shadow-black;
+  width: 437px;
+  height: 634px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
