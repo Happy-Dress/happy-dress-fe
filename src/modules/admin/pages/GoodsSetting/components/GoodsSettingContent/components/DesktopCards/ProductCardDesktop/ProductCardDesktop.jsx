@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
-import s from './ProductCard.module.scss';
+import React, { useCallback, useEffect, useState } from 'react';
+import s from './ProductCardDesktop.module.scss';
 import PropTypes from 'prop-types';
-import { ReactComponent as EmptyCheckbox } from '../../../../../../../../common/assets/images/EmptyCheckbox.svg';
-import { ReactComponent as Checkbox } from '../../../../../../../../common/assets/images/checkbox.svg';
+import { ReactComponent as EmptyCheckbox } from '../../../../../../../../../common/assets/images/EmptyCheckbox.svg';
+import { ReactComponent as Checkbox } from '../../../../../../../../../common/assets/images/checkbox.svg';
 
-const ProductCard = ({
+const ProductCardDesktop = ({
     previewImage,
     name,
     colors,
     id,
     category,
     sizes,
-    setSelectedItems
+    setSelectedItems,
+    selectedItems
 }) => {
 
     const [isMouseOver, setIsMouseOver] = useState(false);
-    const [isActive, setIsActive] = useState(false);
+    const [isActive, setIsActive] = useState(!!selectedItems.filter(item => item === id).length);
 
     const clickHandler = () => {
         setIsActive(!isActive);
@@ -32,7 +33,7 @@ const ProductCard = ({
 
     return (
         <div
-            className={s.ProductCard}
+            className={s.ProductCardDesktop}
             onMouseEnter={() => setIsMouseOver(true)}
             onMouseLeave={() => setIsMouseOver(false)}
             onClick={clickHandler}
@@ -69,14 +70,15 @@ const ProductCard = ({
     );
 };
 
-ProductCard.propTypes = {
+ProductCardDesktop.propTypes = {
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     colors: PropTypes.array.isRequired,
     sizes: PropTypes.array.isRequired,
     category: PropTypes.string.isRequired,
     previewImage: PropTypes.string.isRequired,
-    setSelectedItems: PropTypes.func.isRequired
+    setSelectedItems: PropTypes.func.isRequired,
+    selectedItems: PropTypes.array.isRequired
 };
 
-export default ProductCard;
+export default ProductCardDesktop;

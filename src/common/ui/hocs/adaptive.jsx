@@ -3,6 +3,7 @@ import { useDeviceTypeContext } from '../contexts/DeviceType';
 
 const adaptive = (DesktopComponent, MobileComponent) => (props) => {
     const { isDesktop, isMobile } = useDeviceTypeContext();
+
     return (
         <>
             {isDesktop && <DesktopComponent { ...props } />}

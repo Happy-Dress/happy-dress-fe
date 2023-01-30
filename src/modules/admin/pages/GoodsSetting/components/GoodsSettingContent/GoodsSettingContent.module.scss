@@ -29,4 +29,27 @@
   @media screen and (max-width: $xl-size) {
     width: 437px;
   }
+
+  @media screen and (max-width: 1023px) {
+    width: 100%;
+    flex-direction: column;
+    gap: 12px;
+
+    .deleteContainer {
+      flex-direction: row;
+      background-color: $light-gray;
+      bottom: 0;
+      right: unset;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 78px;
+      top: unset;
+      width: 100vw;
+      justify-content: center;
+      p {
+        margin-top: 5px;
+        margin-left: 22px;
+      }
+    }
+  }
 }

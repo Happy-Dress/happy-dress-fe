@@ -72,7 +72,7 @@ const GoodsSettingHeaderMobile = ({ filters }) => {
                         <ButtonAccent text={'Применить'} onClick={applyFilters}/>
                     </div>
                 </div>
-                <div className={s.currentFilters} style={{ display: isOpen ? 'none': 'flex' }}>
+                <div className={s.currentFilters} style={{ display: (isOpen || !Object.keys(currentFilters).filter(item => item !== 'categories').length) ? 'none': 'flex' }}>
                     {
                         Object.keys(currentFilters).map(key => {
                             if (key === 'categories') return;

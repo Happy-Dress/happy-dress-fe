@@ -1,0 +1,14 @@
+@import "../../../../../../../../../common/ui/styles/media-sizes";
+@import "../../../../../../../../../common/ui/styles/font-sizes";
+@import "../../../../../../../../../common/ui/styles/colors";
+
+.AddProductCardDesktop {
+  background-color: transparent;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
+  width: 437px;
+  height: 634px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
