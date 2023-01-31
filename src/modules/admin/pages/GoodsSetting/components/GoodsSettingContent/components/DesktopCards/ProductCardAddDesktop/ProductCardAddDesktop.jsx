@@ -13,7 +13,7 @@ const ProductCardAddDesktop = ({ onClick }) => {
             onMouseLeave={() => setIsMouseOver(false)}
             onClick={onClick}
         >
-            {isMouseOver ? <AddIconHover /> : <AddIconNormal />}
+            {isMouseOver ? <AddIconHover data-testid={'hover icon'}/> : <AddIconNormal data-testid={'normal icon'}/>}
         </div>
     );
 };

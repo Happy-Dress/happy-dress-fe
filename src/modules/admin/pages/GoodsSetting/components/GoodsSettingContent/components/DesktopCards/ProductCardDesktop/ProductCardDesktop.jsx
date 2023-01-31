@@ -38,8 +38,8 @@ const ProductCardDesktop = ({
             onMouseLeave={() => setIsMouseOver(false)}
             onClick={clickHandler}
         >
-            {(isMouseOver && !isActive) && <EmptyCheckbox className={s.checkbox}/>}
-            {(isActive) && <Checkbox className={s.checkbox}/>}
+            {(isMouseOver && !isActive) && <EmptyCheckbox className={s.checkbox} data-testid={'empty checkbox'}/>}
+            {(isActive) && <Checkbox className={s.checkbox} data-testid={'active checkbox'}/>}
             <img src={previewImage} alt="dress preview" style={{ filter: isMouseOver ? 'none' : 'saturate(0.5)' }}/>
             <div className={s.content}>
                 <h3>{ name }</h3>

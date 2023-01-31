@@ -34,7 +34,7 @@ const ProductCardMobile = ({
             className={s.ProductCardMobile}
             onClick={clickHandler}
         >
-            {isActive && <Checkbox className={s.checkbox}/>}
+            {isActive && <Checkbox className={s.checkbox} data-testid={'active checkbox'}/>}
             <img src={previewImage} alt="dress preview"/>
             <div className={s.content}>
                 <h3>{ name }</h3>
