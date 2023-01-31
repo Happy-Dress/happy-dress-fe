@@ -1,16 +1,18 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import CatalogSetting from './index';
-
+import retrieveCatalogueSettings from '../../../../common/api/catalogueSettings/retrieveCatalogueSettings';
 jest.mock('./components/SettingDropDown', ()=>({
     __esModule: true,
     default: ()=>{
         return <div data-testid="setting-drop-down"/>;
-    }
+    },
 }));
-describe('CatalogSettings', () => {
+jest.mock('../../../../common/api/catalogueSettings/retrieveCatalogueSettings');
+describe('CatalogSettings', () => {  
     it('should render correctly', async () => {
         render(<CatalogSetting />);
+        retrieveCatalogueSettings.mockRejectValue;
         const title = screen.getByText('Управление каталогом');
         const dropDown = screen.getAllByTestId('setting-drop-down');
         const btnSave = screen.getByText('Сохранить');
