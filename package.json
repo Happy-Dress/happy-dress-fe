@@ -30,7 +30,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint .",
     "lint:fix": "eslint --fix --ext .js,.jsx .",
-    "coverage": "react-scripts test --coverage --watchAll"
+    "coverage": "react-scripts test --coverage --watchAll",
+    "covergae:ci": "react-scripts test --watchAll=false --coverage"
   },
   "eslintConfig": {
     "extends": [
