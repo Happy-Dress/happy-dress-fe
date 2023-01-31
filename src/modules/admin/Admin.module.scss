@@ -3,15 +3,16 @@
 .adminRoutes {
     width: 100%;
     display: flex;
-    @media screen and (max-width: calc($lg-size - 1px)) {
-        flex-direction: column;
+    flex-direction: column;
+    @media screen and (min-width: $lg-size) {
+        flex-direction: row;
     }
 }
 
 .adminPage{
     min-height: 100vh;
     width: 100%;
-    @media screen and (max-width: $lg-size) {
+    @media screen and (max-width: calc($lg-size - 1px)) {
         min-height: 80vh;
     }
 }
