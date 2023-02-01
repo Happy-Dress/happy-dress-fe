@@ -2,22 +2,20 @@ import { waitFor } from '@testing-library/dom';
 import { act, render, screen } from '@testing-library/react';
 import React from 'react';
 import ProductCardDesktop from './ProductCardDesktop';
+import bgImage from '../../../../../../../../../common/assets/images/ZeroBlock/ZeroBlockSM.png';
 import userEvent from '@testing-library/user-event';
-import bgImage from '../../../../../../../../../common/assets/images/ZeroBlock/ZeroBlockSM.png'
 
-const props = {
-    setSelectedItems: () => {},
+const product = {
     name: 'S000012345',
     id: 1,
-    previewImage: bgImage,
+    imageUrl: bgImage,
     category: 'Свадебные',
     colors: [
         '#fff',
         '#000',
         '#a65f30'
     ],
-    sizes: [1, 2, 3, 4],
-    selectedItems: []
+    sizes: [1, 2, 3, 4]
 };
 
 describe('ProductCardAddDesktop', () => {
@@ -25,24 +23,24 @@ describe('ProductCardAddDesktop', () => {
         await waitFor(() => {
             const { container } = render(
                 <ProductCardDesktop
-                    setSelectedItems={props.setSelectedItems}
-                    name={props.name}
-                    id={props.id}
-                    previewImage={props.previewImage}
-                    category={props.category}
-                    colors={props.colors}
-                    sizes={props.sizes}
-                    selectedItems={props.selectedItems}
+                    isActive={false}
+                    clickHandler={() => {}}
+                    product={product}
                 />
             );
 
             expect(container.getElementsByClassName('ProductCardDesktop')[0]).toBeInTheDocument();
         });
     });
-    it('should change icon on click', async () => {
+
+    it('should change icon on isActive', async () => {
         await waitFor(async () => {
             const { container } = render(
-                <ProductCardDesktop {...props} />
+                <ProductCardDesktop
+                    isActive={false}
+                    clickHandler={() => {}}
+                    product={product}
+                />
             );
 
             await act(() => {
@@ -51,9 +49,13 @@ describe('ProductCardAddDesktop', () => {
 
             expect(screen.getByTestId('empty checkbox')).toBeInTheDocument();
 
-            await act(() => {
-                userEvent.click(container.getElementsByClassName('ProductCardDesktop')[0]);
-            });
+            render(
+                <ProductCardDesktop
+                    isActive={true}
+                    clickHandler={() => {}}
+                    product={product}
+                />
+            );
 
             expect(screen.getByTestId('active checkbox')).toBeInTheDocument();
         });

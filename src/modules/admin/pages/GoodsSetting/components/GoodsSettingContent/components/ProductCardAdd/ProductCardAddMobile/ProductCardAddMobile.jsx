@@ -3,7 +3,7 @@ import s from './ProductCardAddMobile.module.scss';
 import { ReactComponent as AddIconHover } from '../../../../../../../../../common/assets/images/AddIconHover.svg';
 import PropTypes from 'prop-types';
 
-const AddProductCardDesktop = ({ onClick }) => {
+const ProductCardAddMobile = ({ onClick }) => {
     return (
         <div
             className={s.AddProductCardMobile}
@@ -15,8 +15,8 @@ const AddProductCardDesktop = ({ onClick }) => {
 };
 
 
-AddProductCardDesktop.propTypes = {
+ProductCardAddMobile.propTypes = {
     onClick: PropTypes.func.isRequired
 };
 
-export default AddProductCardDesktop;
+export default ProductCardAddMobile;

@@ -3,34 +3,20 @@ import s from './ProductCardDesktop.module.scss';
 import PropTypes from 'prop-types';
 import { ReactComponent as EmptyCheckbox } from '../../../../../../../../../common/assets/images/EmptyCheckbox.svg';
 import { ReactComponent as Checkbox } from '../../../../../../../../../common/assets/images/checkbox.svg';
+import { PRODUCT_CARD_DICTIONARY } from '../ProductCard.dictionary';
+
+const {
+    PRODUCT_CARD_CATEGORY_TITLE,
+    PRODUCT_CARD_COLOR_TITLE,
+    PRODUCT_CARD_SIZE_TITLE
+} = PRODUCT_CARD_DICTIONARY;
 
 const ProductCardDesktop = ({
-    previewImage,
-    name,
-    colors,
-    id,
-    category,
-    sizes,
-    setSelectedItems,
-    selectedItems
+    product,
+    clickHandler,
+    isActive
 }) => {
-
     const [isMouseOver, setIsMouseOver] = useState(false);
-    const [isActive, setIsActive] = useState(!!selectedItems.filter(item => item === id).length);
-
-    const clickHandler = () => {
-        setIsActive(!isActive);
-        setSelectedItems(prevState => {
-            const newState = [...prevState];
-            if(!isActive) {
-                newState.push(id);
-                return newState;
-            } else {
-                return newState.filter(item => item !== id);
-            }
-        });
-    };
-
     return (
         <div
             className={s.ProductCardDesktop}
@@ -40,29 +26,29 @@ const ProductCardDesktop = ({
         >
             {(isMouseOver && !isActive) && <EmptyCheckbox className={s.checkbox} data-testid={'empty checkbox'}/>}
             {(isActive) && <Checkbox className={s.checkbox} data-testid={'active checkbox'}/>}
-            <img src={previewImage} alt="dress preview" style={{ filter: isMouseOver ? 'none' : 'saturate(0.5)' }}/>
+            <img src={product.imageUrl} alt="dress preview" className={(isMouseOver ? s.hovered : '')}/>
             <div className={s.content}>
-                <h3>{ name }</h3>
+                <h3>{ product.name }</h3>
                 <div className={s.property}>
-                    <p>Цвета</p>
+                    <p>{PRODUCT_CARD_COLOR_TITLE}</p>
                     <div className={s.colors}>
                         {
-                            colors.map(color => <span key={ color } style={{ backgroundColor: `${color}` }} />)
+                            product.colors.map(color => <span key={ color } style={{ backgroundColor: `${color}` }} />)
                         }
                     </div>
                 </div>
                 <div className={s.property}>
-                    <p>Размеры</p>
+                    <p>{PRODUCT_CARD_SIZE_TITLE}</p>
                     <div className={s.sizes}>
                         {
-                            sizes.map(size => <span key={size}>{size}</span>)
+                            product.sizes.map(size => <span key={size}>{size}</span>)
                         }
                     </div>
                 </div>
                 <div className={s.property}>
-                    <p>Категория</p>
+                    <p>{PRODUCT_CARD_CATEGORY_TITLE}</p>
                     <div className={s.category}>
-                        { category }
+                        { product.category }
                     </div>
                 </div>
             </div>
@@ -71,14 +57,9 @@ const ProductCardDesktop = ({
 };
 
 ProductCardDesktop.propTypes = {
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    colors: PropTypes.array.isRequired,
-    sizes: PropTypes.array.isRequired,
-    category: PropTypes.string.isRequired,
-    previewImage: PropTypes.string.isRequired,
-    setSelectedItems: PropTypes.func.isRequired,
-    selectedItems: PropTypes.array.isRequired
+    product: PropTypes.object.isRequired,
+    clickHandler: PropTypes.func.isRequired,
+    isActive: PropTypes.bool.isRequired
 };
 
 export default ProductCardDesktop;

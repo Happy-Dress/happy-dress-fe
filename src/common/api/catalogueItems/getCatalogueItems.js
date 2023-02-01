@@ -1,3 +1,5 @@
+import testBgImage from '../../assets/images/ZeroBlock/ZeroBlockSM.png';
+
 const getCatalogueItems = async (queryString) => {
     return await new Promise((resolve) => {
         setTimeout(() => {
@@ -13,7 +15,8 @@ const getCatalogueItems = async (queryString) => {
                         '#a65f30'
                     ],
                     sizes: [1, 2, 3, 4],
-                    category: 'Свадебные'
+                    category: 'Свадебные',
+                    imageUrl: testBgImage
                 },
                 {
                     id: 2,
@@ -24,7 +27,8 @@ const getCatalogueItems = async (queryString) => {
                         '#a65f30'
                     ],
                     sizes: [1, 2, 3, 4],
-                    category: 'Деловой стиль'
+                    category: 'Деловой стиль',
+                    imageUrl: testBgImage
                 },
             ]);
         }, 1000);

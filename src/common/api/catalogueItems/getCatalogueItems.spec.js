@@ -1,4 +1,5 @@
 import getCatalogueItems from './getCatalogueItems';
+import testBgImage from '../../assets/images/ZeroBlock/ZeroBlockSM.png';
 
 describe('getCatalogueItems',  () => {
     it('should return expected values', async () => {
@@ -14,7 +15,8 @@ describe('getCatalogueItems',  () => {
                     '#a65f30'
                 ],
                 sizes: [1, 2, 3, 4],
-                category: 'Свадебные'
+                category: 'Свадебные',
+                imageUrl: testBgImage
             },
             {
                 id: 2,
@@ -25,7 +27,8 @@ describe('getCatalogueItems',  () => {
                     '#a65f30'
                 ],
                 sizes: [1, 2, 3, 4],
-                category: 'Деловой стиль'
+                category: 'Деловой стиль',
+                imageUrl: testBgImage
             },
         ]);
     });
