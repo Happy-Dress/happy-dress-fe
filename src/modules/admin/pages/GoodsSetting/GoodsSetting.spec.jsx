@@ -3,12 +3,12 @@ import { render, screen, waitFor } from '@testing-library/react';
 import GoodsSetting from './index';
 import { BrowserRouter } from 'react-router-dom';
 
-jest.mock('./GoodsSetting.jsx', () => ({
-    __esModule: true,
-    default: () => {
-        return <div data-testid="goods-setting"/>;
-    }
-}));
+// jest.mock('./GoodsSetting.jsx', () => ({
+//     __esModule: true,
+//     default: () => {
+//         return <div data-testid="goods-setting"/>;
+//     }
+// }));
 
 const response = {
     'categories': [
@@ -104,13 +104,46 @@ jest.mock('../../../../common/api/catalogueSettings/retrieveCatalogueSettings', 
     default: () => Promise.resolve({ ...response }),
 }));
 
+jest.mock('../../../../common/api/catalogueItems/getCatalogueItems', () =>({
+    __esModule: true,
+    default: () => Promise.resolve([
+        {
+            id: 1,
+            name: 'S000012345',
+            colors: [
+                '#fff',
+                '#000',
+                '#a65f30'
+            ],
+            sizes: [1, 2, 3, 4],
+            category: 'Свадебные',
+            imageUrl: 'url'
+        },
+        {
+            id: 2,
+            name: 'S000012346',
+            colors: [
+                '#fff',
+                '#000',
+                '#a65f30'
+            ],
+            sizes: [1, 2, 3, 4],
+            category: 'Деловой стиль',
+            imageUrl: 'url'
+        },
+    ]),
+}));
+
 describe('GoodsSetting', () => {
     it('should render correctly', async () => {
-        render(<GoodsSetting/>, { wrapper: BrowserRouter });
+        const { container } = render(<GoodsSetting/>, { wrapper: BrowserRouter });
+        expect(container.getElementsByClassName('loader').length).toBe(1);
 
         await waitFor(async () => {
-            const goodsSettingHeader = await screen.getByTestId('goods-setting');
-            expect(goodsSettingHeader).toBeInTheDocument();
+            const goodsSetting = container.getElementsByClassName('GoodsSetting')[0];
+            const goodsSettingContent = container.getElementsByClassName('GoodsSettingContent')[0];
+            expect(goodsSetting).toBeInTheDocument();
+            expect(goodsSettingContent).toBeInTheDocument();
         });
     });
 });

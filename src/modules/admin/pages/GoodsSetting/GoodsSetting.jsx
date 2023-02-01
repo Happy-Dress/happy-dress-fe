@@ -54,7 +54,7 @@ const GoodsSetting = () => {
     }, []);
 
     if(isPageLoading.headerLoading || isPageLoading.contentLoading) {
-        return <p>Loader</p>;
+        return <p className={s.loader}>Loader</p>;
     }
 
     return (
