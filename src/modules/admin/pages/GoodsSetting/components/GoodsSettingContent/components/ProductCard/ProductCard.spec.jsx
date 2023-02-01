@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import ProductCard from './ProductCard';
 import bgImage from '../../../../../../../../common/assets/images/ZeroBlock/ZeroBlockSM.png';
 import React from 'react';
+import ProductCardDesktop from './ProductCardDesktop';
 
 const product = {
     name: 'S000012345',
@@ -34,5 +35,12 @@ describe('ProductCard', () => {
         />);
 
         expect(screen.getByTestId('product-card')).toBeInTheDocument();
+    });
+    it('should change selected Items', async () => {
+        render(<ProductCard
+            product={product}
+            setSelectedItems={() => {}}
+            selectedItems={selectedItems}
+        />);
     });
 });

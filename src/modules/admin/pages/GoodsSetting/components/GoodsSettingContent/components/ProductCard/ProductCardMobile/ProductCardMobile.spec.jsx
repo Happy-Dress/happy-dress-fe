@@ -1,8 +1,10 @@
 import { waitFor } from '@testing-library/dom';
-import { render, screen } from '@testing-library/react';
+import { act, cleanup, render, screen } from '@testing-library/react';
 import React from 'react';
 import ProductCardMobile from './ProductCardMobile';
 import bgImage from '../../../../../../../../../common/assets/images/ZeroBlock/ZeroBlockSM.png';
+import ProductCardDesktop from '../ProductCardDesktop';
+import userEvent from '@testing-library/user-event';
 
 const product = {
     name: 'S000012345',
@@ -31,7 +33,7 @@ describe('ProductCardMobile', () => {
             expect(container.getElementsByClassName('ProductCardMobile')[0]).toBeInTheDocument();
         });
     });
-    it('should change icon on isActive', async () => {
+    it('should change icon on isActive=false', async () => {
         await waitFor(async () => {
             render(
                 <ProductCardMobile
@@ -52,6 +54,31 @@ describe('ProductCardMobile', () => {
             );
 
             expect(screen.getByTestId('active checkbox')).toBeInTheDocument();
+        });
+    });
+    it('should change icon on isActive=true', async () => {
+        await waitFor(async () => {
+            render(
+                <ProductCardMobile
+                    isActive={true}
+                    clickHandler={() => {}}
+                    product={product}
+                />
+            );
+
+            expect(screen.getByTestId('active checkbox')).toBeInTheDocument();
+
+            cleanup();
+
+            render(
+                <ProductCardMobile
+                    isActive={false}
+                    clickHandler={() => {}}
+                    product={product}
+                />
+            );
+
+            expect(screen.queryByTestId('active checkbox')).toBeNull();
         });
     });
 });

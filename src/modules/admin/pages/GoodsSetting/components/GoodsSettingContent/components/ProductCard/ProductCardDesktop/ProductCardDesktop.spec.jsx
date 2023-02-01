@@ -1,5 +1,5 @@
 import { waitFor } from '@testing-library/dom';
-import { act, render, screen } from '@testing-library/react';
+import { act, cleanup, render, screen } from '@testing-library/react';
 import React from 'react';
 import ProductCardDesktop from './ProductCardDesktop';
 import bgImage from '../../../../../../../../../common/assets/images/ZeroBlock/ZeroBlockSM.png';
@@ -33,7 +33,7 @@ describe('ProductCardAddDesktop', () => {
         });
     });
 
-    it('should change icon on isActive', async () => {
+    it('should change icon on isActive=false', async () => {
         await waitFor(async () => {
             const { container } = render(
                 <ProductCardDesktop
@@ -58,6 +58,34 @@ describe('ProductCardAddDesktop', () => {
             );
 
             expect(screen.getByTestId('active checkbox')).toBeInTheDocument();
+        });
+    });
+    it('should change icon on isActive=true', async () => {
+        await waitFor(async () => {
+            render(
+                <ProductCardDesktop
+                    isActive={true}
+                    clickHandler={() => {}}
+                    product={product}
+                />
+            );
+
+            expect(screen.getByTestId('active checkbox')).toBeInTheDocument();
+            cleanup();
+
+            const { container } = render(
+                <ProductCardDesktop
+                    isActive={false}
+                    clickHandler={() => {}}
+                    product={product}
+                />
+            );
+
+            await act(() => {
+                userEvent.hover(container.getElementsByClassName('ProductCardDesktop')[0]);
+            });
+
+            expect(screen.getByTestId('empty checkbox')).toBeInTheDocument();
         });
     });
 });
