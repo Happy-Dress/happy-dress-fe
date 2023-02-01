@@ -28,14 +28,14 @@ const ModelItem = ({
                         handleCheck(model.id, 'checked', e.target.checked);
                     }}
                 />
-                <input className={s.text} type="text" defaultValue={model.value} />
+                <input className={s.text} type="text" defaultValue={model.name} />
                 <Pencil
                     className={s.pencil_img}
                     onClick={() => {
                         setEditField(true);
                         setCurrentValue({
                             id: model.id,
-                            value: model.value,
+                            name: model.name,
                             checked: model.checked,
                         });
                     }}
@@ -72,7 +72,7 @@ const DropdownScrollBar = ({
             >
                 {modelExampl.map((model) => (
                     <ModelItem
-                        key={Math.random() * 10000}
+                        key={Math.floor(Math.random() * 10000)}
                         model={model}
                         handleCheck={handleCheck}
                         handleChangeText={handleChangeText}

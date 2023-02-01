@@ -7,8 +7,8 @@ const EditValueDropdown = ({ s, currentValue, setCurrentValue }) => {
             <input
                 className={s.input_field}
                 type="text"
-                value={currentValue.value}
-                onChange={(e) => {setCurrentValue({ ...currentValue, value: e.target.value });}}
+                value={currentValue.name}
+                onChange={(e) => {setCurrentValue({ ...currentValue, name: e.target.value });}}
             />
         </div>
     );

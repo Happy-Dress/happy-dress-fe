@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import s from './CatalogSettings.module.scss';
 import SettingsDropDown from './components/SettingDropDown';
 import { CATALOG_SETTINGS_DICTIONARY } from './CatalogSettings.dictionary';
@@ -17,15 +18,24 @@ const {
 
 const CatalogSettings = () => {
     const [catalogueSetting, setCatalogueSetting] = useState({});
-    useEffect( () => {
+    const getModels = ()=>{
+        retrieveCatalogueSettings().then((setting) => setCatalogueSetting(setting));
+    };
+    const sendModels = async (obj) => {
+        setModels(obj);
+        await axios.post('setting', catalogueSetting);
+        getModels();
+    };
+    const setModels = (obj) => {
+        setCatalogueSetting({ ...catalogueSetting, ['models']: [...catalogueSetting.models, obj] }); 
+    };
+    useEffect(() => {
         try {
-            retrieveCatalogueSettings()
-                .then((setting) => setCatalogueSetting(setting));   
+            getModels();
         } catch (error) {
             console.log(error.message);
         }
-     
-    },[]);
+    }, []);
     const items = [
         {
             element: <div>Настройки категорий</div>,
@@ -40,7 +50,7 @@ const CatalogSettings = () => {
             name: MATERIAL_SETTINGS_NAME,
         },
         {
-            element: <Dropdown models={catalogueSetting.models}/>,
+            element: <Dropdown modelsList={catalogueSetting.models} sendModels={sendModels}/>,
             name: MODEL_SETTINGS_NAME,
         },
     ];

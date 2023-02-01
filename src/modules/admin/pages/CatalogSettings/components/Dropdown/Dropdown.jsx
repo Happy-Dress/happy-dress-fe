@@ -3,19 +3,23 @@ import { useDeviceTypeContext } from '../../../../../../common/ui/contexts/Devic
 import DropdownMobile from '../DropdownMobile/DropdownMobile';
 import DropdownDesktop from '../DropdownDesktop/DropdownDesktop';
 import PropTypes from 'prop-types';
-const Dropdown = ({ models }) => {
+const Dropdown = ({ modelsList, sendModels }) => {
     const { isDesktop, isMobile } = useDeviceTypeContext();
-    const flatObj = { id: Math.random()*10000, value: '', checked: false };
+    const flatObj = {
+        id: Math.floor(Math.random() * 100),
+        name: '',
+        checked: false,
+    };
     const [modelExampl, setModelExampl] = useState([]);
     const [deleteGroup, setDeleteGroup] = useState(false);
     const [editField, setEditField] = useState(false);
     const [currentValue, setCurrentValue] = useState(flatObj);
-    useEffect(()=>{
-        if(models){
-            const convertedModels = models.map(model=>({ id: model.id, value: model.name }));
-            setModelExampl(convertedModels);
+    useEffect(() => {
+        if (modelsList) {
+            setModelExampl(modelsList);
         }
-    },[models]);
+    }, [modelsList]);
+
     const checkModelExamplValue = () => {
         let count = 0;
         modelExampl.forEach((item) => {
@@ -25,11 +29,11 @@ const Dropdown = ({ models }) => {
         else setDeleteGroup(false);
     };
 
-    const handleCheck = (id, prop, value) => {
+    const handleCheck = (id, prop, name) => {
         setModelExampl(
             modelExampl.map((obj) => {
                 if (obj.id == id) {
-                    return { ...obj, [prop]: value };
+                    return { ...obj, [prop]: name };
                 } else {
                     return obj;
                 }
@@ -49,16 +53,15 @@ const Dropdown = ({ models }) => {
         setModelExampl(
             modelExampl.map((obj) => {
                 if (obj.id == currentValue.id) {
-                    return { ...obj, value: currentValue.value };
+                    return { ...obj, name: currentValue.name };
                 } else {
                     return obj;
                 }
             })
-           
         );
+        sendModels(modelExampl);
         setCurrentValue(flatObj);
         setEditField(false);
-      
     };
     const handleChangeText = (id, e, prop) => {
         setModelExampl(
@@ -73,7 +76,7 @@ const Dropdown = ({ models }) => {
     };
 
     const deleteHandle = () => {
-        if(deleteGroup){
+        if (deleteGroup) {
             setModelExampl(modelExampl.filter((item) => item.checked === false));
             setDeleteGroup(false);
         }
@@ -139,5 +142,6 @@ const Dropdown = ({ models }) => {
 
 export default Dropdown;
 Dropdown.propTypes = {
-    models: PropTypes.array
+    modelsList: PropTypes.array,
+    sendModels: PropTypes.func
 };

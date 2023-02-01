@@ -11,8 +11,8 @@ jest.mock('./components/SettingDropDown', ()=>({
 jest.mock('../../../../common/api/catalogueSettings/retrieveCatalogueSettings');
 describe('CatalogSettings', () => {  
     it('should render correctly', async () => {
-        render(<CatalogSetting />);
         retrieveCatalogueSettings.mockRejectValue;
+        render(<CatalogSetting />); 
         const title = screen.getByText('Управление каталогом');
         const dropDown = screen.getAllByTestId('setting-drop-down');
         const btnSave = screen.getByText('Сохранить');
