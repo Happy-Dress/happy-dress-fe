@@ -2,7 +2,6 @@ import React from 'react';
 import s from './ProductCardMobile.module.scss';
 import PropTypes from 'prop-types';
 import { ReactComponent as Checkbox } from '../../../../../../../../../common/assets/images/checkbox.svg';
-import bgImage from '../../../../../../../../../common/assets/images/ZeroBlock/ZeroBlockSM.png';
 import { PRODUCT_CARD_DICTIONARY } from '../ProductCard.dictionary';
 
 const {
