@@ -40,6 +40,18 @@ const GoodsSettingHeaderMobile = ({ filters }) => {
         setSearchParams(queryString);
     };
 
+    const deleteFilters = () => {
+        setSearchParams(() => {
+            const params = new URLSearchParams(searchParams.toString()).entries();
+            const newState = Object.fromEntries(params);
+            for(let key in newState) {
+                if(key === 'categories') continue;
+                delete newState[key];
+            }
+            return new URLSearchParams(newState).toString();
+        });
+    };
+
     if (!currentFilters) return;
 
     return (
@@ -60,7 +72,7 @@ const GoodsSettingHeaderMobile = ({ filters }) => {
                         <ButtonAccent text={'Применить'} onClick={applyFilters}/>
                     </div>
                 </div>
-                <div className={s.currentFilters} style={{ display: isOpen ? 'none': 'flex' }}>
+                <div className={s.currentFilters} style={{ display: (isOpen || !Object.keys(currentFilters).filter(item => item !== 'categories').length) ? 'none': 'flex' }}>
                     {
                         Object.keys(currentFilters).map(key => {
                             if (key === 'categories') return;
@@ -76,6 +88,9 @@ const GoodsSettingHeaderMobile = ({ filters }) => {
                             });
                         })
                     }
+                </div>
+                <div className={s.deleteFilters}>
+                    {(Object.keys(currentFilters).filter(key => key !== 'categories').length && !isOpen) ? <ButtonAccent text={'Сбросить фильтры'} onClick={deleteFilters}/> : ''}
                 </div>
             </div>
         </>

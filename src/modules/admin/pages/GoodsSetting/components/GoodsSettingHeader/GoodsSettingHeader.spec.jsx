@@ -111,18 +111,13 @@ const response = {
     ]
 };
 
-jest.mock('../../../../../../common/api/catalogueSettings/retrieveCatalogueSettings', () =>({
-    __esModule: true,
-    default: () => Promise.resolve({ ...response }),
-}));
-
 describe('GoodsSettingHeader', () => {
     it('should render desktop goods setting component', async () => {
         mockIsDesktopWidth = true;
         mockIsMobileWidth = false;
         mockIsMobileHeight = false;
 
-        render(<GoodsSettingHeader />);
+        render(<GoodsSettingHeader filters={response}/>);
 
         await waitFor(async () => {
             const desktopPanel = await screen.getByText('Goods Setting Header desktop');
@@ -134,7 +129,7 @@ describe('GoodsSettingHeader', () => {
         mockIsMobileHeight = true;
         mockIsDesktopWidth = false;
 
-        render(<GoodsSettingHeader />);
+        render(<GoodsSettingHeader filters={response}/>);
 
         await waitFor(async () => {
             const mobilePanel = await screen.getByText('Goods Setting Header mobile');

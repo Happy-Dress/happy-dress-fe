@@ -1,0 +1,97 @@
+@import "../../../../../../../../../common/ui/styles/media-sizes";
+@import "../../../../../../../../../common/ui/styles/font-sizes";
+@import "../../../../../../../../../common/ui/styles/colors";
+
+.ProductCardDesktop {
+  display: flex;
+  width: 437px;
+  height: 636px;
+  position: relative;
+  box-shadow: $shadow-black;
+  color: $black;
+  overflow-y: hidden;
+  cursor: pointer;
+
+  .checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 45px;
+    height: 45px;
+    margin: 20px;
+    border-radius: 2px;
+  }
+
+  img[alt='dress preview'] {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top: -10%;
+    filter: saturate(0.5);
+
+    &.hovered {
+      filter: none;
+    }
+  }
+  .content {
+    align-self: flex-end;
+    background-color: $white;
+    width: 100%;
+    padding: 12px 20px 105px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 12px;
+
+    h3 {
+      font-weight: bold;
+    }
+
+    .property {
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      position: relative;
+      &::after {
+        content: ' ';
+        display: block;
+        height: 1px;
+        background-color: $light-gray;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+      }
+
+      .colors {
+        display: flex;
+        gap: 10px;
+        span {
+          width: 23px;
+          height: 23px;
+          display: block;
+          border-radius: 100%;
+        }
+      }
+
+      .sizes {
+        display: flex;
+        gap: 10px;
+      }
+    }
+  }
+  
+  @media screen and (max-width: $xl-size) {
+    width: 300px;
+    height: 436px;
+    img[alt='dress preview'] {
+      top: -20%;
+    }
+
+    .content {
+      padding: 12px 20px 50px;
+    }
+  }
+}

@@ -5,6 +5,8 @@
 .Way{
   color: $light-gray;
   margin-bottom: 15px;
+  align-self: flex-start;
+  margin-left: 25px;
 }
 
 .title {
@@ -13,12 +15,17 @@
   padding: 0 20px 20px;
   border-bottom: 1px solid $brown;
   text-align: center;
+  width: fit-content;
 }
 
 .searchContainer {
   width: calc(100%);
-  padding: 0 140px 0 100px;
-  margin: 0 auto;
+  padding: 20px 110px 20px 99px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: $white;
+  height: fit-content;
 
   .searchBar {
     margin-top: 10px;
@@ -43,8 +50,5 @@
     row-gap: 16px;
     max-width: 100%;
     flex-wrap: wrap;
-  }
-  @media screen and (max-width: $xl-size) {
-    padding: 0 120px 0 80px;
   }
 }
