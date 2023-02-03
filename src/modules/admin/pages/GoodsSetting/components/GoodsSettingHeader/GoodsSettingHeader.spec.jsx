@@ -99,9 +99,14 @@ jest.mock('../../../../../../common/ui/hocs/adaptive', () => ({
 describe('GoodsSettingHeader', () => {
     it('should render goods setting header component', async () => {
 
-        render(<GoodsSettingHeader filters={response}/>);
+        render(<GoodsSettingHeader filters={response} isLoading={false}/>);
 
         const desktopPanel = await screen.getByText('Goods Setting Header');
         expect(desktopPanel).toBeInTheDocument();
+    });
+    it('should render loader', async () => {
+
+        render(<GoodsSettingHeader filters={response} isLoading={true}/>);
+        expect(screen.getByText('Loader')).toBeInTheDocument();
     });
 });

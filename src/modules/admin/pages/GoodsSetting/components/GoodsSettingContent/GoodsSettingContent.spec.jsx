@@ -31,9 +31,14 @@ const response = [
 describe('GoodsSettingContent', () => {
     it('should render correctly', async () => {
         await waitFor(() => {
-            const { container } = render(<GoodsSettingContent catalogueItems={response}/>);
+            const { container } = render(<GoodsSettingContent catalogueItems={response} isLoading={false}/>);
 
             expect(container.getElementsByClassName('GoodsSettingContent')[0]).toBeInTheDocument();
         });
+    });
+    it('should render loader', async () => {
+
+        render(<GoodsSettingContent catalogueItems={response} isLoading={true}/>);
+        expect(screen.getByText('Loader')).toBeInTheDocument();
     });
 });
