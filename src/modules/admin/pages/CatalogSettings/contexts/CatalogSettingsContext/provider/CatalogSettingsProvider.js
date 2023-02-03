@@ -20,12 +20,11 @@ const CatalogSettingsProvider = (props) => {
     };
 
     const saveSettings = () => {
-        debugger;
     };
 
 
     return (
-        <CatalogSettingsContext.Provider value={{ catalogSettings, updateModels, saveSettings }}>
+        <CatalogSettingsContext.Provider value={{ settings: catalogSettings, updateModels, saveSettings }}>
             {props.children}
         </CatalogSettingsContext.Provider>
     );
