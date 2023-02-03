@@ -1,3 +1,3 @@
-import CatalogSetting from './CatalogSettings';
+import CatalogSettings from './CatalogSettings';
 
-export default CatalogSetting;
+export default CatalogSettings;

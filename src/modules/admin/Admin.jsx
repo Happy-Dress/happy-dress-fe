@@ -3,12 +3,12 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import SignIn from './pages/SignIn';
 import NavigationPanel from './components/NavigationPanel/NavigationPanel';
 import GoodsSetting from './pages/GoodsSetting/GoodsSetting';
-import CatalogSetting from './pages/CatalogSettings/CatalogSettings';
 import RegistrationSetting from './pages/RegistrationSetting/RegistrationSetting';
 import BlogSetting from './pages/BlogSetting/BlogSetting';
 import NotFound from './pages/NotFound';
 import s from './Admin.module.scss';
 import PrivateRoutes from '../../common/util/routers/ProtectedRoutes';
+import CatalogSettings from './pages/CatalogSettings';
 
 const RETRY_SIGN_IN = 'Выполните вход';
 
@@ -19,7 +19,7 @@ export const AdminPanelRoutes = () => {
             <div className={s.adminPage}>
                 <Routes>
                     <Route path="/" element={<Navigate to={'catalog-setting'}/>}/>
-                    <Route path="catalog-setting" element={<CatalogSetting/>}/>
+                    <Route path="catalog-setting" element={<CatalogSettings/>}/>
                     <Route path="blog-setting" element={<BlogSetting/>}/>
                     <Route path="goods-setting" element={<GoodsSetting/>}/>
                     <Route

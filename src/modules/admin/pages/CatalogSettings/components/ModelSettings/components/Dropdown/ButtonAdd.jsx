@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-const ButtonAdd = ({ s, handleAdd }) => {
+const ButtonAdd = ({  handleAdd }) => {
     return (
-        <div className={s.button_wrapper_add}>
-            <button className={s.button_add} onClick={() => handleAdd()}>
+        <div>
+            <button onClick={handleAdd}>
         +Добавить
             </button>
         </div>

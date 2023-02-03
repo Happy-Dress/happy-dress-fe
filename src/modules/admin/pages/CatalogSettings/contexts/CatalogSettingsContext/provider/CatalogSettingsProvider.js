@@ -20,7 +20,7 @@ const CatalogSettingsProvider = (props) => {
     };
 
     const saveSettings = () => {
-
+        debugger;
     };
 
 

@@ -2,10 +2,11 @@ import s from './CatalogSettings.module.scss';
 import SettingsDropDown from './components/ModelSettings/components/SettingDropDown';
 import { CATALOG_SETTINGS_DICTIONARY } from './CatalogSettings.dictionary';
 import { ButtonAccent, ButtonDefault } from '../../../../common/ui/components';
-import Dropdown from './components/ModelSettings/components/Dropdown/Dropdown';
-import retrieveCatalogueSettings from '../../../../common/api/catalogueSettings/retrieveCatalogueSettings';
-import { useEffect, useState } from 'react';
+import ModelSettings from './components/ModelSettings';
+import { useCatalogSettings } from './contexts/CatalogSettingsContext/hook/useCatalogSettings';
 import CatalogSettingsProvider from './contexts/CatalogSettingsContext/provider/CatalogSettingsProvider';
+import withProvider from '../../../../common/ui/hocs/withProvider';
+
 const {
     CATEGORIES_SETTINGS_NAME,
     COLORS_SETTINGS_NAME,
@@ -16,7 +17,10 @@ const {
     BUTTON_SETTINGS_CANCEL,
 } = CATALOG_SETTINGS_DICTIONARY;
 
+
 const CatalogSettings = () => {
+
+    const { saveSettings } = useCatalogSettings();
 
     const items = [
         {
@@ -32,33 +36,31 @@ const CatalogSettings = () => {
             name: MATERIAL_SETTINGS_NAME,
         },
         {
-            element: <Dropdown/>,
+            element: <ModelSettings/>,
             name: MODEL_SETTINGS_NAME,
         }
     ];
 
 
     return(
-        <CatalogSettingsProvider>
-            <div className={s.CatalogSettings}>
-                <div className={s.Way}>Главная &gt; Управление каталогом</div>
-                <h2>{CATALOG_SETTINGS_TITLE}</h2>
-                <div className={s.categories}>
-                    {
-                        items.map((el, index) => (
-                            <SettingsDropDown key={index} name={el.name}>
-                                {el.element}
-                            </SettingsDropDown>
-                        ))
-                    }
-                </div>
-                <div className={s.buttons}>
-                    <ButtonDefault text={BUTTON_SETTINGS_CANCEL}/>
-                    <ButtonAccent text={BUTTON_SETTINGS_SAVE}/>
-                </div>
+        <div className={s.CatalogSettings}>
+            <div className={s.Way}>Главная &gt; Управление каталогом</div>
+            <h2>{CATALOG_SETTINGS_TITLE}</h2>
+            <div className={s.categories}>
+                {
+                    items.map((el, index) => (
+                        <SettingsDropDown key={index} name={el.name}>
+                            {el.element}
+                        </SettingsDropDown>
+                    ))
+                }
             </div>
-        </CatalogSettingsProvider>
+            <div className={s.buttons}>
+                <ButtonDefault text={BUTTON_SETTINGS_CANCEL}/>
+                <ButtonAccent text={BUTTON_SETTINGS_SAVE} onClick={saveSettings}/>
+            </div>
+        </div>
     );
 };
 
-export default CatalogSettings;
+export default withProvider(CatalogSettingsProvider)(CatalogSettings);

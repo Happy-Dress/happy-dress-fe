@@ -1,0 +1,46 @@
+@import "../../../../../../common/ui/styles/colors";
+@import "../../../../../../common/ui/styles/font-sizes";
+
+
+.SettingsList {
+
+    ::-webkit-scrollbar {
+        width: 8px;
+        background-color: $light-gray;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: $gray;
+        width: 8px;
+        height: 70%;
+    }
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+
+    .addButton {
+        width: 100px;
+        background-color: Transparent;
+        font-size: $font-size-xlarge-24;
+    }
+
+    .listArea {
+        padding-right: 8px;
+        margin-top: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        height: 250px;
+        width: 100%;
+        overflow-y: scroll;
+    }
+
+    .buttonArea{
+        display: flex;
+        justify-content: space-between;
+        padding-top: 10px;
+    }
+}
