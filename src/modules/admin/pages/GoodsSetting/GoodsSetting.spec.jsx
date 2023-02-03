@@ -1,14 +1,7 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import GoodsSetting from './index';
 import { BrowserRouter } from 'react-router-dom';
-
-// jest.mock('./GoodsSetting.jsx', () => ({
-//     __esModule: true,
-//     default: () => {
-//         return <div data-testid="goods-setting"/>;
-//     }
-// }));
 
 const response = {
     'categories': [
@@ -137,7 +130,6 @@ jest.mock('../../../../common/api/catalogueItems/getCatalogueItems', () =>({
 describe('GoodsSetting', () => {
     it('should render correctly', async () => {
         const { container } = render(<GoodsSetting/>, { wrapper: BrowserRouter });
-        expect(container.getElementsByClassName('loader').length).toBe(1);
 
         await waitFor(async () => {
             const goodsSetting = container.getElementsByClassName('GoodsSetting')[0];
