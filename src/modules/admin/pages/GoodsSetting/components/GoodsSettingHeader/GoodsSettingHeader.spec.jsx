@@ -1,26 +1,6 @@
 import React from 'react';
-import { screen, render, waitFor } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import GoodsSettingHeader from './GoodsSettingHeader';
-
-jest.mock('./GoodsSettingHeaderDesktop', () => ({
-    __esModule: true,
-    default: () => <div>Goods Setting Header desktop</div>
-}));
-
-jest.mock('./GoodsSettingHeaderMobile', () => ({
-    __esModule: true,
-    default: () => <div>Goods Setting Header mobile</div>
-}));
-
-let mockIsMobileWidth = false;
-let mockIsMobileHeight = false;
-let mockIsDesktopWidth = false;
-
-jest.mock('../../hooks/useGoodsMediaQuery', () => () => ({
-    isMobileWidth: mockIsMobileWidth,
-    isMobileHeight: mockIsMobileHeight,
-    isDesktopWidth: mockIsDesktopWidth,
-}));
 
 const response = {
     'categories': [
@@ -111,29 +91,17 @@ const response = {
     ]
 };
 
+jest.mock('../../../../../../common/ui/hocs/adaptive', () => ({
+    __esModule: true,
+    default: () => () => <div>Goods Setting Header</div>
+}));
+
 describe('GoodsSettingHeader', () => {
-    it('should render desktop goods setting component', async () => {
-        mockIsDesktopWidth = true;
-        mockIsMobileWidth = false;
-        mockIsMobileHeight = false;
+    it('should render goods setting header component', async () => {
 
         render(<GoodsSettingHeader filters={response}/>);
 
-        await waitFor(async () => {
-            const desktopPanel = await screen.getByText('Goods Setting Header desktop');
-            expect(desktopPanel).toBeInTheDocument();
-        });
-    });
-    it('should render mobile goods setting component', async () => {
-        mockIsMobileWidth = true;
-        mockIsMobileHeight = true;
-        mockIsDesktopWidth = false;
-
-        render(<GoodsSettingHeader filters={response}/>);
-
-        await waitFor(async () => {
-            const mobilePanel = await screen.getByText('Goods Setting Header mobile');
-            expect(mobilePanel).toBeInTheDocument();
-        });
+        const desktopPanel = await screen.getByText('Goods Setting Header');
+        expect(desktopPanel).toBeInTheDocument();
     });
 });
