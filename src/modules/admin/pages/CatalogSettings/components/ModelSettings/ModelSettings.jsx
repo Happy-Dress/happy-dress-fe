@@ -4,9 +4,18 @@ import s from './ModelSettings.module.scss';
 import { ButtonAccent, ButtonDefault, ButtonTerritory } from '../../../../../../common/ui/components/Buttons';
 import { useCatalogSettings } from '../../contexts/CatalogSettingsContext/hook/useCatalogSettings';
 import classNames from 'classnames';
+import { MODEL_SETTINGS_DICTIONARY } from './ModelSettings.dictionary';
 
 const MIN_MODEL_NAME_LENGTH = 3;
 const MAX_MODEL_NAME_LENGTH = 20;
+const EMPTY_NAME = '';
+
+const {
+    ADD_BUTTON_LABEL,
+    SAVE_BUTTON_LABEL,
+    DELETE_BUTTON_LABEL,
+    CANCEL_BUTTON_LABEL
+} = MODEL_SETTINGS_DICTIONARY;
 
 export const ModelSettings = () => {
 
@@ -29,7 +38,7 @@ export const ModelSettings = () => {
             return;
         }
         const modelOrderNumber = editingModel.orderNumber;
-        if(modelOrderNumber !== undefined) {
+        if (modelOrderNumber !== undefined) {
             const updatedModels = models.map((model) =>{
                 if(model.orderNumber === modelOrderNumber) {
                     return { ...model, name: inputRef.current.value };
@@ -42,17 +51,17 @@ export const ModelSettings = () => {
             updateModels([...models, { name:  inputRef.current.value, orderNumber:newOrderNumber }]);
         }
 
-        inputRef.current.value = '';
+        inputRef.current.value = EMPTY_NAME;
         setEditingModel(null);
     };
 
     const handleCancel = () => {
-        inputRef.current.value = '';
+        inputRef.current.value = EMPTY_NAME;
         setEditingModel(null);
     };
 
     const handleAdd = () =>{
-        setEditingModel({ name: '' });
+        setEditingModel({ name: EMPTY_NAME });
     };
 
     const handleSelect = (model) => {
@@ -89,7 +98,7 @@ export const ModelSettings = () => {
         <div className={s.ModelSettings}>
             <input maxLength={MAX_MODEL_NAME_LENGTH} onChange={handleInputChange} ref={inputRef} className={classNames(s.settingInput, editingModel? s.inputControlVisible : s.inputControlHidden)}/>
             <button onClick={handleAdd} className={classNames(s.addButton, editingModel? s.inputControlHidden: s.inputControlVisible)}>
-                +Добавить
+                {ADD_BUTTON_LABEL}
             </button>
 
 
@@ -106,13 +115,13 @@ export const ModelSettings = () => {
 
             {editingModel &&
                 <div className={s.buttonArea}>
-                    <ButtonDefault onClick={handleCancel} text='Отмена'/>
-                    <ButtonAccent disabled={editingModel.name?.length < MIN_MODEL_NAME_LENGTH} onClick={handleSave} text='Сохранить'/>
+                    <ButtonDefault onClick={handleCancel} text={CANCEL_BUTTON_LABEL}/>
+                    <ButtonAccent disabled={editingModel.name?.length < MIN_MODEL_NAME_LENGTH} onClick={handleSave} text={SAVE_BUTTON_LABEL}/>
                 </div>}
             {
                 (!editingModel && !!selectedOrderNumbers.length) &&
                 <div className={s.deleteButtonArea}>
-                    <ButtonTerritory onClick={handleDelete} text='Удалить'/>
+                    <ButtonTerritory onClick={handleDelete} text={DELETE_BUTTON_LABEL}/>
                 </div>
             }
         </div>
