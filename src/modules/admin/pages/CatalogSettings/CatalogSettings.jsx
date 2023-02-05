@@ -1,11 +1,11 @@
 import s from './CatalogSettings.module.scss';
-import SettingsDropDown from './components/ModelSettings/components/SettingDropDown';
 import { CATALOG_SETTINGS_DICTIONARY } from './CatalogSettings.dictionary';
 import { ButtonAccent, ButtonDefault } from '../../../../common/ui/components';
 import ModelSettings from './components/ModelSettings';
 import { useCatalogSettings } from './contexts/CatalogSettingsContext/hook/useCatalogSettings';
 import CatalogSettingsProvider from './contexts/CatalogSettingsContext/provider/CatalogSettingsProvider';
 import withProvider from '../../../../common/ui/hocs/withProvider';
+import SettingsDropDown from './components/SettingDropDown';
 
 const {
     CATEGORIES_SETTINGS_NAME,
@@ -20,7 +20,9 @@ const {
 
 const CatalogSettings = () => {
 
-    const { saveSettings } = useCatalogSettings();
+    const { saveSettings, initialSettings, settings } = useCatalogSettings();
+
+    const areSettingsChanged = JSON.stringify(settings) !== JSON.stringify(initialSettings);
 
     const items = [
         {
@@ -57,7 +59,7 @@ const CatalogSettings = () => {
             </div>
             <div className={s.buttons}>
                 <ButtonDefault text={BUTTON_SETTINGS_CANCEL}/>
-                <ButtonAccent text={BUTTON_SETTINGS_SAVE} onClick={saveSettings}/>
+                <ButtonAccent disabled={!areSettingsChanged} text={BUTTON_SETTINGS_SAVE} onClick={saveSettings}/>
             </div>
         </div>
     );

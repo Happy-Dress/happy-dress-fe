@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Reorder } from 'framer-motion';
 
 
-const SettingsList = ({ settings, handleReorder }) =>{
+const SettingsList = ({ settings, handleReorder, onEdit, onRemove, onSelect, onUnSelect }) =>{
 
     const [trackedItems, setTrackedItems] = useState([]);
 
@@ -28,6 +28,7 @@ const SettingsList = ({ settings, handleReorder }) =>{
                 values={trackedItems}
                 className={s.listArea}
                 onReorder={onReorder}
+                layoutScroll
             >
                 {(trackedItems).map(setting =>
                     <Reorder.Item
@@ -36,9 +37,8 @@ const SettingsList = ({ settings, handleReorder }) =>{
                         draggable={true}
                         value={setting}
                         onDragEnd={() => handleReorder(trackedItems)}
-                        dragMomentum={false}
                     >
-                        <SettingListItem  setting={setting}/>
+                        <SettingListItem onEdit={onEdit} setting={setting} onRemove={onRemove} onSelect={onSelect} onUnSelect={onUnSelect}/>
                     </Reorder.Item>
                 )}
             </Reorder.Group>
@@ -48,7 +48,11 @@ const SettingsList = ({ settings, handleReorder }) =>{
 
 SettingsList.propTypes = {
     settings: PropTypes.array,
-    handleReorder: PropTypes.func
+    handleReorder: PropTypes.func,
+    onEdit: PropTypes.func,
+    onRemove: PropTypes.func,
+    onSelect: PropTypes.func,
+    onUnSelect: PropTypes.func,
 };
 
 

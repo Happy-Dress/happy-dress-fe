@@ -14,9 +14,35 @@
 	}
 
 	.buttonArea{
+		padding-left: 10px;
+		padding-right: 10px;
 		display: flex;
 		justify-content: space-between;
 		padding-top: 10px;
+	}
+
+	.deleteButtonArea {
+		padding-left: 10px;
+		padding-right: 10px;
+		display: flex;
+		flex-direction: column-reverse;
+		padding-top: 10px;
+	}
+
+	.settingInput{
+		height: 45px;
+		width: 100%;
+		border: 1px solid rgba(34, 17, 34, 0.9);
+		padding: 8px 16px;
+		font-size: $font-size-xlarge-24;
+	}
+
+	.inputControlVisible {
+		display: block;
+	}
+
+	.inputControlHidden {
+		display: none;
 	}
 
 }

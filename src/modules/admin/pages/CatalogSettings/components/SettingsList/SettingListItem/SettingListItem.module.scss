@@ -27,7 +27,11 @@
     align-items: center;
 
     .itemValue{
-        font-size: $font-size-xlarge-24;
+      font-size: $font-size-xlarge-24;
+      overflow: hidden;
+      display: inline-block;
+      max-width: 260px;
+      text-overflow: ellipsis;
     }
   }
 
