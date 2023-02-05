@@ -69,6 +69,25 @@ describe('ModelSettings', () =>{
         expect(cancelButton).not.toBeInTheDocument();
     });
 
+
+
+    it('should start edit and save', async () =>{
+        render(<ModelSettings/>);
+        const button = screen.getByRole('button', {
+            name: /Edit/i
+        });
+        await waitFor(() =>{
+            userEvent.click(button);
+        });
+        const saveButton = screen.getByRole('button', {
+            name: /Сохранить/i
+        });
+        await waitFor(() =>{
+            userEvent.click(saveButton);
+        });
+        expect(mockUpdateModels).toHaveBeenCalled();
+    });
+
     it('should handle add', async () =>{
         render(<ModelSettings/>);
         const button = screen.getByRole('button', {
@@ -164,6 +183,28 @@ describe('ModelSettings', () =>{
             userEvent.click(removeButton);
         });
         expect(mockUpdateModels).not.toHaveBeenCalled();
+    });
+
+    it('should add model and save', async () =>{
+        render(<ModelSettings/>);
+        const button = screen.getByRole('button', {
+            name: '+Добавить'
+        });
+        await waitFor(() =>{
+            userEvent.click(button);
+        });
+        const input = screen.getByRole('textbox');
+        await waitFor(() =>{
+            userEvent.paste(input, 'Пышное');
+        });
+        const saveButton = screen.getByRole('button', {
+            name: /Сохранить/i
+        });
+        await waitFor(() =>{
+            userEvent.click(saveButton);
+        });
+        expect(mockUpdateModels).toHaveBeenCalled();
+
     });
 
 });

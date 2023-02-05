@@ -34,9 +34,6 @@ export const ModelSettings = () => {
     };
 
     const handleSave = () => {
-        if (inputRef.current.value.length < MIN_MODEL_NAME_LENGTH) {
-            return;
-        }
         const modelOrderNumber = editingModel.orderNumber;
         if (modelOrderNumber !== undefined) {
             const updatedModels = models.map((model) =>{
