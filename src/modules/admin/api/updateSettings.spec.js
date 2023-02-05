@@ -1,5 +1,5 @@
-import mockAxios from "jest-mock-axios";
-import updateSettings from "./updateSettings";
+import mockAxios from 'jest-mock-axios';
+import updateSettings from './updateSettings';
 
 describe('updateSettings', () => {
 
