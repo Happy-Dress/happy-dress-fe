@@ -7,7 +7,11 @@ import { useCatalogSettings } from '../../contexts/CatalogSettingsContext/hook/u
 
 export const ModelSettings = () =>{
 
-    const { settings } = useCatalogSettings();
+    const { settings, updateModels } = useCatalogSettings();
+
+    const handleReorder = (reorderedModels) =>{
+        updateModels(reorderedModels);
+    };
 
     return (
         <div className={s.ModelSettings}>
@@ -15,7 +19,7 @@ export const ModelSettings = () =>{
                 +Добавить
             </button>
 
-            <SettingsList settings={settings?.models}/>
+            <SettingsList settings={settings.models} handleReorder={handleReorder}/>
             <div className={s.buttonArea}>
                 <ButtonDefault text='Отмена'/>
                 <ButtonAccent text='Сохранить'/>

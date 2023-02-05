@@ -18,6 +18,8 @@ const ModelItem = ({
             draggable={true}
             value={model}
             whileDrag={{ scale: 1.1 }}
+            layoutScroll
+            style={{ overflowY: 'scroll' }}
         >
             <div className={s.input_container} key={Math.random() * 10000}>
                 <input

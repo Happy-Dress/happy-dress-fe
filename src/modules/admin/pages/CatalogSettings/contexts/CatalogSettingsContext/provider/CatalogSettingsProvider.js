@@ -1,12 +1,14 @@
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { CatalogSettingsContext } from '../CatalogSettingsContext';
-import { useEffect, useState } from 'react';
 import { retrieveCatalogueSettings } from '../../../../../../../common/api';
 
 const CatalogSettingsProvider = (props) => {
 
     const [initialCatalogSettings, setInitialCatalogSettings] = useState();
-    const [catalogSettings, setCatalogSettings] = useState();
+    const [catalogSettings, setCatalogSettings] = useState({
+        models: []
+    });
 
     useEffect(() =>{
         retrieveCatalogueSettings().then((settings) =>{
