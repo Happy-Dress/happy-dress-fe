@@ -34,7 +34,7 @@ const FilterDropdown = ({ name, options, setCurrentFilters, currentFilters }) =>
                 <p>{formatFiltersName(name)}</p>
                 <ArrowDown className={isOpen ? s.active : ''}/>
             </div>
-            <div className={s.options} style={{ display: isOpen ? 'block' : 'none' }}>
+            <div className={s.options} style={{ height: isOpen ? `calc(60px * ${options.length})` : '0' }}>
                 {
                     options.map(item => {
                         return <FilterOption key={item.id} item={item} changeFilter={changeFilter} isChecked={currentFilters[name] ? currentFilters[name].split(',').includes(String(item.id)) : false}/>;

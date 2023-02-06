@@ -32,14 +32,11 @@ describe('FilterDropdown', () => {
         />);
 
         await waitFor(async () => {
-            const options = await container.getElementsByClassName('options');
-            expect(options[0]).toHaveStyle('display: none');
-
-            await act(() => {
-                userEvent.click(container.getElementsByClassName('currentFilter')[0]);
-            });
-
-            expect(options[0]).toHaveStyle('display: block');
+            let optionsContainer = await container.getElementsByClassName('options');
+            expect(optionsContainer[0]).toHaveStyle('height: 0');
+            await userEvent.click(container.getElementsByClassName('currentFilter')[0]);
+            optionsContainer = await container.getElementsByClassName('options');
+            expect(optionsContainer[0]).toHaveStyle(`height: calc(60px * ${options.length})`);
         });
     });
 
