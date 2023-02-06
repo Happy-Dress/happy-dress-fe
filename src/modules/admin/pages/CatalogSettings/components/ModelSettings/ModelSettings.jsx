@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import SettingsList from '../SettingsList';
 import s from './ModelSettings.module.scss';
 import { ButtonAccent, ButtonDefault, ButtonTerritory } from '../../../../../../common/ui/components/Buttons';
@@ -23,7 +23,6 @@ export const ModelSettings = () => {
     const { settings: { models }, updateModels } = useCatalogSettings();
     const [editingModel, setEditingModel] = useState();
     const [selectedOrderNumbers, setSelectedOrderNumbers] = useState([]);
-    const inputRef = useRef(null);
 
     const handleReorder = (reorderedModels) => {
         updateModels(reorderedModels);
@@ -31,7 +30,6 @@ export const ModelSettings = () => {
 
     const handleEdit = (model) => {
         setEditingModel(model);
-        inputRef.current.value = model.name;
     };
 
     const handleSave = () => {
@@ -39,23 +37,21 @@ export const ModelSettings = () => {
         if (modelOrderNumber !== undefined) {
             const updatedModels = models.map((model) =>{
                 if(model.orderNumber === modelOrderNumber) {
-                    return { ...model, name: inputRef.current.value };
+                    return { ...model, name: editingModel.name };
                 }
                 return model;
             });
             updateModels(updatedModels);
         } else {
             const modelsOrderNumbers = models.map(model => model.orderNumber);
-            const newOrderNumber = modelsOrderNumbers.length ? Math.max(modelsOrderNumbers) + 1 : STARTING_ORDER_NUMBER;
-            updateModels([...models, { name:  inputRef.current.value, orderNumber:newOrderNumber }]);
+            const newOrderNumber = modelsOrderNumbers.length ? Math.max(...modelsOrderNumbers) + 1 : STARTING_ORDER_NUMBER;
+            updateModels([...models, { name: editingModel.name, orderNumber:newOrderNumber }]);
         }
 
-        inputRef.current.value = EMPTY_NAME;
         setEditingModel(null);
     };
 
     const handleCancel = () => {
-        inputRef.current.value = EMPTY_NAME;
         setEditingModel(null);
     };
 
@@ -89,13 +85,18 @@ export const ModelSettings = () => {
         }
     };
 
-    const handleInputChange = () => {
-        setEditingModel({ ...editingModel, name: inputRef.current.value });
+    const handleInputChange = (event) => {
+        setEditingModel({ ...editingModel, name: event.target.value });
     };
 
     return (
         <div className={s.ModelSettings}>
-            <input maxLength={MAX_MODEL_NAME_LENGTH} onChange={handleInputChange} ref={inputRef} className={classNames(s.settingInput, editingModel? s.inputControlVisible : s.inputControlHidden)}/>
+            <input
+                maxLength={MAX_MODEL_NAME_LENGTH}
+                onChange={handleInputChange}
+                value={editingModel?.name || EMPTY_NAME}
+                className={classNames(s.settingInput, editingModel? s.inputControlVisible : s.inputControlHidden)}
+            />
             <button onClick={handleAdd} className={classNames(s.addButton, editingModel? s.inputControlHidden: s.inputControlVisible)}>
                 {ADD_BUTTON_LABEL}
             </button>

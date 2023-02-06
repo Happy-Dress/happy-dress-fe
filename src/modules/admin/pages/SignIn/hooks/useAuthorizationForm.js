@@ -7,7 +7,6 @@ import authenticateUser from '../../../api/authenticateUser';
 import { useNavigate } from 'react-router-dom';
 import { useToasters } from '../../../../../common/ui/contexts/ToastersContext';
 
-
 const {
     TOO_SHORT_LOGIN_MESSAGE,
     TOO_LONG_LOGIN_MESSAGE,
