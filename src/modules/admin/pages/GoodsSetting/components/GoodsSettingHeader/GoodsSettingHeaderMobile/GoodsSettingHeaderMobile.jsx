@@ -19,7 +19,7 @@ const GoodsSettingHeaderMobile = ({ filters }) => {
 
 
     useEffect(() => {
-        if(!filters) return;
+        if(!filters.categories) return;
 
         setSearchParams(prev => {
             if(!prev.has('categories')) {
