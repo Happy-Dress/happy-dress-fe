@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { MODEL_SETTINGS_DICTIONARY } from './ModelSettings.dictionary';
 
 const MIN_MODEL_NAME_LENGTH = 3;
+const STARTING_ORDER_NUMBER = 0;
 const MAX_MODEL_NAME_LENGTH = 20;
 const EMPTY_NAME = '';
 
@@ -44,7 +45,8 @@ export const ModelSettings = () => {
             });
             updateModels(updatedModels);
         } else {
-            const newOrderNumber = Math.max(...models.map(model => model.orderNumber)) + 1;
+            const modelsOrderNumbers = models.map(model => model.orderNumber);
+            const newOrderNumber = modelsOrderNumbers.length ? Math.max(modelsOrderNumbers) + 1 : STARTING_ORDER_NUMBER;
             updateModels([...models, { name:  inputRef.current.value, orderNumber:newOrderNumber }]);
         }
 
