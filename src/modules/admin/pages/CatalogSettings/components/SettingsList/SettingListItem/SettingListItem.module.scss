@@ -1,0 +1,48 @@
+@import "../../../../../../../common/ui/styles/colors";
+@import "../../../../../../../common/ui/styles/font-sizes";
+
+
+.SettingListItem{
+  background: white;
+  padding-left: 8px;
+  padding-right: 8px;
+  min-height: 40px;
+  height: 40px;
+  width: 100%;
+  border: 1px solid #C4C4C4;
+  display: flex;
+  justify-content: space-between;
+
+  .checkBox {
+    width: 24px;
+    height: 24px;
+    accent-color: $brown;
+    border-radius: 0;
+  }
+
+  .itemValueArea {
+    gap:10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    .itemValue{
+      font-size: $font-size-xlarge-24;
+      overflow: hidden;
+      display: inline-block;
+      max-width: 260px;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .itemControlArea {
+    .controlIcon:hover{
+      cursor: pointer;
+    }
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+
+}

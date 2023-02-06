@@ -1,0 +1,13 @@
+@import "../../../../../common/ui/styles/colors";
+
+.ButtonTerritory{
+  background: $button-territory-background;
+  box-shadow: 4px 4px 6px $button-territory-box-shadow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 56px;
+  color: white;
+  font-size: 24px;
+  width: 100%;
+}

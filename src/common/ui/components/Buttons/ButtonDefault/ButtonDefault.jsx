@@ -3,10 +3,13 @@ import s from './ButtonDefault.module.scss';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const ButtonDefault = (props) => {
+const ButtonDefault = ({ text, onClick }) => {
     const [active, setActive] = useState(false);
 
     const changeState = () => {
+        if (onClick) {
+            onClick();
+        }
         setActive(true);
         setTimeout(() => setActive(false), 200);
     };
@@ -15,13 +18,14 @@ const ButtonDefault = (props) => {
         <button onClick={changeState}
             className={classNames(s.ButtonDefault, active ? s.ButtonDefault_active : '')}
         >
-            {props.text}
+            {text}
         </button>
     );
 };
 
 ButtonDefault.propTypes = {
     text: PropTypes.string.isRequired,
+    onClick: PropTypes.func
 };
 
 export default ButtonDefault;
