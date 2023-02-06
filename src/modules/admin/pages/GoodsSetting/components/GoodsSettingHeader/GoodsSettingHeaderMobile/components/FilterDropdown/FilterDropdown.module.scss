@@ -1,6 +1,7 @@
 @import "../../../../../../../../../common/ui/styles/media-sizes";
 @import "../../../../../../../../../common/ui/styles/font-sizes";
 @import "../../../../../../../../../common/ui/styles/colors";
+@import "../../../../../../../../../common/ui/styles/variables";
 
 .FilterDropdown {
   width: 100%;
@@ -22,9 +23,10 @@
       width: 12px;
       height: 6px;
       margin-right: 26px;
+      transition: transform $animation-duration;
 
       &.active {
-        transform: rotate(180deg);
+        transform: scaleY(-1);
         path {
           stroke: $brown;
         }
@@ -34,5 +36,8 @@
 
   .options {
     width: 100%;
+    transition: height $animation-duration;
+    overflow-y: hidden;
+    height: 0;
   }
 }

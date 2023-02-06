@@ -20,6 +20,8 @@ const FilterBadge = ({ filters, itemId, itemCategory, setCurrentFilters }) => {
         });
     };
 
+    if(!filters[itemCategory].filter(obj => obj.id === Number(itemId)).length) return;
+
     return (
         <div className={s.FilterBadge}>
             <p>{filters[itemCategory].filter(obj => obj.id === Number(itemId))[0].name}</p>

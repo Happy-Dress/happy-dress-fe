@@ -53,14 +53,39 @@ const GoodsSetting = () => {
             });
     }, []);
 
-    if(isPageLoading.headerLoading || isPageLoading.contentLoading) {
-        return <p className={s.loader}>Loader</p>;
-    }
+    useEffect(() => {
+
+        setIsPageLoading(prevState => {
+            return {
+                ...prevState,
+                contentLoading: true,
+            };
+        });
+
+        const debounceTimeout = setTimeout(() => {
+            getCatalogueItems(searchParams.toString())
+                .then((res) => {
+                    setCatalogueItems(res);
+                })
+                .finally(() => {
+                    setIsPageLoading(prevState => {
+                        return {
+                            ...prevState,
+                            contentLoading: false
+                        };
+                    });
+                });
+        }, 500);
+
+        return () => {
+            clearTimeout(debounceTimeout);
+        };
+    }, [searchParams]);
 
     return (
         <div className={s.GoodsSetting}>
-            <GoodsSettingHeader filters={filters}/>
-            <GoodsSettingContent catalogueItems={catalogueItems}/>
+            <GoodsSettingHeader filters={filters} isLoading={isPageLoading.headerLoading }/>
+            <GoodsSettingContent catalogueItems={catalogueItems} isLoading={isPageLoading.contentLoading}/>
         </div>
     );
 };

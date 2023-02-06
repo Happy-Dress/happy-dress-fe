@@ -1,7 +1,5 @@
-import React from 'react';
-import { render, waitFor } from '@testing-library/react';
-import GoodsSetting from './index';
-import { BrowserRouter } from 'react-router-dom';
+import { render, screen } from '@testing-library/react';
+import FilterBadge from './FilterBadge';
 
 const response = {
     'categories': [
@@ -92,50 +90,16 @@ const response = {
     ]
 };
 
-jest.mock('../../../../common/api/catalogueSettings/retrieveCatalogueSettings', () =>({
-    __esModule: true,
-    default: () => Promise.resolve({ ...response }),
-}));
+describe('Filter Badge', () => {
+    it('should render correctly', () => {
+        render(<FilterBadge filters={response} setCurrentFilters={() => {}} itemId={'14'} itemCategory={'colors'}/>);
 
-jest.mock('../../../../common/api/catalogueItems/getCatalogueItems', () =>({
-    __esModule: true,
-    default: () => Promise.resolve([
-        {
-            id: 1,
-            name: 'S000012345',
-            colors: [
-                '#fff',
-                '#000',
-                '#a65f30'
-            ],
-            sizes: [1, 2, 3, 4],
-            category: 'Свадебные',
-            imageUrl: 'url'
-        },
-        {
-            id: 2,
-            name: 'S000012346',
-            colors: [
-                '#fff',
-                '#000',
-                '#a65f30'
-            ],
-            sizes: [1, 2, 3, 4],
-            category: 'Деловой стиль',
-            imageUrl: 'url'
-        },
-    ]),
-}));
+        expect(screen.getByText('белый')).toBeInTheDocument();
+    });
 
-describe('GoodsSetting', () => {
-    it('should render correctly', async () => {
-        const { container } = render(<GoodsSetting/>, { wrapper: BrowserRouter });
+    it('should not render', () => {
+        const { container } = render(<FilterBadge filters={response} setCurrentFilters={() => {}} itemId={'0'} itemCategory={'colors'}/>);
 
-        await waitFor(async () => {
-            const goodsSetting = container.getElementsByClassName('GoodsSetting')[0];
-            const goodsSettingContent = container.getElementsByClassName('GoodsSettingContent')[0];
-            expect(goodsSetting).toBeInTheDocument();
-            expect(goodsSettingContent).toBeInTheDocument();
-        });
+        expect(container.getElementsByTagName('p').length).toBe(0);
     });
 });

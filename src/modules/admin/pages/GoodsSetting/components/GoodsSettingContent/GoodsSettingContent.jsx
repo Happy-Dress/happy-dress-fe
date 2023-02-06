@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import ProductCard from './components/ProductCard';
 import ProductCardAdd from './components/ProductCardAdd';
 
-const GoodsSettingContent = ({ catalogueItems }) => {
+const GoodsSettingContent = ({ catalogueItems, isLoading }) => {
     const [selectedItems, setSelectedItems] = useState([]);
 
     const deleteHandler = () => {
@@ -16,6 +16,8 @@ const GoodsSettingContent = ({ catalogueItems }) => {
     const addHandler = () => {
         console.log('Добавляем товар');
     };
+
+    if(isLoading) return <p>Loader</p>;
 
     return (
         <div className={s.GoodsSettingContent}>
@@ -45,6 +47,7 @@ const GoodsSettingContent = ({ catalogueItems }) => {
 
 GoodsSettingContent.propTypes = {
     catalogueItems: PropTypes.array.isRequired,
+    isLoading: PropTypes.bool.isRequired
 };
 
 export default GoodsSettingContent;
