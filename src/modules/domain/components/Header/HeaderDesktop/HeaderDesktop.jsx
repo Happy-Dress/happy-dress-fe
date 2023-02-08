@@ -3,10 +3,11 @@ import s from './HeaderDesktop.module.scss';
 import hanger from '../../../../../common/assets/images/hanger.svg';
 import { HEADER_DICTIONARY } from '../Header.dictionary';
 import { Typography } from '../../../../../common/ui/components';
+import { router } from '../../../router';
+import { NavLink } from 'react-router-dom';
 
 const {
     HEADER_LOGO,
-    HEADER_NAV_ITEMS,
     PHONE_NUMBER
 } = HEADER_DICTIONARY;
 
@@ -17,10 +18,14 @@ const HeaderDesktop = () => {
                 <span className={s.Header_logo_wrapper_logo}>{HEADER_LOGO}</span>
             </div>
             <ul className={s.Header_menu}>
-                {HEADER_NAV_ITEMS.map((item)=>(
-                    <li key={item}>
-                        <Typography classNames={[s.Header_menu_item]}>{item}
-                        </Typography>
+                {Object.values(router).map(({ path, pageName })=>(
+                    <li key={path}>
+                        <NavLink
+                            to={path}
+                            className={({ isActive }) => [isActive ? s.active : ''].join(' ')}
+                        >
+                            {pageName}
+                        </NavLink>
                     </li>))
                 }
             </ul>

@@ -1,5 +1,6 @@
 @import '../../../../../common/ui/styles/media-sizes';
 @import '../../../../../common/ui/styles/colors';
+@import '../../../../../common/ui/styles/font-sizes';
 
 .Header {
   display: flex;
@@ -28,10 +29,28 @@
     flex: 7;
     display: flex;
     width: 100%;
+    gap: 5%;
 
     li {
-      &:nth-child(2n) {
-        margin: 0 5%;
+      a {
+        color: $gray;
+        font-family: 'Roboto', serif;
+        font-style: normal;
+        font-size: $font-size-xlarge-24;
+        line-height: 28px;
+
+        &.active {
+          color: $black;
+          border-bottom: 1px solid $brown;
+        }
+
+        @media screen and (max-width: $xl-size) {
+          font-size: $font-size-xlarge-24;
+        }
+
+        @media screen and (max-width: $xl-size) {
+          font-size: $font-size-xmedium-18;
+        }
       }
     }
 

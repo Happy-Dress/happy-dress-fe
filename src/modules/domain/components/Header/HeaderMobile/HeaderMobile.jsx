@@ -5,6 +5,8 @@ import burger from '../../../../../common/assets/images/burger.svg';
 import x from '../../../../../common/assets/images/x.svg';
 import hanger from '../../../../../common/assets/images/hanger.svg';
 import { Typography } from '../../../../../common/ui/components';
+import { router } from '../../../router';
+import { NavLink } from 'react-router-dom';
 
 const HeaderMobile = () => {
     const {
@@ -43,10 +45,14 @@ const HeaderMobile = () => {
             </div>
             {activeMenu && <div className={s.Menu}>
                 <ul className={s.Menu_nav}>
-                    {HEADER_MOBILE_NAV_ITEMS.map((item) => (
-                        <li key={item}>
-                            <Typography classNames={[s.Menu_nav_item]}>{item}
-                            </Typography>
+                    {Object.values(router).map(({ path, pageName })=>(
+                        <li key={path}>
+                            <NavLink
+                                to={path}
+                                className={({ isActive }) => [isActive ? s.active : ''].join(' ')}
+                            >
+                                {pageName}
+                            </NavLink>
                         </li>))
                     }
                 </ul>

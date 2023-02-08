@@ -1,17 +1,15 @@
 import React from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import Landing from './pages/Landing';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import AppRoutes from './components/AppRoutes';
+
 
 
 const Domain = () => {
     return (<>
         <Header/>
-        <Routes>
-            <Route path='/' element={<Navigate to='home'/>}/>
-            <Route path='/home' element={<Landing/>}/>
-        </Routes>
+        {/* Список и настройка путей в router.js */}
+        <AppRoutes />
         <Footer/>
     </>);
 };
