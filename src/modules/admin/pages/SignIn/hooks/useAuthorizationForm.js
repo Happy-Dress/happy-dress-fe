@@ -32,7 +32,7 @@ const useAuthorizationForm = () => {
     const { showToasterError, showToasterSuccess } = useToasters();
 
     const { register, setError, formState: { errors, isValid }, handleSubmit } = useForm({
-        mode: 'onBlur',
+        mode: 'onTouched',
         resolver: zodResolver(authorizationCredentials),
     });
 
