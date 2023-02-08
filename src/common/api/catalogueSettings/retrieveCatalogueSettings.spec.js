@@ -9,9 +9,8 @@ describe('retrieveCatalogueSettings', () => {
 
     it('should retrieve settings', async () => {
         const mockSettings = {
-            models: [
-                { id: 1, name: 'Пышные' }
-            ]
+            models: [{ id: 1, name: 'Пышные' }],
+            materials: [{ id: 1, name: 'Атлас' }],
         };
         const mockResponse = {
             data: mockSettings

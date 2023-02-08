@@ -2,6 +2,7 @@ import s from './CatalogSettings.module.scss';
 import { CATALOG_SETTINGS_DICTIONARY } from './CatalogSettings.dictionary';
 import { ButtonAccent, ButtonDefault } from '../../../../common/ui/components';
 import ModelSettings from './components/ModelSettings';
+import MaterialSettings from './components/MaterialSettings';
 import { useCatalogSettings } from './contexts/CatalogSettingsContext/hook/useCatalogSettings';
 import CatalogSettingsProvider from './contexts/CatalogSettingsContext/provider/CatalogSettingsProvider';
 import withProvider from '../../../../common/ui/hocs/withProvider';
@@ -34,13 +35,13 @@ const CatalogSettings = () => {
             name: COLORS_SETTINGS_NAME,
         },
         {
-            element: <div>Настройки материалов</div>,
+            element: <MaterialSettings />,
             name: MATERIAL_SETTINGS_NAME,
         },
         {
-            element: <ModelSettings/>,
+            element: <ModelSettings />,
             name: MODEL_SETTINGS_NAME,
-        }
+        },
     ];
 
 
