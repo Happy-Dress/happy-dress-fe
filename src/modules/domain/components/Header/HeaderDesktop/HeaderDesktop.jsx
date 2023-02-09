@@ -3,7 +3,7 @@ import s from './HeaderDesktop.module.scss';
 import hanger from '../../../../../common/assets/images/hanger.svg';
 import { HEADER_DICTIONARY } from '../Header.dictionary';
 import { Typography } from '../../../../../common/ui/components';
-import { router } from '../../../router';
+import { routerConfig } from '../../../routerConfig';
 import { NavLink } from 'react-router-dom';
 
 const {
@@ -18,7 +18,7 @@ const HeaderDesktop = () => {
                 <span className={s.Header_logo_wrapper_logo}>{HEADER_LOGO}</span>
             </div>
             <ul className={s.Header_menu}>
-                {Object.values(router).map(({ path, pageName })=>(
+                {Object.values(routerConfig).map(({ path, pageName })=>(
                     <li key={path}>
                         <NavLink
                             to={path}

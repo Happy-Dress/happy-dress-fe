@@ -35,6 +35,13 @@
       margin-top: 24px;
       display: flex;
       gap: 18px;
+
+      .dropdown {
+        width: 100%;
+        background-color: #eaeaea;
+        border: 1px solid $light-gray;
+        height: 56px;
+      }
     }
 
     &.active {

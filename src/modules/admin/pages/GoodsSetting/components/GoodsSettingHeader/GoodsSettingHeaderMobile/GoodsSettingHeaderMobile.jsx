@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import s from './GoodsSettingHeaderMobile.module.scss';
 import DressCategories from './components/DressCategories';
 import SearchBar from './components/SearchBar';
-import FilterDropdown from './components/FilterDropdown';
 import FilterBadge from './components/FilterBadge';
 import { useSearchParams } from 'react-router-dom';
 import { ButtonAccent } from '../../../../../../../common/ui/components';
 import PropTypes from 'prop-types';
 import { GOODS_SETTING_DICTIONARY } from '../../../GoodsSetting.dictionary';
+import { DropdownSelectList } from '../../../../../../../common/ui/components/Dropdowns';
 
 const { GOODS_SETTING_TITLE } = GOODS_SETTING_DICTIONARY;
 
@@ -54,6 +54,29 @@ const GoodsSettingHeaderMobile = ({ filters }) => {
         });
     };
 
+    const changeFilter = (id, currentCategory, type) => {
+        setCurrentFilters(prevState => {
+            const newState = { ...prevState };
+            if(!newState[currentCategory]) {
+                newState[currentCategory] = String(id);
+                return newState;
+            }
+            if(type === 'add') {
+                newState[currentCategory] += `,${id}`;
+            }
+            if(type === 'remove') {
+                newState[currentCategory] = newState[currentCategory].split(',').filter(item => item !== id).join(',');
+            }
+            if(type === 'single') {
+                newState[currentCategory] = String(id);
+            }
+            if(!newState[currentCategory].length) {
+                delete newState[currentCategory];
+            }
+            return newState;
+        });
+    };
+
     if (!currentFilters) return;
 
     return (
@@ -68,7 +91,16 @@ const GoodsSettingHeaderMobile = ({ filters }) => {
                     <div className={s.filters} style={{ display: isOpen ? 'flex' : 'none' }}>
                         {
                             Object.keys(filters).map(key => {
-                                return <FilterDropdown key={key} name={key} options={filters[key]} setCurrentFilters={setCurrentFilters} currentFilters={currentFilters}/>;
+                                return <DropdownSelectList
+                                    key={key}
+                                    options={filters[key]}
+                                    changeFilter={changeFilter}
+                                    selectedItems={currentFilters[key] ?? ''}
+                                    className={s.dropdown}
+                                    currentCategory={key}
+                                    isOptionsAbsolute={false}
+                                    isSingleOptionOnly={key === 'categories'}
+                                />;
                             })
                         }
                         <ButtonAccent text={'Применить'} onClick={applyFilters}/>

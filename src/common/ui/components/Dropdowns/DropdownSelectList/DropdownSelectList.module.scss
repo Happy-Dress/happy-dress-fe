@@ -1,19 +1,14 @@
-@import "../../../../../../../../../common/ui/styles/media-sizes";
-@import "../../../../../../../../../common/ui/styles/font-sizes";
-@import "../../../../../../../../../common/ui/styles/colors";
-@import "../../../../../../../../../common/ui/styles/variables";
+@import "../../../styles/media-sizes";
+@import "../../../styles/font-sizes";
+@import "../../../styles/colors";
+@import "../../../styles/variables";
 
-.FilterDropdown {
-  width: 100%;
-  background-color: #eaeaea;
-  border: 1px solid $light-gray;
-  height: 56px;
+.DropdownSelectList {
   cursor: pointer;
   position: relative;
   .currentFilter {
     display: flex;
     align-items: center;
-    height: 100%;
     justify-content: space-between;
     p {
       margin-left: 20px;
@@ -36,7 +31,6 @@
 
   .options {
     box-shadow: $shadow-black;
-    position: absolute;
     top: 100%;
     width: 100%;
     overflow-y: hidden;

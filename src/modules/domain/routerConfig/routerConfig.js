@@ -17,7 +17,7 @@ const routesNames = {
     CHANGING: 'Примерка'
 };
 
-export const router = {
+export const routerConfig = {
     home: {
         path: routesPaths.HOME,
         element: <Landing />,

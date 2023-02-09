@@ -49,6 +49,13 @@
       display: flex;
       flex-direction: column;
       gap: 6px;
+
+      .dropdown {
+        width: 100%;
+        background-color: #eaeaea;
+        border: 1px solid $light-gray;
+        min-height: 56px;
+      }
     }
   }
 

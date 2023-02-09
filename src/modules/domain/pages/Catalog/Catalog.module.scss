@@ -5,8 +5,16 @@
     font-size: $font-size-xlarge-32;
     text-align: center;
   }
+
+  .content {
+    display: flex;
+    margin-right: 5%;
+    margin-left: 5%;
+    margin-top: 40px;
+  }
 }
 
 .pageMargin {
-  margin: 0 10% 0 25%;
+  margin-left: 28%;
+  margin-right: 5%;
 }

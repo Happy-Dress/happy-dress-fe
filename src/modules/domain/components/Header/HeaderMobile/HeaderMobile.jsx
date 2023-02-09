@@ -5,7 +5,7 @@ import burger from '../../../../../common/assets/images/burger.svg';
 import x from '../../../../../common/assets/images/x.svg';
 import hanger from '../../../../../common/assets/images/hanger.svg';
 import { Typography } from '../../../../../common/ui/components';
-import { router } from '../../../router';
+import { routerConfig } from '../../../routerConfig';
 import { NavLink } from 'react-router-dom';
 
 const HeaderMobile = () => {
@@ -45,7 +45,7 @@ const HeaderMobile = () => {
             </div>
             {activeMenu && <div className={s.Menu}>
                 <ul className={s.Menu_nav}>
-                    {Object.values(router).map(({ path, pageName })=>(
+                    {Object.values(routerConfig).map(({ path, pageName })=>(
                         <li key={path}>
                             <NavLink
                                 to={path}

@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import { router } from '../../router';
+import { routerConfig } from '../../routerConfig';
 
 
 const AppRoutes = () => {
@@ -9,7 +9,7 @@ const AppRoutes = () => {
             <Routes>
                 <Route path='/' element={<Navigate to='home'/>}/>
                 {
-                    Object.values(router).map(({ path, element }) => {     // Список и настройка путей в router
+                    Object.values(routerConfig).map(({ path, element }) => {     // Список и настройка путей в routerConfig
                         return <Route key={path} path={path} element={element}/>;
                     })
                 }

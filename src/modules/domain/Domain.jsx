@@ -8,7 +8,7 @@ import AppRoutes from './components/AppRoutes';
 const Domain = () => {
     return (<>
         <Header/>
-        {/* Список и настройка путей в router.js */}
+        {/* Список и настройка путей в routerConfig.js */}
         <AppRoutes />
         <Footer/>
     </>);
