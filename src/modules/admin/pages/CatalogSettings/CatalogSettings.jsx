@@ -1,11 +1,12 @@
 import s from './CatalogSettings.module.scss';
 import { CATALOG_SETTINGS_DICTIONARY } from './CatalogSettings.dictionary';
 import { ButtonAccent, ButtonDefault } from '../../../../common/ui/components';
-import ModelSettings from './components/ModelSettings';
 import { useCatalogSettings } from './contexts/CatalogSettingsContext/hook/useCatalogSettings';
 import CatalogSettingsProvider from './contexts/CatalogSettingsContext/provider/CatalogSettingsProvider';
 import withProvider from '../../../../common/ui/hocs/withProvider';
 import SettingsDropDown from './components/SettingDropDown';
+import ModelSettings from './components/ModelSettings';
+import MaterialSettings from './components/MaterialSettings';
 
 const {
     CATEGORIES_SETTINGS_NAME,
@@ -34,7 +35,7 @@ const CatalogSettings = () => {
             name: COLORS_SETTINGS_NAME,
         },
         {
-            element: <div>Настройки материалов</div>,
+            element: <MaterialSettings/>,
             name: MATERIAL_SETTINGS_NAME,
         },
         {
