@@ -13,7 +13,7 @@ describe('retrieveCatalogueSettings', () => {
                 { id: 1, name: 'Пышные' }
             ],
             materials: [
-                { id: 1, name: 'Органза'}
+                { id: 1, name: 'Органза' }
             ]
         };
         const mockResponse = {
