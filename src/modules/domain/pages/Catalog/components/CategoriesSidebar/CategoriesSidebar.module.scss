@@ -1,7 +1,26 @@
+@import "../../../../../../common/ui/styles/font-sizes";
+@import "../../../../../../common/ui/styles/colors";
+
 .CategoriesSidebar {
   position: sticky;
-  top: 100px;
+  top: 226px;
   width: 20%;
-  height: 384px;
-  background-color: red;
+  height: fit-content;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+  box-shadow: 4px 0 8px rgba(55, 40, 55, 0.25), 0 4px 8px rgba(55, 40, 55, 0.2);
+  p {
+    font-size: $font-size-xlarge-24;
+    white-space: nowrap;
+    color: $gray;
+    cursor: pointer;
+    width: fit-content;
+
+    &.active {
+      color: $black;
+      border-bottom: 1px solid $brown;
+    }
+  }
 }

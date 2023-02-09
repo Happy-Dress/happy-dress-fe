@@ -1,20 +1,10 @@
 @import "../../../../common/ui/styles/font-sizes";
 
 .Catalog {
-  h1 {
-    font-size: $font-size-xlarge-32;
-    text-align: center;
-  }
-
   .content {
     display: flex;
     margin-right: 5%;
     margin-left: 5%;
-    margin-top: 40px;
+    margin-top: 10px;
   }
-}
-
-.pageMargin {
-  margin-left: 28%;
-  margin-right: 5%;
 }

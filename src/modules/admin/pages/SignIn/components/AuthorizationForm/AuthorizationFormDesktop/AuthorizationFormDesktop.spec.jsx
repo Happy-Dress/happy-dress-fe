@@ -16,7 +16,7 @@ const Wrapper = () => {
 };
 
 const mockedUseNavigate = jest.fn();
-jest.mock('react-routerConfig-dom', () => ({
+jest.mock('react-router-dom', () => ({
     useNavigate: () => mockedUseNavigate,
 }));
 

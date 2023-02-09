@@ -28,7 +28,7 @@ const GoodsSettingHeaderDesktop = ({ filters }) => {
     useEffect(() => {
         const queryString = new URLSearchParams(currentFilters).toString();
         if(queryString) {
-            setSearchParams(queryString);
+            setSearchParams(queryString + (searchParams.get('search') ? `&search=${searchParams.get('search')}` : ''));
         }
     }, [currentFilters]);
 
@@ -68,7 +68,6 @@ const GoodsSettingHeaderDesktop = ({ filters }) => {
                         {
                             Object.keys(filters).map(key => {
                                 if (key === 'categories') return;
-                                // return <FilterDropdown key={key} name={key} options={filters[key]} setCurrentFilters={setCurrentFilters} currentFilters={currentFilters}/>;
                                 return <DropdownSelectList
                                     key={key}
                                     className={s.dropdown}

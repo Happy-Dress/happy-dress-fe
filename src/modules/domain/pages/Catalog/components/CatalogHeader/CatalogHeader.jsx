@@ -1,18 +1,24 @@
-import React from 'react';
-import s from './CatalogHeader.module.scss';
-import classNames from 'classnames';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
+import adaptive from '../../../../../../common/ui/hocs/adaptive';
+import { CatalogHeaderDesktop } from './components/CatalogHeaderDesktop';
 
-const CatalogHeader = ({ className }) => {
+const CatalogHeader = ({ filters, isLoading }) => {
+
+    const AdaptiveCatalogHeader = useMemo(() => {
+        return adaptive(CatalogHeaderDesktop, <div>Mobile</div>);
+    }, []);
+
+    if(isLoading) return <p>Loader</p>;
+
     return (
-        <div className={classNames(s.CatalogHeader, className)}>
-
-        </div>
+        <AdaptiveCatalogHeader filters={filters}/>
     );
 };
 
 CatalogHeader.propTypes = {
-    className: PropTypes.string
+    filters: PropTypes.object.isRequired,
+    isLoading: PropTypes.bool.isRequired
 };
 
 export default CatalogHeader;

@@ -9,7 +9,6 @@ const DressCategories = ({ categories }) => {
     useEffect(() => {
         if(searchParams.toString().split('=').indexOf('categories') === -1) {
             setSearchParams(searchParams.toString() + `categories=${categories[0].id}`);
-            return;
         }
     }, []);
 

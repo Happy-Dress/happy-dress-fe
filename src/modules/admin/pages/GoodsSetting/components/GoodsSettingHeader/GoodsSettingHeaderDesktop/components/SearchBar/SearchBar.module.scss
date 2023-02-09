@@ -4,21 +4,15 @@
 
 .SearchBar {
   position: relative;
-  label {
+
+  .input {
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
     width: 100%;
     background-color: $light-gray;
     height: 72px;
-    display: flex;
-    align-items: center;
-    cursor: text;
-    #searchIcon {
-      margin: 0 7px 0 21px;
-    }
+
     input {
-      background-color: transparent;
       font-size: 28px;
-      width: 100%;
     }
   }
 

@@ -1,0 +1,46 @@
+@import "../../../../../../../../common/ui/styles/font-sizes";
+@import "../../../../../../../../common/ui/styles/colors";
+
+.CatalogHeaderDesktop {
+  margin-top: 50px;
+  top: 0;
+  position: sticky;
+  z-index: 100;
+  background-color: $white;
+  padding-bottom: 30px;
+  h1 {
+    font-size: $font-size-xlarge-32;
+    text-align: center;
+    font-weight: 400;
+  }
+
+  .filtersContainer {
+    margin-left: 28%;
+    margin-right: 5%;
+    margin-top: 100px;
+    display: flex;
+    gap: 32px;
+
+    .filters {
+      width: 100%;
+      display: flex;
+      gap: 18px;
+
+      .dropdown {
+        width: 100%;
+        background-color: transparent;
+        border: 1px solid $light-gray;
+        height: 56px;
+      }
+    }
+
+    .input {
+      background-color: $light-gray;
+      min-width: 392px;
+
+      input {
+        font-size: $font-size-xlarge-24;
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+@import "../../styles/colors";
+
+.SearchBarInput {
+  display: flex;
+  align-items: center;
+  cursor: text;
+  #searchIcon {
+    margin: 0 7px 0 21px;
+  }
+  input {
+    background-color: transparent;
+    width: 100%;
+  }
+}

@@ -12,7 +12,7 @@ jest.mock('react-hook-form', () => ({
     useForm: jest.fn(),
 }));
 
-jest.mock('react-routerConfig-dom', () => ({
+jest.mock('react-router-dom', () => ({
     useNavigate: jest.fn(),
 }));
 

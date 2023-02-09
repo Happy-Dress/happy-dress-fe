@@ -40,6 +40,7 @@ const GoodsSettingHeaderMobile = ({ filters }) => {
     const applyFilters = () => {
         const queryString = new URLSearchParams(currentFilters).toString();
         setSearchParams(queryString);
+        setIsOpen(false);
     };
 
     const deleteFilters = () => {
@@ -47,7 +48,7 @@ const GoodsSettingHeaderMobile = ({ filters }) => {
             const params = new URLSearchParams(searchParams.toString()).entries();
             const newState = Object.fromEntries(params);
             for(let key in newState) {
-                if(key === 'categories') continue;
+                if(key === 'categories' || key === 'search') continue;
                 delete newState[key];
             }
             return new URLSearchParams(newState).toString();
@@ -124,7 +125,7 @@ const GoodsSettingHeaderMobile = ({ filters }) => {
                     }
                 </div>
                 <div className={s.deleteFilters}>
-                    {(Object.keys(currentFilters).filter(key => key !== 'categories').length && !isOpen) ? <ButtonAccent text={'Сбросить фильтры'} onClick={deleteFilters}/> : ''}
+                    {(Object.keys(currentFilters).filter(key => key !== 'categories' && key !== 'search').length && !isOpen) ? <ButtonAccent text={'Сбросить фильтры'} onClick={deleteFilters}/> : ''}
                 </div>
             </div>
         </>
