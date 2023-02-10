@@ -14,7 +14,6 @@ const SettingsList = ({ settings, handleReorder, onEdit, onRemove, onSelect, onU
     }, [settings]);
 
 
-
     const onReorder = (items) => {
         setTrackedItems(items);
     };

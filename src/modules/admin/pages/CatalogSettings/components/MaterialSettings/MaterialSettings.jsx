@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+/* eslint-disable react/prop-types */
+import React, { useState, useContext, createContext } from 'react';
 import SettingsList from '../SettingsList';
 import s from './MaterialSettings.module.scss';
 import { ButtonAccent, ButtonDefault, ButtonTerritory } from '../../../../../../common/ui/components/Buttons';
 import { useCatalogSettings } from '../../contexts/CatalogSettingsContext/hook/useCatalogSettings';
 import classNames from 'classnames';
 import { MATERIAL_SETTINGS_DICTIONARY } from './MaterialSettings.dictionary';
-
+import { withSettings, useSettingsContext, SettingsContext } from './withSettings';
+import withProvider from '../../../../../../common/ui/hocs/withProvider';
 const MIN_MODEL_NAME_LENGTH = 3;
 const STARTING_ORDER_NUMBER = 0;
 const MAX_MODEL_NAME_LENGTH = 20;
@@ -18,29 +20,24 @@ const {
     CANCEL_BUTTON_LABEL,
 } = MATERIAL_SETTINGS_DICTIONARY;
 
-export const MaterialSettings = () => {
 
+export const MaterialSettings = () => {
     const {
         settings: { materials },
         updateMaterials,
     } = useCatalogSettings();
-    const [editingMaterial, setEditingMaterial] = useState();
-    const [selectedOrderNumbers, setSelectedOrderNumbers] = useState([]);
-
+    
     const handleReorder = (reorderedMaterials) => {
         updateMaterials(reorderedMaterials);
     };
-
-    const handleEdit = (material) => {
-        setEditingMaterial(material);
-    };
+    const { handleEdit, editingValue, setEditingValue, selectedOrderNumbers, setSelectedOrderNumbers, handleAdd, handleCancel, handleSelect,handleUnselect } = useSettingsContext();
 
     const handleSave = () => {
-        const materialOrderNumber = editingMaterial.orderNumber;
+        const materialOrderNumber = editingValue.orderNumber;
         if (materialOrderNumber !== undefined) {
             const updatedMaterials = materials.map((material) => {
                 if (material.orderNumber === materialOrderNumber) {
-                    return { ...material, name: editingMaterial.name };
+                    return { ...material, name: editingValue.name };
                 }
                 return material;
             });
@@ -54,32 +51,14 @@ export const MaterialSettings = () => {
                 : STARTING_ORDER_NUMBER;
             updateMaterials([
                 ...materials,
-                { name: editingMaterial.name, orderNumber: newOrderNumber },
+                { name: editingValue.name, orderNumber: newOrderNumber },
             ]);
         }
 
-        setEditingMaterial(null);
+        setEditingValue(null);
     };
 
-    const handleCancel = () => {
-        setEditingMaterial(null);
-    };
-
-    const handleAdd = () =>{
-        setEditingMaterial({ name: EMPTY_NAME });
-    };
-
-    const handleSelect = (material) => {
-        setSelectedOrderNumbers([...selectedOrderNumbers, material.orderNumber]);
-    };
-
-    const handleUnselect = (material) => {
-        setSelectedOrderNumbers(
-            selectedOrderNumbers.filter(
-                (orderNumber) => orderNumber !== material.orderNumber
-            )
-        );
-    };
+   
 
     const handleRemove = (materialToRemove) =>{
         const materialsToUpdate = materials.filter(
@@ -102,13 +81,13 @@ export const MaterialSettings = () => {
     };
 
     const handleListClick = (event) =>{
-        if (editingMaterial) {
+        if (editingValue) {
             event.stopPropagation();
         }
     };
 
     const handleInputChange = (event) => {
-        setEditingMaterial({ ...editingMaterial, name: event.target.value });
+        setEditingValue({ ...editingValue, name: event.target.value });
     };
 
     return (
@@ -116,17 +95,17 @@ export const MaterialSettings = () => {
             <input
                 maxLength={MAX_MODEL_NAME_LENGTH}
                 onChange={handleInputChange}
-                value={editingMaterial?.name || EMPTY_NAME}
+                value={editingValue?.name || EMPTY_NAME}
                 className={classNames(
                     s.settingInput,
-                    editingMaterial ? s.inputControlVisible : s.inputControlHidden
+                    editingValue ? s.inputControlVisible : s.inputControlHidden
                 )}
             />
             <button
                 onClick={handleAdd}
                 className={classNames(
                     s.addButton,
-                    editingMaterial ? s.inputControlHidden : s.inputControlVisible
+                    editingValue ? s.inputControlHidden : s.inputControlVisible
                 )}
             >
                 {ADD_BUTTON_LABEL}
@@ -143,17 +122,17 @@ export const MaterialSettings = () => {
                 />
             </div>
 
-            {editingMaterial && (
+            {editingValue && (
                 <div className={s.buttonArea}>
                     <ButtonDefault onClick={handleCancel} text={CANCEL_BUTTON_LABEL} />
                     <ButtonAccent
-                        disabled={editingMaterial.name?.length < MIN_MODEL_NAME_LENGTH}
+                        disabled={editingValue.name?.length < MIN_MODEL_NAME_LENGTH}
                         onClick={handleSave}
                         text={SAVE_BUTTON_LABEL}
                     />
                 </div>
             )}
-            {!editingMaterial && !!selectedOrderNumbers.length && (
+            {!editingValue && !!selectedOrderNumbers.length && (
                 <div className={s.deleteButtonArea}>
                     <ButtonTerritory
                         onClick={handleDelete}
@@ -165,4 +144,4 @@ export const MaterialSettings = () => {
     );
 };
 
-export default MaterialSettings;
+export default withProvider(withSettings)(MaterialSettings);

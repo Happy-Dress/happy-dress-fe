@@ -14,7 +14,6 @@ const CatalogSettingsProvider = (props) => {
         models: [],
         materials: [],
     });
-
     useEffect(() =>{
         retrieveCatalogueSettings().then((settings) =>{
             setInitialCatalogSettings(settings);

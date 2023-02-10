@@ -22,7 +22,6 @@ const {
 const CatalogSettings = () => {
 
     const { saveSettings, initialSettings, settings } = useCatalogSettings();
-
     const areSettingsChanged = JSON.stringify(settings) !== JSON.stringify(initialSettings);
 
     const items = [
