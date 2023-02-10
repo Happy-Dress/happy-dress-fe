@@ -1,4 +1,4 @@
-export const MODEL_SETTINGS_DICTIONARY = {
+export const SIMPLE_SETTINGS_CONTROL_DICTIONARY = {
     SAVE_BUTTON_LABEL: 'Сохранить',
     ADD_BUTTON_LABEL: '+Добавить',
     DELETE_BUTTON_LABEL: 'Удалить',

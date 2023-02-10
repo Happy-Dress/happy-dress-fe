@@ -1,10 +1,9 @@
 import { waitFor } from '@testing-library/dom';
-import { act, cleanup, render, screen } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import React from 'react';
 import ProductCardMobile from './ProductCardMobile';
 import bgImage from '../../../../../../../../../common/assets/images/ZeroBlock/ZeroBlockSM.png';
-import ProductCardDesktop from '../ProductCardDesktop';
-import userEvent from '@testing-library/user-event';
+
 
 const product = {
     name: 'S000012345',

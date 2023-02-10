@@ -11,7 +11,8 @@ const CatalogSettingsProvider = (props) => {
     const { showToasterSuccess, showToasterError } = useToasters();
 
     const [catalogSettings, setCatalogSettings] = useState({
-        models: []
+        models: [],
+        materials: []
     });
 
     useEffect(() =>{
@@ -25,9 +26,14 @@ const CatalogSettingsProvider = (props) => {
         setCatalogSettings(prevState => ({ ...prevState, models }));
     };
 
+    const updateMaterials = (materials) => {
+        setCatalogSettings(prevState => ({ ...prevState, materials }));
+    };
+
     const saveSettings = () => {
         const settingsToSave = JSON.parse(JSON.stringify(catalogSettings));
         settingsToSave.models = settingsToSave.models.map( (model, index) => ({ ...model, orderNumber: index }));
+        settingsToSave.materials = settingsToSave.materials.map( (material, index) => ({ ...material, orderNumber: index }));
         updateSettings(settingsToSave).then(settings => {
             showToasterSuccess('Настройки обновлны');
             setInitialCatalogSettings(settings);
@@ -39,7 +45,7 @@ const CatalogSettingsProvider = (props) => {
 
 
     return (
-        <CatalogSettingsContext.Provider value={{ settings: catalogSettings, updateModels, saveSettings, initialSettings: initialCatalogSettings }}>
+        <CatalogSettingsContext.Provider value={{ settings: catalogSettings, updateModels, updateMaterials, saveSettings, initialSettings: initialCatalogSettings }}>
             {props.children}
         </CatalogSettingsContext.Provider>
     );

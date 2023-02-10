@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import ModelSettings from './ModelSettings';
+import MaterialSettings from './MaterialSettings';
 
 jest.mock('../SimpleSettingsControl/SimpleSettingsControl', () =>({
     __esModule: true,
@@ -20,9 +20,9 @@ jest.mock('../../contexts/CatalogSettingsContext/hook/useCatalogSettings', () =>
 }));
 
 
-describe('ModelSettings', () => {
+describe('MaterialSettings', () => {
     it('should render correctly' , () =>{
-        const { baseElement } = render(<ModelSettings/>);
+        const { baseElement } = render(<MaterialSettings/>);
         expect(baseElement).toBeInTheDocument();
     });
 });
