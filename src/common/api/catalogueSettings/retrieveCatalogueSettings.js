@@ -5,7 +5,11 @@ const retrieveCatalogueSettings = async () => {
     // TODO: remove after BE adds orderNumber
     if(!response) return {};
 
-    return { ...response.data, models: response.data.models.map((model, index) => ({ ...model, orderNumber: index })) };
+    return {
+        ...response.data,
+        models: response.data.models.map((model, index) => ({ ...model, orderNumber: index })),
+        materials: response.data.materials.map((material, index) => ({ ...material, orderNumber: index })),
+    };
 };
 
 export default retrieveCatalogueSettings;
