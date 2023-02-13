@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import s from './SearchBar.module.scss';
 import { ReactComponent as Cross } from '../../../../../../../../../common/assets/images/x.svg';
 import { ReactComponent as Filter } from '../../../../../../../../../common/assets/images/filter.svg';

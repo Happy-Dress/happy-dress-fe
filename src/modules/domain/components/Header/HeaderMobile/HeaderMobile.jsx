@@ -11,7 +11,6 @@ import { NavLink } from 'react-router-dom';
 const HeaderMobile = () => {
     const {
         HEADER_LOGO,
-        HEADER_MOBILE_NAV_ITEMS,
         PHONE_NUMBER,
     } = HEADER_DICTIONARY;
     const [activeMenu, setActiveMenu] = useState(false);
