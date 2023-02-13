@@ -8,12 +8,15 @@ import { ButtonAccent } from '../../../../../../../../common/ui/components';
 import { DressCategories } from './components/DressCategories';
 import { SearchBar } from './components/SeacrhBar';
 import { FilterBadge } from './components/FilterBadge';
-import { CATALOG_HEADER_DICTIONARY } from '../../CatalogHeader.dictionary';
+import { CATALOG_HEADER_DICTIONARY, CATALOG_HEADER_VARIABLES } from '../../CatalogHeader.dictionary';
+import classNames from 'classnames';
 
 const {
     APPLY_FILTERS,
     DELETE_FILTERS
 } = CATALOG_HEADER_DICTIONARY;
+
+const { BASIC_CATEGORY_ID } = CATALOG_HEADER_VARIABLES;
 
 const CatalogHeaderMobile = ({ filters }) => {
 
@@ -28,7 +31,7 @@ const CatalogHeaderMobile = ({ filters }) => {
 
         setSearchParams(prev => {
             if(!prev.has('categories')) {
-                prev.set('categories', filters.categories[0].id);
+                prev.set('categories', BASIC_CATEGORY_ID);
                 return prev.toString();
             }
             return prev.toString();
@@ -85,12 +88,26 @@ const CatalogHeaderMobile = ({ filters }) => {
 
     if (!currentFilters) return;
 
+    const currentFiltersDisplay = () => {
+        return (isOpen || !Object.keys(currentFilters).filter(item => item !== 'categories').length) ? 'none': 'flex';
+    };
+
+    const categoryName = () => {
+        try {
+            return (filters.categories && searchParams.get('categories')) ?
+                filters.categories.filter(item => String(item.id) === String(searchParams.get('categories')))[0].name
+                : '';
+        } catch (e) {
+            return '';
+        }
+    };
+
     return (
         <div className={s.CatalogHeaderMobile}>
             <DressCategories
-                category={(filters.categories && searchParams.get('categories')) ? filters.categories.filter(item => String(item.id) === String(searchParams.get('categories')))[0].name : ''}
+                category={categoryName()}
             />
-            <div className={s.searchBar + ' ' + (isOpen ? s.active : '')}>
+            <div className={classNames(s.searchBar, (isOpen ? s.active : ''))}>
                 <SearchBar setIsFiltersOpen={setIsOpen} isFiltersOpen={isOpen}/>
                 <div className={s.filters} style={{ display: isOpen ? 'flex' : 'none' }}>
                     {
@@ -110,7 +127,10 @@ const CatalogHeaderMobile = ({ filters }) => {
                     <ButtonAccent text={APPLY_FILTERS} onClick={applyFilters}/>
                 </div>
             </div>
-            <div className={s.currentFilters} style={{ display: (isOpen || !Object.keys(currentFilters).filter(item => item !== 'categories').length) ? 'none': 'flex' }}>
+            <div
+                className={s.currentFilters}
+                style={{ display: currentFiltersDisplay() }}
+            >
                 {
                     Object.keys(currentFilters).map(key => {
                         if (key === 'categories') return;

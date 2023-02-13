@@ -6,6 +6,9 @@ import { DropdownSelectList } from '../../../../../../../../common/ui/components
 import { SearchBarInput } from '../../../../../../../../common/ui/components/SeacrhBarInput';
 import classNames from 'classnames';
 import FilterBadge from './components/FilterBadge';
+import { CATALOG_HEADER_VARIABLES } from '../../CatalogHeader.dictionary';
+
+const { BASIC_CATEGORY_ID } = CATALOG_HEADER_VARIABLES;
 
 const CatalogHeaderDesktop = ({ filters }) => {
 
@@ -15,8 +18,9 @@ const CatalogHeaderDesktop = ({ filters }) => {
 
     useEffect(() => {
         setCurrentFilters(() => {
-            const params = new URLSearchParams(searchParams.toString()).entries();
-            return Object.fromEntries(params);
+            const params = new URLSearchParams(searchParams.toString());
+            params.set('categories', String(BASIC_CATEGORY_ID));
+            return Object.fromEntries(params.entries());
         });
     }, []);
 

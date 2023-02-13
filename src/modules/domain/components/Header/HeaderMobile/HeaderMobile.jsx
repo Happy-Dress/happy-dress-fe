@@ -48,7 +48,7 @@ const HeaderMobile = () => {
                         <li key={path}>
                             <NavLink
                                 to={path}
-                                className={({ isActive }) => [isActive ? s.active : ''].join(' ')}
+                                className={({ isActive }) => isActive ? s.active : ''}
                             >
                                 {pageName}
                             </NavLink>

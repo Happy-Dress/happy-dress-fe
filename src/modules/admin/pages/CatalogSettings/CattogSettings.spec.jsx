@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import CatalogSetting from './index';
+import { mockCatalogueSettingsResponse } from '../../../../__mocks__/mockCatalogueSettingsResponse';
 
 jest.mock('./components/SettingDropDown', ()=>({
     __esModule: true,
@@ -11,7 +12,7 @@ jest.mock('./components/SettingDropDown', ()=>({
 
 jest.mock('../../../../common/api/catalogueSettings/retrieveCatalogueSettings',()=>({
     __esModule: true,
-    default: () => Promise.resolve({ models: [] })
+    default: () => Promise.resolve(mockCatalogueSettingsResponse)
 }));
 
 

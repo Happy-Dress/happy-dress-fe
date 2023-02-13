@@ -4,6 +4,12 @@ import s from './ProductCard.module.scss';
 import testImg from '../../../../../../../../common/assets/images/CardTest3-4.png';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
+import { CATALOG_CONTENT_DICTIONARY } from '../../CatalogContent.dictionary';
+
+const {
+    SIZE,
+    COLORS
+} = CATALOG_CONTENT_DICTIONARY;
 
 const ProductCard = ({ product }) => {
 
@@ -13,7 +19,7 @@ const ProductCard = ({ product }) => {
             <h2>{product.name}</h2>
             <div className={s.description}>
                 <div className={classNames(s.size, s.optionsContainer)}>
-                    <p>Размер:</p>
+                    <p>{SIZE}</p>
                     <div className={s.options}>
                         {
                             product.sizes.map(size => {
@@ -23,7 +29,7 @@ const ProductCard = ({ product }) => {
                     </div>
                 </div>
                 <div className={classNames(s.colors, s.optionsContainer)}>
-                    <p>Цвета:</p>
+                    <p>{COLORS}</p>
                     <div className={s.options}>
                         {
                             product.colors.map(color => {

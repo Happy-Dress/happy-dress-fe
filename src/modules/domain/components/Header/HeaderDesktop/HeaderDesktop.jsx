@@ -22,7 +22,7 @@ const HeaderDesktop = () => {
                     <li key={path}>
                         <NavLink
                             to={path}
-                            className={({ isActive }) => [isActive ? s.active : ''].join(' ')}
+                            className={({ isActive }) => isActive ? s.active : ''}
                         >
                             {pageName}
                         </NavLink>
@@ -33,7 +33,7 @@ const HeaderDesktop = () => {
                 <img className={s.Header_right_side_hanger} alt="hanger" src={hanger} />
                 <div className={s.Header_right_side_delimiter}/>
                 <Typography>
-                    <a 
+                    <a
                         className={s.Header_right_side_number}
                         href={`tel:${PHONE_NUMBER}`}
                     >
