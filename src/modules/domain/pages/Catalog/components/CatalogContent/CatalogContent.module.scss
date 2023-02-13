@@ -1,6 +1,16 @@
 .CatalogContent {
-  background-color: #07bc0c;
-  height: 100vh;
   flex-grow: 1;
   margin-left: 5.5%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  @media screen and (max-width: 1023px) {
+    margin: 0;
+    justify-content: space-between;
+    padding: 0 3%;
+  }
+
+  @media screen and (max-width: 653px) {
+    justify-content: center;
+  }
 }

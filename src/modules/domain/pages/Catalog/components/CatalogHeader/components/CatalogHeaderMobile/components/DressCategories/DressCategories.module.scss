@@ -1,0 +1,10 @@
+@import "../../../../../../../../../../common/ui/styles/font-sizes";
+@import "../../../../../../../../../../common/ui/styles/colors";
+
+.DressCategories {
+  text-align: center;
+  p {
+    color: $black;
+    font-size: $font-size-xlarge-24;
+  }
+}

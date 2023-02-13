@@ -27,7 +27,7 @@ const DropdownSelectList = (props) => {
                 onClick={() => setIsOpen(!isOpen)}
                 style={{ height: isOptionsAbsolute ? '100%' : '56px' }}
             >
-                <p>{formatFiltersName(currentCategory)}</p>
+                <p className={s.title}>{formatFiltersName(currentCategory)}</p>
                 <ArrowDown className={isOpen ? s.active : ''}/>
             </div>
             <div className={s.options} style={{

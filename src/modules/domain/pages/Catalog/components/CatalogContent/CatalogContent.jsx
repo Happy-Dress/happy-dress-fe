@@ -1,18 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import s from './CatalogContent.module.scss';
+import { ProductCard } from './components/ProductCard';
 
-const CatalogContent = ({ className }) => {
+const CatalogContent = ({ items, isLoading }) => {
+    if(isLoading) return <p>Loader</p>;
+
     return (
-        <div className={classNames(s.CatalogContent, className)}>
-
+        <div className={s.CatalogContent}>
+            {
+                items.map((product) => {
+                    return <ProductCard key={product.id} product={product} />;
+                })
+            }
         </div>
     );
 };
 
 CatalogContent.propTypes = {
-    className: PropTypes.string
+    items: PropTypes.array.isRequired,
+    isLoading: PropTypes.bool.isRequired
 };
 
 export default CatalogContent;

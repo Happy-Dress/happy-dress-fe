@@ -14,9 +14,12 @@
     font-weight: 400;
   }
 
-  .filtersContainer {
+  .pageMargin {
     margin-left: 28%;
     margin-right: 5%;
+  }
+
+  .filtersContainer {
     margin-top: 100px;
     display: flex;
     gap: 32px;
@@ -36,11 +39,20 @@
 
     .input {
       background-color: $light-gray;
-      min-width: 392px;
+      min-width: 335px;
 
       input {
         font-size: $font-size-xlarge-24;
       }
     }
+  }
+
+  .currentFilters {
+    margin-top: 24px;
+    display: flex;
+    column-gap: 32px;
+    row-gap: 16px;
+    width: fit-content;
+    flex-wrap: wrap;
   }
 }

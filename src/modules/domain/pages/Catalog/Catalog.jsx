@@ -6,6 +6,7 @@ import CategoriesSidebar from './components/CategoriesSidebar';
 import { useSearchParams } from 'react-router-dom';
 import retrieveCatalogueSettings from '../../../../common/api/catalogueSettings/retrieveCatalogueSettings';
 import getCatalogueItems from '../../../../common/api/catalogueItems/getCatalogueItems';
+import { useDeviceTypeContext } from '../../../../common/ui/contexts/DeviceType';
 
 const Catalog = () => {
     const [isPageLoading, setIsPageLoading] = useState({
@@ -17,6 +18,8 @@ const Catalog = () => {
 
     const [filters, setFilters] = useState({});
     const [catalogueItems, setCatalogueItems] = useState([]);
+
+    const { isDesktop } = useDeviceTypeContext();
 
     useEffect(() => {
         setIsPageLoading(prevState => {                             // Ставим компонент в состаяние загрузки
@@ -85,8 +88,8 @@ const Catalog = () => {
         <div className={s.Catalog}>
             <CatalogHeader filters={filters} isLoading={isPageLoading.headerLoading}/>
             <div className={s.content}>
-                <CategoriesSidebar categories={filters.categories}/>
-                <CatalogContent />
+                { isDesktop && <CategoriesSidebar categories={filters.categories}/> }
+                <CatalogContent items={catalogueItems} isLoading={isPageLoading.contentLoading}/>
             </div>
         </div>
     );

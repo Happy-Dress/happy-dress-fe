@@ -1,5 +1,6 @@
 @import "../../../../../../common/ui/styles/font-sizes";
 @import "../../../../../../common/ui/styles/colors";
+@import "../../../../../../common/ui/styles/media-sizes";
 
 .CategoriesSidebar {
   position: sticky;
@@ -21,6 +22,12 @@
     &.active {
       color: $black;
       border-bottom: 1px solid $brown;
+    }
+  }
+
+  @media screen and (max-width: $xl-size) {
+    p {
+      font-size: $font-size-medium-16;
     }
   }
 }

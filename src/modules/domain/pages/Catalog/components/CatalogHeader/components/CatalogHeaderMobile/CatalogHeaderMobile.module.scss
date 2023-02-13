@@ -1,0 +1,31 @@
+@import "../../../../../../../../common/ui/styles/colors";
+
+.CatalogHeaderMobile {
+  padding: 24px 28px;
+
+  .searchBar {
+    .filters {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 10px;
+
+      .dropdown {
+        width: 100%;
+        border: 1px solid $gray;
+      }
+    }
+  }
+
+  .currentFilters {
+    display: flex;
+    gap: 4px;
+    margin: 6px 0;
+  }
+
+  .deleteFilters {
+    button {
+      width: 100%;
+    }
+  }
+}

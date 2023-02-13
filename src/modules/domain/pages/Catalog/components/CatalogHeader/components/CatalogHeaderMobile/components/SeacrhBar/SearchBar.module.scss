@@ -1,0 +1,33 @@
+@import "../../../../../../../../../../common/ui/styles/media-sizes";
+@import "../../../../../../../../../../common/ui/styles/colors";
+@import "../../../../../../../../../../common/ui/styles/font-sizes";
+
+.SearchBar {
+  display: flex;
+  align-items: center;
+  margin-top: 18px;
+
+  .input {
+    width: 100%;
+    background-color: $light-gray;
+    height: 56px;
+
+    input {
+      font-size: $font-size-large-20;
+    }
+  }
+
+  #filterIcon, #crossIcon {
+    margin-left: 26px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+  }
+
+  @media screen and (max-width: $md-size) {
+    #filterIcon, #crossIcon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

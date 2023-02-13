@@ -5,7 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const SearchBarInput = ({ className }) => {
+const SearchBarInput = ({ className, debounceTime = 0 }) => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [searchBar, setSearchBar] = useState(searchParams.get('search') ?? '');
 
@@ -25,7 +25,7 @@ const SearchBarInput = ({ className }) => {
                     return newParams;
                 });
             }
-        }, 0);
+        }, debounceTime);
         return () => {
             clearTimeout(debouncedTimeout);
         };
@@ -45,7 +45,8 @@ const SearchBarInput = ({ className }) => {
 };
 
 SearchBarInput.propTypes = {
-    className: PropTypes.string
+    className: PropTypes.string,
+    debounceTime: PropTypes.number
 };
 
 export default SearchBarInput;

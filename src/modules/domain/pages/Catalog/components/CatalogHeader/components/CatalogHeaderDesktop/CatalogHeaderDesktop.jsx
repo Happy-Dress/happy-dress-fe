@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import s from './CatalogHeaderDesktop.module.scss';
 import PropTypes from 'prop-types';
 import { useSearchParams } from 'react-router-dom';
 import { DropdownSelectList } from '../../../../../../../../common/ui/components/Dropdowns';
 import { SearchBarInput } from '../../../../../../../../common/ui/components/SeacrhBarInput';
+import FilterBadge
+    from '../../../../../../../admin/pages/GoodsSetting/components/GoodsSettingHeader/GoodsSettingHeaderDesktop/components/FilterBadge';
+import classNames from 'classnames';
 
 const CatalogHeaderDesktop = ({ filters }) => {
 
     const [searchParams, setSearchParams] = useSearchParams();
 
-    const [currentFilters, setCurrentFilters] = useState();
-
+    const [currentFilters, setCurrentFilters] = useState({});
 
     useEffect(() => {
         setCurrentFilters(() => {
@@ -46,11 +48,20 @@ const CatalogHeaderDesktop = ({ filters }) => {
         });
     };
 
+    const TITLE = useMemo(() => {
+        try {
+            return filters.categories.filter(item => String(item.id) === currentFilters.categories)[0].name;
+        } catch (e) {
+            return '';
+        }
+    }, [currentFilters]);
+
     if(!currentFilters) return;
+
     return (
         <div className={s.CatalogHeaderDesktop}>
-            <h1>{filters.categories.filter(item => String(item.id) === searchParams.get('categories'))[0].name}</h1>
-            <div className={s.filtersContainer}>
+            <h1>{TITLE}</h1>
+            <div className={classNames(s.filtersContainer, s.pageMargin)}>
                 <div className={s.filters}>
                     {
                         Object.keys(filters).map(key => {
@@ -67,6 +78,24 @@ const CatalogHeaderDesktop = ({ filters }) => {
                     }
                 </div>
                 <SearchBarInput className={s.input}/>
+            </div>
+            <div className={classNames(s.currentFilters, s.pageMargin)} style={{ display: !Object.keys(currentFilters).filter(item => item !== 'categories').length ? 'none': 'flex' }}>
+                {
+                    Object.keys(currentFilters).map(key => {
+                        if (key === 'categories') return;
+                        return currentFilters[key].split(',').map(item => {
+                            return (
+                                <FilterBadge
+                                    key={item}
+                                    itemCategory={key}
+                                    itemId={item}
+                                    filters={filters}
+                                    setCurrentFilters={setCurrentFilters}
+                                />
+                            );
+                        });
+                    })
+                }
             </div>
         </div>
     );
