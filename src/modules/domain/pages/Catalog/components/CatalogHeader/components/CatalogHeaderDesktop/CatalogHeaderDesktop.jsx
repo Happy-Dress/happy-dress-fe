@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 import { useSearchParams } from 'react-router-dom';
 import { DropdownSelectList } from '../../../../../../../../common/ui/components/Dropdowns';
 import { SearchBarInput } from '../../../../../../../../common/ui/components/SeacrhBarInput';
-import FilterBadge
-    from '../../../../../../../admin/pages/GoodsSetting/components/GoodsSettingHeader/GoodsSettingHeaderDesktop/components/FilterBadge';
 import classNames from 'classnames';
+import FilterBadge from './components/FilterBadge';
 
 const CatalogHeaderDesktop = ({ filters }) => {
 
@@ -79,7 +78,10 @@ const CatalogHeaderDesktop = ({ filters }) => {
                 </div>
                 <SearchBarInput className={s.input}/>
             </div>
-            <div className={classNames(s.currentFilters, s.pageMargin)} style={{ display: !Object.keys(currentFilters).filter(item => item !== 'categories').length ? 'none': 'flex' }}>
+            <div
+                className={classNames(s.currentFilters, s.pageMargin)}
+                style={{ display: !Object.keys(currentFilters).filter(item => item !== 'categories').length ? 'none': 'flex' }}
+            >
                 {
                     Object.keys(currentFilters).map(key => {
                         if (key === 'categories') return;

@@ -8,6 +8,12 @@ import { ButtonAccent } from '../../../../../../../../common/ui/components';
 import { DressCategories } from './components/DressCategories';
 import { SearchBar } from './components/SeacrhBar';
 import { FilterBadge } from './components/FilterBadge';
+import { CATALOG_HEADER_DICTIONARY } from '../../CatalogHeader.dictionary';
+
+const {
+    APPLY_FILTERS,
+    DELETE_FILTERS
+} = CATALOG_HEADER_DICTIONARY;
 
 const CatalogHeaderMobile = ({ filters }) => {
 
@@ -101,7 +107,7 @@ const CatalogHeaderMobile = ({ filters }) => {
                             />;
                         })
                     }
-                    <ButtonAccent text={'Применить'} onClick={applyFilters}/>
+                    <ButtonAccent text={APPLY_FILTERS} onClick={applyFilters}/>
                 </div>
             </div>
             <div className={s.currentFilters} style={{ display: (isOpen || !Object.keys(currentFilters).filter(item => item !== 'categories').length) ? 'none': 'flex' }}>
@@ -123,9 +129,9 @@ const CatalogHeaderMobile = ({ filters }) => {
             </div>
             <div className={s.deleteFilters}>
                 {
-                    (Object.keys(currentFilters).filter(key => key !== 'categories' && key !== 'search').length && !isOpen) ? 
-                        <ButtonAccent text={'Сбросить фильтры'} onClick={deleteFilters}/> 
-                        : 
+                    (Object.keys(currentFilters).filter(key => key !== 'categories' && key !== 'search').length && !isOpen) ?
+                        <ButtonAccent text={DELETE_FILTERS} onClick={deleteFilters}/>
+                        :
                         ''
                 }
             </div>
