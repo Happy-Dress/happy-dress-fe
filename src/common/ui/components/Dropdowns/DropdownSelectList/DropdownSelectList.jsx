@@ -40,7 +40,7 @@ const DropdownSelectList = (props) => {
                             key={item.id}
                             item={item}
                             changeFilter={changeFilter}
-                            isChecked={selectedItems ? selectedItems.split(',').includes(String(item.id)) : false}
+                            isChecked={selectedItems ? selectedItems.includes(item.id) : false}
                             currentCategory={currentCategory}
                             isSingleOptionOnly={isSingleOptionOnly}
                         />;
@@ -56,7 +56,7 @@ DropdownSelectList.propTypes = {
     options: PropTypes.array.isRequired,
     changeFilter: PropTypes.func.isRequired,
     currentCategory: PropTypes.string.isRequired,
-    selectedItems: PropTypes.string.isRequired,
+    selectedItems: PropTypes.array.isRequired,
     isOptionsAbsolute: PropTypes.bool,
     isSingleOptionOnly: PropTypes.bool
 };

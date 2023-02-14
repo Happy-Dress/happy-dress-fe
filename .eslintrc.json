@@ -29,7 +29,8 @@
         "no-debugger":"warn",
         "indent": [
             "error",
-            4
+            4,
+            { "SwitchCase": 1 }
         ],
         "quotes": [
             "error",
@@ -43,7 +44,8 @@
         "react/jsx-uses-react": "error",
         "react/jsx-uses-vars": "error",
         "no-unused-vars": "warn",
-        "object-curly-spacing": ["error", "always"]
+        "object-curly-spacing": ["error", "always"],
+        "no-empty": ["error", { "allowEmptyCatch": true }]
     },
     "ignorePatterns": ["build/*"]
 }

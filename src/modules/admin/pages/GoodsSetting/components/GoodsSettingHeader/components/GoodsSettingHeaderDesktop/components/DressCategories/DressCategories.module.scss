@@ -1,0 +1,22 @@
+@import "../../../../../../../../../../common/ui/styles/colors";
+@import "../../../../../../../../../../common/ui/styles/font-sizes";
+
+.DressCategories {
+  background-color: $white-border;
+  padding: 22px 52px 22px 47px;
+  font-size: $font-size-xlarge-24;
+  display: flex;
+  justify-content: space-between;
+
+  span {
+    white-space: nowrap;
+    padding-bottom: 5px;
+    cursor: pointer;
+    color: $gray;
+
+    &.active {
+      border-bottom: 1px solid $brown;
+      color: $black;
+    }
+  }
+}

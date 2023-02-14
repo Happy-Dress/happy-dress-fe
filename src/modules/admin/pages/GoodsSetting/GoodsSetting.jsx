@@ -1,92 +1,73 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import s from './GoodsSetting.module.scss';
-import GoodsSettingHeader from './components/GoodsSettingHeader';
-import GoodsSettingContent from './components/GoodsSettingContent';
-import retrieveCatalogueSettings from '../../../../common/api/catalogueSettings/retrieveCatalogueSettings';
-import getCatalogueItems from '../../../../common/api/catalogueItems/getCatalogueItems';
+import { CatalogProvider } from './components/CatalogProvider';
+import { catalogReducer } from './store';
+import { retrieveCatalogueSettings } from '../../../../common/api';
+import { CATALOG_ACTIONS } from './store/catalogReducer';
+import { GoodsSettingHeader } from './components/GoodsSettingHeader';
+import { useDeviceTypeContext } from '../../../../common/ui/contexts/DeviceType';
 import { useSearchParams } from 'react-router-dom';
 
-
 const GoodsSetting = () => {
-
-    const [isPageLoading, setIsPageLoading] = useState({
-        headerLoading: false,
-        contentLoading: false
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [state, dispatch] = useReducer(catalogReducer, {
+        filters: {},
+        loading: true,
+        currentFilters: {}
     });
-
-    const [searchParams] = useSearchParams();
-
-    const [filters, setFilters] = useState({});
-    const [catalogueItems, setCatalogueItems] = useState([]);
+    const { isMobile } = useDeviceTypeContext();
 
     useEffect(() => {
-        setIsPageLoading(prevState => {                             // Ставим компонент в состаяние загрузки
-            return {
-                ...prevState,
-                contentLoading: true,
-                headerLoading: true
-            };
-        });
+        dispatch({ type: CATALOG_ACTIONS.SET_LOADING });
+
+        if(!searchParams.has('categories')) {
+            let newFilters = {};
+
+            for(let [key, value] of searchParams.entries()) {
+                newFilters[key] = value.split(/,/).map(item => Number(item));
+            }
+
+            newFilters.categories = [84];
+
+            dispatch({ type: CATALOG_ACTIONS.SET_BASE_FILTER, payload: newFilters });
+        } else {
+            let newFilters = {};
+
+            for(let [key, value] of searchParams.entries()) {
+                newFilters[key] = value.split(/,/).map(item => Number(item));
+            }
+
+            dispatch({ type: CATALOG_ACTIONS.SET_BASE_FILTER, payload: newFilters });
+        }
+
         retrieveCatalogueSettings()
-            .then((settings) => {
-                setFilters(settings);
-            })
-            .finally(() => {
-                setIsPageLoading(prevState => {
-                    return {
-                        ...prevState,
-                        headerLoading: false
-                    };
-                });
-            });
-        getCatalogueItems(searchParams.toString())
             .then((res) => {
-                setCatalogueItems(res);
-            })
-            .finally(() => {
-                setIsPageLoading(prevState => {
-                    return {
-                        ...prevState,
-                        contentLoading: false
-                    };
-                });
+                dispatch({ type: CATALOG_ACTIONS.SET_ALL_FILTERS, payload: res });
             });
+
     }, []);
 
     useEffect(() => {
+        if(isMobile) return;
 
-        setIsPageLoading(prevState => {
-            return {
-                ...prevState,
-                contentLoading: true,
-            };
+        setSearchParams(() => {
+            const newParams = new URLSearchParams(state.currentFilters);
+            if(searchParams.get('search')) {
+                newParams.set('search', searchParams.get('search'));
+            }
+
+            return newParams.toString();
         });
+    }, [state.currentFilters]);
 
-        const debounceTimeout = setTimeout(() => {
-            getCatalogueItems(searchParams.toString())
-                .then((res) => {
-                    setCatalogueItems(res);
-                })
-                .finally(() => {
-                    setIsPageLoading(prevState => {
-                        return {
-                            ...prevState,
-                            contentLoading: false
-                        };
-                    });
-                });
-        }, 500);
-
-        return () => {
-            clearTimeout(debounceTimeout);
-        };
-    }, [searchParams]);
+    if(state.loading) return <p>Loading</p>;
 
     return (
-        <div className={s.GoodsSetting}>
-            <GoodsSettingHeader filters={filters} isLoading={isPageLoading.headerLoading }/>
-            <GoodsSettingContent catalogueItems={catalogueItems} isLoading={isPageLoading.contentLoading}/>
-        </div>
+        <CatalogProvider value={{ state, dispatch }}>
+            <div className={s.GoodsSetting}>
+                <GoodsSettingHeader />
+            </div>
+        </CatalogProvider>
     );
 };
 

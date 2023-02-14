@@ -1,0 +1,26 @@
+@import '../../../../../../../../../../common/ui/styles/colors';
+@import '../../../../../../../../../../common/ui/styles/font-sizes';
+
+.SearchContainer {
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+  position: relative;
+
+  .input {
+    background-color: $light-gray;
+    flex-grow: 1;
+    height: 72px;
+
+    input {
+      font-size: $font-size-xlarge-24;
+    }
+  }
+
+  #filter {
+    position: absolute;
+    left: 100%;
+    margin-left: 20px;
+    cursor: pointer;
+  }
+}
