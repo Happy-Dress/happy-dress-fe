@@ -1,13 +1,13 @@
-import React, { useEffect, useReducer, useRef } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import s from './GoodsSetting.module.scss';
 import { CatalogProvider } from './components/CatalogProvider';
 import { catalogReducer } from './store';
-import { retrieveCatalogueSettings } from '../../../../common/api';
+import { getCatalogueItems, retrieveCatalogueSettings } from '../../../../common/api';
 import { CATALOG_ACTIONS } from './store/catalogReducer';
 import { GoodsSettingHeader } from './components/GoodsSettingHeader';
-import { useDeviceTypeContext } from '../../../../common/ui/contexts/DeviceType';
 import { useSearchParams } from 'react-router-dom';
 import { GOODS_SETTING_VARIABLES } from './GoodsSetting.dictionary';
+import { GoodsSettingContent } from './components/GoodsSettingContent';
 
 const {
     BASE_FILTER_ID
@@ -17,14 +17,18 @@ const GoodsSetting = () => {
     const [searchParams] = useSearchParams();
     const [state, dispatch] = useReducer(catalogReducer, {
         filters: {},
-        loading: true,
-        currentFilters: {}
+        loading: {
+            header: true,
+            content: true
+        },
+        currentFilters: {},
+        selectedItems: []
     });
 
     useEffect(() => {
-        dispatch({ type: CATALOG_ACTIONS.SET_LOADING });
+        dispatch({ type: CATALOG_ACTIONS.SET_FULL_LOADING });
 
-        if(!searchParams.has('categories')) {
+        if(!searchParams.has('categories')) {                                  // Установка фильтров из строки парметров
             let newFilters = {};
 
             for(let [key, value] of searchParams.entries()) {
@@ -47,6 +51,11 @@ const GoodsSetting = () => {
         retrieveCatalogueSettings()
             .then((res) => {
                 dispatch({ type: CATALOG_ACTIONS.SET_ALL_FILTERS, payload: res });
+            });
+
+        getCatalogueItems(searchParams.toString())
+            .then((res) => {
+                dispatch({ type: CATALOG_ACTIONS.SET_ALL_ITEMS, payload: res });
             });
 
     }, []);
@@ -103,12 +112,11 @@ const GoodsSetting = () => {
         };
     };
 
-    if(state.loading) return <p>Loading</p>;
-
     return (
         <CatalogProvider value={{ state, dispatch, changeFilter }}>
             <div className={s.GoodsSetting}>
                 <GoodsSettingHeader />
+                <GoodsSettingContent />
             </div>
         </CatalogProvider>
     );

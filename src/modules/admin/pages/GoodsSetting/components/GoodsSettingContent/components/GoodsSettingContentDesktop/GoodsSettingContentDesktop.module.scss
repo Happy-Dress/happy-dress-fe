@@ -1,0 +1,14 @@
+@import "../../../../../../../../common/ui/styles/media-sizes";
+
+.GoodsSettingContentDesktop {
+  padding: 0 calc(10% + 47px) 0 calc(8% + 47px);
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8%;
+  row-gap: 42px;
+
+  @media screen and (max-width: $xl-size) {
+    padding: 0 calc(6% + 47px) 0 calc(4% + 47px);
+  }
+}

@@ -37,6 +37,7 @@
     overflow-y: hidden;
     transition: height $animation-duration;
     left: 0;
+    z-index: 100;
   }
 
   @media screen and (max-width: $xl-size) {
