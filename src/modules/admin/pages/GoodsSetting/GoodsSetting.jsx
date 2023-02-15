@@ -112,8 +112,25 @@ const GoodsSetting = () => {
         };
     };
 
+    const selectProductHandler = () => {
+        function add(id) {
+            const newSelectedItems = [...state.selectedItems, id];
+            dispatch({ type: CATALOG_ACTIONS.UPDATE_SELECTED_ITEMS, payload: newSelectedItems });
+        }
+
+        function remove(id) {
+            const newSelectedItems = [...state.selectedItems].filter(item => item !== id);
+            dispatch({ type: CATALOG_ACTIONS.UPDATE_SELECTED_ITEMS, payload: newSelectedItems });
+        }
+
+        return {
+            add,
+            remove
+        };
+    };
+
     return (
-        <CatalogProvider value={{ state, dispatch, changeFilter }}>
+        <CatalogProvider value={{ state, dispatch, changeFilter, selectProductHandler }}>
             <div className={s.GoodsSetting}>
                 <GoodsSettingHeader />
                 <GoodsSettingContent />

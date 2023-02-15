@@ -5,6 +5,7 @@ import { ReactComponent as Checkbox } from '../../../../../../../../../../common
 import { GOODS_SETTING_DICTIONARY } from '../../../../../../GoodsSetting.dictionary';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { useCatalogContext } from '../../../../../CatalogProvider';
 
 const {
     COLORS,
@@ -14,7 +15,21 @@ const {
 
 const ProductCard = ({ product }) => {
     const [isHover, setIsHover] = useState(false);
-    const [isSelected] = useState(false);
+    const [isSelected, setIsSelected] = useState(false);
+    const { selectProductHandler } = useCatalogContext();
+
+    const clickHandler = () => {
+        const { add, remove } = selectProductHandler();
+
+        if(isSelected) {
+            remove(product.id);
+            setIsSelected(false);
+        } else {
+            add(product.id);
+            setIsSelected(true);
+        }
+    };
+
     if(!product) return;
 
     return (
@@ -22,8 +37,9 @@ const ProductCard = ({ product }) => {
             className={s.ProductCard}
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
+            onClick={clickHandler}
         >
-            <img src={product.imageUrl} alt="bg" className={isHover ? s.active : ''}/>
+            <img src={product.imageUrl} alt="bg" className={isHover ? s.active : ''} draggable={false}/>
             <div className={s.description}>
                 <h3>{product.name}</h3>
                 <div className={s.options}>
@@ -56,7 +72,7 @@ const ProductCard = ({ product }) => {
                 </div>
             </div>
             {
-                isHover && (isSelected ? <Checkbox className={s.checkbox}/> : <EmptyCheckbox className={s.checkbox}/>)
+                (isHover || isSelected) && (isSelected ? <Checkbox className={s.checkbox}/> : <EmptyCheckbox className={s.checkbox}/>)
             }
         </div>
     );
