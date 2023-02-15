@@ -61,6 +61,7 @@ export const catalogReducer = (state, action) => {
             return {
                 ...state,
                 items: action.payload,
+                selectedItems: [],
                 loading: {
                     ...state.loading,
                     content: false

@@ -18,6 +18,8 @@ const Filters = () => {
                         selectedItems={state.currentFilters[key] ?? []}
                         changeFilter={changeFilter}
                         className={s.dropdown}
+                        optionsClass={s.options}
+                        currentFilterClass={s.currentFilter}
                     />;
                 })
             }

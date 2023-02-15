@@ -1,5 +1,6 @@
 @import "../../../../../../../../../../common/ui/styles/colors";
 @import "../../../../../../../../../../common/ui/styles/font-sizes";
+@import "../../../../../../../../../../common/ui/styles/media-sizes";
 
 .ProductCard {
   width: 46%;
@@ -72,5 +73,35 @@
     top: 0;
     left: 0;
     margin: 20px;
+  }
+
+  @media screen and (max-width: $xl-size) {
+    .description {
+      padding-bottom: 50px;
+
+      h3 {
+        font-size: $font-size-xlarge-28;
+      }
+
+      .options {
+        padding: 0 12px;
+
+        .optionItem {
+          margin-bottom: 10px;
+          height: 30px;
+          justify-content: space-between;
+          p {
+            font-size: $font-size-xmedium-18;
+            color: $black;
+          }
+
+          .items {
+            font-size: $font-size-normal-14;
+            color: $black;
+            gap: 5px;
+          }
+        }
+      }
+    }
   }
 }

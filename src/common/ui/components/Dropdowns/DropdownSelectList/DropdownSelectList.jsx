@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import s from './DropdownSelectList.module.scss';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -10,6 +10,8 @@ const DropdownSelectList = (props) => {
 
     const {
         className,
+        optionsClass,
+        currentFilterClass,
         options,
         changeFilter,
         currentCategory,
@@ -20,17 +22,34 @@ const DropdownSelectList = (props) => {
 
     const [isOpen, setIsOpen] = useState(false);
 
+    const dropdownRef = useRef(null);
+
+    useEffect(() => {
+        if(!isOpen) return;
+
+        const handleClick = (e) => {
+            if(!dropdownRef.current) return;
+            if(!dropdownRef.current.contains(e.target)) setIsOpen(false);
+        };
+
+        document.addEventListener('click', handleClick);
+
+        return () => {
+            document.removeEventListener('click', handleClick);
+        };
+    });
+
     return (
-        <div className={classNames(s.DropdownSelectList, className)}>
+        <div className={classNames(s.DropdownSelectList, className)} ref={dropdownRef}>
             <div
-                className={s.currentFilter}
+                className={classNames(s.currentFilter, currentFilterClass)}
                 onClick={() => setIsOpen(!isOpen)}
                 style={{ height: isOptionsAbsolute ? '100%' : '56px' }}
             >
                 <p className={s.title}>{formatFiltersName(currentCategory)}</p>
                 <ArrowDown className={isOpen ? s.active : ''}/>
             </div>
-            <div className={s.options} style={{
+            <div className={classNames(s.options, optionsClass)} style={{
                 height: isOpen ? `calc(60px * ${options.length})` : '0',
                 position: isOptionsAbsolute ? 'absolute' : 'static'
             }}>
@@ -54,6 +73,8 @@ const DropdownSelectList = (props) => {
 DropdownSelectList.propTypes = {
     className: PropTypes.string,
     options: PropTypes.array.isRequired,
+    optionsClass: PropTypes.string,
+    currentFilterClass: PropTypes.string,
     changeFilter: PropTypes.func.isRequired,
     currentCategory: PropTypes.string.isRequired,
     selectedItems: PropTypes.array.isRequired,

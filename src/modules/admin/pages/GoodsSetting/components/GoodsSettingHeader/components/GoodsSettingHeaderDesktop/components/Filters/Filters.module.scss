@@ -9,10 +9,16 @@
   gap: 2%;
 
   .dropdown {
-    background-color: $white;
-    border: 1px solid $light-gray;
     width: calc(100% / 4);
     height: 60px;
   }
 
+  .options {
+    box-shadow: $shadow-black;
+  }
+
+  .currentFilter {
+    background-color: $white;
+    border: 1px solid $light-gray;
+  }
 }
