@@ -1,5 +1,6 @@
 @import "../../../../../../../../../../common/ui/styles/colors";
 @import "../../../../../../../../../../common/ui/styles/font-sizes";
+@import "../../../../../../../../../../common/ui/styles/media-sizes";
 
 .DressCategories {
   background-color: $white-border;
@@ -18,5 +19,11 @@
       border-bottom: 1px solid $brown;
       color: $black;
     }
+  }
+
+  @media screen and (max-width: $xl-size) {
+    font-size: $font-size-xmedium-18;
+
+    padding: 22px 35px 22px 30px;
   }
 }

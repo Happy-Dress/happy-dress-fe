@@ -24,6 +24,7 @@ export const catalogReducer = (state, action) => {
             return {
                 ...state,
                 currentFilters: {
+                    ...state.currentFilters,
                     categories: [action.payload]
                 }
             };

@@ -9,7 +9,8 @@ const OptionItem = (props) => {
         isChecked: check,
         changeFilter,
         item,
-        currentCategory
+        currentCategory,
+        isSingleOptionOnly
     } = props;
 
     const [isChecked, setIsChecked] = useState(check);
@@ -19,7 +20,11 @@ const OptionItem = (props) => {
     }, [check]);
 
     const changeHandler = () => {
-        let { add, remove } = changeFilter();
+        let { add, remove, replace } = changeFilter();
+        if(isSingleOptionOnly) {
+            replace(item.id);
+            return;
+        }
         if(isChecked) {
             remove(item.id, currentCategory);
             setIsChecked(false);

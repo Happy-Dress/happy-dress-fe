@@ -1,0 +1,23 @@
+@import "../../../../../../../../../../common/ui/styles/font-sizes";
+@import "../../../../../../../../../../common/ui/styles/colors";
+
+.SearchContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  .input {
+    width: 100%;
+    background-color: $light-gray;
+    height: 56px;
+
+    input {
+      font-size: $font-size-large-20;
+    }
+  }
+
+  #filter {
+    width: 25px;
+    height: 25px;
+    margin-left: 26px;
+  }
+}

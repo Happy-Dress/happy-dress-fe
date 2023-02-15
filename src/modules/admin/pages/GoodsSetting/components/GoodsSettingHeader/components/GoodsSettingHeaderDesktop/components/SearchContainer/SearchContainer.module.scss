@@ -3,7 +3,6 @@
 
 .SearchContainer {
   display: flex;
-  margin-top: 10px;
   align-items: center;
   position: relative;
 
@@ -17,10 +16,12 @@
     }
   }
 
-  #filter {
+  .filter {
     position: absolute;
     left: 100%;
     margin-left: 20px;
     cursor: pointer;
+    width: 31px;
+    height: 31px;
   }
 }

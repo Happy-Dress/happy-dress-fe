@@ -14,7 +14,7 @@
     height: 60px;
     background-color: $white;
     p {
-      font-size: $font-size-xlarge-24;
+      font-size: $font-size-xmedium-18;
       margin-left: 10px;
     }
     input {
@@ -39,10 +39,20 @@
 
   @media screen and (max-width: $xl-size) {
     label {
-      padding: 0 10px;
+      padding: 0 5px;
       p {
-        font-size: $font-size-medium-16;
+        font-size: $font-size-normal-14;
         margin-left: 6px;
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+      .empty {
+        width: 20px;
+        height: 20px;
+        min-width: 20px;
       }
     }
   }

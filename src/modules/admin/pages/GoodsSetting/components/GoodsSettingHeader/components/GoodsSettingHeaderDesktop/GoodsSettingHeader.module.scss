@@ -1,5 +1,6 @@
 @import "../../../../../../../../common/ui/styles/colors";
 @import "../../../../../../../../common/ui/styles/font-sizes";
+@import "../../../../../../../../common/ui/styles/media-sizes";
 
 .GoodsSettingHeaderDesktop {
   padding: 20px;
@@ -32,5 +33,34 @@
   .headerContainer {
     padding: 0 10% 0 8%;
     width: 100%;
+
+    .filtersContainer {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      &.active {
+        background-color: #FFF;
+        padding: 25px 92px 14px 36px;
+      }
+    }
+  }
+
+  .filterBadges {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 3%;
+    padding: 0 10% 0 8%;
+    margin-top: 18px;
+  }
+
+  @media screen and (max-width: $xl-size) {
+    .headerContainer {
+      padding: 0 6% 0 4%;
+    }
+    .filterBadges {
+      padding: 0 6% 0 4%;
+    }
   }
 }
