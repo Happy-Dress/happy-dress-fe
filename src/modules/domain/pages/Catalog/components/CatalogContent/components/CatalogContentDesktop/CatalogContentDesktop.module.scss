@@ -9,6 +9,7 @@
   flex-grow: 1;
   grid-area: content;
   column-gap: 5%;
+  padding: 0 15px;
 
   @media screen and (max-width: $xl-size) {
     column-gap: 2%;

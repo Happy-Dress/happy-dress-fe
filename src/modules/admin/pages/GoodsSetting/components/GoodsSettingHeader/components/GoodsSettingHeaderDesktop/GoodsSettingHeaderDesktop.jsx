@@ -61,9 +61,9 @@ const GoodsSettingHeaderDesktop = () => {
     }, [state.currentFilters]);
 
     return (
-        <div className={s.GoodsSettingHeaderDesktop}>
+        <>
             <div className={s.breadCrumbs}>{TITLE}</div>
-            <h1>{TITLE}</h1>
+            <h1 className={s.title}>{TITLE}</h1>
 
             <div className={s.headerContainer}>
                 <DressCategories />
@@ -80,7 +80,7 @@ const GoodsSettingHeaderDesktop = () => {
                     }
                 </div>
             }
-        </div>
+        </>
     );
 };
 

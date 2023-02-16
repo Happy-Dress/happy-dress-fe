@@ -7,11 +7,15 @@
   align-items: center;
   width: 100%;
   grid-area: header;
+  position: sticky;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  top: 0;
+  background-color: $white;
 
   h1 {
     font-size: $font-size-xlarge-28;
     font-weight: 400;
-    margin-top: 24px;
   }
 
   .headerContainer {

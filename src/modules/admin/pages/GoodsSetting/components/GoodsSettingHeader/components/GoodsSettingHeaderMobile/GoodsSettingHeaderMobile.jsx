@@ -77,9 +77,11 @@ const GoodsSettingHeaderMobile = () => {
     }, [stateRef.current]);
 
     return (
-        <div className={s.GoodsSettingHeaderMobile}>
-            <h1>{TITLE}</h1>
-            <h2>{currentCategory}</h2>
+        <>
+            <h1 className={s.title}>{TITLE}</h1>
+            <div className={s.currentCategory}>
+                <h2>{currentCategory}</h2>
+            </div>
             <div className={s.headerContainer}>
                 <SearchContainer setIsOpen={setIsOpen}/>
                 {isOpen && <Filters applyFilters={applyFilters}/>}
@@ -98,7 +100,7 @@ const GoodsSettingHeaderMobile = () => {
                     <ButtonAccent text={RESET_FILTERS} onClick={resetFilters}/>
                 </div>
             }
-        </div>
+        </>
     );
 };
 

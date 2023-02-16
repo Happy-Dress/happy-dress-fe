@@ -8,6 +8,12 @@
   align-items: center;
   flex-direction: column;
   grid-area: header;
+  position: sticky;
+  top: 0;
+  padding-top: 20px;
+  z-index: 100;
+  background-color: $white;
+  padding-bottom: 10px;
 
   .headerContainer {
     width: 100%;
