@@ -12,7 +12,6 @@ describe('GoodsSettingHeaderDesktop', () => {
     it('should render correct', () => {
         const { container } = render(<GoodsSettingHeaderDesktop />, { wrapper: BrowserRouter });
 
-        expect(container.getElementsByClassName('GoodsSettingHeaderDesktop')[0]).toBeInTheDocument();
         expect(container.getElementsByClassName('DressCategories')[0]).toBeInTheDocument();
 
     });

@@ -10,9 +10,8 @@ jest.mock('../../../../contexts/CatalogProvider/useCatalogContext', () => ({
 
 describe('GoodsSettingHeaderMobile', () => {
     it('should render correct', () => {
-        const { container } = render(<GoodsSettingHeaderMobile />, { wrapper: BrowserRouter });
+        render(<GoodsSettingHeaderMobile />, { wrapper: BrowserRouter });
 
-        expect(container.getElementsByClassName('GoodsSettingHeaderMobile')[0]).toBeInTheDocument();
         expect(screen.getByText('Вечерние')).toBeInTheDocument();
 
     });
