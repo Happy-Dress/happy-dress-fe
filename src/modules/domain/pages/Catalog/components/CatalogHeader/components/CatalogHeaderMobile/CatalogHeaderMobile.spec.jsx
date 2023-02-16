@@ -1,72 +1,52 @@
-import React from 'react';
-import { act, render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
+import { mockGoodsSettingContext } from '../../../../../../../../__mocks__/mockGoodsSettingContext';
 import { BrowserRouter } from 'react-router-dom';
-import userEvent from '@testing-library/user-event';
 import CatalogHeaderMobile from './CatalogHeaderMobile';
-import { mockCatalogueSettingsResponse } from '../../../../../../../../__mocks__/mockCatalogueSettingsResponse';
+import userEvent from '@testing-library/user-event';
+
+jest.mock('../../../../contexts/CatalogProvider/useCatalogContext', () => ({
+    useCatalogContext: () => ({ ...mockGoodsSettingContext })
+}));
 
 describe('CatalogHeaderMobile', () => {
+    it('should render correct', () => {
+        const { container } = render(<CatalogHeaderMobile />, { wrapper: BrowserRouter });
 
-    it('should render correct layout', async () => {
-        const { container } = render(<CatalogHeaderMobile filters={mockCatalogueSettingsResponse}/>, { wrapper: BrowserRouter });
-        await waitFor(() => {
-            expect(container.getElementsByClassName('DressCategories').length).toBe(1);
-            expect(container.getElementsByClassName('searchBar').length).toBe(1);
-            expect(container.getElementsByClassName('filters').length).toBe(1);
-            expect(container.getElementsByClassName('currentFilters').length).toBe(1);
-        });
+        expect(container.getElementsByClassName('CatalogHeaderMobile')[0]).toBeInTheDocument();
+        expect(screen.getByText('Вечерние')).toBeInTheDocument();
+
     });
 
-    it('should have active dress category', async () => {
-        window.history.pushState({}, 'Test Title', '/catalog?categories=84');
-        const { container } = render(<CatalogHeaderMobile filters={mockCatalogueSettingsResponse}/>, { wrapper: BrowserRouter });
-        await waitFor(() => {
-            const active = container.querySelector('.DressCategories > p');
-            expect(active.textContent).toBe('Свадебные');
-        });
+    it('should render filter badges', () => {
+        mockGoodsSettingContext.state.currentFilters = {
+            categories: [84],
+            materials: [34, 4]
+        };
+        let { container } = render(<CatalogHeaderMobile />, { wrapper: BrowserRouter });
+
+        expect(container.getElementsByClassName('FilterBadge').length).toBe(2);
     });
 
-    it('should open filters section', async () => {
-        const { container } = render(<CatalogHeaderMobile filters={mockCatalogueSettingsResponse}/>, { wrapper: BrowserRouter });
-        await waitFor(async () => {
-            let filters = await container.getElementsByClassName('filters');
+    it('should not render filter badges', () => {
+        mockGoodsSettingContext.state.currentFilters = {
+            categories: [84],
+        };
+        const { container } = render(<CatalogHeaderMobile />, { wrapper: BrowserRouter });
 
-            expect(filters[0]).toHaveStyle('display: none');
-
-            await act(() => {
-                userEvent.click(container.querySelector('#filterIcon'));
-            });
-
-            expect(filters[0]).toHaveStyle('display: flex');
-        });
+        expect(container.getElementsByClassName('FilterBadge').length).toBe(0);
     });
 
-    it('should close filters section', async () => {
-        const { container } = render(<CatalogHeaderMobile filters={mockCatalogueSettingsResponse}/>, { wrapper: BrowserRouter });
-        await waitFor(async () => {
-            let filters = await container.getElementsByClassName('filters');
+    it('should open filters', async () => {
+        const { container } = render(<CatalogHeaderMobile />, { wrapper: BrowserRouter });
 
-            expect(filters[0]).toHaveStyle('display: none');
+        expect(screen.getByText('filter.svg')).toBeInTheDocument();
+        expect(container.getElementsByClassName('Filters')[0]).toBe(undefined);
 
-            await act(() => {
-                userEvent.click(container.querySelector('#filterIcon'));
-                userEvent.click(screen.getByText('Применить'));
-            });
-
-            expect(filters[0]).toHaveStyle('display: none');
+        await act(() => {
+            userEvent.click(screen.getByText('filter.svg'));
         });
-    });
 
-    it('should del filters', async () => {
-        window.history.pushState({}, 'Test Title', '/catalog?categories=84&models=34');
-        render(<CatalogHeaderMobile filters={mockCatalogueSettingsResponse}/>, { wrapper: BrowserRouter });
-        await waitFor(async () => {
-            expect(window.location.search).toBe('?categories=84&models=34');
-            await act(() => {
-                userEvent.click(screen.getByText('Сбросить фильтры'));
-            });
-
-            expect(window.location.search).toBe('?categories=84');
-        });
+        expect(container.getElementsByClassName('Filters')[0]).toBeInTheDocument();
     });
 });
+

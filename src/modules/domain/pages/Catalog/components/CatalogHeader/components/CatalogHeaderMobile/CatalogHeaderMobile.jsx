@@ -1,166 +1,105 @@
-import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React, { useMemo, useRef, useState } from 'react';
 import s from './CatalogHeaderMobile.module.scss';
-
-import { DropdownSelectList } from '../../../../../../../../common/ui/components/Dropdowns';
-import { ButtonAccent } from '../../../../../../../../common/ui/components';
-import { DressCategories } from './components/DressCategories';
-import { SearchBar } from './components/SeacrhBar';
+import { CATALOG_SETTING_DICTIONARY, CATALOG_SETTING_VARIABLES } from '../../../../Catalog.dictionary';
+import { useCatalogContext } from '../../../../contexts/CatalogProvider';
+import { SearchContainer } from './components/SearchContainer';
+import { Filters } from './components/Filters';
+import { useSearchParams } from 'react-router-dom';
 import { FilterBadge } from './components/FilterBadge';
-import { CATALOG_HEADER_DICTIONARY, CATALOG_HEADER_VARIABLES } from '../../CatalogHeader.dictionary';
-import classNames from 'classnames';
+import { ButtonAccent } from '../../../../../../../../common/ui/components';
+import { CATALOG_ACTIONS } from '../../../../store/catalogReducer';
 
 const {
-    APPLY_FILTERS,
-    DELETE_FILTERS
-} = CATALOG_HEADER_DICTIONARY;
+    TITLE,
+    RESET_FILTERS
+} = CATALOG_SETTING_DICTIONARY;
 
-const { BASIC_CATEGORY_ID } = CATALOG_HEADER_VARIABLES;
+const {
+    BASE_FILTER_ID
+} = CATALOG_SETTING_VARIABLES;
 
-const CatalogHeaderMobile = ({ filters }) => {
-
-    const [searchParams, setSearchParams] = useSearchParams();
-
+const CatalogHeaderMobile = () => {
+    const { state, dispatch } = useCatalogContext();
     const [isOpen, setIsOpen] = useState(false);
-    const [currentFilters, setCurrentFilters] = useState();
-
-
-    useEffect(() => {
-        if(!filters.categories) return;
-
-        setSearchParams(prev => {
-            if(!prev.has('categories')) {
-                prev.set('categories', BASIC_CATEGORY_ID);
-                return prev.toString();
-            }
-            return prev.toString();
-        });
-    }, []);
-
-    useEffect(() => {
-        setCurrentFilters(() => {
-            const params = new URLSearchParams(searchParams.toString()).entries();
-            return Object.fromEntries(params);
-        });
-    }, [searchParams.toString()]);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const stateRef = useRef(state.currentFilters);
 
     const applyFilters = () => {
-        const queryString = new URLSearchParams(currentFilters).toString();
-        setSearchParams(queryString);
-        setIsOpen(false);
-    };
-
-    const deleteFilters = () => {
         setSearchParams(() => {
-            const params = new URLSearchParams(searchParams.toString()).entries();
-            const newState = Object.fromEntries(params);
-            for(let key in newState) {
-                if(key === 'categories' || key === 'search') continue;
-                delete newState[key];
+            const newParams = new URLSearchParams(state.currentFilters);
+            if(searchParams.get('search')) {
+                newParams.set('search', searchParams.get('search'));
             }
-            return new URLSearchParams(newState).toString();
+
+            return newParams.toString();
         });
+        setIsOpen(false);
+        stateRef.current = state.currentFilters;
     };
 
-    const changeFilter = (id, currentCategory, type) => {
-        setCurrentFilters(prevState => {
-            const newState = { ...prevState };
-            if(!newState[currentCategory]) {
-                newState[currentCategory] = String(id);
-                return newState;
+    const resetFilters = () => {
+        const newFilters = {
+            categories: [BASE_FILTER_ID]
+        };
+
+        dispatch({ type: CATALOG_ACTIONS.SET_BASE_FILTER, payload: newFilters });
+
+        setSearchParams(() => {
+            const newParams = new URLSearchParams(newFilters);
+            if(searchParams.get('search')) {
+                newParams.set('search', searchParams.get('search'));
             }
-            if(type === 'add') {
-                newState[currentCategory] += `,${id}`;
-            }
-            if(type === 'remove') {
-                newState[currentCategory] = newState[currentCategory].split(',').filter(item => item !== id).join(',');
-            }
-            if(type === 'single') {
-                newState[currentCategory] = String(id);
-            }
-            if(!newState[currentCategory].length) {
-                delete newState[currentCategory];
-            }
-            return newState;
+
+            return newParams.toString();
         });
+
+        stateRef.current = newFilters;
     };
 
-    if (!currentFilters) return;
+    const currentCategory = useMemo(() => {
+        let category = state.filters.categories.find(({ id }) => id === state.currentFilters.categories[0]);
+        return category.name;
+    }, [searchParams]);
 
-    const currentFiltersDisplay = () => {
-        return (isOpen || !Object.keys(currentFilters).filter(item => item !== 'categories').length) ? 'none': 'flex';
-    };
-
-    const categoryName = () => {
-        try {
-            return (filters.categories && searchParams.get('categories')) ?
-                filters.categories.filter(item => String(item.id) === String(searchParams.get('categories')))[0].name
-                : '';
-        } catch (e) {
-            return '';
-        }
-    };
+    const filterBadges = useMemo(() => {
+        return Object.entries(stateRef.current).map(([key, value]) => {
+            if(key === 'categories') return;
+            return value.map((item) => {
+                let badgeInfo;
+                try {
+                    badgeInfo = state.filters[key].find(filterCategory => filterCategory.id === item);
+                } catch {
+                    badgeInfo = '';
+                }
+                return <FilterBadge key={badgeInfo.name} name={badgeInfo.name}/>;
+            });
+        });
+    }, [stateRef.current]);
 
     return (
         <div className={s.CatalogHeaderMobile}>
-            <DressCategories
-                category={categoryName()}
-            />
-            <div className={classNames(s.searchBar, (isOpen ? s.active : ''))}>
-                <SearchBar setIsFiltersOpen={setIsOpen} isFiltersOpen={isOpen}/>
-                <div className={s.filters} style={{ display: isOpen ? 'flex' : 'none' }}>
+            <h1>{TITLE}</h1>
+            <h2>{currentCategory}</h2>
+            <div className={s.headerContainer}>
+                <SearchContainer setIsOpen={setIsOpen}/>
+                {isOpen && <Filters applyFilters={applyFilters}/>}
+            </div>
+            {
+                !isOpen &&
+                <div className={s.filterBadges}>
                     {
-                        Object.keys(filters).map(key => {
-                            return <DropdownSelectList
-                                key={key}
-                                options={filters[key]}
-                                changeFilter={changeFilter}
-                                selectedItems={currentFilters[key] ?? ''}
-                                className={s.dropdown}
-                                currentCategory={key}
-                                isOptionsAbsolute={false}
-                                isSingleOptionOnly={key === 'categories'}
-                            />;
-                        })
+                        filterBadges
                     }
-                    <ButtonAccent text={APPLY_FILTERS} onClick={applyFilters}/>
                 </div>
-            </div>
-            <div
-                className={s.currentFilters}
-                style={{ display: currentFiltersDisplay() }}
-            >
-                {
-                    Object.keys(currentFilters).map(key => {
-                        if (key === 'categories') return;
-                        return currentFilters[key].split(',').map(item => {
-                            return (
-                                <FilterBadge
-                                    key={item}
-                                    itemCategory={key}
-                                    itemId={item}
-                                    filters={filters}
-                                />
-                            );
-                        });
-                    })
-                }
-            </div>
-            <div className={s.deleteFilters}>
-                {
-                    (Object.keys(currentFilters).filter(key => key !== 'categories' && key !== 'search').length && !isOpen) ?
-                        <ButtonAccent text={DELETE_FILTERS} onClick={deleteFilters}/>
-                        :
-                        ''
-                }
-            </div>
+            }
+            {
+                (filterBadges.length > 1 && !isOpen) &&
+                <div className={s.resetFilters}>
+                    <ButtonAccent text={RESET_FILTERS} onClick={resetFilters}/>
+                </div>
+            }
         </div>
     );
-};
-
-CatalogHeaderMobile.propTypes = {
-    filters: PropTypes.object.isRequired
 };
 
 export default CatalogHeaderMobile;
