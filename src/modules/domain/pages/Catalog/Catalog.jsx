@@ -1,97 +1,146 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import s from './Catalog.module.scss';
-import CatalogHeader from './components/CatalogHeader';
-import CatalogContent from './components/CatalogContent';
-import CategoriesSidebar from './components/CategoriesSidebar';
+import { CatalogProvider } from './contexts/CatalogProvider';
+import { catalogReducer } from './store';
+import { getCatalogueItems, retrieveCatalogueSettings } from '../../../../common/api';
+import { CATALOG_ACTIONS } from './store/catalogReducer';
+import { CatalogHeader } from './components/CatalogHeader';
 import { useSearchParams } from 'react-router-dom';
-import retrieveCatalogueSettings from '../../../../common/api/catalogueSettings/retrieveCatalogueSettings';
-import getCatalogueItems from '../../../../common/api/catalogueItems/getCatalogueItems';
-import { useDeviceTypeContext } from '../../../../common/ui/contexts/DeviceType';
+import { CATALOG_SETTING_VARIABLES } from './Catalog.dictionary';
+import { CatalogContent } from './components/CatalogContent';
+
+const {
+    BASE_FILTER_ID
+} = CATALOG_SETTING_VARIABLES;
 
 const Catalog = () => {
-    const [isPageLoading, setIsPageLoading] = useState({
-        headerLoading: false,
-        contentLoading: false
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [state, dispatch] = useReducer(catalogReducer, {
+        filters: {},
+        loading: {
+            header: true,
+            content: true
+        },
+        currentFilters: {},
+        selectedItems: []
     });
 
-    const [searchParams] = useSearchParams();
-
-    const [filters, setFilters] = useState({});
-    const [catalogueItems, setCatalogueItems] = useState([]);
-
-    const { isDesktop } = useDeviceTypeContext();
-
     useEffect(() => {
-        setIsPageLoading(prevState => {                             // Ставим компонент в состаяние загрузки
-            return {
-                ...prevState,
-                contentLoading: true,
-                headerLoading: true
-            };
-        });
-        retrieveCatalogueSettings()
-            .then((settings) => {
-                setFilters(settings);
-            })
-            .finally(() => {
-                setIsPageLoading(prevState => {
-                    return {
-                        ...prevState,
-                        headerLoading: false
-                    };
-                });
+        dispatch({ type: CATALOG_ACTIONS.SET_FULL_LOADING });
+
+        if(!searchParams.has('categories')) {                                  // Установка фильтров из строки парметров
+            let newFilters = {};
+
+            for(let [key, value] of searchParams.entries()) {
+                newFilters[key] = value.split(/,/).map(item => Number(item));
+            }
+
+            newFilters.categories = [BASE_FILTER_ID];
+
+            dispatch({ type: CATALOG_ACTIONS.SET_BASE_FILTER, payload: newFilters });
+            setSearchParams(() => {
+                searchParams.set('categories', BASE_FILTER_ID);
+
+                return searchParams;
             });
+        } else {
+            let newFilters = {};
+
+            for(let [key, value] of searchParams.entries()) {
+                newFilters[key] = value.split(/,/).map(item => Number(item));
+            }
+
+            dispatch({ type: CATALOG_ACTIONS.SET_BASE_FILTER, payload: newFilters });
+        }
+
+        retrieveCatalogueSettings()
+            .then((res) => {
+                dispatch({ type: CATALOG_ACTIONS.SET_ALL_FILTERS, payload: res });
+            });
+
         getCatalogueItems(searchParams.toString())
             .then((res) => {
-                setCatalogueItems(res);
-            })
-            .finally(() => {
-                setIsPageLoading(prevState => {
-                    return {
-                        ...prevState,
-                        contentLoading: false
-                    };
-                });
+                dispatch({ type: CATALOG_ACTIONS.SET_ALL_ITEMS, payload: res });
             });
+
     }, []);
 
-    useEffect(() => {
+    const changeFilter = () => {
+        function add(id, currentCategory) {
+            let prevArray;
 
-        setIsPageLoading(prevState => {
-            return {
-                ...prevState,
-                contentLoading: true,
-            };
-        });
+            try {
+                prevArray = [...state.currentFilters[currentCategory]];
+            } catch (e) {
+                prevArray = [];
+            }
 
-        const debounceTimeout = setTimeout(() => {
-            getCatalogueItems(searchParams.toString())
-                .then((res) => {
-                    setCatalogueItems(res);
-                })
-                .finally(() => {
-                    setIsPageLoading(prevState => {
-                        return {
-                            ...prevState,
-                            contentLoading: false
-                        };
-                    });
+            dispatch({
+                type: CATALOG_ACTIONS.UPDATE_CURRENT_FILTER,
+                payload: {
+                    category: currentCategory,
+                    value: [...prevArray, id]
+                }
+            });
+        }
+
+        function remove(id, currentCategory) {
+            let newArray = state.currentFilters[currentCategory].filter(item => item !== id);
+
+            if(!newArray.length) {
+                let newFilters = { ...state.currentFilters };
+                delete newFilters[currentCategory];
+                dispatch({
+                    type: CATALOG_ACTIONS.REMOVE_CURRENT_FILTER,
+                    payload: newFilters
                 });
-        }, 300);
+                return;
+            }
 
-        return () => {
-            clearTimeout(debounceTimeout);
+            dispatch({
+                type: CATALOG_ACTIONS.UPDATE_CURRENT_FILTER,
+                payload: {
+                    category: currentCategory,
+                    value: newArray
+                }
+            });
+        }
+
+        function replace(id) {
+            dispatch({ type: CATALOG_ACTIONS.REPLACE_CATEGORY, payload: id });
+        }
+
+        return {
+            add,
+            remove,
+            replace
         };
-    }, [searchParams]);
+    };
+
+    const selectProductHandler = () => {
+        function add(id) {
+            const newSelectedItems = [...state.selectedItems, id];
+            dispatch({ type: CATALOG_ACTIONS.UPDATE_SELECTED_ITEMS, payload: newSelectedItems });
+        }
+
+        function remove(id) {
+            const newSelectedItems = [...state.selectedItems].filter(item => item !== id);
+            dispatch({ type: CATALOG_ACTIONS.UPDATE_SELECTED_ITEMS, payload: newSelectedItems });
+        }
+
+        return {
+            add,
+            remove
+        };
+    };
 
     return (
-        <div className={s.Catalog}>
-            <CatalogHeader filters={filters} isLoading={isPageLoading.headerLoading}/>
-            <div className={s.content}>
-                { isDesktop && <CategoriesSidebar categories={filters.categories}/> }
-                <CatalogContent items={catalogueItems} isLoading={isPageLoading.contentLoading}/>
+        <CatalogProvider value={{ state, dispatch, changeFilter, selectProductHandler }}>
+            <div className={s.Catalog}>
+                <CatalogHeader />
+                <CatalogContent />
             </div>
-        </div>
+        </CatalogProvider>
     );
 };
 

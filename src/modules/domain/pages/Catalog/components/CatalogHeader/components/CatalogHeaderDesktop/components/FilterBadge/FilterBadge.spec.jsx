@@ -1,23 +1,20 @@
 import { render, screen } from '@testing-library/react';
 import FilterBadge from './FilterBadge';
-import { mockCatalogueSettingsResponse } from '../../../../../../../../../../__mocks__/mockCatalogueSettingsResponse';
+import { mockGoodsSettingContext } from '../../../../../../../../../../__mocks__/mockGoodsSettingContext';
 
-describe('Filter Badge', () => {
-    it('should render correctly', () => {
-        render(<FilterBadge filters={mockCatalogueSettingsResponse} setCurrentFilters={() => {}} itemId={'14'} itemCategory={'colors'}/>);
+jest.mock('../../../../../../contexts/CatalogProvider/useCatalogContext', () => ({
+    useCatalogContext: () => ({ ...mockGoodsSettingContext })
+}));
 
-        expect(screen.getByText('красный')).toBeInTheDocument();
+describe('FilterBadge', () => {
+    it('should render correct', () => {
+        render(<FilterBadge name={'Свадебные'} currentCategory={'cateogires'} id={84}/>);
+
+        expect(screen.getByText('Свадебные')).toBeInTheDocument();
     });
+    it('should render correct', () => {
+        const { container } = render(<FilterBadge name={''} currentCategory={'cateogires'} id={84}/>);
 
-    it('should not render', () => {
-        const { container } = render(<FilterBadge filters={mockCatalogueSettingsResponse} setCurrentFilters={() => {}} itemId={'0'} itemCategory={'colors'}/>);
-
-        expect(container.getElementsByTagName('p').length).toBe(0);
-    });
-
-    it('should not render', () => {
-        const { container } = render(<FilterBadge filters={mockCatalogueSettingsResponse} setCurrentFilters={() => {}} itemId={''} itemCategory={'colors'}/>);
-
-        expect(container.getElementsByTagName('p').length).toBe(0);
+        expect(container.getElementsByClassName('FilterBadge')[0]).toBe(undefined);
     });
 });

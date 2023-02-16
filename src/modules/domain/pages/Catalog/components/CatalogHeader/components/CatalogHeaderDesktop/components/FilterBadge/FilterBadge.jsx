@@ -1,40 +1,33 @@
 import React from 'react';
 import s from './FilterBadge.module.scss';
-import { ReactComponent as Cross } from '../../../../../../../../../../common/assets/images/x.svg';
 import PropTypes from 'prop-types';
+import { ReactComponent as Cross } from '../../../../../../../../../../common/assets/images/x.svg';
+import { useCatalogContext } from '../../../../../../contexts/CatalogProvider';
 
-const FilterBadge = ({ filters, itemId, itemCategory, setCurrentFilters }) => {
+const FilterBadge = ({ name, id, currentCategory }) => {
 
-    if(!itemId) return;
+    const { changeFilter } = useCatalogContext();
 
-    const deleteHandler = () => {
-        setCurrentFilters(prevState => {
-            const newState = { ...prevState };
-            if(newState[itemCategory].split(',').length === 1) {
-                delete newState[itemCategory];
-                return newState;
-            }
-            newState[itemCategory] = newState[itemCategory].split(',').filter(item => item !== itemId).join(',');
+    if(!name || !id || !currentCategory) return;
 
-            return newState;
-        });
+    const clickHandler = () => {
+        const { remove } = changeFilter();
+
+        remove(id, currentCategory);
     };
-
-    if(!filters[itemCategory].filter(obj => obj.id === Number(itemId)).length) return;
 
     return (
         <div className={s.FilterBadge}>
-            <p>{filters[itemCategory].filter(obj => obj.id === Number(itemId))[0].name}</p>
-            <Cross onClick={deleteHandler}/>
+            {name}
+            <Cross id={s.cross} onClick={clickHandler}/>
         </div>
     );
 };
 
 FilterBadge.propTypes = {
-    filters: PropTypes.object.isRequired,
-    itemId: PropTypes.string.isRequired,
-    itemCategory: PropTypes.string.isRequired,
-    setCurrentFilters: PropTypes.func.isRequired
+    name: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    currentCategory: PropTypes.string.isRequired
 };
 
 export default FilterBadge;

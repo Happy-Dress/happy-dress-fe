@@ -1,0 +1,10 @@
+@import "../../../../../../../../../../common/ui/styles/colors";
+
+.ProductCardAdd {
+  width: 46%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: $shadow-black;
+  cursor: pointer;
+}

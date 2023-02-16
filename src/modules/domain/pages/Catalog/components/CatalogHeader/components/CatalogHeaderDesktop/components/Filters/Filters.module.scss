@@ -1,0 +1,24 @@
+@import "../../../../../../../../../../common/ui/styles/colors";
+@import "../../../../../../../../../../common/ui/styles/media-sizes";
+@import "../../../../../../../../../../common/ui/styles/font-sizes";
+
+.Filters {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 2%;
+
+  .dropdown {
+    width: calc(100% / 4);
+    height: 60px;
+  }
+
+  .options {
+    box-shadow: $shadow-black;
+  }
+
+  .currentFilter {
+    background-color: $white;
+    border: 1px solid $light-gray;
+  }
+}

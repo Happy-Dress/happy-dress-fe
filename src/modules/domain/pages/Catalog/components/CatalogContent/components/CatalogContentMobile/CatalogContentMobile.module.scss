@@ -1,0 +1,24 @@
+@import "../../../../../../../../common/ui/styles/colors";
+@import "../../../../../../../../common/ui/styles/font-sizes";
+
+.CatalogContentMobile {
+  width: 100%;
+  padding: 0 2%;
+  margin-top: 30px;
+
+  .trash {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: $light-gray;
+    height: 78px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+      color: $brown;
+      font-size: $font-size-xlarge-36;
+    }
+  }
+}
