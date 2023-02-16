@@ -8,7 +8,7 @@ const FilterBadge = ({ name, id, currentCategory }) => {
 
     const { changeFilter } = useCatalogContext();
 
-    if(!name) return;
+    if(!name || !id || !currentCategory) return;
 
     const clickHandler = () => {
         const { remove } = changeFilter();

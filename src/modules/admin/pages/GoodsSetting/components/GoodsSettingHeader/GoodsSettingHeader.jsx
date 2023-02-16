@@ -4,6 +4,8 @@ import { GoodsSettingHeaderDesktop } from './components/GoodsSettingHeaderDeskto
 import { GoodsSettingHeaderMobile } from './components/GoodsSettingHeaderMobile';
 import { useCatalogContext } from '../../contexts/CatalogProvider';
 
+
+
 const GoodsSettingHeader = () => {
     const { state } = useCatalogContext();
     const AdaptiveGoodsSettingHeader = useMemo(() => {
