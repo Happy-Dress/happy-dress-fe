@@ -33,7 +33,7 @@ const CatalogContent = () => {
         };
     }, [searchParams]);
 
-    if(state.loading.content) return <p>Loading</p>;
+    if(state.loading.content) return <p style={{ flexGrow: 1 }}>Loading</p>;
 
     return (
         <AdaptiveCatalogContent />

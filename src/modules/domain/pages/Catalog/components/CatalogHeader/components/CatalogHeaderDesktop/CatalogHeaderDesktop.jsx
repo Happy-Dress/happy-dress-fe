@@ -1,18 +1,11 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import s from './CatalogHeader.module.scss';
-import { CATALOG_SETTING_DICTIONARY } from '../../../../Catalog.dictionary';
-import { DressCategories } from './components/DressCategories';
+import s from './CatalogHeaderDesktop.module.scss';
 import { Filters } from './components/Filters';
-import classNames from 'classnames';
 import { SearchContainer } from './components/SearchContainer';
 import { FilterBadge } from './components/FilterBadge';
 import { useCatalogContext } from '../../../../contexts/CatalogProvider';
 import { useDeviceTypeContext } from '../../../../../../../../common/ui/contexts/DeviceType';
 import { useSearchParams } from 'react-router-dom';
-
-const {
-    TITLE
-} = CATALOG_SETTING_DICTIONARY;
 
 const CatalogHeaderDesktop = () => {
 
@@ -62,15 +55,9 @@ const CatalogHeaderDesktop = () => {
 
     return (
         <div className={s.CatalogHeaderDesktop}>
-            <div className={s.breadCrumbs}>{TITLE}</div>
-            <h1>{TITLE}</h1>
-
             <div className={s.headerContainer}>
-                <DressCategories />
-                <div className={classNames(s.filtersContainer, isOpen ? s.active : '')}>
-                    <SearchContainer setIsOpen={setIsOpen} isOpen={isOpen}/>
-                    {isOpen && <Filters />}
-                </div>
+                <Filters />
+                <SearchContainer setIsOpen={setIsOpen} isOpen={isOpen}/>
             </div>
             {
                 (filterBadges.length && !isOpen) &&

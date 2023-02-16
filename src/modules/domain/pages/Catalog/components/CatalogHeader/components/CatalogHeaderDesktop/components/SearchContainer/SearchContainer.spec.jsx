@@ -4,13 +4,8 @@ import { BrowserRouter } from 'react-router-dom';
 
 describe('SearchContainer', () => {
     it('should render correct', () => {
-        render(<SearchContainer setIsOpen={jest.fn()} isOpen={true}/>, { wrapper: BrowserRouter });
+        render(<SearchContainer />, { wrapper: BrowserRouter });
 
-        expect(screen.getByText('x.svg')).toBeInTheDocument();
-    });
-    it('should render correct closed', () => {
-        render(<SearchContainer setIsOpen={jest.fn()} isOpen={false}/>, { wrapper: BrowserRouter });
-
-        expect(screen.getByText('filter.svg')).toBeInTheDocument();
+        expect(screen.getByPlaceholderText('Поиск..')).toBeInTheDocument();
     });
 });

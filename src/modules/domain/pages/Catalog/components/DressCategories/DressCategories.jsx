@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './DressCategories.module.scss';
-import { useCatalogContext } from '../../../../../../contexts/CatalogProvider';
-import { CATALOG_ACTIONS } from '../../../../../../store/catalogReducer';
+import { useCatalogContext } from '../../contexts/CatalogProvider';
+import { CATALOG_ACTIONS } from '../../store/catalogReducer';
 
 const DressCategories = () => {
     const { state, dispatch } = useCatalogContext();
@@ -17,6 +17,8 @@ const DressCategories = () => {
     const changeHandler = (id) => {
         dispatch({ type: CATALOG_ACTIONS.REPLACE_CATEGORY, payload: id });
     };
+
+    if(state.loading.header) return;
 
     return (
         <div className={s.DressCategories}>

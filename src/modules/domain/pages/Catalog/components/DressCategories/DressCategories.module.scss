@@ -1,0 +1,36 @@
+@import "../../../../../../common/ui/styles/colors";
+@import "../../../../../../common/ui/styles/font-sizes";
+@import "../../../../../../common/ui/styles/media-sizes";
+
+.DressCategories {
+  grid-area: sidebar;
+  padding: 32px;
+  font-size: $font-size-xlarge-24;
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+  height: fit-content;
+  position: sticky;
+  top: 50px;
+  border: 1px solid $black;
+  box-shadow: $shadow-black;
+
+  span {
+    white-space: nowrap;
+    padding-bottom: 5px;
+    cursor: pointer;
+    color: $gray;
+    width: fit-content;
+
+    &.active {
+      border-bottom: 1px solid $brown;
+      color: $black;
+    }
+  }
+
+  @media screen and (max-width: $xl-size) {
+    font-size: $font-size-xmedium-18;
+
+    padding: 22px 35px 22px 30px;
+  }
+}

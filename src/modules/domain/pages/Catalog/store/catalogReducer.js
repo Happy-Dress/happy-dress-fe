@@ -6,8 +6,7 @@ export const CATALOG_ACTIONS = {
     UPDATE_CURRENT_FILTER: 'UPDATE_CURRENT_FILTER',
     REMOVE_CURRENT_FILTER: 'REMOVE_CURRENT_FILTER',
     SET_ALL_ITEMS: 'SET_ALL_ITEMS',
-    SET_ITEMS_LOADING: 'SET_ITEMS_LOADING',
-    UPDATE_SELECTED_ITEMS: 'UPDATE_SELECTED_ITEMS'
+    SET_ITEMS_LOADING: 'SET_ITEMS_LOADING'
 };
 
 export const catalogReducer = (state, action) => {
@@ -74,11 +73,6 @@ export const catalogReducer = (state, action) => {
                     ...state.loading,
                     content: true
                 }
-            };
-        case CATALOG_ACTIONS.UPDATE_SELECTED_ITEMS:
-            return {
-                ...state,
-                selectedItems: action.payload
             };
         default:
             return state;

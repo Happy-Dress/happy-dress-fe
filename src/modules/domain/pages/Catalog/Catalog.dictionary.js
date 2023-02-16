@@ -1,5 +1,5 @@
 const CATALOG_SETTING_DICTIONARY = {
-    TITLE: 'Управление товаром',
+    TITLE: 'Каталог',
     ACCEPT_FILTERS: 'Применить',
     RESET_FILTERS: 'Сбросить фильтры',
     COLORS: 'Цвета',

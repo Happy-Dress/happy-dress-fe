@@ -8,6 +8,8 @@ import { CatalogHeader } from './components/CatalogHeader';
 import { useSearchParams } from 'react-router-dom';
 import { CATALOG_SETTING_VARIABLES } from './Catalog.dictionary';
 import { CatalogContent } from './components/CatalogContent';
+import { DressCategories } from './components/DressCategories';
+import { useDeviceTypeContext } from '../../../../common/ui/contexts/DeviceType';
 
 const {
     BASE_FILTER_ID
@@ -21,9 +23,9 @@ const Catalog = () => {
             header: true,
             content: true
         },
-        currentFilters: {},
-        selectedItems: []
+        currentFilters: {}
     });
+    const { isMobile } = useDeviceTypeContext();
 
     useEffect(() => {
         dispatch({ type: CATALOG_ACTIONS.SET_FULL_LOADING });
@@ -117,27 +119,11 @@ const Catalog = () => {
         };
     };
 
-    const selectProductHandler = () => {
-        function add(id) {
-            const newSelectedItems = [...state.selectedItems, id];
-            dispatch({ type: CATALOG_ACTIONS.UPDATE_SELECTED_ITEMS, payload: newSelectedItems });
-        }
-
-        function remove(id) {
-            const newSelectedItems = [...state.selectedItems].filter(item => item !== id);
-            dispatch({ type: CATALOG_ACTIONS.UPDATE_SELECTED_ITEMS, payload: newSelectedItems });
-        }
-
-        return {
-            add,
-            remove
-        };
-    };
-
     return (
-        <CatalogProvider value={{ state, dispatch, changeFilter, selectProductHandler }}>
+        <CatalogProvider value={{ state, dispatch, changeFilter }}>
             <div className={s.Catalog}>
                 <CatalogHeader />
+                { !isMobile && <DressCategories /> }
                 <CatalogContent />
             </div>
         </CatalogProvider>

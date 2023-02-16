@@ -3,23 +3,16 @@
 @import "../../../../../../../../../../common/ui/styles/media-sizes";
 
 .ProductCard {
-  width: 46%;
   position: relative;
   box-shadow: $shadow-black;
   cursor: pointer;
+  background-color: $white;
+  width: 30%;
+  padding: 18px;
   img {
     width: 100%;
-    filter: saturate(0.5);
-    &.active {
-      filter: saturate(1);
-    }
   }
   .description {
-    position: absolute;
-    bottom: 0;
-    background-color: $white;
-    width: 100%;
-    padding-bottom: 105px;
 
     h3 {
       font-weight: 600;
@@ -31,7 +24,6 @@
     .options {
       display: flex;
       flex-direction: column;
-      padding: 0 22px;
 
       .optionItem {
         display: flex;
@@ -76,29 +68,28 @@
   }
 
   @media screen and (max-width: $xl-size) {
+    width: 32%;
     .description {
-      padding-bottom: 50px;
 
       h3 {
         font-size: $font-size-xlarge-28;
       }
 
       .options {
-        padding: 0 12px;
 
         .optionItem {
           margin-bottom: 10px;
-          height: 30px;
           justify-content: space-between;
           p {
-            font-size: $font-size-xmedium-18;
+            font-size: $font-size-medium-16;
             color: $black;
           }
 
           .items {
             font-size: $font-size-normal-14;
-            color: $black;
-            gap: 5px;
+            gap: 2px;
+            flex-wrap: wrap;
+            justify-content: center;
           }
         }
       }

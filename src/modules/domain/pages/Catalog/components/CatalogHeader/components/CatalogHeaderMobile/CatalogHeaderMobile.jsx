@@ -10,7 +10,6 @@ import { ButtonAccent } from '../../../../../../../../common/ui/components';
 import { CATALOG_ACTIONS } from '../../../../store/catalogReducer';
 
 const {
-    TITLE,
     RESET_FILTERS
 } = CATALOG_SETTING_DICTIONARY;
 
@@ -78,8 +77,7 @@ const CatalogHeaderMobile = () => {
 
     return (
         <div className={s.CatalogHeaderMobile}>
-            <h1>{TITLE}</h1>
-            <h2>{currentCategory}</h2>
+            <h1>{currentCategory}</h1>
             <div className={s.headerContainer}>
                 <SearchContainer setIsOpen={setIsOpen}/>
                 {isOpen && <Filters applyFilters={applyFilters}/>}

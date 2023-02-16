@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
-import Catalog from './index';
+import Catalog from './Catalog';
 import { BrowserRouter } from 'react-router-dom';
 import { mockCatalogueItemsResponse } from '../../../../__mocks__/mockCatalogueItemsResponse';
 import { mockCatalogueSettingsResponse } from '../../../../__mocks__/mockCatalogueSettingsResponse';
@@ -25,7 +25,7 @@ describe('Catalog', () => {
         const { container } = render(<Catalog/>, { wrapper: BrowserRouter });
 
         await waitFor(async () => {
-            expect(container.getElementsByClassName('GoodsSetting')[0]).toBeInTheDocument();
+            expect(container.getElementsByClassName('Catalog')[0]).toBeInTheDocument();
         });
     });
 
