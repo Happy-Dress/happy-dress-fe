@@ -23,6 +23,7 @@ const OptionItem = (props) => {
         let { add, remove, replace } = changeFilter();
         if(isSingleOptionOnly) {
             replace(item.id);
+            setIsChecked(true);
             return;
         }
         if(isChecked) {

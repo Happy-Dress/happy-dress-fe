@@ -1,10 +1,26 @@
-import { act, render, screen } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import OptionItem from './OptionItem';
 import userEvent from '@testing-library/user-event';
 
 const props = {
     isChecked: false,
-    changeFilter: () => {},
+    changeFilter: () => {
+        function add() {
+
+        }
+        function replace() {
+
+        }
+        function remove() {
+
+        }
+
+        return {
+            add,
+            remove,
+            replace
+        };
+    },
     item: {
         id: 1,
         name: 'Опция 1'
@@ -19,7 +35,7 @@ describe('Option Item', () => {
         expect(container.getElementsByClassName('empty').length).toBe(1);
     });
 
-    it('should render correctly', () => {
+    it('should render correctly with isChecked', () => {
         props.isChecked = true;
         const { container } = render(<OptionItem {...props}/>);
         expect(container.getElementsByClassName('checkbox').length).toBe(1);
