@@ -13,9 +13,9 @@ const ProductCardAdd = () => {
         >
             {
                 isHover ?
-                    <AddIconHover />
+                    <AddIconHover data-testid={'hover'}/>
                     :
-                    <AddIconNormal />
+                    <AddIconNormal data-testid={'normal'}/>
             }
         </div>
     );

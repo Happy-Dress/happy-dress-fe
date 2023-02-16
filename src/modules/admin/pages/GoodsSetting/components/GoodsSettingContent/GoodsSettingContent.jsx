@@ -5,7 +5,7 @@ import { GoodsSettingContentMobile } from './components/GoodsSettingContentMobil
 import { useSearchParams } from 'react-router-dom';
 import { getCatalogueItems } from '../../../../../../common/api';
 import { CATALOG_ACTIONS } from '../../store/catalogReducer';
-import { useCatalogContext } from '../CatalogProvider';
+import { useCatalogContext } from '../../contexts/CatalogProvider';
 
 const GoodsSettingContent = () => {
     const [searchParams] = useSearchParams();

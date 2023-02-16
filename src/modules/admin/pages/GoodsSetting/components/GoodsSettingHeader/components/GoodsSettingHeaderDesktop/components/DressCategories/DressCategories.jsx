@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './DressCategories.module.scss';
-import { useCatalogContext } from '../../../../../CatalogProvider';
+import { useCatalogContext } from '../../../../../../contexts/CatalogProvider';
 import { CATALOG_ACTIONS } from '../../../../../../store/catalogReducer';
 
 const DressCategories = () => {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import s from './ProductCard.module.scss';
 import PropTypes from 'prop-types';
-import { useCatalogContext } from '../../../../../CatalogProvider';
+import { useCatalogContext } from '../../../../../../contexts/CatalogProvider';
 import classNames from 'classnames';
 import { GOODS_SETTING_DICTIONARY } from '../../../../../../GoodsSetting.dictionary';
 import { ReactComponent as Checkbox } from '../../../../../../../../../../common/assets/images/RoundedCheckbox.svg';

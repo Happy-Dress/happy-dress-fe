@@ -6,7 +6,7 @@ import { Filters } from './components/Filters';
 import classNames from 'classnames';
 import { SearchContainer } from './components/SearchContainer';
 import { FilterBadge } from './components/FilterBadge';
-import { useCatalogContext } from '../../../CatalogProvider';
+import { useCatalogContext } from '../../../../contexts/CatalogProvider';
 import { useDeviceTypeContext } from '../../../../../../../../common/ui/contexts/DeviceType';
 import { useSearchParams } from 'react-router-dom';
 

@@ -5,7 +5,7 @@ import { ReactComponent as Checkbox } from '../../../../../../../../../../common
 import { GOODS_SETTING_DICTIONARY } from '../../../../../../GoodsSetting.dictionary';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useCatalogContext } from '../../../../../CatalogProvider';
+import { useCatalogContext } from '../../../../../../contexts/CatalogProvider';
 
 const {
     COLORS,
@@ -72,7 +72,10 @@ const ProductCard = ({ product }) => {
                 </div>
             </div>
             {
-                (isHover || isSelected) && (isSelected ? <Checkbox className={s.checkbox}/> : <EmptyCheckbox className={s.checkbox}/>)
+                (isHover || isSelected) && (isSelected ?
+                    <Checkbox className={classNames(s.checkbox, s.filled)}/>
+                    :
+                    <EmptyCheckbox className={classNames(s.checkbox, s.empty)}/>)
             }
         </div>
     );

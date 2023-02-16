@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './GoodsSettingContentDesktop.module.scss';
 import { ReactComponent as Trash } from '../../../../../../../../common/assets/images/Trash.svg';
-import { useCatalogContext } from '../../../CatalogProvider';
+import { useCatalogContext } from '../../../../contexts/CatalogProvider';
 import { ProductCardAdd } from './components/ProductCardAdd';
 import { ProductCard } from './components/ProductCard';
 

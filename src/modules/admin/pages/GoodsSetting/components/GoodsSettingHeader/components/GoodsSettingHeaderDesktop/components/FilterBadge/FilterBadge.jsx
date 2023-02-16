@@ -2,7 +2,7 @@ import React from 'react';
 import s from './FilterBadge.module.scss';
 import PropTypes from 'prop-types';
 import { ReactComponent as Cross } from '../../../../../../../../../../common/assets/images/x.svg';
-import { useCatalogContext } from '../../../../../CatalogProvider';
+import { useCatalogContext } from '../../../../../../contexts/CatalogProvider';
 
 const FilterBadge = ({ name, id, currentCategory }) => {
 

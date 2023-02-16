@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from 'react';
 import s from './GoodsSetting.module.scss';
-import { CatalogProvider } from './components/CatalogProvider';
+import { CatalogProvider } from './contexts/CatalogProvider';
 import { catalogReducer } from './store';
 import { getCatalogueItems, retrieveCatalogueSettings } from '../../../../common/api';
 import { CATALOG_ACTIONS } from './store/catalogReducer';
@@ -14,7 +14,7 @@ const {
 } = GOODS_SETTING_VARIABLES;
 
 const GoodsSetting = () => {
-    const [searchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
     const [state, dispatch] = useReducer(catalogReducer, {
         filters: {},
         loading: {
@@ -38,6 +38,11 @@ const GoodsSetting = () => {
             newFilters.categories = [BASE_FILTER_ID];
 
             dispatch({ type: CATALOG_ACTIONS.SET_BASE_FILTER, payload: newFilters });
+            setSearchParams(() => {
+                searchParams.set('categories', BASE_FILTER_ID);
+
+                return searchParams;
+            });
         } else {
             let newFilters = {};
 

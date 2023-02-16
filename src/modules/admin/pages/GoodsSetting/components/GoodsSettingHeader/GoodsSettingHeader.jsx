@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import adaptive from '../../../../../../common/ui/hocs/adaptive';
 import { GoodsSettingHeaderDesktop } from './components/GoodsSettingHeaderDesktop';
 import { GoodsSettingHeaderMobile } from './components/GoodsSettingHeaderMobile';
-import { useCatalogContext } from '../CatalogProvider';
+import { useCatalogContext } from '../../contexts/CatalogProvider';
 
 const GoodsSettingHeader = () => {
     const { state } = useCatalogContext();

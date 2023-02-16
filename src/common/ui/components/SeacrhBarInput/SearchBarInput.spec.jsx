@@ -19,8 +19,6 @@ describe('SearchBarInput', () => {
             userEvent.type(container.getElementsByTagName('input')[0], 'abcdg');
         });
 
-        console.log(window.location.search);
-
         expect(screen.getByDisplayValue('abcdg')).toBeInTheDocument();
     });
 });

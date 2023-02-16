@@ -1,7 +1,7 @@
 import React, { useMemo, useRef, useState } from 'react';
 import s from './GoodsSettingHeaderMobile.module.scss';
 import { GOODS_SETTING_DICTIONARY, GOODS_SETTING_VARIABLES } from '../../../../GoodsSetting.dictionary';
-import { useCatalogContext } from '../../../CatalogProvider';
+import { useCatalogContext } from '../../../../contexts/CatalogProvider';
 import { SearchContainer } from './components/SearchContainer';
 import { Filters } from './components/Filters';
 import { useSearchParams } from 'react-router-dom';

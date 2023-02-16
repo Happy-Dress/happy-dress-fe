@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Filters.module.scss';
-import { useCatalogContext } from '../../../../../CatalogProvider';
+import { useCatalogContext } from '../../../../../../contexts/CatalogProvider';
 import { DropdownSelectList } from '../../../../../../../../../../common/ui/components/Dropdowns';
 
 const Filters = () => {
