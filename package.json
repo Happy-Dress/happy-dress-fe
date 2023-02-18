@@ -79,6 +79,10 @@
         "functions": 64,
         "lines": 72
       }
-    }
+    },
+    "coverageReporters": [
+      "text",
+      "html"
+    ]
   }
 }
