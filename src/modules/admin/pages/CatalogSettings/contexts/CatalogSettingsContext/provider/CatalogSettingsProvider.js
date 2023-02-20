@@ -4,6 +4,11 @@ import { CatalogSettingsContext } from '../CatalogSettingsContext';
 import { retrieveCatalogueSettings } from '../../../../../../../common/api';
 import { useToasters } from '../../../../../../../common/ui/contexts/ToastersContext';
 import updateSettings from '../../../../../api/updateSettings';
+import { CATALOG_SETTINGS_DICTIONARY } from '../../../CatalogSettings.dictionary';
+
+const {
+    SETTINGS_UPDATED,
+} = CATALOG_SETTINGS_DICTIONARY;
 
 const CatalogSettingsProvider = (props) => {
 
@@ -35,7 +40,7 @@ const CatalogSettingsProvider = (props) => {
         settingsToSave.models = settingsToSave.models.map( (model, index) => ({ ...model, orderNumber: index }));
         settingsToSave.materials = settingsToSave.materials.map( (material, index) => ({ ...material, orderNumber: index }));
         updateSettings(settingsToSave).then(settings => {
-            showToasterSuccess('Настройки обновлны');
+            showToasterSuccess(SETTINGS_UPDATED);
             setInitialCatalogSettings(settings);
             setCatalogSettings(settings);
         }).catch(e =>{
