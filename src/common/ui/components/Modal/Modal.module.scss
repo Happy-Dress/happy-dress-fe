@@ -1,0 +1,70 @@
+@import '../../styles/media-sizes';
+
+@mixin flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.modal {
+  &Root {
+    height: 100vh;
+    left: 0;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+  &Mask {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35));
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  &Wrapper {
+    @include flex-center;
+
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 0 24px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1002;
+
+    @media all and (max-width: $sm-size) {
+      padding: 0;
+    }
+  }
+
+  &Body {
+    background-color: #f6f6f6;
+    display: flex;
+    flex-direction: column;
+    margin: calc(100vh * 0.23) auto calc(100vh * 0.12);
+    max-width: 680px;
+    padding: 23px;
+    width: 100%;
+
+    @media all and (max-width: $sm-size) {
+      margin: 89px auto 24px;
+    }
+  }
+}
+
+.sm {
+  max-width: 320px;
+}
+
+.md{
+  max-width: 680px;
+}
+
+.lg {
+  max-width: 976px;
+}

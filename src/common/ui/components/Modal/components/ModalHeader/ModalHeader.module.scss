@@ -1,0 +1,53 @@
+@import '../../../../../ui/styles/media-sizes';
+@import '../../../../../ui/styles/font-sizes';
+
+.modal {
+  &Header {
+    align-items: center;
+    display: flex;
+    gap: 3rem;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    width: 100%;
+
+    &Title {
+      color: rgba(34, 17, 34, 0.9);
+      font-style: normal;
+      font-weight: 400;
+      font-size: $font-size-xlarge-32;
+      line-height: 38px;
+      overflow: hidden;
+      text-align: center;
+      width: 100%;
+      word-wrap: break-word;
+
+      @media all and (max-width: $sm-size) {
+        font-size: $font-size-xlarge-24;
+        line-height: 28px;
+      }
+    }
+
+    &CloseButton {
+      background-color: transparent;
+      height: 24px;
+      outline: none;
+      transition: all 2s;
+      width: 24px;
+
+      & svg {
+        & path {
+          fill: #212121;
+          transition: 0.3ms ease-in-out;
+        }
+      }
+
+      &:hover {
+        & svg path {
+          fill: #000;
+          transition: all 0.3s ease-in-out;
+        }
+      }
+    }
+  }
+}

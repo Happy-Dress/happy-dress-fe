@@ -1,0 +1,11 @@
+.modal {
+  &Content {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    max-width: 680px;
+    overflow: hidden;
+    word-wrap: break-word;
+    width: 100%;
+  }
+}
