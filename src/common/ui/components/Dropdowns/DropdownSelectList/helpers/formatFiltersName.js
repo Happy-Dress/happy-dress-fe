@@ -2,7 +2,8 @@ const DICTIONARY = {
     models: 'Модель',
     materials: 'Материал',
     colors: 'Цвет',
-    categories: 'Категории'
+    categories: 'Категории',
+    sizes: 'Размер'
 };
 
 export const formatFiltersName = (name) => {
