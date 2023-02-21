@@ -5,9 +5,14 @@
   width: 100%;
   margin-top: 30px;
   grid-area: content;
+  padding: 0 15px;
+  position: relative;
   display: flex;
   column-gap: 2%;
   row-gap: 26px;
   flex-wrap: wrap;
-  padding: 0 15px;
+
+  @media screen and (max-width: 381px) {
+    justify-content: center;
+  }
 }

@@ -7,8 +7,9 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  gap: 8%;
+  column-gap: 5%;
   row-gap: 42px;
+  position: relative;
 
   .trash {
     position: fixed;
@@ -28,5 +29,6 @@
 
   @media screen and (max-width: $xl-size) {
     padding: 0 calc(6% + 47px) 0 calc(4% + 47px);
+    column-gap: 20%;
   }
 }
