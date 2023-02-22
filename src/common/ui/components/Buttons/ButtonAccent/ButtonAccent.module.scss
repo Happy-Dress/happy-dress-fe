@@ -3,7 +3,9 @@
     font-weight: 400;
     font-size: 24px;
     height: 56px;
-    padding: 10px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: $white;
     border: none;
     box-shadow: $shadow-brown;
