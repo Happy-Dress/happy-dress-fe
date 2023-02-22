@@ -1,0 +1,8 @@
+.ModalContent{
+  height: 75%;
+  width: 100%;
+  padding: 40px 0 20px;
+  @media screen and (max-width: 1023px) {
+    height: calc(90% - 125px);
+  }
+}

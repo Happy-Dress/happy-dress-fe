@@ -1,0 +1,11 @@
+@import "../../../styles/font-sizes";
+
+
+.LeaveConfirmationDialog{
+  &_message {
+    font-size: $font-size-xmedium-18;
+    line-height: 25px;
+    display: flex;
+    flex-direction: column;
+  }
+}
