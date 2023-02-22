@@ -6,7 +6,6 @@ import { useToasters } from '../../../../../../../common/ui/contexts/ToastersCon
 import updateSettings from '../../../../../api/updateSettings';
 import { CATALOG_SETTINGS_DICTIONARY } from '../../../CatalogSettings.dictionary';
 
-
 const {
     SETTINGS_UPDATED,
 } = CATALOG_SETTINGS_DICTIONARY;
@@ -18,7 +17,8 @@ const CatalogSettingsProvider = (props) => {
 
     const [catalogSettings, setCatalogSettings] = useState({
         models: [],
-        materials: []
+        materials: [],
+        categories: [],
     });
 
     const restoreSettings = (afterRestore) => {
@@ -44,6 +44,10 @@ const CatalogSettingsProvider = (props) => {
         setCatalogSettings(prevState => ({ ...prevState, materials }));
     };
 
+    const updateCategories = (categories) => {
+        setCatalogSettings(prevState => ({ ...prevState, categories }));
+    };
+
     const saveSettings = () => {
         const settingsToSave = JSON.parse(JSON.stringify(catalogSettings));
         settingsToSave.models = settingsToSave.models.map((model, index) => ({ ...model, orderNumber: index }));
@@ -51,6 +55,8 @@ const CatalogSettingsProvider = (props) => {
             ...material,
             orderNumber: index
         }));
+        settingsToSave.categories = settingsToSave.categories.map((category, index) => ({ ...category, orderNumber: index }));
+
         updateSettings(settingsToSave).then(settings => {
             showToasterSuccess(SETTINGS_UPDATED);
             setInitialCatalogSettings(settings);
@@ -66,6 +72,7 @@ const CatalogSettingsProvider = (props) => {
             settings: catalogSettings,
             updateModels,
             updateMaterials,
+            updateCategories,
             saveSettings,
             initialSettings: initialCatalogSettings,
             restoreSettings
