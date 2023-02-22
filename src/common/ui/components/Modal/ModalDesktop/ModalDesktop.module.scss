@@ -1,0 +1,31 @@
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.35);
+}
+
+.modalDesktopSizeFs{
+  inset: 0;
+}
+
+.modalDesktopSizeLg{
+  inset: 5%;
+}
+
+.modalDesktopSizeMd{
+  inset: 15%;
+}
+
+.modalDesktopSizeSm{
+  inset: 25%;
+}
+
+.content{
+  position: absolute;
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+}

@@ -7,6 +7,9 @@ import withProvider from '../../../../common/ui/hocs/withProvider';
 import SettingsDropDown from './components/SettingDropDown';
 import ModelSettings from './components/ModelSettings';
 import MaterialSettings from './components/MaterialSettings';
+import { useModal } from 'react-modal-hook';
+import { LeaveConfirmationDialog } from '../../../../common/ui/components/Dialogs';
+import { useToasters } from '../../../../common/ui/contexts/ToastersContext';
 
 const {
     CATEGORIES_SETTINGS_NAME,
@@ -16,12 +19,34 @@ const {
     CATALOG_SETTINGS_TITLE,
     BUTTON_SETTINGS_SAVE,
     BUTTON_SETTINGS_CANCEL,
+    CHANGES_RESTORED
 } = CATALOG_SETTINGS_DICTIONARY;
 
 
 const CatalogSettings = () => {
 
-    const { saveSettings, initialSettings, settings } = useCatalogSettings();
+    const { saveSettings, initialSettings, settings, restoreSettings } = useCatalogSettings();
+    const { showToasterNotification } = useToasters();
+
+
+    const restoreCatalogSettings = () =>{
+        hideModal();
+        restoreSettings(() =>{
+            showToasterNotification(CHANGES_RESTORED);
+        });
+
+    };
+
+    const [showModal, hideModal] = useModal(() => (
+        <LeaveConfirmationDialog onClose={hideModal} onSubmit={restoreCatalogSettings}/>
+    ));
+
+    const showCancelConfirmation = () => {
+        if(areSettingsChanged) {
+            showModal();
+        }
+    };
+
 
     const areSettingsChanged = JSON.stringify(settings) !== JSON.stringify(initialSettings);
 
@@ -59,7 +84,7 @@ const CatalogSettings = () => {
                 }
             </div>
             <div className={s.buttons}>
-                <ButtonDefault text={BUTTON_SETTINGS_CANCEL}/>
+                <ButtonDefault disabled={!areSettingsChanged} text={BUTTON_SETTINGS_CANCEL} onClick={showCancelConfirmation}/>
                 <ButtonAccent disabled={!areSettingsChanged} text={BUTTON_SETTINGS_SAVE} onClick={saveSettings}/>
             </div>
         </div>

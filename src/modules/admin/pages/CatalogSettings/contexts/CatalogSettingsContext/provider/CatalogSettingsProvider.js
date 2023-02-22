@@ -6,6 +6,7 @@ import { useToasters } from '../../../../../../../common/ui/contexts/ToastersCon
 import updateSettings from '../../../../../api/updateSettings';
 import { CATALOG_SETTINGS_DICTIONARY } from '../../../CatalogSettings.dictionary';
 
+
 const {
     SETTINGS_UPDATED,
 } = CATALOG_SETTINGS_DICTIONARY;
@@ -20,14 +21,22 @@ const CatalogSettingsProvider = (props) => {
         materials: []
     });
 
-    useEffect(() =>{
-        retrieveCatalogueSettings().then((settings) =>{
+    const restoreSettings = (afterRestore) => {
+        retrieveCatalogueSettings().then((settings) => {
+            setInitialCatalogSettings(settings);
+            setCatalogSettings(settings);
+            afterRestore();
+        });
+    };
+
+    useEffect(() => {
+        retrieveCatalogueSettings().then((settings) => {
             setInitialCatalogSettings(settings);
             setCatalogSettings(settings);
         });
     }, []);
 
-    const updateModels = (models) =>{
+    const updateModels = (models) => {
         setCatalogSettings(prevState => ({ ...prevState, models }));
     };
 
@@ -37,20 +46,30 @@ const CatalogSettingsProvider = (props) => {
 
     const saveSettings = () => {
         const settingsToSave = JSON.parse(JSON.stringify(catalogSettings));
-        settingsToSave.models = settingsToSave.models.map( (model, index) => ({ ...model, orderNumber: index }));
-        settingsToSave.materials = settingsToSave.materials.map( (material, index) => ({ ...material, orderNumber: index }));
+        settingsToSave.models = settingsToSave.models.map((model, index) => ({ ...model, orderNumber: index }));
+        settingsToSave.materials = settingsToSave.materials.map((material, index) => ({
+            ...material,
+            orderNumber: index
+        }));
         updateSettings(settingsToSave).then(settings => {
             showToasterSuccess(SETTINGS_UPDATED);
             setInitialCatalogSettings(settings);
             setCatalogSettings(settings);
-        }).catch(e =>{
+        }).catch(e => {
             showToasterError(e);
         });
     };
 
 
     return (
-        <CatalogSettingsContext.Provider value={{ settings: catalogSettings, updateModels, updateMaterials, saveSettings, initialSettings: initialCatalogSettings }}>
+        <CatalogSettingsContext.Provider value={{
+            settings: catalogSettings,
+            updateModels,
+            updateMaterials,
+            saveSettings,
+            initialSettings: initialCatalogSettings,
+            restoreSettings
+        }}>
             {props.children}
         </CatalogSettingsContext.Provider>
     );
