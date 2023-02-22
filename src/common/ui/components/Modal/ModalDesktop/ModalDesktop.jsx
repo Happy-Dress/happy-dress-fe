@@ -17,7 +17,7 @@ export const ModalDesktop = ({ size, children }) =>{
     const sizeClassName = sizeMap.get(size) || s.modalDesktopSizeFs;
 
     return (
-        <ReactModal isOpen overlayClassName={s.modalOverlay} className={classNames(s.content, sizeClassName)}>
+        <ReactModal ariaHideApp={false} isOpen overlayClassName={s.modalOverlay} className={classNames(s.content, sizeClassName)}>
             {children}
         </ReactModal>
     );
@@ -25,7 +25,10 @@ export const ModalDesktop = ({ size, children }) =>{
 
 ModalDesktop.propTypes = {
     size: PropTypes.string.isRequired,
-    children: PropTypes.element,
+    children: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.node),
+        PropTypes.node
+    ])
 };
 
 export default ModalDesktop;

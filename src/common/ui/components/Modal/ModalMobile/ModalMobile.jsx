@@ -17,7 +17,7 @@ export const ModalMobile = ({ size, children }) =>{
 
 
     return (
-        <ReactModal isOpen overlayClassName={s.modalOverlay} className={classNames(s.content, sizeClassName)}>
+        <ReactModal ariaHideApp={false} isOpen overlayClassName={s.modalOverlay} className={classNames(s.content, sizeClassName)}>
             {children}
         </ReactModal>
     );
@@ -25,7 +25,10 @@ export const ModalMobile = ({ size, children }) =>{
 
 ModalMobile.propTypes = {
     size: PropTypes.string.isRequired,
-    children: PropTypes.element
+    children: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.node),
+        PropTypes.node
+    ])
 };
 
 export default ModalMobile;
