@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import CatalogSetting from './index';
+import { ModalProvider } from 'react-modal-hook';
 
 jest.mock('./components/SettingDropDown', ()=>({
     __esModule: true,
@@ -18,7 +19,11 @@ jest.mock('../../../../common/api/catalogueSettings/retrieveCatalogueSettings',(
 describe('CatalogSettings', () => {
     it('should render correctly', async () => {
         await waitFor(() =>{
-            render(<CatalogSetting />);
+            render(
+                <ModalProvider>
+                    <CatalogSetting />
+                </ModalProvider>
+            );
         });
         const title = screen.getByText('Управление каталогом');
         const dropDown = screen.getAllByTestId('setting-drop-down');
