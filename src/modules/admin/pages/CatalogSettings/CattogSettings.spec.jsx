@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import CatalogSetting from './index';
 import { mockCatalogueSettingsResponse } from '../../../../__mocks__/mockCatalogueSettingsResponse';
+import { ModalProvider } from 'react-modal-hook';
 
 jest.mock('./components/SettingDropDown', ()=>({
     __esModule: true,
