@@ -14,8 +14,7 @@
   top: 95px;
   border: 1px solid $black;
   box-shadow: $shadow-black;
-  min-width: 300px;
-  max-width: 400px;
+  width: 300px;
 
   span {
     white-space: nowrap;
@@ -33,5 +32,6 @@
   @media screen and (max-width: $xl-size) {
     font-size: $font-size-xmedium-18;
     padding: 22px 35px 22px 30px;
+    width: 225px;
   }
 }

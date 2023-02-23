@@ -7,6 +7,7 @@
   cursor: pointer;
   position: relative;
   z-index: 100;
+  min-width: 113px;
   .currentFilter {
     display: flex;
     align-items: center;
@@ -20,6 +21,7 @@
     svg {
       width: 12px;
       height: 6px;
+      min-width: 12px;
       margin-right: 26px;
       transition: transform $animation-duration;
       &.active {

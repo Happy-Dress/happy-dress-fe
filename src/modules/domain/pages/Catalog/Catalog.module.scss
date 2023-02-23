@@ -6,12 +6,15 @@
   display: grid;
   padding: 0 6%;
   column-gap: 30px;
+  grid-template-columns: max-content 1fr;
   grid-template-areas:
   '. header'
   'sidebar content';
 
 
-  @media screen and (max-width: $lg-size) {
+  @media screen and (max-width: calc($lg-size - 1px)) {
+    place-items: center;
+    grid-template-columns: 1fr;
     grid-template-areas:
     'header'
     'content';

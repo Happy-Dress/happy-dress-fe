@@ -1,7 +1,8 @@
 import React from 'react';
 import s from './CatalogContentDesktop.module.scss';
 import { useCatalogContext } from '../../../../contexts/CatalogProvider';
-import { ProductCard } from './components/ProductCard';
+import { ProductCard } from '../../../../../../../../common/ui/components';
+
 
 const CatalogContentDesktop = () => {
     const { state } = useCatalogContext();
@@ -10,7 +11,11 @@ const CatalogContentDesktop = () => {
         <div className={s.CatalogContentDesktop}>
             {
                 state.items.map((item) => {
-                    return <ProductCard key={item.id} product={item}/>;
+                    return <ProductCard
+                        key={item.id}
+                        product={item}
+                        className={s.card}
+                    />;
                 })
             }
         </div>

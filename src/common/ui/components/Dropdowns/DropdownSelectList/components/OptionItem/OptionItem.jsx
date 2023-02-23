@@ -45,7 +45,8 @@ const OptionItem = (props) => {
                     placeholder={'checkbox'}
                 />
                 {isChecked ? <Checkbox className={s.checkbox}/> : <span className={s.empty}/>}
-                <p>{item.name}</p>
+                {currentCategory === 'colors' && <span className={s.colorCircle} style={{ backgroundColor: item.firstColor }}/>}
+                <p>{item.name ?? item.sizeValue}</p>
             </label>
         </div>
     );

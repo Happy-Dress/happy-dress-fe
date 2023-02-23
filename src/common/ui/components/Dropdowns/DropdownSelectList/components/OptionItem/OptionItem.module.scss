@@ -32,6 +32,16 @@
       min-width: 24px;
     }
 
+    .colorCircle {
+      display: block;
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      border-radius: 100%;
+      margin-left: 5px;
+      margin-right: -5px;
+    }
+
     &:hover {
       background-color: #efefef;
     }

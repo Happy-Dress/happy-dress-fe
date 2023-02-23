@@ -3,16 +3,26 @@
 
 .CatalogContentMobile {
   width: 100%;
-  margin-top: 30px;
   grid-area: content;
   padding: 0 15px;
   position: relative;
   display: flex;
-  column-gap: 2%;
+  column-gap: 8%;
   row-gap: 26px;
   flex-wrap: wrap;
 
-  @media screen and (max-width: 381px) {
+  .card {
+    width: 46%;
+  }
+
+  @media screen and (max-width: 455px) {
     justify-content: center;
+    .card {
+      width: 80%;
+
+      h3 {
+        margin: 10px 0;
+      }
+    }
   }
 }

@@ -10,7 +10,7 @@ const getCatalogueItems = async (queryString) => {
                     id: 1,
                     name: 'S000012345',
                     colors: [
-                        '#fff',
+                        '#f0f0f0',
                         '#000',
                         '#a65f30'
                     ],
@@ -22,7 +22,7 @@ const getCatalogueItems = async (queryString) => {
                     id: 2,
                     name: 'S000012346',
                     colors: [
-                        '#fff',
+                        '#f0f0f0',
                         '#000',
                         '#a65f30'
                     ],
@@ -34,7 +34,7 @@ const getCatalogueItems = async (queryString) => {
                     id: 3,
                     name: 'S000012347',
                     colors: [
-                        '#fff',
+                        '#f0f0f0',
                         '#a65f30'
                     ],
                     sizes: [40, 44, 48, 50],
@@ -45,7 +45,18 @@ const getCatalogueItems = async (queryString) => {
                     id: 4,
                     name: 'S000012348',
                     colors: [
-                        '#fff',
+                        '#f0f0f0',
+                        '#a65f30'
+                    ],
+                    sizes: [40, 44, 48, 50],
+                    category: 'Деловой стиль',
+                    imageUrl: testBgImage
+                },
+                {
+                    id: 5,
+                    name: 'S000012349',
+                    colors: [
+                        '#f0f0f0',
                         '#a65f30'
                     ],
                     sizes: [40, 44, 48, 50],
