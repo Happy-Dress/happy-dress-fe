@@ -20,7 +20,10 @@ jest.mock('../../../../common/api/catalogueSettings/retrieveCatalogueSettings',(
 describe('CatalogSettings', () => {
     it('should render correctly', async () => {
         await waitFor(() =>{
-            render(<CatalogSetting />);
+            render(
+                <ModalProvider>
+                    <CatalogSetting />
+                </ModalProvider>);
         });
         const title = screen.getByText('Управление каталогом');
         const dropDown = screen.getAllByTestId('setting-drop-down');
