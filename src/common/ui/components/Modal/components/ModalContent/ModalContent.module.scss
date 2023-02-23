@@ -1,11 +1,11 @@
 @import "../../../../styles/media-sizes";
 
 .ModalContent{
-  height: calc(80% - 35px);
+  height: calc(90% - 65px);
   width: 100%;
   padding: 40px 0 20px;
   @media screen and (max-width: $lg-size - 1) {
-    height: calc(80% - 85px);
+    height: calc(90% - 125px);
   }
 
 }
