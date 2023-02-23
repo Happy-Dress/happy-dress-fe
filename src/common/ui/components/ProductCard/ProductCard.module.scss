@@ -1,0 +1,96 @@
+@import "../../styles/colors";
+@import "../../styles/font-sizes";
+@import "../../styles/media-sizes";
+
+.ProductCard {
+  padding: 18px;
+  background-color: #FFFFFF;
+  border: 1px $gray solid;
+  box-shadow: $shadow-main;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+  }
+
+  .description {
+    h3 {
+      margin: 40px 0 28px;
+      text-align: center;
+      font-weight: 400;
+      font-size: $font-size-xlarge-24;
+      color: $black;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+
+      .optionItem {
+        display: flex;
+        align-items: center;
+
+        p {
+          width: 80px;
+        }
+
+        .items {
+          display: flex;
+          column-gap: 5%;
+          row-gap: 6px;
+          width: 100%;
+          margin-left: 10px;
+        }
+
+        &.sizes {
+          .items {
+            color: $gray;
+            flex-wrap: wrap;
+            span {
+              border: $gray 1px solid;
+              padding: 2px 1px;
+              font-size: $font-size-xmedium-18;
+            }
+          }
+        }
+
+        &.colors {
+          .items {
+            span {
+              display: block;
+              width: 20px;
+              height: 20px;
+              border-radius: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $xl-size) {
+    padding: 9px;
+
+    .description {
+      .options {
+        .optionItem {
+          p {
+            font-size: $font-size-medium-16;
+          }
+
+          .items {
+            column-gap: 2%;
+          }
+          &.sizes {
+            .items {
+              span {
+                font-size: $font-size-normal-14
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
