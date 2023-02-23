@@ -1,4 +1,4 @@
-import { act, render, screen } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import DropdownSelectList from './DropdownSelectList';
 import userEvent from '@testing-library/user-event';
 
@@ -15,7 +15,7 @@ const props = {
     ],
     changeFilter: () => {},
     currentCategory: 'models',
-    selectedItems: '1'
+    selectedItems: [1]
 };
 
 describe('DropdownSelectList', () => {
@@ -23,7 +23,6 @@ describe('DropdownSelectList', () => {
         const { container } = render(<DropdownSelectList {...props}/>);
         expect(container.getElementsByClassName('title').length).toBe(1);
         expect(container.getElementsByClassName('OptionItem').length).toBe(2);
-        screen.debug();
     });
     it('should open options list', async () => {
         const { container } = render(<DropdownSelectList {...props}/>);
