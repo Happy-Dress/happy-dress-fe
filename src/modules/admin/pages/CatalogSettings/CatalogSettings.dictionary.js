@@ -6,6 +6,8 @@ const CATALOG_SETTINGS_DICTIONARY = {
     CATALOG_SETTINGS_TITLE: 'Управление каталогом',
     BUTTON_SETTINGS_SAVE: 'Сохранить',
     BUTTON_SETTINGS_CANCEL: 'Отмена',
+    SETTINGS_UPDATED: 'Настройки обновлены',
+    CHANGES_RESTORED: 'Все измнения отменены',
 };
 
 export { CATALOG_SETTINGS_DICTIONARY };

@@ -1,5 +1,6 @@
 @import "../../../../../../common/ui/styles/font-sizes";
 @import "../../../../../../common/ui/styles/media-sizes";
+@import "../../../../../../common/ui/styles/colors";
 
 .ModelSettings {
 	width: 100%;
@@ -41,7 +42,19 @@
 		border: 1px solid rgba(34, 17, 34, 0.9);
 		padding: 8px 16px;
 		font-size: $font-size-xlarge-24;
+
+		&Dirty {
+			border-color: $red;
+			color: $red;
+		}
 	}
+
+	.duplicateField {
+		margin-top: 10px;
+		margin-left: 5px;
+		color: $red;
+	}
+
 
 	.inputControlVisible {
 		display: block;

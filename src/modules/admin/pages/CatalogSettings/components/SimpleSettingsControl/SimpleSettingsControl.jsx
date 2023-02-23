@@ -15,13 +15,15 @@ const {
     ADD_BUTTON_LABEL,
     SAVE_BUTTON_LABEL,
     DELETE_BUTTON_LABEL,
-    CANCEL_BUTTON_LABEL
+    CANCEL_BUTTON_LABEL,
+    DUPLICATE_LABEL,
 } = SIMPLE_SETTINGS_CONTROL_DICTIONARY;
 
 export const SimpleSettingsControl = ({ updateSettings, settingsList }) => {
 
     const [editingModel, setEditingModel] = useState();
     const [selectedOrderNumbers, setSelectedOrderNumbers] = useState([]);
+    const [isExists, setIsExists] = useState(false);
 
     const handleReorder = (reorderedModels) => {
         updateSettings(reorderedModels);
@@ -85,7 +87,8 @@ export const SimpleSettingsControl = ({ updateSettings, settingsList }) => {
     };
 
     const handleInputChange = (event) => {
-        setEditingModel({ ...editingModel, name: event.target.value });
+        setIsExists(settingsList.some(setting => setting.name.toLowerCase() === event.target.value.trim().toLowerCase()));
+        setEditingModel({ ...editingModel, name: event.target.value.trim() });
     };
 
     return (
@@ -94,9 +97,17 @@ export const SimpleSettingsControl = ({ updateSettings, settingsList }) => {
                 maxLength={MAX_MODEL_NAME_LENGTH}
                 onChange={handleInputChange}
                 value={editingModel?.name || EMPTY_NAME}
-                className={classNames(s.settingInput, editingModel? s.inputControlVisible : s.inputControlHidden)}
+                className={classNames(
+                    s.settingInput,
+                    isExists ? s.settingInputDirty : '',
+                    editingModel? s.inputControlVisible : s.inputControlHidden,
+                )}
             />
-            <button onClick={handleAdd} className={classNames(s.addButton, editingModel? s.inputControlHidden: s.inputControlVisible)}>
+            <p hidden={!isExists} className={s.duplicateField}>{DUPLICATE_LABEL}</p>
+            <button onClick={handleAdd} 
+                className={classNames(
+                    s.addButton, 
+                    editingModel? s.inputControlHidden: s.inputControlVisible)}>
                 {ADD_BUTTON_LABEL}
             </button>
 
@@ -115,7 +126,10 @@ export const SimpleSettingsControl = ({ updateSettings, settingsList }) => {
             {editingModel &&
                 <div className={s.buttonArea}>
                     <ButtonDefault onClick={handleCancel} text={CANCEL_BUTTON_LABEL}/>
-                    <ButtonAccent disabled={editingModel.name?.length < MIN_MODEL_NAME_LENGTH} onClick={handleSave} text={SAVE_BUTTON_LABEL}/>
+                    <ButtonAccent
+                        disabled={isExists || editingModel.name?.length < MIN_MODEL_NAME_LENGTH}
+                        onClick={handleSave}
+                        text={SAVE_BUTTON_LABEL}/>
                 </div>}
             {
                 (!editingModel && !!selectedOrderNumbers.length) &&
