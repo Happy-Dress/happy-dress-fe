@@ -4,7 +4,7 @@ import GoodsSetting from './index';
 import { BrowserRouter } from 'react-router-dom';
 import { mockCatalogueItemsResponse } from '../../../../__mocks__/mockCatalogueItemsResponse';
 import { mockCatalogueSettingsResponse } from '../../../../__mocks__/mockCatalogueSettingsResponse';
-import { GOODS_SETTING_VARIABLES } from './GoodsSetting.dictionary';
+import { ROUTER_VARIABLES } from '../../adminRoutes';
 
 jest.mock('../../../../common/api/catalogueSettings/retrieveCatalogueSettings', () =>({
     __esModule: true,
@@ -15,10 +15,6 @@ jest.mock('../../../../common/api/catalogueItems/getCatalogueItems', () =>({
     __esModule: true,
     default: () => Promise.resolve(mockCatalogueItemsResponse),
 }));
-
-const {
-    BASE_FILTER_ID
-} = GOODS_SETTING_VARIABLES;
 
 describe('GoodsSetting', () => {
     it('should render correctly', async () => {
@@ -34,7 +30,7 @@ describe('GoodsSetting', () => {
         render(<GoodsSetting/>, { wrapper: BrowserRouter });
 
         await waitFor(() => {
-            expect(window.location.search).toBe(`?categories=${BASE_FILTER_ID}`);
+            expect(window.location.search).toBe(`?${ROUTER_VARIABLES.BASE_GOODS_FILTER.name}=${ROUTER_VARIABLES.BASE_GOODS_FILTER.id}`);
         });
     });
 

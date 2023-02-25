@@ -4,7 +4,7 @@ import Catalog from './Catalog';
 import { BrowserRouter } from 'react-router-dom';
 import { mockCatalogueItemsResponse } from '../../../../__mocks__/mockCatalogueItemsResponse';
 import { mockCatalogueSettingsResponse } from '../../../../__mocks__/mockCatalogueSettingsResponse';
-import { CATALOG_SETTING_VARIABLES } from './Catalog.dictionary';
+import { ROUTER_VARIABLES } from '../../routerConfig';
 
 jest.mock('../../../../common/api/catalogueSettings/retrieveCatalogueSettings', () =>({
     __esModule: true,
@@ -16,9 +16,6 @@ jest.mock('../../../../common/api/catalogueItems/getCatalogueItems', () =>({
     default: () => Promise.resolve(mockCatalogueItemsResponse),
 }));
 
-const {
-    BASE_FILTER_ID
-} = CATALOG_SETTING_VARIABLES;
 
 describe('Catalog', () => {
     it('should render correctly', async () => {
@@ -34,7 +31,7 @@ describe('Catalog', () => {
         render(<Catalog/>, { wrapper: BrowserRouter });
 
         await waitFor(() => {
-            expect(window.location.search).toBe(`?categories=${BASE_FILTER_ID}`);
+            expect(window.location.search).toBe(`?${ROUTER_VARIABLES.BASE_CATALOG_FILTER.name}=${ROUTER_VARIABLES.BASE_CATALOG_FILTER.id}`);
         });
     });
 

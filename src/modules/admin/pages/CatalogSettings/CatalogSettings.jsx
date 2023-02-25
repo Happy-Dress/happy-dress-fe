@@ -10,7 +10,6 @@ import MaterialSettings from './components/MaterialSettings';
 import { useModal } from 'react-modal-hook';
 import { LeaveConfirmationDialog } from '../../../../common/ui/components/Dialogs';
 import { useToasters } from '../../../../common/ui/contexts/ToastersContext';
-import { ColorSettings } from './components/ColorSettings';
 
 const {
     CATEGORIES_SETTINGS_NAME,
@@ -57,7 +56,7 @@ const CatalogSettings = () => {
             name: CATEGORIES_SETTINGS_NAME,
         },
         {
-            element: <ColorSettings/>,
+            element: <div>Настройки цвета</div>,
             name: COLORS_SETTINGS_NAME,
         },
         {
