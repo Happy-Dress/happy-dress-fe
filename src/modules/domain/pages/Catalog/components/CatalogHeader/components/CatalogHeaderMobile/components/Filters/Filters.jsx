@@ -5,6 +5,7 @@ import { ButtonAccent } from '../../../../../../../../../../common/ui/components
 import { CATALOG_SETTING_DICTIONARY } from '../../../../../../Catalog.dictionary';
 import { DropdownSelectList } from '../../../../../../../../../../common/ui/components/Dropdowns';
 import PropTypes from 'prop-types';
+import { ROUTER_VARIABLES } from '../../../../../../../../routerConfig';
 
 const {
     ACCEPT_FILTERS
@@ -25,7 +26,7 @@ const Filters = ({ applyFilters }) => {
                         changeFilter={changeFilter}
                         className={s.dropdown}
                         isOptionsAbsolute={false}
-                        isSingleOptionOnly={key === 'categories'}
+                        isSingleOptionOnly={key === ROUTER_VARIABLES.BASE_CATALOG_FILTER.name}
                     />;
                 })
             }

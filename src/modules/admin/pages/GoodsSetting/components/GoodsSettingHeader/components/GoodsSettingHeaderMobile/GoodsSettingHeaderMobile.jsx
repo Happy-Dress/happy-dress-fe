@@ -1,6 +1,6 @@
 import React, { useMemo, useRef, useState } from 'react';
 import s from './GoodsSettingHeaderMobile.module.scss';
-import { GOODS_SETTING_DICTIONARY, GOODS_SETTING_VARIABLES } from '../../../../GoodsSetting.dictionary';
+import { GOODS_SETTING_DICTIONARY } from '../../../../GoodsSetting.dictionary';
 import { useCatalogContext } from '../../../../contexts/CatalogProvider';
 import { SearchContainer } from './components/SearchContainer';
 import { Filters } from './components/Filters';
@@ -8,15 +8,12 @@ import { useSearchParams } from 'react-router-dom';
 import { FilterBadge } from './components/FilterBadge';
 import { ButtonAccent } from '../../../../../../../../common/ui/components';
 import { CATALOG_ACTIONS } from '../../../../store/catalogReducer';
+import { ROUTER_VARIABLES } from '../../../../../../adminRoutes';
 
 const {
     TITLE,
     RESET_FILTERS
 } = GOODS_SETTING_DICTIONARY;
-
-const {
-    BASE_FILTER_ID
-} = GOODS_SETTING_VARIABLES;
 
 const GoodsSettingHeaderMobile = () => {
     const { state, dispatch } = useCatalogContext();
@@ -39,7 +36,7 @@ const GoodsSettingHeaderMobile = () => {
 
     const resetFilters = () => {
         const newFilters = {
-            categories: [BASE_FILTER_ID]
+            categories: [ROUTER_VARIABLES.BASE_GOODS_FILTER.id]
         };
 
         dispatch({ type: CATALOG_ACTIONS.SET_BASE_FILTER, payload: newFilters });
@@ -63,7 +60,7 @@ const GoodsSettingHeaderMobile = () => {
 
     const filterBadges = useMemo(() => {
         return Object.entries(stateRef.current).map(([key, value]) => {
-            if(key === 'categories') return;
+            if(key === ROUTER_VARIABLES.BASE_GOODS_FILTER.name) return;
             return value.map((item) => {
                 let badgeInfo;
                 try {

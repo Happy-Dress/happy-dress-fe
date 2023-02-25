@@ -18,7 +18,8 @@ const CatalogSettingsProvider = (props) => {
 
     const [catalogSettings, setCatalogSettings] = useState({
         models: [],
-        materials: []
+        materials: [],
+        colors: []
     });
 
     const restoreSettings = (afterRestore) => {
@@ -44,6 +45,10 @@ const CatalogSettingsProvider = (props) => {
         setCatalogSettings(prevState => ({ ...prevState, materials }));
     };
 
+    const updateColors = (colors) => {
+        setCatalogSettings(prevState => ({ ...prevState, colors }));
+    };
+
     const saveSettings = () => {
         const settingsToSave = JSON.parse(JSON.stringify(catalogSettings));
         settingsToSave.models = settingsToSave.models.map((model, index) => ({ ...model, orderNumber: index }));
@@ -66,6 +71,7 @@ const CatalogSettingsProvider = (props) => {
             settings: catalogSettings,
             updateModels,
             updateMaterials,
+            updateColors,
             saveSettings,
             initialSettings: initialCatalogSettings,
             restoreSettings

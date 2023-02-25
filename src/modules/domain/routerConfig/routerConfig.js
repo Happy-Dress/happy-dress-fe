@@ -17,6 +17,13 @@ const routesNames = {
     CHANGING: 'Примерка'
 };
 
+export const ROUTER_VARIABLES = {
+    BASE_CATALOG_FILTER: {
+        name: 'categories',
+        id: 84
+    }
+};
+
 export const routerConfig = {
     home: {
         path: routesPaths.HOME,

@@ -5,10 +5,11 @@ import vk from '../../../../../common/assets/images/vk.svg';
 import telegram from '../../../../../common/assets/images/tg.svg';
 import { FOOTER_DICTIONARY } from '../Footer.dictionary';
 import { Typography } from '../../../../../common/ui/components';
+import { routerConfig } from '../../../routerConfig';
+import { Link } from 'react-router-dom';
 
 const {
     FOOTER_LOGO,
-    FOOTER_MOBILE_NAV_ITEMS,
     PHONE_NUMBER,
     FOOTER_EMAIL,
     FOOTER_SIGNATURE,
@@ -22,10 +23,13 @@ const FooterDesktop = () => {
                     <span className={s.Footer_logo}>{FOOTER_LOGO}</span>
                 </div>
                 <ul className={s.Footer_menu}>
-                    {FOOTER_MOBILE_NAV_ITEMS.map((item) => (
-                        <li key={item}>
-                            <Typography classNames={[s.Footer_menu_item]}>{item}
-                            </Typography>
+                    {Object.values(routerConfig).map(({ path, pageName })=>(
+                        <li key={path}>
+                            <Link
+                                to={path}
+                            >
+                                {pageName}
+                            </Link>
                         </li>))
                     }
                 </ul>

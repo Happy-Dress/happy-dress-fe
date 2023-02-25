@@ -6,12 +6,9 @@ import { getCatalogueItems, retrieveCatalogueSettings } from '../../../../common
 import { CATALOG_ACTIONS } from './store/catalogReducer';
 import { GoodsSettingHeader } from './components/GoodsSettingHeader';
 import { useSearchParams } from 'react-router-dom';
-import { GOODS_SETTING_VARIABLES } from './GoodsSetting.dictionary';
 import { GoodsSettingContent } from './components/GoodsSettingContent';
+import { ROUTER_VARIABLES } from '../../adminRoutes';
 
-const {
-    BASE_FILTER_ID
-} = GOODS_SETTING_VARIABLES;
 
 const GoodsSetting = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -28,18 +25,18 @@ const GoodsSetting = () => {
     useEffect(() => {
         dispatch({ type: CATALOG_ACTIONS.SET_FULL_LOADING });
 
-        if(!searchParams.has('categories')) {                                  // Установка фильтров из строки парметров
+        if(!searchParams.has(ROUTER_VARIABLES.BASE_GOODS_FILTER.name)) {                                  // Установка фильтров из строки парметров
             let newFilters = {};
 
             for(let [key, value] of searchParams.entries()) {
                 newFilters[key] = value.split(/,/).map(item => Number(item));
             }
 
-            newFilters.categories = [BASE_FILTER_ID];
+            newFilters.categories = [ROUTER_VARIABLES.BASE_GOODS_FILTER.id];
 
             dispatch({ type: CATALOG_ACTIONS.SET_BASE_FILTER, payload: newFilters });
             setSearchParams(() => {
-                searchParams.set('categories', BASE_FILTER_ID);
+                searchParams.set(ROUTER_VARIABLES.BASE_GOODS_FILTER.name, ROUTER_VARIABLES.BASE_GOODS_FILTER.id);
 
                 return searchParams;
             });
@@ -64,6 +61,15 @@ const GoodsSetting = () => {
             });
 
     }, []);
+
+    useEffect(() => {
+        if(!searchParams.get(ROUTER_VARIABLES.BASE_GOODS_FILTER.name)) {
+            setSearchParams(() => {
+                const newParams = new URLSearchParams(state.currentFilters);
+                return newParams.toString();
+            });
+        }
+    }, [searchParams]);
 
     const changeFilter = () => {
         function add(id, currentCategory) {

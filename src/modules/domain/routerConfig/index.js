@@ -1,5 +1,6 @@
-import { routerConfig } from './routerConfig';
+import { routerConfig, ROUTER_VARIABLES } from './routerConfig';
 
 export {
-    routerConfig
+    routerConfig,
+    ROUTER_VARIABLES
 };

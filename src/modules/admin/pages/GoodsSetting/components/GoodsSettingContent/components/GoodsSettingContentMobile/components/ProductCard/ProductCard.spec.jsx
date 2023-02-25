@@ -15,7 +15,7 @@ describe('ProductCard', () => {
         expect(screen.getByText(mockCatalogueItemsResponse[0].name)).toBeInTheDocument();
     });
 
-    test('click item', async () => {
+    it('should change on click item', async () => {
         const { container } = render(<ProductCard product={mockCatalogueItemsResponse[0]}/>);
 
         expect(container.getElementsByClassName('checkbox')[0]).toBe(undefined);

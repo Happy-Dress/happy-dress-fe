@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Filters.module.scss';
 import { useCatalogContext } from '../../../../../../contexts/CatalogProvider';
 import { DropdownSelectList } from '../../../../../../../../../../common/ui/components/Dropdowns';
+import { ROUTER_VARIABLES } from '../../../../../../../../routerConfig';
 
 const Filters = () => {
     const { state, changeFilter } = useCatalogContext();
@@ -10,7 +11,7 @@ const Filters = () => {
         <div className={s.Filters}>
             {
                 Object.entries(state.filters).map(([key, values]) => {
-                    if(key === 'categories') return;
+                    if(key === ROUTER_VARIABLES.BASE_CATALOG_FILTER.name) return;
                     return <DropdownSelectList
                         key={key}
                         currentCategory={key}

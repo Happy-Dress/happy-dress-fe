@@ -6,6 +6,7 @@ import { FilterBadge } from './components/FilterBadge';
 import { useCatalogContext } from '../../../../contexts/CatalogProvider';
 import { useDeviceTypeContext } from '../../../../../../../../common/ui/contexts/DeviceType';
 import { useSearchParams } from 'react-router-dom';
+import { ROUTER_VARIABLES } from '../../../../../../routerConfig';
 
 const CatalogHeaderDesktop = () => {
 
@@ -35,7 +36,7 @@ const CatalogHeaderDesktop = () => {
 
     const filterBadges = useMemo(() => {
         return Object.entries(state.currentFilters).map(([key, value]) => {
-            if(key === 'categories') return;
+            if(key === ROUTER_VARIABLES.BASE_CATALOG_FILTER.name) return;
             return value.map((item) => {
                 let badgeInfo;
                 try {

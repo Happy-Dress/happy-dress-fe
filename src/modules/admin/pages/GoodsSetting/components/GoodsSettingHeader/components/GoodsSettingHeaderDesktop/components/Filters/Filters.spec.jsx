@@ -7,7 +7,7 @@ jest.mock('../../../../../../contexts/CatalogProvider/useCatalogContext', () => 
 }));
 
 describe('Filters', () => {
-    it('', () => {
+    it('should render correct', () => {
         const { container } = render(<Filters />);
 
         expect(container.getElementsByClassName('Filters')[0]).toBeInTheDocument();

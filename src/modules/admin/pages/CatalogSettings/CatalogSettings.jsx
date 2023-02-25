@@ -10,6 +10,7 @@ import MaterialSettings from './components/MaterialSettings';
 import { useModal } from 'react-modal-hook';
 import { LeaveConfirmationDialog } from '../../../../common/ui/components/Dialogs';
 import { useToasters } from '../../../../common/ui/contexts/ToastersContext';
+import { ColorSettings } from './components/ColorSettings';
 
 const {
     CATEGORIES_SETTINGS_NAME,
@@ -56,7 +57,7 @@ const CatalogSettings = () => {
             name: CATEGORIES_SETTINGS_NAME,
         },
         {
-            element: <div>Настройки цветов</div>,
+            element: <ColorSettings/>,
             name: COLORS_SETTINGS_NAME,
         },
         {
@@ -76,8 +77,8 @@ const CatalogSettings = () => {
             <h2>{CATALOG_SETTINGS_TITLE}</h2>
             <div className={s.categories}>
                 {
-                    items.map((el, index) => (
-                        <SettingsDropDown key={index} name={el.name}>
+                    items.map((el) => (
+                        <SettingsDropDown key={el.name} name={el.name}>
                             {el.element}
                         </SettingsDropDown>
                     ))
