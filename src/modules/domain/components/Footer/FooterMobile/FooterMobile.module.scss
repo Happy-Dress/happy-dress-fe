@@ -1,5 +1,6 @@
 @import '../../../../../common/ui/styles/media-sizes';
 @import '../../../../../common/ui/styles/colors';
+@import '../../../../../common/ui/styles/font-sizes';
 
 
 .FooterMobile {
@@ -40,6 +41,7 @@
     li {
       a {
         color: $black;
+        font-size: $font-size-large-20;
       }
 
       &:hover {
