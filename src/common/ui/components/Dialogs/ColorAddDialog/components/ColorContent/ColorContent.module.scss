@@ -1,0 +1,54 @@
+@import "../../../../../styles/colors";
+@import "../../../../../styles/font-sizes";
+
+.ColorContent {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  .fewColors {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    .switcher {
+      width: 48px;
+      height: 24px;
+      border-radius: 12px;
+      background-color: rgba(212, 212, 222, 1);
+
+      span {
+        background-color: #fff;
+        width: 16px;
+        height: 16px;
+      }
+
+      &.switcherActive {
+        background-color: $brown;
+      }
+    }
+  }
+
+  .color {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    &Name {
+      font-size: $font-size-xmedium-18;
+      width: 100%;
+      border: 1px solid $gray;
+      padding: 5px 16px;
+      background-color: $white;
+    }
+
+    &Picker {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      &Value {
+        padding: 6px 4px;
+        background-color: #fff;
+        font-size: $font-size-xmedium-18;
+      }
+    }
+  }
+}
