@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import s from './ColorContent.module.scss';
 import { Switcher } from '../../../../Checkboxes';
 import { COLOR_ADD_DIALOG_DICTIONARY } from '../../ColorAddDialog.dictionary';
@@ -6,6 +6,7 @@ import { RgbaStringColorPicker } from 'react-colorful';
 import './ColorPicker.scss';
 import { colord, extend } from 'colord';
 import namesPlugin from 'colord/plugins/names';
+import PropTypes from 'prop-types';
 extend([namesPlugin]);
 
 const {
@@ -13,8 +14,7 @@ const {
     PLACEHOLDER
 } = COLOR_ADD_DIALOG_DICTIONARY;
 
-const ColorContent = () => {
-    const [color, setColor] = useState('#fff');
+const ColorContent = ({ color, setColor }) => {
     const rgbaString = useMemo(() => {
         return color.startsWith('rgba') ? color : colord(color).toRgbString();
     }, [color]);
@@ -39,6 +39,11 @@ const ColorContent = () => {
             </div>
         </div>
     );
+};
+
+ColorContent.propTypes = {
+    color: PropTypes.string.isRequired,
+    setColor: PropTypes.func.isRequired
 };
 
 export default ColorContent;

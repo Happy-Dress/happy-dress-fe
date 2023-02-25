@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from '../../Modal';
 import ModalHeader from '../../Modal/components/ModalHeader/ModalHeader';
 import ModalContent from '../../Modal/components/ModalContent/ModalContent';
@@ -15,11 +15,13 @@ const {
 } = COLOR_ADD_DIALOG_DICTIONARY;
 
 const ColorAddDialog = ({ onClose }) => {
+    const [color, setColor] = useState('#fff');
+
     return (
         <Modal size={'sm'}>
             <ModalHeader title={TITLE} onClose={onClose}/>
             <ModalContent>
-                <ColorContent />
+                <ColorContent color={color} setColor={setColor}/>
             </ModalContent>
             <ModalFooter actionButtons={[
                 <ButtonDefault key={1} text={CANCEL} onClick={onClose}/>,
