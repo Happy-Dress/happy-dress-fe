@@ -1,3 +1,7 @@
 import LeaveConfirmationDialog from './LeaveConfirmationDialog/LeaveConfirmationDialog';
+import ColorAddDialog from './ColorAddDialog/ColorAddDialog';
 
-export { LeaveConfirmationDialog };
+export {
+    LeaveConfirmationDialog,
+    ColorAddDialog
+};
