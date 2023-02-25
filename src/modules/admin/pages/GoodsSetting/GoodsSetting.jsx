@@ -139,7 +139,6 @@ const GoodsSetting = () => {
             remove
         };
     };
-
     return (
         <CatalogProvider value={{ state, dispatch, changeFilter, selectProductHandler }}>
             <div className={s.GoodsSetting}>
