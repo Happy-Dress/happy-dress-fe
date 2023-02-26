@@ -1,17 +1,11 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import BlogSetting from './index';
+import { render } from '@testing-library/react';
+import BlogSettings from './BlogSettings';
 
-jest.mock('./BlogSetting', () => ({
-    __esModule: true,
-    default: () => {
-        return <div data-testid="blog-page"/>;
-    },
-}));
+
 describe('BlogSetting', () => {
     it('should render correctly', async () => {
-        render(<BlogSetting />);
-        const page = screen.getByTestId('blog-page');
-        expect(page).toBeInTheDocument();
+        const { baseElement }  = render(<BlogSettings />);
+        expect(baseElement).toBeInTheDocument();
     });
 });
