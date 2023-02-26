@@ -3,9 +3,9 @@ import { screen, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import  CatalogSetting  from '../../../pages/CatalogSettings/CatalogSettings';
-import  BlogSetting  from '../../../pages/BlogSetting/BlogSetting';
+import  BlogSettings  from '../../../pages/BlogSettings/BlogSettings';
 import  RegistrationSetting  from '../../../pages/RegistrationSetting/RegistrationSetting';
-import  GoodsSetting  from '../../../pages/GoodsSetting/GoodsSetting';
+import  ProductSettings from '../../../pages/ProductSettings';
 import  NavigationPanelDesktop  from './NavigationPanelDesktop';
 import SignIn from '../../../pages/SignIn/';
 
@@ -20,11 +20,11 @@ export const renderWithRouter = (component) => {
                 />
                 <Route
                     path="/admin/panel/blog-setting"
-                    element={<BlogSetting />}
+                    element={<BlogSettings />}
                 />
                 <Route
                     path="/admin/panel/goods-setting"
-                    element={<GoodsSetting />}
+                    element={<ProductSettings />}
                 />
                 <Route
                     path="/admin/panel/registration-setting"
