@@ -10,7 +10,7 @@ const ProductsList = () =>{
     const isLoading = useSelector(state => state.productsSearch.loading);
 
     const renderSkeletons = (amount) =>{
-        return Array.from(Array(amount).keys()).fill().map((item) => <ProductCardSkeleton key={item}/>);
+        return Array.from(Array(amount).keys()).map((item) => <ProductCardSkeleton key={item + products.length}/>);
     };
 
     return (
