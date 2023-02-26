@@ -23,7 +23,7 @@ export const AdminPanelRoutes = () => {
                     <Route path="blog-settings" element={<BlogSettings/>}/>
                     <Route path="products-settings" element={<ProductSettings/>}/>
                     <Route
-                        path="registration-setting"
+                        path="registration-settings"
                         element={<RegistrationSetting/>}
                     />
                 </Routes>

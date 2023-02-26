@@ -15,19 +15,19 @@ export const renderWithRouter = (component) => {
             {component}
             <Routes>
                 <Route
-                    path="/admin/panel/catalog-setting"
+                    path="/admin/panel/catalog-settings"
                     element={<CatalogSetting />}
                 />
                 <Route
-                    path="/admin/panel/blog-setting"
+                    path="/admin/panel/blog-settings"
                     element={<BlogSettings />}
                 />
                 <Route
-                    path="/admin/panel/goods-setting"
+                    path="/admin/panel/products-settings"
                     element={<ProductSettings />}
                 />
                 <Route
-                    path="/admin/panel/registration-setting"
+                    path="/admin/panel/registration-settings"
                     element={<RegistrationSetting />}
                 />
                 <Route path="/admin" element={<SignIn />}/>
@@ -37,7 +37,7 @@ export const renderWithRouter = (component) => {
 };
 
 
-jest.mock('../../../pages/BlogSetting/BlogSetting', () => ({
+jest.mock('../../../pages/BlogSettings/BlogSettings', () => ({
     __esModule: true,
     default: () => {
         return <div data-testid="blog-page"/>;
@@ -51,7 +51,7 @@ jest.mock('../../../pages/CatalogSettings/CatalogSettings', () => ({
     },
 }));
 
-jest.mock('../../../pages/GoodsSetting/GoodsSetting', () => ({
+jest.mock('../../../pages/ProductSettings', () => ({
     __esModule: true,
     default: () => {
         return <div data-testid="goods-page"/>;
