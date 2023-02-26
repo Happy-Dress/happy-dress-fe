@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import BlogSetting from './index';
@@ -6,7 +5,7 @@ import BlogSetting from './index';
 jest.mock('./BlogSetting', () => ({
     __esModule: true,
     default: () => {
-        return <div data-testid="blog-page"></div>;
+        return <div data-testid="blog-page"/>;
     },
 }));
 describe('BlogSetting', () => {
