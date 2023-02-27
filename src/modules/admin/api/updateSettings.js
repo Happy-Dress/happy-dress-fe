@@ -7,7 +7,7 @@ const updateSettings = async (settings) => {
         ...response.data,
         models: response.data.models.map((model, index) => ({ ...model, orderNumber: index })),
         materials: response.data.materials.map((material, index) => ({ ...material, orderNumber: index })),
-        categories: response.data.materials.map((category, index) => ({ ...category, orderNumber: index }))
+        categories: response.data.categories.map((category, index) => ({ ...category, orderNumber: index }))
     };
 };
 
