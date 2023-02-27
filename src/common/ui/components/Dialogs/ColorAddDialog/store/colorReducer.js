@@ -13,7 +13,7 @@ export const colorReducer = (state, action) => {
         case COLOR_ADD_ACTIONS.UPDATE_COLOR:
             return {
                 ...state,
-                firstColor: action.payload
+                [action.payload.type]: action.payload.value
             };
     }
 };

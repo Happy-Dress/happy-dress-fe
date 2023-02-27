@@ -24,10 +24,25 @@ const ColorAddDialog = ({ onClose, updateColors, settingsList, editingModel, set
     });
 
     const handleSave = () => {
-        updateColors([...settingsList.map((item, index) => {
-            item.orderNumber = index;
-            return item;
-        }), { ...state,  orderNumber: settingsList.length }]);
+        if(!editingModel) {
+            updateColors([...settingsList.map((item, index) => {
+                item.orderNumber = index;
+                return item;
+            }), { ...state,  orderNumber: settingsList.length }]);
+            onClose();
+            return;
+        }
+        updateColors([
+            ...settingsList.map((item) => {
+                if(item.name === editingModel.name) {
+                    return {
+                        ...state
+                    };
+                }
+
+                return item;
+            })
+        ]);
         onClose();
     };
 
