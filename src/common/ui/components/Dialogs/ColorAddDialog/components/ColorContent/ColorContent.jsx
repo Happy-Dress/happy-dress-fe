@@ -1,13 +1,17 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import s from './ColorContent.module.scss';
-import { Switcher } from '../../../../Checkboxes';
-import { COLOR_ADD_DIALOG_DICTIONARY } from '../../ColorAddDialog.dictionary';
 import './ColorPicker.scss';
-import { colord, extend } from 'colord';
-import namesPlugin from 'colord/plugins/names';
+
+import { Switcher } from '../../../../Checkboxes';
+import ColorPicker from './components/ColorPicker/ColorPicker';
+
 import { useColorAddContext } from '../../contexts/ColorAddContext';
 import { COLOR_ADD_ACTIONS } from '../../store/colorReducer';
-import ColorPicker from './components/ColorPicker/ColorPicker';
+import { COLOR_ADD_DIALOG_DICTIONARY } from '../../ColorAddDialog.dictionary';
+
+
+import { colord, extend } from 'colord';
+import namesPlugin from 'colord/plugins/names';
 extend([namesPlugin]);
 
 const {
@@ -17,10 +21,17 @@ const {
 
 const ColorContent = () => {
     const { state, dispatch } = useColorAddContext();
+
+    const [name, setName] = useState(state.name ?? '');
+    const [isSwitcherActive, setIsSwitcherActive] = useState(!!state.secondColor);
+
     const [firstColor, setFirstColor] = useState(state.firstColor ?? '');
     const [secondColor, setSecondColor] = useState(state.secondColor ?? '');
-    const [name, setName] = useState(state.name);
-    const [isSwitcherActive, setIsSwitcherActive] = useState(!!state.secondColor);
+
+    const changeNameHandler = (e) => {
+        setName(e.target.value);
+        dispatch({ type: COLOR_ADD_ACTIONS.ADD_NAME, payload: e.target.value });
+    };
 
     const rgbaFirstString = useMemo(() => {
         return firstColor.startsWith('rgba') ? firstColor : colord(firstColor).toRgbString();
@@ -29,11 +40,6 @@ const ColorContent = () => {
     const rgbaSecondString = useMemo(() => {
         return secondColor && (secondColor.startsWith('rgba') ? secondColor : colord(secondColor).toRgbString());
     }, [secondColor]);
-
-    const changeNameHandler = (e) => {
-        setName(e.target.value);
-        dispatch({ type: COLOR_ADD_ACTIONS.ADD_NAME, payload: e.target.value });
-    };
 
     useEffect(() => {
         dispatch({ type: COLOR_ADD_ACTIONS.UPDATE_COLOR, payload: { type: 'firstColor', value: colord(firstColor).toHex() } });
