@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import SimpleSettingsControl from './index';
 import userEvent from '@testing-library/user-event';
+import { ModalProvider } from 'react-modal-hook';
 
 const mockUpdateSettings = jest.fn();
 
@@ -28,12 +29,12 @@ jest.mock('../SettingsList', () => ({
 
 describe('SimpleSettingsControl', () =>{
     it('should render correctly', () =>{
-        const { baseElement } = render(<SimpleSettingsControl updateSettings={mockUpdateSettings} settingsList={[mockModel]}/>);
+        const { baseElement } = render(<SimpleSettingsControl updateSettings={mockUpdateSettings} settingsList={[mockModel]}/>, { wrapper: ModalProvider });
         expect(baseElement).toBeInTheDocument();
     });
 
     it('should handle reorder', async () =>{
-        render(<SimpleSettingsControl updateSettings={mockUpdateSettings} settingsList={[mockModel]}/>);
+        render(<SimpleSettingsControl updateSettings={mockUpdateSettings} settingsList={[mockModel]}/>, { wrapper: ModalProvider });
         const button = screen.getByRole('button', {
             name: /Reorder/i
         });
@@ -44,7 +45,7 @@ describe('SimpleSettingsControl', () =>{
     });
 
     it('should start edit and cancel', async () =>{
-        render(<SimpleSettingsControl updateSettings={mockUpdateSettings} settingsList={[mockModel]}/>);
+        render(<SimpleSettingsControl updateSettings={mockUpdateSettings} settingsList={[mockModel]}/>, { wrapper: ModalProvider });
         const button = screen.getByRole('button', {
             name: /Edit/i
         });
@@ -63,7 +64,7 @@ describe('SimpleSettingsControl', () =>{
 
 
     it('should start edit and save', async () =>{
-        render(<SimpleSettingsControl updateSettings={mockUpdateSettings} settingsList={[mockModel]}/>);
+        render(<SimpleSettingsControl updateSettings={mockUpdateSettings} settingsList={[mockModel]}/>, { wrapper: ModalProvider });
         const button = screen.getByRole('button', {
             name: /Edit/i
         });
@@ -80,7 +81,7 @@ describe('SimpleSettingsControl', () =>{
     });
 
     it('should handle add', async () =>{
-        render(<SimpleSettingsControl updateSettings={mockUpdateSettings} settingsList={[mockModel]}/>);
+        render(<SimpleSettingsControl updateSettings={mockUpdateSettings} settingsList={[mockModel]}/>, { wrapper: ModalProvider });
         const button = screen.getByRole('button', {
             name: '+Добавить'
         });
@@ -94,7 +95,7 @@ describe('SimpleSettingsControl', () =>{
     });
 
     it('should handle select setting and delete them', async () =>{
-        render(<SimpleSettingsControl updateSettings={mockUpdateSettings} settingsList={[mockModel]}/>);
+        render(<SimpleSettingsControl updateSettings={mockUpdateSettings} settingsList={[mockModel]}/>, { wrapper: ModalProvider });
         const button = screen.getByRole('button', {
             name: 'Select'
         });
@@ -110,7 +111,7 @@ describe('SimpleSettingsControl', () =>{
         expect(deleteButton).not.toBeInTheDocument();
     });
     it('should handle remove', async () =>{
-        render(<SimpleSettingsControl updateSettings={mockUpdateSettings} settingsList={[mockModel]}/>);
+        render(<SimpleSettingsControl updateSettings={mockUpdateSettings} settingsList={[mockModel]}/>, { wrapper: ModalProvider });
         const button = screen.getByRole('button', {
             name: 'Remove'
         });
@@ -121,7 +122,7 @@ describe('SimpleSettingsControl', () =>{
     });
 
     it('should handle unselect', async () =>{
-        render(<SimpleSettingsControl updateSettings={mockUpdateSettings} settingsList={[mockModel]}/>);
+        render(<SimpleSettingsControl updateSettings={mockUpdateSettings} settingsList={[mockModel]}/>, { wrapper: ModalProvider });
         const button = screen.getByRole('button', {
             name: 'Select'
         });
@@ -142,7 +143,7 @@ describe('SimpleSettingsControl', () =>{
     });
 
     it('should handle input change', async () =>{
-        render(<SimpleSettingsControl updateSettings={mockUpdateSettings} settingsList={[mockModel]}/>);
+        render(<SimpleSettingsControl updateSettings={mockUpdateSettings} settingsList={[mockModel]}/>, { wrapper: ModalProvider });
         const button = screen.getByRole('button', {
             name: /Edit/i
         });
@@ -160,7 +161,7 @@ describe('SimpleSettingsControl', () =>{
     });
 
     it('should prevent remove', async () =>{
-        render(<SimpleSettingsControl updateSettings={mockUpdateSettings} settingsList={[mockModel]}/>);
+        render(<SimpleSettingsControl updateSettings={mockUpdateSettings} settingsList={[mockModel]}/>, { wrapper: ModalProvider });
         const button = screen.getByRole('button', {
             name: /Edit/i
         });
@@ -177,7 +178,7 @@ describe('SimpleSettingsControl', () =>{
     });
 
     it('should add setting and save', async () =>{
-        render(<SimpleSettingsControl updateSettings={mockUpdateSettings} settingsList={[mockModel]}/>);
+        render(<SimpleSettingsControl updateSettings={mockUpdateSettings} settingsList={[mockModel]}/>, { wrapper: ModalProvider });
         const button = screen.getByRole('button', {
             name: '+Добавить'
         });
