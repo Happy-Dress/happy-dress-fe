@@ -24,19 +24,33 @@ const {
 export const SimpleSettingsControl = ({ updateSettings, settingsList, callModalOnAdd = false }) => {
 
     const [editingModel, setEditingModel] = useState();
+    const [editingModelModal, setEditingModelModal] = useState(null);
     const [selectedOrderNumbers, setSelectedOrderNumbers] = useState([]);
     const [isExists, setIsExists] = useState(false);
     const [showColorModal, hideColorModal] = useModal(() => {
+        console.log(editingModelModal);
         return (
-            <ColorAddDialog onClose={hideColorModal} updateColors={updateSettings} settingsList={settingsList}/>
+            <ColorAddDialog
+                onClose={hideColorModal}
+                updateColors={updateSettings}
+                settingsList={settingsList}
+                editingModel={editingModelModal}
+                setEditingModel={setEditingModelModal}
+            />
         );
-    }, [settingsList]);
+    }, [settingsList, editingModelModal]);
 
     const handleReorder = (reorderedModels) => {
         updateSettings(reorderedModels);
     };
 
     const handleEdit = (model) => {
+        if(callModalOnAdd) {
+            setEditingModelModal(model);
+            showColorModal();
+            return;
+        }
+
         setEditingModel(model);
     };
 
@@ -112,7 +126,7 @@ export const SimpleSettingsControl = ({ updateSettings, settingsList, callModalO
                 className={classNames(
                     s.settingInput,
                     isExists ? s.settingInputDirty : '',
-                    editingModel? s.inputControlVisible : s.inputControlHidden,
+                    editingModel? s.inputControlVisible : s.inputControlHidden
                 )}
             />
             <p hidden={!isExists} className={s.duplicateField}>{DUPLICATE_LABEL}</p>

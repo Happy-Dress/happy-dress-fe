@@ -7,6 +7,7 @@ const retrieveCatalogueSettings = async () => {
         ...response.data,
         models: response.data.models.map((model, index) => ({ ...model, orderNumber: index })),
         materials: response.data.materials.map((material, index) => ({ ...material, orderNumber: index })),
+        colors: response.data.colors.map((color, index) => ({ ...color, orderNumber: index })),
     };
 };
 

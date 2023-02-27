@@ -16,15 +16,14 @@ const {
     TITLE
 } = COLOR_ADD_DIALOG_DICTIONARY;
 
-const ColorAddDialog = ({ onClose, updateColors, settingsList }) => {
-    const [state, dispatch] = useReducer(colorReducer, {
+const ColorAddDialog = ({ onClose, updateColors, settingsList, editingModel, setEditingModel }) => {
+    const [state, dispatch] = useReducer(colorReducer, editingModel ? editingModel : {
         name: '',
         firstColor: '#fff',
         secondColor: null
     });
 
     const handleSave = () => {
-        console.log(settingsList);
         updateColors([...settingsList.map((item, index) => {
             item.orderNumber = index;
             return item;
@@ -32,15 +31,22 @@ const ColorAddDialog = ({ onClose, updateColors, settingsList }) => {
         onClose();
     };
 
+    const handleClose = () => {
+        if(editingModel) {
+            setEditingModel(null);
+        }
+        onClose();
+    };
+
     return (
         <ColorAddProvider value={{ state, dispatch, handleSave }}>
             <Modal size={'sm'}>
-                <ModalHeader title={TITLE} onClose={onClose}/>
+                <ModalHeader title={TITLE} onClose={handleClose}/>
                 <ModalContent>
                     <ColorContent/>
                 </ModalContent>
                 <ModalFooter actionButtons={[
-                    <ButtonDefault key={1} text={CANCEL} onClick={onClose}/>,
+                    <ButtonDefault key={1} text={CANCEL} onClick={handleClose}/>,
                     <ButtonAccent key={0} text={SAVE} onClick={handleSave}/>,
                 ]}/>
             </Modal>
@@ -51,7 +57,9 @@ const ColorAddDialog = ({ onClose, updateColors, settingsList }) => {
 ColorAddDialog.propTypes = {
     onClose: PropTypes.func.isRequired,
     updateColors: PropTypes.func.isRequired,
-    settingsList: PropTypes.array.isRequired
+    settingsList: PropTypes.array.isRequired,
+    editingModel: PropTypes.object,
+    setEditingModel: PropTypes.func
 };
 
 export default ColorAddDialog;
