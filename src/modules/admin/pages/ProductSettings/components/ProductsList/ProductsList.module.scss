@@ -1,0 +1,11 @@
+.ProductsList{
+  margin-top: 50px;
+  padding: 0 calc(10% + 47px) 0 calc(8% + 47px);
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  column-gap: 5%;
+  row-gap: 42px;
+  position: relative;
+}

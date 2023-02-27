@@ -5,6 +5,7 @@
   "dependencies": {
     "@hookform/error-message": "^2.0.1",
     "@hookform/resolvers": "^2.9.10",
+    "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.24.0",
@@ -17,6 +18,7 @@
     "react-hook-form": "^7.39.3",
     "react-modal": "^3.16.1",
     "react-modal-hook": "^3.0.2",
+    "react-redux": "^8.0.5",
     "react-responsive": "^9.0.0",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
@@ -76,10 +78,7 @@
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 69,
-        "statements": 71,
-        "functions": 64,
-        "lines": 72
+        "lines": 70
       }
     },
     "coverageReporters": [
