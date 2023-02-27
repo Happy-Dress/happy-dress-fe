@@ -13,7 +13,7 @@ const ProductSettings = () =>{
     useEffect(() =>{
         if(catalogueSettings.categoryId){
             dispatch(resetProducts());
-            dispatch(fetchCatalogueItems());
+            dispatch(fetchCatalogueItems(catalogueSettings));
         }
     }, [catalogueSettings]);
 
