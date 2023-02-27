@@ -17,7 +17,7 @@ const {
 
 const ColorContent = () => {
     const { state, dispatch } = useColorAddContext();
-    const [firstColor, setFirstColor] = useState(state.firstColor);
+    const [firstColor, setFirstColor] = useState(state.firstColor ?? '');
     const [secondColor, setSecondColor] = useState(state.secondColor ?? '');
     const [name, setName] = useState(state.name);
     const [isSwitcherActive, setIsSwitcherActive] = useState(!!state.secondColor);
@@ -46,7 +46,7 @@ const ColorContent = () => {
     }, [secondColor]);
 
     return (
-        <div className={s.ColorContent} style={{ overflowY: isSwitcherActive && 'scroll' }}>
+        <div className={s.ColorContent} style={{ overflowY: isSwitcherActive ? 'scroll' : 'unset' }}>
             <div className={s.fewColors}>
                 <Switcher
                     switcherState={[isSwitcherActive, setIsSwitcherActive]}
