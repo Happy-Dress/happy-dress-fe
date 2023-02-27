@@ -3,7 +3,7 @@ import s from './ButtonDefault.module.scss';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const ButtonDefault = ({ text, onClick }) => {
+const ButtonDefault = ({ text, onClick, type }) => {
     const [active, setActive] = useState(false);
 
     const changeState = () => {
@@ -15,7 +15,7 @@ const ButtonDefault = ({ text, onClick }) => {
     };
 
     return (
-        <button onClick={changeState}
+        <button onClick={changeState} type={type ? type : 'submit'}
             className={classNames(s.ButtonDefault, active ? s.ButtonDefault_active : '')}
         >
             {text}
@@ -25,7 +25,8 @@ const ButtonDefault = ({ text, onClick }) => {
 
 ButtonDefault.propTypes = {
     text: PropTypes.string.isRequired,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    type: PropTypes.oneOf(['button', 'submit', 'reset']),
 };
 
 export default ButtonDefault;
