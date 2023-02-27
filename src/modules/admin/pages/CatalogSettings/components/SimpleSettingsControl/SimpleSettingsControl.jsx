@@ -26,6 +26,7 @@ export const SimpleSettingsControl = ({ updateSettings, settingsList, ModalCompo
     const [editingModelModal, setEditingModelModal] = useState(null);
     const [selectedOrderNumbers, setSelectedOrderNumbers] = useState([]);
     const [isExists, setIsExists] = useState(false);
+
     const [showModal, hideModal] = useModal(() => {
         return <ModalComponent
             updateSettings={updateSettings}

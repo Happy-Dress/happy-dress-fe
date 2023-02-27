@@ -16,7 +16,7 @@ const {
     TITLE
 } = COLOR_ADD_DIALOG_DICTIONARY;
 
-const ColorAddDialog = ({ onClose, updateColors, settingsList, editingModel, setEditingModel }) => {
+const ColorAddDialog = ({ onClose, updateSettings, settingsList, editingModel, setEditingModel }) => {
     const [state, dispatch] = useReducer(colorReducer, editingModel ? editingModel : {
         name: '',
         firstColor: '#fff',
@@ -25,14 +25,14 @@ const ColorAddDialog = ({ onClose, updateColors, settingsList, editingModel, set
 
     const handleSave = () => {
         if(!editingModel) {
-            updateColors([...settingsList.map((item, index) => {
+            updateSettings([...settingsList.map((item, index) => {
                 item.orderNumber = index;
                 return item;
             }), { ...state,  orderNumber: settingsList.length }]);
             onClose();
             return;
         }
-        updateColors([
+        updateSettings([
             ...settingsList.map((item) => {
                 if(item.name === editingModel.name) {
                     return {
@@ -71,7 +71,7 @@ const ColorAddDialog = ({ onClose, updateColors, settingsList, editingModel, set
 
 ColorAddDialog.propTypes = {
     onClose: PropTypes.func.isRequired,
-    updateColors: PropTypes.func.isRequired,
+    updateSettings: PropTypes.func.isRequired,
     settingsList: PropTypes.array.isRequired,
     editingModel: PropTypes.object,
     setEditingModel: PropTypes.func
