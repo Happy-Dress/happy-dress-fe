@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 import Modal from '../../Modal';
 import ModalHeader from '../../Modal/components/ModalHeader/ModalHeader';
 import ModalContent from '../../Modal/components/ModalContent/ModalContent';
@@ -7,6 +7,8 @@ import { ButtonAccent, ButtonDefault } from '../../Buttons';
 import PropTypes from 'prop-types';
 import { COLOR_ADD_DIALOG_DICTIONARY } from './ColorAddDialog.dictionary';
 import { ColorContent } from './components/ColorContent';
+import { ColorAddProvider } from './contexts/ColorAddContext';
+import { colorReducer } from './store/colorReducer';
 
 const {
     CANCEL,
@@ -14,25 +16,42 @@ const {
     TITLE
 } = COLOR_ADD_DIALOG_DICTIONARY;
 
-const ColorAddDialog = ({ onClose }) => {
-    const [color, setColor] = useState('#fff');
+const ColorAddDialog = ({ onClose, updateColors, settingsList }) => {
+    const [state, dispatch] = useReducer(colorReducer, {
+        name: '',
+        firstColor: '#fff',
+        secondColor: null
+    });
+
+    const handleSave = () => {
+        console.log(settingsList);
+        updateColors([...settingsList.map((item, index) => {
+            item.orderNumber = index;
+            return item;
+        }), { ...state,  orderNumber: settingsList.length }]);
+        onClose();
+    };
 
     return (
-        <Modal size={'sm'}>
-            <ModalHeader title={TITLE} onClose={onClose}/>
-            <ModalContent>
-                <ColorContent color={color} setColor={setColor}/>
-            </ModalContent>
-            <ModalFooter actionButtons={[
-                <ButtonDefault key={1} text={CANCEL} onClick={onClose}/>,
-                <ButtonAccent key={0} text={SAVE}/>,
-            ]}/>
-        </Modal>
+        <ColorAddProvider value={{ state, dispatch, handleSave }}>
+            <Modal size={'sm'}>
+                <ModalHeader title={TITLE} onClose={onClose}/>
+                <ModalContent>
+                    <ColorContent/>
+                </ModalContent>
+                <ModalFooter actionButtons={[
+                    <ButtonDefault key={1} text={CANCEL} onClick={onClose}/>,
+                    <ButtonAccent key={0} text={SAVE} onClick={handleSave}/>,
+                ]}/>
+            </Modal>
+        </ColorAddProvider>
     );
 };
 
 ColorAddDialog.propTypes = {
-    onClose: PropTypes.func.isRequired
+    onClose: PropTypes.func.isRequired,
+    updateColors: PropTypes.func.isRequired,
+    settingsList: PropTypes.array.isRequired
 };
 
 export default ColorAddDialog;

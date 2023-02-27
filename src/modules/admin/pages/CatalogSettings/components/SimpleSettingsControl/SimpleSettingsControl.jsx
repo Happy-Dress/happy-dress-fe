@@ -26,10 +26,11 @@ export const SimpleSettingsControl = ({ updateSettings, settingsList, callModalO
     const [editingModel, setEditingModel] = useState();
     const [selectedOrderNumbers, setSelectedOrderNumbers] = useState([]);
     const [isExists, setIsExists] = useState(false);
-
-    const [showModal, hideModal] = useModal(() => (
-        <ColorAddDialog onClose={hideModal}/>
-    ));
+    const [showColorModal, hideColorModal] = useModal(() => {
+        return (
+            <ColorAddDialog onClose={hideColorModal} updateColors={updateSettings} settingsList={settingsList}/>
+        );
+    }, [settingsList]);
 
     const handleReorder = (reorderedModels) => {
         updateSettings(reorderedModels);
@@ -64,7 +65,7 @@ export const SimpleSettingsControl = ({ updateSettings, settingsList, callModalO
 
     const handleAdd = () =>{
         if(callModalOnAdd) {
-            showModal();
+            showColorModal();
             return;
         }
 
