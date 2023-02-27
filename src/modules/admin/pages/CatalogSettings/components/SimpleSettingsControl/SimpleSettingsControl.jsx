@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import {  SIMPLE_SETTINGS_CONTROL_DICTIONARY } from './SimpleSettingsControl.dictionary';
 import PropTypes from 'prop-types';
 import { useModal } from 'react-modal-hook';
-import { ColorAddDialog } from '../../../../../../common/ui/components/Dialogs';
 
 const MIN_MODEL_NAME_LENGTH = 3;
 const STARTING_ORDER_NUMBER = 0;
@@ -21,23 +20,20 @@ const {
     DUPLICATE_LABEL,
 } = SIMPLE_SETTINGS_CONTROL_DICTIONARY;
 
-export const SimpleSettingsControl = ({ updateSettings, settingsList, callModalOnAdd = false }) => {
+export const SimpleSettingsControl = ({ updateSettings, settingsList, ModalComponent = null }) => {
 
     const [editingModel, setEditingModel] = useState();
     const [editingModelModal, setEditingModelModal] = useState(null);
     const [selectedOrderNumbers, setSelectedOrderNumbers] = useState([]);
     const [isExists, setIsExists] = useState(false);
-    const [showColorModal, hideColorModal] = useModal(() => {
-        console.log(editingModelModal);
-        return (
-            <ColorAddDialog
-                onClose={hideColorModal}
-                updateColors={updateSettings}
-                settingsList={settingsList}
-                editingModel={editingModelModal}
-                setEditingModel={setEditingModelModal}
-            />
-        );
+    const [showModal, hideModal] = useModal(() => {
+        return <ModalComponent
+            updateSettings={updateSettings}
+            settingsList={settingsList}
+            editingModel={editingModelModal}
+            setEditingModel={setEditingModelModal}
+            onClose={hideModal}
+        />;
     }, [settingsList, editingModelModal]);
 
     const handleReorder = (reorderedModels) => {
@@ -45,9 +41,9 @@ export const SimpleSettingsControl = ({ updateSettings, settingsList, callModalO
     };
 
     const handleEdit = (model) => {
-        if(callModalOnAdd) {
+        if(ModalComponent) {
             setEditingModelModal(model);
-            showColorModal();
+            showModal();
             return;
         }
 
@@ -78,8 +74,8 @@ export const SimpleSettingsControl = ({ updateSettings, settingsList, callModalO
     };
 
     const handleAdd = () =>{
-        if(callModalOnAdd) {
-            showColorModal();
+        if(ModalComponent) {
+            showModal();
             return;
         }
 
@@ -169,7 +165,7 @@ export const SimpleSettingsControl = ({ updateSettings, settingsList, callModalO
 SimpleSettingsControl.propTypes = {
     settingsList: PropTypes.array.isRequired,
     updateSettings: PropTypes.func.isRequired,
-    callModalOnAdd: PropTypes.bool
+    ModalComponent: PropTypes.element
 };
 
 
