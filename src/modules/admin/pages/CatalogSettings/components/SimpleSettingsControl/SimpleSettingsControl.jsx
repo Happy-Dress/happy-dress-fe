@@ -20,7 +20,7 @@ const {
     DUPLICATE_LABEL,
 } = SIMPLE_SETTINGS_CONTROL_DICTIONARY;
 
-export const SimpleSettingsControl = ({ updateSettings, settingsList, ModalComponent = null }) => {
+export const SimpleSettingsControl = ({ updateSettings, settingsList, ModalComponent }) => {
 
     const [editingModel, setEditingModel] = useState();
     const [editingModelModal, setEditingModelModal] = useState(null);
@@ -166,7 +166,7 @@ export const SimpleSettingsControl = ({ updateSettings, settingsList, ModalCompo
 SimpleSettingsControl.propTypes = {
     settingsList: PropTypes.array.isRequired,
     updateSettings: PropTypes.func.isRequired,
-    ModalComponent: PropTypes.element
+    ModalComponent: PropTypes.func
 };
 
 

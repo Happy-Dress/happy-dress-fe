@@ -62,7 +62,7 @@ const ColorAddDialog = ({ onClose, updateSettings, settingsList, editingModel, s
                 </ModalContent>
                 <ModalFooter actionButtons={[
                     <ButtonDefault key={1} text={CANCEL} onClick={handleClose}/>,
-                    <ButtonAccent key={0} text={SAVE} onClick={handleSave}/>,
+                    <ButtonAccent key={0} text={SAVE} onClick={handleSave} disabled={!state.name}/>,
                 ]}/>
             </Modal>
         </ColorAddProvider>
