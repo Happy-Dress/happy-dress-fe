@@ -1,11 +1,11 @@
 import { useCatalogSettings } from '../../contexts/CatalogSettingsContext/hook/useCatalogSettings';
-import SimpleSettingsControl from '../SimpleSettingsControl/SimpleSettingsControl';
 import React from 'react';
+import CategorySettingsControl from '../CategorySettingsControl';
 
 const CategorySettings = () => {
     const { settings: { categories }, updateCategories } = useCatalogSettings();
 
-    return <SimpleSettingsControl settingsList={categories} updateSettings={updateCategories}/>;
+    return <CategorySettingsControl settingsList={categories} updateSettings={updateCategories}/>;
 };
 
 export default CategorySettings;
