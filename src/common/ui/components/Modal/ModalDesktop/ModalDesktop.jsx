@@ -3,7 +3,7 @@ import s from './ModalDesktop.module.scss';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const ModalDesktop = ({ size, children }) =>{
+export const ModalDesktop = ({ size, children, className }) =>{
 
     const sizeMap = new Map(
         [
@@ -17,7 +17,7 @@ export const ModalDesktop = ({ size, children }) =>{
     const sizeClassName = sizeMap.get(size) || s.modalDesktopSizeFs;
 
     return (
-        <ReactModal ariaHideApp={false} isOpen overlayClassName={s.modalOverlay} className={classNames(s.content, sizeClassName)}>
+        <ReactModal ariaHideApp={false} isOpen overlayClassName={s.modalOverlay} className={classNames(s.content, sizeClassName, className)}>
             {children}
         </ReactModal>
     );
@@ -28,7 +28,8 @@ ModalDesktop.propTypes = {
     children: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.node),
         PropTypes.node
-    ])
+    ]),
+    className: PropTypes.string
 };
 
 export default ModalDesktop;

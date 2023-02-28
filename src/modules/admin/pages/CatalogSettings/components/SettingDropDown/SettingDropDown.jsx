@@ -8,7 +8,7 @@ const SettingsDropDown = ({ name, children }) =>{
     const [isOpened, setIsOpened] = useState(false);
 
     return(
-        <div className={s.category} >
+        <div className={s.category}>
             <div className={s.title} onClick={() => setIsOpened(!isOpened)}>
                 <h3>{name}</h3>
                 <ArrowDown className={isOpened ? s.active : ''} />

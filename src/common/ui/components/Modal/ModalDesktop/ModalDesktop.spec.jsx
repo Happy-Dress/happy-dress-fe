@@ -6,4 +6,8 @@ describe('Modal Desktop', () =>{
         const { baseElement } = render(<ModalDesktop size='lg'/>);
         expect(baseElement).toBeInTheDocument();
     });
+    it('should render correctly', async () =>{
+        const { baseElement } = render(<ModalDesktop size={''}/>);
+        expect(baseElement).toBeInTheDocument();
+    });
 });

@@ -1,0 +1,51 @@
+@import "../../../../../styles/colors";
+@import "../../../../../styles/font-sizes";
+@import "../../../../../styles/media-sizes";
+
+.ColorContent {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-height: 400px;
+  padding: 20px;
+
+
+  .fewColors {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    .switcher {
+      width: 48px;
+      height: 24px;
+      border-radius: 12px;
+      background-color: rgba(212, 212, 222, 1);
+
+      span {
+        background-color: #fff;
+        width: 16px;
+        height: 16px;
+      }
+
+      &.switcherActive {
+        background-color: $brown;
+      }
+    }
+  }
+
+  .color {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    &Name {
+      font-size: $font-size-xmedium-18;
+      width: 100%;
+      border: 1px solid $gray;
+      padding: 5px 16px;
+      background-color: $white;
+    }
+  }
+
+  @media screen and (max-width: calc($lg-size - 1px)) {
+    max-height: 100%;
+  }
+}

@@ -4,6 +4,7 @@
 
 .LeaveConfirmationDialog{
   &_message {
+    height: 250px;
     font-size: $font-size-xmedium-18;
     line-height: 30px;
     display: flex;

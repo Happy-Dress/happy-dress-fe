@@ -6,4 +6,5 @@ export const ADMIN_PANEL_ROUTES = {
         '/admin/panel/registration-settings',
         '/admin/panel/blog-settings',
     ],
-    SIGN_IN: '/admin' };
+    SIGN_IN: '/admin'
+};

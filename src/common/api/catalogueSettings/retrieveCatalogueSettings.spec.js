@@ -14,6 +14,9 @@ describe('retrieveCatalogueSettings', () => {
             ],
             materials: [
                 { id: 1, name: 'Органза' }
+            ],
+            colors: [
+                { id: 1, name: 'красный', firstColor: '#ff0000', secondColor: null }
             ]
         };
         const mockResponse = {
