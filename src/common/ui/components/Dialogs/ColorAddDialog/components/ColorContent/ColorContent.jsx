@@ -26,7 +26,7 @@ const ColorContent = () => {
     const [isSwitcherActive, setIsSwitcherActive] = useState(!!state.secondColor);
 
     const [firstColor, setFirstColor] = useState(state.firstColor ?? '');
-    const [secondColor, setSecondColor] = useState(state.secondColor ?? '');
+    const [secondColor, setSecondColor] = useState(state.secondColor ?? '#000');
 
     const changeNameHandler = (e) => {
         setName(e.target.value);
@@ -48,8 +48,10 @@ const ColorContent = () => {
     useEffect(() => {
         if(isSwitcherActive) {
             dispatch({ type: COLOR_ADD_ACTIONS.UPDATE_COLOR, payload: { type: 'secondColor', value: colord(secondColor).toHex() } });
+        } else {
+            dispatch({ type: COLOR_ADD_ACTIONS.UPDATE_COLOR, payload: { type: 'secondColor', value: null } });
         }
-    }, [secondColor]);
+    }, [isSwitcherActive, secondColor]);
 
     return (
         <div className={s.ColorContent} style={{ overflowY: isSwitcherActive ? 'scroll' : 'unset' }}>

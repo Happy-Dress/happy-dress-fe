@@ -3,7 +3,7 @@ import s from './ModalMobile.module.scss';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const ModalMobile = ({ size, children }) =>{
+export const ModalMobile = ({ size, children, className }) =>{
 
     const sizeMap = new Map(
         [
@@ -17,7 +17,7 @@ export const ModalMobile = ({ size, children }) =>{
 
 
     return (
-        <ReactModal ariaHideApp={false} isOpen overlayClassName={s.modalOverlay} className={classNames(s.content, sizeClassName)}>
+        <ReactModal ariaHideApp={false} isOpen overlayClassName={s.modalOverlay} className={classNames(s.content, sizeClassName, className)}>
             {children}
         </ReactModal>
     );
@@ -28,7 +28,8 @@ ModalMobile.propTypes = {
     children: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.node),
         PropTypes.node
-    ])
+    ]),
+    className: PropTypes.string
 };
 
 export default ModalMobile;

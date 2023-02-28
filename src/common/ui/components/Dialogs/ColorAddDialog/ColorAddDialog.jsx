@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+import s from './ColorAddDialog.module.scss';
 import Modal from '../../Modal';
 import ModalHeader from '../../Modal/components/ModalHeader/ModalHeader';
 import ModalContent from '../../Modal/components/ModalContent/ModalContent';
@@ -9,6 +10,7 @@ import { COLOR_ADD_DIALOG_DICTIONARY } from './ColorAddDialog.dictionary';
 import { ColorContent } from './components/ColorContent';
 import { ColorAddProvider } from './contexts/ColorAddContext';
 import { colorReducer } from './store/colorReducer';
+import { useDeviceTypeContext } from '../../../contexts/DeviceType';
 
 const {
     CANCEL,
@@ -17,6 +19,8 @@ const {
 } = COLOR_ADD_DIALOG_DICTIONARY;
 
 const ColorAddDialog = ({ onClose, updateSettings, settingsList, editingModel, setEditingModel }) => {
+    const { isMobile } = useDeviceTypeContext();
+
     const [state, dispatch] = useReducer(colorReducer, editingModel ? editingModel : {
         name: '',
         firstColor: '#fff',
@@ -55,7 +59,7 @@ const ColorAddDialog = ({ onClose, updateSettings, settingsList, editingModel, s
 
     return (
         <ColorAddProvider value={{ state, dispatch, handleSave }}>
-            <Modal size={'sm'}>
+            <Modal size={ isMobile ? 'fs' : 'sm' } className={s.modal}>
                 <ModalHeader title={TITLE} onClose={handleClose}/>
                 <ModalContent>
                     <ColorContent/>
