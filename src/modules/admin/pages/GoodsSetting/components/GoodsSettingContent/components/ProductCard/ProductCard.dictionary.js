@@ -1,0 +1,5 @@
+export const PRODUCT_CARD_DICTIONARY = {
+    PRODUCT_CARD_COLOR_TITLE: 'Цвeта',
+    PRODUCT_CARD_SIZE_TITLE: 'Размеры',
+    PRODUCT_CARD_CATEGORY_TITLE: 'Категория',
+};

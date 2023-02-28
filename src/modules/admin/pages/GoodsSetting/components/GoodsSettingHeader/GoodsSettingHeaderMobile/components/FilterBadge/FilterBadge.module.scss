@@ -1,0 +1,11 @@
+@import "../../../../../../../../../common/ui/styles/media-sizes";
+@import "../../../../../../../../../common/ui/styles/font-sizes";
+@import "../../../../../../../../../common/ui/styles/colors";
+
+.FilterBadge {
+  display: flex;
+  background-color: $light-gray;
+  padding: 4px;
+  width: fit-content;
+  align-items: center;
+}

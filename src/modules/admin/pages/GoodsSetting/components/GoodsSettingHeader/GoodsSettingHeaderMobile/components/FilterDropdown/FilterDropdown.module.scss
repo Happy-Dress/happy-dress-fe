@@ -1,0 +1,43 @@
+@import "../../../../../../../../../common/ui/styles/media-sizes";
+@import "../../../../../../../../../common/ui/styles/font-sizes";
+@import "../../../../../../../../../common/ui/styles/colors";
+@import "../../../../../../../../../common/ui/styles/variables";
+
+.FilterDropdown {
+  width: 100%;
+  background-color: #eaeaea;
+  border: 1px solid $light-gray;
+  min-height: 56px;
+  cursor: pointer;
+  .currentFilter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    p {
+      margin-left: 20px;
+      font-size: $font-size-medium-16;
+    }
+
+    svg {
+      width: 12px;
+      height: 6px;
+      margin-right: 26px;
+      transition: transform $animation-duration;
+
+      &.active {
+        transform: scaleY(-1);
+        path {
+          stroke: $brown;
+        }
+      }
+    }
+  }
+
+  .options {
+    width: 100%;
+    transition: height $animation-duration;
+    overflow-y: hidden;
+    height: 0;
+  }
+}
