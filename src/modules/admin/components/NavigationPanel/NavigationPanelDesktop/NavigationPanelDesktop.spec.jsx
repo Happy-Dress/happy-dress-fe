@@ -3,9 +3,9 @@ import { screen, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import  CatalogSetting  from '../../../pages/CatalogSettings/CatalogSettings';
-import  BlogSetting  from '../../../pages/BlogSetting/BlogSetting';
+import  BlogSettings  from '../../../pages/BlogSettings/BlogSettings';
 import  RegistrationSetting  from '../../../pages/RegistrationSetting/RegistrationSetting';
-import  GoodsSetting  from '../../../pages/GoodsSetting/GoodsSetting';
+import  ProductSettings from '../../../pages/ProductSettings';
 import  NavigationPanelDesktop  from './NavigationPanelDesktop';
 import SignIn from '../../../pages/SignIn/';
 
@@ -15,19 +15,19 @@ export const renderWithRouter = (component) => {
             {component}
             <Routes>
                 <Route
-                    path="/admin/panel/catalog-setting"
+                    path="/admin/panel/catalog-settings"
                     element={<CatalogSetting />}
                 />
                 <Route
-                    path="/admin/panel/blog-setting"
-                    element={<BlogSetting />}
+                    path="/admin/panel/blog-settings"
+                    element={<BlogSettings />}
                 />
                 <Route
-                    path="/admin/panel/goods-setting"
-                    element={<GoodsSetting />}
+                    path="/admin/panel/products-settings"
+                    element={<ProductSettings />}
                 />
                 <Route
-                    path="/admin/panel/registration-setting"
+                    path="/admin/panel/registration-settings"
                     element={<RegistrationSetting />}
                 />
                 <Route path="/admin" element={<SignIn />}/>
@@ -37,7 +37,7 @@ export const renderWithRouter = (component) => {
 };
 
 
-jest.mock('../../../pages/BlogSetting/BlogSetting', () => ({
+jest.mock('../../../pages/BlogSettings/BlogSettings', () => ({
     __esModule: true,
     default: () => {
         return <div data-testid="blog-page"/>;
@@ -51,7 +51,7 @@ jest.mock('../../../pages/CatalogSettings/CatalogSettings', () => ({
     },
 }));
 
-jest.mock('../../../pages/GoodsSetting/GoodsSetting', () => ({
+jest.mock('../../../pages/ProductSettings', () => ({
     __esModule: true,
     default: () => {
         return <div data-testid="goods-page"/>;

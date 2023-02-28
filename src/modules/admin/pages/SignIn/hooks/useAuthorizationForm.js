@@ -40,7 +40,7 @@ const useAuthorizationForm = () => {
         try {
             const token = await authenticateUser(credentials);
             localStorage.setItem('Authorization', `Bearer ${token}`);
-            navigate('/admin/panel/catalog-setting');
+            navigate('/admin/panel/catalog-settings');
             showToasterSuccess(SUCCESS_SING_IN);
         } catch (message) {
             showToasterError(message);

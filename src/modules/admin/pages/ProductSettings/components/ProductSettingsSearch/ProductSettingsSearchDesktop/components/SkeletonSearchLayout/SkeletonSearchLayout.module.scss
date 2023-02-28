@@ -1,0 +1,25 @@
+.SkeletonSearchLayout{
+  height: 72px;
+  margin: 0 147px 0 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 75px;
+  @media screen and (max-width: 1410px) {
+    gap: 25px;
+  }
+}
+
+.skeletonCategory {
+  width: 108px;
+  height: 21px;
+  background: linear-gradient(270deg, rgba(219, 219, 219, 0.05) 0%, #DBDBDB 50%);
+  animation: background 2s infinite alternate;
+}
+
+@keyframes background {
+  100% {
+    background-position: 300px 0;
+  }
+}

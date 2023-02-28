@@ -1,0 +1,12 @@
+@import "../../../../../../common/ui/styles/colors";
+@import "../../../../../../common/ui/styles/media-sizes";
+
+.ProductCardAdd {
+  width: 330px;
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: $shadow-black;
+  cursor: pointer;
+}
