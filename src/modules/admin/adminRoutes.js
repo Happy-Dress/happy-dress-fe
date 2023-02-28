@@ -1,5 +1,5 @@
 
-export const ADMIN_PANEL_ROUTES = { 
+export const ADMIN_PANEL_ROUTES = {
     ROUTES:[
         '/admin/panel/catalog-setting',
         '/admin/panel/goods-setting',
