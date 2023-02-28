@@ -32,4 +32,15 @@
   padding: 20px;
   height: fit-content;
   z-index: 10000;
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    background-color: $light-gray;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: $gray;
+    width: 8px;
+    height: 70%;
+  }
 }

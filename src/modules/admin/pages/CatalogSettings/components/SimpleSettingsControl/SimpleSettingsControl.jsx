@@ -166,7 +166,10 @@ export const SimpleSettingsControl = ({ updateSettings, settingsList, ModalCompo
 SimpleSettingsControl.propTypes = {
     settingsList: PropTypes.array.isRequired,
     updateSettings: PropTypes.func.isRequired,
-    ModalComponent: PropTypes.func
+    ModalComponent: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.element
+    ])
 };
 
 

@@ -3,6 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import SimpleSettingsControl from './index';
 import userEvent from '@testing-library/user-event';
 import { ModalProvider } from 'react-modal-hook';
+import { ColorAddDialog } from '../../../../../../common/ui/components/Dialogs';
 
 const mockUpdateSettings = jest.fn();
 
@@ -11,6 +12,11 @@ const mockModel = {
     name: 'Прямое',
     orderNumber: 0
 };
+
+jest.mock('../../../../../../common/ui/components/Dialogs/ColorAddDialog/ColorAddDialog', () => ({
+    __esModule: true,
+    default: () => <div>Модалка</div>
+}));
 
 jest.mock('../SettingsList', () => ({
     __esModule: true,
@@ -61,6 +67,22 @@ describe('SimpleSettingsControl', () =>{
         expect(cancelButton).not.toBeInTheDocument();
     });
 
+    it('should start edit with modal', async () =>{
+        render(<SimpleSettingsControl
+            updateSettings={mockUpdateSettings}
+            settingsList={[mockModel]}
+            ModalComponent={ColorAddDialog}/>, { wrapper: ModalProvider }
+        );
+        expect(screen.queryByText('Модалка')).not.toBeInTheDocument();
+        const button = screen.getByRole('button', {
+            name: /Edit/i
+        });
+        await waitFor(() =>{
+            userEvent.click(button);
+        });
+        expect(screen.getByText('Модалка')).toBeInTheDocument();
+    });
+
 
 
     it('should start edit and save', async () =>{
@@ -92,6 +114,22 @@ describe('SimpleSettingsControl', () =>{
             name: /Отмена/i
         });
         expect(cancelButton).toBeInTheDocument();
+    });
+
+    it('should handle add with modal', async () =>{
+        render(<SimpleSettingsControl
+            updateSettings={mockUpdateSettings}
+            settingsList={[mockModel]}
+            ModalComponent={ColorAddDialog}/>, { wrapper: ModalProvider }
+        );
+        expect(screen.queryByText('Модалка')).not.toBeInTheDocument();
+        const button = screen.getByRole('button', {
+            name: '+Добавить'
+        });
+        await waitFor(() =>{
+            userEvent.click(button);
+        });
+        expect(screen.getByText('Модалка')).toBeInTheDocument();
     });
 
     it('should handle select setting and delete them', async () =>{

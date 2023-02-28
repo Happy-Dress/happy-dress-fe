@@ -1,7 +1,8 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import CatalogSetting from './index';
 import { ModalProvider } from 'react-modal-hook';
+import userEvent from '@testing-library/user-event';
 
 jest.mock('./components/SettingDropDown', ()=>({
     __esModule: true,
@@ -33,5 +34,23 @@ describe('CatalogSettings', () => {
         expect(dropDown.length).toBe(4);
         expect(btnSave).toBeInTheDocument();
         expect(btnCancel).toBeInTheDocument();
+    });
+
+    it('should render modal', async () => {
+        await waitFor(() =>{
+            render(
+                <ModalProvider>
+                    <CatalogSetting />
+                </ModalProvider>
+            );
+        });
+
+        expect(screen.getByText('Отмена').classList.length).toBe(1);
+
+        await act(() => {
+            userEvent.click(screen.getByText('Отмена'));
+        });
+
+        expect(screen.getByText('Отмена').classList.length).toBe(2);
     });
 });

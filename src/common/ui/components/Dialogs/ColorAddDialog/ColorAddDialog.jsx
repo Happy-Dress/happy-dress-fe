@@ -15,7 +15,8 @@ import { useDeviceTypeContext } from '../../../contexts/DeviceType';
 const {
     CANCEL,
     SAVE,
-    TITLE
+    TITLE,
+    EDITING_TITLE
 } = COLOR_ADD_DIALOG_DICTIONARY;
 
 const ColorAddDialog = ({ onClose, updateSettings, settingsList, editingModel, setEditingModel }) => {
@@ -26,7 +27,6 @@ const ColorAddDialog = ({ onClose, updateSettings, settingsList, editingModel, s
         firstColor: '#fff',
         secondColor: null
     });
-
     const handleSave = () => {
         if(!editingModel) {
             updateSettings([...settingsList.map((item, index) => {
@@ -58,9 +58,9 @@ const ColorAddDialog = ({ onClose, updateSettings, settingsList, editingModel, s
     };
 
     return (
-        <ColorAddProvider value={{ state, dispatch, handleSave }}>
-            <Modal size={ isMobile ? 'fs' : 'sm' } className={s.modal}>
-                <ModalHeader title={TITLE} onClose={handleClose}/>
+        <ColorAddProvider value={{ state, dispatch, handleSave }} >
+            <Modal size={ isMobile ? 'fs' : 'sm' } className={s.modal} data-testid={'ColorAddDialog'}>
+                <ModalHeader title={editingModel ? EDITING_TITLE : TITLE} onClose={handleClose}/>
                 <ModalContent>
                     <ColorContent/>
                 </ModalContent>

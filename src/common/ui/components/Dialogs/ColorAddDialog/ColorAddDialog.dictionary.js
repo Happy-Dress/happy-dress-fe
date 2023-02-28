@@ -3,5 +3,6 @@ export const COLOR_ADD_DIALOG_DICTIONARY = {
     FEW_COLORS: 'Несколько цветов',
     CANCEL: 'Отмена',
     SAVE: 'Сохранить',
-    PLACEHOLDER: 'Название'
+    PLACEHOLDER: 'Название',
+    EDITING_TITLE: 'Редактирование цвета'
 };
