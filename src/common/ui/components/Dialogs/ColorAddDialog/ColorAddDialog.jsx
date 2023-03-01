@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import s from './ColorAddDialog.module.scss';
 import Modal from '../../Modal';
 import ModalHeader from '../../Modal/components/ModalHeader/ModalHeader';
@@ -11,7 +11,6 @@ import { ColorContent } from './components/ColorContent';
 import { ColorAddProvider } from './contexts/ColorAddContext';
 import { colorReducer } from './store/colorReducer';
 import { useDeviceTypeContext } from '../../../contexts/DeviceType';
-import { useToasters } from '../../../contexts/ToastersContext';
 
 const {
     CANCEL,
@@ -30,11 +29,12 @@ const ColorAddDialog = ({ onClose, updateSettings, settingsList, editingModel, s
         secondColor: null
     });
 
-    const { showToasterError } = useToasters();
+    const [error, setError] = useState(null);
+
 
     const handleSave = () => {
         if(settingsList.filter(item => item.name === state.name).length) {
-            showToasterError(ALREADY_EXISTS);
+            setError(ALREADY_EXISTS);
             return;
         }
 
@@ -67,16 +67,22 @@ const ColorAddDialog = ({ onClose, updateSettings, settingsList, editingModel, s
         onClose();
     };
 
+    useEffect(() => {
+        if(error) {
+            setError(null);
+        }
+    }, [state.name]);
+
     return (
         <ColorAddProvider value={{ state, dispatch, handleSave }} >
             <Modal size={ isMobile ? 'fs' : 'sm' } className={s.modal} data-testid={'ColorAddDialog'}>
                 <ModalHeader title={editingModel ? EDITING_TITLE : TITLE} onClose={handleClose}/>
                 <ModalContent>
-                    <ColorContent/>
+                    <ColorContent error={error}/>
                 </ModalContent>
                 <ModalFooter actionButtons={[
                     <ButtonDefault key={1} text={CANCEL} onClick={handleClose}/>,
-                    <ButtonAccent key={0} text={SAVE} onClick={handleSave} disabled={!state.name}/>,
+                    <ButtonAccent key={0} text={SAVE} onClick={handleSave} disabled={!state.name || !!error}/>,
                 ]}/>
             </Modal>
         </ColorAddProvider>
