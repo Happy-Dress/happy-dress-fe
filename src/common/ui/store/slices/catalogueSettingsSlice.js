@@ -12,13 +12,11 @@ const initialState = {
     }
 };
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const fetchCatalogueSettings = createAsyncThunk(
     'catalogueSettings/fetch',
     async () =>{
-        await sleep(3000);
-        return await retrieveCatalogueSettings();
+        return  await retrieveCatalogueSettings();
     }
 );
 

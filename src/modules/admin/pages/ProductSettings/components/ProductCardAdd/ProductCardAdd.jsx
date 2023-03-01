@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import s from './ProductCardAdd.module.scss';
-import { ReactComponent as AddIconNormal } from '../../.././../../../common/assets/images/AddIconNormal.svg';
-import { ReactComponent as AddIconHover } from '../../.././../../../common/assets/images/AddIconHover.svg';
+import { ReactComponent as AddIconNormal } from '../../../../../../common/assets/images/AddIconNormal.svg';
+import { ReactComponent as AddIconHover } from '../../../../../../common/assets/images/AddIconHover.svg';
 
 const ProductCardAdd = () => {
     const [isHover, setIsHover] = useState(false);
