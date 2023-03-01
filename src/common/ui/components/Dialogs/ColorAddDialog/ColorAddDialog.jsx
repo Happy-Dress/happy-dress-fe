@@ -27,6 +27,7 @@ const ColorAddDialog = ({ onClose, updateSettings, settingsList, editingModel, s
         firstColor: '#fff',
         secondColor: null
     });
+
     const handleSave = () => {
         if(!editingModel) {
             updateSettings([...settingsList.map((item, index) => {
