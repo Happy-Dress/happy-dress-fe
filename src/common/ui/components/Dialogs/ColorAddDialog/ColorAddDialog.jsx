@@ -11,12 +11,14 @@ import { ColorContent } from './components/ColorContent';
 import { ColorAddProvider } from './contexts/ColorAddContext';
 import { colorReducer } from './store/colorReducer';
 import { useDeviceTypeContext } from '../../../contexts/DeviceType';
+import { useToasters } from '../../../contexts/ToastersContext';
 
 const {
     CANCEL,
     SAVE,
     TITLE,
-    EDITING_TITLE
+    EDITING_TITLE,
+    ALREADY_EXISTS
 } = COLOR_ADD_DIALOG_DICTIONARY;
 
 const ColorAddDialog = ({ onClose, updateSettings, settingsList, editingModel, setEditingModel }) => {
@@ -28,7 +30,14 @@ const ColorAddDialog = ({ onClose, updateSettings, settingsList, editingModel, s
         secondColor: null
     });
 
+    const { showToasterError } = useToasters();
+
     const handleSave = () => {
+        if(settingsList.filter(item => item.name === state.name).length) {
+            showToasterError(ALREADY_EXISTS);
+            return;
+        }
+
         if(!editingModel) {
             updateSettings([...settingsList.map((item, index) => {
                 item.orderNumber = index;
