@@ -31,8 +31,8 @@ const ColorContent = ({ error }) => {
     const [secondColor, setSecondColor] = useState(state.secondColor ?? '#000');
 
     const changeNameHandler = (e) => {
-        setName(e.target.value);
-        dispatch({ type: COLOR_ADD_ACTIONS.ADD_NAME, payload: e.target.value });
+        setName(e.target.value.trim());
+        dispatch({ type: COLOR_ADD_ACTIONS.ADD_NAME, payload: e.target.value.trim() });
     };
 
     const rgbaFirstString = useMemo(() => {
