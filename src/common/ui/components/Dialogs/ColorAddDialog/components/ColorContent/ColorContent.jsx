@@ -12,6 +12,8 @@ import { COLOR_ADD_DIALOG_DICTIONARY } from '../../ColorAddDialog.dictionary';
 
 import { colord, extend } from 'colord';
 import namesPlugin from 'colord/plugins/names';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 extend([namesPlugin]);
 
 const {
@@ -19,7 +21,7 @@ const {
     PLACEHOLDER
 } = COLOR_ADD_DIALOG_DICTIONARY;
 
-const ColorContent = () => {
+const ColorContent = ({ error }) => {
     const { state, dispatch } = useColorAddContext();
 
     const [name, setName] = useState(state.name ?? '');
@@ -29,8 +31,8 @@ const ColorContent = () => {
     const [secondColor, setSecondColor] = useState(state.secondColor ?? '#000');
 
     const changeNameHandler = (e) => {
-        setName(e.target.value);
-        dispatch({ type: COLOR_ADD_ACTIONS.ADD_NAME, payload: e.target.value });
+        setName(e.target.value.trim());
+        dispatch({ type: COLOR_ADD_ACTIONS.ADD_NAME, payload: e.target.value.trim() });
     };
 
     const rgbaFirstString = useMemo(() => {
@@ -66,10 +68,11 @@ const ColorContent = () => {
                 <input
                     type="text"
                     placeholder={PLACEHOLDER}
-                    className={s.colorName}
+                    className={classNames(s.colorName, error && s.error)}
                     value={name}
                     onChange={changeNameHandler}
                 />
+                { error && <span className={s.error}>{error}</span>}
                 <ColorPicker
                     color={firstColor}
                     setColor={setFirstColor}
@@ -86,6 +89,10 @@ const ColorContent = () => {
             </div>
         </div>
     );
+};
+
+ColorContent.propTypes = {
+    error: PropTypes.string
 };
 
 export default ColorContent;

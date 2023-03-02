@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import s from './ColorAddDialog.module.scss';
 import Modal from '../../Modal';
 import ModalHeader from '../../Modal/components/ModalHeader/ModalHeader';
@@ -16,7 +16,8 @@ const {
     CANCEL,
     SAVE,
     TITLE,
-    EDITING_TITLE
+    EDITING_TITLE,
+    ALREADY_EXISTS
 } = COLOR_ADD_DIALOG_DICTIONARY;
 
 const ColorAddDialog = ({ onClose, updateSettings, settingsList, editingModel, setEditingModel }) => {
@@ -28,7 +29,15 @@ const ColorAddDialog = ({ onClose, updateSettings, settingsList, editingModel, s
         secondColor: null
     });
 
+    const [error, setError] = useState(null);
+
+
     const handleSave = () => {
+        if(settingsList.filter(item => item.name === state.name).length) {
+            setError(ALREADY_EXISTS);
+            return;
+        }
+
         if(!editingModel) {
             updateSettings([...settingsList.map((item, index) => {
                 item.orderNumber = index;
@@ -58,16 +67,22 @@ const ColorAddDialog = ({ onClose, updateSettings, settingsList, editingModel, s
         onClose();
     };
 
+    useEffect(() => {
+        if(error) {
+            setError(null);
+        }
+    }, [state.name]);
+
     return (
         <ColorAddProvider value={{ state, dispatch, handleSave }} >
             <Modal size={ isMobile ? 'fs' : 'sm' } className={s.modal} data-testid={'ColorAddDialog'}>
                 <ModalHeader title={editingModel ? EDITING_TITLE : TITLE} onClose={handleClose}/>
                 <ModalContent>
-                    <ColorContent/>
+                    <ColorContent error={error}/>
                 </ModalContent>
                 <ModalFooter actionButtons={[
                     <ButtonDefault key={1} text={CANCEL} onClick={handleClose}/>,
-                    <ButtonAccent key={0} text={SAVE} onClick={handleSave} disabled={!state.name}/>,
+                    <ButtonAccent key={0} text={SAVE} onClick={handleSave} disabled={!state.name || !!error}/>,
                 ]}/>
             </Modal>
         </ColorAddProvider>

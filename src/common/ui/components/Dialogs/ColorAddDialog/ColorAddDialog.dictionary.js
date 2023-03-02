@@ -4,5 +4,6 @@ export const COLOR_ADD_DIALOG_DICTIONARY = {
     CANCEL: 'Отмена',
     SAVE: 'Сохранить',
     PLACEHOLDER: 'Название',
-    EDITING_TITLE: 'Редактирование цвета'
+    EDITING_TITLE: 'Редактирование цвета',
+    ALREADY_EXISTS: 'Данный цвет уже существует'
 };
