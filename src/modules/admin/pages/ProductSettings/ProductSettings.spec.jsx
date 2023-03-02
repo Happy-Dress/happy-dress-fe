@@ -20,6 +20,11 @@ describe('ProductSettings', () =>{
         mockAxios.reset();
     });
 
+    beforeAll(() => {
+        jest.useFakeTimers();
+    });
+
+
 
     it('should load settings and catalogue items', async () =>{
         renderWithStore(<ProductSettings/>);
