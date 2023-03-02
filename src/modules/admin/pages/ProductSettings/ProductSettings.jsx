@@ -1,5 +1,5 @@
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
 import { fetchCatalogueSettings } from '../../../../common/ui/store/slices/catalogueSettingsSlice';
 import ProductsSettingsSearch from './components/ProductSettingsSearch';
 import ProductsList from './components/ProductsList';

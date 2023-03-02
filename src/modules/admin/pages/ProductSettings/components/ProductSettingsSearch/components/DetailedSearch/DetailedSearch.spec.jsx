@@ -1,4 +1,4 @@
-import renderWithStore from '../../../../../../../../common/util/renderWithStore';
+import renderWithStore from '../../../../../../../../common/util/tests/renderWithStore';
 import DetailedSearch from './DetailedSearch';
 import React from 'react';
 

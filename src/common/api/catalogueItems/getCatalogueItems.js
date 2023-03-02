@@ -13,7 +13,10 @@ const item = {
     imageUrl: testBgImage
 };
 
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
 const getCatalogueItems = async (filters) => {
+    await sleep(1000);
     return await new Promise((resolve) => {
         console.log(filters);
         const arr = [];

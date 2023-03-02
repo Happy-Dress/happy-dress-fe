@@ -1,5 +1,5 @@
 import s from './ProductsList.module.scss';
-import ProductCardAdd from '../../../CatalogSettings/components/ProductCardAdd';
+import ProductCardAdd from '../ProductCardAdd';
 import { useSelector } from 'react-redux';
 import ProductCardSkeleton from '../../../../../../common/ui/components/ProductCard/ProductCardSkeleton';
 import ProductCard from '../../../../../../common/ui/components/ProductCard/ProductCard';

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import getCatalogueItems from '../../../api/catalogueItems/getCatalogueItems';
+import { getCatalogueItems } from '../../../api';
 import { fetchCatalogueSettings } from './catalogueSettingsSlice';
 
 const initialState = {
@@ -16,12 +16,11 @@ const initialState = {
     products: [],
 };
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const fetchCatalogueItems = createAsyncThunk(
     'productsSearch/fetch',
     async (filters) =>{
-        await sleep(3000);
+
         return await getCatalogueItems(filters);
     }
 );
