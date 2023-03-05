@@ -5,7 +5,6 @@ const initialContext = {
     initialSettings: null,
     updateModels: () => {},
     updateMaterials: () => {},
-    updateCategories: () => {},
     saveSettings: () => {},
     restoreSettings: () => {},
 };

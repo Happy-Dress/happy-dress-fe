@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import {  SIMPLE_SETTINGS_CONTROL_DICTIONARY } from './CategorySettingsControl.dictionary';
 import PropTypes from 'prop-types';
 import { useModal } from 'react-modal-hook';
-import CategoryDialog from '../CategoryDialog';
 
 const MIN_MODEL_NAME_LENGTH = 3;
 const STARTING_ORDER_NUMBER = 0;
@@ -21,116 +20,36 @@ const {
     DUPLICATE_LABEL,
 } = SIMPLE_SETTINGS_CONTROL_DICTIONARY;
 
-const TITLE_1 = 'Добавление категории';
-const TITLE_2 = 'Редактирование категории';
-
-// const Dialog = ({ title }) => {
-//     console.log('Dialog title', title);
-//     return (
-//         <CategoryDialog
-//             // onClose={hideAddModal}
-//             // onSubmit={restoreCategory}
-//             title={title}
-//         />
-//     );
-// };
-//
-// Dialog.propTypes = {
-//     title: PropTypes.string,
-// };
-
-export const CategorySettingsControl = ({ updateSettings, settingsList }) => {
+export const CategorySettingsControl = ({ updateSettings, settingsList, ModalComponent }) => {
 
     const [editingModel, setEditingModel] = useState();
+    const [editingModelModal, setEditingModelModal] = useState(null);
     const [selectedOrderNumbers, setSelectedOrderNumbers] = useState([]);
     const [isExists, setIsExists] = useState(false);
 
-    const restoreCategory = () =>{
-        hideModal();
-        // restoreSettings(() =>{
-        //     showToasterNotification(CHANGES_RESTORED);
-        // });
-        console.log('Submit');
-    };
-
-    const [title, setTitle] = useState(TITLE_1);
-
-    const [showModal, hideModal] = useModal(() => (
-        <CategoryDialog
+    const [showModal, hideModal] = useModal(() => {
+        return <ModalComponent
+            updateSettings={updateSettings}
+            settingsList={settingsList}
+            editingModel={editingModelModal}
+            setEditingModel={setEditingModelModal}
             onClose={hideModal}
-            onSubmit={restoreCategory}
-            title={title}
-        />
-    ));
-
-    const handleAdd = () =>{
-        setTitle(TITLE_2);
-        showModal(); // parameters
-    };
-
-    const handleEdit = async () => {
-        await setTitle('Edit');
-        showModal();
-    };
-
-    // const [showAddModal, hideAddModal] = useModal(() => (
-    //     // <CategoryDialog
-    //     //     onClose={hideAddModal}
-    //     //     onSubmit={restoreCategory}
-    //     //     title={title}
-    //     // />
-    //     <Dialog
-    //         title={title}
-    //     />
-    // ));
-
-    // useEffect(() => {
-    //     const [showAddModal, hideAddModal] = useModal(() => (
-    //         <Dialog
-    //             // title={title}
-    //         />
-    //     ));
-    //
-    //     // return [showAddModal, hideAddModal];
-    // }, [title]);
-
-    // const [showEditModal, hideEditModal] = useModal(() => (
-    //     // <CategoryDialog
-    //     //     onClose={hideEditModal}
-    //     //     onSubmit={restoreCategory}
-    //     //     // title={TITLE_2}
-    //     //     title={title}
-    //     // />
-    //     // <Dialog
-    //     //     title={title}
-    //     // />
-    // ));
-
-    // const showModalWithTitle = (title) => {
-    //     const [showEditModal, hideEditModal] = useModal(() => (
-    //         <CategoryDialog
-    //             onClose={hideEditModal}
-    //             onSubmit={restoreCategory}
-    //             title={title}
-    //         />
-    //     ));
-    //
-    //     showEditModal();
-    //     // return showEditModal();
-    // };
+        />;
+    }, [settingsList, editingModelModal]);
 
     const handleReorder = (reorderedModels) => {
         updateSettings(reorderedModels);
     };
 
-    // const handleEdit = (model) => {
-    //     console.log('edit- to show modal');
-    //     setTitle('Edit');
-    //     showModal();
-    //
-    //     console.log('title', title);
-    //     // await showEditModal();
-    // };
+    const handleEdit = (model) => {
+        if(ModalComponent) {
+            setEditingModelModal(model);
+            showModal();
+            return;
+        }
+
+        setEditingModel(model);
+    };
 
     const handleSave = () => {
         const modelOrderNumber = editingModel.orderNumber;
@@ -151,8 +70,18 @@ export const CategorySettingsControl = ({ updateSettings, settingsList }) => {
         setEditingModel(null);
     };
 
+
     const handleCancel = () => {
         setEditingModel(null);
+    };
+
+    const handleAdd = () =>{
+        if(ModalComponent) {
+            showModal();
+            return;
+        }
+
+        setEditingModel({ name: EMPTY_NAME });
     };
 
     const handleSelect = (model) => {
@@ -188,11 +117,21 @@ export const CategorySettingsControl = ({ updateSettings, settingsList }) => {
 
     return (
         <div className={s.ModelSettings}>
+            <input
+                maxLength={MAX_MODEL_NAME_LENGTH}
+                onChange={handleInputChange}
+                value={editingModel?.name || EMPTY_NAME}
+                className={classNames(
+                    s.settingInput,
+                    isExists ? s.settingInputDirty : '',
+                    editingModel? s.inputControlVisible : s.inputControlHidden
+                )}
+            />
+            <p hidden={!isExists} className={s.duplicateField}>{DUPLICATE_LABEL}</p>
             <button onClick={handleAdd}
                 className={classNames(
-                    s.addButton, 
-                )}
-            >
+                    s.addButton,
+                    editingModel? s.inputControlHidden: s.inputControlVisible)}>
                 {ADD_BUTTON_LABEL}
             </button>
 
@@ -229,6 +168,10 @@ export const CategorySettingsControl = ({ updateSettings, settingsList }) => {
 CategorySettingsControl.propTypes = {
     settingsList: PropTypes.array.isRequired,
     updateSettings: PropTypes.func.isRequired,
+    ModalComponent: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.element
+    ]),
 };
 
 export default CategorySettingsControl;
