@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const addImage = async (file) => {
     const formData = new FormData();
-    formData.append('image', file);
+    formData.append('files', file);
     const res = await axios.post('images/upload', formData, {
         headers: {
             'Accept': '*/*',
