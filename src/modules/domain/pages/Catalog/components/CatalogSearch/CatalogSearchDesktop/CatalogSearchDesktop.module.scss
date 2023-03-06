@@ -1,0 +1,35 @@
+@import '../../../../../../../common/ui/styles/font-sizes';
+@import '../../../../../../../common/ui/styles/colors';
+
+.CatalogSearchDesktop{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  grid-area: header;
+
+  .detailedSearch {
+    z-index: 2;
+    align-items: center;
+    height: 56px;
+    grid-template-columns: 1.5fr 0.5fr;
+    gap: 1.5%;
+    display: grid;
+
+    &_dropdownsWrapper {
+      display: flex;
+      gap: 1.5%;
+    }
+  }
+
+  &_searchBarWrapper{
+    height: auto;
+    margin-top: 10px;
+    align-items: center;
+    gap: 15px;
+    min-height: 72px;
+    width: 100%;
+    svg {
+      cursor: pointer;
+    }
+  }
+}

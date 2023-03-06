@@ -1,0 +1,19 @@
+@import "../../../../common/ui/styles/media-sizes";
+
+.Catalog {
+  display: grid;
+  column-gap: 30px;
+  row-gap: 40px;
+  padding: 0 6%;
+  grid-template-columns: 0.25fr 1fr;
+  grid-template-areas:
+  '. header'
+  'sidebar content';
+
+  @media screen and (max-width: $lg-size) {
+    grid-template-areas:
+    'header'
+    'content';
+    grid-template-columns: 1fr;
+  }
+}
