@@ -1,0 +1,45 @@
+@import '../../../../../../../common/ui/styles/font-sizes';
+@import '../../../../../../../common/ui/styles/colors';
+
+.ProductsSettingsSearchMobile{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  &_simpleOption{
+    margin-left: 10px;
+  }
+  &_detailedSearchWrapper{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px;
+    gap: 5px;
+  }
+  &_heading {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto 30px;
+    padding: 0 20px 20px;
+    border-bottom: 1px solid $brown;
+    text-align: center;
+  }
+
+  &_searchBar{
+    display: grid;
+    grid-template-columns: 1fr 100px;
+    height: 72px;
+    align-items: center;
+    gap: 15px;
+    margin-left: 30px;
+    svg {
+      cursor: pointer;
+    }
+  }
+  &_cross {
+    display: flex;
+    align-items: center;
+    svg {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}

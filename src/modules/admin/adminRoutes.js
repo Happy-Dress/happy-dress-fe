@@ -1,9 +1,10 @@
 
-export const ADMIN_PANEL_ROUTES = { 
+export const ADMIN_PANEL_ROUTES = {
     ROUTES:[
-        '/admin/panel/catalog-setting',
-        '/admin/panel/goods-setting',
-        '/admin/panel/registration-setting',
-        '/admin/panel/blog-setting',
+        '/admin/panel/catalog-settings',
+        '/admin/panel/products-settings',
+        '/admin/panel/registration-settings',
+        '/admin/panel/blog-settings',
     ],
-    SIGN_IN: '/admin' };
+    SIGN_IN: '/admin'
+};

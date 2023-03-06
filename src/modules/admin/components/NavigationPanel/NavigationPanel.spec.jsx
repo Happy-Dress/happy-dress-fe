@@ -3,8 +3,8 @@ import { screen, render, waitFor } from '@testing-library/react';
 import NavigationPanel from './NavigationPanel';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import CatalogSetting from '../../pages/CatalogSettings/CatalogSettings';
-import BlogSetting from '../../pages/BlogSetting';
-import GoodsSetting from '../../pages/GoodsSetting';
+import BlogSetting from '../../pages/BlogSettings';
+import ProductSettings from '../../pages/ProductSettings';
 import RegistrationSetting from '../../pages/RegistrationSetting';
 import SignIn from '../../pages/SignIn';
 
@@ -29,7 +29,7 @@ export const renderWithRouter = (component) => {
                 />
                 <Route
                     path="/admin/panel/goods-setting"
-                    element={<GoodsSetting />}
+                    element={<ProductSettings />}
                 />
                 <Route
                     path="/admin/panel/registration-setting"

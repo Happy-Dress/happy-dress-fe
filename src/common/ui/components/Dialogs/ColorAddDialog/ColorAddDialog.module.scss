@@ -1,0 +1,7 @@
+@import "../../../styles/media-sizes";
+
+@media screen and (max-width: calc($lg-size - 1px)) {
+  .modal {
+    height: calc(var(--vh, 1vh) * 100);
+  }
+}

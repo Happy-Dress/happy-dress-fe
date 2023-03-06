@@ -5,21 +5,25 @@ import { Admin } from '../../../../modules';
 import { DeviceTypeProvider } from '../../contexts/DeviceType';
 import ToastersProvider from '../../contexts/ToastersContext';
 import { ModalProvider } from 'react-modal-hook';
+import { Provider } from 'react-redux';
+import { store } from '../../store/store';
 
 const App = () => {
 
     return (
-        <DeviceTypeProvider>
-            <ToastersProvider>
-                <ModalProvider>
-                    <Routes>
-                        <Route path="/" element={<Navigate to="domain"/>}/>
-                        <Route path="/admin/*" element={<Admin/>}/>
-                        <Route path="/domain/*" element={<Domain/>}/>
-                    </Routes>
-                </ModalProvider>
-            </ToastersProvider>
-        </DeviceTypeProvider>
+        <Provider store={store}>
+            <DeviceTypeProvider>
+                <ToastersProvider>
+                    <ModalProvider>
+                        <Routes>
+                            <Route path="/" element={<Navigate to="domain"/>}/>
+                            <Route path="/admin/*" element={<Admin/>}/>
+                            <Route path="/domain/*" element={<Domain/>}/>
+                        </Routes>
+                    </ModalProvider>
+                </ToastersProvider>
+            </DeviceTypeProvider>
+        </Provider>
     );
 };
 

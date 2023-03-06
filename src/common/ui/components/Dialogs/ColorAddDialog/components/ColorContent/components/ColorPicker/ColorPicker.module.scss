@@ -1,0 +1,12 @@
+@import "../../../../../../../styles/font-sizes";
+
+.ColorPicker {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  &Value {
+    padding: 6px 4px;
+    background-color: #fff;
+    font-size: $font-size-xmedium-18;
+  }
+}

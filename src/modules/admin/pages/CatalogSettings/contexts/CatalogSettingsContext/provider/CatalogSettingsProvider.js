@@ -19,6 +19,7 @@ const CatalogSettingsProvider = (props) => {
         models: [],
         materials: [],
         categories: [],
+        colors: []
     });
 
     const restoreSettings = (afterRestore) => {
@@ -44,8 +45,13 @@ const CatalogSettingsProvider = (props) => {
         setCatalogSettings(prevState => ({ ...prevState, materials }));
     };
 
+
     const updateCategories = (categories) => {
         setCatalogSettings(prevState => ({ ...prevState, categories }));
+    };
+
+    const updateColors = (colors) => {
+        setCatalogSettings(prevState => ({ ...prevState, colors  }));
     };
 
     const saveSettings = () => {
@@ -73,6 +79,7 @@ const CatalogSettingsProvider = (props) => {
             updateModels,
             updateMaterials,
             updateCategories,
+            updateColors,
             saveSettings,
             initialSettings: initialCatalogSettings,
             restoreSettings

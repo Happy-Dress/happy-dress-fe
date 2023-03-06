@@ -5,7 +5,7 @@ import NavigationPanelMobile from './NavigationPanelMobile';
 import { renderWithRouter } from '../NavigationPanelDesktop/NavigationPanelDesktop.spec';
 import userEvent from '@testing-library/user-event';
 
-jest.mock('../../../pages/BlogSetting/BlogSetting', () => ({
+jest.mock('../../../pages/BlogSettings/BlogSettings', () => ({
     __esModule: true,
     default: () => {
         return <div data-testid="blog-page"/>;
@@ -19,7 +19,7 @@ jest.mock('../../../pages/CatalogSettings/CatalogSettings', () => ({
     },
 }));
 
-jest.mock('../../../pages/GoodsSetting/GoodsSetting', () => ({
+jest.mock('../../../pages/ProductSettings/ProductSettings', () => ({
     __esModule: true,
     default: () => {
         return <div data-testid="goods-page"/>;

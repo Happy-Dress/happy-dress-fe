@@ -11,6 +11,7 @@ import CategorySettings from './components/CategorySettings';
 import { useModal } from 'react-modal-hook';
 import { LeaveConfirmationDialog } from '../../../../common/ui/components/Dialogs';
 import { useToasters } from '../../../../common/ui/contexts/ToastersContext';
+import { ColorSettings } from './components/ColorSettings';
 
 const {
     CATEGORIES_SETTINGS_NAME,
@@ -28,7 +29,6 @@ const CatalogSettings = () => {
 
     const { saveSettings, initialSettings, settings, restoreSettings } = useCatalogSettings();
     const { showToasterNotification } = useToasters();
-
 
     const restoreCatalogSettings = () =>{
         hideModal();
@@ -57,7 +57,7 @@ const CatalogSettings = () => {
             name: CATEGORIES_SETTINGS_NAME,
         },
         {
-            element: <div>Настройки цветов</div>,
+            element: <ColorSettings/>,
             name: COLORS_SETTINGS_NAME,
         },
         {
