@@ -2,6 +2,7 @@ import React from 'react';
 import s from './CatalogSearchDesktop.module.scss';
 import SearchBar from '../components/SearchBar/SearchBar';
 import DetailedSearch from '../components/DetailedSearch/DetailedSearch';
+import CurrentFilters from '../components/CurrentFilters/CurrentFilters';
 
 const CatalogSearchDesktop = () => {
 
@@ -15,6 +16,7 @@ const CatalogSearchDesktop = () => {
                     <SearchBar/>
                 </div>
             </div>
+            <CurrentFilters />
         </div>
     );
 };

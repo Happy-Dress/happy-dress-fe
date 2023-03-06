@@ -10,11 +10,11 @@ const {
 const initialState = {
     loading: false,
     filters: {
-        categoryId: null,
-        modelIds: [],
-        materialIds: [],
-        colorIds: [],
-        sizeIds: [],
+        category: null,
+        models: [],
+        materials: [],
+        colors: [],
+        sizes: [],
         name: null
     },
     ifFilterOpened: false,
@@ -24,7 +24,7 @@ const initialState = {
 
 const fetchCatalogueItems = createAsyncThunk(
     'productsSearch/fetch',
-    async (filters) =>{
+    async (filters) => {
 
         return await getCatalogueItems(filters);
     }
@@ -36,46 +36,52 @@ export const productsSearchSlice = createSlice({
     initialState,
     reducers: {
         setCategory: (state, action) => {
-            state.filters.categoryId = action.payload;
+            state.filters.category = action.payload;
         },
         selectModel: (state, action) => {
-            state.filters.modelIds = [...state.filters.modelIds, action.payload];
+            state.filters.models = [...state.filters.models, action.payload];
         },
         unSelectModel: (state, action) => {
-            state.filters.modelIds = state.filters.modelIds.filter(id => id !== action.payload);
+            state.filters.models = state.filters.models.filter(id => id !== action.payload);
         },
         selectMaterial: (state, action) => {
-            state.filters.materialIds = [...state.filters.materialIds, action.payload];
+            state.filters.materials = [...state.filters.materials, action.payload];
         },
         unSelectMaterial: (state, action) => {
-            state.filters.materialIds = state.filters.materialIds.filter(id => id !== action.payload);
+            state.filters.materials = state.filters.materials.filter(id => id !== action.payload);
         },
         selectColor: (state, action) => {
-            state.filters.colorIds = [...state.filters.colorIds, action.payload];
+            state.filters.colors = [...state.filters.colors, action.payload];
         },
         unSelectColor: (state, action) => {
-            state.filters.colorIds = state.filters.colorIds.filter(id => id !== action.payload);
+            state.filters.colors = state.filters.colors.filter(id => id !== action.payload);
         },
         selectSize: (state, action) => {
-            state.filters.sizeIds = [...state.filters.sizeIds, action.payload];
+            state.filters.sizes = [...state.filters.sizes, action.payload];
         },
         unSelectSize: (state, action) => {
-            state.filters.sizeIds = state.filters.sizeIds.filter(id => id !== action.payload);
+            state.filters.sizes = state.filters.sizes.filter(id => id !== action.payload);
+        },
+        unSelectFilter: (state, action) => {
+            state.filters[action.payload.type] = state.filters[action.payload.type].filter(id => id !== action.payload.id);
         },
 
-        dropFilters: state => {
-            state.filters = initialState.filters;
+        dropFilters: (state, action) => {
+            state.filters = {
+                ...initialState.filters,
+                category: action.payload.categories.find(item => item.name === BASIC_CATEGORY_NAME).id
+            };
         },
         toggleFilter: state => {
             state.ifFilterOpened = !state.ifFilterOpened;
         },
-        resetProducts: state =>{
+        resetProducts: state => {
             state.products = [];
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchCatalogueSettings.fulfilled, (state, actions) =>{
-            state.filters.categoryId = actions.payload.categories.find(item => item.name === BASIC_CATEGORY_NAME).id;
+        builder.addCase(fetchCatalogueSettings.fulfilled, (state, actions) => {
+            state.filters.category = actions.payload.categories.find(item => item.name === BASIC_CATEGORY_NAME).id;
         });
         builder.addCase(fetchCatalogueItems.fulfilled, (state, action) => {
             state.products.push(...action.payload);
@@ -100,6 +106,8 @@ export const {
     unSelectColor,
     selectSize,
     unSelectSize,
+    unSelectFilter,
+    dropFilters,
     toggleFilter,
     resetProducts
 } = productsSearchSlice.actions;

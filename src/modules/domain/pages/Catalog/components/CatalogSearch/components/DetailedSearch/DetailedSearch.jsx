@@ -45,7 +45,7 @@ const DetailedSearch = () =>{
     return (
         <>
             <FilterDropDown
-                selectedOptionIds={selectedSettings.modelIds}
+                selectedOptionIds={selectedSettings.models}
                 onSelect={(modelId) => dispatch(selectModel(modelId))}
                 onUnSelect={(modelId) => dispatch(unSelectModel(modelId))}
                 name={'Модель'}
@@ -54,7 +54,7 @@ const DetailedSearch = () =>{
                 className={s.dropdown}
             />
             <FilterDropDown
-                selectedOptionIds={selectedSettings.materialIds}
+                selectedOptionIds={selectedSettings.materials}
                 onSelect={(modelId) => dispatch(selectMaterial(modelId))}
                 onUnSelect={(modelId) => dispatch(unSelectMaterial(modelId))}
                 name={'Материалы'}
@@ -63,7 +63,7 @@ const DetailedSearch = () =>{
                 className={s.dropdown}
             />
             <FilterDropDown
-                selectedOptionIds={selectedSettings.colorIds}
+                selectedOptionIds={selectedSettings.colors}
                 onSelect={(colorId) => dispatch(selectColor(colorId))}
                 onUnSelect={(colorId) => dispatch(unSelectColor(colorId))}
                 name={'Цвет'}
@@ -72,7 +72,7 @@ const DetailedSearch = () =>{
                 className={s.dropdown}
             />
             <FilterDropDown
-                selectedOptionIds={selectedSettings.sizeIds}
+                selectedOptionIds={selectedSettings.sizes}
                 onSelect={(sizeId) => dispatch(selectSize(sizeId))}
                 onUnSelect={(sizeId) => dispatch(unSelectSize(sizeId))}
                 name={'Размеры'}

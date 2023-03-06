@@ -9,7 +9,7 @@ const preloadedStore = {
     productsSearch: {
         loading: false,
         filters: {
-            categoryId: mockCatalogueSettingsResponse.categories[0].id
+            category: mockCatalogueSettingsResponse.categories[0].id
         }
     },
     catalogueSettings: {

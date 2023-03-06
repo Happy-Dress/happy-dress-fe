@@ -11,7 +11,7 @@ const ProductSettings = () =>{
     const catalogueSettings = useSelector(state => state.productsSearch.filters);
 
     useEffect(() =>{
-        if(catalogueSettings.categoryId){
+        if(catalogueSettings.category){
             dispatch(resetProducts());
             dispatch(fetchCatalogueItems(catalogueSettings));
         }

@@ -1,7 +1,6 @@
+import { screen } from '@testing-library/react';
+import CurrentFilters from './CurrentFilters';
 import renderWithStore from '../../../../../../../../common/util/tests/renderWithStore';
-import DetailedSearch from './DetailedSearch';
-import React from 'react';
-import { screen } from '@testing-library/dom';
 import { mockCatalogueSettingsResponse } from '../../../../../../../../__mocks__/mockCatalogueSettingsResponse';
 
 const preloadedStore = {
@@ -23,10 +22,12 @@ const preloadedStore = {
     }
 };
 
-describe('DetailedSearch', () => {
-    it('should render correctly', () =>{
-        const { baseElement } = renderWithStore(<DetailedSearch/>, preloadedStore);
+describe('CurrentFilters', () => {
+    it('should render', () => {
+        const { baseElement } = renderWithStore(<CurrentFilters />, preloadedStore);
+
         screen.debug();
         expect(baseElement).toBeInTheDocument();
+        expect(screen.getByText(mockCatalogueSettingsResponse.categories[0].name)).toBeInTheDocument();
     });
 });

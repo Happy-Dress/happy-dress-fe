@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import DetailedSearch from '../components/DetailedSearch/DetailedSearch';
 import FilterDropDown from '../components/FilterDropDown';
 import { CATALOG_DICTIONARY } from '../../../Catalog.dictionary';
+import CurrentFilters from '../components/CurrentFilters/CurrentFilters';
 
 const {
     TITLE
@@ -38,7 +39,7 @@ const CatalogSearchMobile = () =>{
             {isFilterOpened &&
                 <div className={s.CatalogSearchMobile_detailedSearchWrapper}>
                     <FilterDropDown
-                        selectedOptionIds={[selectedSettings.categoryId]}
+                        selectedOptionIds={[selectedSettings.category]}
                         onSelect={(categoryId) => dispatch(setCategory(categoryId))}
                         onUnSelect={() => {}}
                         name={'Категория'}
@@ -48,6 +49,7 @@ const CatalogSearchMobile = () =>{
                     <DetailedSearch/>
                 </div>
             }
+            <CurrentFilters />
         </div>
     );
 };

@@ -8,7 +8,7 @@ import { setCategory } from '../../../../../../common/ui/store/slices/productsSe
 
 const DressCategories = () => {
     const catalogueSettings = useSelector(state => state.catalogueSettings.settings);
-    const selectedCategoryId = useSelector(state => state.productsSearch.filters.categoryId);
+    const selectedCategoryId = useSelector(state => state.productsSearch.filters.category);
     const isLoading = useSelector(state => state.catalogueSettings.loading);
     const dispatch = useDispatch();
 

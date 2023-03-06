@@ -6,6 +6,7 @@
   width: 100%;
   flex-direction: column;
   grid-area: header;
+  gap: 20px;
 
   &_simpleOption{
     margin-left: 10px;
@@ -14,13 +15,12 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
-    margin-top: 20px;
   }
   &_heading {
     display: flex;
     justify-content: center;
-    margin: 20px auto 30px;
     text-align: center;
+    margin-top: 20px;
   }
 
   &_searchBar{
