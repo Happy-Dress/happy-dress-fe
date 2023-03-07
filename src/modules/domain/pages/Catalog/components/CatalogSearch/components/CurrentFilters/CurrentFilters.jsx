@@ -60,7 +60,7 @@ const CurrentFilters = () => {
                 {tags}
             </div>
             {
-                (!isDesktop && tags.filter(item => typeof item === 'object' && item.length > 0).length > 0) &&
+                (!isDesktop && tags.filter(item => item && item.length > 0).length > 0) &&
                 <ButtonAccent text={RESET_FILTERS} onClick={() => dispatch(dropFilters(catalogueSettings))}/>
             }
         </div>
