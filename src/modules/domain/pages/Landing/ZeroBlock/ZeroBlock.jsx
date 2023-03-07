@@ -2,6 +2,8 @@ import React from 'react';
 import s from './ZeroBlock.module.scss';
 import { ButtonDefault } from '../../../../../common/ui/components';
 import { ZEROBLOCK_DICTIONARY } from './ZeroBlock.dictionary';
+import { Link } from 'react-router-dom';
+import { ROUTER_PATHS } from '../../../config';
 
 const {
     TITLE_H1,
@@ -23,7 +25,9 @@ const ZeroBlock = () => {
                     </div>
                     <p className={s.ZeroBlock_text_mobile}>{TITLE_P_MOBILE[0]}<br/>{TITLE_P_MOBILE[1]}</p>
                 </div>
-                <ButtonDefault text={BUTTON_TEXT}/>
+                <Link to={`/domain/${ROUTER_PATHS.catalog}`}>
+                    <ButtonDefault text={BUTTON_TEXT}/>
+                </Link>
             </div>
         </div>
     );

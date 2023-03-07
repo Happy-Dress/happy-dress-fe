@@ -5,11 +5,12 @@ import burger from '../../../../../common/assets/images/burger.svg';
 import x from '../../../../../common/assets/images/x.svg';
 import hanger from '../../../../../common/assets/images/hanger.svg';
 import { Typography } from '../../../../../common/ui/components';
+import { routerConfig } from '../../../config';
+import { NavLink } from 'react-router-dom';
 
 const HeaderMobile = () => {
     const {
         HEADER_LOGO,
-        HEADER_MOBILE_NAV_ITEMS,
         PHONE_NUMBER,
     } = HEADER_DICTIONARY;
     const [activeMenu, setActiveMenu] = useState(false);
@@ -43,11 +44,12 @@ const HeaderMobile = () => {
             </div>
             {activeMenu && <div className={s.Menu}>
                 <ul className={s.Menu_nav}>
-                    {HEADER_MOBILE_NAV_ITEMS.map((item) => (
-                        <li key={item}>
-                            <Typography classNames={[s.Menu_nav_item]}>{item}
+                    {Object.values(routerConfig).map(({ path, name })=>(
+                        <NavLink key={name} className={({ isActive }) => isActive ? s.active : ''} to={path}>
+                            <Typography classNames={[s.Menu_nav_item]}>
+                                {name}
                             </Typography>
-                        </li>))
+                        </NavLink>))
                     }
                 </ul>
                 <Typography classNames={[s.Menu_nav_number]}>

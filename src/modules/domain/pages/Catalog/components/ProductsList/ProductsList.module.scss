@@ -1,0 +1,20 @@
+@import "../../../../../../common/ui/styles/media-sizes";
+
+.ProductsList{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 30%);
+  grid-area: content;
+  column-gap: 5%;
+  row-gap: 30px;
+
+  @media screen and (max-width: $xl-size) {
+    grid-template-columns: repeat(2, 48%);
+    column-gap: 4%;
+  }
+
+  @media screen and (max-width: $md-size) {
+    grid-template-columns: 1fr;
+    column-gap: unset;
+  }
+}

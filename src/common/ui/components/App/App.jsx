@@ -6,12 +6,12 @@ import { DeviceTypeProvider } from '../../contexts/DeviceType';
 import ToastersProvider from '../../contexts/ToastersContext';
 import { ModalProvider } from 'react-modal-hook';
 import { Provider } from 'react-redux';
-import { store } from '../../store/store';
+import { setupStore } from '../../store/setupStore';
 
 const App = () => {
 
     return (
-        <Provider store={store}>
+        <Provider store={setupStore()}>
             <DeviceTypeProvider>
                 <ToastersProvider>
                     <ModalProvider>

@@ -1,0 +1,36 @@
+@import "../../../../../../../../common/ui/styles/colors";
+@import "../../../../../../../../common/ui/styles/media-sizes";
+
+.CurrentFilters {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+  .tags {
+    display: flex;
+    column-gap: 3%;
+    row-gap: 8px;
+    flex-wrap: wrap;
+
+    .tag {
+      background-color: $light-gray;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      svg {
+        cursor: pointer;
+      }
+    }
+  }
+
+  @media screen and (max-width: $lg-size) {
+    .tags {
+      column-gap: 1%;
+      .tag {
+        padding: 5px;
+      }
+    }
+  }
+}

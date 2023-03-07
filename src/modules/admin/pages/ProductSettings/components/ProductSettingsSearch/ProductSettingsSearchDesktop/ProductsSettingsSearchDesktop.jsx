@@ -14,7 +14,7 @@ import DetailedSearch from '../components/DetailedSearch/DetailedSearch';
 const ProductsSettingsSearchDesktop = () => {
 
     const catalogueSettings = useSelector(state => state.catalogueSettings.settings);
-    const selectedCategoryId = useSelector(state => state.productsSearch.filters.categoryId);
+    const selectedCategoryId = useSelector(state => state.productsSearch.filters.category);
     const isFilterOpened = useSelector(state => state.productsSearch.ifFilterOpened);
     const isLoading = useSelector(state => state.catalogueSettings.loading);
     const dispatch = useDispatch();

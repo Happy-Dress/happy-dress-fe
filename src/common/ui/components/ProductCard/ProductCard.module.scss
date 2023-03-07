@@ -8,10 +8,13 @@
   border: 1px $gray solid;
   box-shadow: $shadow-main;
   cursor: pointer;
-  min-width: 330px;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
 
   img {
     height: 400px;
+    align-self: center;
   }
 
   .description {

@@ -1,0 +1,44 @@
+@import '../../../../../../../common/ui/styles/font-sizes';
+@import '../../../../../../../common/ui/styles/colors';
+
+.CatalogSearchMobile{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  grid-area: header;
+  gap: 20px;
+
+  &_simpleOption{
+    margin-left: 10px;
+  }
+  &_detailedSearchWrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  &_heading {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  &_searchBar{
+    display: grid;
+    grid-template-columns: 1fr 44px;
+    height: 72px;
+    align-items: center;
+    gap: 15px;
+    svg {
+      cursor: pointer;
+    }
+  }
+  &_cross {
+    display: flex;
+    align-items: center;
+    svg {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}

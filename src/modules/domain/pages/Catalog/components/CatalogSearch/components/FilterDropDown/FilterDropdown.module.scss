@@ -1,0 +1,72 @@
+@import "../../../../../../../../common/ui/styles/media-sizes";
+@import "../../../../../../../../common/ui/styles/font-sizes";
+@import "../../../../../../../../common/ui/styles/colors";
+@import "../../../../../../../../common/ui/styles/variables";
+
+.FilterDropdown {
+  width: 100%;
+  background-color: #eaeaea;
+  border: 1px solid $light-gray;
+  height: 56px;
+  cursor: pointer;
+  position: relative;
+  .currentFilter {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: space-between;
+    p {
+      margin-left: 20px;
+      font-size: $font-size-xlarge-24;
+    }
+
+    svg {
+      width: 12px;
+      height: 6px;
+      margin-right: 26px;
+      transition: transform $animation-duration;
+      &.active {
+        transform: scaleY(-1);
+        path {
+          stroke: $brown;
+        }
+      }
+    }
+  }
+
+  .options {
+    z-index: 1000;
+    box-shadow: $shadow-black;
+    background-color: $white;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    overflow-y: hidden;
+    transition: height $animation-duration;
+  }
+
+  @media screen and (max-width: $xl-size) {
+    .currentFilter {
+      p {
+        font-size: $font-size-medium-16;
+        margin-left: 10px;
+      }
+
+      svg {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  @media screen and (max-width: calc($lg-size - 1px)) {
+    height: fit-content;
+
+    .currentFilter {
+      height: 56px;
+    }
+
+    .options {
+      position: static;
+    }
+  }
+}
