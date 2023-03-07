@@ -5,6 +5,11 @@ import { ReactComponent as Cross } from '../../../../../../../../common/assets/i
 import { dropFilters, unSelectFilter } from '../../../../../../../../common/ui/store/slices/productsSearchSlice';
 import { useDeviceTypeContext } from '../../../../../../../../common/ui/contexts/DeviceType';
 import { ButtonAccent } from '../../../../../../../../common/ui/components';
+import { CATALOG_DICTIONARY } from '../../../../Catalog.dictionary';
+
+const {
+    RESET_FILTERS
+} = CATALOG_DICTIONARY;
 
 const CurrentFilters = () => {
     const selectedFilters = useSelector(state => state.productsSearch.filters);
@@ -56,7 +61,7 @@ const CurrentFilters = () => {
             </div>
             {
                 (!isDesktop && tags.filter(item => typeof item === 'object' && item.length > 0).length > 0) &&
-                <ButtonAccent text={'Сбросить фильтры'} onClick={() => dispatch(dropFilters(catalogueSettings))}/>
+                <ButtonAccent text={RESET_FILTERS} onClick={() => dispatch(dropFilters(catalogueSettings))}/>
             }
         </div>
     );

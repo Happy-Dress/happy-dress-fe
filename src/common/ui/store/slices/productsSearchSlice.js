@@ -1,11 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getCatalogueItems } from '../../../api';
 import { fetchCatalogueSettings } from './catalogueSettingsSlice';
-import { __STORE_BASIC_VARIABLES } from '../storeVariables';
-
-const {
-    BASIC_CATEGORY_NAME
-} = __STORE_BASIC_VARIABLES;
 
 const initialState = {
     loading: false,
@@ -69,7 +64,7 @@ export const productsSearchSlice = createSlice({
         dropFilters: (state, action) => {
             state.filters = {
                 ...initialState.filters,
-                category: action.payload.categories.find(item => item.name === BASIC_CATEGORY_NAME).id
+                category: action.payload.categories[0].id
             };
         },
         toggleFilter: state => {
@@ -81,7 +76,7 @@ export const productsSearchSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(fetchCatalogueSettings.fulfilled, (state, actions) => {
-            state.filters.category = actions.payload.categories.find(item => item.name === BASIC_CATEGORY_NAME).id;
+            state.filters.category = actions.payload.categories[0].id;
         });
         builder.addCase(fetchCatalogueItems.fulfilled, (state, action) => {
             state.products.push(...action.payload);

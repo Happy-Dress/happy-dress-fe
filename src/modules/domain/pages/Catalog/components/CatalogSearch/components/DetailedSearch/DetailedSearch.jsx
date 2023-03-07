@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from 'react-redux';
 import s from './DetailedSerach.module.scss';
 import {
     selectColor,
@@ -10,37 +9,18 @@ import {
     unSelectModel, unSelectSize
 } from '../../../../../../../../common/ui/store/slices/productsSearchSlice';
 import FilterDropDown from '../FilterDropDown';
+import { useDetailedSearch } from '../../../../../../../../common/ui/hooks/useDetailedSearch';
 
 
 const DetailedSearch = () =>{
-
-    const dispatch = useDispatch();
-    const catalogueSettings = useSelector(state => state.catalogueSettings.settings);
-    const selectedSettings = useSelector(state => state.productsSearch.filters);
-
-    const renderOption = (option) =>{
-        return <span className={s.DetailedSearch_simpleOption}>{option.name}</span>;
-    };
-
-    const getColorBackgroundStyle = (color) => {
-        if(color.secondColor) {
-            return `linear-gradient( -45deg, ${color.firstColor}, ${color.firstColor} 49%, white 49%, white 51%, ${color.secondColor} 51% )`;
-        }
-        return color.firstColor;
-    };
-
-    const renderColorOption = (option) =>{
-        return <div className={s.DetailedSearch_colorOption}>
-            <div style={{ background: getColorBackgroundStyle(option) }}
-                className={s.DetailedSearch_colorOption_colorCircle}/>
-            <span>{option.name}</span>
-        </div>;
-    };
-
-    const renderSizeOption = (option) =>{
-        return <p className={s.DetailedSearch_simpleOption}>{option.sizeValue}</p>;
-    };
-
+    const {
+        dispatch,
+        selectedSettings,
+        catalogueSettings,
+        renderColorOption,
+        renderSizeOption,
+        renderOption
+    } = useDetailedSearch(s.DetailedSearch_colorOption, s.DetailedSearch_colorOption_colorCircle, s.DetailedSearch_simpleOption);
 
     return (
         <>
