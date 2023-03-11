@@ -7,6 +7,7 @@ const initialContext = {
     updateMaterials: () => {},
     saveSettings: () => {},
     restoreSettings: () => {},
+    registerOnSaveAction: () => {},
 };
 
 export const CatalogSettingsContext = createContext(initialContext);

@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import { useModal } from 'react-modal-hook';
 
 const MIN_MODEL_NAME_LENGTH = 3;
-const STARTING_ORDER_NUMBER = 0;
+const STARTING_ORDER_NUMBER = 1;
 const MAX_MODEL_NAME_LENGTH = 20;
 const EMPTY_NAME = '';
 
@@ -37,8 +37,8 @@ export const SimpleSettingsControl = ({ updateSettings, settingsList, ModalCompo
         />;
     }, [settingsList, editingModelModal]);
 
-    const handleReorder = (reorderedModels) => {
-        updateSettings(reorderedModels);
+    const handleReorder = (reorderedSettings) => {
+        updateSettings(reorderedSettings);
     };
 
     const handleEdit = (model) => {
@@ -79,7 +79,6 @@ export const SimpleSettingsControl = ({ updateSettings, settingsList, ModalCompo
             showModal();
             return;
         }
-
         setEditingModel({ name: EMPTY_NAME });
     };
 
