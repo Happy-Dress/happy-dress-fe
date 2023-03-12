@@ -8,16 +8,9 @@ const addImage = async (file) => {
             'Accept': '*/*',
             'Content-Type': 'multipart/form-data; boundary=<calculated when request is sent>',
         },
-    })
-        .then((r => {
-            console.log(r);
-            return r;
-        }))
-        .catch((e) => {
-            console.log('error', e);
-        });
+    });
 
-    return res;
+    return res.data;
 };
 
 export default addImage;

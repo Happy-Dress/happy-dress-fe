@@ -9,9 +9,11 @@ export const CATEGORY_DICTIONARY = {
     NAME_PLACEHOLDER: 'Название',
     DESCRIPTION_PLACEHOLDER: 'Описание',
     ALT: 'Платье',
+    SUCCESS_MESSAGE: 'Фото успешно добавлено',
 };
 
 export const VALIDATION_MESSAGES = {
     MIN_3: 'Не менее 3 символов',
     CATEGORY_EXIST: 'Такая категория уже существует',
+    LOAD_PHOTO_ERROR: 'Выберите фото',
 };

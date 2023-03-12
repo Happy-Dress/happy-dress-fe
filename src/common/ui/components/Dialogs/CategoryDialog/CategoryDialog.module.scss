@@ -27,6 +27,12 @@
   &Error {
     border: 1px solid red;
     color: red;
+
+    &Message {
+      display: block;
+      color: red;
+      margin-bottom: 12px;
+    }
   }
 
   &Img {
