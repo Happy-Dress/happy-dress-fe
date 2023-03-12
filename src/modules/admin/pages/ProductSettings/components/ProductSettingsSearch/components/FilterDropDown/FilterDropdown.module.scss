@@ -56,4 +56,16 @@
       }
     }
   }
+
+  @media screen and (max-width: $lg-size) {
+    height: fit-content;
+
+    .currentFilter {
+      height: 56px;
+    }
+
+    .options {
+      position: static;
+    }
+  }
 }

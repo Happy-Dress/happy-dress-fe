@@ -111,7 +111,7 @@ export const CategoryDialog = ({ onClose, updateSettings, settingsList, editingM
                     name: formData.name,
                     description:formData.description,
                     imageUrl: state.imageUrl,
-                    orderNumber: settingsList.length
+                    orderNumber: settingsList.length + 1,
                 }
             ]);
 

@@ -3,9 +3,9 @@ import SimpleSettingsControl from '../SimpleSettingsControl/SimpleSettingsContro
 import React from 'react';
 
 const MaterialSettings = () => {
-    const { settings: { materials }, updateColors } = useCatalogSettings();
+    const { settings: { materials }, updateMaterials } = useCatalogSettings();
 
-    return <SimpleSettingsControl settingsList={materials} updateSettings={updateColors}/>;
+    return <SimpleSettingsControl settingsList={materials} updateSettings={updateMaterials}/>;
 };
 
 export default MaterialSettings;

@@ -1,11 +1,17 @@
 import s from './SettingDropDown.module.scss';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { ReactComponent as ArrowDown } from '../../../../../../common/assets/images/arrowDown.svg';
+import { useCatalogSettings } from '../../contexts/CatalogSettingsContext/hook/useCatalogSettings';
 
 const SettingsDropDown = ({ name, children }) =>{
 
     const [isOpened, setIsOpened] = useState(false);
+    const { registerOnSaveAction } = useCatalogSettings();
+
+    useEffect(() => {
+        registerOnSaveAction(() => setIsOpened(false));
+    }, []);
 
     return(
         <div className={s.category}>

@@ -13,6 +13,7 @@ const {
 const CatalogSettingsProvider = (props) => {
 
     const [initialCatalogSettings, setInitialCatalogSettings] = useState();
+    const [onSaveActions, setOnSaveActions] = useState([]);
     const { showToasterSuccess, showToasterError } = useToasters();
 
     const [catalogSettings, setCatalogSettings] = useState({
@@ -54,16 +55,21 @@ const CatalogSettingsProvider = (props) => {
         setCatalogSettings(prevState => ({ ...prevState, colors  }));
     };
 
+    const registerOnSaveAction = (action) =>{
+        setOnSaveActions((actions) => [...actions, action] );
+    };
+
     const saveSettings = () => {
         const settingsToSave = JSON.parse(JSON.stringify(catalogSettings));
-        settingsToSave.models = settingsToSave.models.map((model, index) => ({ ...model, orderNumber: index }));
-        settingsToSave.materials = settingsToSave.materials.map((material, index) => ({
-            ...material,
-            orderNumber: index
-        }));
-        settingsToSave.categories = settingsToSave.categories.map((category, index) => ({ ...category, orderNumber: index }));
+
+        settingsToSave.materials = settingsToSave.materials.map((material, index) => ({ ...material, orderNumber: index + 1 }));
+        settingsToSave.models = settingsToSave.models.map((model, index) => ({ ...model, orderNumber: index + 1 }));
+        settingsToSave.categories = settingsToSave.categories.map((category, index) => ({ ...category, orderNumber: index + 1 }));
+        settingsToSave.colors = settingsToSave.colors.map((color, index) => ({ ...color, orderNumber: index + 1 }));
+        settingsToSave.sizes = settingsToSave.sizes.map((size, index) => ({ ...size, orderNumber: index + 1 }));
 
         updateSettings(settingsToSave).then(settings => {
+            onSaveActions.forEach((action) => action());
             showToasterSuccess(SETTINGS_UPDATED);
             setInitialCatalogSettings(settings);
             setCatalogSettings(settings);
@@ -82,7 +88,8 @@ const CatalogSettingsProvider = (props) => {
             updateColors,
             saveSettings,
             initialSettings: initialCatalogSettings,
-            restoreSettings
+            restoreSettings,
+            registerOnSaveAction
         }}>
             {props.children}
         </CatalogSettingsContext.Provider>

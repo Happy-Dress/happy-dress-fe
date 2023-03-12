@@ -1,4 +1,4 @@
-import { store } from '../../ui/store/store';
+import { setupStore } from '../../ui/store/setupStore';
 import { render } from '@testing-library/react';
 
 import { Provider, useDispatch } from 'react-redux';
@@ -11,13 +11,13 @@ const TestComponent = ({ children, storeActions }) =>{
     useEffect(() =>{
         (storeActions || []).forEach(action => dispatch(action()));
     }, []);
-    
+
     return children;
 };
 
-const renderWithStore = (component, storeActions) => {
-    return render(<Provider store={store}>
-        <TestComponent storeActions={storeActions}>
+const renderWithStore = (component, preloadedStore) => {
+    return render(<Provider store={setupStore(preloadedStore)}>
+        <TestComponent>
             {component}
         </TestComponent>
     </Provider>);
