@@ -6,6 +6,7 @@ import { useCatalogFetch } from '../../../../common/ui/hooks/useCatalogFetch';
 const ProductSettings = () =>{
     useCatalogFetch();
 
+
     return (
         <>
             <ProductsSettingsSearch/>

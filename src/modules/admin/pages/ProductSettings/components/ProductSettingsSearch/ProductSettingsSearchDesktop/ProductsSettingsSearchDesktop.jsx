@@ -9,7 +9,13 @@ import SearchBar from './components/SearchBar/SearchBar';
 import { ReactComponent as Filter } from '../../../../../../../common/assets/images/filter.svg';
 import { ReactComponent as Cross } from '../../../../../../../common/assets/images/x.svg';
 import DetailedSearch from '../components/DetailedSearch/DetailedSearch';
+import { PRODUCT_SETTINGS_DICTIONARY } from '../../../ProductSettings.dictionary';
+import CurrentFilters from '../components/CurrentFilters/CurrentFilters';
 
+const {
+    TITLE,
+    BREADCRUMBS
+} = PRODUCT_SETTINGS_DICTIONARY;
 
 const ProductsSettingsSearchDesktop = () => {
 
@@ -47,8 +53,8 @@ const ProductsSettingsSearchDesktop = () => {
 
     return (
         <div className={s.ProductsSettingsSearchDesktop}>
-            <div className={s.ProductsSettingsSearchDesktop_breadCrumbs}>{'Главная > Управление товаром'}</div>
-            <h2 className={s.ProductsSettingsSearchDesktop_heading}>{'Управление товаром'}</h2>
+            <div className={s.ProductsSettingsSearchDesktop_breadCrumbs}>{BREADCRUMBS}</div>
+            <h2 className={s.ProductsSettingsSearchDesktop_heading}>{TITLE}</h2>
             <CategoriesLayoutWithSkeleton/>
             <div className={s.ProductsSettingsSearchDesktop_searchBarWrapper}>
                 {isFilterOpened ?
@@ -68,8 +74,10 @@ const ProductsSettingsSearchDesktop = () => {
                         {!isLoading && <div onClick={() => dispatch(toggleFilter())}><Filter/></div>}
                     </>
                 }
-
             </div>
+            {
+                !isFilterOpened && <CurrentFilters />
+            }
         </div>
     );
 };
