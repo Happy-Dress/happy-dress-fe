@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { PRODUCT_CARD_DICTIONARY } from './ProductCard.dictionary';
 import { ReactComponent as EmptyCheckbox } from '../../../../../../../../common/assets/images/EmptyCheckbox.svg';
 import { ReactComponent as Checkbox } from '../../../../../../../../common/assets/images/checkbox.svg';
+import { ReactComponent as Update } from '../../../../../../../../common/assets/images/update.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectProduct, unSelectProduct } from '../../../../../../../../common/ui/store/slices/productsSearchSlice';
 
@@ -46,6 +47,9 @@ const ProductCard = (props) => {
             <div className={s.description}>
                 {
                     (isHover && !isSelected) && <EmptyCheckbox className={s.checkbox}/>
+                }
+                {
+                    (isHover && !isSelected) && <Update className={s.update}/>
                 }
                 {
                     isSelected && <Checkbox className={s.checkbox}/>
