@@ -21,7 +21,8 @@ const getCatalogueItems = async (filters) => {
         console.log(filters);
         const arr = [];
         for(let i = 0; i< 15; i++){
-            arr.push(item);
+            const newItem = { ...item, id: i };
+            arr.push(newItem);
         }
         resolve(arr);
     });

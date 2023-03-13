@@ -11,14 +11,15 @@ const {
 } = PRODUCT_CARD_DICTIONARY;
 
 const ProductCard = (props) => {
-
     const {
         product,
         className
     } = props;
 
     return (
-        <div className={classNames(s.ProductCard, className)}>
+        <div
+            className={classNames(s.ProductCard, className)}
+        >
             <img src={image} alt="dress preview"/>
             <div className={s.description}>
                 <h3>{product.name}</h3>

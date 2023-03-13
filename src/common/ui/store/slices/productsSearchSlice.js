@@ -3,7 +3,7 @@ import { getCatalogueItems } from '../../../api';
 import { fetchCatalogueSettings } from './catalogueSettingsSlice';
 
 const initialState = {
-    loading: false,
+    loading: true,
     filters: {
         category: null,
         models: [],
@@ -14,6 +14,7 @@ const initialState = {
     },
     ifFilterOpened: false,
     products: [],
+    selectedProducts: []
 };
 
 
@@ -72,6 +73,12 @@ export const productsSearchSlice = createSlice({
         },
         resetProducts: state => {
             state.products = [];
+        },
+        selectProduct: (state, action) => {
+            state.selectedProducts.push(action.payload);
+        },
+        unSelectProduct: (state, action) => {
+            state.selectedProducts = state.selectedProducts.filter(item => item !== action.payload);
         }
     },
     extraReducers: (builder) => {
@@ -104,7 +111,9 @@ export const {
     unSelectFilter,
     dropFilters,
     toggleFilter,
-    resetProducts
+    resetProducts,
+    selectProduct,
+    unSelectProduct
 } = productsSearchSlice.actions;
 export { fetchCatalogueItems };
 
