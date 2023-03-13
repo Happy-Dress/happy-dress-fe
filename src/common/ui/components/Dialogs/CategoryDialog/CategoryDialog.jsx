@@ -91,7 +91,6 @@ export const CategoryDialog = ({ onClose, updateSettings, settingsList, editingM
         });
 
     const onFormSubmit = (formData) => {
-        console.log(formData);
         editingModel
             ? updateSettings([
                 ...settingsList.map((item) => {
