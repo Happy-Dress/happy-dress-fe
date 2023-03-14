@@ -53,7 +53,7 @@ const DetailedSearch = () =>{
                 selectedOptionIds={selectedSettings.sizes}
                 onSelect={(sizeId) => dispatch(selectSize(sizeId))}
                 onUnSelect={(sizeId) => dispatch(unSelectSize(sizeId))}
-                name={'Рзмеры'}
+                name={'Размеры'}
                 options={catalogueSettings.sizes}
                 renderOption={renderSizeOption}
             />
