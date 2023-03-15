@@ -10,9 +10,17 @@ import {
 } from '../../../../../../../../common/ui/store/slices/productsSearchSlice';
 import FilterDropDown from '../FilterDropDown';
 import { useDetailedSearch } from '../../../../../../../../common/ui/hooks/useDetailedSearch';
+import DETAILED_SEARCH_DICTIONARY from './DetailedSearch.dictionary';
 
 
 const DetailedSearch = () =>{
+
+    const {
+        MODEL,
+        MATERIALS,
+        COLOR,
+        SIZES,
+    } = DETAILED_SEARCH_DICTIONARY;
 
     const {
         dispatch,
@@ -29,7 +37,7 @@ const DetailedSearch = () =>{
                 selectedOptionIds={selectedSettings.models}
                 onSelect={(modelId) => dispatch(selectModel(modelId))}
                 onUnSelect={(modelId) => dispatch(unSelectModel(modelId))}
-                name={'Модель'}
+                name={MODEL}
                 options={catalogueSettings.models}
                 renderOption={renderOption}
             />
@@ -37,7 +45,7 @@ const DetailedSearch = () =>{
                 selectedOptionIds={selectedSettings.materials}
                 onSelect={(modelId) => dispatch(selectMaterial(modelId))}
                 onUnSelect={(modelId) => dispatch(unSelectMaterial(modelId))}
-                name={'Материалы'}
+                name={MATERIALS}
                 options={catalogueSettings.materials}
                 renderOption={renderOption}
             />
@@ -45,7 +53,7 @@ const DetailedSearch = () =>{
                 selectedOptionIds={selectedSettings.colors}
                 onSelect={(colorId) => dispatch(selectColor(colorId))}
                 onUnSelect={(colorId) => dispatch(unSelectColor(colorId))}
-                name={'Цвет'}
+                name={COLOR}
                 options={catalogueSettings.colors}
                 renderOption={renderColorOption}
             />
@@ -53,7 +61,7 @@ const DetailedSearch = () =>{
                 selectedOptionIds={selectedSettings.sizes}
                 onSelect={(sizeId) => dispatch(selectSize(sizeId))}
                 onUnSelect={(sizeId) => dispatch(unSelectSize(sizeId))}
-                name={'Рзмеры'}
+                name={SIZES}
                 options={catalogueSettings.sizes}
                 renderOption={renderSizeOption}
             />
