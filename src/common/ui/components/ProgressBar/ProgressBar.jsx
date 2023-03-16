@@ -5,8 +5,9 @@ import s from './ProgressBar.module.scss';
 export const ProgressBar = (props) => {
     const { completed } = props;
     return (
-        <div className={s.container}>
+        <div className={s.container} data-testid="progress-bg">
             <div
+                data-testid="progress"
                 className={s.fillerStyle}
                 style={{
                     backgroundColor: 'rgba(167, 82, 20, 0.8)',
