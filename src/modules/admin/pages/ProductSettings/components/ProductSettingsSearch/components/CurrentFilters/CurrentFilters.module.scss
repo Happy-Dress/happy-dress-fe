@@ -1,0 +1,56 @@
+@import "../../../../../../../../common/ui/styles/colors";
+@import "../../../../../../../../common/ui/styles/media-sizes";
+@import "../../../../../../../../common/ui/styles/font-sizes";
+
+.CurrentFilters {
+  display: flex;
+  margin: 0 147px 0 100px;
+  justify-content: space-between;
+
+  .tags {
+    display: flex;
+    column-gap: 3%;
+    row-gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    width: 100%;
+
+    .tag {
+      background-color: $light-gray;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      svg {
+        cursor: pointer;
+      }
+    }
+  }
+
+  button {
+    margin-top: 10px;
+    min-width: 264px;
+    height: 44px;
+    font-size: $font-size-xmedium-18;
+  }
+
+  @media screen and (max-width: $lg-size) {
+    flex-direction: column;
+    margin: 0 0 0 30px;
+    .tags {
+      column-gap: 1%;
+      width: calc(100% - 90px);
+
+      .tag {
+        padding: 5px;
+      }
+    }
+
+    button {
+      width: calc(100% - 60px);
+      margin-top: 10px;
+      font-size: $font-size-xlarge-24;
+    }
+  }
+}

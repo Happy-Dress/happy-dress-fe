@@ -3,6 +3,7 @@ import { render } from '@testing-library/react';
 
 import { Provider, useDispatch } from 'react-redux';
 import React, { useEffect } from 'react';
+import { mockAllIsIntersecting } from 'react-intersection-observer/test-utils';
 
 
 const TestComponent = ({ children, storeActions }) =>{
@@ -16,6 +17,7 @@ const TestComponent = ({ children, storeActions }) =>{
 };
 
 const renderWithStore = (component, preloadedStore) => {
+    mockAllIsIntersecting(false);
     return render(<Provider store={setupStore(preloadedStore)}>
         <TestComponent>
             {component}

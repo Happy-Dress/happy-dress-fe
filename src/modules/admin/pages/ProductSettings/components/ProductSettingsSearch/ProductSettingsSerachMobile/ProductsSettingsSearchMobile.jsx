@@ -10,6 +10,12 @@ import { ReactComponent as Cross } from '../../../../../../../common/assets/imag
 import { useDispatch, useSelector } from 'react-redux';
 import DetailedSearch from '../components/DetailedSearch/DetailedSearch';
 import FilterDropDown from '../components/FilterDropDown';
+import { PRODUCT_SETTINGS_DICTIONARY } from '../../../ProductSettings.dictionary';
+import CurrentFilters from '../components/CurrentFilters/CurrentFilters';
+
+const {
+    TITLE
+} = PRODUCT_SETTINGS_DICTIONARY;
 
 const ProductsSettingsSearchMobile = () =>{
     const isLoading = useSelector(state => state.catalogueSettings.loading);
@@ -25,7 +31,7 @@ const ProductsSettingsSearchMobile = () =>{
     return (
         <div className={s.ProductsSettingsSearchMobile}>
 
-            <h2 className={s.ProductsSettingsSearchMobile_heading}>{'Управление товаром'}</h2>
+            <h2 className={s.ProductsSettingsSearchMobile_heading}>{TITLE}</h2>
             <div className={s.ProductsSettingsSearchMobile_searchBar}>
                 <SearchBar/>
                 {(!isLoading && !isFilterOpened) && <div onClick={() => dispatch(toggleFilter())}><Filter/></div> }
@@ -34,7 +40,7 @@ const ProductsSettingsSearchMobile = () =>{
             {isFilterOpened &&
                 <div className={s.ProductsSettingsSearchMobile_detailedSearchWrapper}>
                     <FilterDropDown
-                        selectedOptionIds={[selectedSettings.categoryId]}
+                        selectedOptionIds={[selectedSettings.category]}
                         onSelect={(categoryId) => dispatch(setCategory(categoryId))}
                         onUnSelect={() => {}}
                         name={'Категория'}
@@ -43,6 +49,9 @@ const ProductsSettingsSearchMobile = () =>{
                     />
                     <DetailedSearch/>
                 </div>
+            }
+            {
+                !isFilterOpened && <CurrentFilters />
             }
         </div>
     );

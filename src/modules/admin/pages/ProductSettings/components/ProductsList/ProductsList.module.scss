@@ -1,3 +1,6 @@
+@import "../../../../../../common/ui/styles/font-sizes";
+@import "../../../../../../common/ui/styles/colors";
+
 .ProductsList{
   margin-top: 50px;
   padding: 0 calc(10% + 47px) 0 calc(8% + 47px);
@@ -8,4 +11,37 @@
   column-gap: 5%;
   row-gap: 42px;
   position: relative;
+
+  #slider {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+  }
+
+  #trash {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    p {
+      font-size: $font-size-xlarge-36;
+      color: $brown;
+    }
+  }
+
+  .observingBlock {
+    width: 20px;
+    height: 20px;
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
 }
