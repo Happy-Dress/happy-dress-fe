@@ -22,6 +22,8 @@ const {
 } = COLOR_ADD_DIALOG_DICTIONARY;
 
 const ColorContent = ({ error }) => {
+    const MAX_LENGTH_COLOR_NAME = 15;
+
     const { state, dispatch } = useColorAddContext();
 
     const [name, setName] = useState(state.name ?? '');
@@ -71,6 +73,7 @@ const ColorContent = ({ error }) => {
                     className={classNames(s.colorName, error && s.error)}
                     value={name}
                     onChange={changeNameHandler}
+                    maxLength={MAX_LENGTH_COLOR_NAME}
                 />
                 { error && <span className={s.error}>{error}</span>}
                 <ColorPicker
