@@ -5,44 +5,15 @@ import ModalHeader from '../../Modal/components/ModalHeader/ModalHeader';
 import ModalFooter from '../../Modal/components/ModalFooter/ModalFooter';
 import { ButtonAccent, ButtonDefault } from '../../Buttons';
 import PropTypes from 'prop-types';
-import { CATEGORY_DICTIONARY, VALIDATION_MESSAGES } from './CategoryDialog.dictionary';
+import { CATEGORY_DICTIONARY } from './CategoryDialog.dictionary';
 import ModalContent from '../../Modal/components/ModalContent/ModalContent';
 import { useForm } from 'react-hook-form';
 import ProgressBar from '../../ProgressBar';
 import cls from 'classnames';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import addImage from '../../../../api/addImage/addImage';
 import { useToasters } from '../../../contexts/ToastersContext';
-
-const {
-    MIN_3,
-    CATEGORY_EXIST,
-    LOAD_PHOTO_ERROR,
-} = VALIDATION_MESSAGES;
-
-const validationSchema = (editingModel, settingsList) => {
-    return z
-        .object({
-            name: z
-                .string()
-                .min(3, { message: MIN_3 })
-                .refine((val) => {
-                    const ExistingItem = editingModel
-                        ? settingsList
-                            .filter((item) => item.name !== editingModel.name)
-                            .find((item2) => item2.name === val)
-                        : settingsList
-                            .find((item) => item.name === val);
-
-                    return (val !== ExistingItem?.name);
-                }, { message: CATEGORY_EXIST }),
-            description: z.string().min(3, { message: MIN_3 }),
-            image: z
-                .any()
-                .refine((files) =>  files?.length > 0, LOAD_PHOTO_ERROR),
-        });
-};
+import { validationSchema } from './CategoryDialog.validation';
 
 const {
     SUBMIT_BUTTON,
@@ -213,7 +184,7 @@ export const CategoryDialog = ({ onClose, updateSettings, settingsList, editingM
                                 <span className={s.dialogErrorMessage}>
                                     {errors.image?.message}
                                 </span>}
-                                <div className={!isLoading ? s.visible : undefined}>
+                                <div className={!isLoading && s.visible}>
                                     <ProgressBar completed={completed} />
                                 </div>
                             </div>
