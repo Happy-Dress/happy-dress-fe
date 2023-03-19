@@ -36,15 +36,20 @@ const emptyCategoryData = {
     orderNumber: null,
 };
 
-export const CategoryDialog = ({ onClose, updateSettings, settingsList, editingModel, setEditingModel,
+export const CategoryDialog = ({
+    onClose,
+    updateSettings,
+    settingsList,
+    editingModel,
+    setEditingModel,
 }) => {
     const { showToasterSuccess, showToasterError } = useToasters();
-    const [state, setState] = useState(editingModel ||  emptyCategoryData);
+    const [state, setState] = useState(editingModel || emptyCategoryData);
 
     const [completed, setCompleted] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
 
-    useEffect(() =>{
+    useEffect(() => {
         setCompleted(0);
 
         return () => {
@@ -69,7 +74,7 @@ export const CategoryDialog = ({ onClose, updateSettings, settingsList, editingM
                         ? {
                             ...item,
                             name: formData.name,
-                            description:formData.description,
+                            description: formData.description,
                             imageUrl: state.imageUrl,
                         }
                         : item;
@@ -79,7 +84,7 @@ export const CategoryDialog = ({ onClose, updateSettings, settingsList, editingM
                 ...settingsList,
                 {
                     name: formData.name,
-                    description:formData.description,
+                    description: formData.description,
                     imageUrl: state.imageUrl,
                     orderNumber: settingsList.length + 1,
                 }
@@ -101,7 +106,7 @@ export const CategoryDialog = ({ onClose, updateSettings, settingsList, editingM
 
                 if (r.failedImages.length) {
                     showToasterError(r.failedImages[0].imageName + ' ' +
-                    r.failedImages[0].reason.toString());
+                        r.failedImages[0].reason.toString());
                 }
 
                 return r;
@@ -124,7 +129,7 @@ export const CategoryDialog = ({ onClose, updateSettings, settingsList, editingM
     };
 
     const handleClose = () => {
-        if(editingModel) {
+        if (editingModel) {
             setEditingModel(null);
         }
 
@@ -133,7 +138,7 @@ export const CategoryDialog = ({ onClose, updateSettings, settingsList, editingM
 
     return (
         <Modal size="md">
-            <form onSubmit={handleSubmit(onFormSubmit)}>
+            <form onSubmit={handleSubmit(onFormSubmit)} data-testid="form">
                 <div className={s.dialogWrapper}>
                     <ModalHeader
                         onClose={handleClose}
@@ -184,14 +189,16 @@ export const CategoryDialog = ({ onClose, updateSettings, settingsList, editingM
                                 <span className={s.dialogErrorMessage}>
                                     {errors.image?.message}
                                 </span>}
-                                <div className={!isLoading && s.visible}>
+                                <div className={!isLoading ? s.visible : ''}
+                                    data-testid='progressBar'>
                                     <ProgressBar completed={completed} />
                                 </div>
                             </div>
                         </>
                     </ModalContent>
                     <ModalFooter actionButtons={[
-                        <ButtonDefault type="button" onClick={handleClose} key={1} text={CANCEL_BUTTON} />,
+                        <ButtonDefault type="button" onClick={handleClose} key={1}
+                            text={CANCEL_BUTTON} />,
                         <ButtonAccent type="submit" key={0} text={SUBMIT_BUTTON} />,
                     ]} />
                 </div>

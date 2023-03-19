@@ -15,7 +15,7 @@ export const isItemExist = (val, editingModel, settingsList) => {
         : settingsList
             .find((item) => item.name === val);
 
-    return (val !== existingItem?.name);
+    return (val === existingItem?.name);
 };
 
 export const validationSchema = (editingModel, settingsList) => {
@@ -25,7 +25,7 @@ export const validationSchema = (editingModel, settingsList) => {
                 .string()
                 .min(3, { message: MIN_3 })
                 .refine((val) => {
-                    return isItemExist(val, editingModel, settingsList);
+                    return !isItemExist(val, editingModel, settingsList);
                 }, { message: CATEGORY_EXIST }),
             description: z.string().min(3, { message: MIN_3 }),
             image: z
