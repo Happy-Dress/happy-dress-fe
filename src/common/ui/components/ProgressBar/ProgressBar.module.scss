@@ -1,0 +1,15 @@
+.container {
+  height: 20px;
+  width: 100%;
+  background-color: #C4C4C4;
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.fillerStyle {
+  height: 100%;
+  width: 0;
+  background-color: #e0e0de;
+  border-radius: inherit;
+  transition: width 1s ease-in-out;
+}

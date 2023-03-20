@@ -7,6 +7,7 @@ import withProvider from '../../../../common/ui/hocs/withProvider';
 import SettingsDropDown from './components/SettingDropDown';
 import ModelSettings from './components/ModelSettings';
 import MaterialSettings from './components/MaterialSettings';
+import CategorySettings from './components/CategorySettings';
 import { useModal } from 'react-modal-hook';
 import { LeaveConfirmationDialog } from '../../../../common/ui/components/Dialogs';
 import { useToasters } from '../../../../common/ui/contexts/ToastersContext';
@@ -52,7 +53,7 @@ const CatalogSettings = () => {
 
     const items = [
         {
-            element: <div>Настройки категорий</div>,
+            element: <CategorySettings/>,
             name: CATEGORIES_SETTINGS_NAME,
         },
         {
