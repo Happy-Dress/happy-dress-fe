@@ -1,2 +1,6 @@
-import Landing from './Landing';
-export default Landing;
+import { LandingAsync } from './Landing.async';
+
+export {
+    LandingAsync as Landing
+};
+

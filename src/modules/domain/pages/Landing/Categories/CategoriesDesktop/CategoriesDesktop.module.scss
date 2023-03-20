@@ -1,59 +1,99 @@
-@import '../../../../../../common/ui/styles/colors';
+@import "../../../../../../common/ui/styles/font-sizes";
+@import "../../../../../../common/ui/styles/colors";
 
-.Wrapper {
-  margin: 120px 0 100px;
+.CategoriesDesktop {
+  padding: 90px 0;
+  .title {
+    text-align: center;
+    font-weight: 600;
+    font-size: $font-size-xlarge-36;
+    margin-bottom: 50px;
+  }
 
-  &_header {
+  .slider {
     display: flex;
-    justify-content: center;
-    margin-bottom: 100px;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+    overflow-y: hidden;
+    margin-left: 120px;
+    height: 1000px;
+
+    &Wrapper {
+      display: flex;
+      position: relative;
+      height: 100%;
+      gap: 30px;
+      transition: left 0.3s ease;
+
+      .card {
+        margin-bottom: 12px;
+        img {
+          border-radius: 10px;
+          transition: all 0.3s ease;
+          &.medium {
+            height: 720px;
+          }
+
+          &.small {
+            height: 530px;
+          }
+
+          &.main {
+            height: 909px;
+          }
+
+        }
+
+        h3 {
+          font-size: $font-size-xlarge-32;
+          font-weight: 400;
+          color: $black;
+          margin: 24px 0 12px;
+        }
+
+        span {
+          font-size: $font-size-xmedium-18;
+          font-weight: 400;
+          color: $gray;
+        }
+      }
+    }
+
+    &Btn {
+      background: $transparent-gray-gradient;
+      height: 100%;
+      position: absolute;
+      z-index: 1000;
+      width: 202px;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      cursor: pointer;
+      display: none;
+
+      &.active {
+        display: flex;
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+
+      &.left {
+        left: 0;
+        svg {
+          transform: rotate(-90deg);
+        }
+      }
+
+      &.right {
+        right: 0;
+        svg {
+          transform: rotate(90deg);
+        }
+      }
+    }
   }
-
-  &_cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    gap: 12px;
-    padding: 0 50px 0 50px;
-  }
 }
-
-.card {
-  cursor: pointer;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  background-size: cover;
-  background: $silver-gradient;
-}
-
-.card:hover {
-  background: none;
-  .cardDescription {
-    color: black;
-  }
-}
-
-.cardName {
-  position: absolute;
-  bottom: 60px;
-  left: 20px;
-}
-
-.cardDescription {
-  color: $gray;
-  position: absolute;
-  bottom: 0;
-  margin-bottom: 20px;
-  left: 20px;
-}
-
-.cardImage {
-  height: 25vw;
-  z-index: -1;
-  object-fit: fill;
-}
-
-
