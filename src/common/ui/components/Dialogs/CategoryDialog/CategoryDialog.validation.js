@@ -30,6 +30,6 @@ export const validationSchema = (editingModel, settingsList) => {
             description: z.string().min(3, { message: MIN_3 }),
             image: z
                 .any()
-                .refine((files) =>  files?.length > 0, LOAD_PHOTO_ERROR),
+                .refine((files) =>  editingModel ? true : files?.length > 0, LOAD_PHOTO_ERROR),
         });
 };
