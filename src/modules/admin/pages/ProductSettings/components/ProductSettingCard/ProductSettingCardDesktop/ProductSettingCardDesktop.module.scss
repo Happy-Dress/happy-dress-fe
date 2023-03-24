@@ -1,0 +1,66 @@
+@import "../../../../../../../common/ui/styles/media-sizes";
+@import "../../../../../../../common/ui/styles/colors";
+@import "../../../../../../../common/ui/styles/font-sizes";
+
+.ProductSettingCardDesktop {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+
+    &_way {
+        margin: 25px 0 0 25px;
+        color: $light-gray;
+    }
+
+
+    &_heading {
+        display: flex;
+        justify-content: center;
+        margin: 15px auto 30px;
+        padding: 0 20px 20px;
+        border-bottom: 1px solid $brown;
+        text-align: center;
+    }
+
+    &_form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 500px;
+        height: fit-content;
+        margin: 1em;
+         gap: 10px;
+
+        &_elem {
+            display: flex;
+            justify-content: space-between;
+            gap: 25px;
+
+            &_elemTitle {
+                white-space: nowrap;
+                flex-basis: 40%;        
+                font-size: $font-size-xlarge-24;
+            }
+        }
+    }
+
+    &_inputWrapper {
+        display: flex;
+        justify-content: space-between;
+        font-size: $font-size-xlarge-24;
+        gap: 50px;
+    }
+
+    &_input {
+        flex-grow: 1;
+        background-color: inherit;
+        border: 1px solid $gray;
+        height: 40px;
+        text-align: center;
+        font-size: $font-size-xmedium-18;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

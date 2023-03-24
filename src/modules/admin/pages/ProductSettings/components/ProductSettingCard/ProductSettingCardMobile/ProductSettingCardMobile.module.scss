@@ -1,0 +1,82 @@
+@import "../../../../../../../common/ui/styles/media-sizes";
+@import "../../../../../../../common/ui/styles/colors";
+@import "../../../../../../../common/ui/styles/font-sizes";
+
+
+.ProductSettingCardMobile {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding: 1em;
+
+    &_way {
+        margin: 0 auto 70px;
+        padding: 0 20px 20px;
+        text-align: center;
+        color: $light-gray;
+    }
+
+    &_heading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px auto 30px;
+        padding: 0 20px 20px;
+        border-bottom: 1px solid $brown;
+        text-align: center;
+    }
+
+    &_inputWrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: $font-size-large-20;
+        gap: 10px;
+        width: 100%;
+        //padding: 0.5em 0 0.7em 0;
+    }
+
+    &_input {
+        background-color: $light-gray;
+        border: 1px solid $gray;
+        height: 55px;
+        text-align: center;
+        font-size: $font-size-xmedium-18;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 90%;
+    }
+
+    &_bottomLine {
+        border-bottom: 1px solid $light-gray;
+        width: 100%;
+        padding-bottom: 2em;
+    }
+
+    &_form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 80%;
+        height: fit-content;
+        gap: 10px;
+        margin: auto;
+
+        &_elem {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+
+            &_elemTitle {
+                white-space: nowrap;
+                flex-basis: 40%;
+                font-size: $font-size-large-20;
+            }
+        }
+    }
+
+}
