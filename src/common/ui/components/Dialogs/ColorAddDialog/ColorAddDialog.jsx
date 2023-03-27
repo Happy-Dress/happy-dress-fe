@@ -33,7 +33,15 @@ const ColorAddDialog = ({ onClose, updateSettings, settingsList, editingModel, s
 
 
     const handleSave = () => {
-        if(settingsList.filter(item => item.name === state.name).length) {
+        if (editingModel) {
+            const filteredItems =
+                settingsList.filter((item) => item.name.toLowerCase() !== editingModel.name.toLowerCase());
+
+            if(filteredItems.filter(item => item.name.toLowerCase() === state.name.toLowerCase()).length) {
+                setError(ALREADY_EXISTS);
+                return;
+            }
+        } else if(settingsList.filter(item => item.name === state.name).length) {
             setError(ALREADY_EXISTS);
             return;
         }
