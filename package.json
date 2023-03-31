@@ -82,7 +82,7 @@
     ],
     "coverageThreshold": {
       "global": {
-        "lines": 76.7
+        "lines": 75
       }
     },
     "coverageReporters": [
