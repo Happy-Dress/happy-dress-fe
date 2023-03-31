@@ -47,13 +47,13 @@ export const useCurrentFilters = (tagClass) => {
         });
     }, [selectedFilters]);
 
-    const clickHandler = () => {
+    const handleDropFilters = () => {
         dispatch(dropFilters(catalogueSettings));
     };
 
     return {
         tags,
-        clickHandler,
+        handleDropFilters,
         isDesktop
     };
 };

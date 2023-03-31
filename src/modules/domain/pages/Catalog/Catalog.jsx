@@ -4,11 +4,11 @@ import CatalogSearch from './components/CatalogSearch';
 import s from './Catalog.module.scss';
 import { DressCategories } from './components/DressCategories';
 import { useDeviceTypeContext } from '../../../../common/ui/contexts/DeviceType';
-import { useCatalogFetch } from '../../../../common/ui/hooks/useCatalogFetch';
+import { useCatalogFilters } from '../../../../common/ui/hooks/useCatalogFilters';
 
 const Catalog = () =>{
     const { isDesktop } = useDeviceTypeContext();
-    useCatalogFetch();
+    useCatalogFilters();
 
     return (
         <div className={s.Catalog}>

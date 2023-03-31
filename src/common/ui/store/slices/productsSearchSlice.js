@@ -14,15 +14,16 @@ const initialState = {
     },
     ifFilterOpened: false,
     products: [],
+    currentPage: 0,
+    totalPages: 0,
     selectedProducts: []
 };
 
 
 const fetchCatalogueItems = createAsyncThunk(
     'productsSearch/fetch',
-    async (filters) => {
-
-        return await getCatalogueItems(filters);
+    async ({ filters, page }) => {
+        return await getCatalogueItems(filters, page);
     }
 );
 
@@ -32,30 +33,48 @@ export const productsSearchSlice = createSlice({
     initialState,
     reducers: {
         setCategory: (state, action) => {
+            state.currentPage = 0;
+            state.products = [];
             state.filters.category = action.payload;
         },
         selectModel: (state, action) => {
+            state.currentPage = 0;
+            state.products = [];
             state.filters.models = [...state.filters.models, action.payload];
         },
         unSelectModel: (state, action) => {
+            state.currentPage = 0;
+            state.products = [];
             state.filters.models = state.filters.models.filter(id => id !== action.payload);
         },
         selectMaterial: (state, action) => {
+            state.currentPage = 0;
+            state.products = [];
             state.filters.materials = [...state.filters.materials, action.payload];
         },
         unSelectMaterial: (state, action) => {
+            state.currentPage = 0;
+            state.products = [];
             state.filters.materials = state.filters.materials.filter(id => id !== action.payload);
         },
         selectColor: (state, action) => {
+            state.currentPage = 0;
+            state.products = [];
             state.filters.colors = [...state.filters.colors, action.payload];
         },
         unSelectColor: (state, action) => {
+            state.currentPage = 0;
+            state.products = [];
             state.filters.colors = state.filters.colors.filter(id => id !== action.payload);
         },
         selectSize: (state, action) => {
+            state.currentPage = 0;
+            state.products = [];
             state.filters.sizes = [...state.filters.sizes, action.payload];
         },
         unSelectSize: (state, action) => {
+            state.currentPage = 0;
+            state.products = [];
             state.filters.sizes = state.filters.sizes.filter(id => id !== action.payload);
         },
         unSelectFilter: (state, action) => {
@@ -79,6 +98,11 @@ export const productsSearchSlice = createSlice({
         },
         unSelectProduct: (state, action) => {
             state.selectedProducts = state.selectedProducts.filter(item => item !== action.payload);
+        },
+        setName: (state, action) =>{
+            state.currentPage = 0;
+            state.products = [];
+            state.filters.name = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -86,7 +110,9 @@ export const productsSearchSlice = createSlice({
             state.filters.category = actions.payload.categories[0].id;
         });
         builder.addCase(fetchCatalogueItems.fulfilled, (state, action) => {
-            state.products.push(...action.payload);
+            state.currentPage = action.payload.currentPage + 1;
+            state.totalPages = action.payload.totalPages;
+            state.products = [...state.products, ...action.payload.products];
             state.loading = false;
         });
         builder.addCase(fetchCatalogueItems.pending, (state) => {
@@ -113,7 +139,8 @@ export const {
     toggleFilter,
     resetProducts,
     selectProduct,
-    unSelectProduct
+    unSelectProduct,
+    setName
 } = productsSearchSlice.actions;
 export { fetchCatalogueItems };
 

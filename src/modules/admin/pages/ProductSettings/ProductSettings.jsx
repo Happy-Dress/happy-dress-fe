@@ -1,11 +1,11 @@
 import React from 'react';
 import ProductsSettingsSearch from './components/ProductSettingsSearch';
 import ProductsList from './components/ProductsList';
-import { useCatalogFetch } from '../../../../common/ui/hooks/useCatalogFetch';
+import { useCatalogFilters } from '../../../../common/ui/hooks/useCatalogFilters';
 
 const ProductSettings = () =>{
-    useCatalogFetch();
 
+    useCatalogFilters();
 
     return (
         <>

@@ -16,6 +16,9 @@ const ProductCard = (props) => {
         className
     } = props;
 
+    const sizes = Array.from(new Set([...product.productColorSizes.map(colorSize => colorSize.size.sizeValue)]));
+    const colors = Array.from(new Set([...product.productColorSizes.map(colorSize => colorSize.color)]));
+
     return (
         <div
             className={classNames(s.ProductCard, className)}
@@ -28,7 +31,7 @@ const ProductCard = (props) => {
                         <p>{SIZE}</p>
                         <div className={s.items}>
                             {
-                                product.sizes.map(item => {
+                                sizes.map(item => {
                                     return <span key={item}>{item}</span>;
                                 })
                             }
@@ -38,8 +41,8 @@ const ProductCard = (props) => {
                         <p>{COLOR}</p>
                         <div className={s.items}>
                             {
-                                product.colors.map(item => {
-                                    return <span key={item} style={{ backgroundColor: item }}/>;
+                                colors.map(item => {
+                                    return <span key={item} style={{ backgroundColor: item.firstColor }}/>;
                                 })
                             }
                         </div>

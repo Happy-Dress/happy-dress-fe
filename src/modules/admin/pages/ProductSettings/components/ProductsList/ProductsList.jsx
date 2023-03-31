@@ -14,6 +14,9 @@ import classNames from 'classnames';
 const ProductsList = () =>{
 
     const products = useSelector(state => state.productsSearch.products);
+    const filters = useSelector(state => state.productsSearch.filters);
+    const currentPage = useSelector(state => state.productsSearch.currentPage);
+    const totalPages = useSelector(state => state.productsSearch.totalPages);
     const isLoading = useSelector(state => state.productsSearch.loading);
     const selectedProducts = useSelector(state => state.productsSearch.selectedProducts);
     const { ref, inView } = useInView({
@@ -35,8 +38,8 @@ const ProductsList = () =>{
     };
 
     useEffect(() => {
-        if(inView) {
-            dispatch(fetchCatalogueItems());
+        if(inView && currentPage < totalPages) {
+            dispatch(fetchCatalogueItems({ filters, page: currentPage }));
         }
     }, [inView]);
 

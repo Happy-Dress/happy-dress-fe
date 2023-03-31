@@ -9,7 +9,7 @@ const {
 } = PRODUCT_SETTINGS_DICTIONARY;
 
 const CurrentFilters = () => {
-    const { tags, clickHandler } = useCurrentFilters(s.tag);
+    const { tags, handleDropFilters } = useCurrentFilters(s.tag);
     return (
         <div className={s.CurrentFilters}>
             <div className={s.tags}>
@@ -17,7 +17,7 @@ const CurrentFilters = () => {
             </div>
             {
                 (tags.filter(item => item && item.length > 0).length > 0) &&
-                <ButtonAccent text={RESET_FILTERS} onClick={clickHandler}/>
+                <ButtonAccent text={RESET_FILTERS} onClick={handleDropFilters}/>
             }
         </div>
     );
