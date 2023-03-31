@@ -32,7 +32,7 @@
           border-radius: 10px;
           transition: all 0.3s ease;
           &.medium {
-            height: 720px;
+            height: 620px;
           }
 
           &.small {
@@ -40,7 +40,7 @@
           }
 
           &.main {
-            height: 909px;
+            height: 800px;
           }
 
         }
@@ -72,6 +72,7 @@
       transition: opacity 0.3s ease;
       cursor: pointer;
       display: none;
+      border-radius: 10px;
 
       &.active {
         display: flex;
