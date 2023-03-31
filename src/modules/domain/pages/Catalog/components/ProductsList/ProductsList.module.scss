@@ -17,4 +17,13 @@
     grid-template-columns: 1fr;
     column-gap: unset;
   }
+  .observingBlock {
+    width: 20px;
+    height: 20px;
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
 }

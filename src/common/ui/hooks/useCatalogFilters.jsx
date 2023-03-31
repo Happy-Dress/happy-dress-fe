@@ -3,14 +3,16 @@ import { useEffect } from 'react';
 import { fetchCatalogueItems, resetProducts } from '../store/slices/productsSearchSlice';
 import { fetchCatalogueSettings } from '../store/slices/catalogueSettingsSlice';
 
-export const useCatalogFetch = () => {
+export const useCatalogFilters = () => {
     const dispatch = useDispatch();
     const catalogueSettings = useSelector(state => state.productsSearch.filters);
+    const currentPage = useSelector(state => state.productsSearch.currentPage);
 
     useEffect(() =>{
         if(catalogueSettings.category){
             dispatch(resetProducts());
-            dispatch(fetchCatalogueItems(catalogueSettings));
+            const pageToSearch = currentPage + 1;
+            dispatch(fetchCatalogueItems({ filters: catalogueSettings, page: pageToSearch }));
         }
     }, [catalogueSettings]);
 

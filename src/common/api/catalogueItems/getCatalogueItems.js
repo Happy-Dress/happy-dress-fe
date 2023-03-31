@@ -1,31 +1,23 @@
-import testBgImage from '../../assets/images/ZeroBlock/ZeroBlockSM.png';
+import axios from 'axios';
 
-const item = {
-    id: 1,
-    name: 'S000012345',
-    colors: [
-        '#fff',
-        '#000',
-        '#a65f30'
-    ],
-    sizes: [1, 2, 3, 4],
-    category: 'Свадебные',
-    imageUrl: testBgImage
-};
+const ITEMS_LIMIT = 15;
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-const getCatalogueItems = async (filters) => {
-    await sleep(1000);
-    return await new Promise((resolve) => {
-        console.log(filters);
-        const arr = [];
-        for(let i = 0; i< 15; i++){
-            const newItem = { ...item, id: i };
-            arr.push(newItem);
-        }
-        resolve(arr);
+const getCatalogueItems = async (filters, page) => {
+    const requestFilters = {
+        categoryId: filters.categoryId,
+        modelIds: filters.models.length ? filters.models : null,
+        materialIds: filters.materials.length? filters.materials: null,
+        colorIds: filters.colors.length ? filters.colors : null,
+        sizeIds: filters.sizes.length ? filters.sizes : null,
+        name: filters.name,
+    };
+    const response = await axios.post('products/search', {
+        ...requestFilters,
+        limit: ITEMS_LIMIT,
+        page
     });
+    return response.data;
 };
 
 export default getCatalogueItems;
