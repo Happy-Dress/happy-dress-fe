@@ -8,10 +8,11 @@
   border: 1px $gray solid;
   box-shadow: $shadow-main;
   cursor: pointer;
-  min-width: 320px;
+  max-width: 320px;
   display: flex;
   flex-direction: column;
   position: relative;
+  width: 100%;
 
   &.active {
     outline: 2px solid $brown;
@@ -25,7 +26,9 @@
   }
 
   img {
-    height: 400px;
+    aspect-ratio: 3 / 4;
+    width: 100%;
+    max-height: 400px;
     align-self: center;
 
     &.hovered {
@@ -119,6 +122,7 @@
           .items {
             column-gap: 5%;
           }
+
           &.sizes {
             .items {
               span {
