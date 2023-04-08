@@ -10,7 +10,7 @@
     box-shadow: $shadow-main;
     padding: 30px;
 
-    p {
+    & p {
       color: $gray;
       cursor: pointer;
 
@@ -21,6 +21,8 @@
         text-decoration-color: $brown;
         text-decoration-thickness: 1px;
         text-underline-offset: 5px;
+        -webkit-text-decoration-line:  underline;
+        -webkit-text-decoration-color: $brown;
       }
     }
   }
