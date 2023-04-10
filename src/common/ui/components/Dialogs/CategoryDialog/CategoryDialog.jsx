@@ -57,7 +57,7 @@ export const CategoryDialog = ({
         };
     }, [editingModel]);
 
-    const { register, handleSubmit, formState: { errors } }
+    const { register, handleSubmit, formState: { errors, isValid } }
         = useForm({
             defaultValues: {
                 name: state?.name || '',
@@ -199,7 +199,7 @@ export const CategoryDialog = ({
                     <ModalFooter actionButtons={[
                         <ButtonDefault type="button" onClick={handleClose} key={1}
                             text={CANCEL_BUTTON} />,
-                        <ButtonAccent type="submit" key={0} text={SUBMIT_BUTTON} />,
+                        <ButtonAccent type="submit" key={0} text={SUBMIT_BUTTON} disabled={!isValid} />,
                     ]} />
                 </div>
             </form>
