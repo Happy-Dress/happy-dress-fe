@@ -5,7 +5,7 @@ const ITEMS_LIMIT = 15;
 
 const getCatalogueItems = async (filters, page) => {
     const requestFilters = {
-        categoryId: filters.categoryId,
+        categoryId: filters.category,
         modelIds: filters.models.length ? filters.models : null,
         materialIds: filters.materials.length? filters.materials: null,
         colorIds: filters.colors.length ? filters.colors : null,
