@@ -6,7 +6,7 @@ describe('getCatalogueItems',  () => {
     it('should return expected values', async () => {
 
         const request = {
-            categoryId: 1,
+            category: 1,
             models: [],
             materials: [],
             colors: [],
