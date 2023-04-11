@@ -8,11 +8,9 @@
   border: 1px $gray solid;
   box-shadow: $shadow-main;
   cursor: pointer;
-  max-width: 320px;
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 100%;
 
   &.active {
     outline: 2px solid $brown;
@@ -28,6 +26,7 @@
   img {
     aspect-ratio: 3 / 4;
     width: 100%;
+    max-width: 320px;
     max-height: 400px;
     align-self: center;
 
@@ -46,7 +45,7 @@
 
   .update {
     position: absolute;
-    top: 360px;
+    bottom: 195px;
     right: 25px;
     width: 45px;
     height: 45px;

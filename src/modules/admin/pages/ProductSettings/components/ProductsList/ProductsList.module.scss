@@ -1,9 +1,10 @@
 @import "../../../../../../common/ui/styles/font-sizes";
 @import "../../../../../../common/ui/styles/colors";
+@import "../../../../../../common/ui/styles/media-sizes";
 
 .ProductsList{
   margin-top: 50px;
-  padding: 0 calc(10% + 47px) 0 calc(8% + 47px);
+  padding: 0 calc(5% + 2px) 0 calc(5% + 2px);
   width: 100%;
   display: flex;
   justify-content: space-evenly;
@@ -14,21 +15,47 @@
 
   #slider {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 75px;
+    right: 49px;
     cursor: pointer;
+
+    @media all and (max-width: $lg-size) {
+      bottom: 50px;
+    }
+
+    @media all and (max-width: $md-size) {
+      bottom: 24px;
+      right: 24px;
+    }
+  }
+
+  .bottomBar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 202px;
+    width: 100%;
+    background: linear-gradient(270deg, #C4C4C4 0%, rgba(196, 196, 196, 0) 184.41%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    @media all and (max-width: $lg-size) {
+      height: 150px;
+    }
+
+    @media all and (max-width: $md-size) {
+      height: 100px;
+    }
   }
 
   #trash {
-    position: fixed;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
     display: flex;
-    flex-direction: column;
     align-items: center;
     gap: 15px;
     cursor: pointer;
+
     p {
       font-size: $font-size-xlarge-36;
       color: $brown;
