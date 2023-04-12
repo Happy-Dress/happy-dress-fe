@@ -68,7 +68,7 @@
         text-decoration-line: underline;
         text-decoration-style: solid;
         text-decoration-thickness: 1.8px;
-        text-decoration-color: rgba(167, 82, 20, 0.8);
+        text-decoration-color: $brown;
       }
     }
 
@@ -80,14 +80,14 @@
         text-decoration-line: underline;
         text-decoration-style: solid;
         text-decoration-thickness: 1.8px;
-        text-decoration-color: rgba(167, 82, 20, 0.8);
+        text-decoration-color: $brown;
       }
 
       &:active {
         text-decoration-line: underline;
         text-decoration-style: solid;
         text-decoration-thickness: 1.8px;
-        text-decoration-color: rgba(167, 82, 20, 0.8);
+        text-decoration-color: $brown;
       }
     }
 

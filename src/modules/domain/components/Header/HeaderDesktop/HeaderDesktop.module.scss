@@ -40,7 +40,7 @@
         text-decoration-line: underline;
         text-decoration-style: solid;
         text-decoration-thickness: 1.8px;
-        text-decoration-color: rgba(167, 82, 20, 0.8);
+        text-decoration-color: $brown;
         color: $black;
       }
     }
@@ -53,14 +53,14 @@
         text-decoration-line: underline;
         text-decoration-style: solid;
         text-decoration-thickness: 1.8px;
-        text-decoration-color: rgba(167, 82, 20, 0.8);
+        text-decoration-color: $brown;
       }
 
       &:active {
         text-decoration-line: underline;
         text-decoration-style: solid;
         text-decoration-thickness: 1.8px;
-        text-decoration-color: rgba(167, 82, 20, 0.8);
+        text-decoration-color: $brown;
       }
     }
   }
@@ -88,7 +88,7 @@
     &_delimiter {
       width: 24px;
       height: 0;
-      border-top: 1.8px solid rgba(167, 82, 20, 0.8);
+      border-top: 1.8px solid $brown;
       transform: rotate(-90deg);
       margin: 0 4%;
     }
