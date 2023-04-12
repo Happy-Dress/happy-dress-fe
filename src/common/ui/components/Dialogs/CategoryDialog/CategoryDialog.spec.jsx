@@ -1,8 +1,7 @@
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import CategoryDialog from './CategoryDialog';
 import { ModalProvider } from 'react-modal-hook';
 import { DeviceTypeProvider } from '../../../contexts/DeviceType';
-import userEvent from '@testing-library/user-event';
 import { isItemExist } from './CategoryDialog.validation';
 
 const mockEditModel = {
@@ -82,22 +81,18 @@ describe('CategoryDialog', () => {
         expect(screen.getByText('Загрузить другое фото')).toBeInTheDocument();
     });
 
-    it('should show error border', async () => {
+    it('should save button be disabled', async () => {
         renderWithProvider(addModelProps);
 
         const okButton = screen.getByText('Сохранить');
+        expect(okButton).toBeDisabled();
+
         const nameInput = screen.getByPlaceholderText('Название');
-        const description = screen.getByPlaceholderText('Описание');
+        const descriptionInput = screen.getByPlaceholderText('Описание');
 
-        expect(nameInput).not.toHaveClass('dialogError');
-        await userEvent.click(okButton);
-        await act(() => {
-            screen.debug();
-        });
-
-        expect(nameInput).toHaveClass('dialogInput');
-        expect(nameInput).toHaveClass('dialogError');
-        expect(description).toHaveClass('dialogError');
+        fireEvent.change(nameInput, { target: { value: 'ex' } });
+        fireEvent.change(descriptionInput, { target: { value: 'ex' } });
+        expect(okButton).toBeDisabled();
     });
 
     it('should isItemExist return correct boolean values', async () => {
