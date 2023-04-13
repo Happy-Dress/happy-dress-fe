@@ -33,6 +33,7 @@
   outline: none;
   padding: 20px;
   height: fit-content;
+  max-height: 95vh;
   z-index: 10000;
 
   ::-webkit-scrollbar {
