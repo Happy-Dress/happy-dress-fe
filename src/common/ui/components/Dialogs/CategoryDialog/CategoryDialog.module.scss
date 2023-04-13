@@ -36,14 +36,14 @@
   }
 
   &Img {
-    width: 100%;
-    max-width: 276px;
+    width: auto;
+    max-width: 90px;
     background: #C4C4C4;
     margin-top: 18px;
 
     & img {
       aspect-ratio: 3 / 4;
-      width: 100%;
+      max-height: 120px;
     }
   }
 
