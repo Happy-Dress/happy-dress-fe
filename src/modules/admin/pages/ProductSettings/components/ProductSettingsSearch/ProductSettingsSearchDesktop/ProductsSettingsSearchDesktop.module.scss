@@ -71,18 +71,14 @@
 
 
     &_categoriesList {
-      height: 72px;
+      min-height: 72px;
       background-color: $filters-gray;
       box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
       margin: 0 147px 0 100px;
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-
-      gap: 75px;
-      @media screen and (max-width: 1410px) {
-        gap: 25px;
-      }
       &_category {
         cursor: pointer;
         color: rgba(33,33,33,.5);
@@ -104,6 +100,9 @@
           @media screen and (max-width: 1450px) {
             font-size: $font-size-xmedium-18;
           }
+        }
+        &_wrapper{
+          margin: 20px;
         }
 
 

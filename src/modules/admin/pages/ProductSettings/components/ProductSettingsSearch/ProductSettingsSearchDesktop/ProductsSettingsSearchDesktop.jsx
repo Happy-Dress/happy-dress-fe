@@ -37,14 +37,16 @@ const ProductsSettingsSearchDesktop = () => {
     const CategoriesLayout = () =>
         <div className={s.ProductsSettingsSearchDesktop_categoriesList}>
             {catalogueSettings.categories.map((category, index) =>
-                <p
-                    className={classNames(isCategorySelected(category) ?
-                        s.ProductsSettingsSearchDesktop_categoriesList_category_selected :
-                        s.ProductsSettingsSearchDesktop_categoriesList_category
-                    )}
-                    onClick={() => selectCategory(category.id)}
-                    key={index}>{category.name}
-                </p>)}
+                <div className={s.ProductsSettingsSearchDesktop_categoriesList_category_wrapper} key={index}>
+                    <p
+                        className={classNames(isCategorySelected(category) ?
+                            s.ProductsSettingsSearchDesktop_categoriesList_category_selected :
+                            s.ProductsSettingsSearchDesktop_categoriesList_category
+                        )}
+                        onClick={() => selectCategory(category.id)}
+                        key={index}>{category.name}
+                    </p>
+                </div>)}
         </div>;
 
     const CategoriesLayoutWithSkeleton = withSkeleton({
