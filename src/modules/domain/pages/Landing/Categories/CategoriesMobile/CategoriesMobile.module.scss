@@ -3,6 +3,7 @@
 @import '../../../../../../common/ui/styles/colors';
 
 .CategoriesMobile {
+  margin-top: 32px;
   .title {
     color: $black;
     text-align: center;
@@ -15,25 +16,60 @@
 
   .slider {
     display: flex;
+    align-items: center;
+    flex-direction: column;
     overflow-x: hidden;
+    min-height: 450px;
 
-    &Wrapper {
+    &_dots {
       display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 30px;
+    }
 
-      .card {
-        img {
-          &.main {
-            width: 264px;
-          }
+    &_dot {
+      height: 10px;
+      width: 10px;
+      border-radius: 50%;
+      display: inline-block;
+      margin: 0 5px;
+      cursor: pointer;
 
-          &.small {
-            width: 165px;
-          }
+      &:hover {
+        background-color: $brown;
+      }
 
-          &.medium {
-            width: 225px;
-          }
+      &_active {
+        background-color: $brown;
+      }
+
+      &_disabled {
+        background-color: $gray;
+      }
+    }
+
+    &_card {
+
+      transform: translateX(100px);
+
+      &_active {
+        opacity: 1;
+        transition-duration: 1s;
+        div {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
         }
+      }
+
+      &_mainImage {
+        width: 264px;
+      }
+
+      &_description {
+        margin-top: 10px;
+        color: $gray;
       }
     }
   }
