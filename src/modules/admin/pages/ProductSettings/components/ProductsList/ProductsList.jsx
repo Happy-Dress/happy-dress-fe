@@ -51,14 +51,16 @@ const ProductsList = () =>{
             })}
             {isLoading && renderSkeletons(15)}
             <div ref={ref} className={classNames(s.observingBlock, { [s.active]: !isLoading })}/>
-            { shouldActivate && <Slider id={s.slider} onClick={clickHandler}/> }
             {
                 !!selectedProducts.length &&
-                <div id={s.trash}>
-                    <Trash/>
-                    <p>{selectedProducts.length}</p>
-                </div>
+                    <div className={s.bottomBar}>
+                        <div id={s.trash}>
+                            <Trash/>
+                            <p>{selectedProducts.length}</p>
+                        </div>
+                    </div>
             }
+            { shouldActivate && <Slider id={s.slider} onClick={clickHandler}/> }
         </div>
     );
 };
