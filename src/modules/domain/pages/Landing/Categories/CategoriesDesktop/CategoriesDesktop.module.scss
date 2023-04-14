@@ -16,8 +16,7 @@
     overflow-x: hidden;
     position: relative;
     overflow-y: hidden;
-    margin-left: 120px;
-    height: 1000px;
+    height: 600px;
 
     &Wrapper {
       display: flex;
@@ -25,6 +24,7 @@
       height: 100%;
       gap: 30px;
       transition: left 0.3s ease;
+      margin: 0 100px 0 100px ;
 
       .card {
         margin-bottom: 12px;
@@ -32,15 +32,15 @@
           border-radius: 10px;
           transition: all 0.3s ease;
           &.medium {
-            height: 620px;
+            height: 350px;
           }
 
           &.small {
-            height: 530px;
+            height: 250px;
           }
 
           &.main {
-            height: 800px;
+            height: 500px;
           }
 
         }
