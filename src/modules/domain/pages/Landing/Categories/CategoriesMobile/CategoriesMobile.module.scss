@@ -25,20 +25,17 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 30px;
+      flex-wrap: wrap;
+      margin: 20px;
     }
 
     &_dot {
-      height: 10px;
-      width: 10px;
+      height: 15px;
+      width: 15px;
       border-radius: 50%;
       display: inline-block;
       margin: 0 5px;
       cursor: pointer;
-
-      &:hover {
-        background-color: $brown;
-      }
 
       &_active {
         background-color: $brown;
