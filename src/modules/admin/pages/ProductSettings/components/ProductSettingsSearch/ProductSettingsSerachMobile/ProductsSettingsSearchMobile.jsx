@@ -37,6 +37,18 @@ const ProductsSettingsSearchMobile = () =>{
                 {(!isLoading && !isFilterOpened) && <div onClick={() => dispatch(toggleFilter())}><Filter/></div> }
                 {(!isLoading && isFilterOpened) && <div className={s.ProductsSettingsSearchMobile_cross} onClick={() => dispatch(toggleFilter())}><Cross/></div> }
             </div>
+            {!isFilterOpened &&
+                <div className={s.ProductsSettingsSearchMobile_detailedSearchWrapper}>
+                    <FilterDropDown
+                        selectedOptionIds={[selectedSettings.category]}
+                        onSelect={(categoryId) => dispatch(setCategory(categoryId))}
+                        onUnSelect={() => {}}
+                        name={'Категория'}
+                        options={catalogueSettings.categories}
+                        renderOption={renderOption}
+                    />
+                </div>
+            }
             {isFilterOpened &&
                 <div className={s.ProductsSettingsSearchMobile_detailedSearchWrapper}>
                     <FilterDropDown
