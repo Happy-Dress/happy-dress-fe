@@ -27,6 +27,7 @@ const CategoriesMobile = ({ categories }) => {
                         key={i}
                         onClick={() => setIndex(i)}
                         className={classNames(s.slider_dot, index === i ? s.slider_dot_active : s.slider_dot_disabled)}
+                        data-testid={`dot_${i}`}
                     />
                 ))}
             </div>
