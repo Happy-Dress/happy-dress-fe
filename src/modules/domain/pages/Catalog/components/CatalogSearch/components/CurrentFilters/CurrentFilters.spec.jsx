@@ -7,8 +7,7 @@ const preloadedStore = {
     productsSearch: {
         loading: false,
         filters: {
-            category: mockCatalogueSettingsResponse.categories[0].id,
-            models: [],
+            models: [mockCatalogueSettingsResponse.models[0].id],
             materials: [],
             colors: [],
             sizes: [],
@@ -28,6 +27,6 @@ describe('CurrentFilters', () => {
 
         screen.debug();
         expect(baseElement).toBeInTheDocument();
-        expect(screen.getByText(mockCatalogueSettingsResponse.categories[0].name)).toBeInTheDocument();
+        expect(screen.getByText(mockCatalogueSettingsResponse.models[0].name)).toBeInTheDocument();
     });
 });

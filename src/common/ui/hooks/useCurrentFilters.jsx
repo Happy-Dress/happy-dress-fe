@@ -32,7 +32,7 @@ export const useCurrentFilters = (tagClass) => {
 
     const tags = useMemo(() => {
         return Object.entries(selectedFilters).map(([key, value]) => {
-            if(key === 'category' && isDesktop) return;
+            if(key === 'category') return;
             if(!value) return;
 
             if(typeof value === 'object') {
