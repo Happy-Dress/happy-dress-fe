@@ -70,6 +70,7 @@ const CategoriesDesktop = ({ categories: initialState }) => {
                 <div
                     className={classNames(s.sliderBtn, s.left, { [s.active]: sliderState !== 0 })}
                     onClick={() => sliderChangeHandler('left')}
+                    data-testid='left-arrow'
                 >
                     <Arrow/>
                 </div>
@@ -81,6 +82,7 @@ const CategoriesDesktop = ({ categories: initialState }) => {
                         <div
                             key={index}
                             className={s.card}
+                            data-testid={`card_${index}`}
                         >
                             <img
                                 className={classNames({
@@ -99,7 +101,9 @@ const CategoriesDesktop = ({ categories: initialState }) => {
                 </div>
                 <div
                     className={classNames(s.sliderBtn, s.right, { [s.active]: (sliderState !== categories.length) })}
-                    onClick={() => sliderChangeHandler('right')}>
+                    onClick={() => sliderChangeHandler('right')}
+                    data-testid='right-arrow'
+                >
                     <Arrow/>
                 </div>
             </div>
