@@ -18,21 +18,26 @@ const categories = [
     }
 ];
 
+
 describe('CategoriesMobile', ( ) => {
     it('CategoriesMobile renders', async () => {
         const { baseElement } = render(<CategoriesMobile categories={categories} />);
         expect(baseElement).toBeInTheDocument();
+
     });
 
     it('should change slide on press dot', async () => {
         render(<CategoriesMobile categories={categories} />);
         const secondDot = screen.getByTestId('dot_1');
-        const firstSlideText = screen.getByText('Свадебные');
-        expect(firstSlideText).toBeInTheDocument();
+        const firstSlide = screen.getByTestId('card_0');
+        const secondSlide = screen.getByTestId('card_1');
+        expect(firstSlide).toHaveAttribute('class', 'slider_card_active');
+        expect(secondSlide).toHaveAttribute('class', 'slider_card');
 
         await userEvent.click(secondDot);
 
-        const secondSlideText = screen.getByText('plain text');
-        expect(secondSlideText).toBeInTheDocument();
+        expect(secondSlide).toHaveAttribute('class', 'slider_card_active');
+        expect(firstSlide).toHaveAttribute('class', 'slider_card');
     });
+
 });

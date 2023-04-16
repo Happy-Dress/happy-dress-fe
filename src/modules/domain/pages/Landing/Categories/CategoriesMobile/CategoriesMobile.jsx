@@ -43,7 +43,11 @@ const CategoriesMobile = ({ categories }) => {
                 {renderDots()}
                 <div {...handleSwipe}>
                     {categories.map((post, key) => (
-                        <div className={classNames(key === index ? s.slider_card_active : s.slider_card)} key={key}>
+                        <div
+                            className={classNames(key === index ? s.slider_card_active : s.slider_card)}
+                            key={key}
+                            data-testid={`card_${key}`}
+                        >
                             {key === index && <div>
                                 <img src={post.imageUrl} className={s.slider_card_mainImage}
                                     alt={`Slide ${index + 1}`}/>
