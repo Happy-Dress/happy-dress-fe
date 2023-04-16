@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import s from './ProductsList.module.scss';
 import ProductCardAdd from '../ProductCardAdd';
 import { useDispatch, useSelector } from 'react-redux';
@@ -45,7 +46,9 @@ const ProductsList = () =>{
 
     return (
         <div className={s.ProductsList}>
-            <ProductCardAdd/>
+            <Link to='../product-card'>
+                <ProductCardAdd/>
+            </Link>
             {products.map((product, index) => {
                 return <ProductCard key={index} product={product} isAdmin={true}/>;
             })}

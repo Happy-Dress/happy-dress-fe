@@ -1,0 +1,103 @@
+@import '../../../../common/ui/styles/colors';
+
+.productCard {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+
+  & span {
+    margin-right: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  & svg {
+    margin-right: 10px;
+  }
+
+  &_heading {
+    border-bottom: 1px solid $brown;
+    display: flex;
+    justify-content: center;
+    margin: 15px auto 30px;
+    padding: 0 20px 20px;
+    text-align: center;
+  }
+
+  &Field {
+    align-items: center;
+    border-bottom: 1px solid $light-gray;
+    display: flex;
+    justify-content: space-between;
+    max-width: 465px;
+    padding: 13px 24px;
+
+    & label, p {
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 28px;
+    }
+
+    & > div {
+      background-color: $white;
+    }
+
+    & input[type=text], div {
+      max-width: 235px;
+    }
+
+    &Error {
+      color: $red;
+      display: flex;
+      padding: 12px;
+    }
+  }
+
+  &Description {
+    margin-top: 73px;
+    width: 100%;
+
+    &Title {
+      display: block;
+      font-family: 'Roboto', serif;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 38px;
+      margin-bottom: 17px;
+    }
+
+    & textarea {
+      background: $white;
+      border: 1px solid $light-gray;
+      color: $light-gray;
+      font-family: 'Roboto', serif;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      height: 135px;
+      line-height: 21px;
+      padding: 8px 16px;
+      resize: none;
+      width: 100%;
+
+      &::placeholder {
+        color: $light-gray;
+      }
+    }
+  }
+
+  &Footer {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    padding: 28px 64px 62px;
+    width: 100%;
+
+    & button {
+      max-width: 264px;
+      width: 100%;
+    }
+  }
+}

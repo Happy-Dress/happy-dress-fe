@@ -1,0 +1,1 @@
+import { ProductsCard } from './ProductsCard';

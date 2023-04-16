@@ -9,6 +9,7 @@ import s from './Admin.module.scss';
 import PrivateRoutes from '../../common/util/routers/ProtectedRoutes';
 import CatalogSettings from './pages/CatalogSettings';
 import ProductSettings from './pages/ProductSettings';
+import { ProductsCard } from './pages/ProductsCard/ProductsCard';
 
 const RETRY_SIGN_IN = 'Выполните вход';
 
@@ -22,6 +23,7 @@ export const AdminPanelRoutes = () => {
                     <Route path="catalog-settings" element={<CatalogSettings/>}/>
                     <Route path="blog-settings" element={<BlogSettings/>}/>
                     <Route path="products-settings" element={<ProductSettings/>}/>
+                    <Route path="product-card" element={<ProductsCard/>}/>
                     <Route
                         path="registration-settings"
                         element={<RegistrationSetting/>}
