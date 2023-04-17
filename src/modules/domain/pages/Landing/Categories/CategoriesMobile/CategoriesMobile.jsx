@@ -44,7 +44,8 @@ const CategoriesMobile = ({ categories }) => {
                 <div {...handleSwipe}>
                     {categories.map((post, key) => (
                         <div
-                            className={classNames(key === index ? s.slider_card_active : s.slider_card)}
+                            className={classNames(key === index ? s.slider_card_active :
+                                key < index ? s.slider_card_left : s.slider_card_right)}
                             key={key}
                             data-testid={`card_${key}`}
                         >

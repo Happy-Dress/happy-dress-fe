@@ -32,12 +32,12 @@ describe('CategoriesMobile', ( ) => {
         const firstSlide = screen.getByTestId('card_0');
         const secondSlide = screen.getByTestId('card_1');
         expect(firstSlide).toHaveAttribute('class', 'slider_card_active');
-        expect(secondSlide).toHaveAttribute('class', 'slider_card');
+        expect(secondSlide).toHaveAttribute('class', 'slider_card_right');
 
         await userEvent.click(secondDot);
 
         expect(secondSlide).toHaveAttribute('class', 'slider_card_active');
-        expect(firstSlide).toHaveAttribute('class', 'slider_card');
+        expect(firstSlide).toHaveAttribute('class', 'slider_card_left');
     });
 
 });
