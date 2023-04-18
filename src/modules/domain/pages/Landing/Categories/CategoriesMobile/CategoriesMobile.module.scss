@@ -50,16 +50,24 @@
     &_card {
 
       &_left {
-        transform: translateX(-60vw);
+        transform: translateX(-100vw);
       }
 
       &_right{
-        transform: translateX(60vw);
+        transform: translateX(100vw);
+      }
+
+      &_moveRight{
+        transform: translateX(100vw);
+      }
+
+      &_moveLeft{
+        transform: translateX(-100vw);
       }
 
       &_active {
         opacity: 1;
-        transition-duration: 1s;
+        transition-duration: 0.5s;
         div {
           display: flex;
           flex-direction: column;
