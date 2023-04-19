@@ -11,11 +11,24 @@ const { HEADING_LABEL } = CATEGORIES_DICTIONARY;
 const CategoriesMobile = ({ categories }) => {
 
     const [index, setIndex] = useState(0);
+    const [moveLeft, setMoveLeft] = useState(false);
+    const [moveRight, setMoveRight] = useState(false);
     const handleSwipe = useSwipeable({
         onSwipedLeft: () => {
-            setIndex((prevIndex) => (prevIndex + 1) % categories.length);
+            setMoveLeft(true);
+            setTimeout(() => {
+                setIndex((prevIndex) => (prevIndex + 1) % categories.length);
+                setMoveLeft(false);
+            }, 300);
+
         },
-        onSwipedRight: () => setIndex((prevIndex) => (prevIndex + categories.length - 1) % categories.length),
+        onSwipedRight: () => {
+            setMoveRight(true);
+            setTimeout(() => {
+                setIndex((prevIndex) => (prevIndex + categories.length - 1) % categories.length);
+                setMoveRight(false);
+            }, 300);
+        },
     });
 
 
@@ -45,7 +58,10 @@ const CategoriesMobile = ({ categories }) => {
                     {categories.map((post, key) => (
                         <div
                             className={classNames(key === index ? s.slider_card_active :
-                                key < index ? s.slider_card_left : s.slider_card_right)}
+                                key < index ? s.slider_card_left : s.slider_card_right,
+                            moveLeft && key === index ? s.slider_card_moveLeft : '',
+                            moveRight && key === index ? s.slider_card_moveRight : '',
+                            )}
                             key={key}
                             data-testid={`card_${key}`}
                         >
