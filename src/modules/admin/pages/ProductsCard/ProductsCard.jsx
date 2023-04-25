@@ -1,7 +1,7 @@
 import React from 'react';
 import { PRODUCT_CARD } from './ProductsCard.dictionary';
 import { Breadcrumbs } from '../../../../common/ui/components/Breadcrumbs';
-import s from './ProductsCard2.module.scss';
+import s from './ProductsCard.module.scss';
 import { TextField } from '../../../../common/ui/components/TextField';
 import { useCatalogFetch } from '../../../../common/ui/hooks/useCatalogFetch';
 import { useDetailedSearch } from '../../../../common/ui/hooks/useDetailedSearch';

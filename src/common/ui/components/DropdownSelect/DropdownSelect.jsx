@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import s from './DropdownSelect.module.scss';
@@ -30,10 +30,17 @@ export const DropdownSelect = React.forwardRef(({
     onBlur,
 }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedOptions, setSelectedOptions] = useState(defaultValues.length ? defaultValues.map((value) => value.toString()) : []);
+    const [selectedOptions, setSelectedOptions] = useState([]);
     const outsideClickRef = useOutsideClick(() => setIsOpen(false));
 
     const inputType = multiple ? 'checkbox' : 'radio' ;
+
+    useEffect(() => {
+        if (Array.isArray(defaultValues)) {
+            const values = new Set([...selectedOptions, ...defaultValues.map((value) => value.toString())]);
+            setSelectedOptions([...values]);
+        }
+    }, [defaultValues]);
 
     const handleOptionClick = (e) => {
         if (!multiple) {
