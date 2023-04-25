@@ -9,7 +9,7 @@ import s from './Admin.module.scss';
 import PrivateRoutes from '../../common/util/routers/ProtectedRoutes';
 import CatalogSettings from './pages/CatalogSettings';
 import ProductSettings from './pages/ProductSettings';
-import { ProductsCard } from './pages/ProductsCard/ProductsCard';
+import { ProductsCard } from './pages/ProductsCard';
 
 const RETRY_SIGN_IN = 'Выполните вход';
 

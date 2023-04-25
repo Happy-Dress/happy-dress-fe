@@ -1,38 +1,19 @@
+import React from 'react';
 import { PRODUCT_CARD } from './ProductsCard.dictionary';
 import { Breadcrumbs } from '../../../../common/ui/components/Breadcrumbs';
-import s from './ProductsCard.module.scss';
+import s from './ProductsCard2.module.scss';
 import { TextField } from '../../../../common/ui/components/TextField';
 import { useCatalogFetch } from '../../../../common/ui/hooks/useCatalogFetch';
 import { useDetailedSearch } from '../../../../common/ui/hooks/useDetailedSearch';
-import FilterDropdown
-    from '../../../domain/pages/Catalog/components/CatalogSearch/components/FilterDropDown';
-import {
-    dropFilters,
-    selectMaterial,
-    selectModel,
-    setCategory, unSelectMaterial,
-    unSelectModel
-} from '../../../../common/ui/store/slices/productsSearchSlice';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { ButtonAccent, ButtonDefault } from '../../../../common/ui/components';
 import { useNavigate } from 'react-router-dom';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import { DropdownSelect } from '../../../../common/ui/components/DropdownSelect';
 
-const { BREADCRUMBS, FIELDS, OK, CANCEL, NEW_PRODUCT, SELECT_MORE_ONE } = PRODUCT_CARD;
+const { BREADCRUMBS, FIELDS, OK, CANCEL, NEW_PRODUCT } = PRODUCT_CARD;
 const { NAME, MATERIAL, CATEGORY, MODELS, DESCRIPTION } = FIELDS;
-
-const getName = (selectedItems, items) => {
-    if (!selectedItems.length) {
-        return null;
-    }
-
-    if (selectedItems.length === 1) {
-        return items.filter((item) => item.id === selectedItems[0])[0].name;
-    }
-
-    return SELECT_MORE_ONE;
-};
 
 export const ProductsCard = () => {
     useCatalogFetch();
@@ -42,11 +23,7 @@ export const ProductsCard = () => {
 
     const navigate = useNavigate();
 
-    const {
-        dispatch,
-        catalogueSettings,
-        renderOption
-    } = useDetailedSearch();
+    const { catalogueSettings } = useDetailedSearch();
 
     const onSubmit = (data) => {
         console.log('submit data', data);
@@ -56,18 +33,9 @@ export const ProductsCard = () => {
         register,
         handleSubmit,
         formState: { errors },
-        control,
         setValue,
-        clearErrors
+        clearErrors,
     } = useForm();
-
-    useEffect(() => {
-        return () => {
-            if (catalogueSettings.categories.length) {
-                return dispatch(dropFilters(catalogueSettings));
-            }
-        };
-    }, []);
 
     const handleNameChange = (e) => {
         e.target.value.length ? setProductName(e.target.value) : setProductName(NEW_PRODUCT);
@@ -76,10 +44,6 @@ export const ProductsCard = () => {
     const handleCancel = () => {
         navigate(-1);
     };
-
-    useEffect(() => {
-        setValue(CATEGORY.NAME, selectedSettings.category);
-    }, [selectedSettings.category]);
 
     useEffect(() => {
         setValue(MODELS.NAME, selectedSettings.models);
@@ -106,72 +70,49 @@ export const ProductsCard = () => {
                         placeholder={NAME.PLACEHOLDER}
                         name={NAME.NAME}
                         id={NAME.ID}
-                        onChange={handleNameChange}
-                        register={() => register(NAME.ID, { required: true, onChange: handleNameChange })}
+                        { ...register(NAME.ID, { required: true, onChange: handleNameChange }) }
                     />
                 </div>
-                {errors[NAME.NAME] && <span className={s.productCardFieldError}>{NAME.ERROR_MESSAGE}</span>}
+                {errors[NAME.NAME] &&
+                <span className={s.productCardFieldError}>{NAME.ERROR_MESSAGE}</span>}
                 <div className={s.productCardField}>
                     <label>{CATEGORY.LABEL}</label>
-                    <Controller
-                        name={CATEGORY.NAME}
-                        control={control}
-                        rules={{ required: true }}
-                        render={() => (
-                            <FilterDropdown
-                                selectedOptionIds={[selectedSettings.category]}
-                                onSelect={(itemId) => {
-                                    dispatch(setCategory(itemId));
-                                }}
-                                onUnSelect={(itemId) => dispatch(unSelectModel(itemId))}
-                                name={catalogueSettings.categories.filter((item) => item.id === selectedSettings.category)[0]?.name || CATEGORY.LABEL}
-                                options={catalogueSettings.categories}
-                                renderOption={renderOption}
-                            />
-                        )}
+                    <DropdownSelect
+                        defaultValues={selectedSettings.category ? [selectedSettings.category.toString()] : []}
+                        options={catalogueSettings.categories}
+                        placeholder={CATEGORY.LABEL}
+                        { ...register(CATEGORY.NAME, { required: true }) }
                     />
                 </div>
-                {errors[CATEGORY.NAME] && <span className={s.productCardFieldError}>{CATEGORY.ERROR_MESSAGE}</span>}
+                {errors[CATEGORY.NAME] &&
+                <span className={s.productCardFieldError}>{CATEGORY.ERROR_MESSAGE}</span>}
                 <div className={s.productCardField}>
                     <label>{MODELS.LABEL}</label>
-                    <Controller
-                        name={MODELS.NAME}
-                        control={control}
-                        rules={{ required: true }}
-                        render={() => (
-                            <FilterDropdown
-                                selectedOptionIds={selectedSettings.models}
-                                onSelect={(itemId) => dispatch(selectModel(itemId))}
-                                onUnSelect={(itemId) => dispatch(unSelectModel(itemId))}
-                                name={getName(selectedSettings.models, catalogueSettings.models) ? getName(selectedSettings.models, catalogueSettings.models) : 'Модели'}
-                                options={catalogueSettings.models}
-                                renderOption={renderOption}
-                            />
-                        )}
+                    <DropdownSelect
+                        defaultValues={selectedSettings.models.length ? selectedSettings.models : []}
+                        options={catalogueSettings.models}
+                        placeholder={MODELS.LABEL}
+                        multiple={true}
+                        { ...register(MODELS.NAME, { required: true }) }
                     />
                 </div>
-                {errors[MODELS.NAME] && <span className={s.productCardFieldError}>{MODELS.ERROR_MESSAGE}</span>}
+                {errors[MODELS.NAME] &&
+                <span className={s.productCardFieldError}>{MODELS.ERROR_MESSAGE}</span>}
                 <div className={s.productCardField}>
                     <label>{MATERIAL.LABEL}</label>
-                    <Controller
-                        name={MATERIAL.NAME}
-                        control={control}
-                        rules={{ required: true }}
-                        render={() => (
-                            <FilterDropdown
-                                selectedOptionIds={selectedSettings.materials}
-                                onSelect={(itemId) => dispatch(selectMaterial(itemId))}
-                                onUnSelect={(modelId) => dispatch(unSelectMaterial(modelId))}
-                                name={getName(selectedSettings.materials, catalogueSettings.materials) ? getName(selectedSettings.materials, catalogueSettings.materials) : 'Материал'}
-                                options={catalogueSettings.materials}
-                                renderOption={renderOption}
-                            />
-                        )}
+                    <DropdownSelect
+                        defaultValues={selectedSettings.materials.length ? selectedSettings.materials : []}
+                        options={catalogueSettings.materials}
+                        placeholder={MATERIAL.LABEL}
+                        multiple={true}
+                        { ...register(MATERIAL.NAME, { required: true }) }
                     />
                 </div>
-                {errors[MATERIAL.NAME] && <span className={s.productCardFieldError}>{MATERIAL.ERROR_MESSAGE}</span>}
+                {errors[MATERIAL.NAME] &&
+                <span className={s.productCardFieldError}>{MATERIAL.ERROR_MESSAGE}</span>}
                 <div className={s.productCardDescription}>
-                    <label htmlFor={DESCRIPTION.NAME} className={s.productCardDescriptionTitle}>{DESCRIPTION.LABEL}</label>
+                    <label htmlFor={DESCRIPTION.NAME}
+                        className={s.productCardDescriptionTitle}>{DESCRIPTION.LABEL}</label>
                     <textarea
                         id={DESCRIPTION.NAME}
                         name={DESCRIPTION.NAME}
@@ -179,7 +120,8 @@ export const ProductsCard = () => {
                         {...register(DESCRIPTION.NAME, { required: true })}
                     />
                 </div>
-                {errors[DESCRIPTION.NAME] && <span className={s.productCardFieldError}>{DESCRIPTION.ERROR_MESSAGE}</span>}
+                {errors[DESCRIPTION.NAME] &&
+                <span className={s.productCardFieldError}>{DESCRIPTION.ERROR_MESSAGE}</span>}
                 <div className={s.productCardFooter}>
                     <ButtonDefault
                         text={CANCEL}

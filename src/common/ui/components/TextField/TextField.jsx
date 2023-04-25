@@ -2,24 +2,30 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import s from './TextField.module.scss';
 
-export const TextField = ({ id, name, placeholder, onChange, register }) => {
+export const TextField = React.forwardRef(({
+    onChange,
+    name,
+    placeholder,
+    onBlur,
+}, ref) => {
+
     return (
         <input
-            className={s.textField}
-            id={id}
-            type='text'
             name={name}
-            placeholder={placeholder}
+            className={s.textField}
             onChange={onChange}
-            {...register && { ...register(id) }}
+            onBlur={onBlur}
+            type='text'
+            placeholder={placeholder}
+            ref={ref}
         />
     );
-};
+});
 
 TextField.propTypes = {
     id: PropTypes.string,
     name: PropTypes.string,
     placeholder: PropTypes.string,
     onChange: PropTypes.func,
-    register: PropTypes.func,
+    onBlur: PropTypes.func,
 };
