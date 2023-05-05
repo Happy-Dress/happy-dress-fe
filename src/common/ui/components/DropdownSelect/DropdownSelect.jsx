@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import s from './DropdownSelect.module.scss';
 import { ReactComponent as ArrowDown } from '../../../assets/images/arrowDown.svg';
 import useOutsideClick from '../../hooks/useOutsideClick';
-import { DROPDOWN } from './DropdownSelect.dictionary';
+import { DROPDOWN_DICTIONARY } from './DropdownSelect.dictionary';
 
-const { SELECTED } = DROPDOWN;
+const { SELECTED } = DROPDOWN_DICTIONARY;
 
 const getName = (selectedItems, items, defaultValue) => {
     if (!selectedItems.length) {
