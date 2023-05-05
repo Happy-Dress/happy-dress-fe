@@ -19,6 +19,7 @@ const NavigationPanelMobile = ({ ordersAmount, handleExit }) => {
         setActiveMenu(!activeMenu);
         document.body.style.overflow = activeMenu ? 'auto' : 'hidden';
     };
+
     return (
         <div className={s.adminMobileWrapper}>
             <div className={s.mobileHeader}>
