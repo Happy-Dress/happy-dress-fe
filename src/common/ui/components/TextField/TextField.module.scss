@@ -1,19 +1,28 @@
 @import '../../../../common/ui/styles/colors';
+@import '../../../../common/ui/styles/variables';
+@import '../../../../common/ui/styles/fonts';
+@import '../../../../common/ui/styles/font-sizes';
 
 .textField {
   color: $black;
-  font-family: 'Roboto', serif;
+  font-family: $main-font;
   font-style: normal;
   font-weight: 400;
-  font-size: 24px;
+  font-size: $font-size-xlarge-24;
   line-height: 29px;
-  padding: 13.5px 14.5px;
+  padding: 12px 14px;
   height: 52px;
   border: 1px solid $light-gray;
   background: $white;
+  transition: all $animation-duration;
 
   &::placeholder {
     background: $white;
     color: $light-gray;
   }
+}
+
+.error {
+  border-color: $red;
+  transition: all $animation-duration;
 }
