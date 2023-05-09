@@ -1,29 +1,40 @@
 import React from 'react';
-import { PRODUCT_CARD } from './ProductsCard.dictionary';
+import { PRODUCT_CARD_DICTIONARY } from './ProductsCard.dictionary';
 import { Breadcrumbs } from '../../../../common/ui/components/Breadcrumbs';
 import s from './ProductsCard.module.scss';
 import { TextField } from '../../../../common/ui/components/TextField';
-import { useCatalogFetch } from '../../../../common/ui/hooks/useCatalogFetch';
 import { useDetailedSearch } from '../../../../common/ui/hooks/useDetailedSearch';
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { ButtonAccent, ButtonDefault } from '../../../../common/ui/components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { DropdownSelect } from '../../../../common/ui/components/DropdownSelect';
+import cls from 'classnames';
+import getCatalogueItem from '../../../../common/api/catalogItem/getCatalogItem';
+import { fetchCatalogueSettings } from '../../../../common/ui/store/slices/catalogueSettingsSlice';
+import { useToasters } from '../../../../common/ui/contexts/ToastersContext';
 
-const { BREADCRUMBS, FIELDS, OK, CANCEL, NEW_PRODUCT } = PRODUCT_CARD;
+const { BREADCRUMBS, FIELDS, OK, CANCEL, NEW_PRODUCT, ERROR } = PRODUCT_CARD_DICTIONARY;
 const { NAME, MATERIAL, CATEGORY, MODELS, DESCRIPTION } = FIELDS;
 
 export const ProductsCard = () => {
-    useCatalogFetch();
-    const selectedSettings = useSelector(state => state.productsSearch.filters);
+    const { id } = useParams();
+    const dispatch = useDispatch();
+    const { showToasterError } = useToasters();
 
     const [productName, setProductName] = useState(NEW_PRODUCT);
 
     const navigate = useNavigate();
 
     const { catalogueSettings } = useDetailedSearch();
+
+    const [defaultValues, setDefaultValues] = useState({
+        [NAME.NAME]: '',
+        [CATEGORY.NAME]: [],
+        [MODELS.NAME]: [],
+        [MATERIAL.NAME]: [],
+    });
 
     const onSubmit = (data) => {
         console.log('submit data', data);
@@ -33,95 +44,124 @@ export const ProductsCard = () => {
         register,
         handleSubmit,
         formState: { errors },
-        setValue,
-        clearErrors,
+        reset,
     } = useForm();
-
-    const handleNameChange = (e) => {
-        e.target.value.length ? setProductName(e.target.value) : setProductName(NEW_PRODUCT);
-    };
 
     const handleCancel = () => {
         navigate(-1);
     };
 
     useEffect(() => {
-        setValue(MODELS.NAME, selectedSettings.models);
-        selectedSettings.models.length && clearErrors(MODELS.NAME);
-    }, [selectedSettings.models]);
-
-    useEffect(() => {
-        setValue(MATERIAL.NAME, selectedSettings.materials);
-        selectedSettings.materials.length && clearErrors(MATERIAL.NAME);
-    }, [selectedSettings.materials]);
+        dispatch(fetchCatalogueSettings());
+        const fetchData = async () => {
+            if (id) {
+                try {
+                    const res = await getCatalogueItem(id);
+                    setProductName(res.name);
+                    const formData = {
+                        [NAME.NAME]: res.name,
+                        [CATEGORY.NAME]: [res.category.id.toString()],
+                        [MODELS.NAME]: [res.model.id.toString()],
+                        [MATERIAL.NAME]: res.materials.map((item) => item.id.toString()),
+                        [DESCRIPTION.NAME]: res.description,
+                    };
+                    setDefaultValues(formData);
+                    reset(formData);
+                } catch (e) {
+                    showToasterError(`${ERROR} ${id}`);
+                }
+            }
+        };
+        fetchData();
+    }, []);
 
     return (
         <div className={s.productCard}>
-            <Breadcrumbs breadcrumbs={[...BREADCRUMBS, {
-                id: BREADCRUMBS.length,
-                link: '../product-card',
-                linkTitle: productName,
-            }]} />
+            <div className={s.hideOnMobile}>
+                <Breadcrumbs breadcrumbs={[...BREADCRUMBS, {
+                    id: BREADCRUMBS.length,
+                    link: `../product-card${id ? '/' + id : ''}`,
+                    linkTitle: productName,
+                }]} />
+            </div>
             <h2 className={s.productCard_heading}>Карта товара</h2>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form className={s.productCardForm} onSubmit={handleSubmit(onSubmit)}>
                 <div className={s.productCardField}>
-                    <label htmlFor={NAME.ID}>{NAME.LABEL}</label>
-                    <TextField
-                        placeholder={NAME.PLACEHOLDER}
-                        name={NAME.NAME}
-                        id={NAME.ID}
-                        { ...register(NAME.ID, { required: true, onChange: handleNameChange }) }
-                    />
+                    <label  className={s.productCardFieldLabel} htmlFor={NAME.ID}>{NAME.LABEL}</label>
+                    <div className={s.productCardFieldContainer}>
+                        <TextField
+                            placeholder={NAME.PLACEHOLDER}
+                            name={NAME.NAME}
+                            id={NAME.ID}
+                            error={!!errors[NAME.NAME]}
+                            { ...register(NAME.NAME, { required: true }) }
+                        />
+                        <span className={errors[NAME.NAME] ? s.productCardFieldError : s.displayEmpty}>
+                            {errors[NAME.NAME] && NAME.ERROR_MESSAGE}
+                        </span>
+                    </div>
                 </div>
-                {errors[NAME.NAME] &&
-                <span className={s.productCardFieldError}>{NAME.ERROR_MESSAGE}</span>}
                 <div className={s.productCardField}>
-                    <label>{CATEGORY.LABEL}</label>
-                    <DropdownSelect
-                        defaultValues={selectedSettings.category ? [selectedSettings.category.toString()] : []}
-                        options={catalogueSettings.categories}
-                        placeholder={CATEGORY.LABEL}
-                        { ...register(CATEGORY.NAME, { required: true }) }
-                    />
+                    <label className={s.productCardFieldLabel}>{CATEGORY.LABEL}</label>
+                    <div className={s.productCardFieldContainer}>
+                        <DropdownSelect
+                            defaultValues={defaultValues[CATEGORY.NAME]}
+                            options={catalogueSettings.categories}
+                            placeholder={CATEGORY.LABEL}
+                            error={!!errors[CATEGORY.NAME]}
+                            { ...register(CATEGORY.NAME, { required: true }) }
+                        />
+                        <span className={errors[CATEGORY.NAME] ? s.productCardFieldError : s.displayEmpty}>
+                            {errors[CATEGORY.NAME] && CATEGORY.ERROR_MESSAGE}
+                        </span>
+                    </div>
                 </div>
-                {errors[CATEGORY.NAME] &&
-                <span className={s.productCardFieldError}>{CATEGORY.ERROR_MESSAGE}</span>}
                 <div className={s.productCardField}>
-                    <label>{MODELS.LABEL}</label>
-                    <DropdownSelect
-                        defaultValues={selectedSettings.models.length ? selectedSettings.models : []}
-                        options={catalogueSettings.models}
-                        placeholder={MODELS.LABEL}
-                        multiple={true}
-                        { ...register(MODELS.NAME, { required: true }) }
-                    />
+                    <label className={s.productCardFieldLabel}>{MODELS.LABEL}</label>
+                    <div className={s.productCardFieldContainer}>
+                        <DropdownSelect
+                            defaultValues={defaultValues[MODELS.NAME]}
+                            options={catalogueSettings.models}
+                            placeholder={MODELS.LABEL}
+                            multiple={true}
+                            error={!!errors[MODELS.NAME]}
+                            { ...register(MODELS.NAME, { required: true }) }
+                        />
+                        <span className={errors[MODELS.NAME] ? s.productCardFieldError : s.displayEmpty}>
+                            {errors[MODELS.NAME] && MODELS.ERROR_MESSAGE}
+                        </span>
+                    </div>
                 </div>
-                {errors[MODELS.NAME] &&
-                <span className={s.productCardFieldError}>{MODELS.ERROR_MESSAGE}</span>}
                 <div className={s.productCardField}>
-                    <label>{MATERIAL.LABEL}</label>
-                    <DropdownSelect
-                        defaultValues={selectedSettings.materials.length ? selectedSettings.materials : []}
-                        options={catalogueSettings.materials}
-                        placeholder={MATERIAL.LABEL}
-                        multiple={true}
-                        { ...register(MATERIAL.NAME, { required: true }) }
-                    />
+                    <label className={s.productCardFieldLabel}>{MATERIAL.LABEL}</label>
+                    <div className={s.productCardFieldContainer}>
+                        <DropdownSelect
+                            defaultValues={defaultValues[MATERIAL.NAME]}
+                            options={catalogueSettings.materials}
+                            placeholder={MATERIAL.LABEL}
+                            multiple={true}
+                            error={!!errors[MATERIAL.NAME]}
+                            { ...register(MATERIAL.NAME, { required: true }) }
+                        />
+                        <span className={errors[MATERIAL.NAME] ? s.productCardFieldError : s.displayEmpty}>
+                            {errors[MATERIAL.NAME] && MATERIAL.ERROR_MESSAGE}
+                        </span>
+                    </div>
                 </div>
-                {errors[MATERIAL.NAME] &&
-                <span className={s.productCardFieldError}>{MATERIAL.ERROR_MESSAGE}</span>}
                 <div className={s.productCardDescription}>
                     <label htmlFor={DESCRIPTION.NAME}
                         className={s.productCardDescriptionTitle}>{DESCRIPTION.LABEL}</label>
                     <textarea
+                        className={cls(s.productCardDescriptionField, errors[DESCRIPTION.NAME] && s.productCardDescriptionError)}
                         id={DESCRIPTION.NAME}
                         name={DESCRIPTION.NAME}
                         placeholder={DESCRIPTION.PLACEHOLDER}
                         {...register(DESCRIPTION.NAME, { required: true })}
                     />
+                    <span className={errors[DESCRIPTION.NAME] ? s.productCardFieldError : s.displayEmpty}>
+                        {errors[DESCRIPTION.NAME] && DESCRIPTION.ERROR_MESSAGE}
+                    </span>
                 </div>
-                {errors[DESCRIPTION.NAME] &&
-                <span className={s.productCardFieldError}>{DESCRIPTION.ERROR_MESSAGE}</span>}
                 <div className={s.productCardFooter}>
                     <ButtonDefault
                         text={CANCEL}

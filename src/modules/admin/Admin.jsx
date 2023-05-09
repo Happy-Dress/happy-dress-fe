@@ -24,6 +24,7 @@ export const AdminPanelRoutes = () => {
                     <Route path="blog-settings" element={<BlogSettings/>}/>
                     <Route path="products-settings" element={<ProductSettings/>}/>
                     <Route path="product-card" element={<ProductsCard/>}/>
+                    <Route path="product-card/:id" element={<ProductsCard/>}/>
                     <Route
                         path="registration-settings"
                         element={<RegistrationSetting/>}

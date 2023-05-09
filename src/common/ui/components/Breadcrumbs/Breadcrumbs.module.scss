@@ -5,9 +5,14 @@
   margin: 25px 0 0 25px;
   color: $light-gray;
   display: flex;
-  gap: 4px;
+  flex-wrap: wrap;
+
+  span {
+    margin-left: 6px;
+  }
 
   a {
     color: $light-gray;
+    white-space: nowrap;
   }
 }

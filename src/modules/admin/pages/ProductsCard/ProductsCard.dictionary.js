@@ -1,4 +1,4 @@
-export const PRODUCT_CARD = {
+export const PRODUCT_CARD_DICTIONARY = {
     BREADCRUMBS: [
         { id: 0, link: '/domain/home', linkTitle: 'Главная' },
         { id: 1, link: '../products-settings', linkTitle: 'Управление товаром' },
@@ -17,7 +17,7 @@ export const PRODUCT_CARD = {
         },
         CATEGORY: {
             PLACEHOLDER: 'Категория',
-            NAME: 'categoryId',
+            NAME: 'category',
             LABEL: 'Категория',
             ERROR_MESSAGE: 'Выберите категорию',
         },
@@ -40,4 +40,5 @@ export const PRODUCT_CARD = {
             ERROR_MESSAGE: 'Введите описание',
         },
     },
+    ERROR: 'Невозможно найти товар с id:',
 };

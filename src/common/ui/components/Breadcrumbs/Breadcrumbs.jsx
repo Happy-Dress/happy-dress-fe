@@ -9,10 +9,10 @@ export const Breadcrumbs = ({ breadcrumbs }) => {
             {breadcrumbs.map((item, idx) => {
                 return (
                     <li key={item.id}>
-                        {idx !== 0 && '> '}
                         <Link to={item.link}>
                             {item.linkTitle}
                         </Link>
+                        <span>{idx !== breadcrumbs.length - 1 && '>'}</span>
                     </li>
                 );
             })}

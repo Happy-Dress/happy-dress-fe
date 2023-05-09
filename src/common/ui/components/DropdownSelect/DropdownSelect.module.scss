@@ -2,11 +2,12 @@
 @import "../../../../common/ui/styles/font-sizes";
 @import "../../../../common/ui/styles/colors";
 @import "../../../../common/ui/styles/variables";
+@import "../../../../common/ui/styles/fonts";
 
 .cs {
   &Select {
     position: relative;
-    font-family: 'Roboto', serif;
+    font-family: $main-font;
     font-style: normal;
     font-weight: 400;
     font-size: $font-size-xlarge-24;
@@ -24,6 +25,7 @@
     justify-content: space-between;
     align-items: center;
     margin: 0;
+    transition: all $animation-duration;
 
     & svg {
       width: 12px;
@@ -39,6 +41,11 @@
         }
       }
     }
+  }
+
+  &Error {
+    border: 1px solid $red;
+    transition: all $animation-duration;
   }
 
   &Option {

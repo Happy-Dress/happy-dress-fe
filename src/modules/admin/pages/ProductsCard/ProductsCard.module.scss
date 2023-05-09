@@ -1,9 +1,15 @@
 @import '../../../../common/ui/styles/colors';
+@import '../../../../common/ui/styles/variables';
+@import '../../../../common/ui/styles/font-sizes';
+@import '../../../../common/ui/styles/fonts';
+@import '../../../../common/ui/styles/media-sizes';
+
+$lg-size-1023: #{$lg-size - 1px};
 
 .productCard {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 28px;
 
   & span {
     margin-right: 10px;
@@ -23,6 +29,24 @@
     margin: 15px auto 30px;
     padding: 0 20px 20px;
     text-align: center;
+
+    @media all and (max-width: $lg-size-1023) {
+      font-size: $font-size-xlarge-24;
+      line-height: 28px;
+      padding: 0 0 3px;
+      margin: 0 auto 20px;
+    }
+  }
+
+  &Form {
+    @media all and (max-width: $lg-size-1023) {
+      align-items: center;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      gap: 6px;
+    }
   }
 
   &Field {
@@ -31,12 +55,32 @@
     display: flex;
     justify-content: space-between;
     max-width: 465px;
-    padding: 13px 24px;
+    position: relative;
 
-    & label, p {
-      font-size: 24px;
+
+    @media all and (max-width: $lg-size-1023) {
+      border-bottom: none;
+      width: 100%;
+      justify-content: center;
+    }
+
+    &Container {
+      padding: 26px 0;
+      width: 100%;
+
+      @media all and (max-width: $lg-size-1023) {
+        padding: 0;
+      }
+    }
+
+    &Label {
+      font-size: $font-size-xlarge-24;
       font-weight: 400;
       line-height: 28px;
+
+      @media all and (max-width: $lg-size-1023) {
+        display: none;
+      }
     }
 
     & > div {
@@ -45,35 +89,56 @@
 
     & input[type=text], div {
       max-width: 235px;
+      width: 100%;
+
+      @media all and (max-width: $lg-size-1023) {
+        max-width: 264px;
+      }
     }
 
     &Error {
       color: $red;
       display: flex;
-      padding: 12px;
+      padding: 6px 0;
+      position: absolute;
+      transition: all $animation-duration;
+
+      @media all and (max-width: $lg-size-1023) {
+        position: relative;
+      }
     }
   }
 
   &Description {
-    margin-top: 73px;
     width: 100%;
+    margin: 73px 0 20px;
+
+    @media all and (max-width: $lg-size-1023) {
+      margin: 20px 0;
+    }
 
     &Title {
       display: block;
-      font-family: 'Roboto', serif;
-      font-size: 32px;
+      font-family: $main-font;
+      font-size: $font-size-xlarge-32;
       font-style: normal;
       font-weight: 400;
       line-height: 38px;
       margin-bottom: 17px;
+
+      @media all and (max-width: $lg-size-1023) {
+        font-size: $font-size-xlarge-24;
+        line-height: 28px;
+        margin-bottom: 8px;
+      }
     }
 
-    & textarea {
+    &Field {
       background: $white;
       border: 1px solid $light-gray;
       color: $light-gray;
       font-family: 'Roboto', serif;
-      font-size: 18px;
+      font-size: $font-size-xmedium-18;
       font-style: normal;
       font-weight: 400;
       height: 135px;
@@ -81,10 +146,16 @@
       padding: 8px 16px;
       resize: none;
       width: 100%;
+      transition: all $animation-duration;
 
       &::placeholder {
         color: $light-gray;
       }
+    }
+
+    &Error {
+      border: 1px solid $red;
+      transition: all $animation-duration;
     }
   }
 
@@ -92,12 +163,37 @@
     display: flex;
     gap: 12px;
     justify-content: flex-end;
-    padding: 28px 64px 62px;
+    padding: 28px 34px 62px;
     width: 100%;
+
+    @media all and (max-width: $lg-size-1023) {
+      flex-direction: column-reverse;
+      padding: 0;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
 
     & button {
       max-width: 264px;
       width: 100%;
     }
+  }
+}
+
+.displayEmpty {
+  display: flex;
+  transition: all $animation-duration;
+  position: absolute;
+
+  @media all and (max-width: $lg-size-1023) {
+    min-height: 0;
+    position: relative;
+  }
+}
+
+.hideOnMobile {
+  @media all and (max-width: $lg-size-1023) {
+    display: none;
   }
 }

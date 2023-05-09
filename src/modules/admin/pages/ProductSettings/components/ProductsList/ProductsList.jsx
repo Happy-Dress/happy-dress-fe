@@ -46,7 +46,7 @@ const ProductsList = () =>{
 
     return (
         <div className={s.ProductsList}>
-            <Link to='../product-card'>
+            <Link to='../product-card' className={s.ProductsListLink}>
                 <ProductCardAdd/>
             </Link>
             {products.map((product, index) => {
