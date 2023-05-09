@@ -8,7 +8,7 @@ import { DROPDOWN_DICTIONARY } from './DropdownSelect.dictionary';
 
 const { SELECTED } = DROPDOWN_DICTIONARY;
 
-const getName = (selectedItems, items, defaultValue) => {
+export const getName = (selectedItems, items, defaultValue) => {
     if (!selectedItems.length) {
         return defaultValue;
     }
@@ -68,9 +68,16 @@ export const DropdownSelect = React.forwardRef(({
 
     return (
         <div className={s.csSelect} ref={outsideClickRef}>
-            <div className={cls(s.csPlaceholder, error && s.csError)} onClick={handleSelectClick}>
+            <div
+                className={cls(s.csPlaceholder, error && s.csError)}
+                onClick={handleSelectClick}
+                data-testid={'selectPlaceholder'}
+            >
                 <span>{getName(selectedOptions, options, placeholder)}</span>
-                <ArrowDown className={isOpen ? s.active : ''} />
+                <ArrowDown
+                    className={isOpen ? s.active : ''}
+                    data-testid={'arrowDown'}
+                />
             </div>
             <div className={s.csOptions}
                 style={{ height: isOpen ? `calc(60px * ${options.length})` : '0' }}>
