@@ -1,4 +1,5 @@
 export const PRODUCT_CARD_DICTIONARY = {
+    TITLE: 'Карта товара',
     BREADCRUMBS: [
         { id: 0, link: '/domain/home', linkTitle: 'Главная' },
         { id: 1, link: '../products-settings', linkTitle: 'Управление товаром' },

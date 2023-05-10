@@ -15,7 +15,7 @@ import getCatalogueItem from '../../../../common/api/catalogItem/getCatalogItem'
 import { fetchCatalogueSettings } from '../../../../common/ui/store/slices/catalogueSettingsSlice';
 import { useToasters } from '../../../../common/ui/contexts/ToastersContext';
 
-const { BREADCRUMBS, FIELDS, OK, CANCEL, NEW_PRODUCT, ERROR } = PRODUCT_CARD_DICTIONARY;
+const { TITLE, BREADCRUMBS, FIELDS, OK, CANCEL, NEW_PRODUCT, ERROR } = PRODUCT_CARD_DICTIONARY;
 const { NAME, MATERIAL, CATEGORY, MODELS, DESCRIPTION } = FIELDS;
 
 export const ProductsCard = () => {
@@ -84,7 +84,7 @@ export const ProductsCard = () => {
                     linkTitle: productName,
                 }]} />
             </div>
-            <h2 className={s.productCard_heading}>Карта товара</h2>
+            <h2 className={s.productCard_heading}>{TITLE}</h2>
             <form className={s.productCardForm} onSubmit={handleSubmit(onSubmit)}>
                 <div className={s.productCardField}>
                     <label  className={s.productCardFieldLabel} htmlFor={NAME.ID}>{NAME.LABEL}</label>
