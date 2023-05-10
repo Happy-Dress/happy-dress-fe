@@ -54,9 +54,11 @@ $lg-size-1023: #{$lg-size - 1px};
     border-bottom: 1px solid $light-gray;
     display: flex;
     justify-content: space-between;
-    max-width: 465px;
     position: relative;
 
+    @media all and (min-width: $lg-size) {
+      max-width: 465px;
+    }
 
     @media all and (max-width: $lg-size-1023) {
       border-bottom: none;
@@ -88,11 +90,10 @@ $lg-size-1023: #{$lg-size - 1px};
     }
 
     & input[type=text], div {
-      max-width: 235px;
       width: 100%;
 
-      @media all and (max-width: $lg-size-1023) {
-        max-width: 264px;
+      @media all and (min-width: $lg-size) {
+        max-width: 235px;
       }
     }
 
@@ -172,11 +173,17 @@ $lg-size-1023: #{$lg-size - 1px};
       justify-content: center;
       align-items: center;
       width: 100%;
+
+      & button {
+        width: 100%;
+      }
     }
 
-    & button {
-      max-width: 264px;
-      width: 100%;
+    @media all and (min-width: $lg-size) {
+      button {
+        max-width: 264px;
+        width: 100%;
+      }
     }
   }
 }
