@@ -6,8 +6,8 @@ import { Provider } from 'react-redux';
 import ToastersProvider from '../../../../common/ui/contexts/ToastersContext';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
-const { TITLE, FIELDS, OK,} = PRODUCT_CARD_DICTIONARY;
-const { NAME, MATERIAL, CATEGORY, MODELS } = FIELDS;
+const { TITLE, FIELDS, OK } = PRODUCT_CARD_DICTIONARY;
+const { NAME, MATERIAL, CATEGORY, MODEL } = FIELDS;
 
 const renderWithProvider = () => (
     render(
@@ -40,6 +40,6 @@ describe('ProductsCard', () => {
         expect(await screen.findByText(NAME.ERROR_MESSAGE)).toBeInTheDocument();
         expect(await screen.findByText(CATEGORY.ERROR_MESSAGE)).toBeInTheDocument();
         expect(await screen.findByText(MATERIAL.ERROR_MESSAGE)).toBeInTheDocument();
-        expect(await screen.findByText(MODELS.ERROR_MESSAGE)).toBeInTheDocument();
+        expect(await screen.findByText(MODEL.ERROR_MESSAGE)).toBeInTheDocument();
     });
 });
