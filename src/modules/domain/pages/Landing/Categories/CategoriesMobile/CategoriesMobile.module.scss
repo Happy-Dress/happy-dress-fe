@@ -1,132 +1,87 @@
 @import '../../../../../../common/ui/styles/media-sizes';
+@import '../../../../../../common/ui/styles/font-sizes';
 @import '../../../../../../common/ui/styles/colors';
 
-.Mobile {
-  &_wrapper {
-    margin: 120px 0 100px;
-    @media screen and (max-width: $lg-size) {
-      margin: 48px 0;
-    }
-    &_header {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 100px;
-      @media screen and (max-width: $lg-size) {
-        margin-bottom: 24px;
-      }
-      @media screen and (max-width: $xs-size) {
-        h2 {
-          font-size: 28px;
-        }
-      }
-    }
+.CategoriesMobile {
+  margin-top: 32px;
+  margin-bottom: 32px;
+  .title {
+    color: $black;
+    text-align: center;
 
-    &_cards {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      width: 100%;
-      gap: 50px;
-      padding: 0 50px 0 50px;
-      @media screen and (max-width: $lg-size) {
-        padding: 0 28px;
-        gap: 12px;
-      }
-      @media screen and (max-width: $md-size) {
-        gap: 12px;
-        margin: 0 auto;
-      }
+    h2 {
+      font-size: $font-size-xlarge-28;
+      font-weight: 400;
     }
   }
 
-  &_card {
-    position: relative;
+  .slider {
     display: flex;
+    align-items: center;
     flex-direction: column;
-    justify-content: flex-end;
-    background-size: cover;
-    background: $silver-gradient;
-    @media screen and (max-width: $md-size) {
-      width: 47%;
+    overflow-x: hidden;
+    min-height: 500px;
+
+    &_dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 20px;
     }
-    @media screen and (max-width: $xxs-size) {
-      width: 45%;
-    }
-    &:first-child {
-      width: 99.333%;
-      @media screen and (max-width: $md-size) {
-        width: 96.3%;
+
+    &_dot {
+      height: 15px;
+      width: 15px;
+      border-radius: 50%;
+      display: inline-block;
+      margin: 0 5px;
+      cursor: pointer;
+
+      &_active {
+        background-color: $brown;
       }
-      h3 {
-        display: flex;
-        @media screen and (max-width: $md-size) {
-          position: absolute;
-          font-size: 18px;
-          bottom: 68px;
-        }
-        @media screen and (max-width: $sm-size) {
-          position: absolute;
-          font-size: 1em;
-          bottom: 48px;
-        }
-      }
-      span {
-        display: flex;
-        color: $gray;
-        @media screen and (max-width: $sm-size) {
-          position: absolute;
-          font-size: 0.6em;
-          bottom: 13px;
-        }
-      }
-      img {
-        height: 45vw;
-      }
-    }
-    &_name {
-      position: absolute;
-      bottom: 60px;
-      left: 20px;
-      font-size: 32px;
-      color: $black;
-      @media screen and (max-width: $lg-size) {
-        font-size: 22px;
-      }
-      @media screen and (max-width: $md-size) {
-        font-size: 0.8em;
-        bottom: 18px;
+
+      &_disabled {
+        background-color: $gray;
       }
     }
 
-    &_description {
-      position: absolute;
-      bottom: 30px;
-      left: 20px;
-      font-size: 18px;
-      color: $gray;
-      span {
+    &_card {
+
+      &_left {
+        transform: translateX(-100vw);
+      }
+
+      &_right{
+        transform: translateX(100vw);
+      }
+
+      &_moveRight{
+        transform: translateX(100vw);
+      }
+
+      &_moveLeft{
+        transform: translateX(-100vw);
+      }
+
+      &_active {
+        opacity: 1;
+        transition-duration: 0.5s;
+        div {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+      }
+
+      &_mainImage {
+        width: 264px;
+      }
+
+      &_description {
+        margin-top: 10px;
         color: $gray;
-      }
-      @media screen and (max-width: $lg-size) {
-        bottom: 15px;
-        font-size: 13px;
-      }
-      @media screen and (max-width: $md-size) {
-        display: none;
-        bottom: 18px;
-        font-size: 0.8em;
-      }
-    }
-    &_image {
-      height: 23vw;
-      z-index: -1;
-      @media screen and (max-width: $lg-size) {
-        height: 31vw;
-        object-fit: fill;
-      }
-      @media screen and (max-width: $md-size) {
-        height: 31vw;
-        object-fit: fill;
       }
     }
   }

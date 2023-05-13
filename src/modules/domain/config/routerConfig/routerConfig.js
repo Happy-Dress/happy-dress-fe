@@ -1,5 +1,6 @@
-import Landing from '../../pages/Landing';
+
 import { Catalog } from '../../pages/Catalog';
+import { Landing } from '../../pages/Landing';
 
 
 export const ROUTER_PATHS = {

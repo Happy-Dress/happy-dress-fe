@@ -1,28 +1,88 @@
-import React from 'react';
+import React, { useState } from 'react';
 import s from './CategoriesMobile.module.scss';
 import PropTypes from 'prop-types';
 import CATEGORIES_DICTIONARY from '../Categories.dictionary';
+import { useSwipeable } from 'react-swipeable';
+import classNames from 'classnames';
+
 
 const { HEADING_LABEL } = CATEGORIES_DICTIONARY;
 
 const CategoriesMobile = ({ categories }) => {
-    return (
-        <div className={s.Mobile_wrapper}>
-            <div className={s.Mobile_wrapper_header}>
-                <h2>{HEADING_LABEL}</h2>
-            </div>
-            <div className={s.Mobile_wrapper_cards}>
-                {categories?.map((post) => (
-                    <div key={post.id} className={s.Mobile_card}>
-                        <img className={s.Mobile_card_image} src={post.imageUrl}/>
-                        <h3 className={s.Mobile_card_name}>{post.name}</h3>
-                        <span className={s.Mobile_card_description}>{post.description}</span>
-                    </div>
+
+    const [index, setIndex] = useState(0);
+    const [moveLeft, setMoveLeft] = useState(false);
+    const [moveRight, setMoveRight] = useState(false);
+    const handleSwipe = useSwipeable({
+        onSwipedLeft: () => {
+            setMoveLeft(true);
+            setTimeout(() => {
+                setIndex((prevIndex) => (prevIndex + 1) % categories.length);
+                setMoveLeft(false);
+            }, 300);
+
+        },
+        onSwipedRight: () => {
+            setMoveRight(true);
+            setTimeout(() => {
+                setIndex((prevIndex) => (prevIndex + categories.length - 1) % categories.length);
+                setMoveRight(false);
+            }, 300);
+        },
+    });
+
+
+    const renderDots = () => {
+        return (
+            <div className={s.slider_dots}>
+                {categories.map((_, i) => (
+                    <span
+                        key={i}
+                        onClick={() => setIndex(i)}
+                        className={classNames(s.slider_dot, index === i ? s.slider_dot_active : s.slider_dot_disabled)}
+                        data-testid={`dot_${i}`}
+                    />
                 ))}
             </div>
+        );
+    };
+
+    return (
+        <div className={s.CategoriesMobile}>
+            <div className={s.title}>
+                <h2>{HEADING_LABEL}</h2>
+            </div>
+            <div className={s.slider}>
+                {renderDots()}
+                <div {...handleSwipe}>
+                    {categories.map((post, key) => (
+                        <div
+                            className={classNames(key === index ? s.slider_card_active :
+                                key < index ? s.slider_card_left : s.slider_card_right,
+                            moveLeft && key === index ? s.slider_card_moveLeft : '',
+                            moveRight && key === index ? s.slider_card_moveRight : '',
+                            )}
+                            key={key}
+                            data-testid={`card_${key}`}
+                        >
+                            {key === index && <div>
+                                <img src={post.imageUrl} className={s.slider_card_mainImage}
+                                    alt={`Slide ${index + 1}`}/>
+                                <h3>{post.name}</h3>
+                                <div className={s.slider_card_description}>
+                                    <p>{post.description}</p>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
-    );
-};
+    )
+    ;
+}
+;
 CategoriesMobile.propTypes = {
     categories: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string.isRequired,

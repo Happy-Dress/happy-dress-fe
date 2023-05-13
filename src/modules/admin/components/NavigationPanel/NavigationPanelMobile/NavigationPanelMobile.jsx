@@ -15,6 +15,11 @@ const NavigationPanelMobile = ({ ordersAmount, handleExit }) => {
     NAVIGATION_PANEL_DICTIONARY;
     const [activeMenu, setActiveMenu] = useState(false);
 
+    const handleMenuToggle = () => {
+        setActiveMenu(!activeMenu);
+        document.body.style.overflow = activeMenu ? 'auto' : 'hidden';
+    };
+
     return (
         <div className={s.adminMobileWrapper}>
             <div className={s.mobileHeader}>
@@ -26,17 +31,13 @@ const NavigationPanelMobile = ({ ordersAmount, handleExit }) => {
                         <img
                             src={x}
                             alt="X"
-                            onClick={() => {
-                                setActiveMenu(!activeMenu);
-                            }}
+                            onClick={handleMenuToggle}
                         />
                     ) : (
                         <img
                             src={burger}
                             alt="W"
-                            onClick={() => {
-                                setActiveMenu(!activeMenu);
-                            }}
+                            onClick={handleMenuToggle}
                         />
                     )}
                 </div>

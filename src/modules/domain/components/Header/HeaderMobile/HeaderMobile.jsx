@@ -13,6 +13,7 @@ const HeaderMobile = () => {
         HEADER_LOGO,
         PHONE_NUMBER,
     } = HEADER_DICTIONARY;
+    const checkIsLinkActive = ({ isActive }) => (isActive ? s.active : '');
     const [activeMenu, setActiveMenu] = useState(false);
     return (
         <div className={activeMenu ? s.Header_wrapper_fixed : ''}>
@@ -45,7 +46,12 @@ const HeaderMobile = () => {
             {activeMenu && <div className={s.Menu}>
                 <ul className={s.Menu_nav}>
                     {Object.values(routerConfig).map(({ path, name })=>(
-                        <NavLink key={name} className={({ isActive }) => isActive ? s.active : ''} to={path}>
+                        <NavLink
+                            key={name}
+                            className={checkIsLinkActive}
+                            to={path}
+                            onClick={() => setActiveMenu(!activeMenu)}
+                        >
                             <Typography classNames={[s.Menu_nav_item]}>
                                 {name}
                             </Typography>
