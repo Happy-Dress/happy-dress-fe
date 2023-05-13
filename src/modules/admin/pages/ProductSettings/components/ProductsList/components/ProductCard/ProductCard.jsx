@@ -51,7 +51,7 @@ const ProductCard = (props) => {
                     (isHover && !isSelected) && <EmptyCheckbox className={s.checkbox}/>
                 }
                 {
-                    (isHover && !isSelected) && <Update className={s.update}/>
+                    (isHover && isSelected) && <Update className={s.update}/>
                 }
                 {
                     isSelected && <Checkbox className={s.checkbox}/>
