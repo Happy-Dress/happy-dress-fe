@@ -50,7 +50,7 @@ export const ProductsCard = () => {
     } = useForm();
 
     const handleCancel = () => {
-        navigate(-1);
+        navigate('../products-settings');
     };
 
     useEffect(() => {
