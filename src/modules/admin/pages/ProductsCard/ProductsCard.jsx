@@ -14,14 +14,16 @@ import cls from 'classnames';
 import getCatalogueItem from '../../../../common/api/catalogItem/getCatalogItem';
 import { fetchCatalogueSettings } from '../../../../common/ui/store/slices/catalogueSettingsSlice';
 import { useToasters } from '../../../../common/ui/contexts/ToastersContext';
+import { useDeviceTypeContext } from '../../../../common/ui/contexts/DeviceType';
 
-const { TITLE, BREADCRUMBS, FIELDS, OK, CANCEL, NEW_PRODUCT, ERROR } = PRODUCT_CARD_DICTIONARY;
-const { NAME, MATERIAL, CATEGORY, MODELS, DESCRIPTION } = FIELDS;
+const { TITLE, BREADCRUMBS, FIELDS, OK, CANCEL, NEW_PRODUCT, ERROR, UNKNOWN_ERROR, NOT_CHOSEN } = PRODUCT_CARD_DICTIONARY;
+const { NAME, MATERIAL, CATEGORY, MODEL, DESCRIPTION } = FIELDS;
 
 export const ProductsCard = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const { showToasterError } = useToasters();
+    const { isMobile } = useDeviceTypeContext();
 
     const [productName, setProductName] = useState(NEW_PRODUCT);
 
@@ -32,7 +34,7 @@ export const ProductsCard = () => {
     const [defaultValues, setDefaultValues] = useState({
         [NAME.NAME]: '',
         [CATEGORY.NAME]: [],
-        [MODELS.NAME]: [],
+        [MODEL.NAME]: [],
         [MATERIAL.NAME]: [],
     });
 
@@ -59,16 +61,18 @@ export const ProductsCard = () => {
                     const res = await getCatalogueItem(id);
                     setProductName(res.name);
                     const formData = {
-                        [NAME.NAME]: res.name,
-                        [CATEGORY.NAME]: [res.category.id.toString()],
-                        [MODELS.NAME]: [res.model.id.toString()],
-                        [MATERIAL.NAME]: res.materials.map((item) => item.id.toString()),
+                        [NAME.NAME]: res.name ? res.name : '',
+                        [CATEGORY.NAME]: res.category ? [res.category.id.toString()] : [],
+                        [MODEL.NAME]: res.model ? [res.model.id.toString()] : [],
+                        [MATERIAL.NAME]: res.materials ? res.materials.map((item) => item.id.toString()) : [],
                         [DESCRIPTION.NAME]: res.description,
                     };
                     setDefaultValues(formData);
                     reset(formData);
                 } catch (e) {
-                    showToasterError(`${ERROR} ${id}`);
+                    e
+                        ? showToasterError(`${ERROR} ${id}`)
+                        : showToasterError(UNKNOWN_ERROR);
                 }
             }
         };
@@ -87,7 +91,7 @@ export const ProductsCard = () => {
             <h2 className={s.productCard_heading}>{TITLE}</h2>
             <form className={s.productCardForm} onSubmit={handleSubmit(onSubmit)}>
                 <div className={s.productCardField}>
-                    <label  className={s.productCardFieldLabel} htmlFor={NAME.ID}>{NAME.LABEL}</label>
+                    <label className={s.productCardFieldLabel} htmlFor={NAME.ID}>{NAME.LABEL}</label>
                     <div className={s.productCardFieldContainer}>
                         <TextField
                             placeholder={NAME.PLACEHOLDER}
@@ -107,7 +111,7 @@ export const ProductsCard = () => {
                         <DropdownSelect
                             defaultValues={defaultValues[CATEGORY.NAME]}
                             options={catalogueSettings.categories}
-                            placeholder={CATEGORY.LABEL}
+                            placeholder={isMobile ? NOT_CHOSEN : CATEGORY.LABEL}
                             error={!!errors[CATEGORY.NAME]}
                             { ...register(CATEGORY.NAME, { required: true }) }
                         />
@@ -117,18 +121,17 @@ export const ProductsCard = () => {
                     </div>
                 </div>
                 <div className={s.productCardField}>
-                    <label className={s.productCardFieldLabel}>{MODELS.LABEL}</label>
+                    <label className={s.productCardFieldLabel}>{MODEL.LABEL}</label>
                     <div className={s.productCardFieldContainer}>
                         <DropdownSelect
-                            defaultValues={defaultValues[MODELS.NAME]}
+                            defaultValues={defaultValues[MODEL.NAME]}
                             options={catalogueSettings.models}
-                            placeholder={MODELS.LABEL}
-                            multiple={true}
-                            error={!!errors[MODELS.NAME]}
-                            { ...register(MODELS.NAME, { required: true }) }
+                            placeholder={isMobile ? NOT_CHOSEN : MODEL.LABEL}
+                            error={!!errors[MODEL.NAME]}
+                            { ...register(MODEL.NAME, { required: true }) }
                         />
-                        <span className={errors[MODELS.NAME] ? s.productCardFieldError : s.displayEmpty}>
-                            {errors[MODELS.NAME] && MODELS.ERROR_MESSAGE}
+                        <span className={errors[MODEL.NAME] ? s.productCardFieldError : s.displayEmpty}>
+                            {errors[MODEL.NAME] && MODEL.ERROR_MESSAGE}
                         </span>
                     </div>
                 </div>
@@ -138,7 +141,7 @@ export const ProductsCard = () => {
                         <DropdownSelect
                             defaultValues={defaultValues[MATERIAL.NAME]}
                             options={catalogueSettings.materials}
-                            placeholder={MATERIAL.LABEL}
+                            placeholder={isMobile ? NOT_CHOSEN : MATERIAL.LABEL}
                             multiple={true}
                             error={!!errors[MATERIAL.NAME]}
                             { ...register(MATERIAL.NAME, { required: true }) }
@@ -155,7 +158,7 @@ export const ProductsCard = () => {
                         className={cls(s.productCardDescriptionField, errors[DESCRIPTION.NAME] && s.productCardDescriptionError)}
                         id={DESCRIPTION.NAME}
                         name={DESCRIPTION.NAME}
-                        placeholder={DESCRIPTION.PLACEHOLDER}
+                        placeholder={isMobile ? NOT_CHOSEN : DESCRIPTION.PLACEHOLDER}
                         {...register(DESCRIPTION.NAME, { required: true })}
                     />
                     <span className={errors[DESCRIPTION.NAME] ? s.productCardFieldError : s.displayEmpty}>

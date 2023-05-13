@@ -14,7 +14,7 @@ export const getName = (selectedItems, items, defaultValue) => {
     }
 
     if (selectedItems.length === 1) {
-        return items.filter((item) => selectedItems.toString() === item.id.toString())[0].name;
+        return items.filter((item) => selectedItems.toString() === item.id.toString())[0]?.name;
     }
 
     return `${selectedItems.length} ${SELECTED}`;

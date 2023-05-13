@@ -22,9 +22,9 @@ export const PRODUCT_CARD_DICTIONARY = {
             LABEL: 'Категория',
             ERROR_MESSAGE: 'Выберите категорию',
         },
-        MODELS: {
+        MODEL: {
             PLACEHOLDER: 'Модели',
-            NAME: 'models',
+            NAME: 'model',
             LABEL: 'Тип модели',
             ERROR_MESSAGE: 'Выберите тип модели',
         },
@@ -42,4 +42,6 @@ export const PRODUCT_CARD_DICTIONARY = {
         },
     },
     ERROR: 'Невозможно найти товар с id:',
+    UNKNOWN_ERROR: 'Ошибка',
+    NOT_CHOSEN: 'Не выбрано'
 };
