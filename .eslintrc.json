@@ -44,7 +44,9 @@
         "react/jsx-uses-react": "error",
         "react/jsx-uses-vars": "error",
         "no-unused-vars": "warn",
-        "object-curly-spacing": ["error", "always"]
+        "object-curly-spacing": ["error", "always"],
+        "no-console": "warn",
+        "no-multi-spaces": "error"
     },
     "ignorePatterns": ["build/*"]
 }
