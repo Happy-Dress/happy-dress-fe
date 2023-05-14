@@ -14,7 +14,8 @@ export const getName = (selectedItems, items, defaultValue) => {
     }
 
     if (selectedItems.length === 1) {
-        return items.filter((item) => selectedItems.toString() === item.id.toString())[0]?.name;
+        const itemName = items.filter((item) => selectedItems.toString() === item.id.toString())[0]?.name;
+        return itemName ? itemName : defaultValue;
     }
 
     return `${selectedItems.length} ${SELECTED}`;
@@ -31,9 +32,7 @@ export const DropdownSelect = React.forwardRef(({
     error,
 }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedOptions, setSelectedOptions] = useState(defaultValues
-        ? defaultValues.map((item) => item.toString())
-        : []);
+    const [selectedOptions, setSelectedOptions] = useState([]);
 
     const outsideClickRef = useOutsideClick(() => setIsOpen(false));
 
@@ -43,6 +42,8 @@ export const DropdownSelect = React.forwardRef(({
         if (Array.isArray(defaultValues)) {
             const values = new Set([...selectedOptions, ...defaultValues.map((value) => value.toString())]);
             setSelectedOptions([...values]);
+        } else if (typeof defaultValues === 'string') {
+            setSelectedOptions([defaultValues]);
         }
     }, [defaultValues]);
 
@@ -116,7 +117,12 @@ DropdownSelect.propTypes = {
     options: PropTypes.arrayOf(option).isRequired,
     onChange: PropTypes.func,
     onBlur: PropTypes.func,
-    defaultValues: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.arrayOf(PropTypes.string)]),
+    defaultValues: PropTypes.oneOfType(
+        [
+            PropTypes.arrayOf(PropTypes.number),
+            PropTypes.arrayOf(PropTypes.string),
+            PropTypes.string,
+        ]),
     placeholder: PropTypes.string,
     multiple: PropTypes.bool,
     error: PropTypes.bool,

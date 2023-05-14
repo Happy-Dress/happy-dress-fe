@@ -33,8 +33,8 @@ export const ProductsCard = () => {
 
     const [defaultValues, setDefaultValues] = useState({
         [NAME.NAME]: '',
-        [CATEGORY.NAME]: [],
-        [MODEL.NAME]: [],
+        [CATEGORY.NAME]: '',
+        [MODEL.NAME]: '',
         [MATERIAL.NAME]: [],
     });
 
@@ -62,8 +62,8 @@ export const ProductsCard = () => {
                     setProductName(res.name);
                     const formData = {
                         [NAME.NAME]: res.name ? res.name : '',
-                        [CATEGORY.NAME]: res.category ? [res.category.id.toString()] : [],
-                        [MODEL.NAME]: res.model ? [res.model.id.toString()] : [],
+                        [CATEGORY.NAME]: res.category ? res.category.id.toString() : '',
+                        [MODEL.NAME]: res.model ? res.model.id.toString() : '',
                         [MATERIAL.NAME]: res.materials ? res.materials.map((item) => item.id.toString()) : [],
                         [DESCRIPTION.NAME]: res.description,
                     };
@@ -111,7 +111,7 @@ export const ProductsCard = () => {
                         <DropdownSelect
                             defaultValues={defaultValues[CATEGORY.NAME]}
                             options={catalogueSettings.categories}
-                            placeholder={isMobile ? NOT_CHOSEN : CATEGORY.LABEL}
+                            placeholder={isMobile ? CATEGORY.LABEL : NOT_CHOSEN }
                             error={!!errors[CATEGORY.NAME]}
                             { ...register(CATEGORY.NAME, { required: true }) }
                         />
@@ -126,7 +126,7 @@ export const ProductsCard = () => {
                         <DropdownSelect
                             defaultValues={defaultValues[MODEL.NAME]}
                             options={catalogueSettings.models}
-                            placeholder={isMobile ? NOT_CHOSEN : MODEL.LABEL}
+                            placeholder={isMobile ? MODEL.LABEL : NOT_CHOSEN}
                             error={!!errors[MODEL.NAME]}
                             { ...register(MODEL.NAME, { required: true }) }
                         />
@@ -141,7 +141,7 @@ export const ProductsCard = () => {
                         <DropdownSelect
                             defaultValues={defaultValues[MATERIAL.NAME]}
                             options={catalogueSettings.materials}
-                            placeholder={isMobile ? NOT_CHOSEN : MATERIAL.LABEL}
+                            placeholder={isMobile ? MATERIAL.LABEL : NOT_CHOSEN}
                             multiple={true}
                             error={!!errors[MATERIAL.NAME]}
                             { ...register(MATERIAL.NAME, { required: true }) }
@@ -158,7 +158,7 @@ export const ProductsCard = () => {
                         className={cls(s.productCardDescriptionField, errors[DESCRIPTION.NAME] && s.productCardDescriptionError)}
                         id={DESCRIPTION.NAME}
                         name={DESCRIPTION.NAME}
-                        placeholder={isMobile ? NOT_CHOSEN : DESCRIPTION.PLACEHOLDER}
+                        placeholder={isMobile ? DESCRIPTION.PLACEHOLDER : NOT_CHOSEN}
                         {...register(DESCRIPTION.NAME, { required: true })}
                     />
                     <span className={errors[DESCRIPTION.NAME] ? s.productCardFieldError : s.displayEmpty}>
