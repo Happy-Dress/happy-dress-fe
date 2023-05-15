@@ -54,10 +54,10 @@ const CategoriesDesktop = ({ categories: initialState }) => {
         if(!e.currentTarget || e.currentTarget.classList.contains(s.main)) return;
 
         if(e.currentTarget.classList.contains(s.medium)) {
-            setSizes(prevState => ({ ...prevState,  medium: e.target.getBoundingClientRect().width }));
+            setSizes(prevState => ({ ...prevState, medium: e.target.getBoundingClientRect().width }));
         }
         if(e.currentTarget.classList.contains(s.small)) {
-            setSizes(prevState => ({ ...prevState,  small: e.target.getBoundingClientRect().width }));
+            setSizes(prevState => ({ ...prevState, small: e.target.getBoundingClientRect().width }));
         }
     };
 

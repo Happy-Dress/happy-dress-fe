@@ -3,7 +3,7 @@ import authenticateUser from './authenticateUser';
 
 
 describe('authenticateUser', () => {
-    it('should return access token',  async () => {
+    it('should return access token', async () => {
         axios.post = jest.fn().mockImplementationOnce(() => 
             Promise.resolve({
                 data: {

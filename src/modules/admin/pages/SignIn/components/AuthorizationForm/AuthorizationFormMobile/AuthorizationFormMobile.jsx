@@ -30,7 +30,7 @@ const AuthorizationFormMobile = ({
 }) => {
 
     const passwordIcon = isPasswordVisible ? openEye : closedEye;
-    const passwordInputType = isPasswordVisible ?  'text' : 'password';
+    const passwordInputType = isPasswordVisible ? 'text' : 'password';
 
     const renderErrorMessage = (name) =>{
         return (

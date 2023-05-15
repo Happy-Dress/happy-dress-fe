@@ -50,7 +50,7 @@ const ColorAddDialog = ({ onClose, updateSettings, settingsList, editingModel, s
             updateSettings([...settingsList.map((item, index) => {
                 item.orderNumber = index + 1;
                 return item;
-            }), { ...state,  orderNumber: settingsList.length }]);
+            }), { ...state, orderNumber: settingsList.length }]);
             onClose();
             return;
         }
