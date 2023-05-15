@@ -7,7 +7,7 @@ const adaptive = (DesktopComponent, MobileComponent) => (props) => {
     return (
         <>
             {isDesktop && <DesktopComponent { ...props } />}
-            {isMobile &&  <MobileComponent { ...props } />}
+            {isMobile && <MobileComponent { ...props } />}
         </>
     );
 };

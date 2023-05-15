@@ -5,7 +5,7 @@ import x from '../../../../../common/assets/images/x.svg';
 import s from './NavigationPanelMobile.module.scss';
 import Typography from '../../../../../common/ui/components/Typography/Typography';
 import { NAVIGATION_PANEL_DICTIONARY } from '../NavigationPanel.dictionary';
-import  { ADMIN_PANEL_ROUTES }  from '../../../adminRoutes';
+import { ADMIN_PANEL_ROUTES } from '../../../adminRoutes';
 import PropTypes from 'prop-types';
 
 const NavigationPanelMobile = ({ ordersAmount, handleExit }) => {

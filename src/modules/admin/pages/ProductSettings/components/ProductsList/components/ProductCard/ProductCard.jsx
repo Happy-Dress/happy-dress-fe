@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import s from './ProductCard.module.scss';
 import image from '../../../../../../../../common/assets/images/photo_4_3.png';
 import classNames from 'classnames';
@@ -51,7 +52,10 @@ const ProductCard = (props) => {
                     (isHover && !isSelected) && <EmptyCheckbox className={s.checkbox}/>
                 }
                 {
-                    (isHover && !isSelected) && <Update className={s.update}/>
+                    (isHover && !isSelected) &&
+                        <Link to={`../product-card/${product.id}`}>
+                            <Update className={s.update}/>
+                        </Link>
                 }
                 {
                     isSelected && <Checkbox className={s.checkbox}/>

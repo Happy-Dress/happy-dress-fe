@@ -19,7 +19,7 @@ const FilterOption = ({ item, isChecked, renderOption, onSelect, onUnselect }) =
                     placeholder={'checkbox'}
                     onChange={handleClick}
                 />
-                {isChecked ? <Checkbox className={s.checkbox}  /> :
+                {isChecked ? <Checkbox className={s.checkbox} /> :
                     <span className={s.empty}/> }
                 {renderOption(item)}
             </label>

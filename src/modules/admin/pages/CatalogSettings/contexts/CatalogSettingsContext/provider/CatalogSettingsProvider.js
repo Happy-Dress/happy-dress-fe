@@ -52,7 +52,7 @@ const CatalogSettingsProvider = (props) => {
     };
 
     const updateColors = (colors) => {
-        setCatalogSettings(prevState => ({ ...prevState, colors  }));
+        setCatalogSettings(prevState => ({ ...prevState, colors }));
     };
 
     const registerOnSaveAction = (action) =>{
