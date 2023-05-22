@@ -23,7 +23,7 @@ const ProductCard = (props) => {
         setIsLongPress(false);
         setTimeout(() => {
             setIsLongPress(true);
-        }, 1000);
+        }, 800);
     };
 
     const handleTouchEnd = () => {
@@ -88,7 +88,12 @@ const ProductCard = (props) => {
                 )}
 
                 {isSelected && (
-                    <Checkbox onClick={clickHandler} className={s.checkbox} />
+                    <Checkbox
+                        onClick={!isMobile && clickHandler}
+                        onTouchStart={isMobile && handleTouchStart}
+                        onTouchEnd={isMobile && handleTouchEnd}
+                        className={s.checkbox}
+                    />
                 )}
 
                 <h3>{product.name}</h3>
