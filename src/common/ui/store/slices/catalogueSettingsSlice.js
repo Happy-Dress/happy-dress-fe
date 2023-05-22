@@ -16,7 +16,7 @@ const initialState = {
 const fetchCatalogueSettings = createAsyncThunk(
     'catalogueSettings/fetch',
     async () =>{
-        return  await retrieveCatalogueSettings();
+        return await retrieveCatalogueSettings();
     }
 );
 

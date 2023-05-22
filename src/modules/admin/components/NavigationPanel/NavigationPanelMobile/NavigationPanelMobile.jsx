@@ -5,7 +5,7 @@ import x from '../../../../../common/assets/images/x.svg';
 import s from './NavigationPanelMobile.module.scss';
 import Typography from '../../../../../common/ui/components/Typography/Typography';
 import { NAVIGATION_PANEL_DICTIONARY } from '../NavigationPanel.dictionary';
-import  { ADMIN_PANEL_ROUTES }  from '../../../adminRoutes';
+import { ADMIN_PANEL_ROUTES } from '../../../adminRoutes';
 import PropTypes from 'prop-types';
 
 const NavigationPanelMobile = ({ ordersAmount, handleExit }) => {
@@ -14,6 +14,11 @@ const NavigationPanelMobile = ({ ordersAmount, handleExit }) => {
     const { ADMIN_LOGO, ADMIN_NAV_ITEMS, EXIT } =
     NAVIGATION_PANEL_DICTIONARY;
     const [activeMenu, setActiveMenu] = useState(false);
+
+    const handleMenuToggle = () => {
+        setActiveMenu(!activeMenu);
+        document.body.style.overflow = activeMenu ? 'auto' : 'hidden';
+    };
 
     return (
         <div className={s.adminMobileWrapper}>
@@ -26,17 +31,13 @@ const NavigationPanelMobile = ({ ordersAmount, handleExit }) => {
                         <img
                             src={x}
                             alt="X"
-                            onClick={() => {
-                                setActiveMenu(!activeMenu);
-                            }}
+                            onClick={handleMenuToggle}
                         />
                     ) : (
                         <img
                             src={burger}
                             alt="W"
-                            onClick={() => {
-                                setActiveMenu(!activeMenu);
-                            }}
+                            onClick={handleMenuToggle}
                         />
                     )}
                 </div>

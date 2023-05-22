@@ -3,7 +3,7 @@ import SettingsList from '../SettingsList';
 import s from './SimpleSettingsControl.module.scss';
 import { ButtonAccent, ButtonDefault, ButtonTerritory } from '../../../../../../common/ui/components/Buttons';
 import classNames from 'classnames';
-import {  SIMPLE_SETTINGS_CONTROL_DICTIONARY } from './SimpleSettingsControl.dictionary';
+import { SIMPLE_SETTINGS_CONTROL_DICTIONARY } from './SimpleSettingsControl.dictionary';
 import PropTypes from 'prop-types';
 import { useModal } from 'react-modal-hook';
 

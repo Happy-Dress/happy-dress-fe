@@ -2,7 +2,7 @@ import getCatalogueItems from './getCatalogueItems';
 import mockAxios from 'jest-mock-axios';
 import { mockCatalogueItemsResponse } from '../../../__mocks__/mockCatalogueItemsResponse';
 
-describe('getCatalogueItems',  () => {
+describe('getCatalogueItems', () => {
     it('should return expected values', async () => {
 
         const request = {

@@ -42,9 +42,14 @@
     justify-content: space-around;
     align-items: center;
     position: absolute;
+    overflow-y: auto;
     width: 100%;
     height: 100vh;
+    max-height: calc(100vh - 64px);
     background-color: $white;
+@media screen and (max-height: 20em) {
+    justify-content: flex-start;
+  }
 
     .linkMobileWrapper {
       display: flex;

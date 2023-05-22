@@ -9,17 +9,14 @@ const {
 } = CATALOG_DICTIONARY;
 
 const CurrentFilters = () => {
-    const { tags, clickHandler, isDesktop } = useCurrentFilters(s.tag);
-
+    const { tags, handleDropFilters, isDesktop } = useCurrentFilters(s.tag);
     return (
         <div className={s.CurrentFilters}>
-            <div className={s.tags}>
-                {tags}
-            </div>
-            {
-                (!isDesktop && tags.filter(item => item && item.length > 0).length > 0) &&
-                <ButtonAccent text={RESET_FILTERS} onClick={clickHandler}/>
-            }
+            <div className={s.tags}>{tags}</div>
+            {!isDesktop &&
+          tags.filter((item) => item && item.length > 0).length > 0 && (
+                <ButtonAccent text={RESET_FILTERS} onClick={handleDropFilters} />
+            )}
         </div>
     );
 };

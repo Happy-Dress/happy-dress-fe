@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import s from './ProductCard.module.scss';
 import image from '../../../../../../../../common/assets/images/photo_4_3.png';
 import classNames from 'classnames';
@@ -76,26 +77,19 @@ const ProductCard = (props) => {
                 className={classNames({ [s.hovered]: isHover })}
             />
             <div className={s.description}>
-                {((isHover && !isSelected) || (isMobile && !isSelected)) && (
-                    <>
-                        {!isMobile ? (
-                            <EmptyCheckbox onClick={clickHandler} className={s.checkbox} />
-                        ) : (
-                            <EmptyCheckbox className={s.checkbox} />
-                        )}
-                        <Update className={s.update} />
-                    </>
-                )}
 
-                {isSelected && (
-                    <Checkbox
-                        onClick={!isMobile ? clickHandler : undefined}
-                        onTouchStart={isMobile ? handleTouchStart : undefined}
-                        onTouchEnd={isMobile ? handleTouchEnd : undefined}
-                        className={s.checkbox}
-                    />
-                )}
-
+                {
+                    (isHover && !isSelected) && <EmptyCheckbox className={s.checkbox}/>
+                }
+                {
+                    (isHover && !isSelected) &&
+                        <Link to={`../product-card/${product.id}`}>
+                            <Update className={s.update}/>
+                        </Link>
+                }
+                {
+                    isSelected && <Checkbox className={s.checkbox}/>
+                }
                 <h3>{product.name}</h3>
                 <div className={s.options}>
                     <div className={classNames(s.sizes, s.optionItem)}>
