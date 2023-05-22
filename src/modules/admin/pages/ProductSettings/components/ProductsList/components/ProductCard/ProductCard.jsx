@@ -89,9 +89,9 @@ const ProductCard = (props) => {
 
                 {isSelected && (
                     <Checkbox
-                        onClick={!isMobile && clickHandler}
-                        onTouchStart={isMobile && handleTouchStart}
-                        onTouchEnd={isMobile && handleTouchEnd}
+                        onClick={!isMobile ? clickHandler : undefined}
+                        onTouchStart={isMobile ? handleTouchStart : undefined}
+                        onTouchEnd={isMobile ? handleTouchEnd : undefined}
                         className={s.checkbox}
                     />
                 )}
