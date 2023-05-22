@@ -131,3 +131,6 @@ yarn-error.log*
 
 .module.css
 .css.map
+
+.vscode/
+
