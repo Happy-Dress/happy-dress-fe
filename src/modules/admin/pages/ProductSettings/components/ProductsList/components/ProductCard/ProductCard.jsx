@@ -8,6 +8,7 @@ import { ReactComponent as EmptyCheckbox } from '../../../../../../../../common/
 import { ReactComponent as Checkbox } from '../../../../../../../../common/assets/images/checkbox.svg';
 import { ReactComponent as Update } from '../../../../../../../../common/assets/images/update.svg';
 import { useDispatch, useSelector } from 'react-redux';
+import { useDeviceTypeContext } from '../../../../../../../../common/ui/contexts/DeviceType';
 import {
     selectProduct,
     unSelectProduct,
@@ -16,6 +17,22 @@ import {
 const { SIZE, COLOR } = PRODUCT_CARD_DICTIONARY;
 
 const ProductCard = (props) => {
+    const [isLongPress, setIsLongPress] = useState(false);
+
+    const handleTouchStart = () => {
+        setIsLongPress(false);
+        setTimeout(() => {
+            setIsLongPress(true);
+        }, 1000);
+    };
+
+    const handleTouchEnd = () => {
+        isLongPress && isMobile ? clickHandler() : setIsLongPress(false);
+        setIsLongPress(false);
+    };
+
+    const { isMobile } = useDeviceTypeContext();
+
     const { product, className } = props;
 
     const [isHover, setIsHover] = useState(false);
@@ -50,6 +67,8 @@ const ProductCard = (props) => {
             })}
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
         >
             <img
                 src={image}
@@ -57,13 +76,21 @@ const ProductCard = (props) => {
                 className={classNames({ [s.hovered]: isHover })}
             />
             <div className={s.description}>
-                {isHover && !isSelected && (
-                    <EmptyCheckbox onClick={clickHandler} className={s.checkbox} />
+                {((isHover && !isSelected) || (isMobile && !isSelected)) && (
+                    <>
+                        {!isMobile ? (
+                            <EmptyCheckbox onClick={clickHandler} className={s.checkbox} />
+                        ) : (
+                            <EmptyCheckbox className={s.checkbox} />
+                        )}
+                        <Update className={s.update} />
+                    </>
                 )}
-                {isHover && !isSelected && <Update className={s.update} />}
+
                 {isSelected && (
                     <Checkbox onClick={clickHandler} className={s.checkbox} />
                 )}
+
                 <h3>{product.name}</h3>
                 <div className={s.options}>
                     <div className={classNames(s.sizes, s.optionItem)}>
