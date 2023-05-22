@@ -8,22 +8,21 @@ import { ReactComponent as EmptyCheckbox } from '../../../../../../../../common/
 import { ReactComponent as Checkbox } from '../../../../../../../../common/assets/images/checkbox.svg';
 import { ReactComponent as Update } from '../../../../../../../../common/assets/images/update.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectProduct, unSelectProduct } from '../../../../../../../../common/ui/store/slices/productsSearchSlice';
+import {
+    selectProduct,
+    unSelectProduct,
+} from '../../../../../../../../common/ui/store/slices/productsSearchSlice';
 
-const {
-    SIZE,
-    COLOR
-} = PRODUCT_CARD_DICTIONARY;
+const { SIZE, COLOR } = PRODUCT_CARD_DICTIONARY;
 
 const ProductCard = (props) => {
-    const {
-        product,
-        className
-    } = props;
+    const { product, className } = props;
 
     const [isHover, setIsHover] = useState(false);
     const dispatch = useDispatch();
-    const isSelected = useSelector(state => state.productsSearch.selectedProducts.includes(product.id));
+    const isSelected = useSelector((state) =>
+        state.productsSearch.selectedProducts.includes(product.id)
+    );
 
     const clickHandler = () => {
         switch (isSelected) {
@@ -35,47 +34,57 @@ const ProductCard = (props) => {
                 break;
         }
     };
-    const sizes = Array.from(new Set([...product.productColorSizes.map(colorSize => colorSize.size.sizeValue)]));
-    const colors = Array.from(new Set([...product.productColorSizes.map(colorSize => colorSize.color)]));
+    const sizes = Array.from(
+        new Set([
+            ...product.productColorSizes.map((colorSize) => colorSize.size.sizeValue),
+        ])
+    );
+    const colors = Array.from(
+        new Set([...product.productColorSizes.map((colorSize) => colorSize.color)])
+    );
 
     return (
         <div
-            className={classNames(s.ProductCard, className, { [s.active]: isSelected })}
+            className={classNames(s.ProductCard, className, {
+                [s.active]: isSelected,
+            })}
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
-            onClick={clickHandler}
         >
-            <img src={image} alt="dress preview" className={classNames({ [s.hovered]: isHover })}/>
+            <img
+                src={image}
+                alt="dress preview"
+                className={classNames({ [s.hovered]: isHover })}
+            />
             <div className={s.description}>
-                {
-                    (isHover && !isSelected) && <EmptyCheckbox className={s.checkbox}/>
-                }
-                {
-                    (isHover && !isSelected) && <Update className={s.update}/>
-                }
-                {
-                    isSelected && <Checkbox className={s.checkbox}/>
-                }
+                {isHover && !isSelected && (
+                    <EmptyCheckbox onClick={clickHandler} className={s.checkbox} />
+                )}
+                {isHover && !isSelected && <Update className={s.update} />}
+                {isSelected && (
+                    <Checkbox onClick={clickHandler} className={s.checkbox} />
+                )}
                 <h3>{product.name}</h3>
                 <div className={s.options}>
                     <div className={classNames(s.sizes, s.optionItem)}>
                         <p>{SIZE}</p>
                         <div className={s.items}>
-                            {
-                                sizes.map(item => {
-                                    return <span key={item}>{item}</span>;
-                                })
-                            }
+                            {sizes.map((item) => {
+                                return <span key={item}>{item}</span>;
+                            })}
                         </div>
                     </div>
                     <div className={classNames(s.colors, s.optionItem)}>
                         <p>{COLOR}</p>
                         <div className={s.items}>
-                            {
-                                colors.map(item => {
-                                    return <span key={item.id} style={{ backgroundColor: item.firstColor }}/>;
-                                })
-                            }
+                            {colors.map((item) => {
+                                return (
+                                    <span
+                                        key={item.id}
+                                        style={{ backgroundColor: item.firstColor }}
+                                    />
+                                );
+                            })}
                         </div>
                     </div>
                 </div>
@@ -87,7 +96,7 @@ const ProductCard = (props) => {
 ProductCard.propTypes = {
     product: PropTypes.object.isRequired,
     className: PropTypes.string,
-    isAdmin: PropTypes.bool
+    isAdmin: PropTypes.bool,
 };
 
 export default ProductCard;
