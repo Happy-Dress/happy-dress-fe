@@ -19,6 +19,13 @@ const { SIZE, COLOR } = PRODUCT_CARD_DICTIONARY;
 
 const ProductCard = (props) => {
     const [isLongPress, setIsLongPress] = useState(false);
+    const [isHover, setIsHover] = useState(false);
+    const dispatch = useDispatch();
+    const { isMobile } = useDeviceTypeContext();
+    const { product, className } = props;
+    const isSelected = useSelector((state) =>
+        state.productsSearch.selectedProducts.includes(product.id)
+    );
 
     const handleTouchStart = () => {
         setIsLongPress(false);
@@ -31,16 +38,6 @@ const ProductCard = (props) => {
         isLongPress && isMobile ? clickHandler() : setIsLongPress(false);
         setIsLongPress(false);
     };
-
-    const { isMobile } = useDeviceTypeContext();
-
-    const { product, className } = props;
-
-    const [isHover, setIsHover] = useState(false);
-    const dispatch = useDispatch();
-    const isSelected = useSelector((state) =>
-        state.productsSearch.selectedProducts.includes(product.id)
-    );
 
     const clickHandler = () => {
         switch (isSelected) {
@@ -77,19 +74,34 @@ const ProductCard = (props) => {
                 className={classNames({ [s.hovered]: isHover })}
             />
             <div className={s.description}>
-
-                {
-                    (isHover && !isSelected) && <EmptyCheckbox className={s.checkbox}/>
-                }
-                {
-                    (isHover && !isSelected) &&
-                        <Link to={`../product-card/${product.id}`}>
-                            <Update className={s.update}/>
+                {((isHover && !isSelected) || (isMobile && !isSelected)) && (
+                    <>
+                        {!isMobile ? (
+                            <EmptyCheckbox
+                                onClick={clickHandler}
+                                className={s.checkbox}
+                                data-testid="empty-checkbox"
+                            />
+                        ) : (
+                            <EmptyCheckbox
+                                className={s.checkbox}
+                                data-testid="empty-checkbox"
+                            />
+                        )}
+                        <Link to={`../product-card/${product.id}`} data-testid="link">
+                            <Update className={s.update} />
                         </Link>
-                }
-                {
-                    isSelected && <Checkbox className={s.checkbox}/>
-                }
+                    </>
+                )}
+                {isSelected && (
+                    <Checkbox
+                        onClick={!isMobile ? clickHandler : undefined}
+                        onTouchStart={isMobile ? handleTouchStart : undefined}
+                        onTouchEnd={isMobile ? handleTouchEnd : undefined}
+                        className={s.checkbox}
+                        data-testid="filled-checkbox"
+                    />
+                )}
                 <h3>{product.name}</h3>
                 <div className={s.options}>
                     <div className={classNames(s.sizes, s.optionItem)}>
@@ -108,6 +120,7 @@ const ProductCard = (props) => {
                                     <span
                                         key={item.id}
                                         style={{ backgroundColor: item.firstColor }}
+                                        data-testid="color-option"
                                     />
                                 );
                             })}
