@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import s from './CatalogSettings.module.scss';
 import { CATALOG_SETTINGS_DICTIONARY } from './CatalogSettings.dictionary';
 import { ButtonAccent, ButtonDefault } from '../../../../common/ui/components';
@@ -12,7 +13,7 @@ import { useModal } from 'react-modal-hook';
 import { LeaveConfirmationDialog } from '../../../../common/ui/components/Dialogs';
 import { useToasters } from '../../../../common/ui/contexts/ToastersContext';
 import { ColorSettings } from './components/ColorSettings';
-
+import { useBeforeunload } from 'react-beforeunload';
 const {
     CATEGORIES_SETTINGS_NAME,
     COLORS_SETTINGS_NAME,
@@ -50,6 +51,18 @@ const CatalogSettings = () => {
 
 
     const areSettingsChanged = JSON.stringify(settings) !== JSON.stringify(initialSettings);
+
+    useBeforeunload((e) => {
+        e.preventDefault();
+        showCancelConfirmation();
+    });
+
+    // useEffect(() => {
+    //     window.addEventListener('beforeunload', showCancelConfirmation);
+    //     return () => {
+    //         window.removeEventListener('beforeunload', showCancelConfirmation);
+    //     };
+    // }, []);
 
     const items = [
         {
