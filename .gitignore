@@ -132,9 +132,6 @@ yarn-error.log*
 .module.css
 .css.map
 
-<<<<<<< HEAD
-.vscode/
-=======
+
 .vscode/
 
->>>>>>> develop
