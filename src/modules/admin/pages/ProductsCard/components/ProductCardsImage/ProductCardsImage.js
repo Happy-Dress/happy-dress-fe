@@ -1,0 +1,54 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import s from './ProductCardsImage.module.scss';
+import { ReactComponent as AddIcon } from '../../../../../../common/assets/images/AddIconNormal.svg';
+import { ReactComponent as DeleteIcon } from '../../../../../../common/assets/images/Trash.svg';
+
+const ProductCardsImage = ({ imageUrl, alt, onAdd, onDelete, isLoaded }) => {
+    const handleAddClick = () => {
+        onAdd && onAdd();
+    };
+
+    const handleDeleteClick = (e) => {
+        e.preventDefault();
+        onDelete && onDelete();
+    };
+
+    return (
+        <div className={s.pciContent}>
+            {!isLoaded &&
+            <div className={s.pciLoader}/>
+            }
+            {!imageUrl && isLoaded &&
+            <AddIcon
+                className={s.pciIconAdd}
+                onClick={handleAddClick}
+            />
+            }
+            {imageUrl && isLoaded &&
+            <div className={s.pciContainer}>
+                <DeleteIcon
+                    id='ddd'
+                    className={s.pciIconDelete}
+                    onClick={handleDeleteClick}
+                />
+                <img
+                    className={s.pciImage}
+                    src={imageUrl}
+                    alt={alt}
+                />
+            </div>
+            }
+        </div>
+    );
+};
+
+ProductCardsImage.propTypes = {
+    imageUrl: PropTypes.string,
+    alt: PropTypes.string,
+    onAdd: PropTypes.func,
+    onDelete: PropTypes.func,
+    isLoaded: PropTypes.bool,
+};
+
+export default ProductCardsImage;

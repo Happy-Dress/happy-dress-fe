@@ -36,6 +36,11 @@ const ProductCard = (props) => {
                 break;
         }
     };
+
+    const handleUpdateClick = (e) => {
+        e.stopPropagation();
+    };
+
     const sizes = Array.from(new Set([...product.productColorSizes.map(colorSize => colorSize.size.sizeValue)]));
     const colors = Array.from(new Set([...product.productColorSizes.map(colorSize => colorSize.color)]));
 
@@ -54,7 +59,7 @@ const ProductCard = (props) => {
                 {
                     (isHover && !isSelected) &&
                         <Link to={`../product-card/${product.id}`}>
-                            <Update className={s.update}/>
+                            <Update className={s.update} onClick={handleUpdateClick}/>
                         </Link>
                 }
                 {
