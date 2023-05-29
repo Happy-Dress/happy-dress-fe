@@ -4,4 +4,7 @@
   width: 100%;
   padding: 40px 0 20px;
   height: fit-content;
+@media screen and (max-width: $md-size) {
+  padding: 0;
+}
 }
