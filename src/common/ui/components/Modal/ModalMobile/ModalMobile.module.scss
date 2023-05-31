@@ -1,33 +1,36 @@
 @import "../../../styles/colors";
-
+@import "../../../styles/media-sizes";
 .modalOverlay {
   position: fixed;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.35);
+  @media screen and (max-width: $md-size) {
+     overflow-y: auto;
+    }
 }
 
-.modalMobileSizeFs{
+.modalMobileSizeFs {
   width: 100%;
   inset: 0;
 }
 
-.modalMobileSizeLg{
+.modalMobileSizeLg {
   width: 100%;
   inset: 5% 0;
 }
 
-.modalMobileSizeMd{
+.modalMobileSizeMd {
   width: 100%;
   inset: 15% 0;
 }
 
-.modalMobileSizeSm{
+.modalMobileSizeSm {
   width: 100%;
   inset: 20% 0;
 }
 
-.content{
-  position: absolute;
+.content {
+  // position: absolute;
   border: 1px solid rgb(204, 204, 204);
   background: $white;
   overflow: auto;
@@ -36,4 +39,5 @@
   padding: 20px;
   height: fit-content;
   z-index: 10000;
+
 }
