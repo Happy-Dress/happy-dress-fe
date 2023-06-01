@@ -16,8 +16,8 @@ import { fetchCatalogueSettings } from '../../../../common/ui/store/slices/catal
 import { useToasters } from '../../../../common/ui/contexts/ToastersContext';
 import { useDeviceTypeContext } from '../../../../common/ui/contexts/DeviceType';
 import ProductCardsImage from './components/ProductCardsImage';
-import addImage from '../../../../common/api/addImage/addImage';
 import updateCatalogueItem from '../../../../common/api/catalogItem/updateCatalogItem';
+import { useMainImageUrl } from './hooks/useMainImageUrl';
 
 const {
     TITLE,
@@ -29,7 +29,6 @@ const {
     ERROR,
     UNKNOWN_ERROR,
     NOT_CHOSEN,
-    SUCCESS_MESSAGE,
     PRODUCT_SAVED,
 } = PRODUCT_CARD_DICTIONARY;
 const { NAME, MATERIAL, CATEGORY, MODEL, DESCRIPTION, MAIN_IMAGE_URL, MAIN_IMAGE_FILE } = FIELDS;
@@ -41,9 +40,9 @@ export const ProductsCard = () => {
     const { isMobile } = useDeviceTypeContext();
     const navigate = useNavigate();
     const { catalogueSettings } = useDetailedSearch();
+    const { mainImageUrl, setMainImageUrl, isFetching, handleSelectImg } = useMainImageUrl();
 
     const [productName, setProductName] = useState(NEW_PRODUCT);
-    const [isFetching, setIsFetching] = useState(false);
 
     const [defaultValues, setDefaultValues] = useState({
         [NAME.NAME]: '',
@@ -54,7 +53,6 @@ export const ProductsCard = () => {
     });
 
     const [product, setProduct] = useState(defaultValues);
-    const [mainImageUrl, setMainImageUrl] = useState('');
 
     const onSubmit = async (data) => {
         const dataToSave = {
@@ -119,31 +117,6 @@ export const ProductsCard = () => {
         fetchData();
     }, []);
 
-    const handleSelectImg = async (e) => {
-        setIsFetching(true);
-        const res = await addImage(e.target.files[0])
-            .then((r) => {
-                if (r.uploadedImages.length) {
-                    showToasterSuccess(SUCCESS_MESSAGE);
-                }
-
-                if (r.failedImages.length) {
-                    showToasterError(r.failedImages[0].imageName + ' ' +
-                        r.failedImages[0].reason.toString());
-                }
-
-                return r;
-            })
-            .catch((e) => {
-                showToasterError(e.toString());
-            });
-        setIsFetching(false);
-
-        if (res?.uploadedImages.length) {
-            setMainImageUrl(res.uploadedImages[0].imageUrl);
-        }
-    };
-
     const handleDeleteImage = () => {
         setMainImageUrl('');
     };
@@ -173,7 +146,7 @@ export const ProductsCard = () => {
                         type="file"
                         accept="image/*"
                         id={MAIN_IMAGE_FILE.NAME}
-                        {...register(MAIN_IMAGE_FILE.NAME, { onChange: (e) => handleSelectImg(e) })}
+                        {...register(MAIN_IMAGE_FILE.NAME, { onChange: handleSelectImg })}
                     />
                     }
                     <div className={s.productCardFields}>

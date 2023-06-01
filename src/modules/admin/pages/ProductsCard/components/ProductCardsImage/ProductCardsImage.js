@@ -28,7 +28,6 @@ const ProductCardsImage = ({ imageUrl, alt, onAdd, onDelete, isLoaded }) => {
             {imageUrl && isLoaded &&
             <div className={s.pciContainer}>
                 <DeleteIcon
-                    id='ddd'
                     className={s.pciIconDelete}
                     onClick={handleDeleteClick}
                 />
