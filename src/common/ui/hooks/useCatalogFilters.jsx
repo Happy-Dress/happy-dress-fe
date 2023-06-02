@@ -11,7 +11,7 @@ export const useCatalogFilters = () => {
     useEffect(() =>{
         if(catalogueSettings.category){
             dispatch(resetProducts());
-            const pageToSearch = currentPage + 1;
+            const pageToSearch = currentPage ? currentPage : 1;
             dispatch(fetchCatalogueItems({ filters: catalogueSettings, page: pageToSearch }));
         }
     }, [catalogueSettings]);

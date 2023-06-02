@@ -1,4 +1,4 @@
-
+@import "../../../../styles/media-sizes";
 
 .ModalFooter{
   display: flex;
@@ -15,7 +15,10 @@
   @media screen and (max-width: 1023px) {
     flex-direction: column;
   }
-
+ @media screen and (max-width: $md-size) {
+  gap: 10px;
+  margin-top: -10px;
+ }
   button{
     width: 100%;
     height: 100%;
