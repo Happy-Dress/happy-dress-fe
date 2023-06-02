@@ -24,10 +24,20 @@
     margin-top: 24px;
     min-height: 70vh;
 
+    &_swipeable {
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+      width: 100vw;
+    }
+
     &_list {
       display: flex;
       align-items: center;
       gap: 10px;
+      max-width: 90vw;
+      width: 100%;
+      overflow-x: scroll;
 
       &_item {
         img {
@@ -45,9 +55,39 @@
       display: flex;
       align-items: center;
       min-height: 62vh;
+      position: relative;
+      left: 0;
+      overflow: hidden;
 
       img {
+        overflow: hidden;
         width: 80vw;
+      }
+
+      &_left {
+        animation: move-left 1s ease forwards;
+      }
+
+      &_right {
+        animation: move-right 1s ease forwards;
+      }
+
+      @keyframes move-left {
+        0% {
+          left: 100vw;
+        }
+        100% {
+          left: 0;
+        }
+      }
+
+      @keyframes move-right {
+        0% {
+          left: -100vw;
+        }
+        100% {
+          left: 0;
+        }
       }
     }
   }
