@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const updateCatalogueItem = async (data) => {
-    const response = await axios.put(`products/update/${data.id}`, data);
+const updateCatalogueItem = async (product) => {
+    const response = await axios.put(`products/update/${product.id}`, product);
     return response.data;
 };
 
