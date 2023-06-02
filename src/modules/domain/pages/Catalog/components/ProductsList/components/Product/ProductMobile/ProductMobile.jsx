@@ -161,7 +161,7 @@ const ProductMobile = () => {
                             <div className={s.ProductMobile_description_item}>
                                 <h5 className={s.ProductMobile_description_label}>{COLOR_AND_SIZE_LABEL}</h5>
                             </div>
-                            <div>
+                            <div className={s.ProductMobile_description_tableColors}>
                                 <TableColorSizes
                                     uniqueColors={Array.from(uniqueColors)}
                                     sizes={SIZES}
