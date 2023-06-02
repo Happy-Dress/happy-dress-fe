@@ -5,12 +5,17 @@ import CATEGORIES_DICTIONARY from '../Categories.dictionary';
 import classNames from 'classnames';
 import { ReactComponent as Arrow } from '../../../../../../common/assets/images/slider-arrow.svg';
 import Photo from '../../../../../../common/assets/images/photo_4_3.png';
+import { useDispatch } from 'react-redux';
+import { setCategory } from '../../../../../../common/ui/store/slices/productsSearchSlice';
+import { useNavigate } from 'react-router-dom';
 
 const { HEADING_LABEL } = CATEGORIES_DICTIONARY;
 
 const CategoriesDesktop = ({ categories: initialState }) => {
 
     const [categories, setCategories] = useState(initialState);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [sliderState, setSliderState] = useState(0);
     const [sizes, setSizes] = useState({ medium: 0, small: 0 });
@@ -61,6 +66,12 @@ const CategoriesDesktop = ({ categories: initialState }) => {
         }
     };
 
+    const handleClick = (post) => {
+        dispatch(setCategory(post.id));
+        window.scrollTo({ top: 0 });
+        navigate('../catalog');
+    };
+
     return (
         <div className={s.CategoriesDesktop}>
             <div className={s.title}>
@@ -83,6 +94,7 @@ const CategoriesDesktop = ({ categories: initialState }) => {
                             key={index}
                             className={s.card}
                             data-testid={`card_${index}`}
+                            onClick={() => handleClick(post)}
                         >
                             <img
                                 className={classNames({

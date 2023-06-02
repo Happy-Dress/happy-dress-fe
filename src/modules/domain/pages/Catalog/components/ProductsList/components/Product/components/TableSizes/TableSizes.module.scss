@@ -1,0 +1,31 @@
+@import "../../../../../../../../../../common/ui/styles/colors";
+
+.Table {
+  table {
+    border-spacing: 10px;
+    width: 100%;
+  }
+
+  th, td {
+    width: 80px;
+  }
+
+  th {
+    height: 43px;
+    background-color: $light-gray;
+    color: $brown;
+  }
+
+  td {
+    height: 43px;
+    text-align: center;
+  }
+
+  &_even {
+    background-color: $white;
+  }
+
+  &_odd {
+    background-color: $brown-light;
+  }
+}

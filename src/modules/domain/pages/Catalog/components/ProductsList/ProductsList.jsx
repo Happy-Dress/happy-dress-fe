@@ -20,6 +20,7 @@ const ProductsList = () =>{
         threshold: 0,
     });
 
+
     useEffect(() => {
         if(inView && currentPage < totalPages) {
             dispatch(fetchCatalogueItems({ filters, page: currentPage }));
