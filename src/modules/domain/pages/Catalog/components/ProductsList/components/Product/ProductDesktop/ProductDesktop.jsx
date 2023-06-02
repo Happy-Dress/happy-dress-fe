@@ -9,6 +9,8 @@ import { Breadcrumbs } from '../../../../../../../../../common/ui/components/Bre
 import TableColorSizes from '../components/TableColorSizes';
 import TableSizes from '../components/TableSizes';
 import Loader from '../../../../../../../../../common/ui/components/Loader';
+import { useDispatch } from 'react-redux';
+import { setCategory } from '../../../../../../../../../common/ui/store/slices/productsSearchSlice';
 
 const {
     DESCRIPTION_LABEL,
@@ -38,6 +40,8 @@ const ProductDesktop = () => {
     const [isOpenTableSize, setIsOpenTableSize] = useState(false);
     const [breadcrumbs, setBreadcrumbs] = useState([]);
 
+    const dispatch = useDispatch();
+
 
     useEffect(() => {
         getCatalogueItem(productId).then(data => {
@@ -54,7 +58,7 @@ const ProductDesktop = () => {
             setIsLoading(true);
             const breadcrumbs = [
                 { id: 1, link: '../catalog', linkTitle: 'Каталог' },
-                { id: 2, link: '../catalog', linkTitle: data.category.name },
+                { id: 2, link: '../catalog', linkTitle: data.category.name, handleOnClick: () => dispatch(setCategory(data.category)) },
                 { id: 3, link: `../catalog/${data.id}`, linkTitle: data.name },
             ];
             setBreadcrumbs(breadcrumbs);
@@ -81,7 +85,6 @@ const ProductDesktop = () => {
     };
 
     const handleOnLoadImage = (index) => {
-        console.log(loading);
         setLoading((prevState) => {
             const newLoading = [...prevState];
             newLoading[index] = false;
