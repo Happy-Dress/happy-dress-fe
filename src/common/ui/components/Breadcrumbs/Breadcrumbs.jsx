@@ -8,7 +8,7 @@ export const Breadcrumbs = ({ breadcrumbs }) => {
         <ul className={s.breadcrumbs}>
             {breadcrumbs.map((item, idx) => {
                 return (
-                    <li key={item.id}>
+                    <li key={item.id} onClick={item.handleOnClick}>
                         <Link to={item.link}>
                             {item.linkTitle}
                         </Link>
@@ -24,6 +24,7 @@ const breadcrumbItem = PropTypes.shape({
     id: PropTypes.number,
     link: PropTypes.string,
     linkTitle: PropTypes.string,
+    handleOnClick: PropTypes.func,
 });
 
 Breadcrumbs.propTypes = {
