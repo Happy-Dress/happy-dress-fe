@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import s from './ProductCardsImage.module.scss';
+import s from './ProductsCardsImage.module.scss';
 import { ReactComponent as AddIcon } from '../../../../../../common/assets/images/AddIconNormal.svg';
 import { ReactComponent as DeleteIcon } from '../../../../../../common/assets/images/Trash.svg';
 
-const ProductCardsImage = ({ imageUrl, alt, onAdd, onDelete, isLoaded }) => {
+const ProductsCardsImage = ({ imageUrl, alt, onAdd, onDelete, isLoaded }) => {
     const handleAddClick = () => {
         onAdd && onAdd();
     };
@@ -44,7 +44,7 @@ const ProductCardsImage = ({ imageUrl, alt, onAdd, onDelete, isLoaded }) => {
     );
 };
 
-ProductCardsImage.propTypes = {
+ProductsCardsImage.propTypes = {
     imageUrl: PropTypes.string,
     alt: PropTypes.string,
     onAdd: PropTypes.func,
@@ -52,4 +52,4 @@ ProductCardsImage.propTypes = {
     isLoaded: PropTypes.bool,
 };
 
-export default ProductCardsImage;
+export default ProductsCardsImage;

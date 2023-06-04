@@ -15,7 +15,7 @@ import getCatalogueItem from '../../../../common/api/catalogItem/getCatalogItem'
 import { fetchCatalogueSettings } from '../../../../common/ui/store/slices/catalogueSettingsSlice';
 import { useToasters } from '../../../../common/ui/contexts/ToastersContext';
 import { useDeviceTypeContext } from '../../../../common/ui/contexts/DeviceType';
-import ProductCardsImage from './components/ProductCardsImage';
+import ProductsCardsImage from './components/ProductsCardsImage';
 import updateCatalogueItem from '../../../../common/api/catalogItem/updateCatalogItem';
 import { useMainImageUrl } from './hooks/useMainImageUrl';
 
@@ -134,7 +134,7 @@ export const ProductsCard = () => {
             <form className={s.productCardForm} onSubmit={handleSubmit(onSubmit)}>
                 <div className={s.productCardFieldsSection}>
                     <label htmlFor={MAIN_IMAGE_FILE.NAME}>
-                        <ProductCardsImage
+                        <ProductsCardsImage
                             imageUrl={mainImageUrl}
                             alt={productName}
                             onDelete={handleDeleteImage}
