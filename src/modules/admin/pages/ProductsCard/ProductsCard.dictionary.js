@@ -40,8 +40,19 @@ export const PRODUCT_CARD_DICTIONARY = {
             LABEL: 'Описание',
             ERROR_MESSAGE: 'Введите описание',
         },
+        MAIN_IMAGE_URL: {
+            PLACEHOLDER: '',
+            NAME: 'mainImageUrl',
+            LABEL: '',
+            ERROR_MESSAGE: 'Выберите фото',
+        },
+        MAIN_IMAGE_FILE: {
+            NAME: 'mainImageFile',
+        },
     },
     ERROR: 'Невозможно найти товар с id:',
     UNKNOWN_ERROR: 'Ошибка',
-    NOT_CHOSEN: 'Не выбрано'
+    NOT_CHOSEN: 'Не выбрано',
+    SUCCESS_MESSAGE: 'Фото успешно добавлено',
+    PRODUCT_SAVED: 'Продукт успешно сохранен',
 };
