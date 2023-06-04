@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import s from './ProductDesktop.module.scss';
-import { useParams } from 'react-router-dom';
 import getCatalogueItem from '../../../../../../../../../common/api/catalogItem/getCatalogItem';
 import LoaderFullScreen from '../../../../../../../../../common/ui/components/LoaderFullScreen';
 import classNames from 'classnames';
 import { PRODUCT_DICTIONARY } from '../Product.dictionary';
 import { Breadcrumbs } from '../../../../../../../../../common/ui/components/Breadcrumbs';
-import TableColorSizes from '../components/TableColorSizes';
-import TableSizes from '../components/TableSizes';
+import ColorsSizesTable from '../components/ColorsSizesTable';
+import SizesTable from '../components/SizesTable';
 import Loader from '../../../../../../../../../common/ui/components/Loader';
 import { useDispatch } from 'react-redux';
 import { setCategory } from '../../../../../../../../../common/ui/store/slices/productsSearchSlice';
+import PropTypes from 'prop-types';
 
 const {
     DESCRIPTION_LABEL,
@@ -24,8 +24,11 @@ const {
     TABLE_SIZE_BODY,
 } = PRODUCT_DICTIONARY;
 
-const ProductDesktop = () => {
-    const { id: productId } = useParams();
+const ProductDesktop = (props) => {
+    const {
+        productId,
+    } = props;
+
     const [selectedImage, setSelectedImage] = useState(null);
     const [mainImage, setMainImage] = useState(null);
     const [productColorImages, setProductColorImages] = useState(null);
@@ -58,7 +61,12 @@ const ProductDesktop = () => {
             setIsLoading(true);
             const breadcrumbs = [
                 { id: 1, link: '../catalog', linkTitle: 'Каталог' },
-                { id: 2, link: '../catalog', linkTitle: data.category.name, handleOnClick: () => dispatch(setCategory(data.category)) },
+                {
+                    id: 2,
+                    link: '../catalog',
+                    linkTitle: data.category.name,
+                    handleOnClick: () => dispatch(setCategory(data.category))
+                },
                 { id: 3, link: `../catalog/${data.id}`, linkTitle: data.name },
             ];
             setBreadcrumbs(breadcrumbs);
@@ -110,7 +118,9 @@ const ProductDesktop = () => {
         <>
             {product ?
                 <div className={s.Product_wrapper}>
-                    <Breadcrumbs breadcrumbs={breadcrumbs}/>
+                    <div className={s.Breadcrumbs_wrapper}>
+                        <Breadcrumbs breadcrumbs={breadcrumbs}/>
+                    </div>
                     <div className={s.Product}>
                         <div className={s.Product_carousel}>
                             <div className={s.Product_carousel_list}>
@@ -122,7 +132,7 @@ const ProductDesktop = () => {
                                 style={{ display: loading[0] ? 'none' : 'block' }}
                                 onClick={() => handleImageClick(mainImage, 0)}
                                 >
-                                    <img 
+                                    <img
                                         src={mainImage}
                                         alt="main image"
                                         onLoad={() => handleOnLoadImage(0)}
@@ -139,7 +149,7 @@ const ProductDesktop = () => {
                                             onClick={() => handleImageClick(imageUrl, key + 1)}
                                             style={{ display: loading[key + 1] ? 'none' : 'block' }}
                                             >
-                                                <img 
+                                                <img
                                                     src={imageUrl}
                                                     alt={`product image color ${productColorImages.color.name}`}
                                                     onLoad={() => handleOnLoadImage(key)}
@@ -193,7 +203,7 @@ const ProductDesktop = () => {
                                             <h4 className={s.Product_description_label}>{SIZE_LABEL}</h4>
                                         </div>
                                     </div>
-                                    <TableColorSizes
+                                    <ColorsSizesTable
                                         uniqueColors={Array.from(uniqueColors)}
                                         sizes={SIZES}
                                         product={product}
@@ -205,7 +215,7 @@ const ProductDesktop = () => {
                                     <h4 onClick={handleOpenTableSize}>{TABLE_SIZE_LABEL}</h4>
                                     {isOpenTableSize && (
                                         <div>
-                                            <TableSizes
+                                            <SizesTable
                                                 tableSizeHead={TABLE_SIZE_HEAD}
                                                 tableSizeBody={TABLE_SIZE_BODY}
                                             />
@@ -221,5 +231,9 @@ const ProductDesktop = () => {
             }
         </>
     );
+};
+
+ProductDesktop.propTypes = {
+    productId: PropTypes.number.isRequired,
 };
 export default ProductDesktop;

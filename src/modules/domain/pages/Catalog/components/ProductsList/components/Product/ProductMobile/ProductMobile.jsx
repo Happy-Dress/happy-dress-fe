@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import getCatalogueItem from '../../../../../../../../../common/api/catalogItem/getCatalogItem';
 import LoaderFullScreen from '../../../../../../../../../common/ui/components/LoaderFullScreen';
 import s from './ProductMobile.module.scss';
 import leftArrow from '../../../../../../../../../assets/images/leftArrow.svg';
 import classNames from 'classnames';
 import { PRODUCT_DICTIONARY } from '../Product.dictionary';
-import TableColorSizes from '../components/TableColorSizes';
-import TableSizes from '../components/TableSizes';
+import ColorsSizesTable from '../components/ColorsSizesTable';
+import SizesTable from '../components/SizesTable';
 import { useSwipeable } from 'react-swipeable';
+import PropTypes from 'prop-types';
 
 const {
     MODEL_LABEL,
@@ -20,8 +21,11 @@ const {
     SIZES,
 } = PRODUCT_DICTIONARY;
 
-const ProductMobile = () => {
-    const { id: productId } = useParams();
+const ProductMobile = (props) => {
+    const {
+        productId,
+    } = props;
+
     const [selectedImage, setSelectedImage] = useState(null);
     const [product, setProduct] = useState(null);
     const [productColorImages, setProductColorImages] = useState(null);
@@ -162,7 +166,7 @@ const ProductMobile = () => {
                                 <h5 className={s.ProductMobile_description_label}>{COLOR_AND_SIZE_LABEL}</h5>
                             </div>
                             <div className={s.ProductMobile_description_tableColors}>
-                                <TableColorSizes
+                                <ColorsSizesTable
                                     uniqueColors={Array.from(uniqueColors)}
                                     sizes={SIZES}
                                     product={product}
@@ -181,7 +185,7 @@ const ProductMobile = () => {
                             <img src={leftArrow} alt={'return arrow'}/>
                             <h4>{TABLE_SIZE_LABEL}</h4>
                         </div>
-                        <TableSizes
+                        <SizesTable
                             tableSizeHead={TABLE_SIZE_HEAD}
                             tableSizeBody={TABLE_SIZE_BODY}
                         />
@@ -190,6 +194,10 @@ const ProductMobile = () => {
             }
         </div>
     );
+};
+
+ProductMobile.propTypes = {
+    productId: PropTypes.number.isRequired,
 };
 
 export default ProductMobile;

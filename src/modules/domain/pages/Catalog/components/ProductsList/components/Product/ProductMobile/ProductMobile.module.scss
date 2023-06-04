@@ -1,4 +1,6 @@
 @import "../../../../../../../../../common/ui/styles/colors";
+@import "../../../../../../../../../common/ui/styles/media-sizes";
+
 
 .ProductMobile {
 
@@ -22,7 +24,6 @@
     align-items: center;
     gap: 12px;
     margin-top: 24px;
-    min-height: 70vh;
 
     &_swipeable {
       display: flex;
@@ -44,6 +45,13 @@
           width: 20vw;
         }
 
+        @media screen and (min-height: $lg-size){
+          img {
+            width: 15vw;
+          }
+        }
+
+
         &_current {
           border: 2px solid $brown;
         }
@@ -54,7 +62,7 @@
     &_selected_item {
       display: flex;
       align-items: center;
-      min-height: 62vh;
+      min-height: 57vh;
       position: relative;
       left: 0;
       overflow: hidden;
@@ -89,6 +97,18 @@
           left: 0;
         }
       }
+
+      @media screen and (max-height: 700px){
+        min-height: 68vh;
+      }
+
+      @media screen and (min-height: $lg-size){
+        min-height: 73vh;
+
+        img {
+          width: 70vw;
+        }
+      }
     }
   }
 
@@ -109,7 +129,7 @@
     }
 
     &_label {
-      width: 132px;
+      min-width: 132px;
       font-size: 18px;
     }
 

@@ -1,8 +1,8 @@
 import React from 'react';
-import s from './TableSizes.module.scss';
+import s from './SizesTable.module.scss';
 import PropTypes from 'prop-types';
 
-const TableSizes = (props) => {
+const SizesTable = (props) => {
     const {
         tableSizeHead,
         tableSizeBody,
@@ -35,9 +35,9 @@ const TableSizes = (props) => {
     );
 };
 
-TableSizes.propTypes = {
+SizesTable.propTypes = {
     tableSizeHead: PropTypes.array.isRequired,
     tableSizeBody: PropTypes.array.isRequired,
 };
 
-export default TableSizes;
+export default SizesTable;

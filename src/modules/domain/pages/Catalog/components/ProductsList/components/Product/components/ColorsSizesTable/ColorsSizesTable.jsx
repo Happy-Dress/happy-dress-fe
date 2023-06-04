@@ -1,9 +1,9 @@
 import React from 'react';
-import s from './TableColorSizes.module.scss';
+import s from './ColorsSizesTable.module.scss';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-const TableColorSizes = (props) => {
+const ColorsSizesTable = (props) => {
     const {
         uniqueColors,
         sizes,
@@ -64,7 +64,7 @@ const TableColorSizes = (props) => {
     );
 };
 
-TableColorSizes.propTypes = {
+ColorsSizesTable.propTypes = {
     uniqueColors: PropTypes.array.isRequired,
     sizes: PropTypes.array.isRequired,
     product: PropTypes.object.isRequired,
@@ -72,4 +72,4 @@ TableColorSizes.propTypes = {
     handleSizeClick: PropTypes.func.isRequired,
 };
 
-export default TableColorSizes;
+export default ColorsSizesTable;
