@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import getCatalogueItem from '../../../../../../../../../common/api/catalogItem/getCatalogItem';
-import LoaderFullScreen from '../../../../../../../../../common/ui/components/LoaderFullScreen';
+import Loader from '../../../../../../../../../common/ui/components/Loader';
 import s from './ProductMobile.module.scss';
 import leftArrow from '../../../../../../../../../assets/images/leftArrow.svg';
 import classNames from 'classnames';
@@ -10,6 +9,12 @@ import ColorsSizesTable from '../components/ColorsSizesTable';
 import SizesTable from '../components/SizesTable';
 import { useSwipeable } from 'react-swipeable';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+    fetchProduct,
+    setCurrentColorSize, setProductColorImages,
+    setSelectedImage
+} from '../../../../../../../../../common/ui/store/slices/productSlice';
 
 const {
     MODEL_LABEL,
@@ -26,26 +31,28 @@ const ProductMobile = (props) => {
         productId,
     } = props;
 
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [product, setProduct] = useState(null);
-    const [productColorImages, setProductColorImages] = useState(null);
-    const [mainImage, setMainImage] = useState(null);
+    const product = useSelector(state => state.product.product);
+    const selectedImage = useSelector(state => state.product.selectedImage);
+    const productColorImages = useSelector(state => state.product.productColorImages);
+    const currentColorSize = useSelector(state => state.product.currentColorSize);
+    const uniqueColors = useSelector(state => state.product.uniqueColors);
+    const mainImage = useSelector(state => state.product.mainImage);
+
     const [moveLeft, setMoveLeft] = useState(false);
     const [moveRight, setMoveRight] = useState(false);
     const [images, setImages] = useState([]);
-
-    const [currentColorSize, setCurrentColorSize] = useState(null);
-    const [uniqueColors, setUniqueColors] = useState(new Set());
     const [isOpenTableSize, setIsOpenTableSize] = useState(false);
+
+    const dispatch = useDispatch();
 
     const handleSwipe = useSwipeable({
         onSwipedLeft: () => {
             setMoveLeft(true);
             const newIndex = (selectedImage.index + 1) % images.length;
-            setSelectedImage({
+            dispatch(setSelectedImage({
                 imageUrl: images[newIndex],
                 index: newIndex,
-            });
+            }));
             setTimeout(() => {
                 setMoveLeft(false);
             }, 1000);
@@ -54,10 +61,10 @@ const ProductMobile = (props) => {
         onSwipedRight: () => {
             setMoveRight(true);
             const newIndex = (selectedImage.index + images.length - 1) % images.length;
-            setSelectedImage({
+            dispatch(setSelectedImage({
                 imageUrl: images[newIndex],
                 index: newIndex,
-            });
+            }));
             setTimeout(() => {
                 setMoveRight(false);
             }, 1000);
@@ -65,19 +72,10 @@ const ProductMobile = (props) => {
     });
 
     useEffect(() => {
-        getCatalogueItem(productId).then(data => {
-            setProduct(data);
-            setMainImage(data.mainImageUrl);
-            setProductColorImages(data.productColorImages[0]);
-            setCurrentColorSize(data.productColorSizes[0]);
-            setUniqueColors(new Set(data.productColorSizes.map(item => item.color.name)));
-            setSelectedImage({
-                imageUrl: data.mainImageUrl,
-                index: 0,
-            });
-            setImages([data.mainImageUrl, ...data.productColorImages[0].imageURLs]);
-        });
-    }, []);
+        dispatch(fetchProduct({ productId }));
+        // eslint-disable-next-line no-unsafe-optional-chaining
+        setImages([product?.mainImageUrl, ...product?.productColorImages[0].imageURLs]);
+    }, [product]);
 
     const handleOpenTableSize = () => {
         window.scrollTo({ top: 0 });
@@ -88,10 +86,10 @@ const ProductMobile = (props) => {
         selectedImage.index < index ? setMoveLeft(true)
             :
             selectedImage.index > index ? setMoveRight(true) : null;
-        setSelectedImage({
+        dispatch(setSelectedImage({
             imageUrl,
             index,
-        });
+        }));
         setTimeout(() => {
             setMoveLeft(false);
             setMoveRight(false);
@@ -105,10 +103,10 @@ const ProductMobile = (props) => {
                 ...productColorSize,
                 size
             };
-            setCurrentColorSize(newProductColorSize);
+            dispatch(setCurrentColorSize(newProductColorSize));
             if (productColorImages.color.name !== productColorSize.color.name) {
                 const productColorImage = product.productColorImages.find(productColorImage => productColorImage.color.name === productColorSize.color.name);
-                setProductColorImages(productColorImage);
+                dispatch(setProductColorImages(productColorImage));
                 setImages([mainImage, ...productColorImage.imageURLs]);
             }
         }
@@ -144,8 +142,10 @@ const ProductMobile = (props) => {
                                     key={key}
                                     onClick={() => handleImageClick(imageUrl, key + 1)}
                                     >
-                                        <img src={imageUrl}
-                                            alt={`product image color ${productColorImages.color.name}`}/>
+                                        <img
+                                            src={imageUrl}
+                                            alt={`product image color ${productColorImages.color.name}`}
+                                        />
                                     </div>
                                 ))}
                             </div>
@@ -167,7 +167,7 @@ const ProductMobile = (props) => {
                             </div>
                             <div className={s.ProductMobile_description_tableColors}>
                                 <ColorsSizesTable
-                                    uniqueColors={Array.from(uniqueColors)}
+                                    uniqueColors={Array.from(JSON.parse(uniqueColors))}
                                     sizes={SIZES}
                                     product={product}
                                     currentColorSize={currentColorSize}
@@ -190,7 +190,7 @@ const ProductMobile = (props) => {
                             tableSizeBody={TABLE_SIZE_BODY}
                         />
                     </div>
-                : <LoaderFullScreen/>
+                : <Loader/>
             }
         </div>
     );

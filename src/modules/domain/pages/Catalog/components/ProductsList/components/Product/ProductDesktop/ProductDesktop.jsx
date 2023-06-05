@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import s from './ProductDesktop.module.scss';
-import getCatalogueItem from '../../../../../../../../../common/api/catalogItem/getCatalogItem';
-import LoaderFullScreen from '../../../../../../../../../common/ui/components/LoaderFullScreen';
+import Loader from '../../../../../../../../../common/ui/components/Loader';
 import classNames from 'classnames';
 import { PRODUCT_DICTIONARY } from '../Product.dictionary';
 import { Breadcrumbs } from '../../../../../../../../../common/ui/components/Breadcrumbs';
 import ColorsSizesTable from '../components/ColorsSizesTable';
 import SizesTable from '../components/SizesTable';
-import Loader from '../../../../../../../../../common/ui/components/Loader';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCategory } from '../../../../../../../../../common/ui/store/slices/productsSearchSlice';
 import PropTypes from 'prop-types';
+import {
+    fetchProduct,
+    setCurrentColorSize, setProductColorImages,
+    setSelectedImage
+} from '../../../../../../../../../common/ui/store/slices/productSlice';
 
 const {
     DESCRIPTION_LABEL,
@@ -29,17 +32,15 @@ const ProductDesktop = (props) => {
         productId,
     } = props;
 
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [mainImage, setMainImage] = useState(null);
-    const [productColorImages, setProductColorImages] = useState(null);
-    const [product, setProduct] = useState(null);
+    const product = useSelector(state => state.product.product);
+    const selectedImage = useSelector(state => state.product.selectedImage);
+    const productColorImages = useSelector(state => state.product.productColorImages);
+    const currentColorSize = useSelector(state => state.product.currentColorSize);
+    const uniqueColors = useSelector(state => state.product.uniqueColors);
+    const mainImage = useSelector(state => state.product.mainImage);
+
     const [moveUp, setMoveUp] = useState(false);
     const [moveDown, setMoveDown] = useState(false);
-    const [loading, setLoading] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
-
-    const [currentColorSize, setCurrentColorSize] = useState(null);
-    const [uniqueColors, setUniqueColors] = useState(new Set());
     const [isOpenTableSize, setIsOpenTableSize] = useState(false);
     const [breadcrumbs, setBreadcrumbs] = useState([]);
 
@@ -47,31 +48,19 @@ const ProductDesktop = (props) => {
 
 
     useEffect(() => {
-        getCatalogueItem(productId).then(data => {
-            setProduct(data);
-            setSelectedImage({
-                imageUrl: data.mainImageUrl,
-                index: 0,
-            });
-            setProductColorImages(data.productColorImages[0]);
-            setCurrentColorSize(data.productColorSizes[0]);
-            setUniqueColors(new Set(data.productColorSizes.map(item => item.color.name)));
-            setMainImage(data.mainImageUrl);
-            setLoading(Array(Array.from(new Set(data.productColorImages[0].imageURLs)).length + 1).fill(true));
-            setIsLoading(true);
-            const breadcrumbs = [
-                { id: 1, link: '../catalog', linkTitle: 'Каталог' },
-                {
-                    id: 2,
-                    link: '../catalog',
-                    linkTitle: data.category.name,
-                    handleOnClick: () => dispatch(setCategory(data.category))
-                },
-                { id: 3, link: `../catalog/${data.id}`, linkTitle: data.name },
-            ];
-            setBreadcrumbs(breadcrumbs);
-        });
-    }, []);
+        dispatch(fetchProduct({ productId }));
+        const breadcrumbs = [
+            { id: 1, link: '../catalog', linkTitle: 'Каталог' },
+            {
+                id: 2,
+                link: '../catalog',
+                linkTitle: product?.category.name,
+                handleOnClick: () => dispatch(setCategory(product?.category))
+            },
+            { id: 3, link: `../catalog/${product?.id}`, linkTitle: product?.name },
+        ];
+        setBreadcrumbs(breadcrumbs);
+    }, [product]);
 
     const handleSizeClick = (color, size) => {
         const productColorSize = product.productColorSizes.filter(item => item.color.name === color).find(item => item.size.sizeValue === size);
@@ -80,10 +69,10 @@ const ProductDesktop = (props) => {
                 ...productColorSize,
                 size
             };
-            setCurrentColorSize(newProductColorSize);
+            dispatch(setCurrentColorSize(newProductColorSize));
             if (productColorImages.color.name !== productColorSize.color.name) {
                 const productColorImage = product.productColorImages.find(productColorImage => productColorImage.color.name === productColorSize.color.name);
-                setProductColorImages(productColorImage);
+                dispatch(setProductColorImages(productColorImage));
             }
         }
     };
@@ -92,22 +81,15 @@ const ProductDesktop = (props) => {
         setIsOpenTableSize(!isOpenTableSize);
     };
 
-    const handleOnLoadImage = (index) => {
-        setLoading((prevState) => {
-            const newLoading = [...prevState];
-            newLoading[index] = false;
-            return newLoading;
-        });
-    };
 
     const handleImageClick = (imageUrl, index) => {
         selectedImage.index < index ? setMoveUp(true)
             :
             selectedImage.index > index ? setMoveDown(true) : null;
-        setSelectedImage({
+        dispatch(setSelectedImage({
             imageUrl,
             index,
-        });
+        }));
         setTimeout(() => {
             setMoveUp(false);
             setMoveDown(false);
@@ -124,58 +106,44 @@ const ProductDesktop = (props) => {
                     <div className={s.Product}>
                         <div className={s.Product_carousel}>
                             <div className={s.Product_carousel_list}>
-                                {isLoading && loading[0] && <Loader/>}
                                 <div className={classNames(
                                     s.Product_carousel_list_item,
                                     mainImage === selectedImage.imageUrl ? s.Product_carousel_list_item_current : '',
                                 )}
-                                style={{ display: loading[0] ? 'none' : 'block' }}
                                 onClick={() => handleImageClick(mainImage, 0)}
                                 >
                                     <img
                                         src={mainImage}
                                         alt="main image"
-                                        onLoad={() => handleOnLoadImage(0)}
                                     />
                                 </div>
                                 {productColorImages.imageURLs.map((imageUrl, key) => (
                                     <div key={key}>
-                                        {isLoading && loading[key] && imageUrl !== mainImage && <Loader/>}
                                         {imageUrl !== mainImage && (
                                             <div className={classNames(
                                                 s.Product_carousel_list_item,
                                                 imageUrl === selectedImage.imageUrl ? s.Product_carousel_list_item_current : ''
                                             )}
                                             onClick={() => handleImageClick(imageUrl, key + 1)}
-                                            style={{ display: loading[key + 1] ? 'none' : 'block' }}
                                             >
                                                 <img
                                                     src={imageUrl}
                                                     alt={`product image color ${productColorImages.color.name}`}
-                                                    onLoad={() => handleOnLoadImage(key)}
                                                 />
                                             </div>
-                                        )
-                                        }
+                                        )}
                                     </div>
                                 ))}
                             </div>
-                            {isLoading && loading[2] &&
-                                <div className={s.Product_carousel_selected_item}>
-                                    <Loader/>
-                                </div>
-                            }
                             <div className={classNames(
                                 s.Product_carousel_selected_item,
                                 moveUp ? s.Product_carousel_selected_item_up : '',
                                 moveDown ? s.Product_carousel_selected_item_down : '',
                             )}
-                            style={{ display: loading[2] ? 'none' : 'block' }}
                             >
                                 <img
                                     src={selectedImage.imageUrl}
                                     alt="selected image"
-                                    onLoad={() => handleOnLoadImage(2)}
                                 />
                             </div>
                         </div>
@@ -204,7 +172,7 @@ const ProductDesktop = (props) => {
                                         </div>
                                     </div>
                                     <ColorsSizesTable
-                                        uniqueColors={Array.from(uniqueColors)}
+                                        uniqueColors={Array.from(JSON.parse(uniqueColors))}
                                         sizes={SIZES}
                                         product={product}
                                         currentColorSize={currentColorSize}
@@ -227,7 +195,7 @@ const ProductDesktop = (props) => {
                     </div>
                 </div>
                 :
-                <LoaderFullScreen/>
+                <Loader/>
             }
         </>
     );
