@@ -57,9 +57,9 @@ const ProductDesktop = (props) => {
                     id: 2,
                     link: '../catalog',
                     linkTitle: product?.category.name,
-                    handleOnClick: () => dispatch(setCategory(product?.category))
+                    handleOnClick: () => dispatch(setCategory(product.category))
                 },
-                { id: 3, link: `../catalog/${product?.id}`, linkTitle: product?.name },
+                { id: 3, link: `../catalog/${product.id}`, linkTitle: product.name },
             ];
             setBreadcrumbs(breadcrumbs);
         }

@@ -75,8 +75,7 @@ const ProductMobile = (props) => {
         if (!product) {
             dispatch(fetchProduct({ productId }));
         } else {
-            // eslint-disable-next-line no-unsafe-optional-chaining
-            setImages([product?.mainImageUrl, ...product?.productColorImages[0].imageURLs]);
+            setImages([product.mainImageUrl, ...product.productColorImages[0].imageURLs]);
         }
     }, [product]);
 
