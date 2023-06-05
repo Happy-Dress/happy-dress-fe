@@ -72,9 +72,12 @@ const ProductMobile = (props) => {
     });
 
     useEffect(() => {
-        dispatch(fetchProduct({ productId }));
-        // eslint-disable-next-line no-unsafe-optional-chaining
-        setImages([product?.mainImageUrl, ...product?.productColorImages[0].imageURLs]);
+        if (!product) {
+            dispatch(fetchProduct({ productId }));
+        } else {
+            // eslint-disable-next-line no-unsafe-optional-chaining
+            setImages([product?.mainImageUrl, ...product?.productColorImages[0].imageURLs]);
+        }
     }, [product]);
 
     const handleOpenTableSize = () => {

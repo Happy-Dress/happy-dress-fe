@@ -48,18 +48,21 @@ const ProductDesktop = (props) => {
 
 
     useEffect(() => {
-        dispatch(fetchProduct({ productId }));
-        const breadcrumbs = [
-            { id: 1, link: '../catalog', linkTitle: 'Каталог' },
-            {
-                id: 2,
-                link: '../catalog',
-                linkTitle: product?.category.name,
-                handleOnClick: () => dispatch(setCategory(product?.category))
-            },
-            { id: 3, link: `../catalog/${product?.id}`, linkTitle: product?.name },
-        ];
-        setBreadcrumbs(breadcrumbs);
+        if (!product) {
+            dispatch(fetchProduct({ productId }));
+        } else {
+            const breadcrumbs = [
+                { id: 1, link: '../catalog', linkTitle: 'Каталог' },
+                {
+                    id: 2,
+                    link: '../catalog',
+                    linkTitle: product?.category.name,
+                    handleOnClick: () => dispatch(setCategory(product?.category))
+                },
+                { id: 3, link: `../catalog/${product?.id}`, linkTitle: product?.name },
+            ];
+            setBreadcrumbs(breadcrumbs);
+        }
     }, [product]);
 
     const handleSizeClick = (color, size) => {
