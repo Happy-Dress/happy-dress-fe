@@ -36,7 +36,7 @@ export const productSlice = createSlice({
             state.product = action.payload;
             state.productColorImages = action.payload.productColorImages[0];
             state.currentColorSize = action.payload.productColorSizes[0];
-            state.uniqueColors = JSON.stringify(new Set(action.payload.productColorSizes.map(item => item.color.name)));
+            state.uniqueColors = JSON.stringify(Array.from(new Set(action.payload.productColorSizes.map(item => item.color.name))));
             state.mainImage = action.payload.mainImageUrl;
             state.selectedImage = {
                 imageUrl: action.payload.mainImageUrl,

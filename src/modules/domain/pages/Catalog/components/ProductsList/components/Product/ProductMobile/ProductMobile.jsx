@@ -169,7 +169,7 @@ const ProductMobile = (props) => {
                             </div>
                             <div className={s.ProductMobile_description_tableColors}>
                                 <ColorsSizesTable
-                                    uniqueColors={Array.from(JSON.parse(uniqueColors))}
+                                    uniqueColors={JSON.parse(uniqueColors)}
                                     sizes={SIZES}
                                     product={product}
                                     currentColorSize={currentColorSize}

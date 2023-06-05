@@ -175,7 +175,7 @@ const ProductDesktop = (props) => {
                                         </div>
                                     </div>
                                     <ColorsSizesTable
-                                        uniqueColors={Array.from(JSON.parse(uniqueColors))}
+                                        uniqueColors={JSON.parse(uniqueColors)}
                                         sizes={SIZES}
                                         product={product}
                                         currentColorSize={currentColorSize}
