@@ -7,7 +7,7 @@ const initialState = {
     currentColorSize: null,
     uniqueColors: null,
     selectedImage: null,
-    mainImage: null,
+    mainImageUrl: null,
 };
 
 const fetchProduct = createAsyncThunk(
@@ -37,7 +37,7 @@ export const productSlice = createSlice({
             state.productColorImages = action.payload.productColorImages[0];
             state.currentColorSize = action.payload.productColorSizes[0];
             state.uniqueColors = JSON.stringify(Array.from(new Set(action.payload.productColorSizes.map(item => item.color.name))));
-            state.mainImage = action.payload.mainImageUrl;
+            state.mainImageUrl = action.payload.mainImageUrl;
             state.selectedImage = {
                 imageUrl: action.payload.mainImageUrl,
                 index: 0,

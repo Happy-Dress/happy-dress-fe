@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { ROUTER_PATHS, routerConfig } from '../../config';
-import ProductDesktop from '../../pages/Catalog/components/ProductsList/components/Product';
+import ProductDesktop from '../../pages/Product';
 
 const DomainRoutes = () => {
     return (
