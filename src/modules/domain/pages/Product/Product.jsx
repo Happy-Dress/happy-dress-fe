@@ -22,12 +22,12 @@ const Product = () => {
         dispatch(fetchProduct({ productId }));
     }, []);
 
-    const AdaptiveComponent = useMemo(() => adaptive(ProductDesktop, ProductMobile), []);
+    const AdaptiveProduct = useMemo(() => adaptive(ProductDesktop, ProductMobile), []);
 
     return (
         <>
-            { product ?
-                <AdaptiveComponent
+            {product ?
+                <AdaptiveProduct
                     product={product}
                     productColorImages={productColorImages}
                     currentColorSize={currentColorSize}

@@ -39,7 +39,6 @@ const ProductDesktop = (props) => {
     const [moveDown, setMoveDown] = useState(false);
     const [isOpenTableSize, setIsOpenTableSize] = useState(false);
     const [breadcrumbs, setBreadcrumbs] = useState([]);
-
     const dispatch = useDispatch();
 
 

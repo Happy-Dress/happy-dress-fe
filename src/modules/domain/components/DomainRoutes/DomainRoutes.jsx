@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { ROUTER_PATHS, routerConfig } from '../../config';
-import ProductDesktop from '../../pages/Product';
+import Product from '../../pages/Product';
 
 const DomainRoutes = () => {
     return (
@@ -13,7 +13,7 @@ const DomainRoutes = () => {
                         return <Route path={path} element={element} key={path}/>;
                     })
                 }
-                <Route path={'/catalog/:id'} element={<ProductDesktop/>}/>
+                <Route path={'/catalog/:id'} element={<Product/>}/>
             </Routes>
         </Suspense>
     );

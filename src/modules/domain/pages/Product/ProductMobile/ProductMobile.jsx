@@ -38,7 +38,6 @@ const ProductMobile = (props) => {
     const [moveRight, setMoveRight] = useState(false);
     const [images, setImages] = useState([]);
     const [isOpenTableSize, setIsOpenTableSize] = useState(false);
-
     const dispatch = useDispatch();
 
     const handleSwipe = useSwipeable({
