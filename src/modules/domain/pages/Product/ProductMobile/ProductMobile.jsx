@@ -173,14 +173,19 @@ const ProductMobile = (props) => {
                 </div>
                 :
                 <div className={s.ProductMobile}>
-                    <div className={s.ProductMobile_return} onClick={handleOpenTableSize}>
+                    <div
+                        className={s.ProductMobile_return}
+                        onClick={handleOpenTableSize}
+                    >
                         <img src={leftArrow} alt={'return arrow'}/>
                         <h4>{TABLE_SIZE_LABEL}</h4>
                     </div>
-                    <SizesTable
-                        tableSizeHead={TABLE_SIZE_HEAD}
-                        tableSizeBody={TABLE_SIZE_BODY}
-                    />
+                    <div data-testid={'size-table'}>
+                        <SizesTable
+                            tableSizeHead={TABLE_SIZE_HEAD}
+                            tableSizeBody={TABLE_SIZE_BODY}
+                        />
+                    </div>
                 </div>
             }
         </div>

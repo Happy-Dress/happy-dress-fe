@@ -50,6 +50,7 @@ const ColorsSizesTable = (props) => {
                                             (size === currentColorSize?.size && color === currentColorSize?.color.name)
                                                 ? s.Table_item_current : '',
                                         )}
+                                        data-testid={`test-${color}-${size}-item`}
                                         onClick={() => handleSizeClick(color, size)}
                                     >
                                         {size}

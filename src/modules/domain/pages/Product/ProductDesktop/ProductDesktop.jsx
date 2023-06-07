@@ -175,7 +175,7 @@ const ProductDesktop = (props) => {
                             <div className={s.Product_description_size}>
                                 <h4 onClick={handleOpenTableSize}>{TABLE_SIZE_LABEL}</h4>
                                 {isOpenTableSize && (
-                                    <div>
+                                    <div data-testid={'size-table'}>
                                         <SizesTable
                                             tableSizeHead={TABLE_SIZE_HEAD}
                                             tableSizeBody={TABLE_SIZE_BODY}
