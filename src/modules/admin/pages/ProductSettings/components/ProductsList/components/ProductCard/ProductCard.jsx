@@ -31,7 +31,7 @@ const ProductCard = (props) => {
         setIsLongPress(false);
         setTimeout(() => {
             setIsLongPress(true);
-        }, 800);
+        }, 700);
     };
 
     const handleTouchEnd = () => {
@@ -66,8 +66,6 @@ const ProductCard = (props) => {
             })}
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
         >
             <img
                 src={image}
@@ -77,14 +75,16 @@ const ProductCard = (props) => {
             <div className={s.description}>
                 {((isHover && !isSelected) || (isMobile && !isSelected)) && (
                     <>
-                        {!isMobile ? (
+                        {isMobile ? (
                             <EmptyCheckbox
-                                onClick={clickHandler}
                                 className={s.checkbox}
                                 data-testid="empty-checkbox"
+                                onTouchStart={isMobile ? handleTouchStart : undefined}
+                                onTouchEnd={isMobile ? handleTouchEnd : undefined}
                             />
                         ) : (
                             <EmptyCheckbox
+                                onClick={clickHandler}
                                 className={s.checkbox}
                                 data-testid="empty-checkbox"
                             />
