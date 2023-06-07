@@ -3,6 +3,18 @@ import React from 'react';
 import CategoriesDesktop from './CategoriesDesktop';
 import userEvent from '@testing-library/user-event';
 
+const mockNavigate = jest.fn();
+const mockDispatch = jest.fn();
+
+jest.mock('react-redux', () => ({
+    ...jest.requireActual('react-redux'),
+    useDispatch: () => mockDispatch,
+}));
+
+jest.mock('react-router-dom', () => ({
+    ...jest.requireActual('react-router-dom'),
+    useNavigate: () => mockNavigate,
+}));
 
 const categories = [
     {
