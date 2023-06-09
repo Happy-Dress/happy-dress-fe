@@ -13,6 +13,12 @@
   flex-direction: column;
   position: relative;
 
+  &:hover {
+    h3 {
+      text-decoration: underline;
+    }
+  }
+
   img {
     height: 400px;
     align-self: center;
@@ -64,6 +70,7 @@
           .items {
             color: $gray;
             flex-wrap: wrap;
+
             span {
               border: $gray 1px solid;
               padding: 2px 5px;
@@ -79,6 +86,7 @@
               width: 20px;
               height: 20px;
               border-radius: 100%;
+              border: 1px solid $black;
             }
           }
         }
@@ -98,6 +106,7 @@
           .items {
             column-gap: 5%;
           }
+
           &.sizes {
             .items {
               span {

@@ -1,8 +1,8 @@
-import { screen, render } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import React from 'react';
 import CategoriesDesktop from './CategoriesDesktop';
 import userEvent from '@testing-library/user-event';
-
+import renderWithStoreAndRoutes from '../../../../../../common/util/tests/renderWithStoreAndRouter';
 
 const categories = [
     {
@@ -21,12 +21,12 @@ const categories = [
 
 describe('CategoriesDesktop', ( ) => {
     it('CategoriesDesktop renders', async () => {
-        const { baseElement } = render(<CategoriesDesktop categories={categories} />);
+        const { baseElement } = renderWithStoreAndRoutes(<CategoriesDesktop categories={categories} />);
         expect(baseElement).toBeInTheDocument();
     });
 
     it('should press left and right buttons', async () => {
-        render(<CategoriesDesktop categories={categories} />);
+        renderWithStoreAndRoutes(<CategoriesDesktop categories={categories} />);
         const rightArrow = screen.getByTestId('right-arrow');
         const leftArrow = screen.getByTestId('left-arrow');
 

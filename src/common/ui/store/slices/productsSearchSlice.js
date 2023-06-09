@@ -80,7 +80,6 @@ export const productsSearchSlice = createSlice({
         unSelectFilter: (state, action) => {
             state.filters[action.payload.type] = state.filters[action.payload.type].filter(id => id !== action.payload.id);
         },
-
         dropFilters: (state, action) => {
             state.filters = {
                 ...initialState.filters,
@@ -99,7 +98,7 @@ export const productsSearchSlice = createSlice({
         unSelectProduct: (state, action) => {
             state.selectedProducts = state.selectedProducts.filter(item => item !== action.payload);
         },
-        setName: (state, action) =>{
+        setName: (state, action) => {
             state.currentPage = 0;
             state.products = [];
             state.filters.name = action.payload;
@@ -135,6 +134,7 @@ export const {
     selectSize,
     unSelectSize,
     unSelectFilter,
+    resetFilters,
     dropFilters,
     toggleFilter,
     resetProducts,

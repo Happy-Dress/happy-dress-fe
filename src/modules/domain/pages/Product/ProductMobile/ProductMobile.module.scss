@@ -1,0 +1,150 @@
+@import "../../../../../common/ui/styles/colors";
+@import "../../../../../common/ui/styles/media-sizes";
+
+
+.ProductMobile {
+
+  &_return {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 56px;
+    width: 100vw;
+    gap: 20px;
+    background: $light-gray;
+
+    h4 {
+      color: $black;
+    }
+  }
+
+  &_carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+
+    &_swipeable {
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+      width: 100vw;
+    }
+
+    &_list {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      max-width: 90vw;
+      width: 100%;
+      overflow-x: scroll;
+
+      &_item {
+        img {
+          width: 20vw;
+        }
+
+        @media screen and (min-height: $lg-size){
+          img {
+            width: 15vw;
+          }
+        }
+
+
+        &_current {
+          border: 2px solid $brown;
+        }
+      }
+
+    }
+
+    &_selected_item {
+      display: flex;
+      align-items: center;
+      min-height: 57vh;
+      position: relative;
+      left: 0;
+      overflow: hidden;
+
+      img {
+        overflow: hidden;
+        width: 80vw;
+      }
+
+      &_left {
+        animation: move-left 1s ease forwards;
+      }
+
+      &_right {
+        animation: move-right 1s ease forwards;
+      }
+
+      @keyframes move-left {
+        0% {
+          left: 100vw;
+        }
+        100% {
+          left: 0;
+        }
+      }
+
+      @keyframes move-right {
+        0% {
+          left: -100vw;
+        }
+        100% {
+          left: 0;
+        }
+      }
+
+      @media screen and (max-height: 700px){
+        min-height: 68vh;
+      }
+
+      @media screen and (min-height: $lg-size){
+        min-height: 73vh;
+
+        img {
+          width: 70vw;
+        }
+      }
+    }
+  }
+
+  &_description {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 12px 28px;
+
+    &_item {
+      display: flex;
+      align-items: center;
+
+      p {
+        color: $gray;
+        font-size: 16px;
+      }
+    }
+
+    &_label {
+      min-width: 132px;
+      font-size: 18px;
+    }
+
+    &_size {
+      display: flex;
+      justify-content: center;
+      margin-top: 24px;
+      color: $brown;
+      text-decoration: underline;
+      padding-left: 10px;
+    }
+
+    &_tableColors {
+      max-width: 90vw;
+      overflow-x: scroll;
+    }
+  }
+}
