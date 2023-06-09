@@ -42,8 +42,4 @@ describe('ProductDesktop', () => {
         const table = screen.getByTestId('size-table');
         expect(table).toBeInTheDocument();
     });
-
-    it('should change selected image', async () => {
-
-    });
 });
