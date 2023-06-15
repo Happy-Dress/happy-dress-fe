@@ -53,7 +53,6 @@ const ProductsList = () =>{
                 return <ProductCard key={index} product={product} isAdmin={true}/>;
             })}
             {isLoading && renderSkeletons(15)}
-            <div ref={ref} className={classNames(s.observingBlock, { [s.active]: !isLoading })}/>
             {
                 !!selectedProducts.length &&
                     <div className={s.bottomBar}>
