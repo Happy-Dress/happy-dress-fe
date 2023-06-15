@@ -98,6 +98,9 @@ export const productsSearchSlice = createSlice({
         unSelectProduct: (state, action) => {
             state.selectedProducts = state.selectedProducts.filter(item => item !== action.payload);
         },
+        resetSelectedProducts: (state) => {
+            state.selectedProducts = [];
+        },
         setName: (state, action) => {
             state.currentPage = 0;
             state.products = [];
@@ -140,6 +143,7 @@ export const {
     resetProducts,
     selectProduct,
     unSelectProduct,
+    resetSelectedProducts,
     setName
 } = productsSearchSlice.actions;
 export { fetchCatalogueItems };
