@@ -9,10 +9,7 @@ import { ReactComponent as Trash } from '../../../../../../common/assets/images/
 import { usePageScroll } from '../../../../../../common/ui/hooks/usePageScroll';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
-import {
-    fetchCatalogueItems,
-    resetSelectedProducts
-} from '../../../../../../common/ui/store/slices/productsSearchSlice';
+import { fetchCatalogueItems } from '../../../../../../common/ui/store/slices/productsSearchSlice';
 import classNames from 'classnames';
 
 const ProductsList = () =>{
@@ -23,7 +20,7 @@ const ProductsList = () =>{
     const totalPages = useSelector(state => state.productsSearch.totalPages);
     const isLoading = useSelector(state => state.productsSearch.loading);
     const selectedProducts = useSelector(state => state.productsSearch.selectedProducts);
-    const { ref, inView } = useInView({
+    const { inView } = useInView({
         threshold: 0,
     });
     const dispatch = useDispatch();
@@ -40,9 +37,9 @@ const ProductsList = () =>{
             behavior: 'smooth'
         });
     };
-    
+
     useEffect(() => {
-        dispatch(resetSelectedProducts()); 
+        dispatch(resetSelectedProducts());
     }, []);
 
     useEffect(() => {
