@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import CATEGORIES_DICTIONARY from '../Categories.dictionary';
 import classNames from 'classnames';
 import { ReactComponent as Arrow } from '../../../../../../common/assets/images/slider-arrow.svg';
-import Photo from '../../../../../../common/assets/images/photo_4_3.png';
 import { useDispatch } from 'react-redux';
 import { setCategory } from '../../../../../../common/ui/store/slices/productsSearchSlice';
 import { useNavigate } from 'react-router-dom';
@@ -102,7 +101,7 @@ const CategoriesDesktop = ({ categories: initialState }) => {
                                     [s.medium]: (index % 2 === 0),
                                     [s.small]: (index % 2 === 1)
                                 })}
-                                src={Photo}
+                                src={post.imageUrl}
                                 alt={'category card'}
                                 onLoad={loadHandler}
                             />
