@@ -13,7 +13,6 @@ import {
     fetchCatalogueItems,
     resetSelectedProducts
 } from '../../../../../../common/ui/store/slices/productsSearchSlice';
-import classNames from 'classnames';
 
 const ProductsList = () =>{
 
