@@ -23,7 +23,7 @@ const ProductsList = () =>{
     const totalPages = useSelector(state => state.productsSearch.totalPages);
     const isLoading = useSelector(state => state.productsSearch.loading);
     const selectedProducts = useSelector(state => state.productsSearch.selectedProducts);
-    const { ref, inView } = useInView({
+    const { inView } = useInView({
         threshold: 0,
     });
     const dispatch = useDispatch();
@@ -60,7 +60,6 @@ const ProductsList = () =>{
                 return <ProductCard key={index} product={product} isAdmin={true}/>;
             })}
             {isLoading && renderSkeletons(15)}
-            <div ref={ref} className={classNames(s.observingBlock, { [s.active]: !isLoading })}/>
             {
                 !!selectedProducts.length &&
                     <div className={s.bottomBar}>
