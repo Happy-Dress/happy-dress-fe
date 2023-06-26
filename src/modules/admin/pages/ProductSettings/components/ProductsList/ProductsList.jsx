@@ -9,7 +9,10 @@ import { ReactComponent as Trash } from '../../../../../../common/assets/images/
 import { usePageScroll } from '../../../../../../common/ui/hooks/usePageScroll';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
-import { fetchCatalogueItems } from '../../../../../../common/ui/store/slices/productsSearchSlice';
+import {
+    fetchCatalogueItems,
+    resetSelectedProducts
+} from '../../../../../../common/ui/store/slices/productsSearchSlice';
 
 const ProductsList = () =>{
 
@@ -36,6 +39,10 @@ const ProductsList = () =>{
             behavior: 'smooth'
         });
     };
+    
+    useEffect(() => {
+        dispatch(resetSelectedProducts()); 
+    }, []);
 
     useEffect(() => {
         if(inView && currentPage < totalPages) {
