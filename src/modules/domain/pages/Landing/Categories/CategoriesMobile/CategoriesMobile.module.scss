@@ -65,9 +65,14 @@
         transform: translateX(-100vw);
       }
 
+      &_swipeable{
+        display: flex;
+      }
+
       &_active {
         opacity: 1;
         transition-duration: 0.5s;
+        width: 264px;
         div {
           display: flex;
           flex-direction: column;

@@ -54,7 +54,7 @@ const CategoriesMobile = ({ categories }) => {
             </div>
             <div className={s.slider}>
                 {renderDots()}
-                <div {...handleSwipe}>
+                <div className={s.slider_card_swipeable} {...handleSwipe}>
                     {categories.map((post, key) => (
                         <div
                             className={classNames(key === index ? s.slider_card_active :
