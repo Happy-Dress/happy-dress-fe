@@ -4,15 +4,22 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
     @media screen and (min-width: $lg-size) {
         flex-direction: row;
     }
 }
 
-.adminPage{
+.adminPage {
     min-height: 100vh;
     width: 100%;
-        scroll-margin-top: 60px;
+    scroll-margin-top: 60px;
+
     @media screen and (max-width: $lg-size - 1) {
         min-height: 80vh;
     }

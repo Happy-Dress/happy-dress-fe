@@ -75,20 +75,15 @@ const ProductCard = (props) => {
             <div className={s.description}>
                 {((isHover && !isSelected) || (isMobile && !isSelected)) && (
                     <>
-                        {isMobile ? (
-                            <EmptyCheckbox
-                                className={s.checkbox}
-                                data-testid="empty-checkbox"
-                                onTouchStart={isMobile ? handleTouchStart : undefined}
-                                onTouchEnd={isMobile ? handleTouchEnd : undefined}
-                            />
-                        ) : (
-                            <EmptyCheckbox
-                                onClick={clickHandler}
-                                className={s.checkbox}
-                                data-testid="empty-checkbox"
-                            />
-                        )}
+                        <EmptyCheckbox
+                            className={s.checkbox}
+                            data-testid="empty-checkbox"
+                            onClick={
+                                !isMobile ? clickHandler : undefined
+                            }
+                            onTouchStart={isMobile ? handleTouchStart : undefined}
+                            onTouchEnd={isMobile ? handleTouchEnd : undefined}
+                        />
                         <Link to={`../product-card/${product.id}`} data-testid="link">
                             <Update className={s.update} />
                         </Link>
@@ -96,7 +91,9 @@ const ProductCard = (props) => {
                 )}
                 {isSelected && (
                     <Checkbox
-                        onClick={!isMobile ? clickHandler : undefined}
+                        onClick={
+                            !isMobile ? clickHandler : undefined
+                        }
                         onTouchStart={isMobile ? handleTouchStart : undefined}
                         onTouchEnd={isMobile ? handleTouchEnd : undefined}
                         className={s.checkbox}
