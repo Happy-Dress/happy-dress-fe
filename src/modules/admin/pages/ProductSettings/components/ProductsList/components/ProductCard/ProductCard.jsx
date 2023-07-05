@@ -64,6 +64,8 @@ const ProductCard = (props) => {
             className={classNames(s.ProductCard, className, {
                 [s.active]: isSelected,
             })}
+            onTouchStart={isMobile ? handleTouchStart : undefined}
+            onTouchEnd={isMobile ? handleTouchEnd : undefined}
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
         >
@@ -81,8 +83,6 @@ const ProductCard = (props) => {
                             onClick={
                                 !isMobile ? clickHandler : undefined
                             }
-                            onTouchStart={isMobile ? handleTouchStart : undefined}
-                            onTouchEnd={isMobile ? handleTouchEnd : undefined}
                         />
                         <Link to={`../product-card/${product.id}`} data-testid="link">
                             <Update className={s.update} />
@@ -94,8 +94,6 @@ const ProductCard = (props) => {
                         onClick={
                             !isMobile ? clickHandler : undefined
                         }
-                        onTouchStart={isMobile ? handleTouchStart : undefined}
-                        onTouchEnd={isMobile ? handleTouchEnd : undefined}
                         className={s.checkbox}
                         data-testid="filled-checkbox"
                     />
