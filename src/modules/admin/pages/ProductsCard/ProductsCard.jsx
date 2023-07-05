@@ -19,6 +19,7 @@ import ProductsCardsImage from './components/ProductsCardsImage';
 import updateCatalogueItem from '../../../../common/api/catalogItem/updateCatalogItem';
 import { useMainImageUrl } from './hooks/useMainImageUrl';
 
+
 const {
     TITLE,
     BREADCRUMBS,

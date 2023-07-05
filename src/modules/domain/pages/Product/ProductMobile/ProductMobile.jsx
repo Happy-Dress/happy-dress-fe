@@ -13,6 +13,7 @@ import {
     setCurrentColorSize, setProductColorImages,
     setSelectedImage
 } from '../../../../../common/ui/store/slices/productSlice';
+import ImageSkeleton from '../../../../../common/ui/components/Image/ImageSkeleton';
 
 const {
     MODEL_LABEL,
@@ -32,6 +33,8 @@ const ProductMobile = (props) => {
         uniqueColors,
         selectedImage,
         mainImageUrl,
+        loadingImages,
+        handleImageOnLoad,
     } = props;
 
     const [moveLeft, setMoveLeft] = useState(false);
@@ -122,7 +125,16 @@ const ProductMobile = (props) => {
                                 moveRight && s.ProductMobile_carousel_selected_item_right,
                                 moveLeft && s.ProductMobile_carousel_selected_item_left,
                             )}>
-                                <img src={selectedImage.imageUrl} alt={'selected image'}/>
+                                {!loadingImages[productColorImages.imageURLs.length - 1] ? <ImageSkeleton
+                                    width={'80vw'}
+                                    height={'57vh'}
+                                /> : <></> }
+                                <img 
+                                    src={selectedImage.imageUrl} 
+                                    alt={'selected image'}
+                                    onLoad={() => handleImageOnLoad(productColorImages.imageURLs.length - 1)}
+                                    hidden={!loadingImages[productColorImages.imageURLs.length - 1]}
+                                />
                             </div>
                         </div>
                         <div className={s.ProductMobile_carousel_list}>
@@ -134,9 +146,15 @@ const ProductMobile = (props) => {
                                 key={key}
                                 onClick={() => handleImageClick(imageUrl, key + 1)}
                                 >
+                                    {!loadingImages[key] ? <ImageSkeleton
+                                        width={'50px'}
+                                        height={'80px'}
+                                    /> : <></> }
                                     <img
                                         src={imageUrl}
                                         alt={`product image color ${productColorImages.color.name}`}
+                                        onLoad={() => handleImageOnLoad(key)}
+                                        hidden={!loadingImages[key]}
                                     />
                                 </div>
                             ))}
@@ -199,6 +217,8 @@ ProductMobile.propTypes = {
     uniqueColors: PropTypes.array.isRequired,
     mainImageUrl: PropTypes.string.isRequired,
     selectedImage: PropTypes.object.isRequired,
+    loadingImages: PropTypes.array.isRequired,
+    handleImageOnLoad: PropTypes.func.isRequired,
 };
 
 export default ProductMobile;

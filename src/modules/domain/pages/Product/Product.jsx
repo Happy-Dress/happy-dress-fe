@@ -4,7 +4,7 @@ import ProductDesktop from './ProductDesktop';
 import ProductMobile from './ProductMobile/ProductMobile';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProduct } from '../../../../common/ui/store/slices/productSlice';
+import { fetchProduct, setLoadingImages } from '../../../../common/ui/store/slices/productSlice';
 import Loader from '../../../../common/ui/components/Loader';
 
 
@@ -16,6 +16,7 @@ const Product = () => {
     const currentColorSize = useSelector(state => state.product.currentColorSize);
     const uniqueColors = useSelector(state => state.product.uniqueColors);
     const mainImageUrl = useSelector(state => state.product.mainImageUrl);
+    const loadingImages = useSelector(state => state.product.loadingImages);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -23,6 +24,12 @@ const Product = () => {
     }, []);
 
     const AdaptiveProduct = useMemo(() => adaptive(ProductDesktop, ProductMobile), []);
+    
+    const handleOnLoad = (index) => {
+        const tempLoadingImages = [...loadingImages];
+        tempLoadingImages[index] = true;
+        dispatch(setLoadingImages(tempLoadingImages));
+    };
 
     return (
         <>
@@ -34,6 +41,8 @@ const Product = () => {
                     uniqueColors={JSON.parse(uniqueColors)}
                     mainImageUrl={mainImageUrl}
                     selectedImage={selectedImage}
+                    loadingImages={loadingImages}
+                    handleImageOnLoad={handleOnLoad}
                 />
                 :
                 <Loader/>
