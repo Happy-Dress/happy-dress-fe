@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import s from './ProductCard.module.scss';
 import image from '../../../../../../../../common/assets/images/photo_4_3.png';
