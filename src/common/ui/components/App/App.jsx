@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Domain } from '../../../../modules';
 import { Admin } from '../../../../modules';
@@ -9,6 +9,10 @@ import { Provider } from 'react-redux';
 import { setupStore } from '../../store/setupStore';
 
 const App = () => {
+
+    useEffect(() =>{
+        document.oncontextmenu = () => false;
+    });
 
     return (
         <Provider store={setupStore()}>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import s from './ProductCard.module.scss';
 import image from '../../../../../../../../common/assets/images/photo_4_3.png';
@@ -18,36 +18,29 @@ import {
 const { SIZE, COLOR } = PRODUCT_CARD_DICTIONARY;
 
 const ProductCard = (props) => {
-    const [isLongPress, setIsLongPress] = useState(false);
-    const [isHover, setIsHover] = useState(false);
+
     const dispatch = useDispatch();
     const { isMobile } = useDeviceTypeContext();
     const { product, className } = props;
+    const [isHovered, setIsHovered] = useState();
+    const [timerId, setTimerId] = useState();
+
+
     const isSelected = useSelector((state) =>
         state.productsSearch.selectedProducts.includes(product.id)
     );
 
-    const handleTouchStart = () => {
-        setIsLongPress(false);
-        setTimeout(() => {
-            setIsLongPress(true);
-        }, 700);
-    };
 
-    const handleTouchEnd = () => {
-        isLongPress && isMobile ? clickHandler() : setIsLongPress(false);
-        setIsLongPress(false);
-    };
-
-    const clickHandler = () => {
-        switch (isSelected) {
-            case false:
-                dispatch(selectProduct(product.id));
-                break;
-            case true:
-                dispatch(unSelectProduct(product.id));
-                break;
+    const handleSelect = () => {
+        if (!isMobile){
+            toggleSelect();
         }
+    };
+
+    const toggleSelect = () => {
+        !isSelected
+            ? dispatch(selectProduct(product.id))
+            :dispatch(unSelectProduct(product.id));
     };
 
     const sizes = Array.from(
@@ -59,30 +52,37 @@ const ProductCard = (props) => {
         new Set([...product.productColorSizes.map((colorSize) => colorSize.color)])
     );
 
+    const handleTouchStart = () =>{
+        setTimerId(setTimeout(toggleSelect, 1000));
+    };
+
+    const handleTouchEnd = () =>{
+        clearTimeout(timerId);
+    };
+
     return (
         <div
             className={classNames(s.ProductCard, className, {
                 [s.active]: isSelected,
             })}
-            onTouchStart={isMobile ? handleTouchStart : undefined}
-            onTouchEnd={isMobile ? handleTouchEnd : undefined}
-            onMouseEnter={() => setIsHover(true)}
-            onMouseLeave={() => setIsHover(false)}
+            onClick={handleSelect}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
         >
             <img
                 src={image}
                 alt="dress preview"
-                className={classNames({ [s.hovered]: isHover })}
+                className={classNames({ [s.hovered]: isHovered })}
             />
             <div className={s.description}>
-                {((isHover && !isSelected) || (isMobile && !isSelected)) && (
+                {((isHovered && !isSelected) || (isMobile && !isSelected)) && (
                     <>
                         <EmptyCheckbox
                             className={s.checkbox}
                             data-testid="empty-checkbox"
-                            onClick={
-                                !isMobile ? clickHandler : undefined
-                            }
+                            onClick={handleSelect}
                         />
                         <Link to={`../product-card/${product.id}`} data-testid="link">
                             <Update className={s.update} />
@@ -91,9 +91,7 @@ const ProductCard = (props) => {
                 )}
                 {isSelected && (
                     <Checkbox
-                        onClick={
-                            !isMobile ? clickHandler : undefined
-                        }
+                        onClick={handleSelect}
                         className={s.checkbox}
                         data-testid="filled-checkbox"
                     />
