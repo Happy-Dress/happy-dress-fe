@@ -49,12 +49,12 @@ const ProductDesktop = (props) => {
                 id: 2,
                 link: '../catalog',
                 linkTitle: product?.category.name,
-                handleOnClick: () => dispatch(setCategory(product.category))
+                handleOnClick: () => dispatch(setCategory({ category: product.category, shouldDropProducts: false }))
             },
             { id: 3, link: `../catalog/${product.id}`, linkTitle: product.name },
         ];
         setBreadcrumbs(breadcrumbs);
-    }, []);
+    }, [product]);
 
     const handleSizeClick = (color, size) => {
         const productColorSize = product.productColorSizes.filter(item => item.color.name === color).find(item => item.size.sizeValue === size);

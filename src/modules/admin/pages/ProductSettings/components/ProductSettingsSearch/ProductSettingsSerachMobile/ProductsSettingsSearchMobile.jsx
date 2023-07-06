@@ -41,7 +41,7 @@ const ProductsSettingsSearchMobile = () =>{
                 <div className={s.ProductsSettingsSearchMobile_detailedSearchWrapper}>
                     <FilterDropDown
                         selectedOptionIds={[selectedSettings.category]}
-                        onSelect={(categoryId) => dispatch(setCategory(categoryId))}
+                        onSelect={(categoryId) => dispatch(setCategory({ category: categoryId, shouldDropProducts: true }))}
                         onUnSelect={() => {}}
                         name={'Категория'}
                         options={catalogueSettings.categories}
@@ -53,7 +53,7 @@ const ProductsSettingsSearchMobile = () =>{
                 <div className={s.ProductsSettingsSearchMobile_detailedSearchWrapper}>
                     <FilterDropDown
                         selectedOptionIds={[selectedSettings.category]}
-                        onSelect={(categoryId) => dispatch(setCategory(categoryId))}
+                        onSelect={(categoryId) => dispatch(setCategory({ category: categoryId, shouldDropProducts: true }))}
                         onUnSelect={() => {}}
                         name={'Категория'}
                         options={catalogueSettings.categories}

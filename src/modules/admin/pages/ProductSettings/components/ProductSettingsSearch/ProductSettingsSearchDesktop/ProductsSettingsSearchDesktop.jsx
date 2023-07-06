@@ -30,7 +30,7 @@ const ProductsSettingsSearchDesktop = () => {
     };
 
     const selectCategory = (categoryId) => {
-        dispatch(setCategory(categoryId));
+        dispatch(setCategory({ category: categoryId, shouldDropProducts: true }));
     };
 
 
