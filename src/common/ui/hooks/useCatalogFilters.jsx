@@ -6,13 +6,13 @@ import { fetchCatalogueSettings } from '../store/slices/catalogueSettingsSlice';
 export const useCatalogFilters = () => {
     const dispatch = useDispatch();
     const catalogueSettings = useSelector(state => state.productsSearch.filters);
-    const currentPage = useSelector(state => state.productsSearch.currentPage);
+    const products = useSelector(state => state.productsSearch.products);
+
 
     useEffect(() =>{
-        if(catalogueSettings.category){
+        if(catalogueSettings.category && !products.length){
             dispatch(resetProducts());
-            const pageToSearch = currentPage ? currentPage : 1;
-            dispatch(fetchCatalogueItems({ filters: catalogueSettings, page: pageToSearch }));
+            dispatch(fetchCatalogueItems({ filters: catalogueSettings, page: 1 }));
         }
     }, [catalogueSettings]);
 
