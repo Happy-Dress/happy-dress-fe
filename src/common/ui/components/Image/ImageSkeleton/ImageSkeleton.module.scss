@@ -1,0 +1,12 @@
+.ImageSkeleton {
+  width: 120px;
+  height: 80px;
+  background: linear-gradient(270deg, rgba(219, 219, 219, 0.05) 0%, #DBDBDB 50%);
+  animation: background 2s infinite alternate;
+}
+
+@keyframes background {
+  100% {
+    background-position: 300px 0;
+  }
+}

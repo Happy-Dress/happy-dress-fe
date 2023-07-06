@@ -23,6 +23,7 @@ const ProductCard = (props) => {
     const colors = Array.from(new Set([...product.productColorSizes.map(colorSize => colorSize.color)]));
 
     const handleOpenClick = () => {
+        window.scrollTo({ top: 0 });
         navigate(`${product.id}`);
     };
 
