@@ -17,7 +17,7 @@ const DressCategories = () => {
     };
 
     const selectCategory = (categoryId) => {
-        if (categoryId!== selectedCategoryId) {
+        if (categoryId !== selectedCategoryId) {
             dispatch(setCategory({ category: categoryId, shouldDropProducts: true }));
         }
 
