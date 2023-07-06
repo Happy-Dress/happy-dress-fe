@@ -46,7 +46,7 @@ export const productSlice = createSlice({
                 imageUrl: action.payload.mainImageUrl,
                 index: 0,
             };
-            state.loadingImages = Array(action.payload.productColorImages[0].imageURLs.length + 1).fill(false, 0, state.productColorImages.imageURLs.length);
+            state.loadingImages = Array(action.payload.productColorImages[0].imageURLs.length + 1).fill(false);
         });
         builder.addCase(fetchProduct.pending, (state) => {
             state.loadingImages = [];
