@@ -33,9 +33,11 @@ export const productsSearchSlice = createSlice({
     initialState,
     reducers: {
         setCategory: (state, action) => {
-            state.currentPage = 0;
-            state.products = [];
-            state.filters.category = action.payload;
+            if(action.payload.shouldDropProducts) {
+                state.currentPage = 0;
+                state.products = [];
+            }
+            state.filters.category = action.payload.category;
         },
         selectModel: (state, action) => {
             state.currentPage = 0;
