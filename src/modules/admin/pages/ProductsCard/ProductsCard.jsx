@@ -18,6 +18,8 @@ import { useDeviceTypeContext } from '../../../../common/ui/contexts/DeviceType'
 import ProductsCardsImage from './components/ProductsCardsImage';
 import updateCatalogueItem from '../../../../common/api/catalogItem/updateCatalogItem';
 import { useMainImageUrl } from './hooks/useMainImageUrl';
+import ProductsCardColors from './components/ProductsCardColors';
+import { fetchProduct } from '../../../../common/ui/store/slices/productSlice';
 
 const {
     TITLE,
@@ -32,6 +34,10 @@ const {
     PRODUCT_SAVED,
 } = PRODUCT_CARD_DICTIONARY;
 const { NAME, MATERIAL, CATEGORY, MODEL, DESCRIPTION, MAIN_IMAGE_URL, MAIN_IMAGE_FILE } = FIELDS;
+
+const getSelectValues = (values) => {
+    return values.map((item) => ({ ...item, value: item.id, label: item.name }));
+};
 
 export const ProductsCard = () => {
     const { id } = useParams();
@@ -93,6 +99,7 @@ export const ProductsCard = () => {
         dispatch(fetchCatalogueSettings());
         const fetchData = async () => {
             if (id) {
+                dispatch(fetchProduct({ productId: id }));
                 try {
                     const res = await getCatalogueItem(id);
                     setProductName(res.name);
@@ -170,7 +177,7 @@ export const ProductsCard = () => {
                             <div className={s.productCardFieldContainer}>
                                 <DropdownSelect
                                     defaultValues={defaultValues[CATEGORY.NAME]}
-                                    options={catalogueSettings.categories}
+                                    options={getSelectValues(catalogueSettings.categories)}
                                     placeholder={isMobile ? CATEGORY.LABEL : NOT_CHOSEN}
                                     error={!!errors[CATEGORY.NAME]}
                                     {...register(CATEGORY.NAME, { required: true })}
@@ -185,7 +192,7 @@ export const ProductsCard = () => {
                             <div className={s.productCardFieldContainer}>
                                 <DropdownSelect
                                     defaultValues={defaultValues[MODEL.NAME]}
-                                    options={catalogueSettings.models}
+                                    options={getSelectValues(catalogueSettings.models)}
                                     placeholder={isMobile ? MODEL.LABEL : NOT_CHOSEN}
                                     error={!!errors[MODEL.NAME]}
                                     {...register(MODEL.NAME, { required: true })}
@@ -200,7 +207,7 @@ export const ProductsCard = () => {
                             <div className={s.productCardFieldContainer}>
                                 <DropdownSelect
                                     defaultValues={defaultValues[MATERIAL.NAME]}
-                                    options={catalogueSettings.materials}
+                                    options={getSelectValues(catalogueSettings.materials)}
                                     placeholder={isMobile ? MATERIAL.LABEL : NOT_CHOSEN}
                                     multiple={true}
                                     error={!!errors[MATERIAL.NAME]}
@@ -213,6 +220,7 @@ export const ProductsCard = () => {
                         </div>
                     </div>
                 </div>
+                <ProductsCardColors />
                 <div className={s.productCardDescription}>
                     <label
                         htmlFor={DESCRIPTION.NAME}

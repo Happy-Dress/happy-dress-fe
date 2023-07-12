@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { oneOf } from 'prop-types';
 import cls from 'classnames';
 import s from './DropdownSelect.module.scss';
 import { ReactComponent as ArrowDown } from '../../../assets/images/arrowDown.svg';
@@ -14,29 +14,32 @@ export const getName = (selectedItems, items, defaultValue) => {
     }
 
     if (selectedItems.length === 1) {
-        const itemName = items.filter((item) => selectedItems.toString() === item.id.toString())[0]?.name;
+        const itemName = items.filter((item) => selectedItems.toString() === item.value.toString())[0]?.label;
         return itemName ? itemName : defaultValue;
     }
 
     return `${selectedItems.length} ${SELECTED}`;
 };
 
-export const DropdownSelect = React.forwardRef(({
-    name,
-    placeholder,
-    options,
-    defaultValues,
-    multiple,
-    onChange,
-    onBlur,
-    error,
-}, ref) => {
+export const DropdownSelect = React.forwardRef((
+    {
+        name,
+        placeholder,
+        options,
+        defaultValues,
+        multiple,
+        onChange,
+        onBlur,
+        error,
+        size,
+        itemComponent,
+    }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOptions, setSelectedOptions] = useState([]);
 
     const outsideClickRef = useOutsideClick(() => setIsOpen(false));
 
-    const inputType = multiple ? 'checkbox' : 'radio' ;
+    const inputType = multiple ? 'checkbox' : 'radio';
 
     useEffect(() => {
         if (Array.isArray(defaultValues)) {
@@ -48,7 +51,7 @@ export const DropdownSelect = React.forwardRef(({
     }, [defaultValues]);
 
     const handleOptionClick = (e) => {
-        onChange(e);
+        onChange && onChange(e);
 
         if (!multiple) {
             setIsOpen(false);
@@ -59,7 +62,7 @@ export const DropdownSelect = React.forwardRef(({
         if (e.target.checked) {
             setSelectedOptions([...selectedOptions, e.target.value]);
         } else {
-            setSelectedOptions(selectedOptions.filter((item) =>(item.toString() !== e.target.value.toString())));
+            setSelectedOptions(selectedOptions.filter((item) => (item.toString() !== e.target.value.toString())));
         }
     };
 
@@ -68,7 +71,10 @@ export const DropdownSelect = React.forwardRef(({
     };
 
     return (
-        <div className={s.csSelect} ref={outsideClickRef}>
+        <div className={cls(
+            s.csSelect,
+            size === 'small' && s.csSelectSmall
+        )} ref={outsideClickRef}>
             <div
                 className={cls(s.csPlaceholder, error && s.csError)}
                 onClick={handleSelectClick}
@@ -76,29 +82,36 @@ export const DropdownSelect = React.forwardRef(({
             >
                 <span>{getName(selectedOptions, options, placeholder)}</span>
                 <ArrowDown
-                    className={isOpen ? s.active : ''}
+                    className={cls(
+                        isOpen ? s.active : '',
+                        s.csPlaceholderIcon,
+                        size === 'small' && s.csPlaceholderIconSmall
+                    )}
                     data-testid={'arrowDown'}
                 />
             </div>
             <div className={s.csOptions}
-                style={{ height: isOpen ? `calc(60px * ${options.length})` : '0' }}>
+                style={{ height: isOpen ? `calc(88px * ${options.length})` : '0' }}>
                 {options.map((item) => (
-                    <div className={s.csOption} key={item.id + item.name}>
-                        <label htmlFor={item.id + name}>
+                    <div className={s.csOption} key={item.value + item.label}>
+                        <label htmlFor={item.value + name}>
                             <input
-                                id={item.id + name}
+                                id={item.value + name}
                                 name={name}
-                                value={item.id}
+                                value={item.value}
                                 type={inputType}
                                 ref={ref}
                                 onChange={handleOptionClick}
                                 onBlur={onBlur}
-                                checked={selectedOptions.includes(item.id.toString())}
+                                checked={selectedOptions.includes(item.value.toString())}
                             />
-                            <span className={s.csOptionMark} />
-                            <p>
-                                {item.name}
-                            </p>
+                            <span className={s.csOptionMark}/>
+                            {itemComponent ?
+                                (itemComponent(item)) :
+                                <p>
+                                    {item.label}
+                                </p>
+                            }
                         </label>
                     </div>
                 ))}
@@ -110,6 +123,13 @@ export const DropdownSelect = React.forwardRef(({
 const option = PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
+    value: PropTypes.oneOfType(
+        [
+            PropTypes.string,
+            PropTypes.number,
+        ]
+    ),
+    label: PropTypes.string,
 });
 
 DropdownSelect.propTypes = {
@@ -126,4 +146,6 @@ DropdownSelect.propTypes = {
     placeholder: PropTypes.string,
     multiple: PropTypes.bool,
     error: PropTypes.bool,
+    size: oneOf(['default', 'small']),
+    itemComponent: PropTypes.func,
 };
