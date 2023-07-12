@@ -18,18 +18,15 @@ import {
 const { SIZE, COLOR } = PRODUCT_CARD_DICTIONARY;
 
 const ProductCard = (props) => {
-
     const dispatch = useDispatch();
     const { isMobile } = useDeviceTypeContext();
     const { product, className } = props;
     const [isHovered, setIsHovered] = useState();
     const [timerId, setTimerId] = useState();
 
-
     const isSelected = useSelector((state) =>
         state.productsSearch.selectedProducts.includes(product.id)
     );
-
 
     const handleSelect = () => {
         if (!isMobile) {
@@ -40,7 +37,7 @@ const ProductCard = (props) => {
     const toggleSelect = () => {
         !isSelected
             ? dispatch(selectProduct(product.id))
-            :dispatch(unSelectProduct(product.id));
+            : dispatch(unSelectProduct(product.id));
     };
 
     const sizes = Array.from(
@@ -52,11 +49,21 @@ const ProductCard = (props) => {
         new Set([...product.productColorSizes.map((colorSize) => colorSize.color)])
     );
 
-    const handleTouchStart = () =>{
+    const uniqueColors = (arr) => {
+        return arr.reduce((result, current) => {
+            const color = current.firstColor;
+            if (!result.find((item) => item.firstColor === color)) {
+                result.push(current);
+            }
+            return result;
+        }, []);
+    };
+
+    const handleTouchStart = () => {
         setTimerId(setTimeout(toggleSelect, 1000));
     };
 
-    const handleTouchEnd = () =>{
+    const handleTouchEnd = () => {
         clearTimeout(timerId);
     };
 
@@ -108,7 +115,7 @@ const ProductCard = (props) => {
                     <div className={classNames(s.colors, s.optionItem)}>
                         <p>{COLOR}</p>
                         <div className={s.items}>
-                            {colors.map((item) => {
+                            {uniqueColors(colors).map((item) => {
                                 return (
                                     <span
                                         key={item.id}
