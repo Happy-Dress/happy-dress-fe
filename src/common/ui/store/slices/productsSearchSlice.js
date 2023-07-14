@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getCatalogueItems } from '../../../api';
 import { fetchCatalogueSettings } from './catalogueSettingsSlice';
-
+import { deleteCatalogueItems } from '../../../api/catalogueItems/deleteCatalogueItems';
 const initialState = {
     loading: true,
     filters: {
@@ -27,6 +27,17 @@ const fetchCatalogueItems = createAsyncThunk(
     }
 );
 
+const deleteProducts = createAsyncThunk(
+    'productsSearch/delete',
+    async ({ productId }, { rejectWithValue }) => {
+        try {
+            await deleteCatalogueItems(productId);
+            return productId;
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
 
 export const productsSearchSlice = createSlice({
     name: 'productsSearch',
@@ -110,6 +121,21 @@ export const productsSearchSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
+        builder
+            .addCase(deleteProducts.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(deleteProducts.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.products = state.products.filter(
+                    (product) => product.id !== action.payload
+                );
+            })
+            .addCase(deleteProducts.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.payload;
+            });
+
         builder.addCase(fetchCatalogueSettings.fulfilled, (state, actions) => {
             state.filters.category = actions.payload.categories[0].id;
         });
@@ -148,6 +174,6 @@ export const {
     resetSelectedProducts,
     setName
 } = productsSearchSlice.actions;
-export { fetchCatalogueItems };
+export { fetchCatalogueItems, deleteProducts };
 
 export default productsSearchSlice.reducer;
