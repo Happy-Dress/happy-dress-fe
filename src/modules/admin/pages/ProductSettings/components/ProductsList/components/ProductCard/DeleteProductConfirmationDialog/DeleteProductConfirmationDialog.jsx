@@ -8,7 +8,7 @@ import ModalContent from '../../../../../../../../../common/ui/components/Modal/
 import s from './DeleteProductConfirmationDialog.module.scss';
 import { DELETE_PRODUCT_CONFIRMATION_DIALOG } from './DeleteProductConfirmationDialog.dictionary';
 
-const DeleteProductConfirmationDialog = ({ onClose, handleDeleteProduct }) => {
+const DeleteProductConfirmationDialog = ({ onClose, onSubmit }) => {
     const { TITLE, MESSAGE_BODY, MESSAGE_HEADER, CANCEL_BUTTON, SUBMIT_BUTTON } = DELETE_PRODUCT_CONFIRMATION_DIALOG;
     return (
         <Modal size='sm'>
@@ -22,14 +22,14 @@ const DeleteProductConfirmationDialog = ({ onClose, handleDeleteProduct }) => {
             </ModalContent>
             <ModalFooter actionButtons={[
                 <ButtonDefault onClick={onClose} key={1} text={CANCEL_BUTTON} />,
-                <ButtonAccent onClick={handleDeleteProduct} key={0} text={SUBMIT_BUTTON}/>,
+                <ButtonAccent onClick={onSubmit} key={0} text={SUBMIT_BUTTON}/>,
             ]}/>
         </Modal>
     );
 };
 DeleteProductConfirmationDialog.propTypes = {
     onClose: PropTypes.func.isRequired,
-    handleDeleteProduct: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
 
 };
 export default DeleteProductConfirmationDialog;

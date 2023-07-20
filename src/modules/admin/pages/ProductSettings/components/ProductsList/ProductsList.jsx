@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import s from './ProductsList.module.scss';
 import ProductCardAdd from '../ProductCardAdd';
@@ -16,34 +16,43 @@ import {
     deleteProducts,
     unSelectProduct,
 } from '../../../../../../common/ui/store/slices/productsSearchSlice';
-import DeleteProductConfirmationDialog from './components/ProductCard/deleteProductConfirmationDialog/DeleteProductConfirmationDialog';
+import DeleteProductConfirmationDialog from './components/ProductCard/DeleteProductConfirmationDialog/DeleteProductConfirmationDialog';
+import { useModal } from 'react-modal-hook';
+import { useToasters } from '../../../../../../common/ui/contexts/ToastersContext';
 
 
 const ProductsList = () => {
-    const [show, setShow] = useState(false);
     const products = useSelector((state) => state.productsSearch.products);
     const filters = useSelector((state) => state.productsSearch.filters);
     const currentPage = useSelector((state) => state.productsSearch.currentPage);
     const totalPages = useSelector((state) => state.productsSearch.totalPages);
     const isLoading = useSelector((state) => state.productsSearch.loading);
+    const { showToasterNotification } = useToasters();
     const selectedProducts = useSelector(
         (state) => state.productsSearch.selectedProducts
     );
+
+    const [showModal, hideModal] = useModal(() => {
+        return <DeleteProductConfirmationDialog onClose={hideModal} onSubmit={handleDeleteProducts}/>;
+    }, [selectedProducts]);
+
+
+
     const { inView } = useInView({
         threshold: 0,
     });
     const dispatch = useDispatch();
 
-    
+
     const renderSkeletons = (amount) => {
         return Array.from(Array(amount).keys()).map((item) => (
             <ProductCardSkeleton key={item + products.length} />
         ));
     };
 
-    const shouldActivate = usePageScroll(300);
+    const shouldDisplayGoToTop = usePageScroll(300);
 
-    const clickHandler = () => {
+    const handleGoToTopClick = () => {
         scrollTo({
             top: 0,
             behavior: 'smooth',
@@ -60,14 +69,15 @@ const ProductsList = () => {
         }
     }, [inView]);
 
-    const handleDeleteProduct = () => {
+    const handleDeleteProducts = () => {
         selectedProducts.forEach((productId) => {
             dispatch(deleteProducts({ productId }));
             dispatch(unSelectProduct(productId));
         });
-        setShow(false);
+        showToasterNotification('Товары успешно удалены!');
+        hideModal();
     };
-    const onClose = () => {setShow(false);};
+
 
     return (
         <div className={s.ProductsList}>
@@ -81,13 +91,12 @@ const ProductsList = () => {
             {!!selectedProducts.length && (
                 <div className={s.bottomBar}>
                     <div id={s.trash}>
-                        <Trash onClick={()=>{setShow(true);}} />
+                        <Trash onClick={showModal} />
                         <p>{selectedProducts.length}</p>
                     </div>
                 </div>
             )}
-            {show && <DeleteProductConfirmationDialog onClose={ onClose } handleDeleteProduct={handleDeleteProduct}/>}
-            {shouldActivate && <Slider id={s.slider} onClick={clickHandler} />}
+            {shouldDisplayGoToTop && <Slider id={s.slider} onClick={handleGoToTopClick} />}
         </div>
     );
 };
