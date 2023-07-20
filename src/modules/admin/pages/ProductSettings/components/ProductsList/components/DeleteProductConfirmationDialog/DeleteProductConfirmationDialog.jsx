@@ -1,10 +1,10 @@
 
-import Modal from '../../../../../../../../../common/ui/components/Modal/Modal';
+import Modal from '../../../../../../../../common/ui/components/Modal/Modal';
 import PropTypes from 'prop-types';
-import ModalHeader from '../../../../../../../../../common/ui/components/Modal/components/ModalHeader/ModalHeader';
-import ModalFooter from '../../../../../../../../../common/ui/components/Modal/components/ModalFooter/ModalFooter';
-import { ButtonAccent, ButtonDefault } from '../../../../../../../../../common/ui/components/Buttons';
-import ModalContent from '../../../../../../../../../common/ui/components/Modal/components/ModalContent/ModalContent';
+import ModalHeader from '../../../../../../../../common/ui/components/Modal/components/ModalHeader/ModalHeader';
+import ModalFooter from '../../../../../../../../common/ui/components/Modal/components/ModalFooter/ModalFooter';
+import { ButtonAccent, ButtonDefault } from '../../../../../../../../common/ui/components/Buttons';
+import ModalContent from '../../../../../../../../common/ui/components/Modal/components/ModalContent/ModalContent';
 import s from './DeleteProductConfirmationDialog.module.scss';
 import { DELETE_PRODUCT_CONFIRMATION_DIALOG } from './DeleteProductConfirmationDialog.dictionary';
 

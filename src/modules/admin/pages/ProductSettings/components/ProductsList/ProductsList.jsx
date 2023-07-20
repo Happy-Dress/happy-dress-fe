@@ -16,7 +16,7 @@ import {
     deleteProducts,
     unSelectProduct,
 } from '../../../../../../common/ui/store/slices/productsSearchSlice';
-import DeleteProductConfirmationDialog from './components/ProductCard/DeleteProductConfirmationDialog/DeleteProductConfirmationDialog';
+import DeleteProductConfirmationDialog from './components/DeleteProductConfirmationDialog/DeleteProductConfirmationDialog';
 import { useModal } from 'react-modal-hook';
 import { useToasters } from '../../../../../../common/ui/contexts/ToastersContext';
 
