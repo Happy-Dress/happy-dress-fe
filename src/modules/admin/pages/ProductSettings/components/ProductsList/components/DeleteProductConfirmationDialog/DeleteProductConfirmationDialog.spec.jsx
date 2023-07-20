@@ -14,7 +14,7 @@ describe('DeleteProductConfirmationDialog', () => {
         const { baseElement } = render(
             <DeleteProductConfirmationDialog
                 onClose={mockOnClose}
-                handleDeleteProduct={mockHandleDeleteProduct}
+                onSubmit={mockHandleDeleteProduct}
             />
         );
         expect(baseElement).toBeInTheDocument();
