@@ -47,6 +47,7 @@ const NavigationPanelMobile = ({ ordersAmount, handleExit }) => {
                     <div className={s.linkMobileWrapper}>
                         {ADMIN_NAV_ITEMS.map((item, index) => (
                             <NavLink
+                                onClick={handleMenuToggle}
                                 key={Math.random() * index}
                                 to={ROUTES[index]}
                                 className={checkIsLinkActive}
