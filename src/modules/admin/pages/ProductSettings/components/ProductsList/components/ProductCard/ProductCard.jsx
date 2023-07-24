@@ -46,7 +46,11 @@ const ProductCard = (props) => {
         ])
     );
     const colors = Array.from(
-        new Set([...product.productColorSizes.map((colorSize) => colorSize.color)])
+        new Map(
+            product.productColorSizes
+                .map((colorSize) => colorSize.color)
+                .map((obj) => [obj.id, obj])
+        ).values()
     );
 
     const uniqueColors = (arr) => {
@@ -116,7 +120,7 @@ const ProductCard = (props) => {
                     <div className={classNames(s.colors, s.optionItem)}>
                         <p>{COLOR}</p>
                         <div className={s.items}>
-                            {uniqueColors(colors).map((item) => {
+                            {colors.map((item) => {
                                 return (
                                     <span
                                         key={item.id}

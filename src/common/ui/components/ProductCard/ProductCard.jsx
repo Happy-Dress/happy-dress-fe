@@ -6,21 +6,25 @@ import PropTypes from 'prop-types';
 import { PRODUCT_CARD_DICTIONARY } from './ProductCard.dictionary';
 import { useNavigate } from 'react-router-dom';
 
-const {
-    SIZE,
-    COLOR
-} = PRODUCT_CARD_DICTIONARY;
+const { SIZE, COLOR } = PRODUCT_CARD_DICTIONARY;
 
 const ProductCard = (props) => {
-    const {
-        product,
-        className
-    } = props;
+    const { product, className } = props;
 
     const navigate = useNavigate();
 
-    const sizes = Array.from(new Set([...product.productColorSizes.map(colorSize => colorSize.size.sizeValue)]));
-    const colors = Array.from(new Set([...product.productColorSizes.map(colorSize => colorSize.color)]));
+    const sizes = Array.from(
+        new Set([
+            ...product.productColorSizes.map((colorSize) => colorSize.size.sizeValue),
+        ])
+    );
+    const colors = Array.from(
+        new Map(
+            product.productColorSizes
+                .map((colorSize) => colorSize.color)
+                .map((obj) => [obj.id, obj])
+        ).values()
+    );
 
     const handleOpenClick = () => {
         navigate(`${product.id}`);
@@ -31,28 +35,29 @@ const ProductCard = (props) => {
             className={classNames(s.ProductCard, className)}
             onClick={handleOpenClick}
         >
-            <img src={image} alt="dress preview"/>
+            <img src={image} alt="dress preview" />
             <div className={s.description}>
                 <h3>{product.name}</h3>
                 <div className={s.options}>
                     <div className={classNames(s.sizes, s.optionItem)}>
                         <p>{SIZE}</p>
                         <div className={s.items}>
-                            {
-                                sizes.map((item, key) => {
-                                    return <span key={key}>{item}</span>;
-                                })
-                            }
+                            {sizes.map((item, key) => {
+                                return <span key={key}>{item}</span>;
+                            })}
                         </div>
                     </div>
                     <div className={classNames(s.colors, s.optionItem)}>
                         <p>{COLOR}</p>
                         <div className={s.items}>
-                            {
-                                colors.map((item, key) => {
-                                    return <span key={key} style={{ backgroundColor: item.firstColor }}/>;
-                                })
-                            }
+                            {colors.map((item, key) => {
+                                return (
+                                    <span
+                                        key={key}
+                                        style={{ backgroundColor: item.firstColor }}
+                                    />
+                                );
+                            })}
                         </div>
                     </div>
                 </div>
@@ -63,7 +68,7 @@ const ProductCard = (props) => {
 
 ProductCard.propTypes = {
     product: PropTypes.object.isRequired,
-    className: PropTypes.string
+    className: PropTypes.string,
 };
 
 export default ProductCard;
