@@ -1,5 +1,20 @@
 @import '../../../../../../common/ui/styles/colors';
+@import '../../../../../../common/ui/styles/media-sizes';
 
-.PCC {
-    margin-top: 42px;
+$lg-size-1023: #{$lg-size - 1px};
+
+.ProductCardColors {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  @media screen and (max-width: $lg-size-1023) {
+    flex-direction: row;
+    max-width: 100%;
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+      width: 20px;
+    }
+  }
 }

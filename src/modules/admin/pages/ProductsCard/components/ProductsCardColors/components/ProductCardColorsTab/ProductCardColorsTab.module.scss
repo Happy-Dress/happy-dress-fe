@@ -1,0 +1,59 @@
+@import "../../../../../../../../common/ui/styles/colors";
+@import "../../../../../../../../common/ui/styles/media-sizes";
+
+$lg-size-1023: #{$lg-size - 1px};
+
+.ProductCardColorsTab {
+    display: flex;
+    gap: 10px;
+
+
+    @media screen and (max-width: $lg-size-1023) {
+        flex-direction: column;
+    }
+
+    &_list {
+        display: flex;
+        justify-content: space-between;
+        gap: 2px;
+        width: 90%;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+        @media screen and (max-width: $lg-size-1023) {
+            flex-direction: column;
+            height: calc(48px * 9 + 2px * 8);
+        }
+    }
+
+    &_item {
+        display: flex;
+        width: calc(round(100% / 9) - 1px);
+        height: 48px;
+
+        @media screen and (max-width: $lg-size-1023) {
+            width: 120px;
+        }
+    }
+
+    &_trash {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+            cursor: pointer;
+
+            path {
+                stroke: $black;
+            }
+        }
+
+        svg {
+            width: 22px;
+            height: 23px;
+        }
+        path {
+            stroke: $light-gray;
+        }
+    }
+}

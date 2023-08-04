@@ -37,6 +37,10 @@
     flex-grow: 1;
     width: 100%;
 
+    &Small {
+      padding: 5px !important;
+    }
+
     &Icon {
       width: 14px;
       height: 8px;
@@ -45,7 +49,7 @@
       transition: transform $animation-duration;
 
       &Small {
-        margin-right: 13px;
+        margin-right: 5px;
       }
 
       &.active {
@@ -75,6 +79,16 @@
       background-color: $filters-gray;
     }
 
+    &Small {
+      p {
+        font-size: $font-size-normal-13;
+      }
+
+      label {
+        padding: 14px 8px !important;
+      }
+    }
+
     &Mark {
       height: 24px;
       width: 24px;
@@ -87,7 +101,6 @@
     }
 
     & p {
-      overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
     }
@@ -121,12 +134,18 @@
     box-shadow: $shadow-black;
     position: absolute;
     top: 100%;
-    width: 100%;
+    min-width: 100%;
     overflow-y: auto;
+    overflow-x: auto;
     transition: height $animation-duration;
     background-color: $white;
     display: flex;
     flex-direction: column;
     max-height: 260px;
+
+    &::-webkit-scrollbar {
+      height: 12px;
+    }
+
   }
 }

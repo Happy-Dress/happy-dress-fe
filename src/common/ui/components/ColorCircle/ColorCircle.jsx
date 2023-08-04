@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import s from './ColorItem.module.scss';
+import s from './ColorCircle.module.scss';
 
 const getColorBackgroundStyle = (color) => {
     if (color) {
@@ -14,8 +14,7 @@ const getColorBackgroundStyle = (color) => {
     return color.firstColor;
 };
 
-export const ColorItem = (props) => {
-    const { label, firstColor, secondColor } = props;
+const ColorCircle = ({ firstColor, secondColor, label }) => {
     const color = { firstColor, secondColor };
     return (
         <div className={s.colorItem}>
@@ -24,13 +23,19 @@ export const ColorItem = (props) => {
                 style={{ background: getColorBackgroundStyle(color) }}
             >
             </div>
-            <span>{label}</span>
+            {label ?
+                <p>{label}</p>
+                :
+                <></>
+            }
         </div>
     );
 };
 
-ColorItem.propTypes = {
-    label: PropTypes.string,
+ColorCircle.propTypes = {
     firstColor: PropTypes.string.isRequired,
     secondColor: PropTypes.string,
+    label: PropTypes.string,
 };
+
+export default ColorCircle;

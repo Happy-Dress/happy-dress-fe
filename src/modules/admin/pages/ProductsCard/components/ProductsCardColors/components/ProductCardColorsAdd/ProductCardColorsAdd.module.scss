@@ -1,0 +1,56 @@
+@import "../../../../../../../../common/ui/styles/colors";
+@import "../../../../../../../../common/ui/styles/media-sizes";
+
+$lg-size-1023: #{$lg-size - 1px};
+
+.ProductCardColorsAdd {
+  display: flex;
+  gap: 2px;
+  max-width: 90%;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  @media screen and (max-width: $lg-size-1023) {
+    flex-direction: column;
+    height: calc(48px * 9 + 2px * 8);
+  }
+
+  &_item {
+    width: calc(round(100% / 9));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    border: 1px solid $light-gray;
+    gap: 15px;
+
+    @media screen and (max-width: $lg-size-1023) {
+      width: 120px;
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    &_add {
+      &:hover {
+        border: 1px solid $black;
+        cursor: pointer;
+
+        path {
+          stroke: $black;
+        }
+      }
+    }
+
+    &_arrowDown {
+      svg {
+        width: 14px;
+        height: 14px;
+      }
+      path {
+        stroke: $brown;
+      }
+    }
+  }
+}

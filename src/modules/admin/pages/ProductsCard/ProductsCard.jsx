@@ -59,28 +59,36 @@ export const ProductsCard = () => {
     });
 
     const [product, setProduct] = useState(defaultValues);
+    const [productColorSizes, setProductColorSizes] = useState(product.productColorSizes);
 
     const onSubmit = async (data) => {
-        const dataToSave = {
-            id,
-            name: data.dressName,
-            description: data.description,
-            mainImageUrl,
-            categoryId: Number(data.category),
-            modelId: Number(data.model),
-            materialIds: data.materials.map((m) => Number(m)),
-            productColorImages: product.productColorImages.map((i) => ({ colorId: i.color.id, imageURLs: i.imageURLs })),
-            productColorSizes: product.productColorSizes.map((c) => ({ colorId: c.color.id, sizeId: c.size.id })),
-        };
+        if (productColorSizes.some((item) => item.color.id === -1000)){
+            showToasterError('Все цвета должны быть выбраны');
+        } else {
+            const dataToSave = {
+                id,
+                name: data.dressName,
+                description: data.description,
+                mainImageUrl,
+                categoryId: Number(data.category),
+                modelId: Number(data.model),
+                materialIds: data.materials.map((m) => Number(m)),
+                productColorImages: product.productColorImages.map((i) => ({
+                    colorId: i.color.id,
+                    imageURLs: i.imageURLs
+                })),
+                productColorSizes: productColorSizes.map((c) => ({ colorId: c.color.id, sizeId: c.size.id })),
+            };
 
-        try {
-            const res = await updateCatalogueItem(dataToSave);
-            setProduct(res);
-            showToasterSuccess(PRODUCT_SAVED);
-        } catch (e) {
-            e
-                ? showToasterError(e.toString())
-                : showToasterError(UNKNOWN_ERROR);
+            try {
+                const res = await updateCatalogueItem(dataToSave);
+                setProduct(res);
+                showToasterSuccess(PRODUCT_SAVED);
+            } catch (e) {
+                e
+                    ? showToasterError(e.toString())
+                    : showToasterError(UNKNOWN_ERROR);
+            }
         }
     };
 
@@ -105,6 +113,7 @@ export const ProductsCard = () => {
                     setProductName(res.name);
                     setProduct(res);
                     setMainImageUrl(res.mainImageUrl);
+                    setProductColorSizes(res.productColorSizes);
                     const formData = {
                         [NAME.NAME]: res.name ? res.name : '',
                         [CATEGORY.NAME]: res.category ? res.category.id.toString() : '',
@@ -149,12 +158,12 @@ export const ProductsCard = () => {
                         />
                     </label>
                     {!mainImageUrl &&
-                    <input
-                        type="file"
-                        accept="image/*"
-                        id={MAIN_IMAGE_FILE.NAME}
-                        {...register(MAIN_IMAGE_FILE.NAME, { onChange: handleSelectImg })}
-                    />
+                        <input
+                            type="file"
+                            accept="image/*"
+                            id={MAIN_IMAGE_FILE.NAME}
+                            {...register(MAIN_IMAGE_FILE.NAME, { onChange: handleSelectImg })}
+                        />
                     }
                     <div className={s.productCardFields}>
                         <div className={s.productCardField}>
@@ -220,7 +229,14 @@ export const ProductsCard = () => {
                         </div>
                     </div>
                 </div>
-                <ProductsCardColors />
+                <div className={s.productCardProductColors}>
+                    <ProductsCardColors
+                        productColorSizes={product.productColorSizes}
+                        allSizes={catalogueSettings.sizes}
+                        allColors={catalogueSettings.colors}
+                        setProductColorSizes={setProductColorSizes}
+                    />
+                </div>
                 <div className={s.productCardDescription}>
                     <label
                         htmlFor={DESCRIPTION.NAME}

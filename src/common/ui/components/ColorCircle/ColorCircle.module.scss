@@ -1,21 +1,25 @@
+@import "../../../../common/ui/styles/colors";
+@import "../../../../common/ui/styles/font-sizes";
 .colorItem {
-  align-items: center;
   display: flex;
+  align-items: center;
+  gap: 5px;
   overflow: hidden;
   width: 100%;
+  margin-right: 5px;
 
-  span {
-    margin-left: 5px;
+  & p {
+    font-size: $font-size-normal-13;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 100%;
     white-space: nowrap;
   }
 
+
   &Circle {
     border-radius: 50%;
+    border: 1px solid $black;
     height: 15px;
-    margin-left: 5px;
     min-width: 15px;
     width: 15px;
   }

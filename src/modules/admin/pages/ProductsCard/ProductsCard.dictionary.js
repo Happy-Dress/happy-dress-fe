@@ -55,4 +55,6 @@ export const PRODUCT_CARD_DICTIONARY = {
     NOT_CHOSEN: 'Не выбрано',
     SUCCESS_MESSAGE: 'Фото успешно добавлено',
     PRODUCT_SAVED: 'Продукт успешно сохранен',
+    SIZE_TEXT: 'Размер',
+    COLOR_TEXT: 'Цвет',
 };

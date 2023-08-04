@@ -178,12 +178,21 @@ $lg-size-1023: #{$lg-size - 1px};
       &::placeholder {
         color: $light-gray;
       }
+
+      &:focus {
+        border: 1px solid $brown;
+      }
     }
 
     &Error {
       border: 1px solid $red;
       transition: all $animation-duration;
     }
+  }
+
+  &ProductColors {
+    margin-top: 42px;
+    width: 100%;
   }
 
   &Footer {

@@ -5,6 +5,7 @@ import s from './DropdownSelect.module.scss';
 import { ReactComponent as ArrowDown } from '../../../assets/images/arrowDown.svg';
 import useOutsideClick from '../../hooks/useOutsideClick';
 import { DROPDOWN_DICTIONARY } from './DropdownSelect.dictionary';
+import classNames from 'classnames';
 
 const { SELECTED } = DROPDOWN_DICTIONARY;
 
@@ -25,6 +26,7 @@ export const DropdownSelect = React.forwardRef((
     {
         name,
         placeholder,
+        placeholderComponent,
         options,
         defaultValues,
         multiple,
@@ -76,11 +78,14 @@ export const DropdownSelect = React.forwardRef((
             size === 'small' && s.csSelectSmall
         )} ref={outsideClickRef}>
             <div
-                className={cls(s.csPlaceholder, error && s.csError)}
+                className={cls(s.csPlaceholder, size === 'small' && s.csPlaceholderSmall, error && s.csError)}
                 onClick={handleSelectClick}
                 data-testid={'selectPlaceholder'}
             >
-                <span>{getName(selectedOptions, options, placeholder)}</span>
+                {placeholderComponent ?
+                    placeholderComponent(placeholder) :
+                    <span>{getName(selectedOptions, options, placeholder)}</span>
+                }
                 <ArrowDown
                     className={cls(
                         isOpen ? s.active : '',
@@ -93,7 +98,8 @@ export const DropdownSelect = React.forwardRef((
             <div className={s.csOptions}
                 style={{ height: isOpen ? `calc(88px * ${options.length})` : '0' }}>
                 {options.map((item) => (
-                    <div className={s.csOption} key={item.value + item.label}>
+                    <div className={classNames(s.csOption, size === 'small' && s.csOptionSmall)}
+                        key={item.value + item.label}>
                         <label htmlFor={item.value + name}>
                             <input
                                 id={item.value + name}
@@ -143,7 +149,8 @@ DropdownSelect.propTypes = {
             PropTypes.arrayOf(PropTypes.string),
             PropTypes.string,
         ]),
-    placeholder: PropTypes.string,
+    placeholder: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    placeholderComponent: PropTypes.func,
     multiple: PropTypes.bool,
     error: PropTypes.bool,
     size: oneOf(['default', 'small']),
