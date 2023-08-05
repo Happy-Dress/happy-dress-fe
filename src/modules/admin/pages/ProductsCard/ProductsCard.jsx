@@ -152,8 +152,8 @@ export const ProductsCard = () => {
                 }]}/>
             </div>
             <h2 className={s.productCard_heading}>{TITLE}</h2>
-            <form className={s.productCardForm} onSubmit={handleSubmit(onSubmit)}>
-                <div className={s.productCardFieldsSection}>
+            <form className={s.productCard_form} onSubmit={handleSubmit(onSubmit)}>
+                <div className={s.productCard_fields_section}>
                     <label htmlFor={MAIN_IMAGE_FILE.NAME}>
                         <ProductsCardsImage
                             imageUrl={mainImageUrl}
@@ -170,10 +170,10 @@ export const ProductsCard = () => {
                             {...register(MAIN_IMAGE_FILE.NAME, { onChange: handleSelectImg })}
                         />
                     }
-                    <div className={s.productCardFields}>
-                        <div className={s.productCardField}>
-                            <label className={s.productCardFieldLabel} htmlFor={NAME.ID}>{NAME.LABEL}</label>
-                            <div className={s.productCardFieldContainer}>
+                    <div className={s.productCard_fields}>
+                        <div className={s.productCard_field}>
+                            <label className={s.productCard_field_label} htmlFor={NAME.ID}>{NAME.LABEL}</label>
+                            <div className={s.productCard_field_container}>
                                 <TextField
                                     placeholder={NAME.PLACEHOLDER}
                                     name={NAME.NAME}
@@ -181,14 +181,14 @@ export const ProductsCard = () => {
                                     error={!!errors[NAME.NAME]}
                                     {...register(NAME.NAME, { required: true })}
                                 />
-                                <span className={errors[NAME.NAME] ? s.productCardFieldError : s.displayEmpty}>
+                                <span className={errors[NAME.NAME] ? s.productCard_field_error : s.displayEmpty}>
                                     {errors[NAME.NAME] && NAME.ERROR_MESSAGE}
                                 </span>
                             </div>
                         </div>
-                        <div className={s.productCardField}>
-                            <label className={s.productCardFieldLabel}>{CATEGORY.LABEL}</label>
-                            <div className={s.productCardFieldContainer}>
+                        <div className={s.productCard_field}>
+                            <label className={s.productCard_field_label}>{CATEGORY.LABEL}</label>
+                            <div className={s.productCard_field_container}>
                                 <DropdownSelect
                                     defaultValues={defaultValues[CATEGORY.NAME]}
                                     options={getSelectValues(catalogueSettings.categories)}
@@ -196,14 +196,14 @@ export const ProductsCard = () => {
                                     error={!!errors[CATEGORY.NAME]}
                                     {...register(CATEGORY.NAME, { required: true })}
                                 />
-                                <span className={errors[CATEGORY.NAME] ? s.productCardFieldError : s.displayEmpty}>
+                                <span className={errors[CATEGORY.NAME] ? s.productCard_field_error : s.displayEmpty}>
                                     {errors[CATEGORY.NAME] && CATEGORY.ERROR_MESSAGE}
                                 </span>
                             </div>
                         </div>
-                        <div className={s.productCardField}>
-                            <label className={s.productCardFieldLabel}>{MODEL.LABEL}</label>
-                            <div className={s.productCardFieldContainer}>
+                        <div className={s.productCard_field}>
+                            <label className={s.productCard_field_label}>{MODEL.LABEL}</label>
+                            <div className={s.productCard_field_container}>
                                 <DropdownSelect
                                     defaultValues={defaultValues[MODEL.NAME]}
                                     options={getSelectValues(catalogueSettings.models)}
@@ -211,14 +211,14 @@ export const ProductsCard = () => {
                                     error={!!errors[MODEL.NAME]}
                                     {...register(MODEL.NAME, { required: true })}
                                 />
-                                <span className={errors[MODEL.NAME] ? s.productCardFieldError : s.displayEmpty}>
+                                <span className={errors[MODEL.NAME] ? s.productCard_field_error : s.displayEmpty}>
                                     {errors[MODEL.NAME] && MODEL.ERROR_MESSAGE}
                                 </span>
                             </div>
                         </div>
-                        <div className={s.productCardField}>
-                            <label className={s.productCardFieldLabel}>{MATERIAL.LABEL}</label>
-                            <div className={s.productCardFieldContainer}>
+                        <div className={s.productCard_field}>
+                            <label className={s.productCard_field_label}>{MATERIAL.LABEL}</label>
+                            <div className={s.productCard_field_container}>
                                 <DropdownSelect
                                     defaultValues={defaultValues[MATERIAL.NAME]}
                                     options={getSelectValues(catalogueSettings.materials)}
@@ -227,14 +227,14 @@ export const ProductsCard = () => {
                                     error={!!errors[MATERIAL.NAME]}
                                     {...register(MATERIAL.NAME, { required: true })}
                                 />
-                                <span className={errors[MATERIAL.NAME] ? s.productCardFieldError : s.displayEmpty}>
+                                <span className={errors[MATERIAL.NAME] ? s.productCard_field_error : s.displayEmpty}>
                                     {errors[MATERIAL.NAME] && MATERIAL.ERROR_MESSAGE}
                                 </span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className={s.productCardProductColors}>
+                <div className={s.productCard_productColors}>
                     <ProductsCardColors
                         productColorSizes={product.productColorSizes}
                         allSizes={catalogueSettings.sizes}
@@ -242,25 +242,25 @@ export const ProductsCard = () => {
                         setProductColorSizes={setProductColorSizes}
                     />
                 </div>
-                <div className={s.productCardDescription}>
+                <div className={s.productCard_description}>
                     <label
                         htmlFor={DESCRIPTION.NAME}
-                        className={s.productCardDescriptionTitle}
+                        className={s.productCard_description_title}
                     >
                         {DESCRIPTION.LABEL}
                     </label>
                     <textarea
-                        className={cls(s.productCardDescriptionField, errors[DESCRIPTION.NAME] && s.productCardDescriptionError)}
+                        className={cls(s.productCard_description_field, errors[DESCRIPTION.NAME] && s.productCard_description_error)}
                         id={DESCRIPTION.NAME}
                         name={DESCRIPTION.NAME}
                         placeholder={isMobile ? DESCRIPTION.PLACEHOLDER : NOT_CHOSEN}
                         {...register(DESCRIPTION.NAME, { required: true })}
                     />
-                    <span className={errors[DESCRIPTION.NAME] ? s.productCardFieldError : s.displayEmpty}>
+                    <span className={errors[DESCRIPTION.NAME] ? s.productCard_field_error : s.displayEmpty}>
                         {errors[DESCRIPTION.NAME] && DESCRIPTION.ERROR_MESSAGE}
                     </span>
                 </div>
-                <div className={s.productCardFooter}>
+                <div className={s.productCard_footer}>
                     <ButtonDefault
                         text={CANCEL}
                         onClick={handleCancel}

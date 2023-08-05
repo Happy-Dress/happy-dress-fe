@@ -34,7 +34,7 @@ $lg-size-1023: #{$lg-size - 1px};
     }
   }
 
-  &Form {
+  &_form {
     @media all and (max-width: $lg-size-1023) {
       align-items: center;
       width: 100%;
@@ -45,10 +45,10 @@ $lg-size-1023: #{$lg-size - 1px};
     }
   }
 
-  &Fields {
+  &_fields {
     width: 100%;
 
-    &Section {
+    &_section {
       display: flex;
       align-items: center;
       gap: 64px;
@@ -75,7 +75,7 @@ $lg-size-1023: #{$lg-size - 1px};
     }
   }
 
-  &Field {
+  &_field {
     align-items: center;
     border-bottom: 1px solid $light-gray;
     display: flex;
@@ -92,7 +92,7 @@ $lg-size-1023: #{$lg-size - 1px};
       justify-content: center;
     }
 
-    &Container {
+    &_container {
       padding: 26px 0;
       width: 100%;
 
@@ -101,7 +101,7 @@ $lg-size-1023: #{$lg-size - 1px};
       }
     }
 
-    &Label {
+    &_label {
       font-size: $font-size-xlarge-24;
       font-weight: 400;
       line-height: 28px;
@@ -123,7 +123,7 @@ $lg-size-1023: #{$lg-size - 1px};
       }
     }
 
-    &Error {
+    &_error {
       color: $red;
       display: flex;
       padding: 6px 0;
@@ -136,7 +136,7 @@ $lg-size-1023: #{$lg-size - 1px};
     }
   }
 
-  &Description {
+  &_description {
     width: 100%;
     margin: 73px 0 20px;
 
@@ -144,7 +144,7 @@ $lg-size-1023: #{$lg-size - 1px};
       margin: 20px 0;
     }
 
-    &Title {
+    &_title {
       display: block;
       font-family: $main-font;
       font-size: $font-size-xlarge-32;
@@ -160,7 +160,7 @@ $lg-size-1023: #{$lg-size - 1px};
       }
     }
 
-    &Field {
+    &_field {
       background: $white;
       border: 1px solid $light-gray;
       color: $light-gray;
@@ -184,18 +184,18 @@ $lg-size-1023: #{$lg-size - 1px};
       }
     }
 
-    &Error {
+    &_error {
       border: 1px solid $red;
       transition: all $animation-duration;
     }
   }
 
-  &ProductColors {
+  &_productColors {
     margin-top: 42px;
     width: 100%;
   }
 
-  &Footer {
+  &_footer {
     display: flex;
     gap: 12px;
     justify-content: flex-end;

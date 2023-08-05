@@ -19,7 +19,7 @@ const ColorCircle = ({ firstColor, secondColor, label }) => {
     return (
         <div className={s.colorItem}>
             <div
-                className={s.colorItemCircle}
+                className={s.colorItem_circle}
                 style={{ background: getColorBackgroundStyle(color) }}
             >
             </div>
