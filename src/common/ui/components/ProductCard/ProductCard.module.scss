@@ -57,9 +57,10 @@
         }
 
         .items {
+          display: flex;
+          flex-wrap: wrap;
           padding-right: 5px;
           justify-content: flex-end;
-          display: flex;
           column-gap: 5%;
           row-gap: 6px;
           width: 100%;
