@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import CATEGORIES_DICTIONARY from '../Categories.dictionary';
 import { useSwipeable } from 'react-swipeable';
 import classNames from 'classnames';
+import { setCategory } from '../../../../../../common/ui/store/slices/productsSearchSlice';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 
 const { HEADING_LABEL } = CATEGORIES_DICTIONARY;
@@ -13,6 +16,8 @@ const CategoriesMobile = ({ categories }) => {
     const [index, setIndex] = useState(0);
     const [moveLeft, setMoveLeft] = useState(false);
     const [moveRight, setMoveRight] = useState(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const handleSwipe = useSwipeable({
         onSwipedLeft: () => {
             setMoveLeft(true);
@@ -47,6 +52,12 @@ const CategoriesMobile = ({ categories }) => {
         );
     };
 
+    const handleClick = (post) => {
+        dispatch(setCategory({ category: post.id, shouldDropProducts: true }));
+        window.scrollTo({ top: 0 });
+        navigate('../catalog');
+    };
+
     return (
         <div className={s.CategoriesMobile}>
             <div className={s.title}>
@@ -54,7 +65,7 @@ const CategoriesMobile = ({ categories }) => {
             </div>
             <div className={s.slider}>
                 {renderDots()}
-                <div {...handleSwipe}>
+                <div className={s.slider_card_swipeable} {...handleSwipe}>
                     {categories.map((post, key) => (
                         <div
                             className={classNames(key === index ? s.slider_card_active :
@@ -62,6 +73,7 @@ const CategoriesMobile = ({ categories }) => {
                             moveLeft && key === index ? s.slider_card_moveLeft : '',
                             moveRight && key === index ? s.slider_card_moveRight : '',
                             )}
+                            onClick={() => handleClick(post)}
                             key={key}
                             data-testid={`card_${key}`}
                         >

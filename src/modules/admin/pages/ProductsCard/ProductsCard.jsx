@@ -21,6 +21,7 @@ import { useMainImageUrl } from './hooks/useMainImageUrl';
 import ProductsCardColors from './components/ProductsCardColors';
 import { fetchProduct } from '../../../../common/ui/store/slices/productSlice';
 
+
 const {
     TITLE,
     BREADCRUMBS,

@@ -1,0 +1,17 @@
+@import "../../../../../../../../common/ui/styles/font-sizes";
+@import "../../../../../../../../common/ui/styles/media-sizes";
+
+.LeaveConfirmationDialog {
+    &_message {
+        height: 250px;
+        font-size: $font-size-xmedium-18;
+        line-height: 30px;
+        display: flex;
+        flex-direction: column;
+
+        @media screen and (max-width: $lg-size - 1) {
+            line-height: 20px;
+            font-size: $font-size-medium-16;
+        }
+    }
+}

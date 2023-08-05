@@ -18,36 +18,26 @@ import {
 const { SIZE, COLOR } = PRODUCT_CARD_DICTIONARY;
 
 const ProductCard = (props) => {
-    const [isLongPress, setIsLongPress] = useState(false);
-    const [isHover, setIsHover] = useState(false);
     const dispatch = useDispatch();
     const { isMobile } = useDeviceTypeContext();
     const { product, className } = props;
+    const [isHovered, setIsHovered] = useState();
+    const [timerId, setTimerId] = useState();
+
     const isSelected = useSelector((state) =>
         state.productsSearch.selectedProducts.includes(product.id)
     );
 
-    const handleTouchStart = () => {
-        setIsLongPress(false);
-        setTimeout(() => {
-            setIsLongPress(true);
-        }, 700);
-    };
-
-    const handleTouchEnd = () => {
-        isLongPress && isMobile ? clickHandler() : setIsLongPress(false);
-        setIsLongPress(false);
-    };
-
-    const clickHandler = () => {
-        switch (isSelected) {
-            case false:
-                dispatch(selectProduct(product.id));
-                break;
-            case true:
-                dispatch(unSelectProduct(product.id));
-                break;
+    const handleSelect = () => {
+        if (!isMobile) {
+            toggleSelect();
         }
+    };
+
+    const toggleSelect = () => {
+        !isSelected
+            ? dispatch(selectProduct(product.id))
+            : dispatch(unSelectProduct(product.id));
     };
 
     const sizes = Array.from(
@@ -59,36 +49,47 @@ const ProductCard = (props) => {
         new Set([...product.productColorSizes.map((colorSize) => colorSize.color)])
     );
 
+    const uniqueColors = (arr) => {
+        return arr.reduce((result, current) => {
+            const color = current.firstColor;
+            if (!result.find((item) => item.firstColor === color)) {
+                result.push(current);
+            }
+            return result;
+        }, []);
+    };
+
+    const handleTouchStart = () => {
+        setTimerId(setTimeout(toggleSelect, 1000));
+    };
+
+    const handleTouchEnd = () => {
+        clearTimeout(timerId);
+    };
+
     return (
         <div
             className={classNames(s.ProductCard, className, {
                 [s.active]: isSelected,
             })}
-            onMouseEnter={() => setIsHover(true)}
-            onMouseLeave={() => setIsHover(false)}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
         >
             <img
                 src={image}
                 alt="dress preview"
-                className={classNames({ [s.hovered]: isHover })}
+                className={classNames({ [s.hovered]: isHovered })}
             />
             <div className={s.description}>
-                {((isHover && !isSelected) || (isMobile && !isSelected)) && (
+                {((isHovered && !isSelected) || (isMobile && !isSelected)) && (
                     <>
-                        {isMobile ? (
-                            <EmptyCheckbox
-                                className={s.checkbox}
-                                data-testid="empty-checkbox"
-                                onTouchStart={isMobile ? handleTouchStart : undefined}
-                                onTouchEnd={isMobile ? handleTouchEnd : undefined}
-                            />
-                        ) : (
-                            <EmptyCheckbox
-                                onClick={clickHandler}
-                                className={s.checkbox}
-                                data-testid="empty-checkbox"
-                            />
-                        )}
+                        <EmptyCheckbox
+                            className={s.checkbox}
+                            data-testid="empty-checkbox"
+                            onClick={handleSelect}
+                        />
                         <Link to={`../product-card/${product.id}`} data-testid="link">
                             <Update className={s.update} />
                         </Link>
@@ -96,9 +97,7 @@ const ProductCard = (props) => {
                 )}
                 {isSelected && (
                     <Checkbox
-                        onClick={!isMobile ? clickHandler : undefined}
-                        onTouchStart={isMobile ? handleTouchStart : undefined}
-                        onTouchEnd={isMobile ? handleTouchEnd : undefined}
+                        onClick={handleSelect}
                         className={s.checkbox}
                         data-testid="filled-checkbox"
                     />
@@ -116,7 +115,7 @@ const ProductCard = (props) => {
                     <div className={classNames(s.colors, s.optionItem)}>
                         <p>{COLOR}</p>
                         <div className={s.items}>
-                            {colors.map((item) => {
+                            {uniqueColors(colors).map((item) => {
                                 return (
                                     <span
                                         key={item.id}
