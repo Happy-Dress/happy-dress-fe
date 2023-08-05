@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export const PRODUCT_CARD_DICTIONARY = {
     TITLE: 'Карта товара',
     BREADCRUMBS: [
@@ -57,4 +59,21 @@ export const PRODUCT_CARD_DICTIONARY = {
     PRODUCT_SAVED: 'Продукт успешно сохранен',
     SIZE_TEXT: 'Размер',
     COLOR_TEXT: 'Цвет',
+    EMPTY_COLOR_OBJECT: {
+        id: -1000,
+        name: 'Не выбрано',
+        firstColor: '',
+        orderNumber: -1000
+    },
+    COLOR_PROPTYPES: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        firstColor: PropTypes.string.isRequired,
+        secondColor: PropTypes.string,
+        orderNumber: PropTypes.number.isRequired,
+    }),
+    SIZE_PROPTYPES: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        sizeValue: PropTypes.number.isRequired,
+    }),
 };

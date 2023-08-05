@@ -5,6 +5,13 @@ import ProductCardColorsAdd from './components/ProductCardColorsAdd';
 import PropTypes from 'prop-types';
 import ProductCardColorsTab from './components/ProductCardColorsTab';
 import { useToasters } from '../../../../../../common/ui/contexts/ToastersContext';
+import { PRODUCT_CARD_DICTIONARY } from '../../ProductsCard.dictionary';
+
+const {
+    EMPTY_COLOR_OBJECT,
+    COLOR_PROPTYPES,
+    SIZE_PROPTYPES,
+} = PRODUCT_CARD_DICTIONARY;
 
 
 const ProductsCardColors = ({ productColorSizes, allColors, allSizes, setProductColorSizes }) => {
@@ -12,7 +19,7 @@ const ProductsCardColors = ({ productColorSizes, allColors, allSizes, setProduct
     const [colorsWithSizes, setColorsWithSizes] = useState([]);
     const { showToasterError } = useToasters();
 
-    const emptyColor = { name: 'Не выбрано', id: -1000 };
+    const emptyColor = EMPTY_COLOR_OBJECT;
 
     useEffect(() => {
         const updatedColorsWithSizes = [];
@@ -27,13 +34,11 @@ const ProductsCardColors = ({ productColorSizes, allColors, allSizes, setProduct
     }, [productColorSizes]);
 
     useEffect(() => {
-        console.log('colorSizes:', colorsWithSizes);
         const newProductColorSizes = colorsWithSizes.flatMap((item) => item.sizes.map((size) => ({
             color: item.color,
             size: size,
         })));
         setProductColorSizes(newProductColorSizes);
-        console.log('new',newProductColorSizes);
     }, [colorsWithSizes]);
     
     const handleAddTab = () => {
@@ -115,10 +120,13 @@ const ProductsCardColors = ({ productColorSizes, allColors, allSizes, setProduct
 };
 
 ProductsCardColors.propTypes = {
-    productColorSizes: PropTypes.array,
-    allColors: PropTypes.array.isRequired,
-    allSizes: PropTypes.array.isRequired,
-    setProductColorSizes: PropTypes.func,
+    productColorSizes: PropTypes.arrayOf(PropTypes.shape({
+        COLOR_PROPTYPES,
+        SIZE_PROPTYPES,
+    })),
+    allColors: PropTypes.arrayOf(COLOR_PROPTYPES).isRequired,
+    allSizes: PropTypes.arrayOf(SIZE_PROPTYPES).isRequired,
+    setProductColorSizes: PropTypes.func.isRequired,
 };
 
 export default ProductsCardColors;

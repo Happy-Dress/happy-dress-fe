@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 const {
     SIZE_TEXT,
     COLOR_TEXT,
+    SIZE_PROPTYPES,
 } = PRODUCT_CARD_DICTIONARY;
 
 const ProductCardColorsHeader = ({ sizes }) => {
@@ -29,7 +30,7 @@ const ProductCardColorsHeader = ({ sizes }) => {
 };
 
 ProductCardColorsHeader.propTypes = {
-    sizes: PropTypes.array.isRequired,
+    sizes: PropTypes.arrayOf(SIZE_PROPTYPES).isRequired,
 };
 
 export default ProductCardColorsHeader;

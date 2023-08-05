@@ -5,6 +5,11 @@ import { ReactComponent as BarChartHorizontal } from '../../../../../../../../co
 import { ReactComponent as ArrowDown } from '../../../../../../../../common/assets/images/arrowDown.svg';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { PRODUCT_CARD_DICTIONARY } from '../../../../ProductsCard.dictionary';
+
+const {
+    SIZE_PROPTYPES,
+} = PRODUCT_CARD_DICTIONARY;
 const ProductCardColorsAdd = ({ sizes, handleAddTab }) => {
 
     return (
@@ -28,7 +33,7 @@ const ProductCardColorsAdd = ({ sizes, handleAddTab }) => {
 };
 
 ProductCardColorsAdd.propTypes = {
-    sizes: PropTypes.array.isRequired,
+    sizes: PropTypes.arrayOf(SIZE_PROPTYPES).isRequired,
     handleAddTab: PropTypes.func.isRequired,
 };
 

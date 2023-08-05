@@ -4,6 +4,12 @@ import PropTypes from 'prop-types';
 import ColorTab from './components/ColorTab';
 import AvailabilitySizeTab from './components/AvailabilitySizeTab';
 import { ReactComponent as Trash } from '../../../../../../../../common/assets/images/Trash.svg';
+import { PRODUCT_CARD_DICTIONARY } from '../../../../ProductsCard.dictionary';
+
+const {
+    COLOR_PROPTYPES,
+    SIZE_PROPTYPES,
+} = PRODUCT_CARD_DICTIONARY;
 
 const ProductCardColorsTab = ({ 
     currentColor, 
@@ -47,11 +53,11 @@ const ProductCardColorsTab = ({
 };
 
 ProductCardColorsTab.propTypes = {
-    currentColor: PropTypes.object.isRequired,
-    productColors: PropTypes.array.isRequired,
-    productSizes: PropTypes.array.isRequired,
-    allSizes: PropTypes.array.isRequired,
-    optionsColors: PropTypes.array.isRequired,
+    currentColor: COLOR_PROPTYPES.isRequired,
+    productColors: PropTypes.arrayOf(COLOR_PROPTYPES).isRequired,
+    productSizes: PropTypes.arrayOf(SIZE_PROPTYPES).isRequired,
+    allSizes: PropTypes.arrayOf(SIZE_PROPTYPES).isRequired,
+    optionsColors: PropTypes.arrayOf(COLOR_PROPTYPES).isRequired,
     handleDelete: PropTypes.func.isRequired,
     handleChangeColor: PropTypes.func.isRequired,
     handleChangeSize: PropTypes.func.isRequired,

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { DropdownSelect } from '../../../../../../../../../../common/ui/components/DropdownSelect';
 
+
 const AvailabilitySizeTab = ({ handleChangeSize, isAvailable, idx }) => {
     return (
         <DropdownSelect

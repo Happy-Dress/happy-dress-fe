@@ -2,6 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { DropdownSelect } from '../../../../../../../../../../common/ui/components/DropdownSelect';
 import ColorCircle from '../../../../../../../../../../common/ui/components/ColorCircle';
+import { PRODUCT_CARD_DICTIONARY } from '../../../../../../ProductsCard.dictionary';
+
+const {
+    COLOR_PROPTYPES,
+} = PRODUCT_CARD_DICTIONARY;
 
 const ColorTab = ({ currentColor, optionsColors, handleChangeColor, idx }) => {
     return (
@@ -19,8 +24,8 @@ const ColorTab = ({ currentColor, optionsColors, handleChangeColor, idx }) => {
 };
 
 ColorTab.propTypes = {
-    currentColor: PropTypes.object,
-    optionsColors: PropTypes.array.isRequired,
+    currentColor: COLOR_PROPTYPES.isRequired,
+    optionsColors: PropTypes.arrayOf(COLOR_PROPTYPES).isRequired,
     handleChangeColor: PropTypes.func.isRequired,
     idx: PropTypes.string,
 };

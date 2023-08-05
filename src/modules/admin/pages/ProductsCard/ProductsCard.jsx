@@ -62,8 +62,12 @@ export const ProductsCard = () => {
     const [product, setProduct] = useState(defaultValues);
     const [productColorSizes, setProductColorSizes] = useState(product.productColorSizes);
 
+    const checkIsAllColorsSelected = () => {
+        return productColorSizes.some((item) => item.color.id === -1000);
+    };
+
     const onSubmit = async (data) => {
-        if (productColorSizes.some((item) => item.color.id === -1000)){
+        if (checkIsAllColorsSelected()){
             showToasterError('Все цвета должны быть выбраны');
         } else {
             const dataToSave = {
