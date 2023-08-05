@@ -20,7 +20,7 @@ const ProductCard = (props) => {
     const navigate = useNavigate();
 
     const sizes = Array.from(new Set([...product.productColorSizes.map(colorSize => colorSize.size.sizeValue)]));
-    const colors = Array.from(new Set([...product.productColorSizes.map(colorSize => colorSize.color)]));
+    const unqiqueColorNames = Array.from(new Set([...product.productColorSizes.map(colorSize => colorSize.color.name)]));
 
     const handleOpenClick = () => {
         window.scrollTo({ top: 0 });
@@ -50,8 +50,8 @@ const ProductCard = (props) => {
                         <p>{COLOR}</p>
                         <div className={s.items}>
                             {
-                                colors.map((item, key) => {
-                                    return <span key={key} style={{ backgroundColor: item.firstColor }}/>;
+                                unqiqueColorNames.map((color, key) => {
+                                    return <span key={key} style={{ backgroundColor:  product.productColorSizes.find(item => item.color.name === color).color.firstColor }}/>;
                                 })
                             }
                         </div>
