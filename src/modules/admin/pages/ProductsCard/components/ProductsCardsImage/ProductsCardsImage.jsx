@@ -19,18 +19,18 @@ const ProductsCardsImage = ({ imageUrl, alt, onAdd, onDelete, isLoaded }) => {
 
     return (
         <div className={s.pciContent}>
-            {isLoading && <ImageSkeleton width={'206px'} height={'308px'}/>}
-            <div hidden={isLoading}>
-                {!isLoaded &&
+            {isLoading && imageUrl && <ImageSkeleton width={'206px'} height={'308px'}/>}
+            {!isLoaded &&
             <div className={s.pciLoader} data-testid={'pciLoader'}/>
-                }
-                {!imageUrl && isLoaded &&
+            }
+            {!imageUrl && isLoaded &&
             <AddIcon
                 className={s.pciIconAdd}
                 onClick={handleAddClick}
                 data-testid={'addIcon'}
             />
-                }
+            }
+            <div hidden={isLoading}>
                 {imageUrl && isLoaded &&
             <div className={s.pciContainer}>
                 <DeleteIcon

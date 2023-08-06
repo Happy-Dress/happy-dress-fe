@@ -16,4 +16,9 @@
     color: $light-gray;
     white-space: nowrap;
   }
+
+  a:hover {
+    color: $gray;
+    text-decoration: underline $brown;
+  }
 }

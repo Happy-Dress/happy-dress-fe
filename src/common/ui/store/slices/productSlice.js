@@ -18,6 +18,16 @@ const fetchProduct = createAsyncThunk(
     }
 );
 
+const uniqueColors = (arr) => {
+    return arr.reduce((result, current) => {
+        const color = current.firstColor;
+        if (!result.find((item) => item.firstColor === color)) {
+            result.push(current);
+        }
+        return result;
+    }, []);
+};
+
 export const productSlice = createSlice({
     name: 'product',
     initialState,
@@ -40,7 +50,9 @@ export const productSlice = createSlice({
             state.product = action.payload;
             state.productColorImages = action.payload.productColorImages[0];
             state.currentColorSize = action.payload.productColorSizes[0];
-            state.uniqueColors = JSON.stringify(Array.from(new Set(action.payload.productColorSizes.map(item => item.color.name))));
+            state.uniqueColors = JSON.stringify(uniqueColors(
+                Array.from(new Set([...action.payload.productColorSizes.map((colorSize) => colorSize.color)]))
+            ));
             state.mainImageUrl = action.payload.mainImageUrl;
             state.selectedImage = {
                 imageUrl: action.payload.mainImageUrl,

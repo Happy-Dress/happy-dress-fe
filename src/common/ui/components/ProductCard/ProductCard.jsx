@@ -1,10 +1,10 @@
 import React from 'react';
 import s from './ProductCard.module.scss';
-import image from '../../../assets/images/photo_4_3.png';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { PRODUCT_CARD_DICTIONARY } from './ProductCard.dictionary';
 import { useNavigate } from 'react-router-dom';
+import ColorCircle from '../ColorCircle';
 
 const {
     SIZE,
@@ -19,8 +19,18 @@ const ProductCard = (props) => {
 
     const navigate = useNavigate();
 
+    const colors = Array.from(new Set([...product.productColorSizes.map((colorSize) => colorSize.color)]));
     const sizes = Array.from(new Set([...product.productColorSizes.map(colorSize => colorSize.size.sizeValue)]));
-    const unqiqueColorNames = Array.from(new Set([...product.productColorSizes.map(colorSize => colorSize.color.name)]));
+
+    const uniqueColors = (arr) => {
+        return arr.reduce((result, current) => {
+            const color = current.firstColor;
+            if (!result.find((item) => item.firstColor === color)) {
+                result.push(current);
+            }
+            return result;
+        }, []);
+    };
 
     const handleOpenClick = () => {
         window.scrollTo({ top: 0 });
@@ -32,7 +42,9 @@ const ProductCard = (props) => {
             className={classNames(s.ProductCard, className)}
             onClick={handleOpenClick}
         >
-            <img src={image} alt="dress preview"/>
+            <div className={s.ProductCard_mainImage}>
+                <img src={product.mainImageUrl} alt="dress preview"/>
+            </div>
             <div className={s.description}>
                 <h3>{product.name}</h3>
                 <div className={s.options}>
@@ -50,8 +62,16 @@ const ProductCard = (props) => {
                         <p>{COLOR}</p>
                         <div className={s.items}>
                             {
-                                unqiqueColorNames.map((color, key) => {
-                                    return <span key={key} style={{ backgroundColor:  product.productColorSizes.find(item => item.color.name === color).color.firstColor }}/>;
+                                uniqueColors(colors).map((color) => {
+                                    return (
+                                        <ColorCircle 
+                                            key={color.id}
+                                            firstColor={color.firstColor}
+                                            secondColor={color?.secondColor}
+                                            width={'20px'}
+                                            height={'20px'}
+                                        />
+                                    );
                                 })
                             }
                         </div>

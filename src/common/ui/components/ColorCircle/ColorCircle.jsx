@@ -14,13 +14,17 @@ const getColorBackgroundStyle = (color) => {
     return color.firstColor;
 };
 
-const ColorCircle = ({ firstColor, secondColor, label }) => {
+const ColorCircle = ({ firstColor, secondColor, label, width, height }) => {
     const color = { firstColor, secondColor };
     return (
         <div className={s.colorItem}>
             <div
                 className={s.colorItem_circle}
-                style={{ background: getColorBackgroundStyle(color) }}
+                style={{ 
+                    background: getColorBackgroundStyle(color),
+                    width: width ? width : '15px',
+                    height: height ? height : '15px',
+                }}
             >
             </div>
             {label ?
@@ -36,6 +40,8 @@ ColorCircle.propTypes = {
     firstColor: PropTypes.string.isRequired,
     secondColor: PropTypes.string,
     label: PropTypes.string,
+    width: PropTypes.string,
+    height: PropTypes.string,
 };
 
 export default ColorCircle;
