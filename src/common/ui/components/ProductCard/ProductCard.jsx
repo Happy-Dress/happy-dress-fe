@@ -25,8 +25,8 @@ const ProductCard = (props) => {
                 .map((obj) => [obj.id, obj])
         ).values()
     );
-
     const handleOpenClick = () => {
+        window.scrollTo({ top: 0 });
         navigate(`${product.id}`);
     };
 

@@ -66,7 +66,7 @@ const CategoriesDesktop = ({ categories: initialState }) => {
     };
 
     const handleClick = (post) => {
-        dispatch(setCategory(post.id));
+        dispatch(setCategory({ category: post.id, shouldDropProducts: true }));
         window.scrollTo({ top: 0 });
         navigate('../catalog');
     };

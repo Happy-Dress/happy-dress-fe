@@ -5,18 +5,21 @@ import { fetchCatalogueSettings } from '../store/slices/catalogueSettingsSlice';
 
 export const useCatalogFilters = () => {
     const dispatch = useDispatch();
-    const catalogueSettings = useSelector(state => state.productsSearch.filters);
-    const currentPage = useSelector(state => state.productsSearch.currentPage);
+    const filters = useSelector(state => state.productsSearch.filters);
+    const catalogueSettings = useSelector(state => state.catalogueSettings.settings);
+    const products = useSelector(state => state.productsSearch.products);
+
 
     useEffect(() =>{
-        if(catalogueSettings.category){
+        if(filters.category && !products.length){
             dispatch(resetProducts());
-            const pageToSearch = currentPage ? currentPage : 1;
-            dispatch(fetchCatalogueItems({ filters: catalogueSettings, page: pageToSearch }));
+            dispatch(fetchCatalogueItems({ filters: filters, page: 1 }));
         }
-    }, [catalogueSettings]);
+    }, [filters]);
 
     useEffect(() =>{
-        dispatch(fetchCatalogueSettings());
+        if(!catalogueSettings.categories.length){
+            dispatch(fetchCatalogueSettings());
+        }
     }, []);
 };

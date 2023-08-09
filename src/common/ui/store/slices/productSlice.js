@@ -8,6 +8,7 @@ const initialState = {
     uniqueColors: null,
     selectedImage: null,
     mainImageUrl: null,
+    loadingImages: [],
 };
 
 const fetchProduct = createAsyncThunk(
@@ -29,7 +30,10 @@ export const productSlice = createSlice({
         },
         setProductColorImages: (state, action) => {
             state.productColorImages = action.payload;
-        }
+        },
+        setLoadingImages: (state, action) => {
+            state.loadingImages = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchProduct.fulfilled, (state, action) => {
@@ -42,6 +46,13 @@ export const productSlice = createSlice({
                 imageUrl: action.payload.mainImageUrl,
                 index: 0,
             };
+            state.loadingImages = Array(action.payload.productColorImages[0].imageURLs.length + 1).fill(false);
+        });
+        builder.addCase(fetchProduct.pending, (state) => {
+            state.loadingImages = [];
+        });
+        builder.addCase(fetchProduct.rejected, (state) => {
+            state.loadingImages = [];
         });
     }
 });
@@ -50,6 +61,8 @@ export const {
     setSelectedImage,
     setCurrentColorSize,
     setProductColorImages,
+    setLoadingImages,
+    resetAll,
 } = productSlice.actions;
 export { fetchProduct };
 

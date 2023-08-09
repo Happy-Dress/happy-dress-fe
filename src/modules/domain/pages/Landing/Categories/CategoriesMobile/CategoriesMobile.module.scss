@@ -66,13 +66,19 @@
       }
 
       &_swipeable{
+        overflow-x: hidden;
+        overflow-y: hidden;
         display: flex;
+        justify-content: center;
+        width: 100vw;
       }
 
       &_active {
         opacity: 1;
         transition-duration: 0.5s;
-        width: 264px;
+        width: 90%;
+        overflow-x: hidden;
+        overflow-y: hidden;
         div {
           display: flex;
           flex-direction: column;
@@ -81,7 +87,7 @@
       }
 
       &_mainImage {
-        width: 264px;
+        width: 100%;
       }
 
       &_description {

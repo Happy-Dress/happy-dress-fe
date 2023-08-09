@@ -66,7 +66,6 @@ const ProductCard = (props) => {
             className={classNames(s.ProductCard, className, {
                 [s.active]: isSelected,
             })}
-            onClick={handleSelect}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onTouchStart={handleTouchStart}

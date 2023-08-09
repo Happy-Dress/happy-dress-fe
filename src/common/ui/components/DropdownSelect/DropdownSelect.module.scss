@@ -15,6 +15,13 @@
     width: 100%;
     margin: 0;
     background-color: $white;
+    display: flex;
+    flex: 1 0 auto;
+
+    &Small {
+      font-size: $font-size-normal-13;
+      line-height: 15px;
+    }
   }
 
   &Placeholder {
@@ -26,12 +33,24 @@
     align-items: center;
     margin: 0;
     transition: all $animation-duration;
+    min-height: 100%;
+    flex-grow: 1;
+    width: 100%;
 
-    & svg {
-      width: 12px;
-      height: 6px;
+    &Small {
+      padding: 5px !important;
+    }
+
+    &Icon {
+      width: 14px;
+      height: 8px;
+      min-width: 14px;
       margin-right: 26px;
       transition: transform $animation-duration;
+
+      &Small {
+        margin-right: 5px;
+      }
 
       &.active {
         transform: scaleY(-1);
@@ -60,6 +79,16 @@
       background-color: $filters-gray;
     }
 
+    &Small {
+      p {
+        font-size: $font-size-normal-13;
+      }
+
+      label {
+        padding: 14px 8px !important;
+      }
+    }
+
     &Mark {
       height: 24px;
       width: 24px;
@@ -72,7 +101,6 @@
     }
 
     & p {
-      overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
     }
@@ -106,12 +134,18 @@
     box-shadow: $shadow-black;
     position: absolute;
     top: 100%;
-    width: 100%;
+    min-width: 100%;
     overflow-y: auto;
+    overflow-x: auto;
     transition: height $animation-duration;
     background-color: $white;
     display: flex;
     flex-direction: column;
     max-height: 260px;
+
+    &::-webkit-scrollbar {
+      height: 12px;
+    }
+
   }
 }
