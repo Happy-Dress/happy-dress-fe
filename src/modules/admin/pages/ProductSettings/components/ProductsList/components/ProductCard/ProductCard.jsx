@@ -55,16 +55,6 @@ const ProductCard = (props) => {
         ).values()
     );
 
-    const uniqueColors = (arr) => {
-        return arr.reduce((result, current) => {
-            const color = current.firstColor;
-            if (!result.find((item) => item.firstColor === color)) {
-                result.push(current);
-            }
-            return result;
-        }, []);
-    };
-
     const handleTouchStart = () => {
         setTimerId(setTimeout(toggleSelect, 1000));
     };
