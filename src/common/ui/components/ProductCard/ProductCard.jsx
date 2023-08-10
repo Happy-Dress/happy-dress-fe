@@ -19,8 +19,20 @@ const ProductCard = (props) => {
 
     const navigate = useNavigate();
 
-    const sizes = Array.from(new Set([...product.productColorSizes.map(colorSize => colorSize.size.sizeValue)]));
-    const unqiqueColorNames = Array.from(new Set([...product.productColorSizes.map(colorSize => colorSize.color.name)]));
+    const sizes = Array.from(
+        new Set([
+            ...product.productColorSizes.map(
+                (colorSize) => colorSize.size.sizeValue
+            ),
+        ])
+    );
+    const colors = Array.from(
+        new Map(
+            product.productColorSizes
+                .map((colorSize) => colorSize.color)
+                .map((obj) => [obj.id, obj])
+        ).values()
+    );
 
     const handleOpenClick = () => {
         window.scrollTo({ top: 0 });
@@ -32,28 +44,29 @@ const ProductCard = (props) => {
             className={classNames(s.ProductCard, className)}
             onClick={handleOpenClick}
         >
-            <img src={image} alt="dress preview"/>
+            <img src={image} alt="dress preview" />
             <div className={s.description}>
                 <h3>{product.name}</h3>
                 <div className={s.options}>
                     <div className={classNames(s.sizes, s.optionItem)}>
                         <p>{SIZE}</p>
                         <div className={s.items}>
-                            {
-                                sizes.map((item, key) => {
-                                    return <span key={key}>{item}</span>;
-                                })
-                            }
+                            {sizes.map((item, key) => {
+                                return <span key={key}>{item}</span>;
+                            })}
                         </div>
                     </div>
                     <div className={classNames(s.colors, s.optionItem)}>
                         <p>{COLOR}</p>
                         <div className={s.items}>
-                            {
-                                unqiqueColorNames.map((color, key) => {
-                                    return <span key={key} style={{ backgroundColor:  product.productColorSizes.find(item => item.color.name === color).color.firstColor }}/>;
-                                })
-                            }
+                            {colors.map((item, key) => {
+                                return (
+                                    <span
+                                        key={key}
+                                        style={{ backgroundColor: item.firstColor }}
+                                    />
+                                );
+                            })}
                         </div>
                     </div>
                 </div>

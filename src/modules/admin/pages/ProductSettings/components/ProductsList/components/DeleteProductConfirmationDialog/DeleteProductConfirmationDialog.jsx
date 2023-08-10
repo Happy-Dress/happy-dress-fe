@@ -9,13 +9,12 @@ import s from './DeleteProductConfirmationDialog.module.scss';
 import { DELETE_PRODUCT_CONFIRMATION_DIALOG } from './DeleteProductConfirmationDialog.dictionary';
 
 const DeleteProductConfirmationDialog = ({ onClose, onSubmit }) => {
-    const { TITLE, MESSAGE_BODY, MESSAGE_HEADER, CANCEL_BUTTON, SUBMIT_BUTTON } = DELETE_PRODUCT_CONFIRMATION_DIALOG;
+    const { TITLE, MESSAGE_BODY, CANCEL_BUTTON, SUBMIT_BUTTON } = DELETE_PRODUCT_CONFIRMATION_DIALOG;
     return (
         <Modal size='sm'>
             <ModalHeader title={TITLE} onClose={onClose} data-testid='confirm-delete'/>
             <ModalContent>
                 <div className={s.LeaveConfirmationDialog_message}>
-                    <span >{MESSAGE_HEADER}</span>
                     <span >{MESSAGE_BODY}</span>
                 </div>
 
