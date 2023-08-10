@@ -15,11 +15,12 @@ import getCatalogueItem from '../../../../common/api/catalogItem/getCatalogItem'
 import { fetchCatalogueSettings } from '../../../../common/ui/store/slices/catalogueSettingsSlice';
 import { useToasters } from '../../../../common/ui/contexts/ToastersContext';
 import { useDeviceTypeContext } from '../../../../common/ui/contexts/DeviceType';
-import ProductsCardsImage from './components/ProductsCardsImage';
+import ProductsCardImage from './components/ProductsCardImage';
 import updateCatalogueItem from '../../../../common/api/catalogItem/updateCatalogItem';
-import { useMainImageUrl } from './hooks/useMainImageUrl';
+import { useProductImages } from './hooks/useProductImages';
 import ProductsCardColors from './components/ProductsCardColors';
 import { fetchProduct } from '../../../../common/ui/store/slices/productSlice';
+import ProductsCardGallery from './components/ProductsCardGallery';
 
 
 const {
@@ -33,8 +34,10 @@ const {
     UNKNOWN_ERROR,
     NOT_CHOSEN,
     PRODUCT_SAVED,
+    EMPTY_COLOR_OBJECT,
+    EMPTY_SIZE_OBJECT,
 } = PRODUCT_CARD_DICTIONARY;
-const { NAME, MATERIAL, CATEGORY, MODEL, DESCRIPTION, MAIN_IMAGE_URL, MAIN_IMAGE_FILE } = FIELDS;
+const { NAME, MATERIAL, CATEGORY, MODEL, DESCRIPTION, MAIN_IMAGE_URL, MAIN_IMAGE_FILE, PRODUCT_COLOR_IMAGES } = FIELDS;
 
 const getSelectValues = (values) => {
     return values.map((item) => ({ ...item, value: item.id, label: item.name }));
@@ -47,7 +50,7 @@ export const ProductsCard = () => {
     const { isMobile } = useDeviceTypeContext();
     const navigate = useNavigate();
     const { catalogueSettings } = useDetailedSearch();
-    const { mainImageUrl, setMainImageUrl, isFetching, handleSelectImg } = useMainImageUrl();
+    const { mainImageUrl, setMainImageUrl, isFetching, handleMainImg } = useProductImages();
 
     const [productName, setProductName] = useState(NEW_PRODUCT);
 
@@ -57,19 +60,33 @@ export const ProductsCard = () => {
         [MODEL.NAME]: '',
         [MATERIAL.NAME]: [],
         [MAIN_IMAGE_URL.NAME]: null,
+        [PRODUCT_COLOR_IMAGES.NAME]: [],
     });
 
     const [product, setProduct] = useState(defaultValues);
     const [productColorSizes, setProductColorSizes] = useState(product.productColorSizes);
-
+    const [productColorImages, setProductColorImages] = useState(product.productColorImages);
     const checkIsAllColorsSelected = () => {
-        return productColorSizes.some((item) => item.color.id === -1000);
+        return productColorSizes.every((item) => item.color.id !== EMPTY_COLOR_OBJECT.id);
+    };
+
+    const checkIsAllColorsAreAvailable = () => {
+        return productColorSizes.every((item) => item.size.id !== EMPTY_SIZE_OBJECT.id);
+    };
+
+    const checkIsAllColorsWithPictures = () => {
+        return productColorImages.every((item) => item.imageURLs.length > 0);
     };
 
     const onSubmit = async (data) => {
-        if (checkIsAllColorsSelected()){
+        if (!checkIsAllColorsSelected()){
             showToasterError('Все цвета должны быть выбраны');
+        } else if (!checkIsAllColorsAreAvailable()){
+            showToasterError('Каждый цвет должен иметь хотя бы один размер. Иначе удалите цвет.');
+        } else if (!checkIsAllColorsWithPictures()) {
+            showToasterError('Все цвета должны иметь хотя бы одно фото.');
         } else {
+
             const dataToSave = {
                 id,
                 name: data.dressName,
@@ -78,7 +95,7 @@ export const ProductsCard = () => {
                 categoryId: Number(data.category),
                 modelId: Number(data.model),
                 materialIds: data.materials.map((m) => Number(m)),
-                productColorImages: product.productColorImages.map((i) => ({
+                productColorImages: productColorImages.map((i) => ({
                     colorId: i.color.id,
                     imageURLs: i.imageURLs
                 })),
@@ -119,6 +136,7 @@ export const ProductsCard = () => {
                     setProduct(res);
                     setMainImageUrl(res.mainImageUrl);
                     setProductColorSizes(res.productColorSizes);
+                    setProductColorImages(res.productColorImages);
                     const formData = {
                         [NAME.NAME]: res.name ? res.name : '',
                         [CATEGORY.NAME]: res.category ? res.category.id.toString() : '',
@@ -138,6 +156,22 @@ export const ProductsCard = () => {
         fetchData();
     }, []);
 
+    useEffect(() => {
+        const newProductColorImages = [...productColorImages];
+        productColorSizes?.forEach((colorSize) => {
+            if (!productColorImages.some((item) => item.color.id === colorSize.color.id)) {
+                newProductColorImages.push({ color: colorSize.color, imageURLs: [] });
+            }
+        });     
+        productColorImages?.forEach((colorImage) => {
+            if (!productColorSizes.some((item) => item.color.id === colorImage.color.id)){
+                const indexToRemove = productColorImages.findIndex((item) => item.color.id === colorImage.color.id);
+                newProductColorImages.splice(indexToRemove, 1);
+            }
+        });
+        setProductColorImages(newProductColorImages);
+    }, [productColorSizes]);
+
     const handleDeleteImage = () => {
         setMainImageUrl('');
     };
@@ -155,21 +189,21 @@ export const ProductsCard = () => {
             <form className={s.productCard_form} onSubmit={handleSubmit(onSubmit)}>
                 <div className={s.productCard_fields_section}>
                     <label htmlFor={MAIN_IMAGE_FILE.NAME}>
-                        <ProductsCardsImage
+                        <ProductsCardImage
                             imageUrl={mainImageUrl}
                             alt={productName}
                             onDelete={handleDeleteImage}
                             isLoaded={!isFetching}
                         />
+                        {!mainImageUrl &&
+                            <input
+                                type="file"
+                                accept="image/*"
+                                id={MAIN_IMAGE_FILE.NAME}
+                                {...register(MAIN_IMAGE_FILE.NAME, { onChange: handleMainImg })}
+                            />
+                        }
                     </label>
-                    {!mainImageUrl &&
-                        <input
-                            type="file"
-                            accept="image/*"
-                            id={MAIN_IMAGE_FILE.NAME}
-                            {...register(MAIN_IMAGE_FILE.NAME, { onChange: handleSelectImg })}
-                        />
-                    }
                     <div className={s.productCard_fields}>
                         <div className={s.productCard_field}>
                             <label className={s.productCard_field_label} htmlFor={NAME.ID}>{NAME.LABEL}</label>
@@ -260,6 +294,10 @@ export const ProductsCard = () => {
                         {errors[DESCRIPTION.NAME] && DESCRIPTION.ERROR_MESSAGE}
                     </span>
                 </div>
+                <ProductsCardGallery
+                    productColorImages={productColorImages}
+                    setProductColorImages={setProductColorImages}
+                />
                 <div className={s.productCard_footer}>
                     <ButtonDefault
                         text={CANCEL}

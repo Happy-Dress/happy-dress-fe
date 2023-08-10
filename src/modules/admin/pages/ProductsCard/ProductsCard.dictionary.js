@@ -51,6 +51,9 @@ export const PRODUCT_CARD_DICTIONARY = {
         MAIN_IMAGE_FILE: {
             NAME: 'mainImageFile',
         },
+        PRODUCT_COLOR_IMAGES: {
+            NAME: 'productColorImages',
+        }
     },
     ERROR: 'Невозможно найти товар с id:',
     UNKNOWN_ERROR: 'Ошибка',
@@ -59,11 +62,20 @@ export const PRODUCT_CARD_DICTIONARY = {
     PRODUCT_SAVED: 'Продукт успешно сохранен',
     SIZE_TEXT: 'Размер',
     COLOR_TEXT: 'Цвет',
+    GALLERY_TEXT: 'Фотогалерея',
+    EMPTY_GALLERY_TEXT: 'Изображения отсутствуют',
     EMPTY_COLOR_OBJECT: {
         id: -1000,
         name: 'Не выбрано',
         firstColor: '',
         orderNumber: -1000
+    },
+    EMPTY_SIZE_OBJECT: {
+        id: -1000,
+        sizeValue: -1000,
+    },
+    EMPTY_IMAGE_URL_OBJECT: {
+        imageUrl: '',
     },
     COLOR_PROPTYPES: PropTypes.shape({
         id: PropTypes.number.isRequired,

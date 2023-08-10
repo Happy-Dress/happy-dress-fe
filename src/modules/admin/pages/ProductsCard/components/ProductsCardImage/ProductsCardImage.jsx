@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import s from './ProductsCardsImage.module.scss';
+import s from './ProductsCardImage.module.scss';
 import { ReactComponent as AddIcon } from '../../../../../../common/assets/images/AddIconNormal.svg';
 import { ReactComponent as DeleteIcon } from '../../../../../../common/assets/images/Trash.svg';
 import ImageSkeleton from '../../../../../../common/ui/components/Image/ImageSkeleton';
 
-const ProductsCardsImage = ({ imageUrl, alt, onAdd, onDelete, isLoaded }) => {
+const ProductsCardImage = ({ imageUrl, alt, onAdd, onDelete, isLoaded }) => {
     const [isLoading, setIsLoading] = useState(true);
     
     const handleAddClick = () => {
@@ -18,28 +18,30 @@ const ProductsCardsImage = ({ imageUrl, alt, onAdd, onDelete, isLoaded }) => {
     };
 
     return (
-        <div className={s.pciContent}>
-            {isLoading && imageUrl && <ImageSkeleton width={'206px'} height={'308px'}/>}
+        <div className={s.pci_content}>
+            {isLoading && imageUrl && <ImageSkeleton width={'209px'} height={'276px'}/>}
             {!isLoaded &&
-            <div className={s.pciLoader} data-testid={'pciLoader'}/>
+            <div className={s.pci_loader} data-testid={'pciLoader'}/>
             }
             {!imageUrl && isLoaded &&
-            <AddIcon
-                className={s.pciIconAdd}
-                onClick={handleAddClick}
-                data-testid={'addIcon'}
-            />
+                <div
+                    className={s.pci_iconAdd}
+                    onClick={handleAddClick}
+                    data-testid={'addIcon'}
+                >
+                    <AddIcon/>
+                </div>
             }
             <div hidden={isLoading}>
                 {imageUrl && isLoaded &&
-            <div className={s.pciContainer}>
+            <div className={s.pci_container}>
                 <DeleteIcon
-                    className={s.pciIconDelete}
+                    className={s.pci_iconDelete}
                     onClick={handleDeleteClick}
                     data-testid={'deleteIcon'}
                 />
                 <img
-                    className={s.pciImage}
+                    className={s.pci_image}
                     src={imageUrl}
                     alt={alt}
                     onLoad={() => setIsLoading(false)}
@@ -51,7 +53,7 @@ const ProductsCardsImage = ({ imageUrl, alt, onAdd, onDelete, isLoaded }) => {
     );
 };
 
-ProductsCardsImage.propTypes = {
+ProductsCardImage.propTypes = {
     imageUrl: PropTypes.string,
     alt: PropTypes.string,
     onAdd: PropTypes.func,
@@ -59,4 +61,4 @@ ProductsCardsImage.propTypes = {
     isLoaded: PropTypes.bool,
 };
 
-export default ProductsCardsImage;
+export default ProductsCardImage;
