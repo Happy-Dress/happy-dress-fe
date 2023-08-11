@@ -42,7 +42,9 @@ const ProductCard = (props) => {
 
     const sizes = Array.from(
         new Set([
-            ...product.productColorSizes.map((colorSize) => colorSize.size.sizeValue),
+            ...product.productColorSizes.map(
+                (colorSize) => colorSize.size.sizeValue
+            ),
         ])
     );
     const colors = Array.from(
