@@ -46,18 +46,12 @@ const ProductCard = (props) => {
         ])
     );
     const colors = Array.from(
-        new Set([...product.productColorSizes.map((colorSize) => colorSize.color)])
+        new Map(
+            product.productColorSizes
+                .map((colorSize) => colorSize.color)
+                .map((obj) => [obj.id, obj])
+        ).values()
     );
-
-    const uniqueColors = (arr) => {
-        return arr.reduce((result, current) => {
-            const color = current.firstColor;
-            if (!result.find((item) => item.firstColor === color)) {
-                result.push(current);
-            }
-            return result;
-        }, []);
-    };
 
     const handleTouchStart = () => {
         setTimerId(setTimeout(toggleSelect, 1000));
@@ -115,7 +109,7 @@ const ProductCard = (props) => {
                     <div className={classNames(s.colors, s.optionItem)}>
                         <p>{COLOR}</p>
                         <div className={s.items}>
-                            {uniqueColors(colors).map((item) => {
+                            {colors.map((item) => {
                                 return (
                                     <span
                                         key={item.id}
