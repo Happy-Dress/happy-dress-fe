@@ -8,13 +8,38 @@ $lg-size-1023: #{$lg-size - 1px};
   flex-direction: column;
   gap: 10px;
 
-  @media screen and (max-width: $lg-size-1023) {
-    flex-direction: row;
-    max-width: 100%;
-    overflow-x: auto;
+  &_tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 5px;
+
+    @media screen and (max-width: $lg-size-1023) {
+      flex-direction: row;
+      max-width: 100%;
+      overflow-x: auto;
+    }
 
     &::-webkit-scrollbar {
-      width: 20px;
+      height: 7px;
     }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+    }
+
+    &_colors {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      @media screen and (max-width: $lg-size-1023) {
+        flex-direction: row-reverse;
+      }
+    }
+  }
+
+  @media screen and (max-width: $lg-size-1023) {
+    flex-direction: row;
   }
 }

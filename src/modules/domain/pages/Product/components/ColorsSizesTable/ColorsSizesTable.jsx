@@ -2,6 +2,7 @@ import React from 'react';
 import s from './ColorsSizesTable.module.scss';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import ColorCircle from '../../../../../../common/ui/components/ColorCircle';
 
 const ColorsSizesTable = (props) => {
     const {
@@ -12,14 +13,6 @@ const ColorsSizesTable = (props) => {
         handleSizeClick,
     } = props;
 
-    const getColorBackgroundStyle = (colorName) => {
-        const color = product.productColorSizes.find(item => item.color.name === colorName).color;
-        if (color.secondColor) {
-            return `linear-gradient( -45deg, ${color.firstColor}, ${color.firstColor} 49%, white 49%, white 51%, ${color.secondColor} 51% )`;
-        }
-        return color.firstColor;
-    };
-
     return (
         <div className={s.Table}>
             <table>
@@ -28,13 +21,15 @@ const ColorsSizesTable = (props) => {
                         <tr
                             key={key}
                             className={
-                                color === currentColorSize.color.name ? s.Table_current_column : ''
+                                color.name === currentColorSize.color.name ? s.Table_current_column : ''
                             }
                         >
                             <td className={s.Table_color_wrapper}>
-                                <div
-                                    className={s.Table_color}
-                                    style={{ background: getColorBackgroundStyle(color) }}
+                                <ColorCircle
+                                    firstColor={color.firstColor}
+                                    secondColor={color?.secondColor}
+                                    width={'20px'}
+                                    height={'20px'}
                                 />
                             </td>
                             {sizes.map((size, key) => (
@@ -45,13 +40,13 @@ const ColorsSizesTable = (props) => {
                                         className={classNames(
                                             s.Table_item,
                                             product.productColorSizes
-                                                .filter(item => item.color.name === color)
+                                                .filter(item => item.color.name === color.name)
                                                 .some(item => item.size.sizeValue === size) ? s.Table_item_available : '',
-                                            (size === currentColorSize?.size && color === currentColorSize?.color.name)
+                                            (size === currentColorSize?.size && color.name === currentColorSize?.color.name)
                                                 ? s.Table_item_current : '',
                                         )}
-                                        data-testid={`test-${color}-${size}-item`}
-                                        onClick={() => handleSizeClick(color, size)}
+                                        data-testid={`test-${color.name}-${size}-item`}
+                                        onClick={() => handleSizeClick(color.name, size)}
                                     >
                                         {size}
                                     </div>

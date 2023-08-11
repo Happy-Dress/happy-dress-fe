@@ -3,15 +3,17 @@
 @import "../../styles/media-sizes";
 
 .ProductCard {
+  width: 337px;
+  height: 595px;
   padding: 18px;
   background-color: #FFFFFF;
   border: 1px $gray solid;
   box-shadow: $shadow-main;
   cursor: pointer;
-  min-width: 320px;
   display: flex;
   flex-direction: column;
   position: relative;
+
 
   &:hover {
     h3 {
@@ -19,12 +21,19 @@
     }
   }
 
-  img {
+  &_mainImage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 400px;
-    align-self: center;
 
-    &.hovered {
-      opacity: 0.7;
+    img {
+      width: 100%;
+      align-self: center;
+
+      &.hovered {
+        opacity: 0.7;
+      }
     }
   }
 

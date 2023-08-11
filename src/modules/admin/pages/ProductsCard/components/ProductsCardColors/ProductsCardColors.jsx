@@ -9,6 +9,7 @@ import { PRODUCT_CARD_DICTIONARY } from '../../ProductsCard.dictionary';
 
 const {
     EMPTY_COLOR_OBJECT,
+    EMPTY_SIZE_OBJECT,
     COLOR_PROPTYPES,
     SIZE_PROPTYPES,
 } = PRODUCT_CARD_DICTIONARY;
@@ -28,23 +29,29 @@ const ProductsCardColors = ({ productColorSizes, allColors, allSizes, setProduct
                 updatedColorsWithSizes.push({ color, sizes: [] });
             }
             const indexToReplace = updatedColorsWithSizes.findIndex((item) => item.color.name === color.name);
-            updatedColorsWithSizes[indexToReplace] = { color, sizes: [...updatedColorsWithSizes[indexToReplace].sizes, size] };
+            updatedColorsWithSizes[indexToReplace] = {
+                color,
+                sizes: [...updatedColorsWithSizes[indexToReplace].sizes, size]
+            };
         });
         setColorsWithSizes(updatedColorsWithSizes);
     }, [productColorSizes]);
 
     useEffect(() => {
-        const newProductColorSizes = colorsWithSizes.flatMap((item) => item.sizes.map((size) => ({
-            color: item.color,
-            size: size,
-        })));
+        const newProductColorSizes = colorsWithSizes.flatMap(item => {
+            if (item.sizes.length === 0) {
+                return [{ color: item.color, size: EMPTY_SIZE_OBJECT }];
+            } else {
+                return item.sizes.map(size => ({ color: item.color, size: size }));
+            }
+        });
         setProductColorSizes(newProductColorSizes);
     }, [colorsWithSizes]);
-    
+
     const handleAddTab = () => {
         const productColors = colorsWithSizes.map((item) => item.color);
-        const remainColors = allColors.filter(item => !productColors.some(color => color.id === item.id ));
-        if (checkIsColorUnselected()){
+        const remainColors = allColors.filter(item => !productColors.some(color => color.id === item.id));
+        if (checkIsColorUnselected()) {
             showToasterError('Все цвета должны быть выбраны');
         } else if (remainColors.length <= 0) {
             showToasterError('Нет больше цветов для добавления');
@@ -59,7 +66,10 @@ const ProductsCardColors = ({ productColorSizes, allColors, allSizes, setProduct
         const newColor = allColors.find(item => item.name === newColorName);
         const updatedColorsWithSizes = [...colorsWithSizes];
         const indexToReplace = updatedColorsWithSizes.findIndex((item) => item.color.name === currentColor.name);
-        updatedColorsWithSizes[indexToReplace] = { color: newColor, sizes: [...updatedColorsWithSizes[indexToReplace].sizes] };
+        updatedColorsWithSizes[indexToReplace] = {
+            color: newColor,
+            sizes: [...updatedColorsWithSizes[indexToReplace].sizes]
+        };
         setColorsWithSizes(updatedColorsWithSizes);
     };
 
@@ -89,7 +99,7 @@ const ProductsCardColors = ({ productColorSizes, allColors, allSizes, setProduct
     };
 
     const getRemainColorsWithCurrent = (productColors, allColors, currentColor) => {
-        return allColors.filter(item => item.id === currentColor.id || !productColors.some(color => color.id === item.id ));
+        return allColors.filter(item => item.id === currentColor.id || !productColors.some(color => color.id === item.id));
     };
 
     const checkIsColorUnselected = () => {
@@ -100,21 +110,25 @@ const ProductsCardColors = ({ productColorSizes, allColors, allSizes, setProduct
     return (
         <div className={s.ProductCardColors}>
             <ProductCardColorsHeader sizes={allSizes}/>
-            <ProductCardColorsAdd sizes={allSizes} handleAddTab={handleAddTab}/>
-            {colorsWithSizes.map(({ color, sizes }, idx) => (
-                <ProductCardColorsTab
-                    key={color.id}
-                    currentColor={color}
-                    productColors={colorsWithSizes.map((item) => item.color)}
-                    productSizes={sizes}
-                    allSizes={allSizes}
-                    optionsColors={getRemainColorsWithCurrent(colorsWithSizes.map((item) => item.color), allColors, color)}
-                    handleDelete={() => handleDelete(color)}
-                    handleChangeColor={(e) => handleChangeColor(color, e.target.value)}
-                    handleChangeSize={handleChangeSize}
-                    idx={`${color.id}_${idx}}`}
-                />
-            ))}
+            <div className={s.ProductCardColors_tabs}>
+                <ProductCardColorsAdd sizes={allSizes} handleAddTab={handleAddTab}/>
+                <div className={s.ProductCardColors_tabs_colors}>
+                    {colorsWithSizes.map(({ color, sizes }, idx) => (
+                        <ProductCardColorsTab
+                            key={color.id}
+                            currentColor={color}
+                            productColors={colorsWithSizes.map((item) => item.color)}
+                            productSizes={sizes}
+                            allSizes={allSizes}
+                            optionsColors={getRemainColorsWithCurrent(colorsWithSizes.map((item) => item.color), allColors, color)}
+                            handleDelete={() => handleDelete(color)}
+                            handleChangeColor={(e) => handleChangeColor(color, e.target.value)}
+                            handleChangeSize={handleChangeSize}
+                            idx={`${color.id}_${idx}}`}
+                        />
+                    ))}
+                </div>
+            </div>
         </div>
     );
 };

@@ -1,15 +1,21 @@
 import React from 'react';
 import s from './ProductCard.module.scss';
-import image from '../../../assets/images/photo_4_3.png';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { PRODUCT_CARD_DICTIONARY } from './ProductCard.dictionary';
 import { useNavigate } from 'react-router-dom';
+import ColorCircle from '../ColorCircle';
 
-const { SIZE, COLOR } = PRODUCT_CARD_DICTIONARY;
+const {
+    SIZE,
+    COLOR
+} = PRODUCT_CARD_DICTIONARY;
 
 const ProductCard = (props) => {
-    const { product, className } = props;
+    const {
+        product,
+        className
+    } = props;
 
     const navigate = useNavigate();
 
@@ -27,7 +33,7 @@ const ProductCard = (props) => {
                 .map((obj) => [obj.id, obj])
         ).values()
     );
-  
+
     const handleOpenClick = () => {
         window.scrollTo({ top: 0 });
         navigate(`${product.id}`);
@@ -38,7 +44,9 @@ const ProductCard = (props) => {
             className={classNames(s.ProductCard, className)}
             onClick={handleOpenClick}
         >
-            <img src={image} alt="dress preview" />
+            <div className={s.ProductCard_mainImage}>
+                <img src={product.mainImageUrl} alt="dress preview"/>
+            </div>
             <div className={s.description}>
                 <h3>{product.name}</h3>
                 <div className={s.options}>
@@ -53,14 +61,19 @@ const ProductCard = (props) => {
                     <div className={classNames(s.colors, s.optionItem)}>
                         <p>{COLOR}</p>
                         <div className={s.items}>
-                            {colors.map((item, key) => {
-                                return (
-                                    <span
-                                        key={key}
-                                        style={{ backgroundColor: item.firstColor }}
-                                    />
-                                );
-                            })}
+                            {
+                                colors.map((color) => {
+                                    return (
+                                        <ColorCircle
+                                            key={color.id}
+                                            firstColor={color.firstColor}
+                                            secondColor={color?.secondColor}
+                                            width={'20px'}
+                                            height={'20px'}
+                                        />
+                                    );
+                                })
+                            }
                         </div>
                     </div>
                 </div>
