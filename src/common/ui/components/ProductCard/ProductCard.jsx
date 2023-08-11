@@ -6,16 +6,10 @@ import PropTypes from 'prop-types';
 import { PRODUCT_CARD_DICTIONARY } from './ProductCard.dictionary';
 import { useNavigate } from 'react-router-dom';
 
-const {
-    SIZE,
-    COLOR
-} = PRODUCT_CARD_DICTIONARY;
+const { SIZE, COLOR } = PRODUCT_CARD_DICTIONARY;
 
 const ProductCard = (props) => {
-    const {
-        product,
-        className
-    } = props;
+    const { product, className } = props;
 
     const navigate = useNavigate();
 
@@ -33,7 +27,7 @@ const ProductCard = (props) => {
                 .map((obj) => [obj.id, obj])
         ).values()
     );
-
+  
     const handleOpenClick = () => {
         window.scrollTo({ top: 0 });
         navigate(`${product.id}`);
@@ -77,7 +71,7 @@ const ProductCard = (props) => {
 
 ProductCard.propTypes = {
     product: PropTypes.object.isRequired,
-    className: PropTypes.string
+    className: PropTypes.string,
 };
 
 export default ProductCard;
