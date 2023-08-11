@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { CatalogSettingsContext } from '../CatalogSettingsContext';
-import { retrieveCatalogueSettings } from '../../../../../../../common/api';
+import { retrieveCatalogSettings } from '../../../../../../../common/api';
 import { useToasters } from '../../../../../../../common/ui/contexts/ToastersContext';
 import updateSettings from '../../../../../api/updateSettings';
 import { CATALOG_SETTINGS_DICTIONARY } from '../../../CatalogSettings.dictionary';
@@ -24,7 +24,7 @@ const CatalogSettingsProvider = (props) => {
     });
 
     const restoreSettings = (afterRestore) => {
-        retrieveCatalogueSettings().then((settings) => {
+        retrieveCatalogSettings().then((settings) => {
             setInitialCatalogSettings(settings);
             setCatalogSettings(settings);
             afterRestore();
@@ -32,7 +32,7 @@ const CatalogSettingsProvider = (props) => {
     };
 
     useEffect(() => {
-        retrieveCatalogueSettings().then((settings) => {
+        retrieveCatalogSettings().then((settings) => {
             setInitialCatalogSettings(settings);
             setCatalogSettings(settings);
         });

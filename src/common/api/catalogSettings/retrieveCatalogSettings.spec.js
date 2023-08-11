@@ -1,4 +1,4 @@
-import retrieveCatalogueSettings from './retrieveCatalogueSettings';
+import retrieveCatalogSettings from './retrieveCatalogSettings';
 import mockAxios from 'jest-mock-axios';
 
 describe('retrieveCatalogueSettings', () => {
@@ -24,7 +24,7 @@ describe('retrieveCatalogueSettings', () => {
         };
 
         mockAxios.get.mockResolvedValueOnce(mockResponse);
-        const retrievedSettings = await retrieveCatalogueSettings();
+        const retrievedSettings = await retrieveCatalogSettings();
         expect(retrievedSettings).toBeTruthy();
     });
 

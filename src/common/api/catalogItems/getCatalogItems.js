@@ -3,7 +3,7 @@ import axios from 'axios';
 const ITEMS_LIMIT = 15;
 
 
-const getCatalogueItems = async (filters, page) => {
+const getCatalogItems = async (filters, page) => {
     const requestFilters = {
         categoryId: filters.category,
         modelIds: filters.models.length ? filters.models : null,
@@ -20,4 +20,4 @@ const getCatalogueItems = async (filters, page) => {
     return response.data;
 };
 
-export default getCatalogueItems;
+export default getCatalogItems;

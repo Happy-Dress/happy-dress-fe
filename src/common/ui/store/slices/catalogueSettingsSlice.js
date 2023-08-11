@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { retrieveCatalogueSettings } from '../../../api';
+import { retrieveCatalogSettings } from '../../../api';
 
 const initialState = {
     loading: false,
@@ -14,9 +14,9 @@ const initialState = {
 
 
 const fetchCatalogueSettings = createAsyncThunk(
-    'catalogueSettings/fetch',
+    'catalogSettings/fetch',
     async () =>{
-        return await retrieveCatalogueSettings();
+        return await retrieveCatalogSettings();
     }
 );
 
