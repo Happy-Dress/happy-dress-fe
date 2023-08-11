@@ -1,0 +1,51 @@
+@import "../../../../../common/ui/styles/colors";
+
+.ZoomableImage {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+
+  &_expanded {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+
+    img {
+      max-height: 90vh;
+      max-width: 90vw;
+      width: auto;
+    }
+  }
+
+  &_overlay {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  &_closeIcon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+
+    &:hover path{
+      fill: $gray;
+    }
+
+    path {
+      fill: $light-gray;
+    }
+  }
+}
