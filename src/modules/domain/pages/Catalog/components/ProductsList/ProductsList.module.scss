@@ -3,6 +3,7 @@
 .ProductsList{
   width: 100%;
   display: grid;
+  justify-items: center;
   grid-template-columns: repeat(3, 30%);
   grid-area: content;
   column-gap: 5%;
