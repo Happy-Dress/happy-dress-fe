@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import s from './ProductsCardImage.module.scss';
 import { ReactComponent as AddIcon } from '../../../../../../common/assets/images/AddIconNormal.svg';
 import { ReactComponent as DeleteIcon } from '../../../../../../common/assets/images/Trash.svg';
-import ImageSkeleton from '../../../../../../common/ui/components/Image/ImageSkeleton';
+import LoadingSkeleton from '../../../../../../common/ui/components/Image/LoadingSkeleton';
+import CachedImage from '../../../../../../common/ui/components/Image/CachedImage';
 
 const ProductsCardImage = ({ imageUrl, alt, onAdd, onDelete, isLoaded }) => {
     const [isLoading, setIsLoading] = useState(true);
@@ -19,7 +20,7 @@ const ProductsCardImage = ({ imageUrl, alt, onAdd, onDelete, isLoaded }) => {
 
     return (
         <div className={s.pci_content}>
-            {isLoading && imageUrl && <ImageSkeleton width={'209px'} height={'276px'}/>}
+            <LoadingSkeleton isLoading={isLoading} imageUrl={imageUrl} width={'209px'} height={'276px'}/>
             {!isLoaded &&
             <div className={s.pci_loader} data-testid={'pciLoader'}/>
             }
@@ -40,7 +41,7 @@ const ProductsCardImage = ({ imageUrl, alt, onAdd, onDelete, isLoaded }) => {
                     onClick={handleDeleteClick}
                     data-testid={'deleteIcon'}
                 />
-                <img
+                <CachedImage
                     className={s.pci_image}
                     src={imageUrl}
                     alt={alt}

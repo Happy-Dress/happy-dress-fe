@@ -17,6 +17,10 @@ const ProductsCardGallery = ({ productColorImages, setProductColorImages }) => {
 
     const { isFetching, handleGalleryImg, handleDeleteGalleryImg } = useProductImages(productColorImages, setProductColorImages);
 
+    const isRenderingAddCard = (colorImage) => {
+        return colorImage.imageURLs.length === 0 || colorImage.imageURLs[0] !== EMPTY_IMAGE_URL_OBJECT.imageUrl;
+    };
+
     return (
         <div className={s.ProductCardGallery}>
             <h3>{GALLERY_TEXT}</h3>
@@ -40,7 +44,7 @@ const ProductsCardGallery = ({ productColorImages, setProductColorImages }) => {
                                 onDelete={() => handleDeleteGalleryImg(colorImage.color, image)}
                             />
                         ))}
-                        {(colorImage.imageURLs.length === 0 || colorImage.imageURLs[0] !== EMPTY_IMAGE_URL_OBJECT.imageUrl) &&
+                        {isRenderingAddCard(colorImage) &&
                             <label htmlFor={FIELDS.PRODUCT_COLOR_IMAGES.NAME + colorImage.color.id}>
                                 <ProductsCardImage
                                     imageUrl={EMPTY_IMAGE_URL_OBJECT.imageUrl}

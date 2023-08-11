@@ -22,7 +22,7 @@ export const useProductImages = (productColorImages, setProductColorImages) => {
             }
         }
     };
-    
+
     const handleGalleryImg = async (color, e) => {
         const colorIndex = productColorImages.findIndex((item) => item.color.id === color.id);
         if (e && e.target.files[0]) {
@@ -43,24 +43,21 @@ export const useProductImages = (productColorImages, setProductColorImages) => {
         newColorsImages[colorIndex].imageURLs = newColorsImages[colorIndex].imageURLs.filter((item) => item !== imageUrl);
         setProductColorImages(newColorsImages);
     };
-    
+
     const uploadImage = async (file) => {
-        return await addImage(file)
-            .then((r) => {
-                if (r.uploadedImages.length) {
-                    showToasterSuccess(SUCCESS_MESSAGE);
-                }
-
-                if (r.failedImages.length) {
-                    showToasterError(r.failedImages[0].imageName + ' ' +
-                        r.failedImages[0].reason.toString());
-                }
-
-                return r;
-            })
-            .catch((e) => {
-                showToasterError(e.toString());
-            });
+        try {
+            const imageUploadResult = await addImage(file);
+            if (imageUploadResult.uploadedImages.length) {
+                showToasterSuccess(SUCCESS_MESSAGE);
+            }
+            if (imageUploadResult.failedImages.length) {
+                showToasterError(imageUploadResult.failedImages[0].imageName + ' ' +
+                    imageUploadResult.failedImages[0].reason.toString());
+            }
+            return imageUploadResult;
+        } catch (e) {
+            showToasterError(e.toString());
+        }
     };
 
     return { mainImageUrl, isFetching, setMainImageUrl, handleMainImg, handleGalleryImg, handleDeleteGalleryImg };

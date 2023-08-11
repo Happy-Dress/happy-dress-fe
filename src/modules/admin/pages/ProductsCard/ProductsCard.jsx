@@ -79,38 +79,41 @@ export const ProductsCard = () => {
     };
 
     const onSubmit = async (data) => {
-        if (!checkIsAllColorsSelected()){
+        if (!checkIsAllColorsSelected()) {
             showToasterError('Все цвета должны быть выбраны');
-        } else if (!checkIsAllColorsAreAvailable()){
+            return;
+        }
+        if (!checkIsAllColorsAreAvailable()) {
             showToasterError('Каждый цвет должен иметь хотя бы один размер. Иначе удалите цвет.');
-        } else if (!checkIsAllColorsWithPictures()) {
+            return;
+        }
+        if (!checkIsAllColorsWithPictures()) {
             showToasterError('Все цвета должны иметь хотя бы одно фото.');
-        } else {
+            return;
+        }
+        const dataToSave = {
+            id,
+            name: data.dressName,
+            description: data.description,
+            mainImageUrl,
+            categoryId: Number(data.category),
+            modelId: Number(data.model),
+            materialIds: data.materials.map((m) => Number(m)),
+            productColorImages: productColorImages.map((i) => ({
+                colorId: i.color.id,
+                imageURLs: i.imageURLs
+            })),
+            productColorSizes: productColorSizes.map((c) => ({ colorId: c.color.id, sizeId: c.size.id })),
+        };
 
-            const dataToSave = {
-                id,
-                name: data.dressName,
-                description: data.description,
-                mainImageUrl,
-                categoryId: Number(data.category),
-                modelId: Number(data.model),
-                materialIds: data.materials.map((m) => Number(m)),
-                productColorImages: productColorImages.map((i) => ({
-                    colorId: i.color.id,
-                    imageURLs: i.imageURLs
-                })),
-                productColorSizes: productColorSizes.map((c) => ({ colorId: c.color.id, sizeId: c.size.id })),
-            };
-
-            try {
-                const res = await updateCatalogueItem(dataToSave);
-                setProduct(res);
-                showToasterSuccess(PRODUCT_SAVED);
-            } catch (e) {
-                e
-                    ? showToasterError(e.toString())
-                    : showToasterError(UNKNOWN_ERROR);
-            }
+        try {
+            const res = await updateCatalogueItem(dataToSave);
+            setProduct(res);
+            showToasterSuccess(PRODUCT_SAVED);
+        } catch (e) {
+            e
+                ? showToasterError(e.toString())
+                : showToasterError(UNKNOWN_ERROR);
         }
     };
 
@@ -162,9 +165,9 @@ export const ProductsCard = () => {
             if (!productColorImages.some((item) => item.color.id === colorSize.color.id)) {
                 newProductColorImages.push({ color: colorSize.color, imageURLs: [] });
             }
-        });     
+        });
         productColorImages?.forEach((colorImage) => {
-            if (!productColorSizes.some((item) => item.color.id === colorImage.color.id)){
+            if (!productColorSizes.some((item) => item.color.id === colorImage.color.id)) {
                 const indexToRemove = productColorImages.findIndex((item) => item.color.id === colorImage.color.id);
                 newProductColorImages.splice(indexToRemove, 1);
             }
@@ -196,12 +199,12 @@ export const ProductsCard = () => {
                             isLoaded={!isFetching}
                         />
                         {!mainImageUrl &&
-                            <input
-                                type="file"
-                                accept="image/*"
-                                id={MAIN_IMAGE_FILE.NAME}
-                                {...register(MAIN_IMAGE_FILE.NAME, { onChange: handleMainImg })}
-                            />
+                        <input
+                            type="file"
+                            accept="image/*"
+                            id={MAIN_IMAGE_FILE.NAME}
+                            {...register(MAIN_IMAGE_FILE.NAME, { onChange: handleMainImg })}
+                        />
                         }
                     </label>
                     <div className={s.productCard_fields}>
@@ -311,4 +314,5 @@ export const ProductsCard = () => {
             </form>
         </div>
     );
-};
+}
+;
