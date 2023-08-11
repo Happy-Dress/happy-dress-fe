@@ -1,0 +1,15 @@
+.SearchBar {
+  display: flex;
+  align-items: center;
+  cursor: text;
+  background-color: #c4c4c4;
+  height: 72px;
+  &_searchIcon {
+    margin: 0 7px 0 21px;
+  }
+  input {
+    background-color: transparent;
+    width: 100%;
+    font-size: 28px;
+  }
+}

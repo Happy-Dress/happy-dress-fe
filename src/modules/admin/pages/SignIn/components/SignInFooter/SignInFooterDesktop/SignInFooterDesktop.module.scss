@@ -1,0 +1,17 @@
+@import '../../../../../../../common/ui/styles/colors';
+
+
+.FooterDesktop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 13vh;
+  border-top: 1px solid $black;
+
+  &_logo {
+    font-size: 64px;
+    color: $light-gray;
+    word-spacing: 10px;
+    letter-spacing: -0.17em;
+  }
+}

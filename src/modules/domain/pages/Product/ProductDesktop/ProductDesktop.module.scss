@@ -1,0 +1,166 @@
+@import "../../../../../common/ui/styles/colors";
+@import "../../../../../common/ui/styles/media-sizes";
+
+
+.Product_wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+.Breadcrumbs_wrapper {
+  margin-left: 35px;
+}
+
+.Product {
+  display: flex;
+  margin: 24px 60px 20px 60px;
+  gap: 121px;
+
+
+  &_carousel {
+    display: flex;
+    gap: 30px;
+    width: auto;
+    max-height: 80vh;
+
+    &_list {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 8px;
+      max-height: 80vh;
+      overflow-y: scroll;
+      overflow-x: hidden;
+
+      &::-webkit-scrollbar {
+        background-color: $white;
+        width: 5px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-repeat: no-repeat;
+        background-size: auto auto;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: white;
+      }
+
+      &_item {
+        margin-right: 2px;
+        img {
+          width: 100px;
+        }
+
+        &_current {
+          border: 2px solid $brown;
+        }
+      }
+    }
+
+    &_selected_item {
+      position: relative;
+      top: 0;
+      width: 30vw;
+
+      img {
+        width: 30vw;
+      }
+
+      &_up {
+        animation: move-up 0.5s ease forwards;
+      }
+
+      &_down {
+        animation: move-down 0.5s ease forwards;
+      }
+
+      @keyframes move-up {
+        0% {
+          top: 100px;
+        }
+        100% {
+          top: 0;
+        }
+      }
+
+      @keyframes move-down {
+        0% {
+          top: -100px;
+        }
+        100% {
+          top: 0;
+        }
+      }
+    }
+  }
+
+  &_description {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    &_item {
+      display: flex;
+      align-items: center;
+
+      p {
+        color: $gray
+      }
+    }
+
+    &_label {
+      min-width: 170px;
+    }
+
+    &_container {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      gap: 48px;
+
+    }
+
+    &_table {
+      display: flex;
+      width: auto;
+      overflow-x: auto;
+
+      &_labels {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      &_label {
+        display: flex;
+        height: 28px;
+        align-items: flex-end;
+      }
+
+      &_container {
+        display: flex;
+      }
+    }
+
+    &_size {
+      display: flex;
+      flex-direction: column;
+
+      h4 {
+        margin-left: 10px;
+        text-decoration: underline;
+        color: $brown;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+
+    }
+  }
+
+}

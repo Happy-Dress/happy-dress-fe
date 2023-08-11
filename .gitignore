@@ -128,3 +128,10 @@ yarn-debug.log*
 yarn-error.log*
 
 .idea
+
+.module.css
+.css.map
+
+
+.vscode/
+

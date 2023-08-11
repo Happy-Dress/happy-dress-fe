@@ -1,0 +1,24 @@
+@import "../../../../../../../../common/ui/styles/media-sizes";
+@import "../../../../../../../../common/ui/styles/font-sizes";
+
+.SearchBar {
+  display: flex;
+  align-items: center;
+  cursor: text;
+  background-color: #c4c4c4;
+  height: 100%;
+  &_searchIcon {
+    margin: 0 7px 0 21px;
+  }
+  input {
+    background-color: transparent;
+    font-size: 28px;
+    width: 100%;
+  }
+
+  @media screen and (max-width: $xl-size) {
+    input {
+      font-size: $font-size-xmedium-18;
+    }
+  }
+}

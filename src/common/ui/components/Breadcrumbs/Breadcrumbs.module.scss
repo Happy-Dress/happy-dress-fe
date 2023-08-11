@@ -1,0 +1,24 @@
+@import '../../../../common/ui/styles/colors';
+
+.breadcrumbs {
+  font-size: 14px;
+  margin: 25px 0 0 25px;
+  color: $light-gray;
+  display: flex;
+  flex-wrap: wrap;
+
+  span {
+    margin-left: 6px;
+    margin-right: 6px;
+  }
+
+  a {
+    color: $light-gray;
+    white-space: nowrap;
+  }
+
+  a:hover {
+    color: $gray;
+    text-decoration: underline $brown;
+  }
+}

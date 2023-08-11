@@ -1,0 +1,101 @@
+@import "../../../../../../common/ui/styles/font-sizes";
+@import "../../../../../../common/ui/styles/colors";
+
+.CategoriesDesktop {
+  padding: 90px 0;
+  .title {
+    text-align: center;
+    font-weight: 600;
+    font-size: $font-size-xlarge-36;
+    margin-bottom: 50px;
+  }
+
+  .slider {
+    display: flex;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+    overflow-y: hidden;
+    height: 600px;
+
+    &Wrapper {
+      display: flex;
+      position: relative;
+      height: 100%;
+      gap: 30px;
+      transition: left 0.3s ease;
+      margin: 0 100px 0 100px ;
+
+      .card {
+        cursor: pointer;
+        margin-bottom: 12px;
+        img {
+          border-radius: 10px;
+          transition: all 0.3s ease;
+          &.medium {
+            height: 350px;
+          }
+
+          &.small {
+            height: 250px;
+          }
+
+          &.main {
+            height: 500px;
+          }
+
+        }
+
+        h3 {
+          font-size: $font-size-xlarge-32;
+          font-weight: 400;
+          color: $black;
+          margin: 24px 0 12px;
+        }
+
+        span {
+          font-size: $font-size-xmedium-18;
+          font-weight: 400;
+          color: $gray;
+        }
+      }
+    }
+
+    &Btn {
+      background: $transparent-gray-gradient;
+      height: 100%;
+      position: absolute;
+      z-index: 1000;
+      width: 202px;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      cursor: pointer;
+      display: none;
+      border-radius: 10px;
+
+      &.active {
+        display: flex;
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+
+      &.left {
+        left: 0;
+        svg {
+          transform: rotate(-90deg);
+        }
+      }
+
+      &.right {
+        right: 0;
+        svg {
+          transform: rotate(90deg);
+        }
+      }
+    }
+  }
+}

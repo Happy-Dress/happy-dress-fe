@@ -1,0 +1,30 @@
+@import "../../../../../../common/ui/styles/colors";
+@import "../../../../../../common/ui/styles/media-sizes";
+
+.ProductCardAdd {
+  width: 337px;
+  height: 595px;
+  padding: 147px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: $shadow-black;
+  cursor: pointer;
+
+  @media all and (max-width: $lg-size) {
+    padding: 147px 0;
+  }
+
+  & svg {
+    max-width: 205px;
+    max-height: 205px;
+    width: 100%;
+    height: 100%;
+
+    @media all and (max-width: $lg-size) {
+      max-height: 66px;
+      max-width: 66px;
+    }
+  }
+
+}

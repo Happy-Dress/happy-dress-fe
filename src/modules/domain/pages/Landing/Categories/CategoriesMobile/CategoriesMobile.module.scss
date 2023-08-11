@@ -1,0 +1,99 @@
+@import '../../../../../../common/ui/styles/media-sizes';
+@import '../../../../../../common/ui/styles/font-sizes';
+@import '../../../../../../common/ui/styles/colors';
+
+.CategoriesMobile {
+  margin-top: 32px;
+  margin-bottom: 32px;
+  .title {
+    color: $black;
+    text-align: center;
+
+    h2 {
+      font-size: $font-size-xlarge-28;
+      font-weight: 400;
+    }
+  }
+
+  .slider {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow-x: hidden;
+    min-height: 500px;
+
+    &_dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 20px;
+    }
+
+    &_dot {
+      height: 15px;
+      width: 15px;
+      border-radius: 50%;
+      display: inline-block;
+      margin: 0 5px;
+      cursor: pointer;
+
+      &_active {
+        background-color: $brown;
+      }
+
+      &_disabled {
+        background-color: $gray;
+      }
+    }
+
+    &_card {
+
+      &_left {
+        transform: translateX(-100vw);
+      }
+
+      &_right{
+        transform: translateX(100vw);
+      }
+
+      &_moveRight{
+        transform: translateX(100vw);
+      }
+
+      &_moveLeft{
+        transform: translateX(-100vw);
+      }
+
+      &_swipeable{
+        overflow-x: hidden;
+        overflow-y: hidden;
+        display: flex;
+        justify-content: center;
+        width: 100vw;
+      }
+
+      &_active {
+        opacity: 1;
+        transition-duration: 0.5s;
+        width: 90%;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        div {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+      }
+
+      &_mainImage {
+        width: 100%;
+      }
+
+      &_description {
+        margin-top: 10px;
+        color: $gray;
+      }
+    }
+  }
+}

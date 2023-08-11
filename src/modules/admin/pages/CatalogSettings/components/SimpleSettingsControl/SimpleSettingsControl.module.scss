@@ -1,0 +1,67 @@
+@import "../../../../../../common/ui/styles/font-sizes";
+@import "../../../../../../common/ui/styles/media-sizes";
+@import "../../../../../../common/ui/styles/colors";
+
+.ModelSettings {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	padding: 15px;
+
+	.addButton {
+		width: 130px;
+		background-color: Transparent;
+		font-size: $font-size-xlarge-24;
+	}
+
+	.buttonArea{
+		padding-left: 10px;
+		padding-right: 10px;
+		display: flex;
+		justify-content: space-between;
+		padding-top: 10px;
+		@media screen and (max-width: 1100px) {
+			flex-direction: column-reverse;
+			gap: 20px;
+			padding-bottom: 10px;
+		}
+	}
+
+	.deleteButtonArea {
+		padding-left: 10px;
+		padding-right: 10px;
+		display: flex;
+		flex-direction: column-reverse;
+		padding-top: 10px;
+	}
+
+	.settingInput{
+		height: 45px;
+		width: 100%;
+		border: 1px solid rgba(34, 17, 34, 0.9);
+		padding: 8px 16px;
+		font-size: $font-size-xlarge-24;
+
+		&Dirty {
+			border-color: $red;
+			color: $red;
+		}
+	}
+
+	.duplicateField {
+		margin-top: 10px;
+		margin-left: 5px;
+		color: $red;
+	}
+
+
+	.inputControlVisible {
+		display: block;
+	}
+
+	.inputControlHidden {
+		display: none;
+	}
+
+}

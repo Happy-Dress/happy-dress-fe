@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import 'common/ui/styles/colors';
+@import 'common/ui/styles/fonts';
+@import 'common/ui/styles/font-sizes';
+body {
+  margin: 0;
+  font-family: $main-font;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $black;
+  background-color: $white;
+  h1 {
+    font-size: 144px;
+    font-weight: bold;
+  }
+  h2 {
+    font-size: 30px;
+    font-weight: 600;
+  }
+  h3 {
+    font-size: $font-size-xlarge-32;
+  }
+  h4 {
+    font-size: $font-size-xlarge-24;
+  }
+  p {
+    font-size: $font-size-xmedium-18;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    background-color: $light-gray;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: $gray;
+    width: 8px;
+    height: 70%;
+  }
+}
+
+

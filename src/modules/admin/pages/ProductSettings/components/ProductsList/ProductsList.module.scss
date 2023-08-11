@@ -1,0 +1,78 @@
+@import "../../../../../../common/ui/styles/font-sizes";
+@import "../../../../../../common/ui/styles/colors";
+@import "../../../../../../common/ui/styles/media-sizes";
+
+.ProductsList{
+  margin-top: 50px;
+  padding: 0 calc(5% + 2px) 0 calc(5% + 2px);
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  column-gap: 5%;
+  row-gap: 42px;
+  position: relative;
+
+  #slider {
+    position: fixed;
+    bottom: 75px;
+    right: 49px;
+    cursor: pointer;
+
+    @media all and (max-width: $lg-size) {
+      bottom: 50px;
+    }
+
+    @media all and (max-width: $md-size) {
+      bottom: 24px;
+      right: 24px;
+    }
+  }
+
+  .bottomBar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 10%;
+    width: 100%;
+    background: linear-gradient(270deg, #C4C4C4 0%, rgba(196, 196, 196, 0) 184.41%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    @media all and (max-width: $lg-size) {
+      height: 150px;
+    }
+
+    @media all and (max-width: $md-size) {
+      height: 100px;
+    }
+  }
+
+  #trash {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+
+    p {
+      font-size: $font-size-xlarge-36;
+      color: $brown;
+    }
+  }
+
+  .observingBlock {
+    width: 20px;
+    height: 20px;
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+
+  &Link {
+    display: flex;
+  }
+}

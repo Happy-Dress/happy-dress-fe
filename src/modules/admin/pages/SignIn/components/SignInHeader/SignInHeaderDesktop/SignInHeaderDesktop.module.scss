@@ -1,0 +1,21 @@
+@import '../../../../../../../common/ui/styles/media-sizes';
+@import '../../../../../../../common/ui/styles/colors';
+
+.Header {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 10vh;
+
+  &_logo {
+    font-weight: 700;
+    font-size: 48px;
+    letter-spacing: -0.17em;
+  }
+
+  div {
+    width: 322px;
+    text-align: center;
+    border-bottom: 1px solid $black;
+  }
+}

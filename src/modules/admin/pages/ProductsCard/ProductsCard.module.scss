@@ -1,0 +1,241 @@
+@import '../../../../common/ui/styles/colors';
+@import '../../../../common/ui/styles/variables';
+@import '../../../../common/ui/styles/font-sizes';
+@import '../../../../common/ui/styles/fonts';
+@import '../../../../common/ui/styles/media-sizes';
+
+$lg-size-1023: #{$lg-size - 1px};
+
+.productCard {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+
+  & span {
+    margin-right: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &_heading {
+    border-bottom: 1px solid $brown;
+    display: flex;
+    justify-content: center;
+    margin: 15px auto 30px;
+    padding: 0 20px 20px;
+    text-align: center;
+
+    @media all and (max-width: $lg-size-1023) {
+      font-size: $font-size-xlarge-24;
+      line-height: 28px;
+      padding: 0 0 3px;
+      margin: 0 auto 20px;
+    }
+  }
+
+  &_form {
+    @media all and (max-width: $lg-size-1023) {
+      align-items: center;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      gap: 6px;
+    }
+  }
+
+  &_fields {
+    width: 100%;
+
+    &_section {
+      display: flex;
+      align-items: center;
+      gap: 64px;
+      width: 100%;
+
+      & input[name=mainImageFile] {
+        display: none;
+      }
+
+      @media all and (max-width: $lg-size-1023) {
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+      }
+    }
+
+    @media all and (max-width: $lg-size-1023) {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 0;
+      width: 100%;
+    }
+  }
+
+  &_field {
+    align-items: center;
+    border-bottom: 1px solid $light-gray;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+
+    @media all and (min-width: $lg-size) {
+      max-width: 465px;
+    }
+
+    @media all and (max-width: $lg-size-1023) {
+      border-bottom: none;
+      width: 100%;
+      justify-content: center;
+    }
+
+    &_container {
+      padding: 26px 0;
+      width: 100%;
+
+      @media all and (max-width: $lg-size-1023) {
+        padding: 0;
+      }
+    }
+
+    &_label {
+      font-size: $font-size-xlarge-24;
+      font-weight: 400;
+      line-height: 28px;
+
+      @media all and (max-width: $lg-size-1023) {
+        display: none;
+      }
+    }
+
+    & > div {
+      background-color: $white;
+    }
+
+    & input[type=text], div {
+      width: 100%;
+
+      @media all and (min-width: $lg-size) {
+        max-width: 235px;
+      }
+    }
+
+    &_error {
+      color: $red;
+      display: flex;
+      padding: 6px 0;
+      position: absolute;
+      transition: all $animation-duration;
+
+      @media all and (max-width: $lg-size-1023) {
+        position: relative;
+      }
+    }
+  }
+
+  &_description {
+    width: 100%;
+    margin: 42px 0;
+
+    @media all and (max-width: $lg-size-1023) {
+      margin: 20px 0;
+    }
+
+    &_title {
+      display: block;
+      font-family: $main-font;
+      font-size: $font-size-xlarge-32;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 38px;
+      margin-bottom: 24px;
+
+      @media all and (max-width: $lg-size-1023) {
+        font-size: $font-size-xlarge-24;
+        line-height: 28px;
+        margin-bottom: 8px;
+      }
+    }
+
+    &_field {
+      background: $white;
+      border: 1px solid $light-gray;
+      color: $light-gray;
+      font-family: 'Roboto', serif;
+      font-size: $font-size-xmedium-18;
+      font-style: normal;
+      font-weight: 400;
+      height: 135px;
+      line-height: 21px;
+      padding: 8px 16px;
+      resize: none;
+      width: 100%;
+      transition: all $animation-duration;
+
+      &::placeholder {
+        color: $light-gray;
+      }
+
+      &:focus {
+        border: 1px solid $brown;
+      }
+    }
+
+    &_error {
+      border: 1px solid $red;
+      transition: all $animation-duration;
+    }
+  }
+
+  &_productColors {
+    margin-top: 42px;
+    width: 100%;
+  }
+
+  &_footer {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    padding: 28px 34px 62px;
+    width: 100%;
+
+    @media all and (max-width: $lg-size-1023) {
+      flex-direction: column-reverse;
+      padding: 0;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+
+      & button {
+        width: 100%;
+      }
+    }
+
+    @media all and (min-width: $lg-size) {
+      button {
+        max-width: 264px;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.displayEmpty {
+  display: flex;
+  transition: all $animation-duration;
+  position: absolute;
+
+  @media all and (max-width: $lg-size-1023) {
+    min-height: 0;
+    position: relative;
+  }
+}
+
+.hideOnMobile {
+  @media all and (max-width: $lg-size-1023) {
+    display: none;
+  }
+}

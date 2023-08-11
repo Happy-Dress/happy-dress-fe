@@ -1,0 +1,114 @@
+@import '../../../../../../../common/ui/styles/font-sizes';
+@import '../../../../../../../common/ui/styles/colors';
+
+.ProductsSettingsSearchDesktop{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+
+  .detailedSearch {
+    z-index: 2;
+    background-color: white;
+    box-shadow: 4px 4px 8px 0 rgb(56 41 56 / 25%);
+    padding: 25px 10px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    &_searchBar {
+      height: 72px;
+      display: grid;
+      grid-template-columns: 1fr 80px;
+    }
+
+    &_cross {
+      display: flex;
+      align-items: center;
+      padding-left: 20px;
+      svg {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    &_dropdownsWrapper {
+      padding-right: 75px;
+      margin-top: 25px;
+      display: flex;
+      gap: 30px;
+    }
+  }
+
+  &_searchBarWrapper{
+    height: auto;
+    margin-top: 10px;
+    margin-left: 100px;
+    align-items: center;
+    gap: 15px;
+    display: grid;
+    grid-template-columns: 1fr 130px;
+    min-height: 72px;
+    svg {
+      cursor: pointer;
+    }
+    label {
+      box-shadow: 3px 3px 3px rgb(0 0 0 / 25%);
+    }
+  }
+
+  &_breadCrumbs {
+    font-size: 14px;
+    margin: 25px 0 0 25px;
+    color: $light-gray;
+  }
+
+  &_heading {
+    display: flex;
+    justify-content: center;
+    margin: 15px auto 30px;
+    padding: 0 20px 20px;
+    border-bottom: 1px solid $brown;
+    text-align: center;
+  }
+
+
+    &_categoriesList {
+      min-height: 72px;
+      background-color: $filters-gray;
+      box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
+      margin: 0 147px 0 100px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      &_category {
+        cursor: pointer;
+        color: rgba(33,33,33,.5);
+        font-size: $font-size-xlarge-24;
+        @media screen and (max-width: 1240px) {
+          font-size: $font-size-medium-16;
+        }
+        @media screen and (max-width: 1450px) {
+          font-size: $font-size-xmedium-18;
+        }
+        &_selected {
+          border-bottom: 1.8px solid rgba(167,82,20,.8);
+          color: #000;
+          font-size: $font-size-xlarge-24;
+          cursor: pointer;
+          @media screen and (max-width: 1240px) {
+            font-size: $font-size-medium-16;
+          }
+          @media screen and (max-width: 1450px) {
+            font-size: $font-size-xmedium-18;
+          }
+        }
+        &_wrapper{
+          margin: 20px;
+        }
+
+
+
+      }
+
+    }
+
+}
