@@ -14,6 +14,7 @@ import {
     setSelectedImage
 } from '../../../../../common/ui/store/slices/productSlice';
 import ImageSkeleton from '../../../../../common/ui/components/Image/ImageSkeleton';
+import ZoomableImage from '../../../../../common/ui/components/Image/ZoomableImage';
 
 const {
     MODEL_LABEL,
@@ -129,12 +130,14 @@ const ProductMobile = (props) => {
                                     width={'80vw'}
                                     height={'57vh'}
                                 /> : <></> }
-                                <img 
-                                    src={selectedImage.imageUrl} 
-                                    alt={'selected image'}
-                                    onLoad={() => handleImageOnLoad(productColorImages.imageURLs.length - 1)}
-                                    hidden={!loadingImages[productColorImages.imageURLs.length - 1]}
-                                />
+                                <ZoomableImage>
+                                    <img 
+                                        src={selectedImage.imageUrl} 
+                                        alt={'selected image'}
+                                        onLoad={() => handleImageOnLoad(productColorImages.imageURLs.length - 1)}
+                                        hidden={!loadingImages[productColorImages.imageURLs.length - 1]}
+                                    />
+                                </ZoomableImage>
                             </div>
                         </div>
                         <div className={s.ProductMobile_carousel_list}>

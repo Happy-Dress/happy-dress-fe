@@ -5,6 +5,7 @@ import { ReactComponent as AddIcon } from '../../../../../../common/assets/image
 import { ReactComponent as DeleteIcon } from '../../../../../../common/assets/images/Trash.svg';
 import LoadingSkeleton from '../../../../../../common/ui/components/Image/LoadingSkeleton';
 import CachedImage from '../../../../../../common/ui/components/Image/CachedImage';
+import ZoomableImage from '../../../../../../common/ui/components/Image/ZoomableImage';
 
 const ProductsCardImage = ({ imageUrl, alt, onAdd, onDelete, isLoaded }) => {
     const [isLoading, setIsLoading] = useState(true);
@@ -41,12 +42,14 @@ const ProductsCardImage = ({ imageUrl, alt, onAdd, onDelete, isLoaded }) => {
                     onClick={handleDeleteClick}
                     data-testid={'deleteIcon'}
                 />
-                <CachedImage
-                    className={s.pci_image}
-                    src={imageUrl}
-                    alt={alt}
-                    onLoad={() => setIsLoading(false)}
-                />
+                <ZoomableImage>
+                    <CachedImage
+                        className={s.pci_image}
+                        src={imageUrl}
+                        alt={alt}
+                        onLoad={() => setIsLoading(false)}
+                    />
+                </ZoomableImage>
             </div>
                 }
             </div>
