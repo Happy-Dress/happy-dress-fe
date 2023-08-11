@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './SearchBar.module.scss';
 import { ReactComponent as Search } from '../../../../../../../../common/assets/images/search.svg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setName } from '../../../../../../../../common/ui/store/slices/productsSearchSlice';
 import { DebounceInput } from 'react-debounce-input';
 
@@ -9,6 +9,7 @@ import { DebounceInput } from 'react-debounce-input';
 const SearchBar = () =>{
 
     const dispatch = useDispatch();
+    const value = useSelector(state => state.productsSearch.filters.name);
 
     const updateSearch = (searchValue) =>{
         dispatch(setName(searchValue));
@@ -18,6 +19,7 @@ const SearchBar = () =>{
         <label className={s.SearchBar}>
             <Search className={s.SearchBar_searchIcon}/>
             <DebounceInput
+                value={value}
                 placeholder={'Поиск'}
                 debounceTimeout={300}
                 onChange={event => updateSearch(event.target.value )} />
