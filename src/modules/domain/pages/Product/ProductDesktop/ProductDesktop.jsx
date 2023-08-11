@@ -13,6 +13,7 @@ import {
     setSelectedImage
 } from '../../../../../common/ui/store/slices/productSlice';
 import ImageSkeleton from '../../../../../common/ui/components/Image/ImageSkeleton';
+import ZoomableImage from '../../../../../common/ui/components/Image/ZoomableImage';
 
 const {
     DESCRIPTION_LABEL,
@@ -153,12 +154,14 @@ const ProductDesktop = (props) => {
                                 width={'30vw'}
                                 height={'20vh'}
                             /> : <></> }
-                            <img
-                                src={selectedImage.imageUrl}
-                                alt="selected image"
-                                onLoad={() => handleImageOnLoad(productColorImages.imageURLs.length)}
-                                hidden={!loadingImages[productColorImages.imageURLs.length]}
-                            />
+                            <ZoomableImage>
+                                <img
+                                    src={selectedImage.imageUrl}
+                                    alt="selected image"
+                                    onLoad={() => handleImageOnLoad(productColorImages.imageURLs.length)}
+                                    hidden={!loadingImages[productColorImages.imageURLs.length]}
+                                />
+                            </ZoomableImage>
                         
                         </div>
                     </div>
