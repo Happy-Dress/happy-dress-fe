@@ -89,6 +89,10 @@
         text-decoration-thickness: 1.8px;
         text-decoration-color: $brown;
       }
+
+      &_disabled {
+        pointer-events: none;
+      }
     }
 
     &_number {

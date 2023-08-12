@@ -16,11 +16,12 @@ import { fetchCatalogueSettings } from '../../../../common/ui/store/slices/catal
 import { useToasters } from '../../../../common/ui/contexts/ToastersContext';
 import { useDeviceTypeContext } from '../../../../common/ui/contexts/DeviceType';
 import ProductsCardImage from './components/ProductsCardImage';
-import updateCatalogueItem from '../../../../common/api/catalogItem/updateCatalogItem';
+import updateCatalogItem from '../../../../common/api/catalogItem/updateCatalogItem';
 import { useProductImages } from './hooks/useProductImages';
 import ProductsCardColors from './components/ProductsCardColors';
 import { fetchProduct } from '../../../../common/ui/store/slices/productSlice';
 import ProductsCardGallery from './components/ProductsCardGallery';
+import createCatalogItem from '../../../../common/api/catalogItem/createCatalogItem';
 
 
 const {
@@ -74,6 +75,10 @@ export const ProductsCard = () => {
         return productColorSizes.every((item) => item.size.id !== EMPTY_SIZE_OBJECT.id);
     };
 
+    const checkHasColors = () => {
+        return productColorSizes.length > 0;
+    };
+
     const checkIsAllColorsWithPictures = () => {
         return productColorImages.every((item) => item.imageURLs.length > 0);
     };
@@ -85,6 +90,10 @@ export const ProductsCard = () => {
         }
         if (!checkIsAllColorsAreAvailable()) {
             showToasterError('Каждый цвет должен иметь хотя бы один размер. Иначе удалите цвет.');
+            return;
+        }
+        if (!checkHasColors()) {
+            showToasterError('Цвета и размеры не выбраны');
             return;
         }
         if (!checkIsAllColorsWithPictures()) {
@@ -107,9 +116,10 @@ export const ProductsCard = () => {
         };
 
         try {
-            const res = await updateCatalogueItem(dataToSave);
-            setProduct(res);
+            const res = id ? await updateCatalogItem(dataToSave) : await createCatalogItem(dataToSave);
             showToasterSuccess(PRODUCT_SAVED);
+            navigate(id ? '' : `${res.id}`);
+            setProduct(res);
         } catch (e) {
             e
                 ? showToasterError(e.toString())
@@ -157,7 +167,7 @@ export const ProductsCard = () => {
             }
         };
         fetchData();
-    }, []);
+    }, [product]);
 
     useEffect(() => {
         const newProductColorImages = [...productColorImages];

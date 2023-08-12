@@ -6,13 +6,17 @@ import telegram from '../../../../../common/assets/images/tg.svg';
 import { FOOTER_DICTIONARY } from '../Footer.dictionary';
 import { Typography } from '../../../../../common/ui/components';
 import { routerConfig } from '../../../config';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { disabledRouterConfig } from '../../../config/routerConfig/routerConfig';
 
 const {
     FOOTER_LOGO,
     PHONE_NUMBER,
     FOOTER_EMAIL,
-    FOOTER_MOBILE_SIGNATURE
+    FOOTER_MOBILE_SIGNATURE,
+    INSTAGRAM_LINK,
+    VK_LINK,
+    TELEGRAM_LINK,
 } = FOOTER_DICTIONARY;
 
 const FooterMobile = () => {
@@ -24,13 +28,28 @@ const FooterMobile = () => {
                     <span className={s.FooterMobile_logo}>{FOOTER_LOGO}</span>
                 </div>
                 <ul className={s.FooterMobile_menu}>
-                    {Object.values(routerConfig).map(({ path, name })=>(
-                        <Link key={name} to={path}>
+                    {Object.values(routerConfig).map(({ path, name }) => (
+                        <NavLink 
+                            key={name}
+                            to={path}
+                            className={({ isActive }) => isActive ? s.FooterMobile_menu_item_active : ''}
+                        >
                             <Typography classNames={[s.FooterMobile_menu_item]}>
                                 {name}
                             </Typography>
-                        </Link>))
-                    }
+                        </NavLink>
+                    ))}
+                    {Object.values(disabledRouterConfig).map(({ name }) => (
+                        <NavLink
+                            key={name}
+                            to={'#'}
+                            className={s.FooterMobile_menu_item_disabled}
+                        >
+                            <Typography classNames={[s.FooterMobile_menu_item]}>
+                                {name}
+                            </Typography>
+                        </NavLink>
+                    ))}
                 </ul>
                 <div className={s.FooterMobile_right_side}>
                     <div className={s.FooterMobile_right_side_text}>
@@ -42,9 +61,15 @@ const FooterMobile = () => {
                         </Typography>
                     </div>
                     <div className={s.FooterMobile_right_side_menu}>
-                        <img className={s.FooterMobile_right_side_hanger} src={instagram} alt="instagram"/>
-                        <img className={s.FooterMobile_right_side_hanger} src={vk} alt="vk"/>
-                        <img className={s.FooterMobile_right_side_hanger} src={telegram} alt="telegram"/>
+                        <a href={INSTAGRAM_LINK} target="_blank" rel="noreferrer">
+                            <img className={s.FooterMobile_right_side_hanger} src={instagram} alt="instagram"/>
+                        </a>
+                        <a href={VK_LINK} target="_blank" rel="noreferrer">
+                            <img className={s.FooterMobile_right_side_hanger} src={vk} alt="vk"/>
+                        </a>
+                        <a href={TELEGRAM_LINK} target="_blank" rel="noreferrer">
+                            <img className={s.FooterMobile_right_side_hanger} src={telegram} alt="telegram"/>
+                        </a>
                     </div>
                 </div>
 
@@ -53,7 +78,8 @@ const FooterMobile = () => {
                 <div className={s.FooterMobile_wrapper_side}>
                     {FOOTER_MOBILE_SIGNATURE.map((items) => (
                         <p key={items}>
-                            <Typography classNames={[s.FooterMobile_wrapper_side_items]}>{items}
+                            <Typography classNames={[s.FooterMobile_wrapper_side_items]}>
+                                {items}
                             </Typography>
                         </p>))
                     }

@@ -1,4 +1,4 @@
-import getCatalogueItems from './getCatalogueItems';
+import getCatalogItems from './getCatalogItems';
 import mockAxios from 'jest-mock-axios';
 import { mockCatalogueItemsResponse } from '../../../__mocks__/mockCatalogueItemsResponse';
 
@@ -13,7 +13,7 @@ describe('getCatalogueItems', () => {
             sizes: [],
         };
         mockAxios.post.mockResolvedValueOnce({ data: mockCatalogueItemsResponse });
-        const response = await getCatalogueItems(request, 1);
+        const response = await getCatalogItems(request, 1);
         expect(response).toBeTruthy();
     });
 });
