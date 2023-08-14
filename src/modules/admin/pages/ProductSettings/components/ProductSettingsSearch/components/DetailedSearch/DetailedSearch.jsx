@@ -1,4 +1,4 @@
-import s from './DetailedSerach.module.scss';
+import s from './DetailedSearch.module.scss';
 import {
     selectColor,
     selectMaterial,

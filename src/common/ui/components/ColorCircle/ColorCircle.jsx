@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import s from './ColorCircle.module.scss';
+import classNames from 'classnames';
 
 const getColorBackgroundStyle = (color) => {
     if (color) {
@@ -14,12 +15,12 @@ const getColorBackgroundStyle = (color) => {
     return color.firstColor;
 };
 
-const ColorCircle = ({ firstColor, secondColor, label, width, height }) => {
+const ColorCircle = ({ firstColor, secondColor, label, width, height, colorItemClass, colorCircleClass }) => {
     const color = { firstColor, secondColor };
     return (
-        <div className={s.colorItem}>
+        <div className={classNames(s.colorItem, colorItemClass)}>
             <div
-                className={s.colorItem_circle}
+                className={classNames(s.colorItem_circle, colorCircleClass)}
                 style={{ 
                     background: getColorBackgroundStyle(color),
                     width: width ? width : '15px',
@@ -28,7 +29,7 @@ const ColorCircle = ({ firstColor, secondColor, label, width, height }) => {
             >
             </div>
             {label ?
-                <p>{label}</p>
+                <span>{label}</span>
                 :
                 <></>
             }
@@ -42,6 +43,8 @@ ColorCircle.propTypes = {
     label: PropTypes.string,
     width: PropTypes.string,
     height: PropTypes.string,
+    colorItemClass: PropTypes.string,
+    colorCircleClass: PropTypes.string,
 };
 
 export default ColorCircle;

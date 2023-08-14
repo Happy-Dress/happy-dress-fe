@@ -1,20 +1,22 @@
 .DetailedSearch{
+
   &_simpleOption{
-    margin-left: 5px;
-    white-space: break-spaces;
+    margin-left: 10px;
   }
+
   &_colorOption {
     display: flex;
     align-items: center;
+
     span {
-      margin-left: 5px;
       word-break: break-all;
     }
+
+
     &_colorCircle {
-      margin-left: 5px;
-      height: 15px;
-      width: 15px;
-      min-width: 15px;
+      margin-left: 20px;
+      height: 25px;
+      width: 25px;
       border-radius: 50%;
     }
   }
