@@ -37,6 +37,10 @@ const {
     PRODUCT_SAVED,
     EMPTY_COLOR_OBJECT,
     EMPTY_SIZE_OBJECT,
+    ALL_COLORS_AVAILABLE_MESSAGE,
+    ALL_COLORS_SELECTED_MESSAGE,
+    ALL_COLORS_WITH_PICTURES_MESSAGE,
+    HAVE_COLORS_MESSAGE,
 } = PRODUCT_CARD_DICTIONARY;
 const { NAME, MATERIAL, CATEGORY, MODEL, DESCRIPTION, MAIN_IMAGE_URL, MAIN_IMAGE_FILE, PRODUCT_COLOR_IMAGES } = FIELDS;
 
@@ -75,7 +79,7 @@ export const ProductsCard = () => {
         return productColorSizes.every((item) => item.size.id !== EMPTY_SIZE_OBJECT.id);
     };
 
-    const checkHasColors = () => {
+    const checkHaveColors = () => {
         return productColorSizes.length > 0;
     };
 
@@ -85,19 +89,19 @@ export const ProductsCard = () => {
 
     const onSubmit = async (data) => {
         if (!checkIsAllColorsSelected()) {
-            showToasterError('Все цвета должны быть выбраны');
+            showToasterError(ALL_COLORS_SELECTED_MESSAGE);
             return;
         }
         if (!checkIsAllColorsAreAvailable()) {
-            showToasterError('Каждый цвет должен иметь хотя бы один размер. Иначе удалите цвет.');
+            showToasterError(ALL_COLORS_AVAILABLE_MESSAGE);
             return;
         }
-        if (!checkHasColors()) {
-            showToasterError('Цвета и размеры не выбраны');
+        if (!checkHaveColors()) {
+            showToasterError(HAVE_COLORS_MESSAGE);
             return;
         }
         if (!checkIsAllColorsWithPictures()) {
-            showToasterError('Все цвета должны иметь хотя бы одно фото.');
+            showToasterError(ALL_COLORS_WITH_PICTURES_MESSAGE);
             return;
         }
         const dataToSave = {
