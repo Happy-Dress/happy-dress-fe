@@ -24,7 +24,7 @@ describe('retrieveCatalogueSettings', () => {
         };
 
         mockAxios.get.mockResolvedValueOnce(mockResponse);
-        const retrievedSettings = await retrieveCatalogueSettings();
+        const retrievedSettings = await retrieveCatalogueSettings(false);
         expect(retrievedSettings).toBeTruthy();
     });
 

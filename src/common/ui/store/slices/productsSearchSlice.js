@@ -22,8 +22,8 @@ const initialState = {
 
 const fetchCatalogueItems = createAsyncThunk(
     'productsSearch/fetch',
-    async ({ filters, page }) => {
-        return await getCatalogueItems(filters, page);
+    async ({ filters, page, isSecure }) => {
+        return await getCatalogueItems(filters, page, isSecure);
     }
 );
 

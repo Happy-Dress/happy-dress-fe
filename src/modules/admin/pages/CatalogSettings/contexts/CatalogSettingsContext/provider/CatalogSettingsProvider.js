@@ -23,8 +23,8 @@ const CatalogSettingsProvider = (props) => {
         colors: []
     });
 
-    const restoreSettings = (afterRestore) => {
-        retrieveCatalogueSettings().then((settings) => {
+    const restoreSettings = (afterRestore, isSecure) => {
+        retrieveCatalogueSettings(isSecure).then((settings) => {
             setInitialCatalogSettings(settings);
             setCatalogSettings(settings);
             afterRestore();

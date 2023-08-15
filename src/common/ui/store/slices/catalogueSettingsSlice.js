@@ -15,8 +15,8 @@ const initialState = {
 
 const fetchCatalogueSettings = createAsyncThunk(
     'catalogueSettings/fetch',
-    async () =>{
-        return await retrieveCatalogueSettings();
+    async ({ isSecure }) =>{
+        return await retrieveCatalogueSettings(isSecure);
     }
 );
 

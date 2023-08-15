@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const retrieveCatalogueSettings = async () => {
-    const response = await axios.get('settings');
+const retrieveCatalogueSettings = async (isSecure) => {
+    const response = await axios.get(isSecure ? 'secure/settings' : 'settings');
 
     return response.data;
 };

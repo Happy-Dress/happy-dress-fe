@@ -13,7 +13,7 @@ describe('getCatalogueItems', () => {
             sizes: [],
         };
         mockAxios.post.mockResolvedValueOnce({ data: mockCatalogueItemsResponse });
-        const response = await getCatalogueItems(request, 1);
+        const response = await getCatalogueItems(request, 1, false);
         expect(response).toBeTruthy();
     });
 });
