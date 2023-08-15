@@ -1,0 +1,45 @@
+@import '../../../../../../common/ui/styles/colors';
+@import '../../../../../../common/ui/styles/media-sizes';
+
+$lg-size-1023: #{$lg-size - 1px};
+
+.ProductCardColors {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &_tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 5px;
+
+    @media screen and (max-width: $lg-size-1023) {
+      flex-direction: row;
+      max-width: 100%;
+      overflow-x: auto;
+    }
+
+    &::-webkit-scrollbar {
+      height: 7px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+    }
+
+    &_colors {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      @media screen and (max-width: $lg-size-1023) {
+        flex-direction: row-reverse;
+      }
+    }
+  }
+
+  @media screen and (max-width: $lg-size-1023) {
+    flex-direction: row;
+  }
+}

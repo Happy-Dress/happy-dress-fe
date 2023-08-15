@@ -15,26 +15,29 @@ export const routerConfig = {
     home: {
         name: 'Главная',
         path: ROUTER_PATHS.home,
-        element: <Landing />
+        element: <Landing />,
     },
     catalog: {
         name: 'Каталог',
         path: ROUTER_PATHS.catalog,
-        element: <Catalog />
+        element: <Catalog />,
     },
+};
+
+export const disabledRouterConfig = {
     blog: {
         name: 'Блог',
         path: ROUTER_PATHS.blog,
-        element: <div>blog</div>
+        element: <div>blog</div>,
     },
     contacts: {
         name: 'Контакты',
         path: ROUTER_PATHS.contacts,
-        element: <div>contacts</div>
+        element: <div>contacts</div>,
     },
     changing: {
         name: 'Примерка',
         path: ROUTER_PATHS.changing,
-        element: <div>changing</div>
+        element: <div>changing</div>,
     }
 };

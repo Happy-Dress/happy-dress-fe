@@ -20,6 +20,11 @@
     }
     letter-spacing: -0.17em;
 
+    span {
+      color: $black;
+
+    }
+
     &_logo {
       margin-right: 25%;
     }
@@ -62,6 +67,11 @@
         text-decoration-thickness: 1.8px;
         text-decoration-color: $brown;
       }
+
+      &_disabled {
+        pointer-events: none;
+      }
+
     }
   }
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CategoriesDesktop from './CategoriesDesktop';
 import CategoriesMobile from './CategoriesMobile/CategoriesMobile';
-import retrieveCatalogueSettings from '../../../../../common/api/catalogueSettings/retrieveCatalogueSettings';
+import retrieveCatalogSettings from '../../../../../common/api/catalogSettings/retrieveCatalogSettings';
 import adaptive from '../../../../../common/ui/hocs/adaptive';
 
 const Categories = () => {
@@ -9,7 +9,7 @@ const Categories = () => {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        retrieveCatalogueSettings().then((settings) => {
+        retrieveCatalogSettings().then((settings) => {
             setCategories(settings.categories);
         });
     }, []);

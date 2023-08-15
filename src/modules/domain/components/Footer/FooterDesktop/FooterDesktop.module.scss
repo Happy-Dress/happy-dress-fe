@@ -26,6 +26,10 @@
     font-size: 36px;
     cursor: pointer;
 
+    span {
+      color: $black;
+    }
+
     @media screen and (max-width: $xl-size) {
       font-size: 24px;
     }
@@ -80,6 +84,19 @@
       &:active {
         text-decoration: underline 1.8px solid $brown;
       }
+
+      &_active {
+        text-underline-offset: 5px;
+        text-decoration-line: underline;
+        text-decoration-style: solid;
+        text-decoration-thickness: 1.8px;
+        text-decoration-color: $brown !important;
+        color: $black;
+      }
+
+      &_disabled {
+          pointer-events: none;
+      }
     }
   }
 
@@ -93,10 +110,6 @@
       width: 21.86px;
       height: 22.37px;
       cursor: pointer;
-
-      &:nth-child(2) {
-        margin: 0 20px;
-      }
 
       @media screen and (max-width: $xl-size) {
         width: 25px;
@@ -149,13 +162,19 @@
       justify-content: flex-end;
       width: 100%;
 
+      a {
+
+        &:nth-child(2) {
+          margin: 0 20px;
+        }
+      }
 
     }
   }
 
   &_down_side {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     text-decoration-line: none;
     padding-top: 35px;
 

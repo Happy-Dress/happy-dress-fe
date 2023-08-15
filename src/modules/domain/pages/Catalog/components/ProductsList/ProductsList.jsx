@@ -6,6 +6,7 @@ import { useInView } from 'react-intersection-observer';
 import classNames from 'classnames';
 import { fetchCatalogueItems } from '../../../../../../common/ui/store/slices/productsSearchSlice';
 import { useEffect } from 'react';
+import EmptyBanner from '../../../../../../common/ui/components/EmptyBanner';
 
 const ProductsList = () =>{
 
@@ -15,6 +16,7 @@ const ProductsList = () =>{
     const filters = useSelector(state => state.productsSearch.filters);
     const currentPage = useSelector(state => state.productsSearch.currentPage);
     const totalPages = useSelector(state => state.productsSearch.totalPages);
+    console.log(products);
 
     const { ref, inView } = useInView({
         threshold: 0,
@@ -32,13 +34,21 @@ const ProductsList = () =>{
     };
 
     return (
-        <div className={s.ProductsList}>
-            {products.map((product, index) => {
-                return <ProductCard key={index} product={product}/>;
-            })}
-            {isLoading && renderSkeletons(15)}
-            <div ref={ref} className={classNames(s.observingBlock, { [s.active]: !isLoading })}/>
-        </div>
+        <>
+            {!products.length > 0 && !isLoading ? 
+                <div className={s.Banner}>
+                    <EmptyBanner/>
+                </div> 
+                :
+                <div className={s.ProductsList}>
+                    {products.map((product, index) => {
+                        return <ProductCard key={index} product={product}/>;
+                    })}
+                    {isLoading && renderSkeletons(15)}
+                    <div ref={ref} className={classNames(s.observingBlock, { [s.active]: !isLoading })}/>
+                </div>
+            }
+        </>
     );
 };
 

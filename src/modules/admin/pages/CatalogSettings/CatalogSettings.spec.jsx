@@ -11,7 +11,7 @@ jest.mock('./components/SettingDropDown', ()=>({
     }
 }));
 
-jest.mock('../../../../common/api/catalogueSettings/retrieveCatalogueSettings',()=>({
+jest.mock('../../../../common/api/catalogSettings/retrieveCatalogSettings',()=>({
     __esModule: true,
     default: () => Promise.resolve({ models: [] })
 }));

@@ -82,7 +82,7 @@ const ProductsList = () => {
     return (
         <div className={s.ProductsList}>
             <Link to="../product-card" className={s.ProductsListLink}>
-                <ProductCardAdd />
+                <ProductCardAdd/>
             </Link>
             {products.map((product, index) => {
                 return <ProductCard key={index} product={product} isAdmin={true} />;

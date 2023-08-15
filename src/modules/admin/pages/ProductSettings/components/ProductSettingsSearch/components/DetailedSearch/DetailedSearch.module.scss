@@ -1,0 +1,23 @@
+.DetailedSearch{
+
+  &_simpleOption{
+    margin-left: 10px;
+  }
+
+  &_colorOption {
+    display: flex;
+    align-items: center;
+
+    span {
+      word-break: break-all;
+    }
+
+
+    &_colorCircle {
+      margin-left: 20px;
+      height: 25px;
+      width: 25px;
+      border-radius: 50%;
+    }
+  }
+}

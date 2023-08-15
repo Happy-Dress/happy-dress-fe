@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import s from './ProductCard.module.scss';
-import image from '../../../../../../../../common/assets/images/photo_4_3.png';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { PRODUCT_CARD_DICTIONARY } from './ProductCard.dictionary';
@@ -14,6 +13,7 @@ import {
     selectProduct,
     unSelectProduct,
 } from '../../../../../../../../common/ui/store/slices/productsSearchSlice';
+import ColorCircle from '../../../../../../../../common/ui/components/ColorCircle';
 
 const { SIZE, COLOR } = PRODUCT_CARD_DICTIONARY;
 
@@ -42,22 +42,18 @@ const ProductCard = (props) => {
 
     const sizes = Array.from(
         new Set([
-            ...product.productColorSizes.map((colorSize) => colorSize.size.sizeValue),
+            ...product.productColorSizes.map(
+                (colorSize) => colorSize.size.sizeValue
+            ),
         ])
     );
     const colors = Array.from(
-        new Set([...product.productColorSizes.map((colorSize) => colorSize.color)])
+        new Map(
+            product.productColorSizes
+                .map((colorSize) => colorSize.color)
+                .map((obj) => [obj.id, obj])
+        ).values()
     );
-
-    const uniqueColors = (arr) => {
-        return arr.reduce((result, current) => {
-            const color = current.firstColor;
-            if (!result.find((item) => item.firstColor === color)) {
-                result.push(current);
-            }
-            return result;
-        }, []);
-    };
 
     const handleTouchStart = () => {
         setTimerId(setTimeout(toggleSelect, 1000));
@@ -77,11 +73,13 @@ const ProductCard = (props) => {
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
         >
-            <img
-                src={image}
-                alt="dress preview"
-                className={classNames({ [s.hovered]: isHovered })}
-            />
+            <div className={s.ProductCard_mainImage}>
+                <img
+                    src={product.mainImageUrl}
+                    alt="dress preview"
+                    className={classNames({ [s.hovered]: isHovered })}
+                />
+            </div>
             <div className={s.description}>
                 {((isHovered && !isSelected) || (isMobile && !isSelected)) && (
                     <>
@@ -115,12 +113,14 @@ const ProductCard = (props) => {
                     <div className={classNames(s.colors, s.optionItem)}>
                         <p>{COLOR}</p>
                         <div className={s.items}>
-                            {uniqueColors(colors).map((item) => {
+                            {colors.map((item) => {
                                 return (
-                                    <span
+                                    <ColorCircle 
                                         key={item.id}
-                                        style={{ backgroundColor: item.firstColor }}
-                                        data-testid="color-option"
+                                        firstColor={item.firstColor} 
+                                        secondColor={item?.secondColor}
+                                        width={'20px'}
+                                        height={'20px'}
                                     />
                                 );
                             })}

@@ -1,0 +1,33 @@
+@import "../../styles/colors";
+@import "../../styles/media-sizes";
+
+$lg-size-1023: #{$lg-size - 1px};
+
+.EmptyBanner {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  @media screen and (max-width: $lg-size-1023) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  &_text {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    p {
+      color: $gray;
+    }
+  }
+
+  &_image {
+      width: 100%;
+      height: 100%;
+  }
+}
