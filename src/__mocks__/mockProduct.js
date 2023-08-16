@@ -2,7 +2,12 @@ import { mockCatalogueItemResponse } from './mockCatalogueItemResponse';
 
 export default {
     product: mockCatalogueItemResponse,
-    uniqueColors: Array.from(new Set(mockCatalogueItemResponse.productColorSizes.map(item => item.color.name))),
+    uniqueColors: Array.from(
+        new Map(
+            mockCatalogueItemResponse.productColorSizes
+                .map((colorSize) => colorSize.color)
+                .map((obj) => [obj.id, obj])
+        ).values()),
     currentColorSize: mockCatalogueItemResponse.productColorSizes[0],
     mainImageUrl: mockCatalogueItemResponse.mainImageUrl,
     selectedImage: {

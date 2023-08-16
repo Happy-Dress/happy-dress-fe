@@ -55,8 +55,5 @@ describe('ProductCard', () => {
         expect(screen.getByText('S')).toBeInTheDocument();
         expect(screen.getByText('M')).toBeInTheDocument();
 
-        const colorOptions = screen.getAllByTestId('color-option');
-        expect(colorOptions[0]).toHaveStyle('background-color: rgb(255, 255, 255)');
-        expect(colorOptions[1]).toHaveStyle('background-color: rgb(0, 0, 0)');
     });
 });

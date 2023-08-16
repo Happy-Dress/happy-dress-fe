@@ -16,7 +16,6 @@ const ProductsList = () =>{
     const filters = useSelector(state => state.productsSearch.filters);
     const currentPage = useSelector(state => state.productsSearch.currentPage);
     const totalPages = useSelector(state => state.productsSearch.totalPages);
-    console.log(products);
 
     const { ref, inView } = useInView({
         threshold: 0,
