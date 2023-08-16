@@ -21,6 +21,7 @@ const ProductCardColorsHeader = ({ sizes }) => {
                 <div
                     key={size.sizeValue}
                     className={s.ColorsHeader_item}
+                    data-testid={'size-item'}
                 >
                     {size.sizeValue}
                 </div>

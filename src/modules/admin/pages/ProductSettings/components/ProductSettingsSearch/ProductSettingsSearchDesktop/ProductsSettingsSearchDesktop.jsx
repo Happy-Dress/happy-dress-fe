@@ -60,7 +60,7 @@ const ProductsSettingsSearchDesktop = () => {
             <CategoriesLayoutWithSkeleton/>
             <div className={s.ProductsSettingsSearchDesktop_searchBarWrapper}>
                 {isFilterOpened ?
-                    <div className={s.detailedSearch}>
+                    <div className={s.detailedSearch} data-testid={'detailed-search'}>
                         <div className={s.detailedSearch_searchBar}>
                             <SearchBar/>
                             <div className={s.detailedSearch_cross} onClick={() => dispatch(toggleFilter())}><Cross/>

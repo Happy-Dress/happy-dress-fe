@@ -17,6 +17,7 @@ const ProductCardColorsAdd = ({ sizes, handleAddTab }) => {
             <div 
                 className={classNames(s.ProductCardColorsAdd_item, s.ProductCardColorsAdd_item_add)} 
                 onClick={handleAddTab}
+                data-testid={'add-tab'}
             >
                 <Plus/>
             </div>

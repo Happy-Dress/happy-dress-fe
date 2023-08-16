@@ -5,7 +5,6 @@ import { Provider, useDispatch } from 'react-redux';
 import React, { useEffect } from 'react';
 import { mockAllIsIntersecting } from 'react-intersection-observer/test-utils';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import ProductSettings from '../../../modules/admin/pages/ProductSettings';
 
 
 const TestComponent = ({ children, storeActions }) =>{
