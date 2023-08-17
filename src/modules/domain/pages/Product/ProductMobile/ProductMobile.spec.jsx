@@ -25,6 +25,7 @@ describe('ProductMobile', () => {
         baseElement = renderWithStoreAndRoutes(<ProductMobile
             product={product} productColorImages={product.productColorImages[0]} currentColorSize={currentColorSize}
             uniqueColors={uniqueColors} mainImageUrl={mainImageUrl} selectedImage={selectedImage}
+            handleImageOnLoad={jest.fn()} loadingImages={[false]}
         />).baseElement;
     });
 

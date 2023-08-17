@@ -2,11 +2,11 @@ import React from 'react';
 import { screen, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import  CatalogSetting  from '../../../pages/CatalogSettings/CatalogSettings';
-import  BlogSettings  from '../../../pages/BlogSettings/BlogSettings';
-import  RegistrationSetting  from '../../../pages/RegistrationSetting/RegistrationSetting';
-import  ProductSettings from '../../../pages/ProductSettings';
-import  NavigationPanelDesktop  from './NavigationPanelDesktop';
+import CatalogSetting from '../../../pages/CatalogSettings/CatalogSettings';
+import BlogSettings from '../../../pages/BlogSettings/BlogSettings';
+import RegistrationSetting from '../../../pages/RegistrationSetting/RegistrationSetting';
+import ProductSettings from '../../../pages/ProductSettings';
+import NavigationPanelDesktop from './NavigationPanelDesktop';
 import SignIn from '../../../pages/SignIn/';
 
 export const renderWithRouter = (component) => {

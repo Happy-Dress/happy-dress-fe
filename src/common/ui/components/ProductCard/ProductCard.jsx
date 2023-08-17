@@ -42,6 +42,7 @@ const ProductCard = (props) => {
     return (
         <div
             className={classNames(s.ProductCard, className)}
+            data-testid={'product-card'}
             onClick={handleOpenClick}
         >
             <div className={s.ProductCard_mainImage}>

@@ -25,7 +25,7 @@ describe('ColorsSizesTable', () => {
     });
 
     it('should handle on size click', async () => {
-        const sizeElement = await screen.getByTestId(`test-${uniqueColors[0]}-${sizes[0]}-item`);
+        const sizeElement = await screen.getByTestId(`test-${uniqueColors[0].name}-${sizes[0]}-item`);
         await waitFor( () => {
             userEvent.click(sizeElement);
         });

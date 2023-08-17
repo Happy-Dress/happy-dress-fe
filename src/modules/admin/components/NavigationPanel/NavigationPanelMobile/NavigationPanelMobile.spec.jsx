@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { screen,  waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import NavigationPanelMobile from './NavigationPanelMobile';
 import { renderWithRouter } from '../NavigationPanelDesktop/NavigationPanelDesktop.spec';
 import userEvent from '@testing-library/user-event';

@@ -26,6 +26,7 @@ const ColorCircle = ({ firstColor, secondColor, label, width, height, colorItemC
                     width: width ? width : '15px',
                     height: height ? height : '15px',
                 }}
+                data-testid='color-circle'
             >
             </div>
             {label ?
