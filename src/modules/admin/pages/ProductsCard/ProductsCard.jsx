@@ -143,12 +143,12 @@ export const ProductsCard = () => {
     };
 
     useEffect(() => {
-        dispatch(fetchCatalogueSettings());
+        dispatch(fetchCatalogueSettings({ isSecure: true }));
         const fetchData = async () => {
             if (id) {
                 dispatch(fetchProduct({ productId: id }));
                 try {
-                    const res = await getCatalogueItem(id);
+                    const res = await getCatalogueItem(id, true);
                     setProductName(res.name);
                     setProduct(res);
                     setMainImageUrl(res.mainImageUrl);

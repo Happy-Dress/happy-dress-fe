@@ -65,7 +65,7 @@ const ProductsList = () => {
 
     useEffect(() => {
         if (inView && currentPage < totalPages) {
-            dispatch(fetchCatalogueItems({ filters, page: currentPage }));
+            dispatch(fetchCatalogueItems({ filters, page: currentPage, isSecure: true }));
         }
     }, [inView]);
 

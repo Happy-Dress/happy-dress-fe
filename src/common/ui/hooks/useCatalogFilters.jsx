@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { fetchCatalogueItems, resetProducts } from '../store/slices/productsSearchSlice';
 import { fetchCatalogueSettings } from '../store/slices/catalogueSettingsSlice';
 
-export const useCatalogFilters = () => {
+export const useCatalogFilters = (isSecure) => {
     const dispatch = useDispatch();
     const filters = useSelector(state => state.productsSearch.filters);
     const catalogueSettings = useSelector(state => state.catalogueSettings.settings);
@@ -13,13 +13,13 @@ export const useCatalogFilters = () => {
     useEffect(() =>{
         if(filters.category && !products.length){
             dispatch(resetProducts());
-            dispatch(fetchCatalogueItems({ filters: filters, page: 1 }));
+            dispatch(fetchCatalogueItems({ filters: filters, page: 1, isSecure }));
         }
     }, [filters]);
 
     useEffect(() =>{
         if(!catalogueSettings.categories.length){
-            dispatch(fetchCatalogueSettings());
+            dispatch(fetchCatalogueSettings(isSecure));
         }
     }, []);
 };

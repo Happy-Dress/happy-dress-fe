@@ -34,7 +34,7 @@ const CatalogSettings = () => {
         hideModal();
         restoreSettings(() =>{
             showToasterNotification(CHANGES_RESTORED);
-        });
+        }, true);
 
     };
 

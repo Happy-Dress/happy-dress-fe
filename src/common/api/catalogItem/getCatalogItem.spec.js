@@ -5,7 +5,7 @@ import { mockCatalogueItemResponse } from '../../../__mocks__/mockCatalogueItemR
 describe('getCatalogueItem', () => {
     it('should return expected values', async () => {
         mockAxios.get.mockResolvedValueOnce({ data: mockCatalogueItemResponse });
-        const response = await getCatalogueItem(1);
+        const response = await getCatalogueItem(1, false);
         expect(response).toBeTruthy();
     });
 });

@@ -20,7 +20,7 @@ const Product = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchProduct({ productId }));
+        dispatch(fetchProduct({ productId, isSecure: false }));
     }, []);
 
     const AdaptiveProduct = useMemo(() => adaptive(ProductDesktop, ProductMobile), []);

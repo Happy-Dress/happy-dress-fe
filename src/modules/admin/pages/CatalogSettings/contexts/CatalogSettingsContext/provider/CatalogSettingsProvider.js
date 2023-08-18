@@ -24,7 +24,7 @@ const CatalogSettingsProvider = (props) => {
     });
 
     const restoreSettings = (afterRestore) => {
-        retrieveCatalogSettings().then((settings) => {
+        retrieveCatalogSettings(true).then((settings) => {
             setInitialCatalogSettings(settings);
             setCatalogSettings(settings);
             afterRestore();
@@ -32,7 +32,7 @@ const CatalogSettingsProvider = (props) => {
     };
 
     useEffect(() => {
-        retrieveCatalogSettings().then((settings) => {
+        retrieveCatalogSettings(true).then((settings) => {
             setInitialCatalogSettings(settings);
             setCatalogSettings(settings);
         });
