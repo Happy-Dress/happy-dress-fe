@@ -23,8 +23,8 @@ const CatalogSettingsProvider = (props) => {
         colors: []
     });
 
-    const restoreSettings = (afterRestore, isSecure) => {
-        retrieveCatalogSettings(isSecure).then((settings) => {
+    const restoreSettings = (afterRestore) => {
+        retrieveCatalogSettings(true).then((settings) => {
             setInitialCatalogSettings(settings);
             setCatalogSettings(settings);
             afterRestore();
@@ -32,7 +32,7 @@ const CatalogSettingsProvider = (props) => {
     };
 
     useEffect(() => {
-        retrieveCatalogSettings().then((settings) => {
+        retrieveCatalogSettings(true).then((settings) => {
             setInitialCatalogSettings(settings);
             setCatalogSettings(settings);
         });
