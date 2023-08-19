@@ -6,10 +6,10 @@ import userEvent from '@testing-library/user-event';
 const { SELECTED } = DROPDOWN_DICTIONARY;
 
 const options = [
-    { id: 1, name: 'option1' },
-    { id: 2, name: 'option2' },
-    { id: 3, name: 'option3' },
-    { id: 4, name: 'option4' },
+    { id: 1, value: 'option1' },
+    { id: 2, value: 'option2' },
+    { id: 3, value: 'option3' },
+    { id: 4, value: 'option4' },
 ];
 
 const renderNotMultipleDDSelect= () => render(
@@ -27,10 +27,10 @@ describe('DropdownSelect', () => {
         renderNotMultipleDDSelect();
 
         expect(screen.getByText('placeholder')).toBeInTheDocument();
-        expect(screen.getByText('option1')).toBeInTheDocument();
-        expect(screen.getByText('option2')).toBeInTheDocument();
-        expect(screen.getByText('option3')).toBeInTheDocument();
-        expect(screen.getByText('option4')).toBeInTheDocument();
+        expect(screen.getByDisplayValue('option1')).toBeInTheDocument();
+        expect(screen.getByDisplayValue('option2')).toBeInTheDocument();
+        expect(screen.getByDisplayValue('option3')).toBeInTheDocument();
+        expect(screen.getByDisplayValue('option4')).toBeInTheDocument();
     });
 
     it('should render option1 name', () => {
@@ -45,10 +45,10 @@ describe('DropdownSelect', () => {
             />
         );
 
-        expect(screen.getAllByText('option1')).toHaveLength(2);
-        expect(screen.getByText('option2')).toBeInTheDocument();
-        expect(screen.getByText('option3')).toBeInTheDocument();
-        expect(screen.getByText('option4')).toBeInTheDocument();
+        expect(screen.getAllByDisplayValue('option1')).toHaveLength(1);
+        expect(screen.getByDisplayValue('option2')).toBeInTheDocument();
+        expect(screen.getByDisplayValue('option3')).toBeInTheDocument();
+        expect(screen.getByDisplayValue('option4')).toBeInTheDocument();
     });
 
     it('should render number of selected options', () => {
@@ -63,20 +63,20 @@ describe('DropdownSelect', () => {
             />
         );
 
-        expect(screen.getByText('option1')).toBeInTheDocument();
-        expect(screen.getByText('option2')).toBeInTheDocument();
-        expect(screen.getByText('option3')).toBeInTheDocument();
-        expect(screen.getByText('option4')).toBeInTheDocument();
+        expect(screen.getByDisplayValue('option1')).toBeInTheDocument();
+        expect(screen.getByDisplayValue('option2')).toBeInTheDocument();
+        expect(screen.getByDisplayValue('option3')).toBeInTheDocument();
+        expect(screen.getByDisplayValue('option4')).toBeInTheDocument();
         expect(screen.getByText(`2 ${SELECTED}`)).toBeInTheDocument();
     });
 
     it('should render not checked radio options', () => {
         renderNotMultipleDDSelect();
 
-        expect(screen.getByLabelText('option1')).not.toBeChecked();
-        expect(screen.getByLabelText('option2')).not.toBeChecked();
-        expect(screen.getByLabelText('option3')).not.toBeChecked();
-        expect(screen.getByLabelText('option4')).not.toBeChecked();
+        expect(screen.getByDisplayValue('option1')).not.toBeChecked();
+        expect(screen.getByDisplayValue('option2')).not.toBeChecked();
+        expect(screen.getByDisplayValue('option3')).not.toBeChecked();
+        expect(screen.getByDisplayValue('option4')).not.toBeChecked();
     });
 
 
@@ -135,7 +135,7 @@ describe('DropdownSelect', () => {
 
         const select = screen.getByTestId('selectPlaceholder');
         const arrowDown = screen.getByTestId('arrowDown');
-        const option1 = screen.getByLabelText('option1');
+        const option1 = screen.getByDisplayValue('option1');
 
         expect(option1).not.toBeChecked();
         expect(arrowDown).not.toHaveClass('active');
@@ -159,7 +159,7 @@ describe('DropdownSelect', () => {
 
         const select = screen.getByTestId('selectPlaceholder');
         const arrowDown = screen.getByTestId('arrowDown');
-        const option1 = screen.getByLabelText('option1');
+        const option1 = screen.getByDisplayValue('option1');
 
         expect(option1).not.toBeChecked();
         expect(arrowDown).not.toHaveClass('active');
