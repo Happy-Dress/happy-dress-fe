@@ -27,7 +27,7 @@ const PrivateRoutes = (props) => {
 
         const localStorageToken = localStorage.getItem('Authorization');
         const token = localStorageToken ? jwtDecode(localStorageToken) : '';
-        const millisecondsInterval = (token.exp - token.iat) * 1000 - 5000;
+        const millisecondsInterval = (token.exp - token.iat) * 1000 - 60000;
         const interval = setInterval(fetchData, millisecondsInterval);
 
         return () => {
