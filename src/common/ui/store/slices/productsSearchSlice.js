@@ -29,10 +29,10 @@ const fetchCatalogueItems = createAsyncThunk(
 
 const deleteProducts = createAsyncThunk(
     'productsSearch/delete',
-    async ({ productId }, { rejectWithValue }) => {
+    async ({ selectedProducts }, { rejectWithValue }) => {
         try {
-            await deleteCatalogItems(productId);
-            return productId;
+            await deleteCatalogItems(selectedProducts);
+            return selectedProducts;
         } catch (error) {
             return rejectWithValue(error.message);
         }
