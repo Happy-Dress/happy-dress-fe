@@ -20,9 +20,11 @@ jest.mock('react-router-dom', () => ({
     useNavigate: () => mockedUseNavigate,
 }));
 
-jest.mock('../../../../../api/authenticateUser', () => (
-    jest.fn()
-));
+jest.mock('../../../../../api/authenticateUser', () => ({
+    __esModule: true,
+    default: () => jest.fn(),
+}));
+
 
 describe('AuthorizationFormDesktop', () => {
 

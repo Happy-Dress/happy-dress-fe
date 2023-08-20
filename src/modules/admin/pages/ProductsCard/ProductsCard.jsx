@@ -31,7 +31,6 @@ const {
     OK,
     CANCEL,
     NEW_PRODUCT,
-    ERROR,
     UNKNOWN_ERROR,
     NOT_CHOSEN,
     PRODUCT_SAVED,
@@ -164,14 +163,12 @@ export const ProductsCard = () => {
                     setDefaultValues((prev) => ({ ...prev, ...formData }));
                     reset(formData);
                 } catch (e) {
-                    e
-                        ? showToasterError(`${ERROR} ${id}`)
-                        : showToasterError(UNKNOWN_ERROR);
+                    e !== 'Unauthorized' && showToasterError(UNKNOWN_ERROR);
                 }
             }
         };
         fetchData();
-    }, [product]);
+    }, []);
 
     useEffect(() => {
         const newProductColorImages = [...productColorImages];

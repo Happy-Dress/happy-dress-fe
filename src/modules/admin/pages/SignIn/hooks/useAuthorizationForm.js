@@ -38,8 +38,9 @@ const useAuthorizationForm = () => {
 
     const onAuthenticateUser = async (credentials) => {
         try {
-            const token = await authenticateUser(credentials);
-            localStorage.setItem('Authorization', `Bearer ${token}`);
+            const tokens = await authenticateUser(credentials);
+            localStorage.setItem('Authorization', `Bearer ${tokens.accessToken}`);
+            localStorage.setItem('refreshToken', tokens.refreshToken);
             navigate('/admin/panel/catalog-settings');
             showToasterSuccess(SUCCESS_SING_IN);
         } catch (message) {
