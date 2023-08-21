@@ -38,6 +38,9 @@ const PrivateRoutes = (props) => {
 
     const refreshTokenAndRetry = async (error) => {
         try {
+            if (error === 'Unauthorized') {
+                throw new Error();
+            }
             const originalRequest = error.config;
             originalRequest._retry = true;
             const response = await axios.post('secure/auth/refresh', {
@@ -56,11 +59,11 @@ const PrivateRoutes = (props) => {
     const interceptorResponse = axios.interceptors.response.use(
         (response) => response,
         async (error) => {
-            if (error.response.status === 401 && error.config.headers?.Authorization && !error.config._retry) {
+            if (error === 'Unauthorized' || (error.response?.status === 401 && error.config?.headers.Authorization && !error.config._retry)) {
                 return await refreshTokenAndRetry(error);
             }
             return Promise.reject(Array.isArray(error.response?.data?.message) ?
-                error.response.data.message[0]
+                error.response?.data?.message[0]
                 : (error.response.data.message || error?.response?.data?.error|| error.message));
         }
     );
