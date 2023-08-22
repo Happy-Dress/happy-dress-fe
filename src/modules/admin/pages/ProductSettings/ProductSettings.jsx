@@ -5,7 +5,7 @@ import { useCatalogFilters } from '../../../../common/ui/hooks/useCatalogFilters
 
 const ProductSettings = () =>{
 
-    useCatalogFilters();
+    useCatalogFilters(true);
 
     return (
         <>

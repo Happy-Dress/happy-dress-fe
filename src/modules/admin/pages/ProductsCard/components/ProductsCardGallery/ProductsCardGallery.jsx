@@ -25,7 +25,11 @@ const ProductsCardGallery = ({ productColorImages, setProductColorImages }) => {
         <div className={s.ProductCardGallery}>
             <h3>{GALLERY_TEXT}</h3>
             {productColorImages.length > 0 ? productColorImages.map((colorImage) => (
-                <div key={colorImage.color.id} className={s.ProductCardGallery_item}>
+                <div
+                    key={colorImage.color.id}
+                    className={s.ProductCardGallery_item}
+                    data-testid={'color-images-item'}
+                >
                     <div className={s.ProductCardGallery_item_color}>
                         <ColorCircle 
                             firstColor={colorImage.color.firstColor}

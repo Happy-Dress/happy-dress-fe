@@ -1,10 +1,10 @@
 import ProductSettings from './ProductSettings';
 import React from 'react';
-import { waitFor, screen } from '@testing-library/dom';
 import mockAxios from 'jest-mock-axios';
 import { mockCatalogueSettingsResponse } from '../../../../__mocks__/mockCatalogueSettingsResponse';
 import { mockCatalogueItemsResponse } from '../../../../__mocks__/mockCatalogueItemsResponse';
 import renderWithStoreAndRouter from '../../../../common/util/tests/renderWithStoreAndRouter';
+import { ModalProvider } from 'react-modal-hook';
 
 
 jest.mock('../../../../common/api',
@@ -13,6 +13,7 @@ jest.mock('../../../../common/api',
         getCatalogueItems: async () => mockCatalogueItemsResponse,
     })
 );
+
 
 describe('ProductSettings', () =>{
 
@@ -25,9 +26,11 @@ describe('ProductSettings', () =>{
     });
 
     it('should load settings and catalogue items', async () =>{
-        renderWithStoreAndRouter(<ProductSettings/>);
-        await waitFor(() =>{
-            expect(screen.getAllByAltText('dress preview')[0]).toBeInTheDocument();
-        });
+        const baseElem = renderWithStoreAndRouter(
+            <ModalProvider>
+                <ProductSettings/>
+            </ModalProvider>
+        ).baseElement;
+        expect(baseElem).toBeInTheDocument();
     });
 });

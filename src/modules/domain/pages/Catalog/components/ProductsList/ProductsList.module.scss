@@ -1,10 +1,17 @@
 @import "../../../../../../common/ui/styles/media-sizes";
 
-.ProductsList{
+.Banner {
+  display: flex;
+  grid-area: content;
+}
+
+
+.ProductsList {
+  grid-area: content;
   width: 100%;
   display: grid;
+  justify-items: center;
   grid-template-columns: repeat(3, 30%);
-  grid-area: content;
   column-gap: 5%;
   row-gap: 30px;
 
@@ -17,6 +24,7 @@
     grid-template-columns: 1fr;
     column-gap: unset;
   }
+
   .observingBlock {
     width: 20px;
     height: 20px;

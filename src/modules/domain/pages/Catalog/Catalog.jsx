@@ -8,7 +8,7 @@ import { useCatalogFilters } from '../../../../common/ui/hooks/useCatalogFilters
 
 const Catalog = () =>{
     const { isDesktop } = useDeviceTypeContext();
-    useCatalogFilters();
+    useCatalogFilters(false);
 
     return (
         <div className={s.Catalog}>

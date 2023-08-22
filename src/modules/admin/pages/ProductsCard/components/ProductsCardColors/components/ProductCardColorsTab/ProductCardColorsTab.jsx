@@ -45,7 +45,11 @@ const ProductCardColorsTab = ({
                     </div>
                 ))}
             </div>
-            <div className={s.ProductCardColorsTab_trash} onClick={handleDelete}>
+            <div
+                className={s.ProductCardColorsTab_trash}
+                onClick={handleDelete}
+                data-testid={'trash'}
+            >
                 <Trash/>
             </div>
         </div>

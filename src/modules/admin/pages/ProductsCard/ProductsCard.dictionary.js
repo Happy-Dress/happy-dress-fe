@@ -64,6 +64,10 @@ export const PRODUCT_CARD_DICTIONARY = {
     COLOR_TEXT: 'Цвет',
     GALLERY_TEXT: 'Фотогалерея',
     EMPTY_GALLERY_TEXT: 'Изображения отсутствуют',
+    ALL_COLORS_SELECTED_MESSAGE: 'Все цвета должны быть выбраны',
+    ALL_COLORS_AVAILABLE_MESSAGE: 'Каждый цвет должен иметь хотя бы один размер. Иначе удалите цвет.',
+    ALL_COLORS_WITH_PICTURES_MESSAGE: 'Все цвета должны иметь хотя бы одно фото.',
+    HAVE_COLORS_MESSAGE: 'Цвета и размеры не выбраны',
     EMPTY_COLOR_OBJECT: {
         id: -1000,
         name: 'Не выбрано',

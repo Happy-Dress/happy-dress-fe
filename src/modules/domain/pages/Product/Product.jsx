@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import adaptive from '../../../../common/ui/hocs/adaptive';
 import ProductDesktop from './ProductDesktop';
 import ProductMobile from './ProductMobile/ProductMobile';
@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProduct, setLoadingImages } from '../../../../common/ui/store/slices/productSlice';
 import Loader from '../../../../common/ui/components/Loader';
+import EmptyBanner from '../../../../common/ui/components/EmptyBanner';
+import s from './Product.module.scss';
 
 
 const Product = () => {
@@ -19,8 +21,12 @@ const Product = () => {
     const loadingImages = useSelector(state => state.product.loadingImages);
     const dispatch = useDispatch();
 
+    const [isProductExists, setIsProductExists] = useState(true);
+
     useEffect(() => {
-        dispatch(fetchProduct({ productId }));
+        dispatch(fetchProduct({ productId, isSecure: false }))
+            .unwrap()
+            .catch(() => setIsProductExists(false));
     }, []);
 
     const AdaptiveProduct = useMemo(() => adaptive(ProductDesktop, ProductMobile), []);
@@ -33,19 +39,24 @@ const Product = () => {
 
     return (
         <>
-            {product ?
-                <AdaptiveProduct
-                    product={product}
-                    productColorImages={productColorImages}
-                    currentColorSize={currentColorSize}
-                    uniqueColors={JSON.parse(uniqueColors)}
-                    mainImageUrl={mainImageUrl}
-                    selectedImage={selectedImage}
-                    loadingImages={loadingImages}
-                    handleImageOnLoad={handleOnLoad}
-                />
+            {isProductExists ?
+                product ? 
+                    <AdaptiveProduct
+                        product={product}
+                        productColorImages={productColorImages}
+                        currentColorSize={currentColorSize}
+                        uniqueColors={JSON.parse(uniqueColors)}
+                        mainImageUrl={mainImageUrl}
+                        selectedImage={selectedImage}
+                        loadingImages={loadingImages}
+                        handleImageOnLoad={handleOnLoad}
+                    />
+                    :
+                    <Loader/>
                 :
-                <Loader/>
+                <div className={s.EmptyBanner}>
+                    <EmptyBanner/>
+                </div>
             }
         </>
     );

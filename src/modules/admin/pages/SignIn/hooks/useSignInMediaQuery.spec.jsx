@@ -1,12 +1,12 @@
 import useSignInMediaQuery from './useSignInMediaQuery';
 import { useMediaQuery } from 'react-responsive';
 
-jest.mock('react-responsive', ()  => ({
+jest.mock('react-responsive', () => ({
     useMediaQuery: jest.fn(),
 }));
 
 describe('useSignInMediaQuery', () => {
-    it('should return desktop',  () => {
+    it('should return desktop', () => {
         useMediaQuery.mockImplementation(() => true);
         const isDesktopWidth = true;
         const isMobileWidth = true;

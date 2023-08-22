@@ -7,6 +7,7 @@ import hanger from '../../../../../common/assets/images/hanger.svg';
 import { Typography } from '../../../../../common/ui/components';
 import { routerConfig } from '../../../config';
 import { NavLink } from 'react-router-dom';
+import { disabledRouterConfig } from '../../../config/routerConfig/routerConfig';
 
 const HeaderMobile = () => {
     const {
@@ -45,7 +46,7 @@ const HeaderMobile = () => {
             </div>
             {activeMenu && <div className={s.Menu}>
                 <ul className={s.Menu_nav}>
-                    {Object.values(routerConfig).map(({ path, name })=>(
+                    {Object.values(routerConfig).map(({ path, name }) => (
                         <NavLink
                             key={name}
                             className={checkIsLinkActive}
@@ -55,8 +56,20 @@ const HeaderMobile = () => {
                             <Typography classNames={[s.Menu_nav_item]}>
                                 {name}
                             </Typography>
-                        </NavLink>))
-                    }
+                        </NavLink>
+                    ))}
+                    {Object.values(disabledRouterConfig).map(({ name }) => (
+                        <NavLink
+                            key={name}
+                            className={s.Menu_nav_item_disabled}
+                            to={'#'}
+                            onClick={() => setActiveMenu(!activeMenu)}
+                        >
+                            <Typography classNames={[s.Menu_nav_item]}>
+                                {name}
+                            </Typography>
+                        </NavLink>
+                    ))}
                 </ul>
                 <Typography classNames={[s.Menu_nav_number]}>
                     <a href={`tel:${PHONE_NUMBER}`}>{PHONE_NUMBER}</a>

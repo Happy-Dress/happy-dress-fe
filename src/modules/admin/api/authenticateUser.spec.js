@@ -8,6 +8,7 @@ describe('authenticateUser', () => {
             Promise.resolve({
                 data: {
                     accessToken: 'access',
+                    refreshToken: 'refresh',
                 }
             })
         );
@@ -15,8 +16,11 @@ describe('authenticateUser', () => {
             login: 'user',
             password: '1234',
         };
-        let expectedToken = 'access';
+        let expectedToken = {
+            accessToken: 'access',
+            refreshToken: 'refresh',
+        };
         let currentToken = await authenticateUser(testUser);
-        expect(currentToken).toBe(expectedToken);
+        expect(currentToken).toStrictEqual(expectedToken);
     });
 });

@@ -13,8 +13,8 @@ const initialState = {
 
 const fetchProduct = createAsyncThunk(
     'product/fetch',
-    async ({ productId }) => {
-        return await getCatalogItem(productId);
+    async ({ productId, isSecure }) => {
+        return await getCatalogItem(productId, isSecure);
     }
 );
 

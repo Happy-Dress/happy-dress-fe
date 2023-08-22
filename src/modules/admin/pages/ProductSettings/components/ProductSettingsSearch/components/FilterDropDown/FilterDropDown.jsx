@@ -13,11 +13,19 @@ const FilterDropdown = ({ name, options, selectedOptionIds, renderOption, onSele
 
     return (
         <div className={s.FilterDropdown} ref={outsideClickRef}>
-            <div className={s.currentFilter} onClick={() => setIsOpen(!isOpen)} >
+            <div 
+                className={s.currentFilter}
+                onClick={() => setIsOpen(!isOpen)} 
+                data-testid={'current-filter'}
+            >
                 <p>{name}</p>
                 <ArrowDown className={isOpen ? s.active : ''}/>
             </div>
-            <div className={s.options} style={{ height: isOpen ? `calc(60px * ${options.length})` : '0' }}>
+            <div 
+                className={s.options}
+                style={{ height: isOpen ? `calc(60px * ${options.length})` : '0' }}
+                data-testid={'options'}
+            >
                 {
                     options.map(item => {
                         return <FilterOption

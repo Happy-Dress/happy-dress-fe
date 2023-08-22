@@ -20,9 +20,10 @@ jest.mock('react-router-dom', () => ({
     useNavigate: () => mockedUseNavigate,
 }));
 
-jest.mock('../../../../../api/authenticateUser', () => (
-    jest.fn()
-));
+jest.mock('../../../../../api/authenticateUser', () => ({
+    __esModule: true,
+    default: () => jest.fn(),
+}));
 
 
 describe('AuthorizationFormMobile', () => {
@@ -43,7 +44,7 @@ describe('AuthorizationFormMobile', () => {
             userEvent.paste(screen.getByPlaceholderText('Ваше Имя'), 'admin');
         });
         await act(() => {
-            userEvent.paste(screen.getByPlaceholderText('Пароль'), 'admin');
+            userEvent.paste(screen.getByPlaceholderText('Пароль'), 'password');
         });
         await act(() => {
             userEvent.click(screen.getByText('Войти'));

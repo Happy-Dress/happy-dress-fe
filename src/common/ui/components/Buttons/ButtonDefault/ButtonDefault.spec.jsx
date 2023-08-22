@@ -4,7 +4,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ButtonDefault from './ButtonDefault';
 
-describe('ButtonDefault',  () => {
+describe('ButtonDefault', () => {
 
     it('change class on click and remove after timeout', async () => {
         render(<ButtonDefault text='test'/>);

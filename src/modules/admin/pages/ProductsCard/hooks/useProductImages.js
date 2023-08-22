@@ -17,8 +17,8 @@ export const useProductImages = (productColorImages, setProductColorImages) => {
             setIsFetching(true);
             const res = await uploadImage(e.target.files[0]);
             setIsFetching(false);
-            if (res?.uploadedImages.length) {
-                setMainImageUrl(res.uploadedImages[0].imageUrl);
+            if (res?.uploadedFiles.length) {
+                setMainImageUrl(res.uploadedFiles[0].fileUrl);
             }
         }
     };
@@ -29,9 +29,9 @@ export const useProductImages = (productColorImages, setProductColorImages) => {
             setIsFetching(true);
             const res = await uploadImage(e.target.files[0]);
             setIsFetching(false);
-            if (res?.uploadedImages.length) {
+            if (res?.uploadedFiles.length) {
                 const newColorsImages = [...productColorImages];
-                newColorsImages[colorIndex].imageURLs.push(res.uploadedImages[0].imageUrl);
+                newColorsImages[colorIndex].imageURLs.push(res.uploadedFiles[0].fileUrl);
                 setProductColorImages(newColorsImages);
             }
         }
@@ -47,12 +47,12 @@ export const useProductImages = (productColorImages, setProductColorImages) => {
     const uploadImage = async (file) => {
         try {
             const imageUploadResult = await addImage(file);
-            if (imageUploadResult.uploadedImages.length) {
+            if (imageUploadResult.uploadedFiles.length) {
                 showToasterSuccess(SUCCESS_MESSAGE);
             }
-            if (imageUploadResult.failedImages.length) {
-                showToasterError(imageUploadResult.failedImages[0].imageName + ' ' +
-                    imageUploadResult.failedImages[0].reason.toString());
+            if (imageUploadResult.failedFiles.length) {
+                showToasterError(imageUploadResult.failedFiles[0].fileName + ' ' +
+                    imageUploadResult.failedFiles[0].reason.toString());
             }
             return imageUploadResult;
         } catch (e) {

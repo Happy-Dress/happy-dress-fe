@@ -6,13 +6,17 @@ import telegram from '../../../../../common/assets/images/tg.svg';
 import { FOOTER_DICTIONARY } from '../Footer.dictionary';
 import { Typography } from '../../../../../common/ui/components';
 import { routerConfig } from '../../../config';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { disabledRouterConfig } from '../../../config/routerConfig/routerConfig';
 
 const {
     FOOTER_LOGO,
     PHONE_NUMBER,
     FOOTER_EMAIL,
     FOOTER_SIGNATURE,
+    INSTAGRAM_LINK,
+    VK_LINK,
+    TELEGRAM_LINK,
 } = FOOTER_DICTIONARY;
 
 const FooterDesktop = () => {
@@ -20,16 +24,31 @@ const FooterDesktop = () => {
         <div className={s.FooterDesktop}>
             <div className={s.Footer}>
                 <div className={s.Footer_title}>
-                    <span className={s.Footer_logo}>{FOOTER_LOGO}</span>
+                    <NavLink to={routerConfig.home.path} className={s.Footer_logo}>
+                        <span >{FOOTER_LOGO}</span>
+                    </NavLink>
                 </div>
                 <ul className={s.Footer_menu}>
                     {Object.values(routerConfig).map(({ path, name })=>(
-                        <Link key={name} to={path}>
+                        <NavLink
+                            key={name}
+                            to={path}
+                            className={({ isActive }) => isActive ? s.Footer_menu_item_active : ''}>
                             <Typography classNames={[s.Footer_menu_item]}>
                                 {name}
                             </Typography>
-                        </Link>))
-                    }
+                        </NavLink>
+                    ))}
+                    {Object.values(disabledRouterConfig).map(({ name })=>(
+                        <NavLink
+                            key={name}
+                            to={'#'}
+                            className={s.Footer_menu_item_disabled}>
+                            <Typography classNames={[s.Footer_menu_item]}>
+                                {name}
+                            </Typography>
+                        </NavLink>
+                    ))}
                 </ul>
                 <div className={s.Footer_right_side}>
                     <div className={s.Footer_right_side_text}>
@@ -41,9 +60,15 @@ const FooterDesktop = () => {
                         </Typography>
                     </div>
                     <div className={s.Footer_right_side_menu}>
-                        <img className={s.Footer_right_side_hanger} src={instagram} alt="instagram"/>
-                        <img className={s.Footer_right_side_hanger} src={vk} alt="vk"/>
-                        <img className={s.Footer_right_side_hanger} src={telegram} alt="telegram"/>
+                        <a href={INSTAGRAM_LINK} target="_blank" rel="noreferrer">
+                            <img className={s.Footer_right_side_hanger} src={instagram} alt="instagram"/>
+                        </a>
+                        <a href={VK_LINK} target="_blank" rel="noreferrer">
+                            <img className={s.Footer_right_side_hanger} src={vk} alt="vk"/>
+                        </a>
+                        <a href={TELEGRAM_LINK} target="_blank" rel="noreferrer">
+                            <img className={s.Footer_right_side_hanger} src={telegram} alt="telegram"/>
+                        </a>
                     </div>
                 </div>
 

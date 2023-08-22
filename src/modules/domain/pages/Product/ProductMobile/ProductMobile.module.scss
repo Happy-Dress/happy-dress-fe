@@ -38,7 +38,15 @@
       gap: 10px;
       max-width: 90vw;
       width: 100%;
-      overflow-x: scroll;
+      overflow-x: auto;
+
+      &::-webkit-scrollbar {
+        height: 7px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 7px;
+      }
 
       &_item {
         img {
@@ -144,7 +152,15 @@
 
     &_tableColors {
       max-width: 90vw;
-      overflow-x: scroll;
+      overflow-x: auto;
+
+      &::-webkit-scrollbar {
+        height: 7px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 7px;
+      }
     }
   }
 }

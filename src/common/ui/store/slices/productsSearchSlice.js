@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getCatalogueItems } from '../../../api';
+import { getCatalogItems } from '../../../api';
 import { fetchCatalogueSettings } from './catalogueSettingsSlice';
-import { deleteCatalogueItems } from '../../../api/catalogueItems/deleteCatalogueItems';
+import { deleteCatalogItems } from '../../../api/catalogItems/deleteCatalogItems';
 const initialState = {
     loading: true,
     filters: {
@@ -22,17 +22,17 @@ const initialState = {
 
 const fetchCatalogueItems = createAsyncThunk(
     'productsSearch/fetch',
-    async ({ filters, page }) => {
-        return await getCatalogueItems(filters, page);
+    async ({ filters, page, isSecure }) => {
+        return await getCatalogItems(filters, page, isSecure);
     }
 );
 
 const deleteProducts = createAsyncThunk(
     'productsSearch/delete',
-    async ({ productId }, { rejectWithValue }) => {
+    async ({ selectedProducts }, { rejectWithValue }) => {
         try {
-            await deleteCatalogueItems(productId);
-            return productId;
+            await deleteCatalogItems(selectedProducts);
+            return selectedProducts;
         } catch (error) {
             return rejectWithValue(error.message);
         }

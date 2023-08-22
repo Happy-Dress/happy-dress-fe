@@ -16,11 +16,13 @@ import { fetchCatalogueSettings } from '../../../../common/ui/store/slices/catal
 import { useToasters } from '../../../../common/ui/contexts/ToastersContext';
 import { useDeviceTypeContext } from '../../../../common/ui/contexts/DeviceType';
 import ProductsCardImage from './components/ProductsCardImage';
-import updateCatalogueItem from '../../../../common/api/catalogItem/updateCatalogItem';
+import updateCatalogItem from '../../../../common/api/catalogItem/updateCatalogItem';
 import { useProductImages } from './hooks/useProductImages';
 import ProductsCardColors from './components/ProductsCardColors';
 import { fetchProduct } from '../../../../common/ui/store/slices/productSlice';
 import ProductsCardGallery from './components/ProductsCardGallery';
+import createCatalogItem from '../../../../common/api/catalogItem/createCatalogItem';
+import EmptyBanner from '../../../../common/ui/components/EmptyBanner';
 
 
 const {
@@ -30,12 +32,15 @@ const {
     OK,
     CANCEL,
     NEW_PRODUCT,
-    ERROR,
     UNKNOWN_ERROR,
     NOT_CHOSEN,
     PRODUCT_SAVED,
     EMPTY_COLOR_OBJECT,
     EMPTY_SIZE_OBJECT,
+    ALL_COLORS_AVAILABLE_MESSAGE,
+    ALL_COLORS_SELECTED_MESSAGE,
+    ALL_COLORS_WITH_PICTURES_MESSAGE,
+    HAVE_COLORS_MESSAGE,
 } = PRODUCT_CARD_DICTIONARY;
 const { NAME, MATERIAL, CATEGORY, MODEL, DESCRIPTION, MAIN_IMAGE_URL, MAIN_IMAGE_FILE, PRODUCT_COLOR_IMAGES } = FIELDS;
 
@@ -51,6 +56,8 @@ export const ProductsCard = () => {
     const navigate = useNavigate();
     const { catalogueSettings } = useDetailedSearch();
     const { mainImageUrl, setMainImageUrl, isFetching, handleMainImg } = useProductImages();
+
+    const [isProductExists, setIsProductExists] = useState(true);
 
     const [productName, setProductName] = useState(NEW_PRODUCT);
 
@@ -74,21 +81,29 @@ export const ProductsCard = () => {
         return productColorSizes.every((item) => item.size.id !== EMPTY_SIZE_OBJECT.id);
     };
 
+    const checkHaveColors = () => {
+        return productColorSizes.length > 0;
+    };
+
     const checkIsAllColorsWithPictures = () => {
         return productColorImages.every((item) => item.imageURLs.length > 0);
     };
 
     const onSubmit = async (data) => {
         if (!checkIsAllColorsSelected()) {
-            showToasterError('Все цвета должны быть выбраны');
+            showToasterError(ALL_COLORS_SELECTED_MESSAGE);
             return;
         }
         if (!checkIsAllColorsAreAvailable()) {
-            showToasterError('Каждый цвет должен иметь хотя бы один размер. Иначе удалите цвет.');
+            showToasterError(ALL_COLORS_AVAILABLE_MESSAGE);
+            return;
+        }
+        if (!checkHaveColors()) {
+            showToasterError(HAVE_COLORS_MESSAGE);
             return;
         }
         if (!checkIsAllColorsWithPictures()) {
-            showToasterError('Все цвета должны иметь хотя бы одно фото.');
+            showToasterError(ALL_COLORS_WITH_PICTURES_MESSAGE);
             return;
         }
         const dataToSave = {
@@ -107,9 +122,10 @@ export const ProductsCard = () => {
         };
 
         try {
-            const res = await updateCatalogueItem(dataToSave);
-            setProduct(res);
+            const res = id ? await updateCatalogItem(dataToSave) : await createCatalogItem(dataToSave);
             showToasterSuccess(PRODUCT_SAVED);
+            navigate(id ? '' : `${res.id}`);
+            setProduct(res);
         } catch (e) {
             e
                 ? showToasterError(e.toString())
@@ -129,12 +145,12 @@ export const ProductsCard = () => {
     };
 
     useEffect(() => {
-        dispatch(fetchCatalogueSettings());
+        dispatch(fetchCatalogueSettings({ isSecure: true }));
         const fetchData = async () => {
             if (id) {
                 dispatch(fetchProduct({ productId: id }));
                 try {
-                    const res = await getCatalogueItem(id);
+                    const res = await getCatalogueItem(id, true);
                     setProductName(res.name);
                     setProduct(res);
                     setMainImageUrl(res.mainImageUrl);
@@ -150,9 +166,8 @@ export const ProductsCard = () => {
                     setDefaultValues((prev) => ({ ...prev, ...formData }));
                     reset(formData);
                 } catch (e) {
-                    e
-                        ? showToasterError(`${ERROR} ${id}`)
-                        : showToasterError(UNKNOWN_ERROR);
+                    e !== 'Unauthorized' && showToasterError(UNKNOWN_ERROR);
+                    setIsProductExists(false);
                 }
             }
         };
@@ -181,137 +196,143 @@ export const ProductsCard = () => {
 
     return (
         <div className={s.productCard}>
-            <div className={s.hideOnMobile}>
-                <Breadcrumbs breadcrumbs={[...BREADCRUMBS, {
-                    id: BREADCRUMBS.length,
-                    link: `../product-card${id ? '/' + id : ''}`,
-                    linkTitle: productName,
-                }]}/>
-            </div>
-            <h2 className={s.productCard_heading}>{TITLE}</h2>
-            <form className={s.productCard_form} onSubmit={handleSubmit(onSubmit)}>
-                <div className={s.productCard_fields_section}>
-                    <label htmlFor={MAIN_IMAGE_FILE.NAME}>
-                        <ProductsCardImage
-                            imageUrl={mainImageUrl}
-                            alt={productName}
-                            onDelete={handleDeleteImage}
-                            isLoaded={!isFetching}
-                        />
-                        {!mainImageUrl &&
+            {isProductExists ?
+                <>
+                    <div className={s.hideOnMobile}>
+                        <Breadcrumbs breadcrumbs={[...BREADCRUMBS, {
+                            id: BREADCRUMBS.length,
+                            link: `../product-card${id ? '/' + id : ''}`,
+                            linkTitle: productName,
+                        }]}/>
+                    </div>
+                    <h2 className={s.productCard_heading}>{TITLE}</h2>
+                    <form className={s.productCard_form} onSubmit={handleSubmit(onSubmit)}>
+                        <div className={s.productCard_fields_section}>
+                            <label htmlFor={MAIN_IMAGE_FILE.NAME}>
+                                <ProductsCardImage
+                                    imageUrl={mainImageUrl}
+                                    alt={productName}
+                                    onDelete={handleDeleteImage}
+                                    isLoaded={!isFetching}
+                                />
+                                {!mainImageUrl &&
                         <input
                             type="file"
                             accept="image/*"
                             id={MAIN_IMAGE_FILE.NAME}
                             {...register(MAIN_IMAGE_FILE.NAME, { onChange: handleMainImg })}
                         />
-                        }
-                    </label>
-                    <div className={s.productCard_fields}>
-                        <div className={s.productCard_field}>
-                            <label className={s.productCard_field_label} htmlFor={NAME.ID}>{NAME.LABEL}</label>
-                            <div className={s.productCard_field_container}>
-                                <TextField
-                                    placeholder={NAME.PLACEHOLDER}
-                                    name={NAME.NAME}
-                                    id={NAME.ID}
-                                    error={!!errors[NAME.NAME]}
-                                    {...register(NAME.NAME, { required: true })}
-                                />
-                                <span className={errors[NAME.NAME] ? s.productCard_field_error : s.displayEmpty}>
-                                    {errors[NAME.NAME] && NAME.ERROR_MESSAGE}
-                                </span>
+                                }
+                            </label>
+                            <div className={s.productCard_fields}>
+                                <div className={s.productCard_field}>
+                                    <label className={s.productCard_field_label} htmlFor={NAME.ID}>{NAME.LABEL}</label>
+                                    <div className={s.productCard_field_container}>
+                                        <TextField
+                                            placeholder={NAME.PLACEHOLDER}
+                                            name={NAME.NAME}
+                                            id={NAME.ID}
+                                            error={!!errors[NAME.NAME]}
+                                            {...register(NAME.NAME, { required: true })}
+                                        />
+                                        <span className={errors[NAME.NAME] ? s.productCard_field_error : s.displayEmpty}>
+                                            {errors[NAME.NAME] && NAME.ERROR_MESSAGE}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className={s.productCard_field}>
+                                    <label className={s.productCard_field_label}>{CATEGORY.LABEL}</label>
+                                    <div className={s.productCard_field_container}>
+                                        <DropdownSelect
+                                            defaultValues={defaultValues[CATEGORY.NAME]}
+                                            options={getSelectValues(catalogueSettings.categories)}
+                                            placeholder={isMobile ? CATEGORY.LABEL : NOT_CHOSEN}
+                                            error={!!errors[CATEGORY.NAME]}
+                                            {...register(CATEGORY.NAME, { required: true })}
+                                        />
+                                        <span className={errors[CATEGORY.NAME] ? s.productCard_field_error : s.displayEmpty}>
+                                            {errors[CATEGORY.NAME] && CATEGORY.ERROR_MESSAGE}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className={s.productCard_field}>
+                                    <label className={s.productCard_field_label}>{MODEL.LABEL}</label>
+                                    <div className={s.productCard_field_container}>
+                                        <DropdownSelect
+                                            defaultValues={defaultValues[MODEL.NAME]}
+                                            options={getSelectValues(catalogueSettings.models)}
+                                            placeholder={isMobile ? MODEL.LABEL : NOT_CHOSEN}
+                                            error={!!errors[MODEL.NAME]}
+                                            {...register(MODEL.NAME, { required: true })}
+                                        />
+                                        <span className={errors[MODEL.NAME] ? s.productCard_field_error : s.displayEmpty}>
+                                            {errors[MODEL.NAME] && MODEL.ERROR_MESSAGE}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className={s.productCard_field}>
+                                    <label className={s.productCard_field_label}>{MATERIAL.LABEL}</label>
+                                    <div className={s.productCard_field_container}>
+                                        <DropdownSelect
+                                            defaultValues={defaultValues[MATERIAL.NAME]}
+                                            options={getSelectValues(catalogueSettings.materials)}
+                                            placeholder={isMobile ? MATERIAL.LABEL : NOT_CHOSEN}
+                                            multiple={true}
+                                            error={!!errors[MATERIAL.NAME]}
+                                            {...register(MATERIAL.NAME, { required: true })}
+                                        />
+                                        <span className={errors[MATERIAL.NAME] ? s.productCard_field_error : s.displayEmpty}>
+                                            {errors[MATERIAL.NAME] && MATERIAL.ERROR_MESSAGE}
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div className={s.productCard_field}>
-                            <label className={s.productCard_field_label}>{CATEGORY.LABEL}</label>
-                            <div className={s.productCard_field_container}>
-                                <DropdownSelect
-                                    defaultValues={defaultValues[CATEGORY.NAME]}
-                                    options={getSelectValues(catalogueSettings.categories)}
-                                    placeholder={isMobile ? CATEGORY.LABEL : NOT_CHOSEN}
-                                    error={!!errors[CATEGORY.NAME]}
-                                    {...register(CATEGORY.NAME, { required: true })}
-                                />
-                                <span className={errors[CATEGORY.NAME] ? s.productCard_field_error : s.displayEmpty}>
-                                    {errors[CATEGORY.NAME] && CATEGORY.ERROR_MESSAGE}
-                                </span>
-                            </div>
+                        <div className={s.productCard_productColors}>
+                            <ProductsCardColors
+                                productColorSizes={product.productColorSizes}
+                                allSizes={catalogueSettings.sizes}
+                                allColors={catalogueSettings.colors}
+                                setProductColorSizes={setProductColorSizes}
+                            />
                         </div>
-                        <div className={s.productCard_field}>
-                            <label className={s.productCard_field_label}>{MODEL.LABEL}</label>
-                            <div className={s.productCard_field_container}>
-                                <DropdownSelect
-                                    defaultValues={defaultValues[MODEL.NAME]}
-                                    options={getSelectValues(catalogueSettings.models)}
-                                    placeholder={isMobile ? MODEL.LABEL : NOT_CHOSEN}
-                                    error={!!errors[MODEL.NAME]}
-                                    {...register(MODEL.NAME, { required: true })}
-                                />
-                                <span className={errors[MODEL.NAME] ? s.productCard_field_error : s.displayEmpty}>
-                                    {errors[MODEL.NAME] && MODEL.ERROR_MESSAGE}
-                                </span>
-                            </div>
+                        <div className={s.productCard_description}>
+                            <label
+                                htmlFor={DESCRIPTION.NAME}
+                                className={s.productCard_description_title}
+                            >
+                                {DESCRIPTION.LABEL}
+                            </label>
+                            <textarea
+                                className={cls(s.productCard_description_field, errors[DESCRIPTION.NAME] && s.productCard_description_error)}
+                                id={DESCRIPTION.NAME}
+                                name={DESCRIPTION.NAME}
+                                placeholder={isMobile ? DESCRIPTION.PLACEHOLDER : NOT_CHOSEN}
+                                {...register(DESCRIPTION.NAME, { required: true })}
+                            />
+                            <span className={errors[DESCRIPTION.NAME] ? s.productCard_field_error : s.displayEmpty}>
+                                {errors[DESCRIPTION.NAME] && DESCRIPTION.ERROR_MESSAGE}
+                            </span>
                         </div>
-                        <div className={s.productCard_field}>
-                            <label className={s.productCard_field_label}>{MATERIAL.LABEL}</label>
-                            <div className={s.productCard_field_container}>
-                                <DropdownSelect
-                                    defaultValues={defaultValues[MATERIAL.NAME]}
-                                    options={getSelectValues(catalogueSettings.materials)}
-                                    placeholder={isMobile ? MATERIAL.LABEL : NOT_CHOSEN}
-                                    multiple={true}
-                                    error={!!errors[MATERIAL.NAME]}
-                                    {...register(MATERIAL.NAME, { required: true })}
-                                />
-                                <span className={errors[MATERIAL.NAME] ? s.productCard_field_error : s.displayEmpty}>
-                                    {errors[MATERIAL.NAME] && MATERIAL.ERROR_MESSAGE}
-                                </span>
-                            </div>
+                        <ProductsCardGallery
+                            productColorImages={productColorImages}
+                            setProductColorImages={setProductColorImages}
+                        />
+                        <div className={s.productCard_footer}>
+                            <ButtonDefault
+                                text={CANCEL}
+                                onClick={handleCancel}
+                                type={'button'}
+                            />
+                            <ButtonAccent
+                                text={OK}
+                            />
                         </div>
-                    </div>
-                </div>
-                <div className={s.productCard_productColors}>
-                    <ProductsCardColors
-                        productColorSizes={product.productColorSizes}
-                        allSizes={catalogueSettings.sizes}
-                        allColors={catalogueSettings.colors}
-                        setProductColorSizes={setProductColorSizes}
-                    />
-                </div>
-                <div className={s.productCard_description}>
-                    <label
-                        htmlFor={DESCRIPTION.NAME}
-                        className={s.productCard_description_title}
-                    >
-                        {DESCRIPTION.LABEL}
-                    </label>
-                    <textarea
-                        className={cls(s.productCard_description_field, errors[DESCRIPTION.NAME] && s.productCard_description_error)}
-                        id={DESCRIPTION.NAME}
-                        name={DESCRIPTION.NAME}
-                        placeholder={isMobile ? DESCRIPTION.PLACEHOLDER : NOT_CHOSEN}
-                        {...register(DESCRIPTION.NAME, { required: true })}
-                    />
-                    <span className={errors[DESCRIPTION.NAME] ? s.productCard_field_error : s.displayEmpty}>
-                        {errors[DESCRIPTION.NAME] && DESCRIPTION.ERROR_MESSAGE}
-                    </span>
-                </div>
-                <ProductsCardGallery
-                    productColorImages={productColorImages}
-                    setProductColorImages={setProductColorImages}
-                />
-                <div className={s.productCard_footer}>
-                    <ButtonDefault
-                        text={CANCEL}
-                        onClick={handleCancel}
-                        type={'button'}
-                    />
-                    <ButtonAccent
-                        text={OK}
-                    />
-                </div>
-            </form>
+                    </form>
+                </>
+                :
+                <EmptyBanner/>
+            }
         </div>
     );
 }

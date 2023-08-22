@@ -1,5 +1,5 @@
-import retrieveCatalogueSettings from './catalogueSettings/retrieveCatalogueSettings';
-import getCatalogueItems from './catalogueItems/getCatalogueItems';
+import retrieveCatalogSettings from './catalogSettings/retrieveCatalogSettings';
+import getCatalogItems from './catalogItems/getCatalogItems';
 
 
-export { retrieveCatalogueSettings, getCatalogueItems };
+export { retrieveCatalogSettings, getCatalogItems };

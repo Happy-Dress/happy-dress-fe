@@ -14,12 +14,10 @@ import {
     fetchCatalogueItems,
     resetSelectedProducts,
     deleteProducts,
-    unSelectProduct,
 } from '../../../../../../common/ui/store/slices/productsSearchSlice';
 import DeleteProductConfirmationDialog from './components/DeleteProductConfirmationDialog/DeleteProductConfirmationDialog';
 import { useModal } from 'react-modal-hook';
 import { useToasters } from '../../../../../../common/ui/contexts/ToastersContext';
-
 
 const ProductsList = () => {
     const products = useSelector((state) => state.productsSearch.products);
@@ -31,18 +29,19 @@ const ProductsList = () => {
     const selectedProducts = useSelector(
         (state) => state.productsSearch.selectedProducts
     );
-
     const [showModal, hideModal] = useModal(() => {
-        return <DeleteProductConfirmationDialog onClose={hideModal} onSubmit={handleDeleteProducts}/>;
+        return (
+            <DeleteProductConfirmationDialog
+                onClose={hideModal}
+                onSubmit={handleDeleteProducts}
+            />
+        );
     }, [selectedProducts]);
-
-
 
     const { inView } = useInView({
         threshold: 0,
     });
     const dispatch = useDispatch();
-
 
     const renderSkeletons = (amount) => {
         return Array.from(Array(amount).keys()).map((item) => (
@@ -65,24 +64,29 @@ const ProductsList = () => {
 
     useEffect(() => {
         if (inView && currentPage < totalPages) {
-            dispatch(fetchCatalogueItems({ filters, page: currentPage }));
+            dispatch(
+                fetchCatalogueItems({ filters, page: currentPage, isSecure: true })
+            );
         }
     }, [inView]);
 
-    const handleDeleteProducts = () => {
-        selectedProducts.forEach((productId) => {
-            dispatch(deleteProducts({ productId }));
-            dispatch(unSelectProduct(productId));
-        });
-        showToasterNotification('Товары успешно удалены!');
+    const handleDeleteProducts = async () => {
+        const result = await dispatch(
+            deleteProducts({ selectedProducts: selectedProducts })
+        );
+        if (result.error.message === 'Rejected') {
+            showToasterNotification('Ошибка при удалении товаров');
+        } else {
+            showToasterNotification('Товары успешно удалены!');
+            dispatch(resetSelectedProducts());
+        }
         hideModal();
     };
-
 
     return (
         <div className={s.ProductsList}>
             <Link to="../product-card" className={s.ProductsListLink}>
-                <ProductCardAdd/>
+                <ProductCardAdd />
             </Link>
             {products.map((product, index) => {
                 return <ProductCard key={index} product={product} isAdmin={true} />;
@@ -96,7 +100,9 @@ const ProductsList = () => {
                     </div>
                 </div>
             )}
-            {shouldDisplayGoToTop && <Slider id={s.slider} onClick={handleGoToTopClick} />}
+            {shouldDisplayGoToTop && (
+                <Slider id={s.slider} onClick={handleGoToTopClick} />
+            )}
         </div>
     );
 };
