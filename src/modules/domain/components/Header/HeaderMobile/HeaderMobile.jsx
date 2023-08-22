@@ -19,7 +19,9 @@ const HeaderMobile = () => {
     return (
         <div className={activeMenu ? s.Header_wrapper_fixed : ''}>
             <div className={s.Header}>
-                <Typography classNames={[s.Header_logo]}>{HEADER_LOGO}</Typography>
+                <NavLink to={routerConfig.home.path}>
+                    <Typography classNames={[s.Header_logo]}>{HEADER_LOGO}</Typography>
+                </NavLink>
                 <div className={s.Header_right}>
                     {activeMenu ? (
                         <img
