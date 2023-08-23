@@ -13,6 +13,7 @@ const {
     FOOTER_LOGO,
     PHONE_NUMBER,
     FOOTER_EMAIL,
+    DEVELOPERS_TEAM,
     FOOTER_MOBILE_SIGNATURE,
     INSTAGRAM_LINK,
     VK_LINK,
@@ -75,14 +76,19 @@ const FooterMobile = () => {
 
             </div>
             <div className={s.FooterMobile_wrapper}>
-                <div className={s.FooterMobile_wrapper_side}>
+                <div>
                     {FOOTER_MOBILE_SIGNATURE.map((items) => (
                         <p key={items}>
-                            <Typography classNames={[s.FooterMobile_wrapper_side_items]}>
+                            <Typography>
                                 {items}
                             </Typography>
                         </p>))
                     }
+                </div>
+                <div>
+                    <Typography>
+                        {DEVELOPERS_TEAM}
+                    </Typography>
                 </div>
             </div>
         </>

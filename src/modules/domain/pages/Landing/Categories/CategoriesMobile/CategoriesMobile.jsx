@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { setCategory } from '../../../../../../common/ui/store/slices/productsSearchSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import ImageSkeleton from '../../../../../../common/ui/components/Image/ImageSkeleton';
 
 
 const { HEADING_LABEL } = CATEGORIES_DICTIONARY;
@@ -16,11 +17,14 @@ const CategoriesMobile = ({ categories }) => {
     const [index, setIndex] = useState(0);
     const [moveLeft, setMoveLeft] = useState(false);
     const [moveRight, setMoveRight] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [loadedImages, setLoadedImages] = useState(Array(categories.length).fill(false));
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleSwipe = useSwipeable({
         onSwipedLeft: () => {
             setMoveLeft(true);
+            setIsLoading(true);
             setTimeout(() => {
                 setIndex((prevIndex) => (prevIndex + 1) % categories.length);
                 setMoveLeft(false);
@@ -29,6 +33,7 @@ const CategoriesMobile = ({ categories }) => {
         },
         onSwipedRight: () => {
             setMoveRight(true);
+            setIsLoading(true);
             setTimeout(() => {
                 setIndex((prevIndex) => (prevIndex + categories.length - 1) % categories.length);
                 setMoveRight(false);
@@ -36,6 +41,17 @@ const CategoriesMobile = ({ categories }) => {
         },
     });
 
+    const handleLoadImages = (index) => {
+        setIsLoading(false);
+        const newLoadedImages = [...loadedImages];
+        newLoadedImages[index] = true;
+        setLoadedImages(newLoadedImages);
+    };
+
+    const handleDotClick = (index) => {
+        setIsLoading(true);
+        setIndex(index);
+    };
 
     const renderDots = () => {
         return (
@@ -43,7 +59,7 @@ const CategoriesMobile = ({ categories }) => {
                 {categories.map((_, i) => (
                     <span
                         key={i}
-                        onClick={() => setIndex(i)}
+                        onClick={() => handleDotClick(i)}
                         className={classNames(s.slider_dot, index === i ? s.slider_dot_active : s.slider_dot_disabled)}
                         data-testid={`dot_${i}`}
                     />
@@ -78,8 +94,14 @@ const CategoriesMobile = ({ categories }) => {
                             data-testid={`card_${key}`}
                         >
                             {key === index && <div>
-                                <img src={post.imageUrl} className={s.slider_card_mainImage}
-                                    alt={`Slide ${index + 1}`}/>
+                                {isLoading && !loadedImages[index] && <ImageSkeleton width={'90vw'} height={'450px'}/>}
+                                <img 
+                                    src={post.imageUrl} 
+                                    className={s.slider_card_mainImage}
+                                    alt={`Slide ${index + 1}`}
+                                    onLoad={() => handleLoadImages(index)}
+                                    hidden={isLoading && !loadedImages[index]}
+                                />
                                 <h3>{post.name}</h3>
                                 <div className={s.slider_card_description}>
                                     <p>{post.description}</p>
