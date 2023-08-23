@@ -30,15 +30,22 @@
     display: flex;
     flex-direction: row-reverse;
 
-    img {
-      &:last-child {
-        margin-right: 25px
+    div:last-child {
+        margin-right: 25px;
+
+      path {
+        fill: $gray-disabled;
       }
     }
 
     &_icon {
-      width: 24px;
-      cursor: pointer;
+      display: flex;
+      align-items: center;
+
+      svg {
+        width: 24px;
+        height: auto;
+      }
     }
   }
 }
