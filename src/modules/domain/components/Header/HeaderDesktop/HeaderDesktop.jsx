@@ -1,11 +1,12 @@
 import React from 'react';
 import s from './HeaderDesktop.module.scss';
-import hanger from '../../../../../common/assets/images/hanger.svg';
+import { ReactComponent as Hanger } from '../../../../../common/assets/images/hanger.svg';
 import { HEADER_DICTIONARY } from '../Header.dictionary';
 import { Typography } from '../../../../../common/ui/components';
 import { NavLink } from 'react-router-dom';
 import { routerConfig } from '../../../config';
 import { disabledRouterConfig } from '../../../config/routerConfig/routerConfig';
+
 
 const {
     HEADER_LOGO,
@@ -45,7 +46,9 @@ const HeaderDesktop = () => {
                 ))}
             </ul>
             <div className={s.Header_right_side}>
-                <img className={s.Header_right_side_hanger} alt="hanger" src={hanger} />
+                <div className={s.Header_right_side_hanger}>
+                    <Hanger/>
+                </div>
                 <div className={s.Header_right_side_delimiter}/>
                 <Typography>
                     <a

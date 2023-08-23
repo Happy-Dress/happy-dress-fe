@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import s from './HeaderMobile.module.scss';
 import { HEADER_DICTIONARY } from '../Header.dictionary';
-import burger from '../../../../../common/assets/images/burger.svg';
-import x from '../../../../../common/assets/images/x.svg';
-import hanger from '../../../../../common/assets/images/hanger.svg';
+import { ReactComponent as X } from '../../../../../common/assets/images/x.svg';
+import { ReactComponent as Hanger } from '../../../../../common/assets/images/hanger.svg';
+import { ReactComponent as Burger } from '../../../../../common/assets/images/burger.svg';
 import { Typography } from '../../../../../common/ui/components';
 import { routerConfig } from '../../../config';
 import { NavLink } from 'react-router-dom';
@@ -19,29 +19,31 @@ const HeaderMobile = () => {
     return (
         <div className={activeMenu ? s.Header_wrapper_fixed : ''}>
             <div className={s.Header}>
-                <Typography classNames={[s.Header_logo]}>{HEADER_LOGO}</Typography>
+                <NavLink to={routerConfig.home.path}>
+                    <Typography classNames={[s.Header_logo]}>{HEADER_LOGO}</Typography>
+                </NavLink>
                 <div className={s.Header_right}>
                     {activeMenu ? (
-                        <img
+                        <div
                             onClick={() => setActiveMenu(!activeMenu)}
                             className={s.Header_right_icon}
-                            alt="menu"
-                            src={x}
-                        />
+                        >
+                            <X/>
+                        </div>
                     ) : (
-                        <img
+                        <div
                             onClick={() => setActiveMenu(!activeMenu)}
                             className={s.Header_right_icon}
-                            alt="menu"
-                            src={burger}
-                        />
+                        >
+                            <Burger/>
+                        </div>
                     )}
-                    <img
+                    <div
                         onClick={() => setActiveMenu(!activeMenu)}
                         className={s.Header_right_icon}
-                        alt="hanger"
-                        src={hanger}
-                    />
+                    >
+                        <Hanger/>
+                    </div>
                 </div>
             </div>
             {activeMenu && <div className={s.Menu}>

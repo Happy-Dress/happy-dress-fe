@@ -42,7 +42,7 @@ const CatalogSearchMobile = () =>{
                     selectedOptionIds={[selectedSettings.category]}
                     onSelect={(categoryId) => dispatch(setCategory({ category: categoryId, shouldDropProducts: true }))}
                     onUnSelect={() => {}}
-                    name={'Категория'}
+                    name={catalogueSettings?.categories?.find(category => category.id === selectedSettings.category)?.name || ''}
                     options={catalogueSettings.categories}
                     renderOption={renderOption}
                 />
