@@ -1,10 +1,12 @@
 @import '../../../../../common/ui/styles/media-sizes';
-.ZeroBlock{
+
+.ZeroBlock {
     overflow-x: hidden;
     background: url(../../../../../common/assets/images/ZeroBlock/ZeroBlockXXL.webp) 50% 50%;
     background-size: cover;
     height: 100vh;
-    h1{
+
+    h1 {
         -webkit-text-fill-color: transparent;
         background: linear-gradient(rgba(167, 123, 20, 1), rgba(167, 82, 20, 0.8));
         filter: grayscale(0.6);
@@ -12,123 +14,154 @@
         background-clip: text;
         letter-spacing: -17px;
         padding-right: 17px;
-        &:last-child{
+
+        &:last-child {
             margin-top: -40px;
         }
     }
-    &_content{
-        margin-left: 260px;
+
+    &_content {
+        margin-left: 230px;
     }
-    &_text{
+
+    &_text {
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
         padding-top: 196px;
-        margin-bottom: 65px;
+        margin: -30px 0 65px 0;
         width: 713px;
         flex-wrap: wrap;
         opacity: 0.6;
-        p{
+
+        p {
             width: 305px;
-            margin-top: 18px;
+            margin-top: 40px;
             display: block;
-            &:first-child{
+
+            &:first-child {
                 margin-top: 40px;
             }
         }
-        &_mobile{
+
+        &_mobile {
             color: rgba(33, 33, 33, 0.5);
             display: none;
         }
     }
+
+    .ZeroBlock_text p:nth-child(3) {
+        white-space: nowrap;
+    }
+
     @media screen and (max-width: $xl-size) {
         background-image: url(../../../../../common/assets/images/ZeroBlock/ZeroBlockXL.webp);
         height: calc(100vh - 70px);
-        &_content{
+
+        &_content {
             margin-left: 7vw;
             margin-top: -120px;
         }
     }
+
     @media screen and (max-width: $lg-size) {
         background-position: 80%;
         height: calc(100vh - 70px);
-        &_content{
+
+        &_content {
             margin-left: 7vw;
             margin-top: 0px;
         }
-        &_text{
+
+        &_text {
             padding: 70px 0 0;
             margin: 0;
             margin-right: 0;
             flex-direction: column;
-            h1{
+
+            h1 {
                 font-size: 68px;
                 letter-spacing: -8px;
-                &:last-child{
+
+                &:last-child {
                     margin: 0;
                     margin-top: -15px;
                     margin-left: 160px;
                 }
             }
-            p{
+
+            p {
                 display: none;
             }
-            &_mobile{
+
+            &_mobile {
                 display: block;
                 margin-top: 5px;
                 margin-bottom: 70px;
             }
         }
     }
+
     @media screen and (max-width: $md-size) {
-        button{
+        button {
             width: fit-content;
             background-color: #f6f6f6a6;
         }
-        &_content{
-            height: calc( 100vh - 100px);
+
+        &_content {
+            height: calc(100vh - 100px);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             margin: 0;
             padding-left: 28px;
-            h1{
+
+            h1 {
                 font-size: 36px;
                 letter-spacing: -5px;
                 margin: 0;
                 padding: 0px;
                 padding-right: 15px;
-                &:last-child{
+
+                &:last-child {
                     margin-left: 83px;
                     margin-top: -10px;
                 }
             }
         }
-        &_text{
+
+        &_text {
             margin: 0;
             padding-top: 20px;
             width: 183px;
-            p{
+
+            p {
                 display: none;
             }
-            &_mobile{
+
+            &_mobile {
                 display: inline-block;
                 margin-top: 5px;
             }
         }
     }
+
     @media screen and (max-width: $sm-size) {
         background-position: 78%;
-        &_content{
+
+        &_content {
             padding-left: 0px;
-            &_title{
+
+            &_title {
                 padding-left: 20px;
             }
         }
-        p{
+
+        p {
             font-size: 14px;
         }
-        button{
+
+        button {
             margin: 0 auto;
         }
     }
