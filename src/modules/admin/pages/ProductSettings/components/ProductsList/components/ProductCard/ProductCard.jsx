@@ -105,7 +105,7 @@ const ProductCard = (props) => {
                     <div className={classNames(s.sizes, s.optionItem)}>
                         <p>{SIZE}</p>
                         <div className={s.items}>
-                            {sizes.map((item) => {
+                            {sizes.sort().map((item) => {
                                 return <span key={item}>{item}</span>;
                             })}
                         </div>
