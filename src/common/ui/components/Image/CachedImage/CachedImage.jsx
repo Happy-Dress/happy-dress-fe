@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CachedImage = ({ className, src, alt, onLoad }) => {
+const CachedImage = ({ className, src, alt, onLoad, onError }) => {
     const cachedImage = React.useMemo(() => {
         const img = new Image();
         img.src = src;
@@ -11,6 +11,7 @@ const CachedImage = ({ className, src, alt, onLoad }) => {
     return <img
         className={className}
         onLoad={onLoad}
+        onError={onError}
         src={cachedImage.src}
         alt={alt}
     />;
@@ -21,6 +22,7 @@ CachedImage.propTypes = {
     src: PropTypes.string.isRequired,
     alt: PropTypes.string.isRequired,
     onLoad: PropTypes.func,
+    onError: PropTypes.func
 };
 
 export default CachedImage;

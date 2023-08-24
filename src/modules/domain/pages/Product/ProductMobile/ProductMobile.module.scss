@@ -49,13 +49,22 @@
       }
 
       &_item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20vw;
+        min-height: calc(20vw / 3 * 4);
+
         img {
           width: 20vw;
         }
 
         @media screen and (min-height: $lg-size){
+          width: 25vw;
+          min-height: calc(25vw / 3 * 4);
+
           img {
-            width: 15vw;
+            width: 25vw;
           }
         }
 

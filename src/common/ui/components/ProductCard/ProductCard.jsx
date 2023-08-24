@@ -6,6 +6,8 @@ import { PRODUCT_CARD_DICTIONARY } from './ProductCard.dictionary';
 import { useNavigate } from 'react-router-dom';
 import ColorCircle from '../ColorCircle';
 import ProductImage from '../ProductImage';
+import { resetProduct } from '../../store/slices/productSlice';
+import { useDispatch } from 'react-redux';
 
 const {
     SIZE,
@@ -19,6 +21,7 @@ const ProductCard = (props) => {
     } = props;
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const sizes = Array.from(
         new Set([
@@ -38,6 +41,7 @@ const ProductCard = (props) => {
     const handleOpenClick = () => {
         window.scrollTo({ top: 0 });
         navigate(`${product.id}`);
+        dispatch(resetProduct());
     };
 
     return (
@@ -50,8 +54,7 @@ const ProductCard = (props) => {
                 <ProductImage
                     imageUrl={product.mainImageUrl}
                     alt="dress preview"
-                    widthSkeleton={'300px'}
-                    heightSkeleton={'400px'}
+                    shouldDisplayTextError={true}
                 />
             </div>
             <div className={s.description}>

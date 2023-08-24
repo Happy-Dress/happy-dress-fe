@@ -12,7 +12,6 @@ import {
     setCurrentColorSize, setProductColorImages,
     setSelectedImage
 } from '../../../../../common/ui/store/slices/productSlice';
-import ZoomableImage from '../../../../../common/ui/components/Image/ZoomableImage';
 import ProductImage from '../../../../../common/ui/components/ProductImage';
 
 const {
@@ -113,8 +112,6 @@ const ProductDesktop = (props) => {
                                 <ProductImage
                                     imageUrl={mainImageUrl}
                                     alt="main image"
-                                    heightSkeleton={'133px'}
-                                    widthSkeleton={'100px'}
                                 />
                             </div>
                             {productColorImages.imageURLs.map((imageUrl, key) => (
@@ -129,8 +126,8 @@ const ProductDesktop = (props) => {
                                             <ProductImage
                                                 imageUrl={imageUrl}
                                                 alt={`product image color ${productColorImages.color.name}`}
+                                                widthSkeleton={'102px'}
                                                 heightSkeleton={'133px'}
-                                                widthSkeleton={'100px'}
                                             />
                                         </div>
                                     )}
@@ -143,15 +140,12 @@ const ProductDesktop = (props) => {
                             moveDown ? s.Product_carousel_selected_item_down : '',
                         )}
                         >
-                            <ZoomableImage>
-                                <ProductImage
-                                    imageUrl={selectedImage.imageUrl}
-                                    alt="selected image"
-                                    heightSkeleton={'20vh'}
-                                    widthSkeleton={'30vw'}
-                                />
-                            </ZoomableImage>
-                        
+                            <ProductImage
+                                imageUrl={selectedImage.imageUrl}
+                                alt="selected image"
+                                shouldDisplayTextError={true}
+                                isZoomable={true}
+                            />
                         </div>
                     </div>
                     <div className={s.Product_description_container}>

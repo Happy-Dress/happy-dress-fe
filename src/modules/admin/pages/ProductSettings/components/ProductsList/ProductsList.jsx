@@ -18,6 +18,7 @@ import {
 import DeleteProductConfirmationDialog from './components/DeleteProductConfirmationDialog/DeleteProductConfirmationDialog';
 import { useModal } from 'react-modal-hook';
 import { useToasters } from '../../../../../../common/ui/contexts/ToastersContext';
+import classNames from 'classnames';
 
 const ProductsList = () => {
     const products = useSelector((state) => state.productsSearch.products);
@@ -38,7 +39,7 @@ const ProductsList = () => {
         );
     }, [selectedProducts]);
 
-    const { inView } = useInView({
+    const { ref, inView } = useInView({
         threshold: 0,
     });
     const dispatch = useDispatch();
@@ -100,6 +101,7 @@ const ProductsList = () => {
                     </div>
                 </div>
             )}
+            <div ref={ref} className={classNames(s.observingBlock, { [s.active]: !isLoading })}/>
             {shouldDisplayGoToTop && (
                 <Slider id={s.slider} onClick={handleGoToTopClick} />
             )}

@@ -13,7 +13,6 @@ import {
     setCurrentColorSize, setProductColorImages,
     setSelectedImage
 } from '../../../../../common/ui/store/slices/productSlice';
-import ZoomableImage from '../../../../../common/ui/components/Image/ZoomableImage';
 import ProductImage from '../../../../../common/ui/components/ProductImage';
 
 const {
@@ -127,14 +126,12 @@ const ProductMobile = (props) => {
                                 moveRight && s.ProductMobile_carousel_selected_item_right,
                                 moveLeft && s.ProductMobile_carousel_selected_item_left,
                             )}>
-                                <ZoomableImage>
-                                    <ProductImage
-                                        imageUrl={selectedImage.imageUrl}
-                                        alt={'selected image'}
-                                        widthSkeleton={'80vw'}
-                                        heightSkeleton={'57vh'}
-                                    />
-                                </ZoomableImage>
+                                <ProductImage
+                                    imageUrl={selectedImage.imageUrl}
+                                    alt={'selected image'}
+                                    shouldDisplayTextError={true}
+                                    isZoomable={true}
+                                />
                             </div>
                         </div>
                         <div className={s.ProductMobile_carousel_list}>
@@ -149,8 +146,8 @@ const ProductMobile = (props) => {
                                     <ProductImage
                                         imageUrl={imageUrl}
                                         alt={`product image color ${productColorImages.color.name}`}
-                                        widthSkeleton={'50px'}
-                                        heightSkeleton={'80px'}
+                                        widthSkeleton={'20vw'}
+                                        heightSkeleton={'calc(20vw / 3 * 4)'}
                                     />
                                 </div>
                             ))}
