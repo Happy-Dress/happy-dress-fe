@@ -38,10 +38,7 @@ const HeaderMobile = () => {
                             <Burger/>
                         </div>
                     )}
-                    <div
-                        onClick={() => setActiveMenu(!activeMenu)}
-                        className={s.Header_right_icon}
-                    >
+                    <div className={s.Header_right_icon}>
                         <Hanger/>
                     </div>
                 </div>
@@ -60,7 +57,7 @@ const HeaderMobile = () => {
                             </Typography>
                         </NavLink>
                     ))}
-                    {Object.values(disabledRouterConfig).map(({ name }) => (
+                    {Object.values(disabledRouterConfig).map(({ name, status }) => (
                         <NavLink
                             key={name}
                             className={s.Menu_nav_item_disabled}
@@ -69,6 +66,9 @@ const HeaderMobile = () => {
                         >
                             <Typography classNames={[s.Menu_nav_item]}>
                                 {name}
+                            </Typography>
+                            <Typography classNames={s.Menu_nav_item_disabled_status}>
+                                {status}
                             </Typography>
                         </NavLink>
                     ))}
