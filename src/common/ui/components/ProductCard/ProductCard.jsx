@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { PRODUCT_CARD_DICTIONARY } from './ProductCard.dictionary';
 import { useNavigate } from 'react-router-dom';
 import ColorCircle from '../ColorCircle';
+import ProductImage from '../ProductImage';
 
 const {
     SIZE,
@@ -14,7 +15,7 @@ const {
 const ProductCard = (props) => {
     const {
         product,
-        className
+        className,
     } = props;
 
     const navigate = useNavigate();
@@ -46,7 +47,12 @@ const ProductCard = (props) => {
             onClick={handleOpenClick}
         >
             <div className={s.ProductCard_mainImage}>
-                <img src={product.mainImageUrl} alt="dress preview"/>
+                <ProductImage
+                    imageUrl={product.mainImageUrl}
+                    alt="dress preview"
+                    widthSkeleton={'300px'}
+                    heightSkeleton={'400px'}
+                />
             </div>
             <div className={s.description}>
                 <h3>{product.name}</h3>

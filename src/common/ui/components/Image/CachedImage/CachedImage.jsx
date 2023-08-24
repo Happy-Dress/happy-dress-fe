@@ -10,9 +10,9 @@ const CachedImage = ({ className, src, alt, onLoad }) => {
 
     return <img
         className={className}
+        onLoad={onLoad}
         src={cachedImage.src}
         alt={alt}
-        onLoad={onLoad}
     />;
 };
 

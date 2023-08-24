@@ -13,8 +13,8 @@ import {
     setCurrentColorSize, setProductColorImages,
     setSelectedImage
 } from '../../../../../common/ui/store/slices/productSlice';
-import ImageSkeleton from '../../../../../common/ui/components/Image/ImageSkeleton';
 import ZoomableImage from '../../../../../common/ui/components/Image/ZoomableImage';
+import ProductImage from '../../../../../common/ui/components/ProductImage';
 
 const {
     MODEL_LABEL,
@@ -34,8 +34,6 @@ const ProductMobile = (props) => {
         uniqueColors,
         selectedImage,
         mainImageUrl,
-        loadingImages,
-        handleImageOnLoad,
     } = props;
 
     const [moveLeft, setMoveLeft] = useState(false);
@@ -94,7 +92,7 @@ const ProductMobile = (props) => {
     };
 
     const handleSizeClick = (color, size) => {
-        const productColorSize = product.productColorSizes.filter(item => item.color.name === color).find(item => item.size.sizeValue === size);
+        const productColorSize = product.productColorSizes.filter(item => item.color.name === color).find(item => item.size.sizeValue === size.sizeValue);
         if (productColorSize) {
             const newProductColorSize = {
                 ...productColorSize,
@@ -104,6 +102,9 @@ const ProductMobile = (props) => {
             if (productColorImages.color.name !== productColorSize.color.name) {
                 const productColorImage = product.productColorImages.find(productColorImage => productColorImage.color.name === productColorSize.color.name);
                 dispatch(setProductColorImages(productColorImage));
+                dispatch(setSelectedImage({
+                    imageUrl: mainImageUrl,
+                }));
                 setImages([mainImageUrl, ...productColorImage.imageURLs]);
             }
         }
@@ -126,16 +127,12 @@ const ProductMobile = (props) => {
                                 moveRight && s.ProductMobile_carousel_selected_item_right,
                                 moveLeft && s.ProductMobile_carousel_selected_item_left,
                             )}>
-                                {!loadingImages[productColorImages.imageURLs.length - 1] ? <ImageSkeleton
-                                    width={'80vw'}
-                                    height={'57vh'}
-                                /> : <></> }
                                 <ZoomableImage>
-                                    <img 
-                                        src={selectedImage.imageUrl} 
+                                    <ProductImage
+                                        imageUrl={selectedImage.imageUrl}
                                         alt={'selected image'}
-                                        onLoad={() => handleImageOnLoad(productColorImages.imageURLs.length - 1)}
-                                        hidden={!loadingImages[productColorImages.imageURLs.length - 1]}
+                                        widthSkeleton={'80vw'}
+                                        heightSkeleton={'57vh'}
                                     />
                                 </ZoomableImage>
                             </div>
@@ -149,15 +146,11 @@ const ProductMobile = (props) => {
                                 key={key}
                                 onClick={() => handleImageClick(imageUrl, key + 1)}
                                 >
-                                    {!loadingImages[key] ? <ImageSkeleton
-                                        width={'50px'}
-                                        height={'80px'}
-                                    /> : <></> }
-                                    <img
-                                        src={imageUrl}
+                                    <ProductImage
+                                        imageUrl={imageUrl}
                                         alt={`product image color ${productColorImages.color.name}`}
-                                        onLoad={() => handleImageOnLoad(key)}
-                                        hidden={!loadingImages[key]}
+                                        widthSkeleton={'50px'}
+                                        heightSkeleton={'80px'}
                                     />
                                 </div>
                             ))}
@@ -220,8 +213,6 @@ ProductMobile.propTypes = {
     uniqueColors: PropTypes.array.isRequired,
     mainImageUrl: PropTypes.string.isRequired,
     selectedImage: PropTypes.object.isRequired,
-    loadingImages: PropTypes.array.isRequired,
-    handleImageOnLoad: PropTypes.func.isRequired,
 };
 
 export default ProductMobile;

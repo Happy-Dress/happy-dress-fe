@@ -12,8 +12,8 @@ import {
     setCurrentColorSize, setProductColorImages,
     setSelectedImage
 } from '../../../../../common/ui/store/slices/productSlice';
-import ImageSkeleton from '../../../../../common/ui/components/Image/ImageSkeleton';
 import ZoomableImage from '../../../../../common/ui/components/Image/ZoomableImage';
+import ProductImage from '../../../../../common/ui/components/ProductImage';
 
 const {
     DESCRIPTION_LABEL,
@@ -35,8 +35,6 @@ const ProductDesktop = (props) => {
         uniqueColors,
         selectedImage,
         mainImageUrl,
-        loadingImages,
-        handleImageOnLoad,
     } = props;
 
     const [moveUp, setMoveUp] = useState(false);
@@ -61,7 +59,7 @@ const ProductDesktop = (props) => {
     }, [product]);
 
     const handleSizeClick = (color, size) => {
-        const productColorSize = product.productColorSizes.filter(item => item.color.name === color).find(item => item.size.sizeValue === size);
+        const productColorSize = product.productColorSizes.filter(item => item.color.name === color).find(item => item.size.sizeValue === size.sizeValue);
         if (productColorSize) {
             const newProductColorSize = {
                 ...productColorSize,
@@ -71,6 +69,9 @@ const ProductDesktop = (props) => {
             if (productColorImages.color.name !== productColorSize.color.name) {
                 const productColorImage = product.productColorImages.find(productColorImage => productColorImage.color.name === productColorSize.color.name);
                 dispatch(setProductColorImages(productColorImage));
+                dispatch(setSelectedImage({
+                    imageUrl: mainImageUrl,
+                }));
             }
         }
     };
@@ -109,15 +110,11 @@ const ProductDesktop = (props) => {
                             )}
                             onClick={() => handleImageClick(mainImageUrl, 0)}
                             >
-                                {!loadingImages[0] ? <ImageSkeleton
-                                    width={'100px'}
-                                    height={'80px'}
-                                /> : <></> }
-                                <img
-                                    src={mainImageUrl}
+                                <ProductImage
+                                    imageUrl={mainImageUrl}
                                     alt="main image"
-                                    onLoad={() => handleImageOnLoad(0)}
-                                    hidden={!loadingImages[0]}
+                                    heightSkeleton={'133px'}
+                                    widthSkeleton={'100px'}
                                 />
                             </div>
                             {productColorImages.imageURLs.map((imageUrl, key) => (
@@ -129,15 +126,11 @@ const ProductDesktop = (props) => {
                                         )}
                                         onClick={() => handleImageClick(imageUrl, key + 1)}
                                         >
-                                            {!loadingImages[key + 1] ? <ImageSkeleton
-                                                width={'100px'}
-                                                height={'80px'}
-                                            /> : <></> } 
-                                            <img
-                                                src={imageUrl}
+                                            <ProductImage
+                                                imageUrl={imageUrl}
                                                 alt={`product image color ${productColorImages.color.name}`}
-                                                onLoad={() => handleImageOnLoad(key + 1)}
-                                                hidden={!loadingImages[key + 1]}
+                                                heightSkeleton={'133px'}
+                                                widthSkeleton={'100px'}
                                             />
                                         </div>
                                     )}
@@ -150,16 +143,12 @@ const ProductDesktop = (props) => {
                             moveDown ? s.Product_carousel_selected_item_down : '',
                         )}
                         >
-                            {!loadingImages[productColorImages.imageURLs.length] ? <ImageSkeleton
-                                width={'30vw'}
-                                height={'20vh'}
-                            /> : <></> }
                             <ZoomableImage>
-                                <img
-                                    src={selectedImage.imageUrl}
+                                <ProductImage
+                                    imageUrl={selectedImage.imageUrl}
                                     alt="selected image"
-                                    onLoad={() => handleImageOnLoad(productColorImages.imageURLs.length)}
-                                    hidden={!loadingImages[productColorImages.imageURLs.length]}
+                                    heightSkeleton={'20vh'}
+                                    widthSkeleton={'30vw'}
                                 />
                             </ZoomableImage>
                         
@@ -223,7 +212,5 @@ ProductDesktop.propTypes = {
     uniqueColors: PropTypes.array.isRequired,
     mainImageUrl: PropTypes.string.isRequired,
     selectedImage: PropTypes.object.isRequired,
-    loadingImages: PropTypes.array.isRequired,
-    handleImageOnLoad: PropTypes.func.isRequired,
 };
 export default ProductDesktop;

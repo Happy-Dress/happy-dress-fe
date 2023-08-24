@@ -21,9 +21,8 @@ const ProductsList = () =>{
         threshold: 0,
     });
 
-
     useEffect(() => {
-        if(inView && currentPage < totalPages) {
+        if(inView && currentPage <= totalPages) {
             dispatch(fetchCatalogueItems({ filters, page: currentPage, isSecure: false }));
         }
     }, [inView]);
@@ -41,7 +40,10 @@ const ProductsList = () =>{
                 :
                 <div className={s.ProductsList}>
                     {products.map((product, index) => {
-                        return <ProductCard key={index} product={product}/>;
+                        return <ProductCard
+                            key={index}
+                            product={product}
+                        />;
                     })}
                     {isLoading && renderSkeletons(15)}
                     <div ref={ref} className={classNames(s.observingBlock, { [s.active]: !isLoading })}/>
