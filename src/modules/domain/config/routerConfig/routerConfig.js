@@ -35,10 +35,12 @@ export const disabledRouterConfig = {
         name: 'Блог',
         path: ROUTER_PATHS.blog,
         element: <div>blog</div>,
+        status: 'Скоро',
     },
     changing: {
         name: 'Примерка',
         path: ROUTER_PATHS.changing,
         element: <div>changing</div>,
+        status: 'Скоро',
     }
 };

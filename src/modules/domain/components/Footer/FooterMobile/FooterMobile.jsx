@@ -40,7 +40,7 @@ const FooterMobile = () => {
                             </Typography>
                         </NavLink>
                     ))}
-                    {Object.values(disabledRouterConfig).map(({ name }) => (
+                    {Object.values(disabledRouterConfig).map(({ name, status }) => (
                         <NavLink
                             key={name}
                             to={'#'}
@@ -48,6 +48,9 @@ const FooterMobile = () => {
                         >
                             <Typography classNames={[s.FooterMobile_menu_item]}>
                                 {name}
+                            </Typography>
+                            <Typography classNames={[s.FooterMobile_menu_item_disabled_status]}>
+                                {status}
                             </Typography>
                         </NavLink>
                     ))}

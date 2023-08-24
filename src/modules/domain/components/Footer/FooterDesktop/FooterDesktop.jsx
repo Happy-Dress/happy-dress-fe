@@ -39,13 +39,16 @@ const FooterDesktop = () => {
                             </Typography>
                         </NavLink>
                     ))}
-                    {Object.values(disabledRouterConfig).map(({ name })=>(
+                    {Object.values(disabledRouterConfig).map(({ name, status })=>(
                         <NavLink
                             key={name}
                             to={'#'}
                             className={s.Footer_menu_item_disabled}>
                             <Typography classNames={[s.Footer_menu_item]}>
                                 {name}
+                            </Typography>
+                            <Typography classNames={[s.Footer_menu_item_disabled_status]}>
+                                {status}
                             </Typography>
                         </NavLink>
                     ))}

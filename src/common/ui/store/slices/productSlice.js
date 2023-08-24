@@ -34,6 +34,15 @@ export const productSlice = createSlice({
         setLoadingImages: (state, action) => {
             state.loadingImages = action.payload;
         },
+        resetProduct: (state) => {
+            state.product = initialState.product;
+            state.productColorImages = initialState.productColorImages;
+            state.currentColorSize = initialState.currentColorSize;
+            state.uniqueColors = initialState.uniqueColors;
+            state.selectedImage = initialState.selectedImage;
+            state.mainImageUrl = initialState.mainImageUrl;
+            state.loadingImages = initialState.loadingImages;
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(fetchProduct.fulfilled, (state, action) => {
@@ -68,7 +77,7 @@ export const {
     setCurrentColorSize,
     setProductColorImages,
     setLoadingImages,
-    resetAll,
+    resetProduct,
 } = productSlice.actions;
 export { fetchProduct };
 

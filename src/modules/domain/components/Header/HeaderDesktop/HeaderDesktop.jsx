@@ -33,7 +33,7 @@ const HeaderDesktop = () => {
                         </Typography>
                     </NavLink>
                 ))}
-                {Object.values(disabledRouterConfig).map(({ name }) => (
+                {Object.values(disabledRouterConfig).map(({ name, status }) => (
                     <NavLink
                         key={name}
                         className={s.Header_menu_item_disabled}
@@ -42,6 +42,7 @@ const HeaderDesktop = () => {
                         <Typography classNames={[s.Header_menu_item]}>
                             {name}
                         </Typography>
+                        <Typography classNames={[s.Header_menu_item_disabled_status]}>{status}</Typography>
                     </NavLink>
                 ))}
             </ul>
