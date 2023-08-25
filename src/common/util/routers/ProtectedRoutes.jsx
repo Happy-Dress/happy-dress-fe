@@ -62,7 +62,6 @@ const PrivateRoutes = (props) => {
             if (error === 'Unauthorized' || (error.response?.status === 401 && error.config?.headers.Authorization && !error.config._retry)) {
                 return await refreshTokenAndRetry(error);
             }
-            debugger;
             return Promise.reject(Array.isArray(error.response?.data?.message) ?
                 error.response?.data?.message[0]
                 : (error?.response?.data?.message || error?.response?.data?.error|| error?.message || error));
