@@ -14,6 +14,7 @@ import {
     unSelectProduct,
 } from '../../../../../../../../common/ui/store/slices/productsSearchSlice';
 import ColorCircle from '../../../../../../../../common/ui/components/ColorCircle';
+import ProductImage from '../../../../../../../../common/ui/components/ProductImage';
 
 const { SIZE, COLOR } = PRODUCT_CARD_DICTIONARY;
 
@@ -73,11 +74,12 @@ const ProductCard = (props) => {
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
         >
-            <div className={s.ProductCard_mainImage}>
-                <img
-                    src={product.mainImageUrl}
+            <div className={classNames({ [s.hovered]: isHovered }, s.ProductCard_mainImage)}>
+                <ProductImage
+                    imageUrl={product.mainImageUrl}
                     alt="dress preview"
-                    className={classNames({ [s.hovered]: isHovered })}
+                    widthSkeleton={'320px'}
+                    heightSkeleton={'400px'}
                 />
             </div>
             <div className={s.description}>
@@ -105,7 +107,7 @@ const ProductCard = (props) => {
                     <div className={classNames(s.sizes, s.optionItem)}>
                         <p>{SIZE}</p>
                         <div className={s.items}>
-                            {sizes.map((item) => {
+                            {sizes.sort().map((item) => {
                                 return <span key={item}>{item}</span>;
                             })}
                         </div>

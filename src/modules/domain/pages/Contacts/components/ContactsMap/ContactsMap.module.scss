@@ -1,0 +1,12 @@
+@import "../../../../../../common/ui/styles/media-sizes";
+
+$lg-size-1023: #{$lg-size - 1px};
+
+.ContactsMap {
+  width: 35vw;
+  height: 400px;
+
+  @media screen and (max-width: $lg-size-1023){
+    width: 90vw;
+  }
+}

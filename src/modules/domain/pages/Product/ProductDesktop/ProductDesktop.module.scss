@@ -49,9 +49,17 @@
       }
 
       &_item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 102px;
+        min-height: 130px;
+        max-height: 150px;
         margin-right: 2px;
+
         img {
-          width: 100px;
+          width: 100%;
+          max-height: 150px;
         }
 
         &_current {
@@ -64,9 +72,11 @@
       position: relative;
       top: 0;
       width: 30vw;
+      height: calc(30vw / 3 * 4);
 
       img {
-        width: 30vw;
+        max-width: 30vw;
+        max-height: calc(30vw / 3 * 4);
       }
 
       &_up {
