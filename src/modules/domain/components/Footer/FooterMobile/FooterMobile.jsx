@@ -34,6 +34,7 @@ const FooterMobile = () => {
                             key={name}
                             to={path}
                             className={({ isActive }) => isActive ? s.FooterMobile_menu_item_active : ''}
+                            onClick={() => window.scrollTo({ top: 0 })}
                         >
                             <Typography classNames={[s.FooterMobile_menu_item]}>
                                 {name}

@@ -50,7 +50,10 @@ const HeaderMobile = () => {
                             key={name}
                             className={checkIsLinkActive}
                             to={path}
-                            onClick={() => setActiveMenu(!activeMenu)}
+                            onClick={() => {
+                                setActiveMenu(!activeMenu);
+                                window.scrollTo({ top: 0 });
+                            }}
                         >
                             <Typography classNames={[s.Menu_nav_item]}>
                                 {name}
@@ -67,7 +70,7 @@ const HeaderMobile = () => {
                             <Typography classNames={[s.Menu_nav_item]}>
                                 {name}
                             </Typography>
-                            <Typography classNames={s.Menu_nav_item_disabled_status}>
+                            <Typography classNames={[s.Menu_nav_item_disabled_status]}>
                                 {status}
                             </Typography>
                         </NavLink>
