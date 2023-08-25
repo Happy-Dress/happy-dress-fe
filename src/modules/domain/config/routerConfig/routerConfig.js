@@ -1,6 +1,7 @@
 
 import { Catalog } from '../../pages/Catalog';
 import { Landing } from '../../pages/Landing';
+import Contacts from '../../pages/Contacts';
 
 
 export const ROUTER_PATHS = {
@@ -22,6 +23,11 @@ export const routerConfig = {
         path: ROUTER_PATHS.catalog,
         element: <Catalog />,
     },
+    contacts: {
+        name: 'Контакты',
+        path: ROUTER_PATHS.contacts,
+        element: <Contacts/>,
+    },
 };
 
 export const disabledRouterConfig = {
@@ -29,12 +35,6 @@ export const disabledRouterConfig = {
         name: 'Блог',
         path: ROUTER_PATHS.blog,
         element: <div>blog</div>,
-        status: 'Скоро',
-    },
-    contacts: {
-        name: 'Контакты',
-        path: ROUTER_PATHS.contacts,
-        element: <div>contacts</div>,
         status: 'Скоро',
     },
     changing: {

@@ -10,8 +10,6 @@ const ZoomableImage = ({ prohibitZoom, children }) => {
         setIsExpanded(!isExpanded);
     };
 
-    console.log(prohibitZoom);
-
     return (
         <div className={isExpanded ? s.ZoomableImage_expanded : s.ZoomableImage} onClick={prohibitZoom ? undefined : toggleExpand}>
             {isExpanded && (

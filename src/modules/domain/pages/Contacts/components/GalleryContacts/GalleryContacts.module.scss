@@ -1,0 +1,45 @@
+@import "../../../../../../common/ui/styles/media-sizes";
+
+$lg-size-1023: #{$lg-size - 1px};
+
+.GalleryContacts {
+  display: flex;
+
+  &_images {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    @media screen and (max-width: $lg-size-1023) {
+      gap: 12px;
+    }
+
+    &_main {
+      width: 40vw;
+      height: auto;
+
+      @media screen and (max-width: $lg-size-1023) {
+        width: 85vw;
+      }
+    }
+
+    &_secondaries {
+      display: flex;
+      gap: 16px;
+
+      @media screen and (max-width: $lg-size-1023) {
+        gap: 8px;
+      }
+
+      &_image {
+        width: calc(40vw / 3 - 32px / 3);
+
+        @media screen and (max-width: $lg-size-1023) {
+          width: calc(85vw / 3 - 16px / 3);
+        }
+      }
+
+    }
+
+  }
+}
