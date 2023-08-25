@@ -39,6 +39,7 @@
       max-width: 90vw;
       width: 100%;
       overflow-x: auto;
+      overflow-y: hidden;
 
       &::-webkit-scrollbar {
         height: 7px;
@@ -52,25 +53,28 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 20vw;
-        min-height: calc(20vw / 3 * 4);
+        min-width: 102px;
+        aspect-ratio: 3 / 4;
 
         img {
-          width: 20vw;
+          object-fit: contain;
         }
 
         @media screen and (min-height: $lg-size){
-          width: 25vw;
-          min-height: calc(25vw / 3 * 4);
-
-          img {
-            width: 25vw;
-          }
+          width: 204px;
         }
 
 
         &_current {
+          width: 105px;
+          height: calc(105px / 3 * 4 - 4.5px);
           border: 2px solid $brown;
+
+
+          @media screen and (min-width: $md-size) {
+            width: 204px;
+            height: calc(204px / 3 * 4 - 1px);
+          }
         }
       }
 
@@ -79,14 +83,14 @@
     &_selected_item {
       display: flex;
       align-items: center;
-      min-height: 57vh;
+      width: 80vw;
+      aspect-ratio: 3 / 4;
       position: relative;
       left: 0;
       overflow: hidden;
 
       img {
-        overflow: hidden;
-        width: 80vw;
+        object-fit: contain;
       }
 
       &_left {

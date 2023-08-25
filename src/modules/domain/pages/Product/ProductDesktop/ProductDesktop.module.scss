@@ -53,16 +53,16 @@
         justify-content: center;
         align-items: center;
         width: 102px;
-        min-height: 130px;
-        max-height: 150px;
+        height: calc(102px / 3 * 4);
         margin-right: 2px;
 
         img {
-          width: 100%;
-          max-height: 150px;
+          object-fit: contain;
         }
 
         &_current {
+          width: 104px;
+          height: calc(104px / 3 * 4 - 1px);
           border: 2px solid $brown;
         }
       }
@@ -75,8 +75,7 @@
       height: calc(30vw / 3 * 4);
 
       img {
-        max-width: 30vw;
-        max-height: calc(30vw / 3 * 4);
+        object-fit: contain;
       }
 
       &_up {

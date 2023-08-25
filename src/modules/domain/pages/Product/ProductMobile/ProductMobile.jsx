@@ -146,8 +146,6 @@ const ProductMobile = (props) => {
                                     <ProductImage
                                         imageUrl={imageUrl}
                                         alt={`product image color ${productColorImages.color.name}`}
-                                        widthSkeleton={'20vw'}
-                                        heightSkeleton={'calc(20vw / 3 * 4)'}
                                     />
                                 </div>
                             ))}
