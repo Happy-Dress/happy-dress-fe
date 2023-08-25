@@ -42,11 +42,13 @@ const ColorsSizesTable = (props) => {
                                             product.productColorSizes
                                                 .filter(item => item.color.name === color.name)
                                                 .some(item => item.size.sizeValue === size) ? s.Table_item_available : '',
-                                            (size === currentColorSize?.size && color.name === currentColorSize?.color.name)
+                                            (size === currentColorSize?.size.sizeValue && color.name === currentColorSize?.color.name)
                                                 ? s.Table_item_current : '',
                                         )}
                                         data-testid={`test-${color.name}-${size}-item`}
-                                        onClick={() => handleSizeClick(color.name, size)}
+                                        onClick={() => handleSizeClick(color.name,
+                                            product.productColorSizes.find(item => item.size.sizeValue === size)?.size || { sizeValue: size }
+                                        )}
                                     >
                                         {size}
                                     </div>

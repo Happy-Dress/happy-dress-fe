@@ -6,10 +6,25 @@ import { ReactComponent as DeleteIcon } from '../../../../../../common/assets/im
 import LoadingSkeleton from '../../../../../../common/ui/components/Image/LoadingSkeleton';
 import CachedImage from '../../../../../../common/ui/components/Image/CachedImage';
 import ZoomableImage from '../../../../../../common/ui/components/Image/ZoomableImage';
+import ErrorLoadingImage from '../../../../../../common/ui/components/Image/ErrorLoadingImage';
 
-const ProductsCardImage = ({ imageUrl, alt, onAdd, onDelete, isLoaded }) => {
+const ERROR_LABEL = 'Прозошла ошибка при загрузке фотографии';
+
+const ProductsCardImage = ({ imageUrl, alt, onAdd, onDelete, isLoaded, shouldDisplayTextError }) => {
     const [isLoading, setIsLoading] = useState(true);
-    
+    const [isErrorLoading, setIsErrorLoading] = useState(false);
+
+    const handleError = () => {
+        setIsErrorLoading(true);
+        setIsLoading(false);
+    };
+
+    const handleClickOnError = (e) => {
+        e.stopPropagation();
+        setIsErrorLoading(false);
+        setIsLoading(true);
+    };
+
     const handleAddClick = () => {
         onAdd && onAdd();
     };
@@ -22,10 +37,17 @@ const ProductsCardImage = ({ imageUrl, alt, onAdd, onDelete, isLoaded }) => {
     return (
         <div className={s.pci_content}>
             <LoadingSkeleton isLoading={isLoading} imageUrl={imageUrl} width={'209px'} height={'276px'}/>
-            {!isLoaded &&
+            <ErrorLoadingImage
+                isError={isErrorLoading}
+                shouldDisplayRetryButton={true}
+                onClick={handleClickOnError}
+                label={shouldDisplayTextError && ERROR_LABEL}
+            />
+            {!isErrorLoading && <>
+                {!isLoaded &&
             <div className={s.pci_loader} data-testid={'pciLoader'}/>
-            }
-            {!imageUrl && isLoaded &&
+                }
+                {!imageUrl && isLoaded &&
                 <div
                     className={s.pci_iconAdd}
                     onClick={handleAddClick}
@@ -33,9 +55,9 @@ const ProductsCardImage = ({ imageUrl, alt, onAdd, onDelete, isLoaded }) => {
                 >
                     <AddIcon/>
                 </div>
-            }
-            <div hidden={isLoading}>
-                {imageUrl && isLoaded &&
+                }
+                <div hidden={isLoading}>
+                    {imageUrl && isLoaded &&
             <div className={s.pci_container}>
                 <DeleteIcon
                     className={s.pci_iconDelete}
@@ -45,14 +67,17 @@ const ProductsCardImage = ({ imageUrl, alt, onAdd, onDelete, isLoaded }) => {
                 <ZoomableImage>
                     <CachedImage
                         className={s.pci_image}
+                        onLoad={() => setIsLoading(false)}
+                        onError={handleError}
                         src={imageUrl}
                         alt={alt}
-                        onLoad={() => setIsLoading(false)}
                     />
                 </ZoomableImage>
             </div>
-                }
-            </div>
+                    }
+                </div>
+            </>
+            }
         </div>
     );
 };
@@ -62,6 +87,7 @@ ProductsCardImage.propTypes = {
     alt: PropTypes.string,
     onAdd: PropTypes.func,
     onDelete: PropTypes.func,
+    shouldDisplayTextError: PropTypes.bool,
     isLoaded: PropTypes.bool,
 };
 

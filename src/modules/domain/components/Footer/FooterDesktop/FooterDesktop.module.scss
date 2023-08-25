@@ -1,5 +1,7 @@
 @import '../../../../../common/ui/styles/media-sizes';
 @import '../../../../../common/ui/styles/colors';
+@import '../../../../../common/ui/styles/font-sizes';
+
 
 .FooterDesktop {
   height: 320px;
@@ -95,8 +97,17 @@
       }
 
       &_disabled {
+          position: relative;
           pointer-events: none;
           color: $gray-disabled !important;
+
+        &_status {
+          position: absolute;
+          top: 15px;
+          left: 0px;
+          color: $brown-light;
+          font-size: $font-size-xsmall-10 !important;
+        }
       }
     }
   }
