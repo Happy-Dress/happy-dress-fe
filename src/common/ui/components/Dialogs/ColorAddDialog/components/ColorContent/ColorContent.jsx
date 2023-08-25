@@ -58,7 +58,7 @@ const ColorContent = ({ error }) => {
     }, [isSwitcherActive, secondColor]);
 
     return (
-        <div className={s.ColorContent} style={{ overflowY: isSwitcherActive ? 'scroll' : 'unset' }}>
+        <div className={s.ColorContent} style={{ overflowY: isSwitcherActive ? 'auto' : 'unset' }}>
             <div className={s.fewColors}>
                 <Switcher
                     switcherState={[isSwitcherActive, setIsSwitcherActive]}
