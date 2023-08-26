@@ -41,6 +41,10 @@
       overflow-x: auto;
       overflow-y: hidden;
 
+      @media screen and (min-height: $lg-size){
+        gap: 20px;
+      }
+
       &::-webkit-scrollbar {
         height: 7px;
       }
@@ -54,6 +58,7 @@
         justify-content: center;
         align-items: center;
         min-width: 102px;
+        width: 102px;
         aspect-ratio: 3 / 4;
 
         img {
@@ -61,19 +66,21 @@
         }
 
         @media screen and (min-height: $lg-size){
+          min-width: 204px;
           width: 204px;
         }
 
 
         &_current {
-          width: 105px;
-          height: calc(105px / 3 * 4 - 4.5px);
+          min-width: calc(102px + 3.2px);
+          width: calc(102px + 3.2px);
+          height: calc(102px / 3 * 4 + 3.2px);
           border: 2px solid $brown;
 
-
           @media screen and (min-width: $md-size) {
-            width: 204px;
-            height: calc(204px / 3 * 4 - 1px);
+            min-width: calc(204px + 3.2px);
+            width: calc(204px + 3.2px);
+            height: calc(204px / 3 * 4 + 3.2px);
           }
         }
       }
@@ -116,18 +123,6 @@
         }
         100% {
           left: 0;
-        }
-      }
-
-      @media screen and (max-height: 700px){
-        min-height: 68vh;
-      }
-
-      @media screen and (min-height: $lg-size){
-        min-height: 73vh;
-
-        img {
-          width: 70vw;
         }
       }
     }

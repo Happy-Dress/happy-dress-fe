@@ -53,16 +53,16 @@
         justify-content: center;
         align-items: center;
         width: 102px;
-        height: calc(102px / 3 * 4);
         margin-right: 2px;
+        aspect-ratio: 3 / 4;
 
         img {
           object-fit: contain;
         }
 
         &_current {
-          width: 104px;
-          height: calc(104px / 3 * 4 - 1px);
+          width: calc(102px + 3.2px);
+          height: calc(102px / 3 * 4 + 3.2px);
           border: 2px solid $brown;
         }
       }
