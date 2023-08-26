@@ -7,7 +7,7 @@ import ErrorLoadingImage from '../Image/ErrorLoadingImage';
 import ZoomableImage from '../Image/ZoomableImage';
 
 const ERROR_LABEL = 'Прозошла ошибка при загрузке фотографии';
-const ProductImage = ({ imageUrl, alt, shouldDisplayTextError, isZoomable, widthSkeleton, heightSkeleton }) => {
+const EnhancedImage = ({ imageUrl, alt, shouldDisplayTextError, isZoomable, widthSkeleton, heightSkeleton }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [isErrorLoading, setIsErrorLoading] = useState(false);
 
@@ -32,7 +32,7 @@ const ProductImage = ({ imageUrl, alt, shouldDisplayTextError, isZoomable, width
                 onClick={handleClickOnError}
                 label={shouldDisplayTextError && ERROR_LABEL}
             />
-            {!isErrorLoading && <div className={s.ProductImage_hidden} hidden={isLoading}>
+            {!isErrorLoading && <div className={s.ProductImage_hidden} style={{ display: isLoading ? 'none' : 'block' }}>
                 <ZoomableImage prohibitZoom={!isZoomable}>
                     <CachedImage
                         onLoad={() => setIsLoading(false)}
@@ -47,7 +47,7 @@ const ProductImage = ({ imageUrl, alt, shouldDisplayTextError, isZoomable, width
     );
 };
 
-ProductImage.propTypes = {
+EnhancedImage.propTypes = {
     imageUrl: PropTypes.string.isRequired,
     alt: PropTypes.string.isRequired,
     shouldDisplayTextError: PropTypes.bool,
@@ -56,4 +56,4 @@ ProductImage.propTypes = {
     heightSkeleton: PropTypes.string,
 };
 
-export default ProductImage; 
+export default EnhancedImage;
