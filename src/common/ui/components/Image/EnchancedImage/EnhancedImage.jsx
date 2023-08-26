@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import s from './ProductImage.module.scss';
-import LoadingSkeleton from '../Image/LoadingSkeleton';
-import CachedImage from '../Image/CachedImage';
+import s from './EnhancedImage.module.scss';
+import LoadingSkeleton from '../LoadingSkeleton';
+import CachedImage from '../CachedImage';
 import PropTypes from 'prop-types';
-import ErrorLoadingImage from '../Image/ErrorLoadingImage';
-import ZoomableImage from '../Image/ZoomableImage';
+import ErrorLoadingImage from '../ErrorLoadingImage';
+import ZoomableImage from '../ZoomableImage';
 
 const ERROR_LABEL = 'Прозошла ошибка при загрузке фотографии';
 const EnhancedImage = ({ imageUrl, alt, shouldDisplayTextError, isZoomable, widthSkeleton, heightSkeleton }) => {

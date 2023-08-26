@@ -13,7 +13,7 @@ import {
     setCurrentColorSize, setProductColorImages,
     setSelectedImage
 } from '../../../../../common/ui/store/slices/productSlice';
-import ProductImage from '../../../../../common/ui/components/ProductImage';
+import EnhancedImage from '../../../../../common/ui/components/Image/EnchancedImage';
 
 const {
     MODEL_LABEL,
@@ -126,7 +126,7 @@ const ProductMobile = (props) => {
                                 moveRight && s.ProductMobile_carousel_selected_item_right,
                                 moveLeft && s.ProductMobile_carousel_selected_item_left,
                             )}>
-                                <ProductImage
+                                <EnhancedImage
                                     imageUrl={selectedImage.imageUrl}
                                     alt={'selected image'}
                                     shouldDisplayTextError={true}
@@ -143,7 +143,7 @@ const ProductMobile = (props) => {
                                 key={key}
                                 onClick={() => handleImageClick(imageUrl, key + 1)}
                                 >
-                                    <ProductImage
+                                    <EnhancedImage
                                         imageUrl={imageUrl}
                                         alt={`product image color ${productColorImages.color.name}`}
                                     />

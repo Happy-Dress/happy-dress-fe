@@ -1,12 +1,12 @@
 import s from './ProductsList.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductCardSkeleton from '../../../../../../common/ui/components/ProductCard/ProductCardSkeleton';
-import ProductCard from '../../../../../../common/ui/components/ProductCard/ProductCard';
 import { useInView } from 'react-intersection-observer';
 import classNames from 'classnames';
 import { fetchCatalogueItems } from '../../../../../../common/ui/store/slices/productsSearchSlice';
 import { useEffect } from 'react';
 import EmptyBanner from '../../../../../../common/ui/components/EmptyBanner';
+import ProductCard from '../../../../../../common/ui/components/ProductCard';
 
 const ProductsList = () =>{
 
