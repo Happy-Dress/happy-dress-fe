@@ -78,11 +78,7 @@ const ProductCard = (props) => {
                 <EnhancedImage
                     imageUrl={product.mainImageUrl}
                     alt="dress preview"
-                    widthSkeleton={'320px'}
-                    heightSkeleton={'400px'}
                 />
-            </div>
-            <div className={s.description}>
                 {((isHovered && !isSelected) || (isMobile && !isSelected)) && (
                     <>
                         <EmptyCheckbox
@@ -102,7 +98,11 @@ const ProductCard = (props) => {
                         data-testid="filled-checkbox"
                     />
                 )}
-                <h3>{product.name}</h3>
+            </div>
+            <div className={s.description}>
+                <div className={s.description_name}>
+                    <h3>{product.name}</h3>
+                </div>
                 <div className={s.options}>
                     <div className={classNames(s.sizes, s.optionItem)}>
                         <p>{SIZE}</p>
