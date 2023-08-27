@@ -39,6 +39,11 @@
       max-width: 90vw;
       width: 100%;
       overflow-x: auto;
+      overflow-y: hidden;
+
+      @media screen and (min-height: $lg-size){
+        gap: 20px;
+      }
 
       &::-webkit-scrollbar {
         height: 7px;
@@ -52,25 +57,31 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 20vw;
-        min-height: calc(20vw / 3 * 4);
+        min-width: 102px;
+        width: 102px;
+        aspect-ratio: 3 / 4;
 
         img {
-          width: 20vw;
+          object-fit: contain;
         }
 
         @media screen and (min-height: $lg-size){
-          width: 25vw;
-          min-height: calc(25vw / 3 * 4);
-
-          img {
-            width: 25vw;
-          }
+          min-width: 204px;
+          width: 204px;
         }
 
 
         &_current {
+          min-width: calc(102px + 3.2px);
+          width: calc(102px + 3.2px);
+          height: calc(102px / 3 * 4 + 3.2px);
           border: 2px solid $brown;
+
+          @media screen and (min-width: $md-size) {
+            min-width: calc(204px + 3.2px);
+            width: calc(204px + 3.2px);
+            height: calc(204px / 3 * 4 + 3.2px);
+          }
         }
       }
 
@@ -79,14 +90,14 @@
     &_selected_item {
       display: flex;
       align-items: center;
-      min-height: 57vh;
+      width: 80vw;
+      aspect-ratio: 3 / 4;
       position: relative;
       left: 0;
       overflow: hidden;
 
       img {
-        overflow: hidden;
-        width: 80vw;
+        object-fit: contain;
       }
 
       &_left {
@@ -112,18 +123,6 @@
         }
         100% {
           left: 0;
-        }
-      }
-
-      @media screen and (max-height: 700px){
-        min-height: 68vh;
-      }
-
-      @media screen and (min-height: $lg-size){
-        min-height: 73vh;
-
-        img {
-          width: 70vw;
         }
       }
     }

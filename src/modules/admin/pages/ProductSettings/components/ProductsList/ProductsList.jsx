@@ -13,7 +13,7 @@ import { useEffect } from 'react';
 import {
     fetchCatalogueItems,
     resetSelectedProducts,
-    deleteProducts,
+    deleteProducts, resetProducts,
 } from '../../../../../../common/ui/store/slices/productsSearchSlice';
 import DeleteProductConfirmationDialog from './components/DeleteProductConfirmationDialog/DeleteProductConfirmationDialog';
 import { useModal } from 'react-modal-hook';
@@ -72,15 +72,17 @@ const ProductsList = () => {
     }, [inView]);
 
     const handleDeleteProducts = async () => {
-        const result = await dispatch(
-            deleteProducts({ selectedProducts: selectedProducts })
-        );
-        if (result.error.message === 'Rejected') {
-            showToasterNotification('Ошибка при удалении товаров');
-        } else {
-            showToasterNotification('Товары успешно удалены!');
-            dispatch(resetSelectedProducts());
-        }
+        await dispatch(deleteProducts({ selectedProducts: selectedProducts }))
+            .unwrap()
+            .then(() => {
+                showToasterNotification('Товары успешно удалены!');
+                dispatch(resetSelectedProducts());
+                dispatch(resetProducts());
+                dispatch(fetchCatalogueItems({ filters, page: 1, isSecure: true }));
+            })
+            .catch(() => {
+                showToasterNotification('Ошибка при удалении товаров');
+            });
         hideModal();
     };
 

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { PRODUCT_CARD_DICTIONARY } from './ProductCard.dictionary';
 import { useNavigate } from 'react-router-dom';
 import ColorCircle from '../ColorCircle';
-import ProductImage from '../ProductImage';
+import EnhancedImage from '../Image/EnchancedImage';
 import { resetProduct } from '../../store/slices/productSlice';
 import { useDispatch } from 'react-redux';
 
@@ -51,7 +51,7 @@ const ProductCard = (props) => {
             onClick={handleOpenClick}
         >
             <div className={s.ProductCard_mainImage}>
-                <ProductImage
+                <EnhancedImage
                     imageUrl={product.mainImageUrl}
                     alt="dress preview"
                     shouldDisplayTextError={true}

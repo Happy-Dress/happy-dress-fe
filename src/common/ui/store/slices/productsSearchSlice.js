@@ -96,7 +96,8 @@ export const productsSearchSlice = createSlice({
         dropFilters: (state, action) => {
             state.filters = {
                 ...initialState.filters,
-                category: action.payload.categories[0].id
+                category: action.payload.categories[0].id,
+                name: state.filters.name,
             };
         },
         toggleFilter: state => {

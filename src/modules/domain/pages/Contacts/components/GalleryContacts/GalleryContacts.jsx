@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './GalleryContacts.module.scss';
-import ProductImage from '../../../../../../common/ui/components/ProductImage';
+import EnhancedImage from '../../../../../../common/ui/components/Image/EnchancedImage';
 import PropTypes from 'prop-types';
 
 const GalleryContacts = ({ mainImage, secondaryImages }) => {
@@ -8,7 +8,7 @@ const GalleryContacts = ({ mainImage, secondaryImages }) => {
         <div className={s.GalleryContacts}>
             <div className={s.GalleryContacts_images}>
                 <div className={s.GalleryContacts_images_main}>
-                    <ProductImage
+                    <EnhancedImage
                         imageUrl={mainImage}
                         alt={'main image show room'}
                         shouldDisplayTextError={true}
@@ -18,7 +18,7 @@ const GalleryContacts = ({ mainImage, secondaryImages }) => {
                 <div className={s.GalleryContacts_images_secondaries}>
                     {secondaryImages.map((image, index) => (
                         <div className={s.GalleryContacts_images_secondaries_image} key={index}>
-                            <ProductImage
+                            <EnhancedImage
                                 imageUrl={image}
                                 alt={`secondary image ${index} show room`}
                                 isZoomable={true}

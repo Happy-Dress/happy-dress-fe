@@ -12,7 +12,7 @@ import {
     setCurrentColorSize, setProductColorImages,
     setSelectedImage
 } from '../../../../../common/ui/store/slices/productSlice';
-import ProductImage from '../../../../../common/ui/components/ProductImage';
+import EnhancedImage from '../../../../../common/ui/components/Image/EnchancedImage';
 
 const {
     DESCRIPTION_LABEL,
@@ -109,7 +109,7 @@ const ProductDesktop = (props) => {
                             )}
                             onClick={() => handleImageClick(mainImageUrl, 0)}
                             >
-                                <ProductImage
+                                <EnhancedImage
                                     imageUrl={mainImageUrl}
                                     alt="main image"
                                 />
@@ -123,7 +123,7 @@ const ProductDesktop = (props) => {
                                         )}
                                         onClick={() => handleImageClick(imageUrl, key + 1)}
                                         >
-                                            <ProductImage
+                                            <EnhancedImage
                                                 imageUrl={imageUrl}
                                                 alt={`product image color ${productColorImages.color.name}`}
                                                 widthSkeleton={'102px'}
@@ -140,7 +140,7 @@ const ProductDesktop = (props) => {
                             moveDown ? s.Product_carousel_selected_item_down : '',
                         )}
                         >
-                            <ProductImage
+                            <EnhancedImage
                                 imageUrl={selectedImage.imageUrl}
                                 alt="selected image"
                                 shouldDisplayTextError={true}

@@ -3,15 +3,23 @@
 @import "../../../../../../common/ui/styles/media-sizes";
 
 .ProductsList{
-  margin-top: 50px;
-  padding: 0 calc(5% + 2px) 0 calc(5% + 2px);
+  margin: 50px 0px 20px;
   width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(3, 30%);
   column-gap: 5%;
-  row-gap: 42px;
-  position: relative;
+  row-gap: 30px;
+
+  @media screen and (max-width: $xl-size) {
+    grid-template-columns: repeat(2, 48%);
+    column-gap: 4%;
+  }
+
+  @media screen and (max-width: $md-size) {
+    grid-template-columns: 1fr;
+    column-gap: unset;
+  }
 
   #slider {
     position: fixed;
