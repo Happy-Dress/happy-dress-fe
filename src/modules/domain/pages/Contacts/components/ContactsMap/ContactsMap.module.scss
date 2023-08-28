@@ -3,10 +3,22 @@
 $lg-size-1023: #{$lg-size - 1px};
 
 .ContactsMap {
+  display: block;
   width: 35vw;
   height: 400px;
 
   @media screen and (max-width: $lg-size-1023){
     width: 90vw;
   }
+
+  &_map {
+    width: 100%;
+    height: 100%;
+
+    &_hidden {
+      display: none;
+    }
+  }
+
+
 }
