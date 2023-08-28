@@ -33,7 +33,9 @@ const FooterDesktop = () => {
                         <NavLink
                             key={name}
                             to={path}
-                            className={({ isActive }) => isActive ? s.Footer_menu_item_active : ''}>
+                            className={({ isActive }) => isActive ? s.Footer_menu_item_active : ''}
+                            onClick={() => window.scrollTo({ top: 0 })}
+                        >
                             <Typography classNames={[s.Footer_menu_item]}>
                                 {name}
                             </Typography>

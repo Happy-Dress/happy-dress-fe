@@ -64,7 +64,7 @@ const PrivateRoutes = (props) => {
             }
             return Promise.reject(Array.isArray(error.response?.data?.message) ?
                 error.response?.data?.message[0]
-                : (error.response.data.message || error?.response?.data?.error|| error.message));
+                : (error?.response?.data?.message || error?.response?.data?.error|| error?.message || error));
         }
     );
 

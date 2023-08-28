@@ -14,7 +14,7 @@ import {
     unSelectProduct,
 } from '../../../../../../../../common/ui/store/slices/productsSearchSlice';
 import ColorCircle from '../../../../../../../../common/ui/components/ColorCircle';
-import ProductImage from '../../../../../../../../common/ui/components/ProductImage';
+import EnhancedImage from '../../../../../../../../common/ui/components/Image/EnchancedImage';
 
 const { SIZE, COLOR } = PRODUCT_CARD_DICTIONARY;
 
@@ -75,7 +75,7 @@ const ProductCard = (props) => {
             onTouchEnd={handleTouchEnd}
         >
             <div className={classNames({ [s.hovered]: isHovered }, s.ProductCard_mainImage)}>
-                <ProductImage
+                <EnhancedImage
                     imageUrl={product.mainImageUrl}
                     alt="dress preview"
                     widthSkeleton={'320px'}

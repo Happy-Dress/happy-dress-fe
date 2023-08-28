@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { setCategory } from '../../../../../../common/ui/store/slices/productsSearchSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import ImageSkeleton from '../../../../../../common/ui/components/Image/ImageSkeleton';
+import EnhancedImage from '../../../../../../common/ui/components/Image/EnchancedImage';
 
 
 const { HEADING_LABEL } = CATEGORIES_DICTIONARY;
@@ -17,14 +17,11 @@ const CategoriesMobile = ({ categories }) => {
     const [index, setIndex] = useState(0);
     const [moveLeft, setMoveLeft] = useState(false);
     const [moveRight, setMoveRight] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
-    const [loadedImages, setLoadedImages] = useState(Array(categories.length).fill(false));
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleSwipe = useSwipeable({
         onSwipedLeft: () => {
             setMoveLeft(true);
-            setIsLoading(true);
             setTimeout(() => {
                 setIndex((prevIndex) => (prevIndex + 1) % categories.length);
                 setMoveLeft(false);
@@ -33,7 +30,6 @@ const CategoriesMobile = ({ categories }) => {
         },
         onSwipedRight: () => {
             setMoveRight(true);
-            setIsLoading(true);
             setTimeout(() => {
                 setIndex((prevIndex) => (prevIndex + categories.length - 1) % categories.length);
                 setMoveRight(false);
@@ -41,15 +37,7 @@ const CategoriesMobile = ({ categories }) => {
         },
     });
 
-    const handleLoadImages = (index) => {
-        setIsLoading(false);
-        const newLoadedImages = [...loadedImages];
-        newLoadedImages[index] = true;
-        setLoadedImages(newLoadedImages);
-    };
-
     const handleDotClick = (index) => {
-        setIsLoading(true);
         setIndex(index);
     };
 
@@ -93,14 +81,12 @@ const CategoriesMobile = ({ categories }) => {
                             key={key}
                             data-testid={`card_${key}`}
                         >
-                            {key === index && <div>
-                                {isLoading && !loadedImages[index] && <ImageSkeleton width={'90vw'} height={'450px'}/>}
-                                <img 
-                                    src={post.imageUrl} 
-                                    className={s.slider_card_mainImage}
+                            {key === index && <div className={s.slider_card_mainImage}>
+                                <EnhancedImage 
+                                    imageUrl={post.imageUrl} 
                                     alt={`Slide ${index + 1}`}
-                                    onLoad={() => handleLoadImages(index)}
-                                    hidden={isLoading && !loadedImages[index]}
+                                    isZoomable={false}
+                                    shouldDisplayTextError={true}
                                 />
                                 <h3>{post.name}</h3>
                                 <div className={s.slider_card_description}>

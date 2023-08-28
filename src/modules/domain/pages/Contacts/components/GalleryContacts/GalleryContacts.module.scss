@@ -14,9 +14,13 @@ $lg-size-1023: #{$lg-size - 1px};
       gap: 12px;
     }
 
+    img {
+      object-fit: contain;
+    }
+
     &_main {
       width: 40vw;
-      height: auto;
+      aspect-ratio: 6 / 5;
 
       @media screen and (max-width: $lg-size-1023) {
         width: 85vw;
@@ -33,6 +37,7 @@ $lg-size-1023: #{$lg-size - 1px};
 
       &_image {
         width: calc(40vw / 3 - 32px / 3);
+        aspect-ratio: 1 / 1;
 
         @media screen and (max-width: $lg-size-1023) {
           width: calc(85vw / 3 - 16px / 3);
