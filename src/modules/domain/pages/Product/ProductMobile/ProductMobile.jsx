@@ -35,11 +35,12 @@ const ProductMobile = (props) => {
         uniqueColors,
         selectedImage,
         mainImageUrl,
+        setQueryParams,
     } = props;
 
     const [moveLeft, setMoveLeft] = useState(false);
     const [moveRight, setMoveRight] = useState(false);
-    const [images, setImages] = useState([]);
+    const [images, setImages] = useState([mainImageUrl, ...productColorImages.imageURLs]);
     const [isOpenTableSize, setIsOpenTableSize] = useState(false);
     const dispatch = useDispatch();
 
@@ -70,8 +71,8 @@ const ProductMobile = (props) => {
     });
 
     useEffect(() => {
-        setImages([product.mainImageUrl, ...product.productColorImages[0].imageURLs]);
-    }, []);
+        setImages([product.mainImageUrl, ...productColorImages.imageURLs]);
+    }, [productColorImages]);
 
     const handleOpenTableSize = () => {
         window.scrollTo({ top: 0 });
@@ -106,8 +107,8 @@ const ProductMobile = (props) => {
                 dispatch(setSelectedImage({
                     imageUrl: mainImageUrl,
                 }));
-                setImages([mainImageUrl, ...productColorImage.imageURLs]);
             }
+            setQueryParams(newProductColorSize.color.id, newProductColorSize.size.id);
         }
     };
 
@@ -220,6 +221,7 @@ ProductMobile.propTypes = {
     uniqueColors: PropTypes.array.isRequired,
     mainImageUrl: PropTypes.string.isRequired,
     selectedImage: PropTypes.object.isRequired,
+    setQueryParams: PropTypes.func,
 };
 
 export default ProductMobile;

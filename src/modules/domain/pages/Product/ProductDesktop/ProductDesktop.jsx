@@ -36,6 +36,7 @@ const ProductDesktop = (props) => {
         uniqueColors,
         selectedImage,
         mainImageUrl,
+        setQueryParams,
     } = props;
 
     const [moveUp, setMoveUp] = useState(false);
@@ -74,6 +75,7 @@ const ProductDesktop = (props) => {
                     imageUrl: mainImageUrl,
                 }));
             }
+            setQueryParams(newProductColorSize.color.id, newProductColorSize.size.id);
         }
     };
 
@@ -218,5 +220,6 @@ ProductDesktop.propTypes = {
     uniqueColors: PropTypes.array.isRequired,
     mainImageUrl: PropTypes.string.isRequired,
     selectedImage: PropTypes.object.isRequired,
+    setQueryParams: PropTypes.func,
 };
 export default ProductDesktop;

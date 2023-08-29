@@ -17,6 +17,8 @@ const {
 const ProductCard = (props) => {
     const {
         product,
+        colorId,
+        sizeId,
         className,
     } = props;
 
@@ -40,7 +42,8 @@ const ProductCard = (props) => {
 
     const handleOpenClick = () => {
         window.scrollTo({ top: 0 });
-        navigate(`${product.id}`);
+        if (colorId && sizeId){ navigate(`${product.id}?colorId=${colorId}&sizeId=${sizeId}`); }
+        else navigate(`${product.id}`);
         dispatch(resetProduct());
     };
 
@@ -94,6 +97,8 @@ const ProductCard = (props) => {
 
 ProductCard.propTypes = {
     product: PropTypes.object.isRequired,
+    colorId: PropTypes.number,
+    sizeId: PropTypes.number,
     className: PropTypes.string,
 };
 
