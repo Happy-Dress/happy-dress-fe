@@ -1,6 +1,7 @@
 import ProductCard from './ProductCard';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import renderWithStore from '../../../util/tests/renderWithStore';
 
 global.scrollTo = jest.fn();
 const mockedUseNavigate = jest.fn();
@@ -54,7 +55,7 @@ let baseElem;
 
 describe('ProductCard', () => {
     beforeEach(() => {
-        baseElem = render(<ProductCard
+        baseElem = renderWithStore(<ProductCard
             product={mockProduct}/>).baseElement;
     });
 

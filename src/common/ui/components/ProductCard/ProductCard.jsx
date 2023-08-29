@@ -58,7 +58,9 @@ const ProductCard = (props) => {
                 />
             </div>
             <div className={s.description}>
-                <h3>{product.name}</h3>
+                <div className={s.description_name}>
+                    <h3>{product.name}</h3>
+                </div>
                 <div className={s.options}>
                     <div className={classNames(s.sizes, s.optionItem)}>
                         <p>{SIZE}</p>
