@@ -14,10 +14,12 @@ import {
     setSelectedImage
 } from '../../../../../common/ui/store/slices/productSlice';
 import EnhancedImage from '../../../../../common/ui/components/Image/EnchancedImage';
+import ColorCircle from '../../../../../common/ui/components/ColorCircle';
 
 const {
     MODEL_LABEL,
     MATERIAL_LABEL,
+    CURRENT_COLOR_LABEL,
     COLOR_AND_SIZE_LABEL,
     TABLE_SIZE_LABEL,
     TABLE_SIZE_HEAD,
@@ -162,6 +164,16 @@ const ProductMobile = (props) => {
                         <div className={s.ProductMobile_description_item}>
                             <h5 className={s.ProductMobile_description_label}>{MATERIAL_LABEL}</h5>
                             <p>{product.materials.map(material => material.name).join(', ')}</p>
+                        </div>
+                        <div className={s.ProductMobile_description_item}>
+                            <h5 className={s.ProductMobile_description_label}>{CURRENT_COLOR_LABEL}</h5>
+                            <ColorCircle 
+                                firstColor={currentColorSize.color.firstColor}
+                                secondColor={currentColorSize.color?.secondColor}
+                                width={'18px'}
+                                height={'18px'}
+                            />
+                            <p>{currentColorSize.color.name}</p>
                         </div>
                         <div className={s.ProductMobile_description_item}>
                             <h5 className={s.ProductMobile_description_label}>{COLOR_AND_SIZE_LABEL}</h5>

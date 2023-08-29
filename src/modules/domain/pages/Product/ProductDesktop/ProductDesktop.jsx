@@ -13,6 +13,7 @@ import {
     setSelectedImage
 } from '../../../../../common/ui/store/slices/productSlice';
 import EnhancedImage from '../../../../../common/ui/components/Image/EnchancedImage';
+import ColorCircle from '../../../../../common/ui/components/ColorCircle';
 
 const {
     DESCRIPTION_LABEL,
@@ -20,6 +21,7 @@ const {
     MODEL_LABEL,
     COLOR_LABEL,
     SIZE_LABEL,
+    CURRENT_COLOR_LABEL,
     SIZES,
     TABLE_SIZE_LABEL,
     TABLE_SIZE_HEAD,
@@ -162,6 +164,16 @@ const ProductDesktop = (props) => {
                             <div className={s.Product_description_item}>
                                 <h4 className={s.Product_description_label}>{MATERIAL_LABEL}</h4>
                                 <p>{product.materials.map(material => material.name).join(', ')}</p>
+                            </div>
+                            <div className={s.Product_description_item}>
+                                <h4 className={s.Product_description_label}>{CURRENT_COLOR_LABEL}</h4>
+                                <ColorCircle 
+                                    firstColor={currentColorSize.color.firstColor}
+                                    secondColor={currentColorSize.color?.secondColor}
+                                    width={'20px'}
+                                    height={'20px'}
+                                />
+                                <p>{currentColorSize.color.name}</p>
                             </div>
                             <div className={s.Product_description_table}>
                                 <div className={s.Product_description_table_labels}>
