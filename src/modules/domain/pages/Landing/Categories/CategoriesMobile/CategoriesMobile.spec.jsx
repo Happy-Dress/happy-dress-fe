@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import CategoriesMobile from './CategoriesMobile';
 import userEvent from '@testing-library/user-event';
@@ -41,4 +41,16 @@ describe('CategoriesMobile', ( ) => {
         expect(firstSlide).toHaveAttribute('class', 'slider_card_left');
     });
 
+    it('should click on image', async () => {
+        renderWithStoreAndRouter(<CategoriesMobile categories={categories} />);
+        const mockScrollTo = jest.fn();
+        Object.defineProperty(window, 'scrollTo', {
+            value: mockScrollTo,
+            writable: true,
+        });
+        await waitFor(() => {
+            userEvent.click(screen.getByAltText('Slide 1'));
+        });
+        expect(mockScrollTo).toHaveBeenCalled();
+    });
 });

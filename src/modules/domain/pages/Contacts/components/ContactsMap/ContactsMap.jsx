@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import s from './ContactsMap.module.scss';
 import { GeolocationControl, Map, Placemark, TypeSelector, YMaps } from '@pbe/react-yandex-maps';
 import { CONTACTS_DICTIONARY } from '../../Contacts.dictionary';
+import ImageSkeleton from '../../../../../../common/ui/components/Image/ImageSkeleton';
+import classNames from 'classnames';
 
 const map = {
     defaultState : {
@@ -27,15 +29,28 @@ const placemark = {
 
 
 const ContactsMap = () => {
+    const [isLoading, setIsLoading] = useState(true);
+    
+    const handleLoad = () => {
+        setIsLoading(false);  
+    };
+    
     return (
         <div className={s.ContactsMap}>
-            <YMaps>
-                <Map {...map} width={'100%'} height={'100%'}>
-                    <TypeSelector options={{ float: 'right' }} />
-                    <GeolocationControl options={{ float: 'left' }} />
-                    <Placemark{...placemark}/>
-                </Map>
-            </YMaps>
+            {isLoading && <ImageSkeleton/>}
+            <div className={classNames(s.ContactsMap_map, isLoading && s.ContactsMap_map_hidden)}>
+                <YMaps>
+                    <Map {...map} 
+                        width={'100%'}
+                        height={'100%'}
+                        onLoad={handleLoad}
+                    >
+                        <TypeSelector options={{ float: 'right' }} />
+                        <GeolocationControl options={{ float: 'left' }} />
+                        <Placemark{...placemark}/>
+                    </Map>
+                </YMaps>
+            </div>
         </div>
     );
 };

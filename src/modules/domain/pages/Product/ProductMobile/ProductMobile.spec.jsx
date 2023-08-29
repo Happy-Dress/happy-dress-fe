@@ -5,6 +5,7 @@ import renderWithStoreAndRoutes from '../../../../../common/util/tests/renderWit
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+
 const {
     product,
     uniqueColors,
@@ -45,5 +46,22 @@ describe('ProductMobile', () => {
         });
         const table = screen.getByTestId('size-table');
         expect(table).toBeInTheDocument();
+    });
+
+    it('should click another size and color', async () => {
+        const sizeElement = await screen.getByTestId(`test-${uniqueColors[1].name}-${product.productColorSizes[2].size.sizeValue}-item`);
+        await waitFor( () => {
+            userEvent.click(sizeElement);
+        });
+        const images = screen.getAllByAltText(`product image color ${uniqueColors[0].name}`);
+        expect(images[1]).toHaveAttribute('src', product.productColorImages[1].imageURLs[1]);
+    });
+
+    it('should click on image', async () => {
+        const images = screen.getAllByAltText(`product image color ${uniqueColors[0].name}`);
+        await waitFor(() => {
+            userEvent.click(images[0]);
+        });
+        expect(screen.getByAltText('selected image')).toHaveAttribute('src', mainImageUrl);
     });
 });

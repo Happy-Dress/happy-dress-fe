@@ -48,10 +48,23 @@ export const mockCatalogueItemResponse = {
                 'secondColor': null
             },
             'size': {
+                'id': 10,
+                'sizeValue': 48
+            }
+        },
+        {
+            'color': {
+                'id': 50,
+                'name': 'белый',
+                'firstColor': '#ffffff',
+                'secondColor': null
+            },
+            'size': {
                 'id': 24,
                 'sizeValue': 46
             }
-        }
+        },
+
     ],
     'productColorImages': [
         {
@@ -63,6 +76,17 @@ export const mockCatalogueItemResponse = {
             },
             'imageURLs': [
                 'http://drive.google.com/uc?export=view&id=1GzPcAb4BzO3BhUD8ATRTltmTRwKDOqz1'
+            ]
+        },
+        {
+            'color': {
+                'id': 50,
+                'name': 'белый',
+                'firstColor': '#ffffff',
+                'secondColor': null
+            },
+            'imageURLs': [
+                'http://drive.google.com/uc?export=view&id=1GzPcAb4BzO3BhUD8ATRTltmTRwKDOqz'
             ]
         }
     ]

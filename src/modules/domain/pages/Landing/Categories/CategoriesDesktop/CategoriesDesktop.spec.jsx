@@ -1,8 +1,9 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import CategoriesDesktop from './CategoriesDesktop';
 import userEvent from '@testing-library/user-event';
 import renderWithStoreAndRoutes from '../../../../../../common/util/tests/renderWithStoreAndRouter';
+import renderWithStoreAndRouter from '../../../../../../common/util/tests/renderWithStoreAndRouter';
 
 const categories = [
     {
@@ -43,6 +44,18 @@ describe('CategoriesDesktop', ( ) => {
         expect(firstPic).toHaveAttribute('class', 'medium');
         await userEvent.click(leftArrow);
         expect(firstPic).toHaveAttribute('class', 'main medium');
+    });
 
+    it('should click on image', async () => {
+        renderWithStoreAndRouter(<CategoriesDesktop categories={categories} />);
+        const mockScrollTo = jest.fn();
+        Object.defineProperty(window, 'scrollTo', {
+            value: mockScrollTo,
+            writable: true,
+        });
+        await waitFor(() => {
+            userEvent.click(screen.getAllByAltText('category card')[0]);
+        });
+        expect(mockScrollTo).toHaveBeenCalled();
     });
 });
