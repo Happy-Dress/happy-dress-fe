@@ -91,9 +91,13 @@ export const productsSearchSlice = createSlice({
             state.filters.sizes = state.filters.sizes.filter(id => id !== action.payload);
         },
         unSelectFilter: (state, action) => {
+            state.currentPage = 0;
+            state.products = [];
             state.filters[action.payload.type] = state.filters[action.payload.type].filter(id => id !== action.payload.id);
         },
         dropFilters: (state, action) => {
+            state.currentPage = 0;
+            state.products = [];
             state.filters = {
                 ...initialState.filters,
                 category: action.payload.categories[0].id,
