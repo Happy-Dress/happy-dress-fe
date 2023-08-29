@@ -9,7 +9,6 @@ import { useDispatch } from 'react-redux';
 import { setCategory } from '../../../../../common/ui/store/slices/productsSearchSlice';
 import PropTypes from 'prop-types';
 import {
-    setCurrentColorSize, setProductColorImages,
     setSelectedImage
 } from '../../../../../common/ui/store/slices/productSlice';
 import EnhancedImage from '../../../../../common/ui/components/Image/EnchancedImage';
@@ -36,7 +35,7 @@ const ProductDesktop = (props) => {
         uniqueColors,
         selectedImage,
         mainImageUrl,
-        setQueryParams,
+        handleSizeClick,
     } = props;
 
     const [moveUp, setMoveUp] = useState(false);
@@ -59,25 +58,6 @@ const ProductDesktop = (props) => {
         ];
         setBreadcrumbs(breadcrumbs);
     }, [product]);
-
-    const handleSizeClick = (color, size) => {
-        const productColorSize = product.productColorSizes.filter(item => item.color.name === color).find(item => item.size.sizeValue === size.sizeValue);
-        if (productColorSize) {
-            const newProductColorSize = {
-                ...productColorSize,
-                size
-            };
-            dispatch(setCurrentColorSize(newProductColorSize));
-            if (productColorImages.color.name !== productColorSize.color.name) {
-                const productColorImage = product.productColorImages.find(productColorImage => productColorImage.color.name === productColorSize.color.name);
-                dispatch(setProductColorImages(productColorImage));
-                dispatch(setSelectedImage({
-                    imageUrl: mainImageUrl,
-                }));
-            }
-            setQueryParams(newProductColorSize.color.id, newProductColorSize.size.id);
-        }
-    };
 
     const handleOpenTableSize = () => {
         setIsOpenTableSize(!isOpenTableSize);
@@ -220,6 +200,6 @@ ProductDesktop.propTypes = {
     uniqueColors: PropTypes.array.isRequired,
     mainImageUrl: PropTypes.string.isRequired,
     selectedImage: PropTypes.object.isRequired,
-    setQueryParams: PropTypes.func,
+    handleSizeClick: PropTypes.func.isRequired,
 };
 export default ProductDesktop;

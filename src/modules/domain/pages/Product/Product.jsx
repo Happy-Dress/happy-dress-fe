@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
     fetchProduct,
     setCurrentColorSize,
-    setProductColorImages
+    setProductColorImages, setSelectedImage
 } from '../../../../common/ui/store/slices/productSlice';
 import Loader from '../../../../common/ui/components/Loader';
 import EmptyBanner from '../../../../common/ui/components/EmptyBanner';
@@ -36,6 +36,10 @@ const Product = () => {
         dispatch(setCurrentColorSize(productColorSize));
     };
 
+    const setDefaultQueryParams = () => {
+        setQueryParams(product.productColorSizes[0].color.id, product.productColorSizes[0].size.id);
+    };
+
     const setQueryParams = (colorId, sizeId) => {
         queryParams.set('colorId', colorId);
         queryParams.set('sizeId', sizeId);
@@ -47,7 +51,28 @@ const Product = () => {
     const handleCurrentColorSize = () => {
         if (colorId && sizeId) {
             const productColorSize = product.productColorSizes.find((colorSize) => colorSize.color.id === colorId && colorSize.size.id === sizeId);
-            productColorSize && setProductSettings(colorId, productColorSize);
+            productColorSize ? setProductSettings(colorId, productColorSize) : setDefaultQueryParams();
+        } else {
+            setDefaultQueryParams();
+        }
+    };
+
+    const handleSizeClick = (color, size) => {
+        const productColorSize = product.productColorSizes.filter(item => item.color.name === color).find(item => item.size.sizeValue === size.sizeValue);
+        if (productColorSize) {
+            const newProductColorSize = {
+                ...productColorSize,
+                size
+            };
+            dispatch(setCurrentColorSize(newProductColorSize));
+            if (productColorImages.color.name !== productColorSize.color.name) {
+                const productColorImage = product.productColorImages.find(productColorImage => productColorImage.color.name === productColorSize.color.name);
+                dispatch(setProductColorImages(productColorImage));
+                dispatch(setSelectedImage({
+                    imageUrl: mainImageUrl,
+                }));
+            }
+            setQueryParams(newProductColorSize.color.id, newProductColorSize.size.id);
         }
     };
 
@@ -75,7 +100,7 @@ const Product = () => {
                         uniqueColors={JSON.parse(uniqueColors)}
                         mainImageUrl={mainImageUrl}
                         selectedImage={selectedImage}
-                        setQueryParams={setQueryParams}
+                        handleSizeClick={handleSizeClick}
                     />
                     :
                     <Loader/>

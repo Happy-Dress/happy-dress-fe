@@ -10,7 +10,6 @@ import { useSwipeable } from 'react-swipeable';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import {
-    setCurrentColorSize, setProductColorImages,
     setSelectedImage
 } from '../../../../../common/ui/store/slices/productSlice';
 import EnhancedImage from '../../../../../common/ui/components/Image/EnchancedImage';
@@ -35,7 +34,7 @@ const ProductMobile = (props) => {
         uniqueColors,
         selectedImage,
         mainImageUrl,
-        setQueryParams,
+        handleSizeClick,
     } = props;
 
     const [moveLeft, setMoveLeft] = useState(false);
@@ -91,25 +90,6 @@ const ProductMobile = (props) => {
             setMoveLeft(false);
             setMoveRight(false);
         }, 1000);
-    };
-
-    const handleSizeClick = (color, size) => {
-        const productColorSize = product.productColorSizes.filter(item => item.color.name === color).find(item => item.size.sizeValue === size.sizeValue);
-        if (productColorSize) {
-            const newProductColorSize = {
-                ...productColorSize,
-                size
-            };
-            dispatch(setCurrentColorSize(newProductColorSize));
-            if (productColorImages.color.name !== productColorSize.color.name) {
-                const productColorImage = product.productColorImages.find(productColorImage => productColorImage.color.name === productColorSize.color.name);
-                dispatch(setProductColorImages(productColorImage));
-                dispatch(setSelectedImage({
-                    imageUrl: mainImageUrl,
-                }));
-            }
-            setQueryParams(newProductColorSize.color.id, newProductColorSize.size.id);
-        }
     };
 
     return (
@@ -221,7 +201,7 @@ ProductMobile.propTypes = {
     uniqueColors: PropTypes.array.isRequired,
     mainImageUrl: PropTypes.string.isRequired,
     selectedImage: PropTypes.object.isRequired,
-    setQueryParams: PropTypes.func,
+    handleSizeClick: PropTypes.func.isRequired,
 };
 
 export default ProductMobile;
