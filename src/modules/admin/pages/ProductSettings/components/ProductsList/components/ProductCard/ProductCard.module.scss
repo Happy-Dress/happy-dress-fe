@@ -12,7 +12,7 @@
   flex-direction: column;
   position: relative;
   width: 337px;
-  height: 595px;
+  min-height: 595px;
 
   &.active {
     outline: 2px solid $brown;
@@ -29,7 +29,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 400px;
+    width: 300px;
+    min-height: 400px;
+    max-height: 400px;
+    aspect-ratio: 3 / 4;
+
 
     &.hovered {
       img {
@@ -41,6 +45,7 @@
       user-select: none;
       object-fit: contain;
       align-self: center;
+      aspect-ratio: 3 / 4;
     }
   }
 
@@ -61,31 +66,45 @@
   }
 
   .description {
-    h3 {
-      margin: 40px 0 28px;
-      text-align: center;
-      font-weight: 400;
-      font-size: $font-size-xlarge-24;
-      color: $black;
+    display: grid;
+    grid-template-rows: 1fr 4fr;
+    grid-gap: 10%;
+    height: 100%;
+    margin-top: 15px;
+
+    &_name {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      h3 {
+        text-align: center;
+        font-weight: 400;
+        font-size: $font-size-xlarge-24;
+        color: $black;
+      }
     }
 
     .options {
       display: flex;
       flex-direction: column;
-      gap: 26px;
+      gap: 2px;
 
       .optionItem {
         display: flex;
         align-items: center;
+        flex-basis: 50px;
+
 
         p {
           width: 80px;
         }
 
         .items {
+          display: flex;
+          flex-wrap: wrap;
           padding-right: 5px;
           justify-content: flex-end;
-          display: flex;
           column-gap: 5%;
           row-gap: 6px;
           width: 100%;
@@ -96,6 +115,7 @@
           .items {
             color: $gray;
             flex-wrap: wrap;
+
             span {
               border: $gray 1px solid;
               padding: 2px 5px;
