@@ -25,7 +25,7 @@ export const useCurrentFilters = (tagClass) => {
                         catalogueSettings[filterName].find(item => item.id === id).sizeValue
                     }
                 </span>
-                {isDesktop && <Cross onClick={clickHandler}/>}
+                {<Cross onClick={clickHandler}/>}
             </div>
         );
     };
