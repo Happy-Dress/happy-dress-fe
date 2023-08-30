@@ -2,10 +2,11 @@ import React, { Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { ROUTER_PATHS, routerConfig } from '../../config';
 import Product from '../../pages/Product';
+import Loader from '../../../../common/ui/components/Loader';
 
 const DomainRoutes = () => {
     return (
-        <Suspense fallback={<div>loading suspense</div>}>
+        <Suspense fallback={<Loader/>}>
             <Routes>
                 <Route path={'/'} element={<Navigate to={ROUTER_PATHS.home}/>}/>
                 {
