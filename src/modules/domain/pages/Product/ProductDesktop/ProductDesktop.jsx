@@ -9,10 +9,10 @@ import { useDispatch } from 'react-redux';
 import { setCategory } from '../../../../../common/ui/store/slices/productsSearchSlice';
 import PropTypes from 'prop-types';
 import {
-    setCurrentColorSize, setProductColorImages,
     setSelectedImage
 } from '../../../../../common/ui/store/slices/productSlice';
 import EnhancedImage from '../../../../../common/ui/components/Image/EnchancedImage';
+import ColorCircle from '../../../../../common/ui/components/ColorCircle';
 
 const {
     DESCRIPTION_LABEL,
@@ -20,6 +20,7 @@ const {
     MODEL_LABEL,
     COLOR_LABEL,
     SIZE_LABEL,
+    CURRENT_COLOR_LABEL,
     SIZES,
     TABLE_SIZE_LABEL,
     TABLE_SIZE_HEAD,
@@ -34,6 +35,7 @@ const ProductDesktop = (props) => {
         uniqueColors,
         selectedImage,
         mainImageUrl,
+        handleSizeClick,
     } = props;
 
     const [moveUp, setMoveUp] = useState(false);
@@ -56,24 +58,6 @@ const ProductDesktop = (props) => {
         ];
         setBreadcrumbs(breadcrumbs);
     }, [product]);
-
-    const handleSizeClick = (color, size) => {
-        const productColorSize = product.productColorSizes.filter(item => item.color.name === color).find(item => item.size.sizeValue === size.sizeValue);
-        if (productColorSize) {
-            const newProductColorSize = {
-                ...productColorSize,
-                size
-            };
-            dispatch(setCurrentColorSize(newProductColorSize));
-            if (productColorImages.color.name !== productColorSize.color.name) {
-                const productColorImage = product.productColorImages.find(productColorImage => productColorImage.color.name === productColorSize.color.name);
-                dispatch(setProductColorImages(productColorImage));
-                dispatch(setSelectedImage({
-                    imageUrl: mainImageUrl,
-                }));
-            }
-        }
-    };
 
     const handleOpenTableSize = () => {
         setIsOpenTableSize(!isOpenTableSize);
@@ -163,6 +147,16 @@ const ProductDesktop = (props) => {
                                 <h4 className={s.Product_description_label}>{MATERIAL_LABEL}</h4>
                                 <p>{product.materials.map(material => material.name).join(', ')}</p>
                             </div>
+                            <div className={s.Product_description_item}>
+                                <h4 className={s.Product_description_label}>{CURRENT_COLOR_LABEL}</h4>
+                                <ColorCircle 
+                                    firstColor={currentColorSize.color.firstColor}
+                                    secondColor={currentColorSize.color?.secondColor}
+                                    width={'20px'}
+                                    height={'20px'}
+                                />
+                                <p>{currentColorSize.color.name}</p>
+                            </div>
                             <div className={s.Product_description_table}>
                                 <div className={s.Product_description_table_labels}>
                                     <div className={s.Product_description_table_label}>
@@ -206,5 +200,6 @@ ProductDesktop.propTypes = {
     uniqueColors: PropTypes.array.isRequired,
     mainImageUrl: PropTypes.string.isRequired,
     selectedImage: PropTypes.object.isRequired,
+    handleSizeClick: PropTypes.func.isRequired,
 };
 export default ProductDesktop;

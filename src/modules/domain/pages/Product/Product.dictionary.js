@@ -4,6 +4,7 @@ export const PRODUCT_DICTIONARY = {
     MATERIAL_LABEL: 'Материал:',
     COLOR_LABEL: 'Цвет:',
     SIZE_LABEL: 'Размер:',
+    CURRENT_COLOR_LABEL: 'Текущий цвет:',
     COLOR_AND_SIZE_LABEL: 'Цвет и размер:',
     TABLE_SIZE_LABEL: 'Таблица размеров',
     SIZES: [38, 40, 42, 44, 46, 48, 50, 52],

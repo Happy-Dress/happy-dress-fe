@@ -10,14 +10,15 @@ import { useSwipeable } from 'react-swipeable';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import {
-    setCurrentColorSize, setProductColorImages,
     setSelectedImage
 } from '../../../../../common/ui/store/slices/productSlice';
 import EnhancedImage from '../../../../../common/ui/components/Image/EnchancedImage';
+import ColorCircle from '../../../../../common/ui/components/ColorCircle';
 
 const {
     MODEL_LABEL,
     MATERIAL_LABEL,
+    CURRENT_COLOR_LABEL,
     COLOR_AND_SIZE_LABEL,
     TABLE_SIZE_LABEL,
     TABLE_SIZE_HEAD,
@@ -33,11 +34,12 @@ const ProductMobile = (props) => {
         uniqueColors,
         selectedImage,
         mainImageUrl,
+        handleSizeClick,
     } = props;
 
     const [moveLeft, setMoveLeft] = useState(false);
     const [moveRight, setMoveRight] = useState(false);
-    const [images, setImages] = useState([]);
+    const [images, setImages] = useState([mainImageUrl, ...productColorImages.imageURLs]);
     const [isOpenTableSize, setIsOpenTableSize] = useState(false);
     const dispatch = useDispatch();
 
@@ -68,8 +70,8 @@ const ProductMobile = (props) => {
     });
 
     useEffect(() => {
-        setImages([product.mainImageUrl, ...product.productColorImages[0].imageURLs]);
-    }, []);
+        setImages([product.mainImageUrl, ...productColorImages.imageURLs]);
+    }, [productColorImages]);
 
     const handleOpenTableSize = () => {
         window.scrollTo({ top: 0 });
@@ -88,25 +90,6 @@ const ProductMobile = (props) => {
             setMoveLeft(false);
             setMoveRight(false);
         }, 1000);
-    };
-
-    const handleSizeClick = (color, size) => {
-        const productColorSize = product.productColorSizes.filter(item => item.color.name === color).find(item => item.size.sizeValue === size.sizeValue);
-        if (productColorSize) {
-            const newProductColorSize = {
-                ...productColorSize,
-                size
-            };
-            dispatch(setCurrentColorSize(newProductColorSize));
-            if (productColorImages.color.name !== productColorSize.color.name) {
-                const productColorImage = product.productColorImages.find(productColorImage => productColorImage.color.name === productColorSize.color.name);
-                dispatch(setProductColorImages(productColorImage));
-                dispatch(setSelectedImage({
-                    imageUrl: mainImageUrl,
-                }));
-                setImages([mainImageUrl, ...productColorImage.imageURLs]);
-            }
-        }
     };
 
     return (
@@ -164,6 +147,16 @@ const ProductMobile = (props) => {
                             <p>{product.materials.map(material => material.name).join(', ')}</p>
                         </div>
                         <div className={s.ProductMobile_description_item}>
+                            <h5 className={s.ProductMobile_description_label}>{CURRENT_COLOR_LABEL}</h5>
+                            <ColorCircle 
+                                firstColor={currentColorSize.color.firstColor}
+                                secondColor={currentColorSize.color?.secondColor}
+                                width={'18px'}
+                                height={'18px'}
+                            />
+                            <p>{currentColorSize.color.name}</p>
+                        </div>
+                        <div className={s.ProductMobile_description_item}>
                             <h5 className={s.ProductMobile_description_label}>{COLOR_AND_SIZE_LABEL}</h5>
                         </div>
                         <div className={s.ProductMobile_description_tableColors}>
@@ -208,6 +201,7 @@ ProductMobile.propTypes = {
     uniqueColors: PropTypes.array.isRequired,
     mainImageUrl: PropTypes.string.isRequired,
     selectedImage: PropTypes.object.isRequired,
+    handleSizeClick: PropTypes.func.isRequired,
 };
 
 export default ProductMobile;

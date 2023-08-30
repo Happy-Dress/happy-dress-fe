@@ -21,6 +21,30 @@ const ProductsList = () =>{
         threshold: 0,
     });
 
+    const findColorIdSizeId = (product) => {
+        if (filters.colors.length > 0 && filters.sizes.length > 0) {
+            const colorSizes = product.productColorSizes.find((item) => filters.colors.includes(item.color.id) && filters.sizes.includes(item.size.id));
+            return {
+                colorId: colorSizes?.color.id,
+                sizeId: colorSizes?.size.id,
+            };
+        }
+        if (filters.colors.length > 0) {
+            const colorSizes = product.productColorSizes.find((item) => filters.colors.includes(item.color.id));
+            return {
+                colorId: colorSizes?.color.id,
+                sizeId: colorSizes?.size.id,
+            };
+        }
+        if (filters.sizes.length > 0) {
+            const colorSizes = product.productColorSizes.find((item) => filters.sizes.includes(item.size.id));
+            return {
+                colorId: colorSizes?.color.id,
+                sizeId: colorSizes?.size.id,
+            };
+        }
+    };
+    
     useEffect(() => {
         if(inView && currentPage <= totalPages) {
             dispatch(fetchCatalogueItems({ filters, page: currentPage, isSecure: false }));
@@ -43,6 +67,7 @@ const ProductsList = () =>{
                         return <ProductCard
                             key={index}
                             product={product}
+                            {...findColorIdSizeId(product)}
                         />;
                     })}
                     {isLoading && renderSkeletons(15)}
