@@ -85,7 +85,6 @@ const FooterDesktop = () => {
                         </Typography>
                     </p>))
                 }
-
             </div>
         </div>
     );

@@ -55,6 +55,7 @@
     &_item {
       cursor: pointer;
       text-underline-offset: 5px;
+      user-select: none;
 
       &:hover {
         text-decoration-line: underline;
@@ -75,6 +76,7 @@
         text-align: center;
         pointer-events: none;
         color: $gray-disabled !important;
+        user-select: none;
 
         &_status {
           position: absolute;
