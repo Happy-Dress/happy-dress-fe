@@ -1,0 +1,14 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: Yandex
+Disallow: /admin/*
+Allow: /domain/*
+
+User-agent: Google
+Disallow: /admin/*
+Allow: /domain/*
+Allow: *.css
+Allow: *.js
+
+User-agent: *
+Disallow: /admin/*
+Allow: /domain/*
