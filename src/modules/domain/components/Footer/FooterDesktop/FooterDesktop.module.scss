@@ -27,6 +27,8 @@
     font-weight: 700;
     font-size: 36px;
     cursor: pointer;
+    user-select: none;
+
 
     span {
       color: $black;
@@ -78,6 +80,8 @@
     &_item {
       cursor: pointer;
       text-underline-offset: 5px;
+      user-select: none;
+
 
       &:hover {
         text-decoration: underline 1.8px solid $brown;
@@ -97,9 +101,11 @@
       }
 
       &_disabled {
-          position: relative;
-          pointer-events: none;
-          color: $gray-disabled !important;
+        position: relative;
+        pointer-events: none;
+        color: $gray-disabled !important;
+        user-select: none;
+
 
         &_status {
           position: absolute;
@@ -122,6 +128,7 @@
       width: 21.86px;
       height: 22.37px;
       cursor: pointer;
+      user-select: none;
 
       @media screen and (max-width: $xl-size) {
         width: 25px;
@@ -160,7 +167,7 @@
       margin-bottom: 21px;
       font-size: 24px;
 
-      a{
+      a {
         color: inherit;
       }
 

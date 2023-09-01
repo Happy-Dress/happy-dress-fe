@@ -12,6 +12,7 @@ import { useModal } from 'react-modal-hook';
 import { LeaveConfirmationDialog } from '../../../../common/ui/components/Dialogs';
 import { useToasters } from '../../../../common/ui/contexts/ToastersContext';
 import { ColorSettings } from './components/ColorSettings';
+import { useBeforeunload } from 'react-beforeunload';
 
 const {
     CATEGORIES_SETTINGS_NAME,
@@ -21,7 +22,7 @@ const {
     CATALOG_SETTINGS_TITLE,
     BUTTON_SETTINGS_SAVE,
     BUTTON_SETTINGS_CANCEL,
-    CHANGES_RESTORED
+    CHANGES_RESTORED,
 } = CATALOG_SETTINGS_DICTIONARY;
 
 
@@ -29,6 +30,10 @@ const CatalogSettings = () => {
 
     const { saveSettings, initialSettings, settings, restoreSettings } = useCatalogSettings();
     const { showToasterNotification } = useToasters();
+
+    const areSettingsChanged = JSON.stringify(settings) !== JSON.stringify(initialSettings);
+
+    useBeforeunload(areSettingsChanged ? (e) => e.preventDefault() : null);
 
     const restoreCatalogSettings = () =>{
         hideModal();
@@ -47,9 +52,6 @@ const CatalogSettings = () => {
             showModal();
         }
     };
-
-
-    const areSettingsChanged = JSON.stringify(settings) !== JSON.stringify(initialSettings);
 
     const items = [
         {

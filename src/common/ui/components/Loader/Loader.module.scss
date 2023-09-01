@@ -1,7 +1,6 @@
 @import "../../../../common/ui/styles/colors";
 
 .Loader {
-  opacity: 1;
   border: 16px solid $white;
   border-top: 16px solid $brown;
   border-radius: 50%;
@@ -15,12 +14,13 @@
     align-items: center;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 999;
     position: absolute;
     width: 100vw;
     height: 100vh;
     background: $light-gray;
     overflow: hidden;
+    opacity: 1;
   }
 }
 

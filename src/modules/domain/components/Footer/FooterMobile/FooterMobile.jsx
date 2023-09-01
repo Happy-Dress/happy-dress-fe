@@ -18,6 +18,7 @@ const {
     INSTAGRAM_LINK,
     VK_LINK,
     TELEGRAM_LINK,
+    GEOLOCATION,
 } = FOOTER_DICTIONARY;
 
 const FooterMobile = () => {
@@ -82,11 +83,11 @@ const FooterMobile = () => {
             <div className={s.FooterMobile_wrapper}>
                 <div>
                     {FOOTER_MOBILE_SIGNATURE.map((items) => (
-                        <p key={items}>
+                        <a href={`geo:${GEOLOCATION.toString()}`} key={items}>
                             <Typography>
                                 {items}
                             </Typography>
-                        </p>))
+                        </a>))
                     }
                 </div>
                 <div>

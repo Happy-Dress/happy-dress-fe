@@ -7,6 +7,7 @@ const FOOTER_DICTIONARY = {
     DEVELOPERS_TEAM: 'Разработано командой HAPPYDRESS',
     FOOTER_SIGNATURE: ['Разработано командой HAPPYDRESS', 'г.Витебск, пр-т Фрунзе 81/33, ТЦ Эвиком,  2 эт. пав. 500'],
     FOOTER_MOBILE_SIGNATURE:['г.Витебск,', 'пр-т Фрунзе 81/33,', 'ТЦ Эвиком,  2 эт. пав. 500'],
+    GEOLOCATION: [55.191600, 30.252134],
     INSTAGRAM_LINK: 'https://www.instagram.com/happydress_salon/',
     VK_LINK: 'https://vk.com/nevestamby',
     TELEGRAM_LINK: 'https://t.me/tatbor73'
