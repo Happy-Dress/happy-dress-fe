@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import s from './ProductMobile.module.scss';
 import leftArrow from '../../../../../assets/images/leftArrow.svg';
@@ -33,22 +33,20 @@ const ProductMobile = (props) => {
         currentColorSize,
         uniqueColors,
         selectedImage,
-        mainImageUrl,
         handleSizeClick,
     } = props;
 
     const [moveLeft, setMoveLeft] = useState(false);
     const [moveRight, setMoveRight] = useState(false);
-    const [images, setImages] = useState([mainImageUrl, ...productColorImages.imageURLs]);
     const [isOpenTableSize, setIsOpenTableSize] = useState(false);
     const dispatch = useDispatch();
 
     const handleSwipe = useSwipeable({
         onSwipedLeft: () => {
             setMoveLeft(true);
-            const newIndex = (selectedImage.index + 1) % images.length;
+            const newIndex = (selectedImage.index + 1) % productColorImages.imageURLs.length;
             dispatch(setSelectedImage({
-                imageUrl: images[newIndex],
+                imageUrl: productColorImages.imageURLs[newIndex],
                 index: newIndex,
             }));
             setTimeout(() => {
@@ -58,9 +56,9 @@ const ProductMobile = (props) => {
         },
         onSwipedRight: () => {
             setMoveRight(true);
-            const newIndex = (selectedImage.index + images.length - 1) % images.length;
+            const newIndex = (selectedImage.index + productColorImages.imageURLs.length - 1) % productColorImages.imageURLs.length;
             dispatch(setSelectedImage({
-                imageUrl: images[newIndex],
+                imageUrl: productColorImages.imageURLs[newIndex],
                 index: newIndex,
             }));
             setTimeout(() => {
@@ -68,11 +66,6 @@ const ProductMobile = (props) => {
             }, 1000);
         },
     });
-
-    useEffect(() => {
-        setImages([product.mainImageUrl, ...productColorImages.imageURLs]);
-    }, [productColorImages]);
-
     const handleOpenTableSize = () => {
         window.scrollTo({ top: 0 });
         setIsOpenTableSize(!isOpenTableSize);
@@ -110,6 +103,7 @@ const ProductMobile = (props) => {
                                 moveLeft && s.ProductMobile_carousel_selected_item_left,
                             )}>
                                 <EnhancedImage
+                                    key={selectedImage.index}
                                     imageUrl={selectedImage.imageUrl}
                                     alt={'selected image'}
                                     shouldDisplayTextError={true}
@@ -118,13 +112,13 @@ const ProductMobile = (props) => {
                             </div>
                         </div>
                         <div className={s.ProductMobile_carousel_list}>
-                            {images.map((imageUrl, key) => (
+                            {productColorImages.imageURLs.map((imageUrl, key) => (
                                 <div className={classNames(
                                     s.ProductMobile_carousel_list_item,
                                     imageUrl === selectedImage.imageUrl ? s.ProductMobile_carousel_list_item_current : ''
                                 )}
-                                key={key}
-                                onClick={() => handleImageClick(imageUrl, key + 1)}
+                                key={key + Date.now() + 1}
+                                onClick={() => handleImageClick(imageUrl, key + Date.now() + 1)}
                                 >
                                     <EnhancedImage
                                         imageUrl={imageUrl}
@@ -199,7 +193,6 @@ ProductMobile.propTypes = {
     productColorImages: PropTypes.object.isRequired,
     currentColorSize: PropTypes.object.isRequired,
     uniqueColors: PropTypes.array.isRequired,
-    mainImageUrl: PropTypes.string.isRequired,
     selectedImage: PropTypes.object.isRequired,
     handleSizeClick: PropTypes.func.isRequired,
 };

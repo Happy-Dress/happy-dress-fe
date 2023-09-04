@@ -34,7 +34,6 @@ const ProductDesktop = (props) => {
         currentColorSize,
         uniqueColors,
         selectedImage,
-        mainImageUrl,
         handleSizeClick,
     } = props;
 
@@ -43,7 +42,6 @@ const ProductDesktop = (props) => {
     const [isOpenTableSize, setIsOpenTableSize] = useState(false);
     const [breadcrumbs, setBreadcrumbs] = useState([]);
     const dispatch = useDispatch();
-
 
     useEffect(() => {
         const breadcrumbs = [
@@ -87,34 +85,21 @@ const ProductDesktop = (props) => {
                 <div className={s.Product}>
                     <div className={s.Product_carousel}>
                         <div className={s.Product_carousel_list}>
-                            <div className={classNames(
-                                s.Product_carousel_list_item,
-                                mainImageUrl === selectedImage.imageUrl ? s.Product_carousel_list_item_current : '',
-                            )}
-                            onClick={() => handleImageClick(mainImageUrl, 0)}
-                            >
-                                <EnhancedImage
-                                    imageUrl={mainImageUrl}
-                                    alt="main image"
-                                />
-                            </div>
                             {productColorImages.imageURLs.map((imageUrl, key) => (
-                                <div key={key}>
-                                    {imageUrl !== mainImageUrl && (
-                                        <div className={classNames(
-                                            s.Product_carousel_list_item,
-                                            imageUrl === selectedImage.imageUrl ? s.Product_carousel_list_item_current : ''
-                                        )}
-                                        onClick={() => handleImageClick(imageUrl, key + 1)}
-                                        >
-                                            <EnhancedImage
-                                                imageUrl={imageUrl}
-                                                alt={`product image color ${productColorImages.color.name}`}
-                                                widthSkeleton={'102px'}
-                                                heightSkeleton={'133px'}
-                                            />
-                                        </div>
+                                <div
+                                    key={key + Date.now() + 1}
+                                    className={classNames(
+                                        s.Product_carousel_list_item,
+                                        imageUrl === selectedImage.imageUrl ? s.Product_carousel_list_item_current : ''
                                     )}
+                                    onClick={() => handleImageClick(imageUrl, key + 1)}
+                                >
+                                    <EnhancedImage
+                                        imageUrl={imageUrl}
+                                        alt={`product image color ${productColorImages.color.name}`}
+                                        widthSkeleton={'102px'}
+                                        heightSkeleton={'133px'}
+                                    />
                                 </div>
                             ))}
                         </div>
@@ -125,6 +110,7 @@ const ProductDesktop = (props) => {
                         )}
                         >
                             <EnhancedImage
+                                key={selectedImage.index}
                                 imageUrl={selectedImage.imageUrl}
                                 alt="selected image"
                                 shouldDisplayTextError={true}
@@ -198,7 +184,6 @@ ProductDesktop.propTypes = {
     productColorImages: PropTypes.object.isRequired,
     currentColorSize: PropTypes.object.isRequired,
     uniqueColors: PropTypes.array.isRequired,
-    mainImageUrl: PropTypes.string.isRequired,
     selectedImage: PropTypes.object.isRequired,
     handleSizeClick: PropTypes.func.isRequired,
 };
