@@ -61,13 +61,19 @@ const Product = () => {
     };
 
     const handleSizeClick = (color, size) => {
-        const productColorSize = product.productColorSizes.filter(item => item.color.name === color).find(item => item.size.sizeValue === size.sizeValue);
+        const currentColorSizes = product.productColorSizes.filter(item => item.color.name === color);
+        const productColorSize = size ?
+            currentColorSizes.find(item => item.size.sizeValue === size.sizeValue)
+            :
+            currentColorSizes.sort((a, b) => a.size.sizeValue - b.size.sizeValue)[0];
         if (productColorSize) {
             const newProductColorSize = {
                 ...productColorSize,
-                size
+                size: productColorSize.size
             };
+
             dispatch(setCurrentColorSize(newProductColorSize));
+
             if (productColorImages.color.name !== productColorSize.color.name) {
                 const productColorImage = product.productColorImages.find(productColorImage => productColorImage.color.name === productColorSize.color.name);
                 dispatch(setSelectedImage({
