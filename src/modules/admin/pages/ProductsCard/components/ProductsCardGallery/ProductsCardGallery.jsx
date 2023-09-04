@@ -14,6 +14,7 @@ const {
 } = PRODUCT_CARD_DICTIONARY;
 
 const ProductsCardGallery = ({ productColorImages, setProductColorImages }) => {
+    console.log(productColorImages);
 
     const { isFetching, handleGalleryImg, handleDeleteGalleryImg } = useProductImages(productColorImages, setProductColorImages);
 
@@ -58,7 +59,9 @@ const ProductsCardGallery = ({ productColorImages, setProductColorImages }) => {
                                 <input
                                     type="file"
                                     accept="image/*"
+                                    multiple={true}
                                     id={FIELDS.PRODUCT_COLOR_IMAGES.NAME + colorImage.color.id}
+                                    disabled={colorImage.color.id < 1}
                                     onChange={(e) => handleGalleryImg(colorImage.color, e)}
                                 />
                             </label>

@@ -1,8 +1,10 @@
 import axios from 'axios';
 
-const addImage = async (file) => {
+const addImage = async (files) => {
     const formData = new FormData();
-    formData.append('files', file);
+    for(const file of Object.values(files)){
+        formData.append('files', file);
+    }
     const res = await axios.post('secure/images/upload', formData, {
         headers: {
             'Accept': '*/*',
