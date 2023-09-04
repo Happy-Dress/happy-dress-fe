@@ -14,6 +14,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import addImage from '../../../../api/addImage/addImage';
 import { useToasters } from '../../../contexts/ToastersContext';
 import { validationSchema } from './CategoryDialog.validation';
+import { useBeforeunload } from 'react-beforeunload';
 
 const {
     SUBMIT_BUTTON,
@@ -45,9 +46,11 @@ export const CategoryDialog = ({
 }) => {
     const { showToasterSuccess, showToasterError } = useToasters();
     const [state, setState] = useState(editingModel || emptyCategoryData);
-
+    const [defaultState] = useState(editingModel || emptyCategoryData);
     const [completed, setCompleted] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
+
+    useBeforeunload(JSON.stringify(state) !== JSON.stringify(defaultState) ? (e) => e.preventDefault() : null);
 
     useEffect(() => {
         setCompleted(0);
@@ -148,7 +151,17 @@ export const CategoryDialog = ({
                             <input
                                 className={cls(s.dialogInput, errors.name && s.dialogError)}
                                 placeholder={NAME_PLACEHOLDER}
-                                {...register('name', { required: true })}
+                                onChange={(e) => setState((prev) => ({
+                                    ...prev,
+                                    name: e.target.value,
+                                }))}
+                                {...register('name', {
+                                    onChange: (e) => setState((prev) => ({
+                                        ...prev,
+                                        name: e.target.value,
+                                    })),
+                                    required: true
+                                })}
                             />
                             {errors.name &&
                             <span className={s.dialogErrorMessage}>
@@ -157,7 +170,13 @@ export const CategoryDialog = ({
                             <textarea
                                 className={cls(s.dialogDescription, errors.description && s.dialogError)}
                                 placeholder={DESCRIPTION_PLACEHOLDER}
-                                {...register('description', { required: true })}
+                                {...register('description', {
+                                    onChange: (e) => setState((prev) => ({
+                                        ...prev,
+                                        description: e.target.value,
+                                    })),
+                                    required: true
+                                })}
                             />
                             {errors.description &&
                             <span className={s.dialogErrorMessage}>

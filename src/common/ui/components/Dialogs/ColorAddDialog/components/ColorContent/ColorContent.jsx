@@ -14,6 +14,7 @@ import { colord, extend } from 'colord';
 import namesPlugin from 'colord/plugins/names';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { useBeforeunload } from 'react-beforeunload';
 extend([namesPlugin]);
 
 const {
@@ -31,6 +32,20 @@ const ColorContent = ({ error }) => {
 
     const [firstColor, setFirstColor] = useState(state.firstColor ?? '');
     const [secondColor, setSecondColor] = useState(state.secondColor ?? '#000');
+
+    const [defaultState] = useState({
+        name,
+        firstColor: firstColor === '#fff' ? '#ffffff' : firstColor,
+    });
+
+    const checkIsChanged = () => {
+        return JSON.stringify(defaultState) !== JSON.stringify({
+            name: state.name,
+            firstColor: state.firstColor
+        });
+    };
+
+    useBeforeunload(checkIsChanged() ? (e) => e.preventDefault() : null);
 
     const changeNameHandler = (e) => {
         setName(e.target.value.trim());
