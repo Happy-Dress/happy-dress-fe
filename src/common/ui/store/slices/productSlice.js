@@ -7,8 +7,6 @@ const initialState = {
     currentColorSize: null,
     uniqueColors: null,
     selectedImage: null,
-    mainImageUrl: null,
-    loadingImages: [],
 };
 
 const fetchProduct = createAsyncThunk(
@@ -40,8 +38,6 @@ export const productSlice = createSlice({
             state.currentColorSize = initialState.currentColorSize;
             state.uniqueColors = initialState.uniqueColors;
             state.selectedImage = initialState.selectedImage;
-            state.mainImageUrl = initialState.mainImageUrl;
-            state.loadingImages = initialState.loadingImages;
         }
     },
     extraReducers: (builder) => {
@@ -56,18 +52,10 @@ export const productSlice = createSlice({
                         .map((obj) => [obj.id, obj])
                 ).values()
             ));
-            state.mainImageUrl = action.payload.mainImageUrl;
             state.selectedImage = {
-                imageUrl: action.payload.mainImageUrl,
-                index: 0,
+                imageUrl: action.payload.productColorImages[0].imageURLs[0],
+                index: Date.now(),
             };
-            state.loadingImages = Array(action.payload.productColorImages[0].imageURLs.length + 1).fill(false);
-        });
-        builder.addCase(fetchProduct.pending, (state) => {
-            state.loadingImages = [];
-        });
-        builder.addCase(fetchProduct.rejected, (state) => {
-            state.loadingImages = [];
         });
     }
 });

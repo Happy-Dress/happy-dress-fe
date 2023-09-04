@@ -26,8 +26,7 @@ describe('ProductDesktop', () => {
     beforeEach(() => {
         baseElement = renderWithStoreAndRouter(<ProductDesktop
             product={product} productColorImages={product.productColorImages[0]} currentColorSize={currentColorSize}
-            uniqueColors={uniqueColors} mainImageUrl={mainImageUrl} selectedImage={selectedImage}
-            handleImageOnLoad={jest.fn()} loadingImages={[false]}
+            uniqueColors={uniqueColors} selectedImage={selectedImage} handleSizeClick={jest.fn()}
         />).baseElement;
     });
 

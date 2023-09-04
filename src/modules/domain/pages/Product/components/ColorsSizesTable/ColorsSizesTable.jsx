@@ -24,7 +24,10 @@ const ColorsSizesTable = (props) => {
                                 color.name === currentColorSize.color.name ? s.Table_current_column : ''
                             }
                         >
-                            <td className={s.Table_color_wrapper}>
+                            <td
+                                className={s.Table_color_wrapper}
+                                onClick={() => handleSizeClick(color.name)}
+                            >
                                 <ColorCircle
                                     firstColor={color.firstColor}
                                     secondColor={color?.secondColor}
@@ -46,8 +49,7 @@ const ColorsSizesTable = (props) => {
                                                 ? s.Table_item_current : '',
                                         )}
                                         data-testid={`test-${color.name}-${size}-item`}
-                                        onClick={() => handleSizeClick(color.name,
-                                            product.productColorSizes.find(item => item.size.sizeValue === size)?.size || { sizeValue: size }
+                                        onClick={() => handleSizeClick(color.name, { sizeValue: size }
                                         )}
                                     >
                                         {size}

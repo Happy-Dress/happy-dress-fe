@@ -7,12 +7,14 @@ $lg-size-1023: #{$lg-size - 1px};
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 
   &_tabs {
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding-bottom: 5px;
+    width: 100%;
 
     @media screen and (max-width: $lg-size-1023) {
       flex-direction: row;

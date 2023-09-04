@@ -144,6 +144,7 @@ export const ProductsCard = () => {
         navigate('../products-settings');
     };
 
+
     useEffect(() => {
         dispatch(fetchCatalogueSettings({ isSecure: true }));
         const fetchData = async () => {
@@ -177,7 +178,7 @@ export const ProductsCard = () => {
     useEffect(() => {
         const newProductColorImages = [...productColorImages];
         productColorSizes?.forEach((colorSize) => {
-            if (!productColorImages.some((item) => item.color.id === colorSize.color.id)) {
+            if (!newProductColorImages.some((item) => item.color.id === colorSize.color.id)) {
                 newProductColorImages.push({ color: colorSize.color, imageURLs: [] });
             }
         });

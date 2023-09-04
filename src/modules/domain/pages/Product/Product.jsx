@@ -25,7 +25,6 @@ const Product = () => {
     const productColorImages = useSelector(state => state.product.productColorImages);
     const currentColorSize = useSelector(state => state.product.currentColorSize);
     const uniqueColors = useSelector(state => state.product.uniqueColors);
-    const mainImageUrl = useSelector(state => state.product.mainImageUrl);
     const dispatch = useDispatch();
 
     const [isProductExists, setIsProductExists] = useState(true);
@@ -33,6 +32,10 @@ const Product = () => {
     const setProductSettings = (colorId, productColorSize) => {
         const colorImages = product.productColorImages.find((colorImage) => colorImage.color.id === colorId);
         dispatch(setProductColorImages(colorImages));
+        dispatch(setSelectedImage({
+            imageUrl: colorImages.imageURLs[0],
+            index: Date.now(),
+        }));
         dispatch(setCurrentColorSize(productColorSize));
     };
 
@@ -58,19 +61,26 @@ const Product = () => {
     };
 
     const handleSizeClick = (color, size) => {
-        const productColorSize = product.productColorSizes.filter(item => item.color.name === color).find(item => item.size.sizeValue === size.sizeValue);
+        const currentColorSizes = product.productColorSizes.filter(item => item.color.name === color);
+        const productColorSize = size ?
+            currentColorSizes.find(item => item.size.sizeValue === size.sizeValue)
+            :
+            currentColorSizes.sort((a, b) => a.size.sizeValue - b.size.sizeValue)[0];
         if (productColorSize) {
             const newProductColorSize = {
                 ...productColorSize,
-                size
+                size: productColorSize.size
             };
+
             dispatch(setCurrentColorSize(newProductColorSize));
+
             if (productColorImages.color.name !== productColorSize.color.name) {
                 const productColorImage = product.productColorImages.find(productColorImage => productColorImage.color.name === productColorSize.color.name);
-                dispatch(setProductColorImages(productColorImage));
                 dispatch(setSelectedImage({
-                    imageUrl: mainImageUrl,
+                    imageUrl: productColorImage.imageURLs[0],
+                    index: Date.now(),
                 }));
+                dispatch(setProductColorImages(productColorImage));
             }
             setQueryParams(newProductColorSize.color.id, newProductColorSize.size.id);
         }
@@ -88,7 +98,6 @@ const Product = () => {
 
     const AdaptiveProduct = useMemo(() => adaptive(ProductDesktop, ProductMobile), []);
 
-
     return (
         <>
             {isProductExists ?
@@ -98,7 +107,6 @@ const Product = () => {
                         productColorImages={productColorImages}
                         currentColorSize={currentColorSize}
                         uniqueColors={JSON.parse(uniqueColors)}
-                        mainImageUrl={mainImageUrl}
                         selectedImage={selectedImage}
                         handleSizeClick={handleSizeClick}
                     />

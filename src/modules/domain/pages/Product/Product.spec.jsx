@@ -1,7 +1,7 @@
 import Product from './index';
 import mockAxios from 'jest-mock-axios';
 import { mockCatalogueItemResponse } from '../../../../__mocks__/mockCatalogueItemResponse';
-import renderWithStore from '../../../../common/util/tests/renderWithStore';
+import renderWithStoreAndRouter from '../../../../common/util/tests/renderWithStoreAndRouter';
 
 jest.mock('../../../../common/api',
     ()=>({
@@ -20,7 +20,7 @@ describe('Product', () => {
     });
 
     it('should render correctly', () => {
-        const { baseElement } = renderWithStore(<Product/>);
+        const { baseElement } = renderWithStoreAndRouter(<Product/>);
         expect(baseElement).toBeInTheDocument();
     });
 });
