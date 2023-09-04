@@ -26,7 +26,7 @@ describe('ProductMobile', () => {
         baseElement = renderWithStoreAndRoutes(<ProductMobile
             product={product} productColorImages={product.productColorImages[0]} currentColorSize={currentColorSize}
             uniqueColors={uniqueColors} mainImageUrl={mainImageUrl} selectedImage={selectedImage}
-            handleImageOnLoad={jest.fn()} loadingImages={[false]}
+            handleSizeClick={jest.fn()}
         />).baseElement;
     });
 
@@ -54,7 +54,7 @@ describe('ProductMobile', () => {
             userEvent.click(sizeElement);
         });
         const images = screen.getAllByAltText(`product image color ${uniqueColors[0].name}`);
-        expect(images[1]).toHaveAttribute('src', product.productColorImages[1].imageURLs[1]);
+        expect(images[0]).toHaveAttribute('src', product.productColorImages[1].imageURLs[1]);
     });
 
     it('should click on image', async () => {
