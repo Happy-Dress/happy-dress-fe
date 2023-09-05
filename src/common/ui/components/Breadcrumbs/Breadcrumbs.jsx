@@ -9,7 +9,7 @@ export const Breadcrumbs = ({ breadcrumbs }) => {
             {breadcrumbs.map((item, idx) => {
                 return (
                     <li key={item.id} onClick={item.handleOnClick}>
-                        {item.disableLink ? 
+                        {item.isDisableLink ?
                             <p>{item.linkTitle}</p>
                             : 
                             <Link to={item.link}>
@@ -27,7 +27,7 @@ export const Breadcrumbs = ({ breadcrumbs }) => {
 const breadcrumbItem = PropTypes.shape({
     id: PropTypes.number,
     link: PropTypes.string,
-    disableLink: PropTypes.bool,
+    isDisableLink: PropTypes.bool,
     linkTitle: PropTypes.string,
     handleOnClick: PropTypes.func,
 });

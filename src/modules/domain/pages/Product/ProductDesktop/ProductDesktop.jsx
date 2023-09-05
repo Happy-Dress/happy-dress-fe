@@ -43,6 +43,10 @@ const ProductDesktop = (props) => {
     const [breadcrumbs, setBreadcrumbs] = useState([]);
     const dispatch = useDispatch();
 
+    const handleBreadcrumbsClick = () => {
+        dispatch(setCategory({ category: product.category.id, shouldDropProducts: false }));
+    };
+
     useEffect(() => {
         const breadcrumbs = [
             { id: 1, link: '../catalog', linkTitle: 'Каталог' },
@@ -50,9 +54,9 @@ const ProductDesktop = (props) => {
                 id: 2,
                 link: '../catalog',
                 linkTitle: product?.category.name,
-                handleOnClick: () => dispatch(setCategory({ category: product.category.id, shouldDropProducts: false }))
+                handleOnClick: handleBreadcrumbsClick,
             },
-            { id: 3, disableLink: true, linkTitle: product.name },
+            { id: 3, isDisableLink: true, linkTitle: product.name },
         ];
         setBreadcrumbs(breadcrumbs);
     }, [product]);

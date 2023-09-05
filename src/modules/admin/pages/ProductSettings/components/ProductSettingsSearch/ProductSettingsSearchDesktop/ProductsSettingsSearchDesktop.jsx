@@ -27,7 +27,7 @@ const ProductsSettingsSearchDesktop = () => {
 
     const breadcrumbs = [
         { id: 0, link: '/domain/home', linkTitle: 'Главная' },
-        { id: 1, disableLink: true, linkTitle: 'Управление каталогом' },
+        { id: 1, isDisableLink: true, linkTitle: 'Управление каталогом' },
     ];
 
     const isCategorySelected = (category) => {

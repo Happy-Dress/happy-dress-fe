@@ -1,4 +1,6 @@
 @import '../../../../common/ui/styles/colors';
+@import '../../../../common/ui/styles/font-sizes';
+
 
 .breadcrumbs {
   margin: 25px 0 0 25px;
@@ -12,7 +14,7 @@
   }
 
   a, p {
-    font-size: 14px;
+    font-size: $font-size-normal-14;
     color: $light-gray;
     white-space: nowrap;
   }

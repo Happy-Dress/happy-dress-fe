@@ -73,6 +73,10 @@ export const ProductsCard = () => {
     const [product, setProduct] = useState(defaultValues);
     const [productColorSizes, setProductColorSizes] = useState(product.productColorSizes);
     const [productColorImages, setProductColorImages] = useState(product.productColorImages);
+    
+    const handleBreadcrumbsClick = () => {
+        dispatch(setCategory({ category: product.category.id, shouldDropProducts: false }));
+    };
 
     const breadcrumbs = [
         { id: 0, link: '/domain/home', linkTitle: 'Главная' },
@@ -80,8 +84,8 @@ export const ProductsCard = () => {
             id: 1,
             link: '../products-settings',
             linkTitle: 'Управление товаром',
-            handleOnClick: () => dispatch(setCategory({ category: product.category.id, shouldDropProducts: false })) },
-        { id: 2, disableLink: true, linkTitle: productName },
+            handleOnClick: handleBreadcrumbsClick },
+        { id: 2, isDisableLink: true, linkTitle: productName },
     ];
     const checkIsAllColorsSelected = () => {
         return productColorSizes.every((item) => item.color.id !== EMPTY_COLOR_OBJECT.id);
