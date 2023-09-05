@@ -87,12 +87,12 @@ const ProductDesktop = (props) => {
                         <div className={s.Product_carousel_list}>
                             {productColorImages.imageURLs.map((imageUrl, key) => (
                                 <div
-                                    key={key + Date.now() + 1}
+                                    key={key + productColorImages.color.id + 1}
                                     className={classNames(
                                         s.Product_carousel_list_item,
                                         imageUrl === selectedImage.imageUrl ? s.Product_carousel_list_item_current : ''
                                     )}
-                                    onClick={() => handleImageClick(imageUrl, key + 1)}
+                                    onClick={() => handleImageClick(imageUrl, key + productColorImages.color.id + 1)}
                                 >
                                     <EnhancedImage
                                         imageUrl={imageUrl}

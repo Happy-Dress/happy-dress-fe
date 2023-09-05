@@ -52,18 +52,21 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 102px;
-        margin-right: 2px;
+        min-width: 102px;
+        max-width: 102px;
+        min-height: calc(102px / 3 * 4);
+        max-height: calc(102px / 3 * 4);
         aspect-ratio: 3 / 4;
+        margin-right: 2px;
 
         img {
           object-fit: contain;
         }
 
         &_current {
-          width: calc(102px + 3.2px);
-          height: calc(102px / 3 * 4 + 3.2px);
-          border: 2px solid $brown;
+          padding-bottom: 4px;
+          border-bottom: 2px solid $brown;
+          border-radius: 2px;
         }
       }
     }
