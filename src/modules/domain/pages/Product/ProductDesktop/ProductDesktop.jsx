@@ -50,9 +50,9 @@ const ProductDesktop = (props) => {
                 id: 2,
                 link: '../catalog',
                 linkTitle: product?.category.name,
-                handleOnClick: () => dispatch(setCategory({ category: product.category, shouldDropProducts: false }))
+                handleOnClick: () => dispatch(setCategory({ category: product.category.id, shouldDropProducts: false }))
             },
-            { id: 3, link: `../catalog/${product.id}`, linkTitle: product.name },
+            { id: 3, disableLink: true, linkTitle: product.name },
         ];
         setBreadcrumbs(breadcrumbs);
     }, [product]);
@@ -152,13 +152,15 @@ const ProductDesktop = (props) => {
                                         <h4 className={s.Product_description_label}>{SIZE_LABEL}</h4>
                                     </div>
                                 </div>
-                                <ColorsSizesTable
-                                    uniqueColors={uniqueColors}
-                                    sizes={SIZES}
-                                    product={product}
-                                    currentColorSize={currentColorSize}
-                                    handleSizeClick={handleSizeClick}
-                                />
+                                <div className={s.Product_description_table_colors}>
+                                    <ColorsSizesTable
+                                        uniqueColors={uniqueColors}
+                                        sizes={SIZES}
+                                        product={product}
+                                        currentColorSize={currentColorSize}
+                                        handleSizeClick={handleSizeClick}
+                                    />
+                                </div>
                             </div>
                             <div className={s.Product_description_size}>
                                 <h4 onClick={handleOpenTableSize}>{TABLE_SIZE_LABEL}</h4>

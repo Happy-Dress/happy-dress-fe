@@ -1,7 +1,6 @@
 @import '../../../../common/ui/styles/colors';
 
 .breadcrumbs {
-  font-size: 14px;
   margin: 25px 0 0 25px;
   color: $light-gray;
   display: flex;
@@ -12,7 +11,8 @@
     margin-right: 6px;
   }
 
-  a {
+  a, p {
+    font-size: 14px;
     color: $light-gray;
     white-space: nowrap;
   }

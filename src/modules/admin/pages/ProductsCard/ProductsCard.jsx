@@ -23,11 +23,11 @@ import { fetchProduct } from '../../../../common/ui/store/slices/productSlice';
 import ProductsCardGallery from './components/ProductsCardGallery';
 import createCatalogItem from '../../../../common/api/catalogItem/createCatalogItem';
 import EmptyBanner from '../../../../common/ui/components/EmptyBanner';
+import { setCategory } from '../../../../common/ui/store/slices/productsSearchSlice';
 
 
 const {
     TITLE,
-    BREADCRUMBS,
     FIELDS,
     OK,
     CANCEL,
@@ -73,6 +73,16 @@ export const ProductsCard = () => {
     const [product, setProduct] = useState(defaultValues);
     const [productColorSizes, setProductColorSizes] = useState(product.productColorSizes);
     const [productColorImages, setProductColorImages] = useState(product.productColorImages);
+
+    const breadcrumbs = [
+        { id: 0, link: '/domain/home', linkTitle: 'Главная' },
+        {
+            id: 1,
+            link: '../products-settings',
+            linkTitle: 'Управление товаром',
+            handleOnClick: () => dispatch(setCategory({ category: product.category.id, shouldDropProducts: false })) },
+        { id: 2, disableLink: true, linkTitle: productName },
+    ];
     const checkIsAllColorsSelected = () => {
         return productColorSizes.every((item) => item.color.id !== EMPTY_COLOR_OBJECT.id);
     };
@@ -124,8 +134,9 @@ export const ProductsCard = () => {
         try {
             const res = id ? await updateCatalogItem(dataToSave) : await createCatalogItem(dataToSave);
             showToasterSuccess(PRODUCT_SAVED);
-            navigate(id ? '' : `${res.id}`);
-            setProduct(res);
+            window.scrollTo({ top: 0 });
+            dispatch(setCategory({ category: res.category.id, shouldDropProducts: true }));
+            navigate('../products-settings');
         } catch (e) {
             e
                 ? showToasterError(e.toString())
@@ -200,11 +211,7 @@ export const ProductsCard = () => {
             {isProductExists ?
                 <>
                     <div className={s.hideOnMobile}>
-                        <Breadcrumbs breadcrumbs={[...BREADCRUMBS, {
-                            id: BREADCRUMBS.length,
-                            link: `../product-card${id ? '/' + id : ''}`,
-                            linkTitle: productName,
-                        }]}/>
+                        <Breadcrumbs breadcrumbs={breadcrumbs}/>
                     </div>
                     <h2 className={s.productCard_heading}>{TITLE}</h2>
                     <form className={s.productCard_form} onSubmit={handleSubmit(onSubmit)}>

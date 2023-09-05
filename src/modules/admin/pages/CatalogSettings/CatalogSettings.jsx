@@ -13,6 +13,7 @@ import { LeaveConfirmationDialog } from '../../../../common/ui/components/Dialog
 import { useToasters } from '../../../../common/ui/contexts/ToastersContext';
 import { ColorSettings } from './components/ColorSettings';
 import { useBeforeunload } from 'react-beforeunload';
+import { Breadcrumbs } from '../../../../common/ui/components/Breadcrumbs';
 
 const {
     CATEGORIES_SETTINGS_NAME,
@@ -72,10 +73,14 @@ const CatalogSettings = () => {
         }
     ];
 
+    const breadcrumbs = [
+        { id: 0, link: '/domain/home', linkTitle: 'Главная' },
+        { id: 1, disableLink: true, linkTitle: 'Управление каталогом' },
+    ];
 
     return(
         <div className={s.CatalogSettings}>
-            <div className={s.Way}>Главная &gt; Управление каталогом</div>
+            <Breadcrumbs breadcrumbs={breadcrumbs}/>
             <h2>{CATALOG_SETTINGS_TITLE}</h2>
             <div className={s.categories}>
                 {
