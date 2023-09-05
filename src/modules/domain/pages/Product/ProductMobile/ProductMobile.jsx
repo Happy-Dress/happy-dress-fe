@@ -117,8 +117,8 @@ const ProductMobile = (props) => {
                                     s.ProductMobile_carousel_list_item,
                                     imageUrl === selectedImage.imageUrl ? s.ProductMobile_carousel_list_item_current : ''
                                 )}
-                                key={key + Date.now() + 1}
-                                onClick={() => handleImageClick(imageUrl, key + Date.now() + 1)}
+                                key={key + productColorImages.color.id + 1}
+                                onClick={() => handleImageClick(imageUrl, key + productColorImages.color.id + 1)}
                                 >
                                     <EnhancedImage
                                         imageUrl={imageUrl}
