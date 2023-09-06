@@ -19,28 +19,30 @@ const EnhancedImage = ({
     const [isLoading, setIsLoading] = useState(true);
     const [isErrorLoading, setIsErrorLoading] = useState(false);
     const [currentImageUrl, setCurrentImageUrl] = useState(imageUrl);
-    const productColorImagesURLs = useSelector(
-        (state) => state.product.productColorImages.imageURLs
+    const productColorImages = useSelector(
+        (state) => state.product.productColorImages
     );
-
+    
     const handleRightClick = () => {
-        let index = productColorImagesURLs.indexOf(currentImageUrl);
-        const limit = productColorImagesURLs.length - 1;
+        let index = productColorImages.imageURLs.indexOf(currentImageUrl);
+        const limit = productColorImages.imageURLs.length - 1;
         if (index <= limit) {
-            index !== limit ? (index += 1) : index;
-            setCurrentImageUrl(productColorImagesURLs[index]);
+            index = index !== limit ? (index += 1) : index;
+            setCurrentImageUrl(productColorImages.imageURLs[index]);
+        } else {
+            return false;
         }
+        
     };
 
     const handleLeftClick = () => {
-        let index = productColorImagesURLs.indexOf(currentImageUrl);
-        const limit = 0;
-        if (index < limit) {
-            index = limit;
+        let index = productColorImages.imageURLs.indexOf(currentImageUrl);
+        if (index < 0) {
+            index = 0;
             return false;
         }
-        index = index !== limit ? (index -= 1) : index;
-        setCurrentImageUrl(productColorImagesURLs[index]);
+        index = index !== 0 ? (index -= 1) : index;
+        setCurrentImageUrl(productColorImages.imageURLs[index]);
     };
 
     const handleError = () => {
