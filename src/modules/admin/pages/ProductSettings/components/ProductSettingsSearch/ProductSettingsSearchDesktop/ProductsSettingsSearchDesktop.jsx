@@ -11,10 +11,10 @@ import { ReactComponent as Cross } from '../../../../../../../common/assets/imag
 import DetailedSearch from '../components/DetailedSearch/DetailedSearch';
 import { PRODUCT_SETTINGS_DICTIONARY } from '../../../ProductSettings.dictionary';
 import CurrentFilters from '../components/CurrentFilters/CurrentFilters';
+import { Breadcrumbs } from '../../../../../../../common/ui/components/Breadcrumbs';
 
 const {
     TITLE,
-    BREADCRUMBS
 } = PRODUCT_SETTINGS_DICTIONARY;
 
 const ProductsSettingsSearchDesktop = () => {
@@ -24,6 +24,11 @@ const ProductsSettingsSearchDesktop = () => {
     const isFilterOpened = useSelector(state => state.productsSearch.ifFilterOpened);
     const isLoading = useSelector(state => state.catalogueSettings.loading);
     const dispatch = useDispatch();
+
+    const breadcrumbs = [
+        { id: 0, link: '/domain/home', linkTitle: 'Главная' },
+        { id: 1, isDisableLink: true, linkTitle: 'Управление каталогом' },
+    ];
 
     const isCategorySelected = (category) => {
         return category?.id === selectedCategoryId;
@@ -55,7 +60,9 @@ const ProductsSettingsSearchDesktop = () => {
 
     return (
         <div className={s.ProductsSettingsSearchDesktop}>
-            <div className={s.ProductsSettingsSearchDesktop_breadCrumbs}>{BREADCRUMBS}</div>
+            <div className={s.ProductsSettingsSearchDesktop_breadCrumbs}>
+                <Breadcrumbs breadcrumbs={breadcrumbs}/>
+            </div>
             <h2 className={s.ProductsSettingsSearchDesktop_heading}>{TITLE}</h2>
             <CategoriesLayoutWithSkeleton/>
             <div className={s.ProductsSettingsSearchDesktop_searchBarWrapper}>
