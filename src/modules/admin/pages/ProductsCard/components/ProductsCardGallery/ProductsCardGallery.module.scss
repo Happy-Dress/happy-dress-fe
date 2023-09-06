@@ -1,4 +1,6 @@
 @import "../../../../../../common/ui/styles/media-sizes";
+@import "../../../../../../common/ui/styles/colors";
+
 
 $lg-size-1023: #{$lg-size - 1px};
 
@@ -37,11 +39,19 @@ $lg-size-1023: #{$lg-size - 1px};
       padding-bottom: 2px;
 
       &::-webkit-scrollbar {
+        background-color: $white;
         height: 7px;
       }
 
       &::-webkit-scrollbar-thumb {
-        border-radius: 10px;
+        border-radius: 5px;
+        background-color: $brown;
+        background-repeat: no-repeat;
+        background-size: auto auto;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: $white;
       }
     }
   }

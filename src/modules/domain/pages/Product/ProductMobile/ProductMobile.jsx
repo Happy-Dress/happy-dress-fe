@@ -14,6 +14,7 @@ import {
 } from '../../../../../common/ui/store/slices/productSlice';
 import EnhancedImage from '../../../../../common/ui/components/Image/EnchancedImage';
 import ColorCircle from '../../../../../common/ui/components/ColorCircle';
+import { setCategory } from '../../../../../common/ui/store/slices/productsSearchSlice';
 
 const {
     MODEL_LABEL,
@@ -90,7 +91,10 @@ const ProductMobile = (props) => {
             {!isOpenTableSize ?
                 <div className={s.ProductMobile}>
                     <Link to={'../catalog'}>
-                        <div className={s.ProductMobile_return}>
+                        <div
+                            className={s.ProductMobile_return}
+                            onClick={() => dispatch(setCategory({ category: product.category.id, shouldDropProducts: false }))}
+                        >
                             <img src={leftArrow} alt={'return arrow'}/>
                             <h4>{product.name}</h4>
                         </div>
