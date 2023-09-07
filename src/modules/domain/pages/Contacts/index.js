@@ -1,3 +1,5 @@
-import Contacts from './Contacts';
+import { ContactsAsync } from './Contacts.async';
 
-export default Contacts;
+export {
+    ContactsAsync as Contacts,
+};
