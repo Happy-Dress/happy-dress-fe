@@ -13,7 +13,7 @@ const Blog = () => {
 
 
     useEffect(() => {
-        axios.get('https://drive.google.com/uc?export=view&id=1ei5R6_qtg9lBi8BaAY-jNSR6Wzhf83wf')
+        axios.get('https://drive.google.com/drive/folders/1qTwDt_4CYForDYa8NRj3ghVQtrr--WAV?usp=sharing')
             .then((response) => {
                 setIframeSrcDoc(response.data);
             });
