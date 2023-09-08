@@ -1,7 +1,8 @@
 
 import { Catalog } from '../../pages/Catalog';
 import { Landing } from '../../pages/Landing';
-import Contacts from '../../pages/Contacts';
+import { Contacts } from '../../pages/Contacts';
+import { Blog } from '../../pages/Blog';
 
 
 export const ROUTER_PATHS = {
@@ -23,6 +24,11 @@ export const routerConfig = {
         path: ROUTER_PATHS.catalog,
         element: <Catalog />,
     },
+    blog: {
+        name: 'Блог',
+        path: ROUTER_PATHS.blog,
+        element: <Blog/>,
+    },
     contacts: {
         name: 'Контакты',
         path: ROUTER_PATHS.contacts,
@@ -31,12 +37,6 @@ export const routerConfig = {
 };
 
 export const disabledRouterConfig = {
-    blog: {
-        name: 'Блог',
-        path: ROUTER_PATHS.blog,
-        element: <div>blog</div>,
-        status: 'Скоро',
-    },
     changing: {
         name: 'Примерка',
         path: ROUTER_PATHS.changing,

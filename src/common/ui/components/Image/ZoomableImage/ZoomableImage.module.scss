@@ -52,4 +52,41 @@
       fill: $light-gray;
     }
   }
+
+    &_swipeLeft {
+      position: absolute;
+      top: center;
+      left: 0px;
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+      width: 60px;
+      height: 60px;
+  
+      &:hover path {
+        fill: $gray;
+      }
+  
+      path {
+        fill: $light-gray;
+      }
+    }
+        &_swipeRight {
+          position: absolute;
+          top: center;
+          right: 0px;
+          font-size: 24px;
+          color: white;
+          cursor: pointer;
+          width: 60px;
+          height: 60px;
+    
+          &:hover path {
+            fill: $gray;
+          }
+    
+          path {
+            fill: $light-gray;
+          }
+        }
 }
