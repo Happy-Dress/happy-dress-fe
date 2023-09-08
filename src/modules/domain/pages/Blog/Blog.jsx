@@ -13,9 +13,9 @@ const Blog = () => {
 
 
     useEffect(() => {
-        axios.get('https://drive.google.com/drive/folders/1qTwDt_4CYForDYa8NRj3ghVQtrr--WAV?usp=sharing')
+        axios.post('blog/search')
             .then((response) => {
-                setIframeSrcDoc(response.data);
+                setIframeSrcDoc(response.data[0].htmlFile.file);
             });
     }, []);
 
