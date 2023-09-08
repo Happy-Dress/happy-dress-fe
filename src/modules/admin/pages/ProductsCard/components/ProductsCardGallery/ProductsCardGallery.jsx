@@ -14,7 +14,6 @@ const {
 } = PRODUCT_CARD_DICTIONARY;
 
 const ProductsCardGallery = ({ productColorImages, setProductColorImages }) => {
-    console.log(productColorImages);
 
     const { isFetching, handleGalleryImg, handleDeleteGalleryImg } = useProductImages(productColorImages, setProductColorImages);
 

@@ -17,8 +17,8 @@ export const useProductImages = (productColorImages, setProductColorImages) => {
             setIsFetching(true);
             const res = await uploadImage([e.target.files[0]]);
             setIsFetching(false);
-            if (res?.uploadedFiles.length) {
-                setMainImageUrl(res.uploadedFiles[0].fileUrl);
+            if (res?.uploadedImages.length) {
+                setMainImageUrl(res.uploadedImages[0].imageLink);
             }
         }
     };
@@ -29,10 +29,10 @@ export const useProductImages = (productColorImages, setProductColorImages) => {
             setIsFetching(true);
             const res = await uploadImage(e.target.files);
             setIsFetching(false);
-            if (res?.uploadedFiles.length) {
+            if (res?.uploadedImages.length) {
                 const newColorsImages = [...productColorImages];
-                res.uploadedFiles.forEach((file) => {
-                    newColorsImages[colorIndex].imageURLs.push(file.fileUrl);
+                res.uploadedImages.forEach((file) => {
+                    newColorsImages[colorIndex].imageURLs.push(file.imageLink);
                 });
                 setProductColorImages(newColorsImages);
             }
@@ -49,12 +49,12 @@ export const useProductImages = (productColorImages, setProductColorImages) => {
     const uploadImage = async (files) => {
         try {
             const imageUploadResult = await addImage(files);
-            if (imageUploadResult.uploadedFiles.length) {
+            if (imageUploadResult.uploadedImages.length) {
                 showToasterSuccess(SUCCESS_MESSAGE);
             }
-            if (imageUploadResult.failedFiles.length) {
-                imageUploadResult.failedFiles.forEach((failedFile) => {
-                    showToasterError(failedFile.fileName + ' ' +
+            if (imageUploadResult.failedImages.length) {
+                imageUploadResult.failedImages.forEach((failedFile) => {
+                    showToasterError(failedFile.imageName + ' ' +
                         failedFile.reason.toString());
                 });
             }
