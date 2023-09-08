@@ -13,9 +13,9 @@ const Blog = () => {
 
 
     useEffect(() => {
-        axios.get('https://drive.google.com/uc?export=view&id=1ei5R6_qtg9lBi8BaAY-jNSR6Wzhf83wf')
+        axios.post('blog/search')
             .then((response) => {
-                setIframeSrcDoc(response.data);
+                setIframeSrcDoc(response.data[0].htmlFile.file);
             });
     }, []);
 
