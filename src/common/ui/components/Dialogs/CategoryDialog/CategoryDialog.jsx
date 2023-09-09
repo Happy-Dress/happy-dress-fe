@@ -101,15 +101,15 @@ export const CategoryDialog = ({
     const handleSelectImg = async (e) => {
         setIsLoading(true);
         setCompleted(100);
-        const res = await addImage(e.target.files[0])
+        const res = await addImage([e.target.files[0]])
             .then((r) => {
-                if (r.uploadedFiles.length) {
+                if (r.uploadedImages.length) {
                     showToasterSuccess(SUCCESS_MESSAGE);
                 }
 
-                if (r.failedFiles.length) {
-                    showToasterError(r.failedImages[0].fileName + ' ' +
-                        r.failedFiles[0].reason.toString());
+                if (r.failedImages.length) {
+                    showToasterError(r.failedImages[0].imageName + ' ' +
+                        r.failedImages[0].reason.toString());
                 }
 
                 return r;
@@ -119,10 +119,10 @@ export const CategoryDialog = ({
             });
 
         setTimeout(() => {
-            if (res.uploadedFiles.length) {
+            if (res.uploadedImages.length) {
                 setState((prev) => ({
                     ...prev,
-                    imageUrl: res.uploadedFiles[0].fileUrl,
+                    imageUrl: res.uploadedImages[0].imageLink,
                 }));
             }
 

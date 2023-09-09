@@ -14,6 +14,7 @@ import { useToasters } from '../../../../common/ui/contexts/ToastersContext';
 import { ColorSettings } from './components/ColorSettings';
 import { useBeforeunload } from 'react-beforeunload';
 import { Breadcrumbs } from '../../../../common/ui/components/Breadcrumbs';
+import { useDeviceTypeContext } from '../../../../common/ui/contexts/DeviceType';
 
 const {
     CATEGORIES_SETTINGS_NAME,
@@ -31,6 +32,7 @@ const CatalogSettings = () => {
 
     const { saveSettings, initialSettings, settings, restoreSettings } = useCatalogSettings();
     const { showToasterNotification } = useToasters();
+    const { isDesktop } = useDeviceTypeContext();
 
     const areSettingsChanged = JSON.stringify(settings) !== JSON.stringify(initialSettings);
 
@@ -80,7 +82,7 @@ const CatalogSettings = () => {
 
     return(
         <div className={s.CatalogSettings}>
-            <Breadcrumbs breadcrumbs={breadcrumbs}/>
+            {isDesktop && <Breadcrumbs breadcrumbs={breadcrumbs}/> }
             <h2>{CATALOG_SETTINGS_TITLE}</h2>
             <div className={s.categories}>
                 {
