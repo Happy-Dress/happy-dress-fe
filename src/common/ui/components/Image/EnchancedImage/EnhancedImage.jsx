@@ -5,44 +5,40 @@ import CachedImage from '../CachedImage';
 import PropTypes from 'prop-types';
 import ErrorLoadingImage from '../ErrorLoadingImage';
 import ZoomableImage from '../ZoomableImage';
-import { useSelector } from 'react-redux';
 
 const ERROR_LABEL = 'Прозошла ошибка при загрузке фотографии';
 const EnhancedImage = ({
     imageUrl,
     alt,
     shouldDisplayTextError,
+    images,
     isZoomable,
+    isChangeControls,
     widthSkeleton,
     heightSkeleton,
 }) => {
+
     const [isLoading, setIsLoading] = useState(true);
     const [isErrorLoading, setIsErrorLoading] = useState(false);
     const [currentImageUrl, setCurrentImageUrl] = useState(imageUrl);
-    const productColorImages = useSelector(
-        (state) => state.product.productColorImages
-    );
+    const [defaultImageUrl] = useState(imageUrl);
     
-    const handleRightClick = () => {
-        let index = productColorImages.imageURLs.indexOf(currentImageUrl);
-        const limit = productColorImages.imageURLs.length - 1;
-        if (index <= limit) {
-            index = index !== limit ? (index += 1) : index;
-            setCurrentImageUrl(productColorImages.imageURLs[index]);
-        } else {
-            return false;
-        }
-        
+    const handleRightClick = (e) => {
+        e.stopPropagation();
+        let index = images.indexOf(currentImageUrl);
+        const newIndex = (index + 1) % images.length;
+        setCurrentImageUrl(images[newIndex]);
     };
 
-    const handleLeftClick = () => {
-        let index = productColorImages.imageURLs.indexOf(currentImageUrl);
-        if (index < 0) {
-            index = 0;
-            return false;
-        }
-        index = index !== 0 ? (index -= 1) : index;
-        setCurrentImageUrl(productColorImages.imageURLs[index]);
+    const handleLeftClick = (e) => {
+        e.stopPropagation();
+        const index = images.indexOf(currentImageUrl);
+        const newIndex = (index - 1 + images.length) % images.length;
+        setCurrentImageUrl(images[newIndex]);
+    };
+
+    const handleCloseClick = () => {
+        setCurrentImageUrl(defaultImageUrl);
     };
 
     const handleError = () => {
@@ -78,8 +74,10 @@ const EnhancedImage = ({
                 >
                     <ZoomableImage
                         prohibitZoom={!isZoomable}
-                        handleLeftClick={handleLeftClick}
-                        handleRightClick={handleRightClick}
+                        isChangeControls={isChangeControls}
+                        handleLeftClick={(e) => handleLeftClick(e)}
+                        handleRightClick={(e) => handleRightClick(e)}
+                        handleClose={handleCloseClick}
                     >
                         <CachedImage
                             onLoad={() => setIsLoading(false)}
@@ -97,8 +95,10 @@ const EnhancedImage = ({
 EnhancedImage.propTypes = {
     imageUrl: PropTypes.string.isRequired,
     alt: PropTypes.string.isRequired,
+    images: PropTypes.array,
     shouldDisplayTextError: PropTypes.bool,
     isZoomable: PropTypes.bool,
+    isChangeControls: PropTypes.bool,
     widthSkeleton: PropTypes.string,
     heightSkeleton: PropTypes.string,
 };
