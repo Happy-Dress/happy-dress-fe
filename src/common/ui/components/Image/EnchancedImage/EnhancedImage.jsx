@@ -25,16 +25,20 @@ const EnhancedImage = ({
     
     const handleRightClick = (e) => {
         e?.stopPropagation();
-        let index = images.indexOf(currentImageUrl);
-        const newIndex = (index + 1) % images.length;
-        setCurrentImageUrl(images[newIndex]);
+        if (images) {
+            let index = images.indexOf(currentImageUrl);
+            const newIndex = (index + 1) % images.length;
+            setCurrentImageUrl(images[newIndex]);
+        }
     };
 
     const handleLeftClick = (e) => {
         e?.stopPropagation();
-        const index = images.indexOf(currentImageUrl);
-        const newIndex = (index - 1 + images.length) % images.length;
-        setCurrentImageUrl(images[newIndex]);
+        if (images) {
+            const index = images.indexOf(currentImageUrl);
+            const newIndex = (index - 1 + images.length) % images.length;
+            setCurrentImageUrl(images[newIndex]);
+        }
     };
 
     const handleCloseClick = () => {

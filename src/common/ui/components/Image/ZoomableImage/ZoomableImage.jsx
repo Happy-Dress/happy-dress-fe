@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import s from './ZoomableImage.module.scss';
 import { ReactComponent as CloseIcon } from '../../../../../assets/images/closeIcon.svg';
 import { ReactComponent as SwipeLeft } from '../../../../../assets/images/swipeLeft.svg';
@@ -34,24 +34,9 @@ const ZoomableImage = ({
         }
     });
 
-    const handleKeyDown = (e) => {
-        if (isExpanded) {
-            if (isChangeControls) {
-                if (e.key === 'ArrowLeft') {
-                    handleLeftClick(e);
-                } else if (e.key === 'ArrowRight') {
-                    handleRightClick(e);
-                }
-            }
-            if (e.key === 'Escape') {
-                handleClose && handleClose(e);
-                setIsExpanded(false);
-            }
-        }
-    };
-
-    useKeyDown(handleLeftClick, ['ArrowLeft']);
-    useKeyDown(handleRightClick, ['ArrowRight']);
+    useKeyDown(() => isExpanded && handleLeftClick(), ['ArrowLeft']);
+    useKeyDown(() => isExpanded && handleRightClick(), ['ArrowRight']);
+    useKeyDown(() => isExpanded && toggleExpand(), ['Escape']);
 
     const toggleExpand = () => {
         if (!prohibitZoom) {
