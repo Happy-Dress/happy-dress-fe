@@ -6,6 +6,7 @@ import { ReactComponent as SwipeRight } from '../../../../../assets/images/swipe
 import PropTypes from 'prop-types';
 import { useDeviceTypeContext } from '../../../contexts/DeviceType';
 import { useSwipeable } from 'react-swipeable';
+import { useKeyDown } from '../../../hooks/useKeyDown';
 
 const ZoomableImage = ({
     prohibitZoom,
@@ -49,15 +50,8 @@ const ZoomableImage = ({
         }
     };
 
-    useEffect(() => {
-        isExpanded ?
-            document.addEventListener('keydown', handleKeyDown) :
-            document.removeEventListener('keydown', handleKeyDown);
-
-        return () => {
-            document.removeEventListener('keydown', handleKeyDown);
-        };
-    }, [isExpanded]);
+    useKeyDown(handleLeftClick, ['ArrowLeft']);
+    useKeyDown(handleRightClick, ['ArrowRight']);
 
     const toggleExpand = () => {
         if (!prohibitZoom) {

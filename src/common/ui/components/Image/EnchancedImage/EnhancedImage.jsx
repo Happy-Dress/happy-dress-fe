@@ -24,14 +24,14 @@ const EnhancedImage = ({
     const [defaultImageUrl] = useState(imageUrl);
     
     const handleRightClick = (e) => {
-        e.stopPropagation();
+        e?.stopPropagation();
         let index = images.indexOf(currentImageUrl);
         const newIndex = (index + 1) % images.length;
         setCurrentImageUrl(images[newIndex]);
     };
 
     const handleLeftClick = (e) => {
-        e.stopPropagation();
+        e?.stopPropagation();
         const index = images.indexOf(currentImageUrl);
         const newIndex = (index - 1 + images.length) % images.length;
         setCurrentImageUrl(images[newIndex]);
