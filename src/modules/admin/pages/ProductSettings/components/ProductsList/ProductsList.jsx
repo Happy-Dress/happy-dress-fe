@@ -26,7 +26,7 @@ const ProductsList = () => {
     const currentPage = useSelector((state) => state.productsSearch.currentPage);
     const totalPages = useSelector((state) => state.productsSearch.totalPages);
     const isLoading = useSelector((state) => state.productsSearch.loading);
-    const { showToasterNotification } = useToasters();
+    const { showToasterNotification, showToasterSuccess } = useToasters();
     const selectedProducts = useSelector(
         (state) => state.productsSearch.selectedProducts
     );
@@ -75,7 +75,7 @@ const ProductsList = () => {
         await dispatch(deleteProducts({ selectedProducts: selectedProducts }))
             .unwrap()
             .then(() => {
-                showToasterNotification('Товары успешно удалены!');
+                showToasterSuccess('Товары успешно удалены!');
                 dispatch(resetSelectedProducts());
                 dispatch(resetProducts());
                 dispatch(fetchCatalogueItems({ filters, page: 1, isSecure: true }));
