@@ -29,19 +29,23 @@
         align-items: flex-start;
         justify-content: space-between;
         padding-top: 196px;
-        margin: -30px 0 65px 0;
+        margin: -30px 0 65px -5px;
         width: 713px;
         flex-wrap: wrap;
         opacity: 0.6;
 
         p {
             width: 305px;
-            margin-top: 40px;
             display: block;
+        }
 
-            &:first-child {
-                margin-top: 40px;
-            }
+        &_high {
+            margin-top: 40px;
+        }
+
+        &_low {
+            margin-top: 0;
+            margin-left: 12px;
         }
 
         &_mobile {
