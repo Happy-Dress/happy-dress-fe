@@ -8,11 +8,12 @@ export const useCatalogFilters = (isSecure) => {
     const filters = useSelector(state => state.productsSearch.filters);
     const catalogueSettings = useSelector(state => state.catalogueSettings.settings);
 
-    useEffect(() =>{
+    useEffect(() => {
         if(filters.category) {
+            dispatch(setLoading());
+            dispatch(resetProducts());
             const timer = setTimeout(() => {
                 dispatch(resetProducts());
-                dispatch(setLoading());
                 dispatch(fetchCatalogueItems({ filters, page: 1, isSecure }));
             }, 1000);
             return () => clearTimeout(timer);
