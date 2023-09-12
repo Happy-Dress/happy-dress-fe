@@ -14,8 +14,8 @@ const ZeroBlock = () => {
                 <div className={s.ZeroBlock_content_title}>
                     <div className={s.ZeroBlock_text}>
                         <h1>{TITLE_H1[0]}</h1>
-                        <p>{TITLE_P[0]}</p>
-                        <p>
+                        <p className={s.ZeroBlock_text_high}>{TITLE_P[0]}</p>
+                        <p className={s.ZeroBlock_text_low}>
                             {TITLE_P[1].split(';').map((line, index) => (
                                 <React.Fragment key={index}>
                                     {line}
