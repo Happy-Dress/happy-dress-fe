@@ -60,6 +60,7 @@ const ZoomableImage = ({
     }, [isExpanded]);
 
     const toggleExpand = () => {
+        handleClose && handleClose();
         !prohibitZoom && setIsExpanded(!isExpanded);
     };
 
