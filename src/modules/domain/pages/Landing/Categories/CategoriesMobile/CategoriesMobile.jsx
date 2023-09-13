@@ -59,11 +59,9 @@ const CategoriesMobile = ({ categories }) => {
                                 alt={`Slide ${key + 1}`}
                                 isZoomable={false}
                                 shouldDisplayTextError={true}
-                                widthSkeleton={'90vw'}
-                                heightSkeleton={'450px'}
                             />
                         </div>
-                        <h3>{post.name}</h3>
+                        <h3 className={s.slider_slide_name}>{post.name}</h3>
                         <p className={s.slider_slide_description}>{post.description}</p>
                     </div>
                 ))}
