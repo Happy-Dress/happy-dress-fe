@@ -28,7 +28,6 @@ const CategoriesMobile = ({ categories }) => {
         slidesToScroll: 1,
         swipeToSlide: true,
         autoplay: true,
-        fade: true,
         autoPlaySpeed: 3000,
         className: s.slider,
         dotsClass: classNames('slick-dots', s.slider_dots),
