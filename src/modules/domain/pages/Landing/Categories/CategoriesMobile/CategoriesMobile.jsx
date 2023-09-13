@@ -1,59 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
 import s from './CategoriesMobile.module.scss';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import PropTypes from 'prop-types';
 import CATEGORIES_DICTIONARY from '../Categories.dictionary';
-import { useSwipeable } from 'react-swipeable';
-import classNames from 'classnames';
 import { setCategory } from '../../../../../../common/ui/store/slices/productsSearchSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import EnhancedImage from '../../../../../../common/ui/components/Image/EnchancedImage';
+import Slider from 'react-slick';
+import classNames from 'classnames';
 
 
 const { HEADING_LABEL } = CATEGORIES_DICTIONARY;
 
 const CategoriesMobile = ({ categories }) => {
 
-    const [index, setIndex] = useState(0);
-    const [moveLeft, setMoveLeft] = useState(false);
-    const [moveRight, setMoveRight] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const handleSwipe = useSwipeable({
-        onSwipedLeft: () => {
-            setMoveLeft(true);
-            setTimeout(() => {
-                setIndex((prevIndex) => (prevIndex + 1) % categories.length);
-                setMoveLeft(false);
-            }, 300);
 
-        },
-        onSwipedRight: () => {
-            setMoveRight(true);
-            setTimeout(() => {
-                setIndex((prevIndex) => (prevIndex + categories.length - 1) % categories.length);
-                setMoveRight(false);
-            }, 300);
-        },
-    });
-
-    const handleDotClick = (index) => {
-        setIndex(index);
-    };
-
-    const renderDots = () => {
-        return (
-            <div className={s.slider_dots}>
-                {categories.map((_, i) => (
-                    <span
-                        key={i}
-                        onClick={() => handleDotClick(i)}
-                        className={classNames(s.slider_dot, index === i ? s.slider_dot_active : s.slider_dot_disabled)}
-                        data-testid={`dot_${i}`}
-                    />
-                ))}
-            </div>
-        );
+    const settings = {
+        dots: true,
+        infinite: true,
+        arrows: false,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        swipeToSlide: true,
+        autoplay: true,
+        autoPlaySpeed: 3000,
+        className: s.slider,
+        dotsClass: classNames('slick-dots', s.slider_dots),
+        lazyLoad: 'ondemand',
     };
 
     const handleClick = (post) => {
@@ -67,37 +45,29 @@ const CategoriesMobile = ({ categories }) => {
             <div className={s.title}>
                 <h2>{HEADING_LABEL}</h2>
             </div>
-            <div className={s.slider}>
-                {renderDots()}
-                <div className={s.slider_card_swipeable} {...handleSwipe}>
-                    {categories.map((post, key) => (
-                        <div
-                            className={classNames(key === index ? s.slider_card_active :
-                                key < index ? s.slider_card_left : s.slider_card_right,
-                            moveLeft && key === index ? s.slider_card_moveLeft : '',
-                            moveRight && key === index ? s.slider_card_moveRight : '',
-                            )}
-                            onClick={() => handleClick(post)}
-                            key={key}
-                            data-testid={`card_${key}`}
-                        >
-                            {key === index && <div className={s.slider_card_mainImage}>
-                                <EnhancedImage 
-                                    imageUrl={post.imageUrl} 
-                                    alt={`Slide ${index + 1}`}
-                                    isZoomable={false}
-                                    shouldDisplayTextError={true}
-                                />
-                                <h3>{post.name}</h3>
-                                <div className={s.slider_card_description}>
-                                    <p>{post.description}</p>
-                                </div>
-                            </div>
-                            }
+            <Slider {...settings}>
+                {categories.map((post, key) => (
+                    <div
+                        className={s.slider_slide}
+                        onClick={() => handleClick(post)}
+                        key={key}
+                        data-testid={`card_${key}`}
+                    >
+                        <div className={s.slider_slide_currentImage}>
+                            <EnhancedImage
+                                imageUrl={post.imageUrl}
+                                alt={`Slide ${key + 1}`}
+                                isZoomable={false}
+                                shouldDisplayTextError={true}
+                                widthSkeleton={'90vw'}
+                                heightSkeleton={'450px'}
+                            />
                         </div>
-                    ))}
-                </div>
-            </div>
+                        <h3>{post.name}</h3>
+                        <p className={s.slider_slide_description}>{post.description}</p>
+                    </div>
+                ))}
+            </Slider>
         </div>
     )
     ;

@@ -3,8 +3,12 @@
 @import '../../../../../../common/ui/styles/colors';
 
 .CategoriesMobile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin-top: 32px;
   margin-bottom: 32px;
+
   .title {
     color: $black;
     text-align: center;
@@ -17,80 +21,53 @@
 
   .slider {
     display: flex;
-    align-items: center;
-    flex-direction: column;
-    overflow-x: hidden;
+    flex-direction: column-reverse;
     min-height: 500px;
+    width: 100vw;
 
     &_dots {
-      display: flex;
+      position: static !important;
+      display: flex !important;
+      width: 100vw;
       justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      margin: 20px;
-    }
+      gap: 10px;
+      margin: 20px 0;
 
-    &_dot {
-      height: 15px;
-      width: 15px;
-      border-radius: 50%;
-      display: inline-block;
-      margin: 0 5px;
-      cursor: pointer;
-
-      &_active {
-        background-color: $brown;
+      & ul {
+        list-style: none;
       }
 
-      &_disabled {
+      & li {
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        display: inline-block;
+        margin: 0 5px;
+        cursor: pointer;
         background-color: $gray;
       }
+
+      & li button:before {
+        color: transparent !important;
+      }
+
+      & li[class='slick-active']{
+        background-color: $brown;
+      }
     }
 
-    &_card {
+    &_slide {
+      display: flex;
+      justify-content: center;
+      align-self: center;
+      padding: 0 calc(10vw / 2);
 
-      &_left {
-        transform: translateX(-100vw);
-      }
-
-      &_right{
-        transform: translateX(100vw);
-      }
-
-      &_moveRight{
-        transform: translateX(100vw);
-      }
-
-      &_moveLeft{
-        transform: translateX(-100vw);
-      }
-
-      &_swipeable{
-        overflow-x: hidden;
-        overflow-y: hidden;
+      &_currentImage {
         display: flex;
-        justify-content: center;
-        width: 100vw;
-      }
+        align-items: center;
+        min-height: 450px;
 
-      &_active {
-        opacity: 1;
-        transition-duration: 0.5s;
-        width: 90%;
-        overflow-x: hidden;
-        overflow-y: hidden;
-        div {
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
-        }
-      }
-
-      &_mainImage {
-        width: 100%;
-        aspect-ratio: 3 / 4;
-
-        img {
+        & img {
           width: 100%;
           height: 100%;
           object-fit: contain;
