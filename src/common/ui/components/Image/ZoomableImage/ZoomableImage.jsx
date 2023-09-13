@@ -4,33 +4,65 @@ import { ReactComponent as CloseIcon } from '../../../../../assets/images/closeI
 import { ReactComponent as SwipeLeft } from '../../../../../assets/images/swipeLeft.svg';
 import { ReactComponent as SwipeRight } from '../../../../../assets/images/swipeRight.svg';
 import PropTypes from 'prop-types';
+import { useDeviceTypeContext } from '../../../contexts/DeviceType';
+import { useSwipeable } from 'react-swipeable';
+import { useKeyDown } from '../../../hooks/useKeyDown';
 
 const ZoomableImage = ({
     prohibitZoom,
     children,
+    isChangeControls,
     handleLeftClick,
-    handleRightClick
+    handleRightClick,
+    handleClose,
 }) => {
     const [isExpanded, setIsExpanded] = useState(false);
+    const { isMobile } = useDeviceTypeContext();
+
+    const handleSwipe = isMobile && useSwipeable({
+        onSwipedLeft: (eventData) => {
+            if (isExpanded) {
+                eventData.event.stopPropagation();
+                handleRightClick(eventData.event);
+            }
+        },
+        onSwipedRight: (eventData) => {
+            if (isExpanded) {
+                eventData.event.stopPropagation();
+                handleLeftClick(eventData.event);
+            }
+        }
+    });
+
+    useKeyDown(() => isExpanded && handleLeftClick(), ['ArrowLeft']);
+    useKeyDown(() => isExpanded && handleRightClick(), ['ArrowRight']);
+    useKeyDown(() => isExpanded && toggleExpand(), ['Escape']);
 
     const toggleExpand = () => {
-        setIsExpanded(!isExpanded);
+        if (!prohibitZoom) {
+            handleClose && handleClose();
+            !prohibitZoom && setIsExpanded(!isExpanded);
+        }
     };
 
     return (
-        <div className={isExpanded ? s.ZoomableImage_expanded : s.ZoomableImage}>
+        <div
+            className={isExpanded ? s.ZoomableImage_expanded : s.ZoomableImage}
+            onClick={toggleExpand}
+            {...handleSwipe}
+        >
             {isExpanded && (
                 <div className={s.ZoomableImage_overlay}>
                     <div className={s.ZoomableImage_closeIcon} onClick={toggleExpand}>
                         <CloseIcon />
                     </div>
-                    <div className={s.ZoomableImage_swipeLeft}>
-                        <SwipeLeft onClick={handleLeftClick} />
-                    </div>
+                    {isChangeControls && <div className={s.ZoomableImage_swipeLeft}>
+                        <SwipeLeft onClick={(e) => handleLeftClick(e)} />
+                    </div>}
                     {children}
-                    <div className={s.ZoomableImage_swipeRight}>
-                        <SwipeRight onClick={handleRightClick} />
-                    </div>
+                    {isChangeControls && <div className={s.ZoomableImage_swipeRight}>
+                        <SwipeRight onClick={(e) => handleRightClick(e)} />
+                    </div>}
                 </div>
             )}
             {!isExpanded && (
@@ -51,8 +83,10 @@ ZoomableImage.propTypes = {
         PropTypes.arrayOf(PropTypes.node),
         PropTypes.node,
     ]).isRequired,
+    isChangeControls: PropTypes.bool,
     handleLeftClick: PropTypes.func,
     handleRightClick: PropTypes.func,
+    handleClose: PropTypes.func,
 };
 
 export default ZoomableImage;

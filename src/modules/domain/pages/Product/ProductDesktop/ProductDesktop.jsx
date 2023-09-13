@@ -116,9 +116,11 @@ const ProductDesktop = (props) => {
                             <EnhancedImage
                                 key={selectedImage.index}
                                 imageUrl={selectedImage.imageUrl}
+                                images={productColorImages.imageURLs}
                                 alt="selected image"
                                 shouldDisplayTextError={true}
                                 isZoomable={true}
+                                isChangeControls={true}
                             />
                         </div>
                     </div>
