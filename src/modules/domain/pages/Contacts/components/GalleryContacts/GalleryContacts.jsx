@@ -11,6 +11,8 @@ const GalleryContacts = ({ mainImage, secondaryImages }) => {
                     <EnhancedImage
                         imageUrl={mainImage}
                         alt={'main image show room'}
+                        images={[mainImage, ...secondaryImages]}
+                        isChangeControls={true}
                         shouldDisplayTextError={true}
                         isZoomable={true}
                     />
@@ -22,6 +24,8 @@ const GalleryContacts = ({ mainImage, secondaryImages }) => {
                                 imageUrl={image}
                                 alt={`secondary image ${index} show room`}
                                 isZoomable={true}
+                                isChangeControls={true}
+                                images={[mainImage, ...secondaryImages]}
                             />
                         </div>
                     ))}

@@ -112,6 +112,8 @@ const ProductMobile = (props) => {
                                     alt={'selected image'}
                                     shouldDisplayTextError={true}
                                     isZoomable={true}
+                                    isChangeControls={true}
+                                    images={productColorImages.imageURLs}
                                 />
                             </div>
                         </div>
