@@ -3,6 +3,8 @@
 
 
 .ProductMobile {
+  display: flex;
+  flex-direction: column;
 
   &_return {
     display: flex;
@@ -15,123 +17,6 @@
 
     h4 {
       color: $black;
-    }
-  }
-
-  &_carousel {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    margin-top: 24px;
-
-    &_swipeable {
-      display: flex;
-      justify-content: center;
-      overflow: hidden;
-      width: 100vw;
-    }
-
-    &_list {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      max-width: 90vw;
-      width: 100%;
-      overflow-x: auto;
-      overflow-y: hidden;
-      padding-bottom: 6px;
-
-
-      &::-webkit-scrollbar {
-        height: 7px;
-        background-color: $white;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        border-radius: 5px;
-        background-color: $brown;
-        background-repeat: no-repeat;
-        background-size: auto auto;
-      }
-
-      &::-webkit-scrollbar-track {
-        background-color: $white;
-      }
-
-      @media screen and (min-height: $lg-size){
-        gap: 20px;
-      }
-
-      &_item {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-width: 102px;
-        max-width: 102px;
-        min-height: calc(102px / 3 * 4);
-        max-height: calc(102px / 3 * 4);
-        aspect-ratio: 3 / 4;
-
-        img {
-          object-fit: contain;
-        }
-
-        @media screen and (min-height: $lg-size){
-          min-width: 204px;
-          max-width: 204px;
-          min-height: calc(204px / 3 * 4);
-          max-height: calc(204px / 3 * 4);
-        }
-
-
-        &_current {
-          padding-bottom: 4px;
-          border-bottom: 2px solid $brown;
-          border-radius: 2px;
-        }
-      }
-
-    }
-
-    &_selected_item {
-      display: flex;
-      align-items: center;
-      width: 80vw;
-      aspect-ratio: 3 / 4;
-      position: relative;
-      left: 0;
-      overflow: hidden;
-
-      img {
-        object-fit: contain;
-      }
-
-      &_left {
-        animation: move-left 1s ease forwards;
-      }
-
-      &_right {
-        animation: move-right 1s ease forwards;
-      }
-
-      @keyframes move-left {
-        0% {
-          left: 100vw;
-        }
-        100% {
-          left: 0;
-        }
-      }
-
-      @keyframes move-right {
-        0% {
-          left: -100vw;
-        }
-        100% {
-          left: 0;
-        }
-      }
     }
   }
 
@@ -187,4 +72,5 @@
       }
     }
   }
+
 }

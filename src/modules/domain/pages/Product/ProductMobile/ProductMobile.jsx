@@ -2,19 +2,14 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import s from './ProductMobile.module.scss';
 import leftArrow from '../../../../../assets/images/leftArrow.svg';
-import classNames from 'classnames';
 import { PRODUCT_DICTIONARY } from '../Product.dictionary';
 import ColorsSizesTable from '../components/ColorsSizesTable';
 import SizesTable from '../components/SizesTable';
-import { useSwipeable } from 'react-swipeable';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import {
-    setSelectedImage
-} from '../../../../../common/ui/store/slices/productSlice';
-import EnhancedImage from '../../../../../common/ui/components/Image/EnchancedImage';
 import ColorCircle from '../../../../../common/ui/components/ColorCircle';
 import { setCategory } from '../../../../../common/ui/store/slices/productsSearchSlice';
+import ProductMobileGallerySlider from './components';
 
 const {
     MODEL_LABEL,
@@ -33,58 +28,16 @@ const ProductMobile = (props) => {
         productColorImages,
         currentColorSize,
         uniqueColors,
-        selectedImage,
         handleSizeClick,
     } = props;
-
-    const [moveLeft, setMoveLeft] = useState(false);
-    const [moveRight, setMoveRight] = useState(false);
     const [isOpenTableSize, setIsOpenTableSize] = useState(false);
     const dispatch = useDispatch();
 
-    const handleSwipe = useSwipeable({
-        onSwipedLeft: () => {
-            setMoveLeft(true);
-            const newIndex = (selectedImage.index + 1) % productColorImages.imageURLs.length;
-            dispatch(setSelectedImage({
-                imageUrl: productColorImages.imageURLs[newIndex],
-                index: newIndex,
-            }));
-            setTimeout(() => {
-                setMoveLeft(false);
-            }, 1000);
-
-        },
-        onSwipedRight: () => {
-            setMoveRight(true);
-            const newIndex = (selectedImage.index + productColorImages.imageURLs.length - 1) % productColorImages.imageURLs.length;
-            dispatch(setSelectedImage({
-                imageUrl: productColorImages.imageURLs[newIndex],
-                index: newIndex,
-            }));
-            setTimeout(() => {
-                setMoveRight(false);
-            }, 1000);
-        },
-    });
     const handleOpenTableSize = () => {
         window.scrollTo({ top: 0 });
         setIsOpenTableSize(!isOpenTableSize);
     };
-
-    const handleImageClick = (imageUrl, index) => {
-        selectedImage.index < index ? setMoveLeft(true)
-            :
-            selectedImage.index > index ? setMoveRight(true) : null;
-        dispatch(setSelectedImage({
-            imageUrl,
-            index,
-        }));
-        setTimeout(() => {
-            setMoveLeft(false);
-            setMoveRight(false);
-        }, 1000);
-    };
+    
 
     return (
         <div>
@@ -99,41 +52,7 @@ const ProductMobile = (props) => {
                             <h4>{product.name}</h4>
                         </div>
                     </Link>
-                    <div className={s.ProductMobile_carousel}>
-                        <div className={s.ProductMobile_carousel_swipeable} {...handleSwipe}>
-                            <div className={classNames(
-                                s.ProductMobile_carousel_selected_item,
-                                moveRight && s.ProductMobile_carousel_selected_item_right,
-                                moveLeft && s.ProductMobile_carousel_selected_item_left,
-                            )}>
-                                <EnhancedImage
-                                    key={selectedImage.index}
-                                    imageUrl={selectedImage.imageUrl}
-                                    alt={'selected image'}
-                                    shouldDisplayTextError={true}
-                                    isZoomable={true}
-                                    isChangeControls={true}
-                                    images={productColorImages.imageURLs}
-                                />
-                            </div>
-                        </div>
-                        <div className={s.ProductMobile_carousel_list}>
-                            {productColorImages.imageURLs.map((imageUrl, key) => (
-                                <div className={classNames(
-                                    s.ProductMobile_carousel_list_item,
-                                    imageUrl === selectedImage.imageUrl ? s.ProductMobile_carousel_list_item_current : ''
-                                )}
-                                key={key + productColorImages.color.id + 1}
-                                onClick={() => handleImageClick(imageUrl, key + productColorImages.color.id + 1)}
-                                >
-                                    <EnhancedImage
-                                        imageUrl={imageUrl}
-                                        alt={`product image color ${productColorImages.color.name}`}
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                    <ProductMobileGallerySlider productColorImages={productColorImages}/>
                     <div className={s.ProductMobile_description}>
                         <div className={s.ProductMobile_description_item}>
                             <p>{product.description}</p>
@@ -199,7 +118,6 @@ ProductMobile.propTypes = {
     productColorImages: PropTypes.object.isRequired,
     currentColorSize: PropTypes.object.isRequired,
     uniqueColors: PropTypes.array.isRequired,
-    selectedImage: PropTypes.object.isRequired,
     handleSizeClick: PropTypes.func.isRequired,
 };
 
