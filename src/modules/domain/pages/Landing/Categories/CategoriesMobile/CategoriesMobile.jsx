@@ -29,6 +29,7 @@ const CategoriesMobile = ({ categories }) => {
         swipeToSlide: true,
         autoplay: true,
         autoPlaySpeed: 3000,
+        pauseOnHover: true,
         className: s.slider,
         dotsClass: classNames('slick-dots', s.slider_dots),
         lazyLoad: 'ondemand',

@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import adaptive from '../../../../common/ui/hocs/adaptive';
 import ProductDesktop from './ProductDesktop';
-import ProductMobile from './ProductMobile/ProductMobile';
+import ProductMobile from './ProductMobile';
 import { useLocation, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
