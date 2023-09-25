@@ -12,7 +12,7 @@ const CachedImage = ({ className, src, alt, onLoad, onError }) => {
         className={className}
         onLoad={onLoad}
         onError={onError}
-        src={cachedImage.src}
+        src={`${cachedImage.src}&alt=media`}
         alt={alt}
     />;
 };
