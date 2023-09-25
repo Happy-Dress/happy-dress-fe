@@ -1,4 +1,5 @@
 @import "../../../../../../common/ui/styles/colors";
+@import "../../../../../../common/ui/styles/media-sizes";
 
 .ProductMobileGallerySlider {
   position: relative;
@@ -46,9 +47,22 @@
   }
 
   &_carousel {
-    gap: 12px;
     margin-top: 24px;
     width: 100vw;
+
+    &_expanded {
+      display: flex !important;
+      flex-direction: column;
+      justify-content: flex-end;
+      height: 100vh;
+      width: 100vw;
+      margin-bottom: 10px;
+      gap: calc(85vh - (90vw / 3 * 4) - (100vw / 3 / 3 * 4));
+
+      @media screen and (min-width: $md-size) {
+        gap: calc(95vh - (90vw / 3 * 4) - (100vw / 6 / 6 * 4));
+      }
+    }
 
     &_slide {
       display: flex;
@@ -58,6 +72,10 @@
       align-items: center;
       width: 100%;
       height: calc(90vw / 3 * 4);
+
+      @media screen and (min-width: $md-size) {
+        height: calc(75vw / 3 * 4);
+      }
 
       & img {
         width: 100%;
@@ -74,7 +92,7 @@
       padding-bottom: 6px !important;
       max-width: 100vw;
       overflow-x: auto;
-      gap: 15px;
+      gap: 5px;
 
       &::-webkit-scrollbar {
         height: 7px;
@@ -102,6 +120,11 @@
         align-items: center !important;
         margin-right: 5px !important;
         margin-left: 5px !important;
+
+        @media screen and (min-width: $md-size) {
+          width: calc(100vw / 6) !important;
+          height: calc((100vw / 6) / 3 * 4) !important;
+        }
       }
 
       & li[class='slick-active'] {
@@ -116,6 +139,10 @@
     &_dot {
       width: calc(100vw / 3) !important;
       aspect-ratio: 3/4;
+
+      @media screen and (min-width: $md-size) {
+        width: calc(100vw / 6) !important;
+      }
 
       & img {
         object-fit: contain;
