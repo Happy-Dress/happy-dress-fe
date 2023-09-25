@@ -38,7 +38,7 @@ const ProductMobileGallerySlider = ({ productColorImages }) => {
         pauseOnHover: true,
         lazyLoad: 'ondemand',
         dotsClass: classNames('slick-dots', s.ProductMobileGallerySlider_carousel_dots),
-        className: classNames(s.ProductMobileGallerySlider_carousel),
+        className: classNames(isExpanded ? s.ProductMobileGallerySlider_carousel_expanded : s.ProductMobileGallerySlider_carousel),
         customPaging: customPaging,
     };
 
