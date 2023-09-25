@@ -12,7 +12,7 @@ const CachedImage = ({ className, src, alt, onLoad, onError }) => {
         className={className}
         onLoad={onLoad}
         onError={onError}
-        src={`${cachedImage.src}&alt=media`}
+        src={cachedImage.src.replace(new RegExp('export=view&', 'g'), '')}
         alt={alt}
     />;
 };
