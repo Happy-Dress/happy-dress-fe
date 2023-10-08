@@ -30,6 +30,7 @@ const ProductsList = () => {
     const selectedProducts = useSelector(
         (state) => state.productsSearch.selectedProducts
     );
+
     const [showModal, hideModal] = useModal(() => {
         return (
             <DeleteProductConfirmationDialog
@@ -66,7 +67,7 @@ const ProductsList = () => {
     useEffect(() => {
         if (inView && currentPage < totalPages) {
             dispatch(
-                fetchCatalogueItems({ filters, page: currentPage, isSecure: true })
+                fetchCatalogueItems({ filters, page: currentPage + 1, isSecure: true })
             );
         }
     }, [inView]);
