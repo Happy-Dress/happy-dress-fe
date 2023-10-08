@@ -137,7 +137,7 @@ export const productsSearchSlice = createSlice({
             state.filters.category = actions.payload.categories[0].id;
         });
         builder.addCase(fetchCatalogueItems.fulfilled, (state, action) => {
-            state.currentPage = action.payload.currentPage + 1;
+            state.currentPage = action.payload.currentPage;
             state.totalPages = action.payload.totalPages;
             state.products = [...state.products, ...action.payload.products];
             state.loading = false;
