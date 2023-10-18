@@ -7,7 +7,7 @@ export const CONTACTS_DICTIONARY = {
         'Четверг (10:00 - 17:00)', 'Пятница (10:00 - 17:00)', 'Суббота (10:00 - 17:00)', 'Воскресенье (10:00 - 17:00)'],
     PHONE_NUMBER: '+375 (29) 590 80 29',
     EMAIL: 'happydress@gmail.com',
-    INSTAGRAM_LINK: 'https://www.instagram.com/happydress_salon/',
+    INSTAGRAM_LINK: 'https://www.instagram.com/happy_dress_salon/',
     VK_LINK: 'https://vk.com/nevestamby',
     TELEGRAM_LINK: 'https://t.me/tatbor73',
     DRIVING_DIRECTIONS: 'Схема проезда',
