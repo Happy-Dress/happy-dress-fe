@@ -100,8 +100,14 @@
     justify-content: flex-end;
 
     &_hanger {
+      position: relative;
       display: flex;
       align-items: center;
+
+      &_active {
+        border-bottom: 2px solid $brown;
+      }
+
 
       @media screen and (max-width: $xl-size) {
         width: 25px;
@@ -112,10 +118,27 @@
         height: auto;
 
         path {
-          fill: $gray-disabled;
+          fill: $black;
         }
       }
 
+      &_amount {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: -4px;
+        right: -14px;
+        background: $brown;
+        border-radius: 10px;
+        color: $white;
+        width: 18px;
+        height: 18px;
+
+        &:hover {
+            color: $white;
+        }
+      }
     }
 
     &_number {

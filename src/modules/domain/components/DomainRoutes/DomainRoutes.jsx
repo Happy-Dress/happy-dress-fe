@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { ROUTER_PATHS, routerConfig } from '../../config';
 import Product from '../../pages/Product';
 import Loader from '../../../../common/ui/components/Loader';
+import Order from '../../pages/Order';
 
 const DomainRoutes = () => {
     return (
@@ -15,6 +16,7 @@ const DomainRoutes = () => {
                     })
                 }
                 <Route path={'/catalog/:id'} element={<Product/>}/>
+                <Route path={'/order'} element={<Order/>}/>
             </Routes>
         </Suspense>
     );

@@ -127,7 +127,7 @@ export const ProductsCard = () => {
             mainImageUrl,
             categoryId: Number(data.category),
             modelId: Number(data.model),
-            materialIds: data.materials.map((m) => Number(m)),
+            materialIds: Array.isArray(data.materials) ? data.materials.map((m) => Number(m)) : [Number(data.materials)],
             productColorImages: productColorImages.map((i) => ({
                 colorId: i.color.id,
                 imageURLs: i.imageURLs

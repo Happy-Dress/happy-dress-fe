@@ -36,17 +36,40 @@
         margin-right: 25px;
 
       path {
-        fill: $gray-disabled;
+        fill: $black;
       }
     }
 
     &_icon {
+      position: relative;
       display: flex;
       align-items: center;
+
+      &_active {
+        border-bottom: 2px solid $brown;
+      }
 
       svg {
         width: 24px;
         height: auto;
+      }
+
+      &_amount {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: -4px;
+        right: -14px;
+        background: $brown;
+        border-radius: 10px;
+        color: $white;
+        width: 18px;
+        height: 18px;
+
+        &:hover {
+          color: $white;
+        }
       }
     }
   }

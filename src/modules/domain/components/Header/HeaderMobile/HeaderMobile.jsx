@@ -8,8 +8,9 @@ import { Typography } from '../../../../../common/ui/components';
 import { routerConfig } from '../../../config';
 import { NavLink } from 'react-router-dom';
 import { disabledRouterConfig } from '../../../config/routerConfig/routerConfig';
+import PropTypes from 'prop-types';
 
-const HeaderMobile = () => {
+const HeaderMobile = ({ ordersAmount }) => {
     const {
         HEADER_LOGO,
         PHONE_NUMBER,
@@ -39,7 +40,10 @@ const HeaderMobile = () => {
                         </div>
                     )}
                     <div className={s.Header_right_icon}>
-                        <Hanger/>
+                        <NavLink to='order' className={({ isActive }) => isActive ? s.Header_right_icon_active : ''}>
+                            <Hanger/>
+                            <span className={s.Header_right_icon_amount}>{ordersAmount}</span>
+                        </NavLink>
                     </div>
                 </div>
             </div>
@@ -85,4 +89,9 @@ const HeaderMobile = () => {
         </div>
     );
 };
+
+HeaderMobile.propTypes = {
+    ordersAmount: PropTypes.number.isRequired,
+};
+
 export default HeaderMobile;

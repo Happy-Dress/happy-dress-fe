@@ -6,6 +6,7 @@ import { Typography } from '../../../../../common/ui/components';
 import { NavLink } from 'react-router-dom';
 import { routerConfig } from '../../../config';
 import { disabledRouterConfig } from '../../../config/routerConfig/routerConfig';
+import PropTypes from 'prop-types';
 
 
 const {
@@ -13,7 +14,7 @@ const {
     PHONE_NUMBER
 } = HEADER_DICTIONARY;
 
-const HeaderDesktop = () => {
+const HeaderDesktop = ({ ordersAmount }) => {
     return (
         <div className={s.Header}>
             <div className={s.Header_logo_wrapper}>
@@ -48,7 +49,10 @@ const HeaderDesktop = () => {
             </ul>
             <div className={s.Header_right_side}>
                 <div className={s.Header_right_side_hanger}>
-                    <Hanger/>
+                    <NavLink to='order' className={({ isActive }) => isActive ? s.Header_right_side_hanger_active : ''}>
+                        <Hanger/>
+                        <span className={s.Header_right_side_hanger_amount}>{ordersAmount}</span>
+                    </NavLink>
                 </div>
                 <div className={s.Header_right_side_delimiter}/>
                 <Typography>
@@ -62,6 +66,10 @@ const HeaderDesktop = () => {
             </div>
         </div>
     );
+};
+
+HeaderDesktop.propTypes = {
+    ordersAmount: PropTypes.number.isRequired,
 };
 
 export default HeaderDesktop;
