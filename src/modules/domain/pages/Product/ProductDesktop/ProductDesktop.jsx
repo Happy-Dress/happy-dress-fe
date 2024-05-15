@@ -13,6 +13,7 @@ import {
 } from '../../../../../common/ui/store/slices/productSlice';
 import EnhancedImage from '../../../../../common/ui/components/Image/EnchancedImage';
 import ColorCircle from '../../../../../common/ui/components/ColorCircle';
+import { ButtonAccent } from '../../../../../common/ui/components';
 
 const {
     DESCRIPTION_LABEL,
@@ -25,6 +26,8 @@ const {
     TABLE_SIZE_LABEL,
     TABLE_SIZE_HEAD,
     TABLE_SIZE_BODY,
+    ADD_TO_CART_BUTTON,
+    PRODUCT_ALREADY_IN_CART,
 } = PRODUCT_DICTIONARY;
 
 const ProductDesktop = (props) => {
@@ -35,6 +38,8 @@ const ProductDesktop = (props) => {
         uniqueColors,
         selectedImage,
         handleSizeClick,
+        handleAddToCart,
+        isAddToCartButtonDisabled,
     } = props;
 
     const [moveUp, setMoveUp] = useState(false);
@@ -179,6 +184,9 @@ const ProductDesktop = (props) => {
                                     </div>
                                 )}
                             </div>
+                            <div>
+                                <ButtonAccent text={isAddToCartButtonDisabled ? PRODUCT_ALREADY_IN_CART : ADD_TO_CART_BUTTON} onClick={handleAddToCart} disabled={isAddToCartButtonDisabled}/>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -194,5 +202,7 @@ ProductDesktop.propTypes = {
     uniqueColors: PropTypes.array.isRequired,
     selectedImage: PropTypes.object.isRequired,
     handleSizeClick: PropTypes.func.isRequired,
+    handleAddToCart: PropTypes.func.isRequired,
+    isAddToCartButtonDisabled: PropTypes.bool.isRequired,
 };
 export default ProductDesktop;

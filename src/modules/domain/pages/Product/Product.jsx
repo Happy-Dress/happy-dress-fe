@@ -12,7 +12,11 @@ import {
 import Loader from '../../../../common/ui/components/Loader';
 import EmptyBanner from '../../../../common/ui/components/EmptyBanner';
 import s from './Product.module.scss';
+import { setCount } from '../../../../common/ui/store/slices/ordersSlice';
+import { useToasters } from '../../../../common/ui/contexts/ToastersContext';
+import { PRODUCT_DICTIONARY } from './Product.dictionary';
 
+const { PRODUCT_ADDED_TO_CART } = PRODUCT_DICTIONARY;
 
 const Product = () => {
     const { id: productId } = useParams();
@@ -26,6 +30,8 @@ const Product = () => {
     const currentColorSize = useSelector(state => state.product.currentColorSize);
     const uniqueColors = useSelector(state => state.product.uniqueColors);
     const dispatch = useDispatch();
+    const [disabledAddToCartBtn, setDisabledAddToCartBtn] = useState(false);
+    const { showToasterSuccess } = useToasters();
 
     const [isProductExists, setIsProductExists] = useState(true);
 
@@ -37,6 +43,7 @@ const Product = () => {
             index: Date.now(),
         }));
         dispatch(setCurrentColorSize(productColorSize));
+        changeEnabledAddToCartBtn(productColorSize);
     };
 
     const setDefaultQueryParams = () => {
@@ -49,6 +56,8 @@ const Product = () => {
         const newSearch = queryParams.toString();
         const newUrl = `${location.pathname}?${newSearch}`;
         window.history.replaceState(null, '', newUrl);
+        const productColorSize = product.productColorSizes.find((colorSize) => colorSize.color.id === colorId && colorSize.size.id === sizeId);
+        setProductSettings(colorId, productColorSize);
     };
 
     const handleCurrentColorSize = () => {
@@ -83,6 +92,7 @@ const Product = () => {
                 dispatch(setProductColorImages(productColorImage));
             }
             setQueryParams(newProductColorSize.color.id, newProductColorSize.size.id);
+            changeEnabledAddToCartBtn(newProductColorSize);
         }
     };
 
@@ -98,6 +108,37 @@ const Product = () => {
 
     const AdaptiveProduct = useMemo(() => adaptive(ProductDesktop, ProductMobile), []);
 
+    const handleAddToCart = () => {
+        const orders = localStorage.getItem('orders');
+        let parsedOrders = JSON.parse(orders);
+
+        if (parsedOrders) {
+            parsedOrders.push({
+                productId: product.id,
+                colorSize: currentColorSize,
+            });
+        } else {
+            parsedOrders = [{
+                productId: product.id,
+                colorSize: currentColorSize,
+            }];
+        }
+        localStorage.setItem('orders', JSON.stringify(parsedOrders));
+        dispatch(setCount(parsedOrders.length));
+        setDisabledAddToCartBtn(true);
+        showToasterSuccess(PRODUCT_ADDED_TO_CART);
+    };
+
+    const changeEnabledAddToCartBtn = (colorSize) => {
+        const orders = localStorage.getItem('orders');
+        let parsedOrders = JSON.parse(orders);
+        if (parsedOrders) {
+            setDisabledAddToCartBtn(parsedOrders.some(order => order.colorSize.id === colorSize.id));
+        } else {
+            return setDisabledAddToCartBtn(false);
+        }
+    };
+
     return (
         <>
             {isProductExists ?
@@ -109,6 +150,8 @@ const Product = () => {
                         uniqueColors={JSON.parse(uniqueColors)}
                         selectedImage={selectedImage}
                         handleSizeClick={handleSizeClick}
+                        handleAddToCart={handleAddToCart}
+                        isAddToCartButtonDisabled={disabledAddToCartBtn}
                     />
                     :
                     <Loader/>

@@ -1,0 +1,58 @@
+@import "../../../../../../common/ui/styles/media-sizes";
+@import "../../../../../../common/ui/styles/colors";
+
+.RegistrationSettingItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+
+
+  &_wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    border: 1px $gray solid;
+    box-shadow: $shadow-main;
+    width: 95%;
+    padding: 10px;
+  }
+
+  &_order {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &_mainInfo {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    padding: 10px;
+    border-bottom: 1px solid $brown;
+
+
+    &_userInfo {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      &_item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+    }
+
+    &_status {
+      align-self: center;
+    }
+  }
+
+  &_items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+  }
+}

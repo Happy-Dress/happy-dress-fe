@@ -1,0 +1,21 @@
+.SubmitOrderDialog {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &_field {
+        input {
+            height: 45px;
+            width: 100%;
+            border: 1px solid rgba(34, 17, 34, 0.9);
+            padding: 8px 16px;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        &_error {
+            color: red;
+            font-size: 14px;
+        }
+    }
+}

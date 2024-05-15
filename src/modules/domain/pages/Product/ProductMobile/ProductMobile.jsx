@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import ColorCircle from '../../../../../common/ui/components/ColorCircle';
 import { setCategory } from '../../../../../common/ui/store/slices/productsSearchSlice';
 import ProductMobileGallerySlider from './components';
+import { ButtonAccent } from '../../../../../common/ui/components';
 
 const {
     MODEL_LABEL,
@@ -20,6 +21,8 @@ const {
     TABLE_SIZE_HEAD,
     TABLE_SIZE_BODY,
     SIZES,
+    ADD_TO_CART_BUTTON,
+    PRODUCT_ALREADY_IN_CART
 } = PRODUCT_DICTIONARY;
 
 const ProductMobile = (props) => {
@@ -29,6 +32,8 @@ const ProductMobile = (props) => {
         currentColorSize,
         uniqueColors,
         handleSizeClick,
+        handleAddToCart,
+        isAddToCartButtonDisabled,
     } = props;
     const [isOpenTableSize, setIsOpenTableSize] = useState(false);
     const dispatch = useDispatch();
@@ -46,7 +51,10 @@ const ProductMobile = (props) => {
                     <Link to={'../catalog'}>
                         <div
                             className={s.ProductMobile_return}
-                            onClick={() => dispatch(setCategory({ category: product.category.id, shouldDropProducts: false }))}
+                            onClick={() => dispatch(setCategory({
+                                category: product.category.id,
+                                shouldDropProducts: false
+                            }))}
                         >
                             <img src={leftArrow} alt={'return arrow'}/>
                             <h4>{product.name}</h4>
@@ -67,7 +75,7 @@ const ProductMobile = (props) => {
                         </div>
                         <div className={s.ProductMobile_description_item}>
                             <h5 className={s.ProductMobile_description_label}>{CURRENT_COLOR_LABEL}</h5>
-                            <ColorCircle 
+                            <ColorCircle
                                 firstColor={currentColorSize.color.firstColor}
                                 secondColor={currentColorSize.color?.secondColor}
                                 width={'18px'}
@@ -90,6 +98,10 @@ const ProductMobile = (props) => {
                     </div>
                     <div className={s.ProductMobile_description_size} onClick={handleOpenTableSize}>
                         <p>{TABLE_SIZE_LABEL}</p>
+                    </div>
+                    <div className={s.ProductMobile_addToCart}>
+                        <ButtonAccent text={isAddToCartButtonDisabled ? PRODUCT_ALREADY_IN_CART : ADD_TO_CART_BUTTON}
+                            onClick={handleAddToCart} disabled={isAddToCartButtonDisabled}/>
                     </div>
                 </div>
                 :
@@ -119,6 +131,8 @@ ProductMobile.propTypes = {
     currentColorSize: PropTypes.object.isRequired,
     uniqueColors: PropTypes.array.isRequired,
     handleSizeClick: PropTypes.func.isRequired,
+    handleAddToCart: PropTypes.func.isRequired,
+    isAddToCartButtonDisabled: PropTypes.bool.isRequired,
 };
 
 export default ProductMobile;

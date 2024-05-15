@@ -1,0 +1,25 @@
+@import "../../../../../../../../common/ui/styles/colors";
+
+
+.ProductItem {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-bottom: 1px solid $gray;
+  gap: 5px;
+
+  &:hover {
+    cursor: pointer;
+    p {
+      text-decoration: underline;
+    }
+  }
+
+  &_field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+
+  }
+}

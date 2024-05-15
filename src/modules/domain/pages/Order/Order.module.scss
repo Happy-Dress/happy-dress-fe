@@ -1,0 +1,17 @@
+.Order {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 20px;
+
+  img {
+
+  }
+}
+
+.NoneOrder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 102px - 320px);
+}
