@@ -28,7 +28,7 @@ const ToastersProvider = (props) => {
                 bodyClassName={s.toaster_body}
                 position={toast.POSITION.BOTTOM_RIGHT}
                 limit={2}
-                autoClose={2000}/>
+                autoClose={500}/>
         </ToastersContext.Provider>
     );
 
