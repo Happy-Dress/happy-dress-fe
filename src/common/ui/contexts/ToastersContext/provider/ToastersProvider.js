@@ -27,8 +27,8 @@ const ToastersProvider = (props) => {
                 hideProgressBar={true}
                 bodyClassName={s.toaster_body}
                 position={toast.POSITION.BOTTOM_RIGHT}
-                limit={6}
-                autoClose={5000}/>
+                limit={2}
+                autoClose={2000}/>
         </ToastersContext.Provider>
     );
 
