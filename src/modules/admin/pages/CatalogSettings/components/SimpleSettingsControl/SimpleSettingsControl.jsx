@@ -9,7 +9,7 @@ import { useModal } from 'react-modal-hook';
 
 const MIN_MODEL_NAME_LENGTH = 3;
 const STARTING_ORDER_NUMBER = 1;
-const MAX_MODEL_NAME_LENGTH = 20;
+const MAX_MODEL_NAME_LENGTH = 30;
 const EMPTY_NAME = '';
 
 const {
