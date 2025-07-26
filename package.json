@@ -40,7 +40,8 @@
     "zod": "3.22.3"
   },
   "scripts": {
-    "start": "set HTTPS=true&&vite",
+    "start-local": "set HTTPS=true&&vite",
+    "start": "node server.js",
     "serve": "vite preview",
     "build": "vite build",
     "test": "vitest",
@@ -48,10 +49,11 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix --ext .js,.jsx .",
     "coverage": "vitest run --coverage --watch",
-    "covergae:ci": "vitest run --no-watch --coverage"
+    "covergae:ci": "vitest run --no-watch --coverage",
+    "heroku-postbuild": "npm install && npm run build"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": "22.x"
   },
   "eslintConfig": {
     "extends": [
