@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useDeviceTypeContext } from '../contexts/DeviceType';
 import { dropFilters, unSelectFilter } from '../store/slices/productsSearchSlice';
-import { ReactComponent as Cross } from '../../assets/images/x.svg';
+import Cross from '../../assets/images/x.svg';
 import React, { useMemo } from 'react';
 
 export const useCurrentFilters = (tagClass) => {

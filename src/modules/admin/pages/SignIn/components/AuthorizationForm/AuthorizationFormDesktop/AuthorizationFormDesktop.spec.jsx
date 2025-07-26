@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { screen, render, act, fireEvent } from '@testing-library/react';
 import AuthorizationFormDesktop from './AuthorizationFormDesktop';
 import userEvent from '@testing-library/user-event';
@@ -15,14 +16,14 @@ const Wrapper = () => {
     );
 };
 
-const mockedUseNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
+const mockedUseNavigate = vi.fn();
+vi.mock('react-router-dom', () => ({
     useNavigate: () => mockedUseNavigate,
 }));
 
-jest.mock('../../../../../api/authenticateUser', () => ({
+vi.mock('../../../../../api/authenticateUser', () => ({
     __esModule: true,
-    default: () => jest.fn(),
+    default: () => vi.fn(),
 }));
 
 
@@ -51,7 +52,7 @@ describe('AuthorizationFormDesktop', () => {
     });
 
     it('should change password visibility', async () => {
-        const PicVisibility = screen.getByAltText('visibility icon');
+        const PicVisibility = screen.getByLabelText('visibility icon');
         await act(() => {
             userEvent.click(PicVisibility);
         });

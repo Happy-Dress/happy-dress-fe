@@ -5,8 +5,8 @@ import {
     setCategory,
     toggleFilter,
 } from '../../../../../../../common/ui/store/slices/productsSearchSlice';
-import { ReactComponent as Filter } from '../../../../../../../common/assets/images/filter.svg';
-import { ReactComponent as Cross } from '../../../../../../../common/assets/images/x.svg';
+import Filter from '../../../../../../../common/assets/images/filter.svg';
+import Cross from '../../../../../../../common/assets/images/x.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import DetailedSearch from '../components/DetailedSearch/DetailedSearch';
 import FilterDropDown from '../components/FilterDropDown';

@@ -1,10 +1,13 @@
 import retrieveCatalogSettings from './retrieveCatalogSettings';
-import mockAxios from 'jest-mock-axios';
+import { vi } from 'vitest';
+import axios from 'axios';
+
+vi.mock('axios');
 
 describe('retrieveCatalogueSettings', () => {
 
-    afterEach(() => {
-        mockAxios.reset();
+    beforeEach(() => {
+        vi.clearAllMocks();
     });
 
     it('should retrieve settings', async () => {
@@ -23,7 +26,9 @@ describe('retrieveCatalogueSettings', () => {
             data: mockSettings
         };
 
-        mockAxios.get.mockResolvedValueOnce(mockResponse);
+        const mockGet = vi.mocked(axios.get);
+        mockGet.mockResolvedValueOnce(mockResponse);
+        
         const retrievedSettings = await retrieveCatalogSettings(false);
         expect(retrievedSettings).toBeTruthy();
     });

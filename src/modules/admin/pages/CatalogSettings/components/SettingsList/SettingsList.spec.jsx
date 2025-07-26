@@ -1,5 +1,7 @@
+import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import SettingsList from './SettingsList';
+import styles from './SettingsList.module.scss';
 
 const props = {
     settings: [
@@ -14,19 +16,19 @@ const props = {
             orderNumber: 1,
         }
     ],
-    handleReorder: jest.fn(),
-    onEdit: jest.fn(),
-    onRemove: jest.fn(),
-    onSelect: jest.fn(),
-    onUnSelect: jest.fn()
+    handleReorder: vi.fn(),
+    onEdit: vi.fn(),
+    onRemove: vi.fn(),
+    onSelect: vi.fn(),
+    onUnSelect: vi.fn()
 };
 
 describe('SettingsList', () => {
     it('should render', () => {
         const { container } = render(<SettingsList {...props}/>);
 
-        expect(container.getElementsByClassName('SettingsList')[0]).toBeInTheDocument();
-        expect(container.getElementsByClassName('listArea')[0]).toBeInTheDocument();
+        expect(container.getElementsByClassName(styles.SettingsList)[0]).toBeInTheDocument();
+        expect(container.getElementsByClassName(styles.listArea)[0]).toBeInTheDocument();
         expect(screen.getByText(props.settings[0].name)).toBeInTheDocument();
 
         screen.debug();

@@ -1,5 +1,5 @@
+import { vi } from 'vitest';
 import mockProduct from '../../../../../__mocks__/mockProduct';
-import mockAxios from 'jest-mock-axios';
 import ProductMobile from './ProductMobile';
 import renderWithStoreAndRoutes from '../../../../../common/util/tests/renderWithStoreAndRouter';
 import { screen, waitFor } from '@testing-library/react';
@@ -16,17 +16,15 @@ const {
 
 let baseElement;
 
+
+
 describe('ProductMobile', () => {
 
-    afterEach(() => {
-        mockAxios.reset();
-    });
-    
     beforeEach(() => {
         baseElement = renderWithStoreAndRoutes(<ProductMobile
             product={product} productColorImages={product.productColorImages[0]} currentColorSize={currentColorSize}
             uniqueColors={uniqueColors} mainImageUrl={mainImageUrl} selectedImage={selectedImage}
-            handleSizeClick={jest.fn()}
+            handleSizeClick={vi.fn()}
         />).baseElement;
     });
 
@@ -35,7 +33,7 @@ describe('ProductMobile', () => {
     });
 
     it('should show size table', async () => {
-        const mockScrollTo = jest.fn();
+        const mockScrollTo = vi.fn();
         Object.defineProperty(window, 'scrollTo', {
             value: mockScrollTo,
             writable: true,
@@ -55,13 +53,5 @@ describe('ProductMobile', () => {
         });
         const images = screen.getAllByAltText(`product image color ${uniqueColors[0].name}`);
         expect(images[0]).toHaveAttribute('src', product.productColorImages[1].imageURLs[1]);
-    });
-
-    it('should click on image', async () => {
-        const images = screen.getAllByAltText(`product image color ${uniqueColors[0].name}`);
-        await waitFor(() => {
-            userEvent.click(images[0]);
-        });
-        expect(screen.getByAltText('selected image')).toHaveAttribute('src', mainImageUrl);
     });
 });

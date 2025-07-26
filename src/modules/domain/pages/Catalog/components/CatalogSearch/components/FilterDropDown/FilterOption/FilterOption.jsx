@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './FilterOption.module.scss';
-import { ReactComponent as Checkbox } from '../../../../../../../../../common/assets/images/checkbox.svg';
+import Checkbox from '../../../../../../../../../common/assets/images/checkbox.svg';
 import PropTypes from 'prop-types';
 
 const FilterOption = ({ item, isChecked, renderOption, onSelect, onUnselect }) => {

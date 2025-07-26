@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import ProductsCardGallery from './index';
 
@@ -17,7 +18,7 @@ const productColorImages = {
 
 const mockProps = {
     productColorImages: [productColorImages],
-    setProductColorImages: jest.fn(),
+    setProductColorImages: vi.fn(),
 };
 
 let baseElem;

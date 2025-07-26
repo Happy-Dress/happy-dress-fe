@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import s from './ModalHeader.module.scss';
-import { ReactComponent as Cross } from '../../../../../assets/images/x.svg';
+import Cross from '../../../../../assets/images/x.svg';
 
 
 const ModalHeader = ({ title, onClose }) =>{

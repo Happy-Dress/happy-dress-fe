@@ -3,7 +3,7 @@ import s from './ProductMobileGallerySlider.module.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import EnhancedImage from '../../../../../../common/ui/components/Image/EnchancedImage';
-import { ReactComponent as CloseIcon } from '../../../../../../assets/images/closeIcon.svg';
+import CloseIcon from '../../../../../../assets/images/closeIcon.svg';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';

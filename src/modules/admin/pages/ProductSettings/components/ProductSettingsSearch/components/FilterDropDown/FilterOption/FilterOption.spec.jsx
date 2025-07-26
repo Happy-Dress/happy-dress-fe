@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import React from 'react';
 import FilterOption from './FilterOption';
 import { render, screen } from '@testing-library/react';
@@ -12,8 +13,8 @@ describe('FilterOption', () => {
         };
         const { baseElement } = render(<FilterOption
             isChecked={true}
-            onUnselect={jest.fn()}
-            onSelect={jest.fn()}
+            onUnselect={vi.fn()}
+            onSelect={vi.fn()}
             renderOption={() => <span>Option</span>}
             item={mockItem}
         />);
@@ -24,11 +25,11 @@ describe('FilterOption', () => {
         const mockItem = {
             id: 1
         };
-        const mockOnUnselect = jest.fn();
+        const mockOnUnselect = vi.fn();
         render(<FilterOption
             isChecked={true}
             onUnselect={mockOnUnselect}
-            onSelect={jest.fn()}
+            onSelect={vi.fn()}
             renderOption={() => <span>Option</span>}
             item={mockItem}
         />);
