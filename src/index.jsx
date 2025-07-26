@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.module.scss';
+import './index.scss';
 import { App } from './common/ui/components';
 import { BrowserRouter } from 'react-router-dom';
 import AxiosConfigProvider from './common/config/axiosConfig';
