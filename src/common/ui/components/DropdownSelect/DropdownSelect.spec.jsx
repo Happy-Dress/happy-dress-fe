@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { DropdownSelect } from './DropdownSelect';
 import { DROPDOWN_DICTIONARY } from './DropdownSelect.dictionary';
 import userEvent from '@testing-library/user-event';
+import styles from './DropdownSelect.module.scss';
 
 const { SELECTED } = DROPDOWN_DICTIONARY;
 
@@ -86,14 +87,14 @@ describe('DropdownSelect', () => {
         const select = screen.getByTestId('selectPlaceholder');
         const arrowDown = screen.getByTestId('arrowDown');
         userEvent.click(select);
-        expect(arrowDown).toHaveClass('active');
+        expect(arrowDown).toHaveClass(styles.active);
     });
 
     it('should render error class', () => {
         renderNotMultipleDDSelect();
 
         const select = screen.getByTestId('selectPlaceholder');
-        expect(select).toHaveClass('csError');
+        expect(select).toHaveClass(styles.csError);
         userEvent.click(select);
     });
 
@@ -114,11 +115,11 @@ describe('DropdownSelect', () => {
         const select = screen.getByTestId('selectPlaceholder');
         const arrowDown = screen.getByTestId('arrowDown');
 
-        expect(arrowDown).not.toHaveClass('active');
+        expect(arrowDown).not.toHaveClass(styles.active);
         userEvent.click(select);
-        expect(arrowDown).toHaveClass('active');
+        expect(arrowDown).toHaveClass(styles.active);
         userEvent.click(outer);
-        expect(select).not.toHaveClass('active');
+        expect(select).not.toHaveClass(styles.active);
     });
 
     it('should select radio options on click', () => {
@@ -138,7 +139,7 @@ describe('DropdownSelect', () => {
         const option1 = screen.getByDisplayValue('option1');
 
         expect(option1).not.toBeChecked();
-        expect(arrowDown).not.toHaveClass('active');
+        expect(arrowDown).not.toHaveClass(styles.active);
         userEvent.click(select);
         userEvent.click(option1);
         expect(option1).toBeChecked();
@@ -162,7 +163,7 @@ describe('DropdownSelect', () => {
         const option1 = screen.getByDisplayValue('option1');
 
         expect(option1).not.toBeChecked();
-        expect(arrowDown).not.toHaveClass('active');
+        expect(arrowDown).not.toHaveClass(styles.active);
         userEvent.click(select);
         userEvent.click(option1);
         expect(option1).toBeChecked();

@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './HeaderDesktop.module.scss';
-import { ReactComponent as Hanger } from '../../../../../common/assets/images/hanger.svg';
+import Hanger from '../../../../../common/assets/images/hanger.svg';
 import { HEADER_DICTIONARY } from '../Header.dictionary';
 import { Typography } from '../../../../../common/ui/components';
 import { NavLink } from 'react-router-dom';

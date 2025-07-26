@@ -1,7 +1,7 @@
 import s from './SettingDropDown.module.scss';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { ReactComponent as ArrowDown } from '../../../../../../common/assets/images/arrowDown.svg';
+import ArrowDown from '../../../../../../common/assets/images/arrowDown.svg';
 import { useCatalogSettings } from '../../contexts/CatalogSettingsContext/hook/useCatalogSettings';
 
 const SettingsDropDown = ({ name, children }) =>{

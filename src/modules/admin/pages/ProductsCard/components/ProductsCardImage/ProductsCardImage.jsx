@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import s from './ProductsCardImage.module.scss';
-import { ReactComponent as AddIcon } from '../../../../../../common/assets/images/AddIconNormal.svg';
-import { ReactComponent as DeleteIcon } from '../../../../../../common/assets/images/Trash.svg';
+import AddIcon from '../../../../../../common/assets/images/AddIconNormal.svg';
+import DeleteIcon from '../../../../../../common/assets/images/Trash.svg';
 import LoadingSkeleton from '../../../../../../common/ui/components/Image/LoadingSkeleton';
 import CachedImage from '../../../../../../common/ui/components/Image/CachedImage';
 import ZoomableImage from '../../../../../../common/ui/components/Image/ZoomableImage';

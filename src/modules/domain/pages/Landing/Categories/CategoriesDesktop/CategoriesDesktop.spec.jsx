@@ -1,6 +1,8 @@
+import { vi } from 'vitest';
 import { screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import CategoriesDesktop from './CategoriesDesktop';
+import styles from './CategoriesDesktop.module.scss';
 import userEvent from '@testing-library/user-event';
 import renderWithStoreAndRoutes from '../../../../../../common/util/tests/renderWithStoreAndRouter';
 import renderWithStoreAndRouter from '../../../../../../common/util/tests/renderWithStoreAndRouter';
@@ -37,18 +39,18 @@ describe('CategoriesDesktop', ( ) => {
         const firstCard = screen.getByTestId('card_0');
         const firstPic = firstCard.querySelector('img');
 
-        expect(secondPic).toHaveAttribute('class', 'small');
+        expect(secondPic).toHaveClass( styles.small);
         await userEvent.click(rightArrow);
-        expect(secondPic).toHaveAttribute('class', 'main small');
+        expect(secondPic).toHaveClass(styles.main, styles.small);
 
-        expect(firstPic).toHaveAttribute('class', 'medium');
+        expect(firstPic).toHaveClass(styles.medium);
         await userEvent.click(leftArrow);
-        expect(firstPic).toHaveAttribute('class', 'main medium');
+        expect(firstPic).toHaveClass(styles.main, styles.medium);
     });
 
     it('should click on image', async () => {
         renderWithStoreAndRouter(<CategoriesDesktop categories={categories} />);
-        const mockScrollTo = jest.fn();
+        const mockScrollTo = vi.fn();
         Object.defineProperty(window, 'scrollTo', {
             value: mockScrollTo,
             writable: true,

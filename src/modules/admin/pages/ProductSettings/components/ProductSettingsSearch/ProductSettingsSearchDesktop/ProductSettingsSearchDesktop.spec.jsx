@@ -1,11 +1,11 @@
 import ProductsSettingsSearchDesktop from './ProductsSettingsSearchDesktop';
-import renderWithStore from '../../../../../../../common/util/tests/renderWithStore';
+import renderWithStoreAndRoutes from '../../../../../../../common/util/tests/renderWithStoreAndRouter';
 
 let baseElem;
 
 describe('ProductSettingsSearchDesktop', () => {
     beforeEach(() => {
-        baseElem = renderWithStore(<ProductsSettingsSearchDesktop/>).baseElement;
+        baseElem = renderWithStoreAndRoutes(<ProductsSettingsSearchDesktop/>).baseElement;
     });
 
     it('should render', () => {

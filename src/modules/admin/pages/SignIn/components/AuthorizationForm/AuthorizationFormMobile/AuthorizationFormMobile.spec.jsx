@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { screen, render, waitFor, act, fireEvent } from '@testing-library/react';
 import useAuthorizationForm from '../../../hooks/useAuthorizationForm';
 import AuthorizationFormMobile from './AuthorizationFormMobile';
@@ -15,14 +16,14 @@ const Wrapper = () => {
     );
 };
 
-const mockedUseNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
+const mockedUseNavigate = vi.fn();
+vi.mock('react-router-dom', () => ({
     useNavigate: () => mockedUseNavigate,
 }));
 
-jest.mock('../../../../../api/authenticateUser', () => ({
+vi.mock('../../../../../api/authenticateUser', () => ({
     __esModule: true,
-    default: () => jest.fn(),
+    default: () => vi.fn(),
 }));
 
 

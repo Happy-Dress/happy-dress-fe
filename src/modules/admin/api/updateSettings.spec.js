@@ -1,13 +1,17 @@
-import mockAxios from 'jest-mock-axios';
 import updateSettings from './updateSettings';
+import { vi } from 'vitest';
+import axios from 'axios';
+
+vi.mock('axios');
 
 describe('updateSettings', () => {
 
-    afterEach(() => {
-        mockAxios.reset();
+    beforeEach(() => {
+        vi.clearAllMocks();
     });
 
     it('should update settings', async () => {
+        // Setup
         const mockSettings = {
             models: [
                 { id: 1, name: 'Пышные' }
@@ -23,8 +27,13 @@ describe('updateSettings', () => {
             data: mockSettings
         };
 
-        mockAxios.post.mockResolvedValueOnce(mockResponse);
+        const mockPost = vi.mocked(axios.post);
+        mockPost.mockResolvedValueOnce(mockResponse);
+
+        // Run
         const updatedSettings = await updateSettings(mockSettings);
+
+        // Verify
         expect(updatedSettings).toBeTruthy();
     });
 

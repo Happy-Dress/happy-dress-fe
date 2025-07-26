@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import burger from '../../../../../common/assets/images/burger.svg';
-import x from '../../../../../common/assets/images/x.svg';
+import BurgerIcon from '../../../../../common/assets/images/burger.svg';
+import XIcon from '../../../../../common/assets/images/x.svg';
 import s from './NavigationPanelMobile.module.scss';
 import Typography from '../../../../../common/ui/components/Typography/Typography';
 import { NAVIGATION_PANEL_DICTIONARY } from '../NavigationPanel.dictionary';
@@ -28,15 +28,14 @@ const NavigationPanelMobile = ({ ordersAmount, handleExit }) => {
                 </div>
                 <div className={s.buttonBurgerMobile}>
                     {activeMenu ? (
-                        <img
-                            src={x}
+                        <XIcon
                             alt="X"
                             onClick={handleMenuToggle}
                         />
                     ) : (
-                        <img
-                            src={burger}
+                        <BurgerIcon
                             alt="W"
+                            aria-label='burger-icon'
                             onClick={handleMenuToggle}
                         />
                     )}

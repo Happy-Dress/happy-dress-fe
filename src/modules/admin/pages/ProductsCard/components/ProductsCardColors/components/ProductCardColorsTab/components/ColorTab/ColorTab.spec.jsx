@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { render } from '@testing-library/react';
 import ColorTab from './index';
 
@@ -12,7 +13,7 @@ const mockColor = {
 const mockProps = {
     currentColor: mockColor,
     optionsColors: [mockColor],
-    handleChangeColor: jest.fn(),
+    handleChangeColor: vi.fn(),
     idx: '1',
 };
 

@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
@@ -22,11 +23,11 @@ const mockProduct = {
     ],
 };
 
-jest.mock('react-router-dom', () => ({
+vi.mock('react-router-dom', () => ({
     Link: ({ children }) => <div>{children}</div>,
 }));
 
-jest.mock('../../../../../../../../common/ui/contexts/DeviceType', () => ({
+vi.mock('../../../../../../../../common/ui/contexts/DeviceType', () => ({
     useDeviceTypeContext: () => ({ isMobile: true }),
 }));
 
@@ -40,7 +41,7 @@ describe('ProductCard', () => {
                 selectedProducts: [],
             },
         });
-        dispatch = jest.fn();
+        dispatch = vi.fn();
         store.dispatch = dispatch;
     });
 

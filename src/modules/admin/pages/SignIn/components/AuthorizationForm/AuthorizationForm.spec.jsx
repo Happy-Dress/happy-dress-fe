@@ -1,13 +1,14 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { screen, render, waitFor } from '@testing-library/react';
 import AuthorizationForm from './AuthorizationForm';
 
-jest.mock('./AuthorizationFormDesktop', () => ({
+vi.mock('./AuthorizationFormDesktop', () => ({
     __esModule: true,
     default: () => <div>Authorization form desktop</div>
 }));
 
-jest.mock('./AuthorizationFormMobile', () => ({
+vi.mock('./AuthorizationFormMobile', () => ({
     __esModule: true,
     default: () => <div>Authorization form mobile</div>
 }));
@@ -16,21 +17,32 @@ let mockIsMobileWidth = false;
 let mockIsMobileHeight = false;
 let mockIsDesktopWidth = false;
 
-jest.mock('../../hooks/useSignInMediaQuery', () => () => ({
-    isMobileWidth: mockIsMobileWidth,
-    isMobileHeight: mockIsMobileHeight,
-    isDesktopWidth: mockIsDesktopWidth,
-}));
 
-jest.mock('../../hooks/useAuthorizationForm', () => () => ({
-    onSubmit: jest.fn(),
-    register: {},
-    setError: jest.fn(),
-    errors: {},
-    isValid: false,
-    isPasswordVisible: false,
-    togglePasswordVisibility: jest.fn(),
-}));
+vi.mock('../../hooks/useSignInMediaQuery', () => {
+    return {
+        default: () => ({
+            isMobileWidth: mockIsMobileWidth,
+            isMobileHeight: mockIsMobileHeight,
+            isDesktopWidth: mockIsDesktopWidth,
+        })
+    };
+});
+
+
+vi.mock('../../hooks/useAuthorizationForm', () => {
+    return {
+        default: () => ({
+            onSubmit: vi.fn(),
+            register: {},
+            setError: vi.fn(),
+            errors: {},
+            isValid: false,
+            isPasswordVisible: false,
+            togglePasswordVisibility: vi.fn()
+        })
+    };
+});
+
 
 
 describe('AuthorizationForm', () => {

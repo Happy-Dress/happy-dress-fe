@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { render } from '@testing-library/react';
 import ProductsCardColors from './index';
 
@@ -21,7 +22,7 @@ const mockProps = {
     }],
     allColors: [mockColor],
     allSizes: [mockSize],
-    setProductColorSizes: jest.fn(),
+    setProductColorSizes: vi.fn(),
 };
 
 let baseElem;

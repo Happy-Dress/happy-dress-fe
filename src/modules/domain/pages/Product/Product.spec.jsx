@@ -1,9 +1,9 @@
+import { vi } from 'vitest';
 import Product from './index';
-import mockAxios from 'jest-mock-axios';
 import { mockCatalogueItemResponse } from '../../../../__mocks__/mockCatalogueItemResponse';
 import renderWithStoreAndRouter from '../../../../common/util/tests/renderWithStoreAndRouter';
 
-jest.mock('../../../../common/api',
+vi.mock('../../../../common/api',
     ()=>({
         getCatalogueItem: async () => mockCatalogueItemResponse,
     })
@@ -11,12 +11,8 @@ jest.mock('../../../../common/api',
 
 describe('Product', () => {
 
-    afterEach(() => {
-        mockAxios.reset();
-    });
-
     beforeAll(() => {
-        jest.useFakeTimers();
+        vi.useFakeTimers();
     });
 
     it('should render correctly', () => {

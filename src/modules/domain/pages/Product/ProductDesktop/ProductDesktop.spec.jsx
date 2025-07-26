@@ -1,5 +1,5 @@
+import { vi } from 'vitest';
 import mockProduct from '../../../../../__mocks__/mockProduct';
-import mockAxios from 'jest-mock-axios';
 import ProductDesktop from './index';
 import renderWithStoreAndRouter from '../../../../../common/util/tests/renderWithStoreAndRouter';
 import { screen, waitFor } from '@testing-library/react';
@@ -19,14 +19,10 @@ let baseElement;
 
 describe('ProductDesktop', () => {
 
-    afterEach(() => {
-        mockAxios.reset();
-    });
-
     beforeEach(() => {
         baseElement = renderWithStoreAndRouter(<ProductDesktop
             product={product} productColorImages={product.productColorImages[0]} currentColorSize={currentColorSize}
-            uniqueColors={uniqueColors} selectedImage={selectedImage} handleSizeClick={jest.fn()}
+            uniqueColors={uniqueColors} selectedImage={selectedImage} handleSizeClick={vi.fn()}
         />).baseElement;
     });
 

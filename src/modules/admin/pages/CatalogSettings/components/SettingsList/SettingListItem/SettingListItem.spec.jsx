@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import SettingListItem from './SettingListItem';
 import userEvent from '@testing-library/user-event';
@@ -6,8 +7,8 @@ const mockSetting = {
     id: 1,
     name: 'Пышные'
 };
-const mockOnSelect = jest.fn();
-const mockOnUnselect = jest.fn();
+const mockOnSelect = vi.fn();
+const mockOnUnselect = vi.fn();
 
 describe('SettingListItem', () => {
 

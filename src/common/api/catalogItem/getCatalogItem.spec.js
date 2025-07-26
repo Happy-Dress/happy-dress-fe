@@ -1,10 +1,19 @@
 import getCatalogueItem from './getCatalogItem';
-import mockAxios from 'jest-mock-axios';
 import { mockCatalogueItemResponse } from '../../../__mocks__/mockCatalogueItemResponse';
+import { vi } from 'vitest';
+import axios from 'axios';
+
+vi.mock('axios');
 
 describe('getCatalogueItem', () => {
+
+    beforeEach(() => {
+        vi.clearAllMocks();
+    });
+
     it('should return expected values', async () => {
-        mockAxios.get.mockResolvedValueOnce({ data: mockCatalogueItemResponse });
+        const mockGet = vi.mocked(axios.get);
+        mockGet.mockResolvedValueOnce({ data: mockCatalogueItemResponse });
         const response = await getCatalogueItem(1, false);
         expect(response).toBeTruthy();
     });

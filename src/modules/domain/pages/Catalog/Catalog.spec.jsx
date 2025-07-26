@@ -1,11 +1,11 @@
-import Catalog from './Catalog';
 import React from 'react';
-import mockAxios from 'jest-mock-axios';
+import { vi } from 'vitest';
+import Catalog from './Catalog';
 import { mockCatalogueSettingsResponse } from '../../../../__mocks__/mockCatalogueSettingsResponse';
 import { mockCatalogueItemsResponse } from '../../../../__mocks__/mockCatalogueItemsResponse';
 import renderWithStoreAndRoutes from '../../../../common/util/tests/renderWithStoreAndRouter';
 
-jest.mock('../../../../common/api',
+vi.mock('../../../../common/api',
     ()=>({
         retrieveCatalogueSettings: async () => mockCatalogueSettingsResponse,
         getCatalogueItems: async () => mockCatalogueItemsResponse,
@@ -14,12 +14,8 @@ jest.mock('../../../../common/api',
 
 describe('ProductSettings', () =>{
 
-    afterEach(() => {
-        mockAxios.reset();
-    });
-
     beforeAll(() => {
-        jest.useFakeTimers();
+        vi.useFakeTimers();
     });
 
 
