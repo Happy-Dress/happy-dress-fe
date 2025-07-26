@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@vitejs/plugin-react": "^4.7.0",
     "@hookform/error-message": "^2.0.1",
     "@hookform/resolvers": "^2.9.10",
     "@pbe/react-yandex-maps": "^1.2.4",
@@ -75,7 +76,6 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",
     "@types/react-router-dom": "^5.3.3",
-    "@vitejs/plugin-react": "^4.7.0",
     "@vitest/coverage-istanbul": "^3.2.4",
     "@vitest/coverage-v8": "^3.2.4",
     "dotenv": "^16.0.3",
