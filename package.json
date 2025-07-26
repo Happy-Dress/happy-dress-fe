@@ -12,6 +12,7 @@
     "axios": "^0.24.0",
     "classnames": "^2.3.1",
     "colord": "^2.9.3",
+    "express": "^5.1.0",
     "framer-motion": "^7.9.0",
     "husky": "^8.0.3",
     "jwt-decode": "^3.1.2",
@@ -48,6 +49,9 @@
     "lint:fix": "eslint --fix --ext .js,.jsx .",
     "coverage": "react-scripts test --coverage --watchAll",
     "covergae:ci": "react-scripts test --watchAll=false --coverage"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   },
   "eslintConfig": {
     "extends": [
