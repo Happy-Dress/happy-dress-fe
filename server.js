@@ -15,6 +15,18 @@ app.get(/(.*)/, (req, res) => {
     res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
+app.use((req, res, next) => {
+    // Для JS-файлов
+    if (req.path.endsWith('.js')) {
+        res.type('application/javascript');
+    }
+    // Для CSS-файлов
+    if (req.path.endsWith('.css')) {
+        res.type('text/css');
+    }
+    next();
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server started: http://localhost:${PORT}`);
