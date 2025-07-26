@@ -45,7 +45,6 @@
     "serve": "vite preview",
     "build": "vite build",
     "test": "vitest",
-    "prepare": "husky install",
     "lint": "eslint .",
     "lint:fix": "eslint --fix --ext .js,.jsx .",
     "coverage": "vitest run --coverage --watch",
