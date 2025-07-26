@@ -1,8 +1,9 @@
+import { vi } from 'vitest';
 import useSignInMediaQuery from './useSignInMediaQuery';
 import { useMediaQuery } from 'react-responsive';
 
-jest.mock('react-responsive', () => ({
-    useMediaQuery: jest.fn(),
+vi.mock('react-responsive', () => ({
+    useMediaQuery: vi.fn(),
 }));
 
 describe('useSignInMediaQuery', () => {

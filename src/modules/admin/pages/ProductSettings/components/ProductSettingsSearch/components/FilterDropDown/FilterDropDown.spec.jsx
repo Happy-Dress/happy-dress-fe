@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import FilterDropDown from './index';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -5,9 +6,9 @@ import userEvent from '@testing-library/user-event';
 let baseElem;
 
 const mockProps = {
-    onUnSelect: jest.fn(),
-    onSelect: jest.fn(),
-    renderOption: jest.fn(),
+    onUnSelect: vi.fn(),
+    onSelect: vi.fn(),
+    renderOption: vi.fn(),
     name: 'test',
     options: [{
         id: 1,

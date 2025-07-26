@@ -1,22 +1,23 @@
-import { render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
+import { vi } from 'vitest';
+import { render, screen, waitFor } from '@testing-library/react';
 import SignIn from './SignIn';
 
-jest.mock('./components/AuthorizationForm', ()=>({
+vi.mock('./components/AuthorizationForm', ()=>({
     __esModule: true,
     default: ()=>{
         return <div data-testid="authorization-form"/>;
     }
 }));
 
-jest.mock('./components/SignInHeader', ()=>({
+vi.mock('./components/SignInHeader', ()=>({
     __esModule: true,
     default: ()=>{
         return <div data-testid="sign-in-header"/>;
     }
 }));
 
-jest.mock('./components/SignInFooter', ()=>({
+vi.mock('./components/SignInFooter', ()=>({
     __esModule: true,
     default: ()=>{
         return <div data-testid="sign-in-footer"/>;

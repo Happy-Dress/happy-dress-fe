@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import s from './ProductMobile.module.scss';
-import leftArrow from '../../../../../assets/images/leftArrow.svg';
+import LeftArrow from '../../../../../assets/images/leftArrow.svg';
 import { PRODUCT_DICTIONARY } from '../Product.dictionary';
 import ColorsSizesTable from '../components/ColorsSizesTable';
 import SizesTable from '../components/SizesTable';
@@ -48,7 +48,7 @@ const ProductMobile = (props) => {
                             className={s.ProductMobile_return}
                             onClick={() => dispatch(setCategory({ category: product.category.id, shouldDropProducts: false }))}
                         >
-                            <img src={leftArrow} alt={'return arrow'}/>
+                            <LeftArrow alt={'return arrow'}/>
                             <h4>{product.name}</h4>
                         </div>
                     </Link>
@@ -98,7 +98,7 @@ const ProductMobile = (props) => {
                         className={s.ProductMobile_return}
                         onClick={handleOpenTableSize}
                     >
-                        <img src={leftArrow} alt={'return arrow'}/>
+                        <LeftArrow alt={'return arrow'}/>
                         <h4>{TABLE_SIZE_LABEL}</h4>
                     </div>
                     <div data-testid={'size-table'}>

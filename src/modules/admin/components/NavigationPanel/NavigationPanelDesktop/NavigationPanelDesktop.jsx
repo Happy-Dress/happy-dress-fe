@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { ReactComponent as Exit } from '../../../../../common/assets/images/exit.svg';
-import { ReactComponent as Catalog } from '../../../../../common/assets/images/catalog.svg';
-import { ReactComponent as Goods } from '../../../../../common/assets/images/goods.svg';
-import { ReactComponent as Registration } from '../../../../../common/assets/images/registration.svg';
-import { ReactComponent as Blog } from '../../../../../common/assets/images/blog.svg';
+import Exit from '../../../../../common/assets/images/exit.svg';
+import Catalog from '../../../../../common/assets/images/catalog.svg';
+import Goods from '../../../../../common/assets/images/goods.svg';
+import Registration from '../../../../../common/assets/images/registration.svg';
+import Blog from '../../../../../common/assets/images/blog.svg';
 import s from './NavigationPanelDesktop.module.scss';
 import Typography from '../../../../../common/ui/components/Typography/Typography';
 import { NAVIGATION_PANEL_DICTIONARY } from '../NavigationPanel.dictionary';

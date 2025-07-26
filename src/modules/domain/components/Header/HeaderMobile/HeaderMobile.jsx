@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import s from './HeaderMobile.module.scss';
 import { HEADER_DICTIONARY } from '../Header.dictionary';
-import { ReactComponent as X } from '../../../../../common/assets/images/x.svg';
-import { ReactComponent as Hanger } from '../../../../../common/assets/images/hanger.svg';
-import { ReactComponent as Burger } from '../../../../../common/assets/images/burger.svg';
+import X from '../../../../../common/assets/images/x.svg';
+import Hanger from '../../../../../common/assets/images/hanger.svg';
+import Burger from '../../../../../common/assets/images/burger.svg';
 import { Typography } from '../../../../../common/ui/components';
 import { routerConfig } from '../../../config';
 import { NavLink } from 'react-router-dom';

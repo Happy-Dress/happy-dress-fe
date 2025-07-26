@@ -1,14 +1,14 @@
 import React from 'react';
 import s from './AuthorizationFormDesktop.module.scss';
 import { AUTHORIZATION_FORM_DICTIONARY } from '../AuthorizationForm.dictionary';
-import person from '../../../../../../../common/assets/images/person.svg';
-import arrowRight from '../../../../../../../common/assets/images/arrowRight.svg';
+import Person from '../../../../../../../common/assets/images/person.svg';
+import ArrowRight from '../../../../../../../common/assets/images/arrowRight.svg';
 import { ErrorMessage } from '@hookform/error-message';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import ButtonAccent from '../../../../../../../common/ui/components/Buttons/ButtonAccent';
-import closedEye from '../../../../../../../common/assets/images/closedEye.svg';
-import openEye from '../../../../../../../common/assets/images/openEye.svg';
+import ClosedEye from '../../../../../../../common/assets/images/closedEye.svg';
+import OpenEye from '../../../../../../../common/assets/images/openEye.svg';
 
 
 const {
@@ -29,7 +29,7 @@ const AuthorizationFormDesktop = ({
     isValid
 }) => {
 
-    const passwordIcon = isPasswordVisible ? openEye : closedEye;
+    const PasswordIcon = isPasswordVisible ? OpenEye : ClosedEye;
     const passwordInputType = isPasswordVisible ? 'text' : 'password';
     
     const renderErrorMessage = (name) =>{
@@ -60,8 +60,7 @@ const AuthorizationFormDesktop = ({
                                 errors.login?.message ? s.Form_input_fields_input_invalid : s.Form_input_fields_input_valid
                             )
                         }>
-                            <img className={s.Form_input_fields_img_input}
-                                src={person}
+                            <Person className={s.Form_input_fields_img_input}
                                 alt="person"/>
                             <input type="text"
                                 placeholder={HELP_YOUR_NAME_LABEL}
@@ -81,16 +80,16 @@ const AuthorizationFormDesktop = ({
                                     errors.password?.message ? s.Form_input_fields_input_invalid : s.Form_input_fields_input_valid
                                 )
                                 }>
-                                <img className={s.Form_input_fields_img_input}
-                                    src={arrowRight}
+                                <ArrowRight className={s.Form_input_fields_img_input}
                                     alt="arrowRight"/>
                                 <input type={passwordInputType}
                                     placeholder={HELP_PASSWORD_LABEL}
                                     maxLength={MAX_PASSWORD_LENGTH}
                                     {...register('password')}/>
-                                <img src={passwordIcon}
+                                <PasswordIcon
                                     onClick={togglePasswordVisibility}
-                                    alt="visibility icon"/>
+                                    aria-label="visibility icon"
+                                />
                             </div>
                             {renderErrorMessage('password')}
                         </div>

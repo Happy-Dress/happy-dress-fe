@@ -1,10 +1,11 @@
+import { vi } from 'vitest';
 import axios from 'axios';
 import authenticateUser from './authenticateUser';
 
 
 describe('authenticateUser', () => {
     it('should return access token', async () => {
-        axios.post = jest.fn().mockImplementationOnce(() => 
+        axios.post = vi.fn().mockImplementationOnce(() => 
             Promise.resolve({
                 data: {
                     accessToken: 'access',

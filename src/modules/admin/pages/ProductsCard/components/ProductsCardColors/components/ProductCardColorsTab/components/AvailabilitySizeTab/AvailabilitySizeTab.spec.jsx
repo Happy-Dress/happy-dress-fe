@@ -1,8 +1,9 @@
+import { vi } from 'vitest';
 import { render } from '@testing-library/react';
 import AvailabilitySizeTab from './index';
 
 const mockProps = {
-    handleChangeSize: jest.fn(),
+    handleChangeSize: vi.fn(),
     isAvailable: true,
     idx: '1',
 };

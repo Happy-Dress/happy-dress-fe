@@ -2,10 +2,11 @@ import ProductCard from './ProductCard';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithStore from '../../../util/tests/renderWithStore';
+import { vi } from 'vitest';
 
-global.scrollTo = jest.fn();
-const mockedUseNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
+global.scrollTo = vi.fn();
+const mockedUseNavigate = vi.fn();
+vi.mock('react-router-dom', () => ({
     useNavigate: () => mockedUseNavigate,
 }));
 

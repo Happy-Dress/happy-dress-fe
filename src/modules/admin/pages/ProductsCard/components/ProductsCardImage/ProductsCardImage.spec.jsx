@@ -1,9 +1,10 @@
+import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import ProductsCardImage from './ProductsCardImage';
 import userEvent from '@testing-library/user-event';
 
-const mockAddFn = jest.fn();
-const mockDeleteFn = jest.fn();
+const mockAddFn = vi.fn();
+const mockDeleteFn = vi.fn();
 
 describe('ProductsCardImage', () => {
     it('should render with loader', () => {

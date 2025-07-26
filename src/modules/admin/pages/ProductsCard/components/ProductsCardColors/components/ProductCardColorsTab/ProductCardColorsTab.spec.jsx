@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import ProductCardColorsTab from './index';
 import userEvent from '@testing-library/user-event';
@@ -21,9 +22,9 @@ const mockProps = {
     productSizes: [mockSize],
     allSizes: [mockSize],
     optionsColors: [mockColor],
-    handleDelete: jest.fn(),
-    handleChangeColor: jest.fn(),
-    handleChangeSize: jest.fn(),
+    handleDelete: vi.fn(),
+    handleChangeColor: vi.fn(),
+    handleChangeSize: vi.fn(),
     idx: '1',
 };
 

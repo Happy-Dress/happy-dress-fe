@@ -1,10 +1,11 @@
+import { vi } from 'vitest';
 import { render } from '@testing-library/react';
 import React from 'react';
 import Categories from './Categories';
 import { waitFor } from '@testing-library/dom';
 
 
-jest.mock('../../../../../common/api/catalogSettings/retrieveCatalogSettings', () =>({
+vi.mock('../../../../../common/api/catalogSettings/retrieveCatalogSettings', () =>({
     __esModule: true,
     default: () => Promise.resolve({ settings: [] }),
 }));

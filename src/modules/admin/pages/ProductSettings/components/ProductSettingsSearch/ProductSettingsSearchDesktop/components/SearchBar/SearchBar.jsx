@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './SearchBar.module.scss';
-import { ReactComponent as Search } from '../../../../../../../../../common/assets/images/search.svg';
+import Search from '../../../../../../../../../common/assets/images/search.svg';
 import { DebounceInput } from 'react-debounce-input';
 import { useDispatch, useSelector } from 'react-redux';
 import { setName } from '../../../../../../../../../common/ui/store/slices/productsSearchSlice';

@@ -3,7 +3,7 @@ import s from './ProductCardColorsTab.module.scss';
 import PropTypes from 'prop-types';
 import ColorTab from './components/ColorTab';
 import AvailabilitySizeTab from './components/AvailabilitySizeTab';
-import { ReactComponent as Trash } from '../../../../../../../../common/assets/images/Trash.svg';
+import Trash from '../../../../../../../../common/assets/images/Trash.svg';
 import { PRODUCT_CARD_DICTIONARY } from '../../../../ProductsCard.dictionary';
 
 const {

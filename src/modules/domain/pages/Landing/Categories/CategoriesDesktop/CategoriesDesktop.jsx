@@ -3,7 +3,7 @@ import s from './CategoriesDesktop.module.scss';
 import PropTypes from 'prop-types';
 import CATEGORIES_DICTIONARY from '../Categories.dictionary';
 import classNames from 'classnames';
-import { ReactComponent as Arrow } from '../../../../../../common/assets/images/slider-arrow.svg';
+import Arrow from '../../../../../../common/assets/images/slider-arrow.svg';
 import { useDispatch } from 'react-redux';
 import { setCategory } from '../../../../../../common/ui/store/slices/productsSearchSlice';
 import { useNavigate } from 'react-router-dom';

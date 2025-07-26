@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import s from './ErrorLoadingImage.module.scss';
-import { ReactComponent as Retry } from '../../../../assets/images/retry.svg';
+import Retry from '../../../../assets/images/retry.svg';
 
 const ErrorLoadingImage = ({ isError, label, shouldDisplayRetryButton, onClick }) => {
     

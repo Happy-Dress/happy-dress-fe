@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './ProductCardColorsAdd.module.scss';
-import { ReactComponent as Plus } from '../../../../../../../../common/assets/images/plus.svg';
-import { ReactComponent as BarChartHorizontal } from '../../../../../../../../common/assets/images/bar-chart-horizontal.svg';
-import { ReactComponent as ArrowDown } from '../../../../../../../../common/assets/images/arrowDown.svg';
+import Plus from '../../../../../../../../common/assets/images/plus.svg';
+import BarChartHorizontal from '../../../../../../../../common/assets/images/bar-chart-horizontal.svg';
+import ArrowDown from '../../../../../../../../common/assets/images/arrowDown.svg';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { PRODUCT_CARD_DICTIONARY } from '../../../../ProductsCard.dictionary';

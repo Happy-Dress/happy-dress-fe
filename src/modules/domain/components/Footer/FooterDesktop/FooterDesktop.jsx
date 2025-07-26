@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './FooterDesktop.module.scss';
-import instagram from '../../../../../common/assets/images/inst.svg';
-import vk from '../../../../../common/assets/images/vk.svg';
-import telegram from '../../../../../common/assets/images/tg.svg';
+import Instagram from '../../../../../common/assets/images/inst.svg';
+import Vk from '../../../../../common/assets/images/vk.svg';
+import Telgram from '../../../../../common/assets/images/tg.svg';
 import { FOOTER_DICTIONARY } from '../Footer.dictionary';
 import { Typography } from '../../../../../common/ui/components';
 import { routerConfig } from '../../../config';
@@ -66,13 +66,13 @@ const FooterDesktop = () => {
                     </div>
                     <div className={s.Footer_right_side_menu}>
                         <a href={INSTAGRAM_LINK} target="_blank" rel="noreferrer">
-                            <img className={s.Footer_right_side_hanger} src={instagram} alt="instagram"/>
+                            <Instagram className={s.Footer_right_side_hanger} alt="instagram"/>
                         </a>
                         <a href={VK_LINK} target="_blank" rel="noreferrer">
-                            <img className={s.Footer_right_side_hanger} src={vk} alt="vk"/>
+                            <Vk className={s.Footer_right_side_hanger} alt="vk"/>
                         </a>
                         <a href={TELEGRAM_LINK} target="_blank" rel="noreferrer">
-                            <img className={s.Footer_right_side_hanger} src={telegram} alt="telegram"/>
+                            <Telgram className={s.Footer_right_side_hanger} alt="telegram"/>
                         </a>
                     </div>
                 </div>

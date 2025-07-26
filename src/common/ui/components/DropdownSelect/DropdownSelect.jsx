@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes, { oneOf } from 'prop-types';
 import cls from 'classnames';
 import s from './DropdownSelect.module.scss';
-import { ReactComponent as ArrowDown } from '../../../assets/images/arrowDown.svg';
+import ArrowDown from '../../../assets/images/arrowDown.svg';
 import useOutsideClick from '../../hooks/useOutsideClick';
 import { DROPDOWN_DICTIONARY } from './DropdownSelect.dictionary';
 import classNames from 'classnames';

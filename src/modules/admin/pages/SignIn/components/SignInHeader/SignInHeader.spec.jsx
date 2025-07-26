@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { screen, render, waitFor } from '@testing-library/react';
 import SignInHeader from './SignInHeader';
 import useSignInMediaQuery from '../../hooks/useSignInMediaQuery';
@@ -7,7 +8,7 @@ let mockIsDesktopWidth = true;
 let mockIsMobileWidth = false;
 let mockIsMobileHeight = false;
 
-jest.mock('../../hooks/useSignInMediaQuery');
+vi.mock('../../hooks/useSignInMediaQuery');
 
 describe('SignInHeader', () => {
     it('should render header desktop', async () => {
