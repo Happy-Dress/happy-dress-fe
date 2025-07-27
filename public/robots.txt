@@ -1,0 +1,16 @@
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Disallow: /admin/*
+Allow: /domain/*
+Sitemap: https://www.happy-dress-vitebsk.by/sitemap.xml
+
+User-agent: Yandex
+Disallow: /admin/*
+Allow: /domain/*
+
+User-agent: Googlebot
+Disallow: /admin/*
+Allow: /domain/*
+Allow: *.css
+Allow: *.js
