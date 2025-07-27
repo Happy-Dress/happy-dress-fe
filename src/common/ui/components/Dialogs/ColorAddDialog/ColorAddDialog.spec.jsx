@@ -1,14 +1,15 @@
+import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import ColorAddDialog from './ColorAddDialog';
 import { ModalProvider } from 'react-modal-hook';
 
 const props = {
-    onClose: jest.fn(),
+    onClose: vi.fn(),
     settingsList: [],
-    updateSettings: jest.fn()
+    updateSettings: vi.fn()
 };
 
-jest.mock('./ColorAddDialog', () => ({
+vi.mock('./ColorAddDialog', () => ({
     __esModule: true,
     default: () => <div>ColorAddDialog</div>
 }));

@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import ColorsSizesTable from './index';
 import userEvent from '@testing-library/user-event';
@@ -9,7 +10,7 @@ const {
     currentColorSize,
 } = mockProduct;
 const sizes = [38, 40, 42, 44, 46, 48, 50, 52];
-const handleSizeClick = jest.fn();
+const handleSizeClick = vi.fn();
 let baseElement;
 
 describe('ColorsSizesTable', () => {

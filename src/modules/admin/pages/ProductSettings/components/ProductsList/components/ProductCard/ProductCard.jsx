@@ -4,9 +4,9 @@ import s from './ProductCard.module.scss';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { PRODUCT_CARD_DICTIONARY } from './ProductCard.dictionary';
-import { ReactComponent as EmptyCheckbox } from '../../../../../../../../common/assets/images/EmptyCheckbox.svg';
-import { ReactComponent as Checkbox } from '../../../../../../../../common/assets/images/checkbox.svg';
-import { ReactComponent as Update } from '../../../../../../../../common/assets/images/update.svg';
+import EmptyCheckbox from '../../../../../../../../common/assets/images/EmptyCheckbox.svg';
+import Checkbox from '../../../../../../../../common/assets/images/checkbox.svg';
+import Update from '../../../../../../../../common/assets/images/update.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDeviceTypeContext } from '../../../../../../../../common/ui/contexts/DeviceType';
 import {

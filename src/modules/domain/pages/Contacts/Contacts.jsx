@@ -6,9 +6,9 @@ import secondary3Image from '../../../../common/assets/images/contacts3.png';
 import secondary4Image from '../../../../common/assets/images/contacts4.png';
 import GalleryContacts from './components/GalleryContacts';
 import { CONTACTS_DICTIONARY } from './Contacts.dictionary';
-import instagram from '../../../../common/assets/images/inst.svg';
-import vk from '../../../../common/assets/images/vk.svg';
-import telegram from '../../../../common/assets/images/tg.svg';
+import Instagram from '../../../../common/assets/images/inst.svg';
+import Vk from '../../../../common/assets/images/vk.svg';
+import Telegram from '../../../../common/assets/images/tg.svg';
 import ContactsMap from './components/ContactsMap';
 
 const {
@@ -51,13 +51,13 @@ const Contacts = () => {
                         </div>
                         <div className={s.Contacts_right_side_item_contacts_icons}>
                             <a href={INSTAGRAM_LINK} target="_blank" rel="noreferrer">
-                                <img className={s.Contacts_right_side_item_contacts_icon} src={instagram} alt="instagram"/>
+                                <Instagram className={s.Contacts_right_side_item_contacts_icon} alt="instagram"/>
                             </a>
                             <a href={VK_LINK} target="_blank" rel="noreferrer">
-                                <img className={s.Contacts_right_side_item_contacts_icon} src={vk} alt="vk"/>
+                                <Vk className={s.Contacts_right_side_item_contacts_icon} alt="vk"/>
                             </a>
                             <a href={TELEGRAM_LINK} target="_blank" rel="noreferrer">
-                                <img className={s.Contacts_right_side_item_contacts_icon} src={telegram} alt="telegram"/>
+                                <Telegram className={s.Contacts_right_side_item_contacts_icon} alt="telegram"/>
                             </a>
                         </div>
                         <div className={s.Contacts_right_side_item}>

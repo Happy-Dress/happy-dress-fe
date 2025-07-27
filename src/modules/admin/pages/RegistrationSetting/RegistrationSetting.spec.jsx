@@ -1,9 +1,9 @@
-
 import React from 'react';
+import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import RegistrationSetting from './index';
 
-jest.mock('./RegistrationSetting', ()=>({
+vi.mock('./RegistrationSetting', ()=>({
     __esModule: true,
     default: () =>{
         return <div data-testid="registration-page"/>;

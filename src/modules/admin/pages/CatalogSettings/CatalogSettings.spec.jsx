@@ -1,17 +1,18 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { act, render, screen, waitFor } from '@testing-library/react';
 import CatalogSetting from './index';
 import { ModalProvider } from 'react-modal-hook';
 import userEvent from '@testing-library/user-event';
 
-jest.mock('./components/SettingDropDown', ()=>({
+vi.mock('./components/SettingDropDown', ()=>({
     __esModule: true,
     default: ()=>{
         return <div data-testid="setting-drop-down"/>;
     }
 }));
 
-jest.mock('../../../../common/api/catalogSettings/retrieveCatalogSettings',()=>({
+vi.mock('../../../../common/api/catalogSettings/retrieveCatalogSettings',()=>({
     __esModule: true,
     default: () => Promise.resolve({ models: [] })
 }));

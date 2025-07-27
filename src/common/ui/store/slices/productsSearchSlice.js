@@ -132,9 +132,10 @@ export const productsSearchSlice = createSlice({
                 state.status = 'failed';
                 state.error = action.payload;
             });
-
         builder.addCase(fetchCatalogueSettings.fulfilled, (state, actions) => {
-            state.filters.category = actions.payload.categories[0].id;
+            if(!state.filters.category) {
+                state.filters.category = actions.payload.categories[0].id;
+            }
         });
         builder.addCase(fetchCatalogueItems.fulfilled, (state, action) => {
             state.currentPage = action.payload.currentPage;

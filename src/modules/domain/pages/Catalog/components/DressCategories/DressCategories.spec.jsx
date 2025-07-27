@@ -1,4 +1,5 @@
 import DressCategories from './DressCategories';
+import styles from './DressCategories.module.scss';
 import renderWithStore from '../../../../../../common/util/tests/renderWithStore';
 import { screen } from '@testing-library/dom';
 import { mockCatalogueSettingsResponse } from '../../../../../../__mocks__/mockCatalogueSettingsResponse';
@@ -25,18 +26,18 @@ describe('DressCategories', () => {
         const { baseElement } = renderWithStore(<DressCategories />, preloadedStore);
 
         expect(baseElement).toBeInTheDocument();
-        expect(screen.getByText('Деловой Стиль')).toHaveClass('selected');
+        expect(screen.getByText('Деловой Стиль')).toHaveClass(styles.selected);
     });
 
     it('should change category', async () => {
         renderWithStore(<DressCategories />, preloadedStore);
 
-        expect(screen.getByText('Деловой Стиль')).toHaveClass('selected');
+        expect(screen.getByText('Деловой Стиль')).toHaveClass(styles.selected);
 
         await act(() => {
             userEvent.click(screen.getByText(mockCatalogueSettingsResponse.categories[1].name));
         });
 
-        expect(screen.getByText(mockCatalogueSettingsResponse.categories[1].name)).toHaveClass('selected');
+        expect(screen.getByText(mockCatalogueSettingsResponse.categories[1].name)).toHaveClass(styles.selected);
     });
 });

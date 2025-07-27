@@ -1,5 +1,7 @@
+import { vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import CategoryDialog from './CategoryDialog';
+import styles from './CategoryDialog.module.scss';
 import { ModalProvider } from 'react-modal-hook';
 import { DeviceTypeProvider } from '../../../contexts/DeviceType';
 import { isItemExist } from './CategoryDialog.validation';
@@ -30,17 +32,17 @@ const mockSettingList = [
 ];
 
 const addModelProps = {
-    onClose: jest.fn(),
-    updateSettings: jest.fn(),
+    onClose: vi.fn(),
+    updateSettings: vi.fn(),
     settingsList: [],
-    setEditingModel: jest.fn(),
+    setEditingModel: vi.fn(),
 };
 
 const editModelProps = {
-    onClose: jest.fn(),
-    updateSettings: jest.fn(),
+    onClose: vi.fn(),
+    updateSettings: vi.fn(),
     settingsList: [],
-    setEditingModel: jest.fn(),
+    setEditingModel: vi.fn(),
     editingModel: mockEditModel,
 };
 
@@ -104,7 +106,7 @@ describe('CategoryDialog', () => {
 
     it('should not render ProgressBar', () => {
         renderWithProvider(addModelProps);
-        expect(screen.getByTestId('progressBar')).toHaveClass('visible');
+        expect(screen.getByTestId('progressBar')).toHaveClass(styles.visible);
         expect(screen.getByTestId('progressBar')).toBeInTheDocument();
     });
 
@@ -114,10 +116,10 @@ describe('CategoryDialog', () => {
         const file = new Blob([fileContents], { type: 'text/plain' });
         const loadImageButton = screen.getByLabelText('Загрузить фото');
 
-        expect(screen.getByTestId('progressBar')).toHaveClass('visible');
+        expect(screen.getByTestId('progressBar')).toHaveClass(styles.visible);
         expect(screen.getByTestId('progressBar')).toBeInTheDocument();
         fireEvent.change(loadImageButton, { target: { files: [file] } });
-        expect(screen.getByTestId('progressBar')).not.toHaveClass('visible');
+        expect(screen.getByTestId('progressBar')).not.toHaveClass(styles.visible);
     });
 
     it('should handle onClose when add category', () => {

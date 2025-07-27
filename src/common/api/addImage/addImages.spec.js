@@ -1,19 +1,22 @@
 import addImage from './addImage';
-import mockAxios from 'jest-mock-axios';
+import { vi } from 'vitest';
+import axios from 'axios';
 
+vi.mock('axios');
 const mockSettings = {};
 
 describe('addCatalogImage', () => {
 
-    afterEach(() => {
-        mockAxios.reset();
+    beforeEach(() => {
+        vi.clearAllMocks();
     });
 
     it('should return expected values', async () => {
         const mockResponse = {
             data: mockSettings
         };
-        mockAxios.post.mockResolvedValueOnce(mockResponse);
+        const mockPost = vi.mocked(axios.post);
+        mockPost.mockResolvedValueOnce(mockResponse);
         const response = await addImage(mockSettings);
 
         expect(response).toBeTruthy();

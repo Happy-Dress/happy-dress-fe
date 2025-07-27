@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { screen, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
@@ -37,35 +38,35 @@ export const renderWithRouter = (component) => {
 };
 
 
-jest.mock('../../../pages/BlogSettings/BlogSettings', () => ({
+vi.mock('../../../pages/BlogSettings/BlogSettings', () => ({
     __esModule: true,
     default: () => {
         return <div data-testid="blog-page"/>;
     },
 }));
 
-jest.mock('../../../pages/CatalogSettings/CatalogSettings', () => ({
+vi.mock('../../../pages/CatalogSettings/CatalogSettings', () => ({
     __esModule: true,
     default: () => {
         return <div data-testid="catalog-page"/>;
     },
 }));
 
-jest.mock('../../../pages/ProductSettings', () => ({
+vi.mock('../../../pages/ProductSettings', () => ({
     __esModule: true,
     default: () => {
         return <div data-testid="goods-page"/>;
     },
 }));
 
-jest.mock('../../../pages/SignIn/', ()=>({
+vi.mock('../../../pages/SignIn/', ()=>({
     __esModule: true,
     default: ()=>{
         return <div data-testid="athorization">Athorization form</div>;
     }
 }));
 
-jest.mock('../../../pages/RegistrationSetting/RegistrationSetting', () => ({
+vi.mock('../../../pages/RegistrationSetting/RegistrationSetting', () => ({
     __esModule: true,
     default: () => {
         return <div data-testid="registration-page"/>;
@@ -75,7 +76,7 @@ jest.mock('../../../pages/RegistrationSetting/RegistrationSetting', () => ({
 
 describe('NavigationPanelDesktop', () => {
 
-    const mockExit = jest.fn();
+    const mockExit = vi.fn();
 
     beforeEach( () => {
         renderWithRouter(<NavigationPanelDesktop ordersAmount={1} handleExit={mockExit}/>);

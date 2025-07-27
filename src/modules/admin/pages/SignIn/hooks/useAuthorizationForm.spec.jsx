@@ -1,53 +1,54 @@
+import { vi } from 'vitest';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import useAuthorizationForm from './useAuthorizationForm';
 import { useToasters } from '../../../../../common/ui/contexts/ToastersContext';
 
-jest.mock('react', () => ({
-    useState: jest.fn(),
+vi.mock('react', () => ({
+    useState: vi.fn(),
 }));
 
-jest.mock('react-hook-form', () => ({
-    useForm: jest.fn(),
+vi.mock('react-hook-form', () => ({
+    useForm: vi.fn(),
 }));
 
-jest.mock('react-router-dom', () => ({
-    useNavigate: jest.fn(),
+vi.mock('react-router-dom', () => ({
+    useNavigate: vi.fn(),
 }));
 
-jest.mock('../../../../../common/ui/contexts/ToastersContext', () => ({
-    useToasters: jest.fn(),
+vi.mock('../../../../../common/ui/contexts/ToastersContext', () => ({
+    useToasters: vi.fn(),
 }));
 
 
 describe('useAuthorizationForm', () => {
     it('should return functions and variables', () => {
-        useState.mockImplementation(() => [false, jest.fn()]);
+        useState.mockImplementation(() => [false, vi.fn()]);
         useForm.mockImplementation(() => {
             return {
                 register: {},
-                setError: jest.fn(),
+                setError: vi.fn(),
                 formState: { errors: {}, isValid: false },
-                handleSubmit: () => jest.fn(),
+                handleSubmit: () => vi.fn(),
             };
         });
-        useNavigate.mockImplementation(jest.fn());
+        useNavigate.mockImplementation(vi.fn());
         useToasters.mockImplementation(() => {
             return {
-                showTosterError: jest.fn(),
-                showToasterNotification: jest.fn(),
-                showToasterSuccess: jest.fn(),
+                showTosterError: vi.fn(),
+                showToasterNotification: vi.fn(),
+                showToasterSuccess: vi.fn(),
             };
         });
 
-        const onSubmit = jest.fn();
+        const onSubmit = vi.fn();
         const register = {};
-        const setError = jest.fn();
+        const setError = vi.fn();
         const errors = {};
         const isValid = false;
         const isPasswordVisible = false;
-        const togglePasswordVisibility = () => jest.fn();
+        const togglePasswordVisibility = () => vi.fn();
 
         const actualResult = useAuthorizationForm();
         expect(JSON.stringify({

@@ -1,22 +1,23 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { render } from '@testing-library/react';
 import ColorSettings from './ColorSettings';
 
-jest.mock('../SimpleSettingsControl/SimpleSettingsControl', () =>({
+vi.mock('../SimpleSettingsControl/SimpleSettingsControl', () =>({
     __esModule: true,
     default: () => {
         return <div>Test</div>;
     }
 }));
 
-jest.mock('../../contexts/CatalogSettingsContext/hook/useCatalogSettings', () => ({
+vi.mock('../../contexts/CatalogSettingsContext/hook/useCatalogSettings', () => ({
     useCatalogSettings: () =>({
         settings: {
             models: [],
             materials: [],
             colors: []
         },
-        updateMaterials: jest.fn()
+        updateMaterials: vi.fn()
     })
 }));
 

@@ -1,3 +1,4 @@
+import styles from './TextField.module.scss';
 import { render, screen } from '@testing-library/react';
 import { TextField } from './TextField';
 
@@ -25,6 +26,6 @@ describe('TextField', () => {
 
         const input = screen.getByPlaceholderText('test');
 
-        expect(input).toHaveClass('error');
+        expect(input).toHaveClass(styles.error);
     });
 });

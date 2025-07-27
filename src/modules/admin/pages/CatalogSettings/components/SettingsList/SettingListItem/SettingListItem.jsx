@@ -1,6 +1,6 @@
 import s from './SettingListItem.module.scss';
-import { ReactComponent as Delete } from '../../../../../../../assets/images/delete.svg';
-import { ReactComponent as Pencil } from '../../../../../../../assets/images/pencil.svg';
+import Delete from '../../../../../../../assets/images/delete.svg';
+import Pencil from '../../../../../../../assets/images/pencil.svg';
 import PropTypes from 'prop-types';
 
 const SettingListItem = ({ setting, onEdit, onRemove, onSelect, onUnSelect }) =>{

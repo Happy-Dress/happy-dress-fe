@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { screen, render, waitFor } from '@testing-library/react';
 import NavigationPanel from './NavigationPanel';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
@@ -9,7 +10,7 @@ import RegistrationSetting from '../../pages/RegistrationSetting';
 import SignIn from '../../pages/SignIn';
 
 
-jest.mock('../../../../common/ui/hocs/adaptive', () => ({
+vi.mock('../../../../common/ui/hocs/adaptive', () => ({
     __esModule: true,
     default: () => () => <div>Navigation Panel</div>
 }));

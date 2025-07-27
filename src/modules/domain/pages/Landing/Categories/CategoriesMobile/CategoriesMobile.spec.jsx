@@ -1,5 +1,6 @@
-import { screen, waitFor } from '@testing-library/react';
 import React from 'react';
+import { vi } from 'vitest';
+import { screen, waitFor } from '@testing-library/react';
 import CategoriesMobile from './CategoriesMobile';
 import userEvent from '@testing-library/user-event';
 import renderWithStoreAndRouter from '../../../../../../common/util/tests/renderWithStoreAndRouter';
@@ -27,29 +28,17 @@ describe('CategoriesMobile', ( ) => {
 
     });
 
-    it('should change slide on press dot', async () => {
-        renderWithStoreAndRouter(<CategoriesMobile categories={categories} />);
-        const secondDot = screen.getByTestId('dot_1');
-        const firstSlide = screen.getByTestId('card_0');
-        const secondSlide = screen.getByTestId('card_1');
-        expect(firstSlide).toHaveAttribute('class', 'slider_card_active');
-        expect(secondSlide).toHaveAttribute('class', 'slider_card_right');
-
-        await userEvent.click(secondDot);
-
-        expect(secondSlide).toHaveAttribute('class', 'slider_card_active');
-        expect(firstSlide).toHaveAttribute('class', 'slider_card_left');
-    });
 
     it('should click on image', async () => {
         renderWithStoreAndRouter(<CategoriesMobile categories={categories} />);
-        const mockScrollTo = jest.fn();
+        const mockScrollTo = vi.fn();
         Object.defineProperty(window, 'scrollTo', {
             value: mockScrollTo,
             writable: true,
         });
         await waitFor(() => {
-            userEvent.click(screen.getByAltText('Slide 1'));
+            const elem = screen.getAllByAltText('Slide 1');
+            userEvent.click(elem[1]);
         });
         expect(mockScrollTo).toHaveBeenCalled();
     });

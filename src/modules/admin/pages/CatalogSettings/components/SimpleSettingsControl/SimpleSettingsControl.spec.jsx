@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import SimpleSettingsControl from './index';
@@ -5,7 +6,7 @@ import userEvent from '@testing-library/user-event';
 import { ModalProvider } from 'react-modal-hook';
 import { ColorAddDialog } from '../../../../../../common/ui/components/Dialogs';
 
-const mockUpdateSettings = jest.fn();
+const mockUpdateSettings = vi.fn();
 
 const mockModel = {
     id: 1,
@@ -13,12 +14,12 @@ const mockModel = {
     orderNumber: 0
 };
 
-jest.mock('../../../../../../common/ui/components/Dialogs/ColorAddDialog/ColorAddDialog', () => ({
+vi.mock('../../../../../../common/ui/components/Dialogs/ColorAddDialog/ColorAddDialog', () => ({
     __esModule: true,
     default: () => <div>Модалка</div>
 }));
 
-jest.mock('../SettingsList', () => ({
+vi.mock('../SettingsList', () => ({
     __esModule: true,
     default: ({ onEdit, onSelect, onUnSelect, handleReorder, onRemove }) => {
         return (
@@ -34,6 +35,11 @@ jest.mock('../SettingsList', () => ({
 }));
 
 describe('SimpleSettingsControl', () =>{
+
+    beforeEach(() => {
+        mockUpdateSettings.mockClear();
+    });
+
     it('should render correctly', () =>{
         const { baseElement } = render(<SimpleSettingsControl updateSettings={mockUpdateSettings} settingsList={[mockModel]}/>, { wrapper: ModalProvider });
         expect(baseElement).toBeInTheDocument();
