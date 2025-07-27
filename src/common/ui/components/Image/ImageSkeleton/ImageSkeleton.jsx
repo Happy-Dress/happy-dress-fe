@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 
 const ImageSkeleton = ({ width, height, position, top, left }) => {
     return (
-        <div 
+        <div
+            id='image-skeleton'
             className={s.ImageSkeleton}
             style={{ width, height, position, top, left }}
         />
