@@ -2,13 +2,13 @@ import React from 'react';
 import s from './AuthorizationFormMobile.module.scss';
 import { AUTHORIZATION_FORM_DICTIONARY } from '../AuthorizationForm.dictionary';
 import classNames from 'classnames';
-import person from '../../../../../../../common/assets/images/person.svg';
-import arrowRight from '../../../../../../../common/assets/images/arrowRight.svg';
+import Person from '../../../../../../../common/assets/images/person.svg';
+import ArrowRight from '../../../../../../../common/assets/images/arrowRight.svg';
 import PropTypes from 'prop-types';
 import { ErrorMessage } from '@hookform/error-message';
 import ButtonAccent from '../../../../../../../common/ui/components/Buttons/ButtonAccent';
-import closedEye from '../../../../../../../common/assets/images/closedEye.svg';
-import openEye from '../../../../../../../common/assets/images/openEye.svg';
+import ClosedEye from '../../../../../../../common/assets/images/closedEye.svg';
+import OpenEye from '../../../../../../../common/assets/images/openEye.svg';
 
 
 const {
@@ -29,7 +29,7 @@ const AuthorizationFormMobile = ({
     isValid
 }) => {
 
-    const passwordIcon = isPasswordVisible ? openEye : closedEye;
+    const PasswordIcon = isPasswordVisible ? OpenEye : ClosedEye;
     const passwordInputType = isPasswordVisible ? 'text' : 'password';
 
     const renderErrorMessage = (name) =>{
@@ -60,8 +60,7 @@ const AuthorizationFormMobile = ({
                                 errors.login?.message ? s.Form_input_fields_input_invalid : s.Form_input_fields_input_valid
                             )
                         }>
-                            <img className={s.Form_input_fields_img_input} 
-                                src={person} 
+                            <Person className={s.Form_input_fields_img_input}
                                 alt='person'/>
                             <input type='text' 
                                 placeholder={HELP_YOUR_NAME_LABEL} 
@@ -78,15 +77,13 @@ const AuthorizationFormMobile = ({
                                 errors.password?.message ? s.Form_input_fields_input_invalid : s.Form_input_fields_input_valid
                             )
                         }>
-                            <img className={s.Form_input_fields_img_input}
-                                src={arrowRight}
+                            <ArrowRight className={s.Form_input_fields_img_input}
                                 alt='arrow right'/>
                             <input type={passwordInputType}
                                 placeholder={HELP_PASSWORD_LABEL}
                                 maxLength={MAX_PASSWORD_LENGTH}
                                 {...register('password')}/>
-                            <img className={s.Form_input_fields_img_input}
-                                src={passwordIcon}
+                            <PasswordIcon className={s.Form_input_fields_img_input}
                                 onClick={togglePasswordVisibility}
                                 alt='visibility icon'/>
                         </div>
