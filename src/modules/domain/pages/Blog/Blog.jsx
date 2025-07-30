@@ -3,6 +3,7 @@ import axios from 'axios';
 import s from './Blog.module.scss';
 import ImageSkeleton from '../../../../common/ui/components/Image/ImageSkeleton';
 import { useDeviceTypeContext } from '../../../../common/ui/contexts/DeviceType';
+import withRouteTracker from '../../../../common/ui/hocs/withRouteTracker';
 
 const Blog = () => {
 
@@ -21,17 +22,24 @@ const Blog = () => {
 
     useEffect(() => {
         setTimeout(() => {
-            const iFrameID = document.getElementById('idIframe');
-            if (iFrameID && showSkeleton) {
-                const iFrameHeight = iFrameID.contentWindow.document.body?.scrollHeight;
+            const iframeElement = document.getElementById('idIframe');
+            if (iframeElement && showSkeleton) {
+                const iFrameHeight = iframeElement.contentWindow.document.body?.scrollHeight;
                 if (iFrameHeight > 1800) {
-                    iFrameID.height = iFrameHeight + 'px';
+                    iframeElement.height = iFrameHeight + 'px';
                     setShowSkeleton(false);
                 } else {
                     setShowSkeleton(true);  
                 }
             }
         }, 50);
+        setTimeout(() => {
+            const iframeElement = document.getElementById('idIframe');
+            const imageSkeleton = document.getElementById('image-skeleton');
+            if (imageSkeleton && iframeElement && iframeElement.contentDocument && iframeElement.contentDocument.location) {
+                iframeElement.contentDocument.location.reload(true);
+            }
+        }, 1000);
     }, [iframeSrcDoc, showSkeleton]);
     
 
@@ -53,4 +61,4 @@ const Blog = () => {
     );
 };
 
-export default Blog;
+export default withRouteTracker(Blog);
