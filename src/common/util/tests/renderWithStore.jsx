@@ -1,5 +1,5 @@
 import { setupStore } from '../../ui/store/setupStore';
-import { render } from '@testing-library/react';
+import { render, renderHook } from '@testing-library/react';
 
 import { Provider, useDispatch } from 'react-redux';
 import React, { useEffect } from 'react';
@@ -24,6 +24,13 @@ const renderWithStore = (component, preloadedStore) => {
         </TestComponent>
     </Provider>);
 
+};
+
+export const renderHookWithStore = (hookCallBack, store) => {
+    const wrapper = ({ children }) => <Provider store={setupStore(store)}>{children}</Provider>;
+    return renderHook(hookCallBack,{
+        wrapper,
+    });
 };
 
 export default renderWithStore;

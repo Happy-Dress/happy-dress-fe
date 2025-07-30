@@ -12,6 +12,7 @@ import {
 import Loader from '../../../../common/ui/components/Loader';
 import EmptyBanner from '../../../../common/ui/components/EmptyBanner';
 import s from './Product.module.scss';
+import withRouteTracker from '../../../../common/ui/hocs/withRouteTracker';
 
 
 const Product = () => {
@@ -121,4 +122,4 @@ const Product = () => {
     );
 };
 
-export default Product;
+export default withRouteTracker(Product);
