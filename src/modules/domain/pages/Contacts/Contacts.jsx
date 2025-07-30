@@ -10,6 +10,7 @@ import Instagram from '../../../../common/assets/images/inst.svg';
 import Vk from '../../../../common/assets/images/vk.svg';
 import Telegram from '../../../../common/assets/images/tg.svg';
 import ContactsMap from './components/ContactsMap';
+import withRouteTracker from '../../../../common/ui/hocs/withRouteTracker';
 
 const {
     CONTACTS_SHOWROOM_LABEL,
@@ -72,4 +73,4 @@ const Contacts = () => {
     );
 };
 
-export default Contacts;
+export default withRouteTracker(Contacts);

@@ -3,6 +3,7 @@ import axios from 'axios';
 import s from './Blog.module.scss';
 import ImageSkeleton from '../../../../common/ui/components/Image/ImageSkeleton';
 import { useDeviceTypeContext } from '../../../../common/ui/contexts/DeviceType';
+import withRouteTracker from '../../../../common/ui/hocs/withRouteTracker';
 
 const Blog = () => {
 
@@ -60,4 +61,4 @@ const Blog = () => {
     );
 };
 
-export default Blog;
+export default withRouteTracker(Blog);
